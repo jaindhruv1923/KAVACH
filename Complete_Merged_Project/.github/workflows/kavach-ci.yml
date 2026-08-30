@@ -1,7 +1,6 @@
 name: Kavach CI
 
-# Triggers on every push and every PR, per docs/CICD_SPEC.md — "A pull
-# request triggers the pipeline."
+# Triggers on every push and every PR targeting main.
 on:
   push:
     branches: [main]
@@ -12,6 +11,7 @@ jobs:
   # --- Job 1: Build, lint, unit/integration tests ---
   test:
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: backend
@@ -33,12 +33,18 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Verify backend structure
+        run: |
+          echo "Current directory:"
+          pwd
+          echo ""
+          echo "Backend contents:"
+          ls -la
+          echo ""
+          echo "Tests directory:"
+          ls -la tests
+
       - name: Run test suite
-        # GEMINI_API_KEY is optional here — Phase 3's llm_client.py has a
-        # documented stub fallback when no key is configured, so tests that
-        # exercise generation should not require a real API key to run in CI.
-        # If a key IS available as a repo secret, it's passed through so
-        # generation tests can exercise the real path too.
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -51,16 +57,11 @@ jobs:
           name: pytest-results
           path: backend/pytest-results.xml
 
-  # --- Job 2: Kavach security gate ---
-  # Per docs/CICD_SPEC.md: "Kavach security gate — run the security engine
-  # against the diff's generated code/tests/context; fail the pipeline on
-  # BLOCK-severity findings." Here, adapted for a CI context: the gate
-  # verifies the security engine's own quality bar (precision/recall) has
-  # not regressed below an acceptable threshold — this is a smoke test on
-  # the security engine itself, run on every change.
+  # --- Job 2: Kavach security + impact-analysis quality gate ---
   security-gate:
     runs-on: ubuntu-latest
     needs: test
+
     defaults:
       run:
         working-directory: backend
@@ -82,7 +83,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Kavach security + impact-analysis gate
-        run: python ci_security_gate.py
+        run: |
+          python ci_security_gate.py
 
       - name: Upload gate report
         if: always()
@@ -92,17 +94,20 @@ jobs:
           path: backend/security_gate_report.json
 
   # --- Job 3: Report summary ---
-  # Per docs/CICD_SPEC.md: "Report generation — summarize results as a PR
-  # comment or artifact." Keeping this as a simple always-run status
-  # summary job rather than a PR-comment bot, to avoid needing extra
-  # permissions/tokens beyond the default GITHUB_TOKEN.
   report:
     runs-on: ubuntu-latest
     needs: [test, security-gate]
     if: always()
+
     steps:
       - name: Pipeline summary
         run: |
-          echo "## Kavach CI Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- Test job result: ${{ needs.test.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Security gate result: ${{ needs.security-gate.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "## Kavach CI Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Test job result: ${{ needs.test.result }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Security gate result: ${{ needs.security-gate.result }}" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "${{ needs.test.result }}" = "success" ] && [ "${{ needs.security-gate.result }}" = "success" ]; then
+            echo "- Overall result: PASSED" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Overall result: FAILED" >> "$GITHUB_STEP_SUMMARY"
+          fi
