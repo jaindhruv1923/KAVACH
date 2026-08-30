@@ -22,6 +22,19 @@ def load_test_cases() -> list[dict]:
         return json.load(f)
 
 
+def normalize_path(path: str) -> str:
+    """Normalize file paths for consistent comparison."""
+    # 1. Normalize separators
+    path = path.replace("\\", "/")
+    # 2. Remove leading 'app/' if present
+    if path.startswith("app/"):
+        path = path[len("app/"):]
+    # 3. Strip leading './'
+    path = path.lstrip("./")
+    # 4. Lowercase for case-insensitivity
+    return path.lower()
+
+
 def evaluate() -> dict:
     test_cases = load_test_cases()
     all_precisions, all_recalls, all_f1s = [], [], []
@@ -29,8 +42,8 @@ def evaluate() -> dict:
 
     for case in test_cases:
         predicted = analyze_impact(case["change_description"], REPO_ROOT, top_k=5)
-        predicted_files = {p["file_path"].replace("/", "\\") for p in predicted}
-        actual_files = {f for f in case["actual_affected_files"]}
+        predicted_files = {normalize_path(p["file_path"]) for p in predicted}
+        actual_files = {normalize_path(f) for f in case["actual_affected_files"]}
 
         tp = len(predicted_files & actual_files)
         fp = len(predicted_files - actual_files)
