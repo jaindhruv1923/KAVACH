@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+
+# Phase 1 — Repository ingestion + RAG
+qdrant-client
+sentence-transformers
+
+# Testing
+pytest
+pytest-cov
+httpx
+
+# Add as later phases need them:
+# sqlalchemy           # Phase 1 (DB) — audit/workflow storage

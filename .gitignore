@@ -1,0 +1,30 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Local databases / vector stores
+qdrant_storage/
+
+# Generated test/output files
+*.log
+pytest_output.txt
+audit_output.txt
+
+# OS
+.DS_Store
+Thumbs.db
