@@ -15,9 +15,9 @@
     {
       "check": "impact_analyzer",
       "passed": true,
-      "avg_precision": 0.51,
-      "avg_recall": 0.9,
-      "avg_f1": 0.643,
+      "avg_precision": 0.57,
+      "avg_recall": 1.0,
+      "avg_f1": 0.719,
       "thresholds": {
         "min_avg_precision": 0.5,
         "min_avg_recall": 0.5
