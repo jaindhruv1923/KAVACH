@@ -1,0 +1,173 @@
+:root {
+  --bg: #0f1117;
+  --card-bg: #171a23;
+  --border: #2a2e3a;
+  --text: #e6e8ee;
+  --text-dim: #9aa0ac;
+  --accent: #4f8cff;
+  --safe: #2fbf71;
+  --blocked: #ef4444;
+  --review: #f59e0b;
+  --neutral: #6b7280;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0 0 60px;
+}
+
+.app-header {
+  text-align: center;
+  padding: 32px 16px 16px;
+}
+
+.app-header h1 { margin: 0; font-size: 2rem; }
+.subtitle { color: var(--text-dim); margin: 4px 0 0; }
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+textarea, input[type="text"] {
+  width: 100%;
+  background: #0f1117;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover { opacity: 0.9; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.ingest-row { display: flex; gap: 8px; }
+.ingest-row input { flex: 1; }
+.ingest-row button { margin-top: 0; white-space: nowrap; }
+
+.status-line {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.status-neutral { background: rgba(107,114,128,0.15); color: var(--text-dim); }
+.status-safe { background: rgba(47,191,113,0.15); color: var(--safe); }
+.status-blocked { background: rgba(239,68,68,0.15); color: var(--blocked); }
+.status-review { background: rgba(245,158,11,0.15); color: var(--review); }
+
+/* Security status block */
+.security-verdict {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.finding-item {
+  border-left: 3px solid var(--border);
+  padding: 8px 12px;
+  margin: 6px 0;
+  font-size: 0.88rem;
+  background: rgba(255,255,255,0.02);
+}
+.finding-item.high { border-left-color: var(--blocked); }
+.finding-item.medium { border-left-color: var(--review); }
+.finding-item.low { border-left-color: var(--neutral); }
+
+/* Pipeline */
+.pipeline { display: flex; flex-direction: column; gap: 4px; }
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.pipeline-step.reached { background: rgba(47,191,113,0.1); color: var(--safe); }
+.pipeline-step.stopped { background: rgba(239,68,68,0.1); color: var(--blocked); font-weight: 600; }
+.pipeline-step.not-reached { color: var(--text-dim); opacity: 0.5; }
+
+/* RAG evidence */
+.evidence-chunk {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+.evidence-chunk .file-path { color: var(--accent); font-weight: 600; }
+.evidence-chunk .score { color: var(--text-dim); float: right; }
+.evidence-chunk .snippet {
+  margin-top: 6px;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 0.8rem;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+/* Impact analysis */
+.impact-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.impact-item:last-child { border-bottom: none; }
+.impact-score { color: var(--accent); font-weight: 600; }
+
+/* Generation */
+pre.code-block {
+  background: #0a0c11;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+}
+
+/* History */
+#history-list { padding-left: 20px; }
+#history-list li { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 4px; font-family: monospace; }
+
+.empty-note { color: var(--text-dim); font-size: 0.88rem; font-style: italic; }

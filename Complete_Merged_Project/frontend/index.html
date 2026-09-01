@@ -1,51 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kavach Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavach — Security-Governed Agentic AI DevOps Platform</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 p-8">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-bold mb-6 text-indigo-700">Kavach Dashboard</h1>
-        
-        <div class="bg-white p-6 rounded shadow-md mb-6">
-            <h2 class="text-xl font-semibold mb-4">Request Workflow</h2>
-            <textarea id="requestInput" class="w-full p-2 border rounded mb-4" rows="3" placeholder="Enter your development request..."></textarea>
-            <button onclick="submitRequest()" class="bg-indigo-600 text-white px-4 py-2 rounded">Initiate Kavach Workflow</button>
-        </div>
+<body>
 
-        <div id="status" class="hidden bg-yellow-100 p-4 rounded mb-6 text-yellow-800">Processing...</div>
-        <div id="results" class="hidden bg-white p-6 rounded shadow-md">
-            <h2 class="text-xl font-semibold mb-4">Results</h2>
-            <pre id="resultOutput" class="bg-gray-100 p-4 rounded overflow-x-auto"></pre>
-        </div>
+<header class="app-header">
+  <h1>🛡️ Kavach</h1>
+  <p class="subtitle">Multilingual Security-Governed Agentic AI DevOps Platform</p>
+</header>
+
+<main class="container">
+
+  <!-- A. Repository indexing status -->
+  <section class="card" id="ingest-card">
+    <h2>Repository Index</h2>
+    <div class="ingest-row">
+      <input type="text" id="repo-path" value="app" placeholder="Repo path (relative to backend/)">
+      <button id="ingest-btn">Ingest Repository</button>
     </div>
+    <p id="ingest-status" class="status-line status-neutral">Not indexed yet this session.</p>
+  </section>
 
-    <script>
-        async function submitRequest() {
-            const requestText = document.getElementById('requestInput').value;
-            if (!requestText) return;
+  <!-- B. Request input -->
+  <section class="card">
+    <h2>Developer Request</h2>
+    <textarea id="request-input" rows="3"
+      placeholder="e.g. Add a health-check endpoint to the backend that returns a simple JSON status response."></textarea>
+    <button id="submit-btn">Initiate Kavach Workflow</button>
+    <p id="network-error" class="status-line status-blocked" style="display:none;"></p>
+  </section>
 
-            document.getElementById('status').classList.remove('hidden');
-            document.getElementById('results').classList.add('hidden');
+  <!-- C. Security status -->
+  <section class="card" id="security-card" style="display:none;">
+    <h2>Security Status</h2>
+    <div id="security-status"></div>
+  </section>
 
-            try {
-                const response = await fetch('http://127.0.0.1:8000/agent/request', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ request_text: requestText })
-                });
-                const data = await response.json();
-                document.getElementById('resultOutput').textContent = JSON.stringify(data, null, 2);
-                document.getElementById('results').classList.remove('hidden');
-            } catch (error) {
-                alert('Error: ' + error.message);
-            } finally {
-                document.getElementById('status').classList.add('hidden');
-            }
-        }
-    </script>
+  <!-- D. Workflow pipeline -->
+  <section class="card" id="pipeline-card" style="display:none;">
+    <h2>Workflow Pipeline</h2>
+    <div id="pipeline" class="pipeline"></div>
+  </section>
+
+  <!-- E. RAG evidence -->
+  <section class="card" id="rag-card" style="display:none;">
+    <h2>Repository Evidence (RAG)</h2>
+    <div id="rag-evidence"></div>
+  </section>
+
+  <!-- F. Impact analysis -->
+  <section class="card" id="impact-card" style="display:none;">
+    <h2>Change-Impact Analysis</h2>
+    <div id="impact-report"></div>
+  </section>
+
+  <!-- G. Generation result -->
+  <section class="card" id="generation-card" style="display:none;">
+    <h2>Generated Result</h2>
+    <div id="generation-result"></div>
+  </section>
+
+  <!-- H. Validation -->
+  <section class="card" id="validation-card" style="display:none;">
+    <h2>Validation</h2>
+    <div id="validation-result"></div>
+  </section>
+
+  <!-- I. Workflow history / trace -->
+  <section class="card" id="history-card" style="display:none;">
+    <h2>Workflow Trace</h2>
+    <ol id="history-list"></ol>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
 </body>
 </html>
