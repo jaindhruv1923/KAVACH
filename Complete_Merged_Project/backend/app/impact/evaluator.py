@@ -12,6 +12,8 @@ import json
 import os
 
 from app.impact.analyzer import analyze_impact
+from app.rag.embed_store import index_chunks
+from app.rag.ingest import ingest_repository
 
 TEST_CASES_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "impact_test_cases.json")
 REPO_ROOT = os.path.join(os.path.dirname(__file__), "..")  # the backend/app directory
@@ -36,6 +38,9 @@ def normalize_path(path: str) -> str:
 
 
 def evaluate() -> dict:
+    # Evaluation must use the canonical repository rather than whichever
+    # repository was indexed by a previous API or test call.
+    index_chunks(ingest_repository(REPO_ROOT))
     test_cases = load_test_cases()
     all_precisions, all_recalls, all_f1s = [], [], []
     per_case_results = []

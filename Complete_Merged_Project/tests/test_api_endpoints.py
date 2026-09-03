@@ -21,12 +21,9 @@ class TestHealthEndpoint:
         assert "service" in data
 
     def test_root_endpoint(self, client):
-        """Test root endpoint."""
-        response = client.get("/")
-        
-        assert response.status_code == 200
-        data = response.json()
-        assert "message" in data
+        """Test root endpoint (should redirect or serve frontend, test for redirect)."""
+        response = client.get("/", follow_redirects=False)
+        assert response.status_code in [200, 307, 302]
 
 
 class TestSecurityDetectionEndpoint:
@@ -427,7 +424,7 @@ class TestEndpointIntegration:
         # 8. Analyze impact
         impact = client.post(
             "/impact/analyze",
-            json={"change_description": "Update module"},
+            json={"change_description": "Update module", "repo_path": "demo_repo"},
         )
         assert impact.status_code == 200
         

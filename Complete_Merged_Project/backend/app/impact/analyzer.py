@@ -12,7 +12,8 @@ This is a focused component, not a full repository-intelligence product —
 see docs/IMPACT_ANALYSIS_SPEC.md's scope discipline note.
 """
 
-from app.rag.embed_store import search
+from app.rag.embed_store import index_chunks, search
+from app.rag.ingest import ingest_repository
 from app.impact.dependency_graph import build_dependency_graph, find_dependent_files
 
 # Weights for combining the two signals into one relevance score.
@@ -31,6 +32,11 @@ def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> l
     """
     # --- Signal 1: semantic similarity via existing RAG index ---
     semantic_hits = search(change_description, top_k=top_k * 2)  # over-fetch, then merge/rank
+    if not semantic_hits:
+        # Direct callers may not have ingested the repository yet. Bootstrap
+        # the index once so impact analysis remains a usable standalone API.
+        index_chunks(ingest_repository(repo_root))
+        semantic_hits = search(change_description, top_k=top_k * 2)
 
     # Deduplicate to file level — a file may have multiple matching chunks;
     # keep its best (highest) semantic score.

@@ -12,7 +12,9 @@ import os
 
 from dotenv import load_dotenv
 
+print("Loading env...")
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+print("Env loaded.")
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -71,15 +73,30 @@ app.add_middleware(
 # ..      -> Complete_Merged_Project
 # frontend -> Complete_Merged_Project/frontend
 
-FRONTEND_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "..", "..", "frontend")
-)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+FRONTEND_DIR = os.path.join(PROJECT_ROOT, "frontend")
+
+
+def resolve_repository_path(repo_path: str) -> str:
+    """Resolve repository paths relative to the integrated project root."""
+    path = os.path.expanduser(repo_path)
+    if not os.path.isabs(path):
+        project_path = os.path.join(PROJECT_ROOT, path)
+        backend_path = os.path.join(PROJECT_ROOT, "backend", path)
+        path = project_path if os.path.exists(project_path) else backend_path
+    return os.path.abspath(path)
 
 app.mount(
     "/static",
     StaticFiles(directory=FRONTEND_DIR),
     name="static",
 )
+
+
+@app.get("/", include_in_schema=False)
+def frontend_root():
+    """Serve the frontend entrypoint for browser users."""
+    return RedirectResponse(url="/static/index.html", status_code=307)
 
 
 # ============================================================
@@ -134,11 +151,12 @@ def ingest(payload: IngestRequest):
     Walk the given repository path, chunk its files, embed them,
     and store them in the local Qdrant index.
     """
-    chunks = ingest_repository(payload.repo_path)
+    repository_path = resolve_repository_path(payload.repo_path)
+    chunks = ingest_repository(repository_path)
     indexed_count = index_chunks(chunks)
 
     return {
-        "repo_path": payload.repo_path,
+        "repo_path": repository_path,
         "files_chunks_found": len(chunks),
         "chunks_indexed": indexed_count,
     }
@@ -268,11 +286,7 @@ def analyze_change_impact(payload: ImpactAnalyzeRequest):
     return a ranked list of files likely to be affected.
     """
 
-    repo_root = os.path.join(
-        os.path.dirname(__file__),
-        "..",
-        payload.repo_path,
-    )
+    repo_root = resolve_repository_path(payload.repo_path)
 
     report = analyze_impact(
         payload.change_description,
@@ -293,11 +307,3 @@ def evaluate_impact_analyzer():
     """
     return evaluate_impact()
 
-
-# ============================================================
-# ROOT
-# ============================================================
-
-@app.get("/")
-def root():
-    return RedirectResponse(url="/static/index.html")

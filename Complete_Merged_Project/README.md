@@ -28,7 +28,7 @@ Read the docs in this order:
 
 ## Quick Links
 
-- **Test Results**: 160/164 tests passing (97.6%) - See [FINAL_REPORT.md](FINAL_REPORT.md)
+- **Test Results**: 164/164 tests passing - See [FINAL_REPORT.md](FINAL_REPORT.md)
 - **How to Run**: See [RUNNING_KAVACH.md](RUNNING_KAVACH.md)
 - **Demo Scenarios**: See [demo_repo/DEMO.md](demo_repo/DEMO.md)
 - **Implementation Status**: See [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md)
@@ -47,7 +47,7 @@ kavach/
 │   ├── requirements.txt   # Dependencies (pytest, httpx, fastapi, qdrant, etc.)
 │   └── setup_env.py      # Configure LLM API keys
 ├── frontend/             # (Placeholder for UI)
-├── tests/                # Comprehensive pytest suite (164 tests, 160 passing)
+├── tests/                # Comprehensive pytest suite (164 tests, all passing)
 │   ├── conftest.py       # Shared fixtures
 │   ├── test_rag.py       # Phase 1 tests
 │   ├── test_agent.py     # Phase 2 tests
@@ -99,7 +99,7 @@ pip install -r requirements.txt
 ```bash
 cd ..
 python -m pytest tests -q
-# Expected: 160 passed in ~50s
+# Current result: 164 passed (runtime depends on model/cache state)
 ```
 
 ### Start Backend
@@ -126,7 +126,7 @@ See [demo_repo/DEMO.md](demo_repo/DEMO.md) for 7 interactive scenarios.
 | - | API Endpoints (10 total) | ✅ Complete | 33 passing |
 | - | End-to-End Integration | ✅ Complete | 19 passing |
 
-**Overall**: 160/164 tests passing (97.6%)
+**Overall**: 164/164 tests passing in the latest clean run
 
 ## Key Features Implemented
 

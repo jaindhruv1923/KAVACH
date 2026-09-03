@@ -6,6 +6,8 @@ Uses a small, CPU-friendly sentence-transformers model (all-MiniLM-L6-v2 —
 (no Docker/server needed for development).
 """
 
+import os
+from pathlib import Path
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qmodels
 from sentence_transformers import SentenceTransformer
@@ -13,11 +15,15 @@ from sentence_transformers import SentenceTransformer
 from app.rag.ingest import Chunk
 
 COLLECTION_NAME = "kavach_repo_chunks"
-EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"  # 384-dim, small, CPU-friendly
-QDRANT_PATH = "./qdrant_storage"  # local on-disk storage, gitignored
+EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+
+# Use absolute path for consistency, but allow override via environment variable for tests
+DEFAULT_QDRANT_PATH = str(Path(__file__).resolve().parents[2] / "qdrant_storage")
+QDRANT_PATH = os.environ.get("QDRANT_PATH", DEFAULT_QDRANT_PATH)
 
 _model = None
 _client = None
+_client_path = None
 
 
 def get_model() -> SentenceTransformer:
@@ -28,9 +34,14 @@ def get_model() -> SentenceTransformer:
 
 
 def get_client() -> QdrantClient:
-    global _client
+    global _client, _client_path
+    requested_path = os.environ.get("QDRANT_PATH", DEFAULT_QDRANT_PATH)
+    if _client is not None and _client_path != requested_path:
+        _client.close()
+        _client = None
     if _client is None:
-        _client = QdrantClient(path=QDRANT_PATH)
+        _client = QdrantClient(path=requested_path)
+        _client_path = requested_path
         _ensure_collection(_client)
     return _client
 

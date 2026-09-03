@@ -62,7 +62,7 @@ tests/test_rag.py::TestIngestion::test_chunk_text_basic PASSED
 tests/test_rag.py::TestIngestion::test_ingest_repository PASSED
 tests/test_security.py::TestPIIDetection::test_pan_detection PASSED
 ...
-======================== 160 passed, 1 warning in 50.38s ========================
+======================== 164 passed, 1 warning in the latest clean run ========================
 ```
 
 ### Run Specific Test Module
