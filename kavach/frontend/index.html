@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavach — Security-Governed Agentic AI DevOps Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <h1>🛡️ Kavach</h1>
+    <span class="badge" style="border-color:rgba(0,210,255,0.3);color:var(--accent);">AGENT OBSERVABILITY</span>
+  </div>
+  <p class="subtitle">Security-Governed Agentic AI DevOps Platform</p>
+  <div class="header-status">
+    <span id="gemini-dot" class="status-dot"></span>
+    <span id="gemini-status">Checking Gemini configuration...</span>
+    <button type="button" id="groq-cfg-btn" class="pill-btn" style="margin:0 0 0 6px;padding:2px 8px;font-size:0.7rem;" title="Configure Groq Whisper STT Key">⚡ Groq Whisper</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="command-strip">
+    <div>
+      <span class="eyebrow">SECURITY COMMAND CENTER</span>
+      <h2>One workspace. Every safeguard.</h2>
+      <p>Review code, connect a repository, or run an agent request with the same policy engine.</p>
+      <div class="live-line">
+        <span class="live-pulse"></span>
+        <span id="live-feed">System live · monitoring workflow activity</span>
+        <time id="live-clock"></time>
+      </div>
+    </div>
+    <div class="metrics" aria-label="Workflow metrics">
+      <div><strong id="run-count">0</strong><span>runs</span></div>
+      <div><strong id="review-count">0</strong><span>reviewed</span></div>
+      <div><strong id="block-count">0</strong><span>blocked</span></div>
+    </div>
+  </section>
+
+  <section class="workspace-grid">
+    <article class="card tool-card">
+      <div class="tool-heading">
+        <span class="tool-icon">⌘</span>
+        <div>
+          <h2>Agentic DevOps Workspace</h2>
+          <p>Describe the change, retrieve evidence, assess impact, and generate safely.</p>
+        </div>
+      </div>
+      <button type="button" class="tool-link" onclick="document.getElementById('request-input').focus()">Open workflow ↓</button>
+    </article>
+    <article class="card tool-card">
+      <div class="tool-heading">
+        <span class="tool-icon">⌕</span>
+        <div>
+          <h2>Live Code Review</h2>
+          <p>Scan pasted code for PII, credentials, and risky policy signals.</p>
+        </div>
+      </div>
+      <button type="button" class="tool-link" onclick="document.getElementById('review-card').scrollIntoView({behavior:'smooth'})">Review code ↓</button>
+    </article>
+    <article class="card tool-card">
+      <div class="tool-heading">
+        <span class="tool-icon">↗</span>
+        <div>
+          <h2>GitHub Intelligence</h2>
+          <p>Index a public repository and make its code available to Kavach RAG.</p>
+        </div>
+      </div>
+      <button type="button" class="tool-link" onclick="document.getElementById('github-card').scrollIntoView({behavior:'smooth'})">Connect repository ↓</button>
+    </article>
+  </section>
+
+  <section class="card" id="github-card">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">REPOSITORY INTELLIGENCE</span>
+        <h2>Connect GitHub</h2>
+      </div>
+      <span class="badge">PUBLIC REPOS</span>
+    </div>
+    <div class="ingest-row">
+      <input type="url" id="github-url" placeholder="https://github.com/owner/repository">
+      <button id="github-btn">Index GitHub</button>
+    </div>
+    <p id="github-status" class="status-line status-neutral">Public repositories only. Files are scanned before indexing.</p>
+  </section>
+
+  <section class="card" id="review-card">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">SECURITY REVIEW</span>
+        <h2>Review code before it ships</h2>
+      </div>
+      <span class="badge">PII + SECRETS</span>
+    </div>
+    <div class="review-row">
+      <input type="text" id="review-filename" value="pasted-code.txt" aria-label="Review filename">
+      <button id="review-btn">Run review</button>
+    </div>
+    <textarea id="review-input" rows="7" placeholder="Paste code or a configuration file here..."></textarea>
+    <div id="review-result" class="review-result"></div>
+  </section>
+
+  <!-- A. Repository indexing status -->
+  <section class="card" id="ingest-card">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">LOCAL REPOSITORY</span>
+        <h2>Repository Index</h2>
+      </div>
+      <span class="badge">RAG VECTOR STORE</span>
+    </div>
+    <div class="ingest-row">
+      <input type="text" id="repo-path" value="app" placeholder="Repo path (relative to backend/)">
+      <button id="ingest-btn">Ingest Repository</button>
+    </div>
+    <p id="ingest-status" class="status-line status-neutral">Not indexed yet this session.</p>
+  </section>
+
+  <!-- B. Request input -->
+  <section class="card">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">AGENT WORKFLOW</span>
+        <h2>Developer Request</h2>
+      </div>
+      <span class="badge">POLICY-PROTECTED</span>
+    </div>
+    <textarea id="request-input" rows="3"
+      placeholder="e.g. Add a health-check endpoint to the backend, or test any number / identifier (e.g. 12454323454)"></textarea>
+    <div class="request-actions">
+      <button type="button" id="mic-btn" class="mic-btn" aria-label="Start voice input" title="Start voice input (Groq Whisper AI)">🎙️</button>
+      <span id="mic-status" class="mic-status" role="status" aria-live="polite">Click mic to speak with Whisper STT</span>
+    </div>
+    <div class="sample-pills">
+      <span class="pill-label">Quick Test:</span>
+      <button type="button" class="pill-btn" onclick="setRequest('12454323454')">Any Number (12454323454)</button>
+      <button type="button" class="pill-btn" onclick="setRequest('1234 5678 9012')">Aadhaar (1234 5678 9012)</button>
+      <button type="button" class="pill-btn" onclick="setRequest('My PAN is ABCDE1234F')">PAN Card</button>
+      <button type="button" class="pill-btn" onclick="setRequest('Add a health-check endpoint on port 8080 returning JSON status')">Safe DevOps Request</button>
+    </div>
+    <button id="submit-btn">Initiate Kavach Workflow</button>
+    <p id="network-error" class="status-line status-blocked" style="display:none;"></p>
+  </section>
+
+  <!-- C. Security status -->
+  <section class="card" id="security-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">STAGE 1 GUARDRATE</span>
+        <h2>Security Status</h2>
+      </div>
+      <span class="badge">REAL-TIME SCAN</span>
+    </div>
+    <div id="security-status"></div>
+  </section>
+
+  <!-- C2. Risk-adaptive policy decision (Part 2) -->
+  <section class="card" id="policy-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">STAGE 2 POLICY</span>
+        <h2>Policy Decision (Risk-Adaptive)</h2>
+      </div>
+      <span class="badge">SUPERVISOR CONTROL</span>
+    </div>
+    <div id="policy-decision"></div>
+  </section>
+
+  <!-- D. Workflow pipeline -->
+  <section class="card" id="pipeline-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">EXECUTION GRAPH</span>
+        <h2>Workflow Pipeline</h2>
+      </div>
+      <span class="badge">STATE MACHINE</span>
+    </div>
+    <div id="pipeline" class="pipeline"></div>
+  </section>
+
+  <!-- E. RAG evidence -->
+  <section class="card" id="rag-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">GROUNDING CONTEXT</span>
+        <h2>Repository Evidence (RAG)</h2>
+      </div>
+      <span class="badge">VECTOR RETRIEVAL</span>
+    </div>
+    <div id="rag-evidence"></div>
+  </section>
+
+  <!-- F. Impact analysis -->
+  <section class="card" id="impact-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">BLAST RADIUS</span>
+        <h2>Change-Impact Analysis</h2>
+      </div>
+      <span class="badge">AST DEPENDENCIES</span>
+    </div>
+    <div id="impact-report"></div>
+  </section>
+
+  <!-- G. Generation result -->
+  <section class="card" id="generation-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">EVIDENCE GENERATION</span>
+        <h2>Generated Result</h2>
+      </div>
+      <span class="badge">SAFE SYNTHESIS</span>
+    </div>
+    <div id="generation-result"></div>
+  </section>
+
+  <!-- H. Validation -->
+  <section class="card" id="validation-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">QUALITY GATE</span>
+        <h2>Validation</h2>
+      </div>
+      <span class="badge">SYNTAX & TESTS</span>
+    </div>
+    <div id="validation-result"></div>
+  </section>
+
+  <!-- I. Workflow history / trace -->
+  <section class="card" id="history-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">AUDIT RECORD</span>
+        <h2>Workflow Trace</h2>
+      </div>
+      <span class="badge">CHRONOLOGICAL LOG</span>
+    </div>
+    <ol id="history-list"></ol>
+  </section>
+
+</main>
+
+<!-- Groq Whisper API Key Modal -->
+<div id="groq-modal" class="modal-backdrop" style="display:none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>⚡ Groq Whisper Voice Input</h3>
+      <button type="button" id="groq-modal-close" class="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.85rem;margin:0 0 14px;line-height:1.45;">
+      Enter your Groq API Key to enable instant, high-accuracy speech-to-text with Groq Whisper (<code style="color:var(--accent);">whisper-large-v3-turbo</code>). Saved locally in your browser.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <input type="password" id="groq-key-input" placeholder="gsk_..." style="font-family:var(--font-mono);font-size:0.85rem;">
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:6px;">
+        <button type="button" id="groq-clear-btn" class="btn-secondary" style="padding:8px 14px;font-size:0.82rem;">Clear Key</button>
+        <button type="button" id="groq-save-btn" style="padding:8px 16px;font-size:0.82rem;">Save & Enable</button>
+      </div>
+      <p id="groq-modal-status" style="margin:4px 0 0;font-size:0.78rem;font-family:var(--font-mono);color:var(--text-dim);"></p>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
