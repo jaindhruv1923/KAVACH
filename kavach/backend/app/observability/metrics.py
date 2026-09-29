@@ -15,7 +15,7 @@ from typing import Dict, Any
 
 
 class ObservabilityCollector:
-    def __init__(self):
+    def __init__(self, seed_from_disk: bool = False):
         self.start_time = time.time()
         self.total_requests = 0
         self.allowed_requests = 0
@@ -31,7 +31,8 @@ class ObservabilityCollector:
             "SECRET_LEAK": 0
         }
         self.healed_code_runs = 0
-        self._seed_from_disk()
+        if seed_from_disk:
+            self._seed_from_disk()
 
     def _seed_from_disk(self):
         try:
@@ -159,4 +160,4 @@ class ObservabilityCollector:
         return "\n".join(lines) + "\n"
 
 
-global_metrics = ObservabilityCollector()
+global_metrics = ObservabilityCollector(seed_from_disk=True)

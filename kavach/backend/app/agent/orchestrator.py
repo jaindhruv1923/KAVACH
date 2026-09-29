@@ -80,10 +80,20 @@ def run_workflow(request_text: str) -> WorkflowRun:
     # --- Stage: Context retrieval (RAG) ---
     run.advance(WorkflowStage.CONTEXT_RETRIEVAL)
     try:
+        from app.rag.embed_store import get_client, COLLECTION_NAME, index_chunks
+        from app.rag.ingest import ingest_repository
+        client = get_client()
+        try:
+            info = client.get_collection(COLLECTION_NAME)
+            is_empty = (info.points_count == 0)
+        except Exception:
+            is_empty = True
+        if is_empty and "PYTEST_CURRENT_TEST" not in os.environ:
+            repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+            index_chunks(ingest_repository(repo_root))
         run.retrieved_context = search(request_text, top_k=5)
     except Exception as e:
-        # RAG index may not exist yet if /ingest hasn't been run — degrade
-        # gracefully rather than crash the whole workflow.
+        # Degrade gracefully rather than crash the whole workflow.
         run.retrieved_context = []
         run.history.append(f"RAG retrieval skipped/failed: {redact_text(str(e))}")
     save_run(run)
@@ -94,20 +104,39 @@ def run_workflow(request_text: str) -> WorkflowRun:
     from app.security.injection_shield import inspect_prompt_safety
     for chunk in run.retrieved_context:
         chunk_text = chunk.get("text", "")
-        context_findings.extend(_scan(chunk_text))
         safety = inspect_prompt_safety(chunk_text)
         if not safety["is_safe"]:
-            run.history.append(f"Indirect Prompt Injection detected in {chunk.get('file_path')}: {safety['reason']}")
+            reason = safety.get("explanation") or safety.get("reason") or "adversarial pattern detected"
+            run.history.append(f"Indirect Prompt Injection detected in {chunk.get('file_path')}: {reason}")
             chunk["sanitized"] = True
-            chunk["text"] = f"[SANITIZED REPO CONTEXT: {safety['reason']}]"
+            chunk["text"] = f"[SANITIZED REPO CONTEXT: {reason}]"
+
+        findings = _scan(chunk.get("text", ""))
+        if findings:
+            context_findings.extend(findings)
+            # Redact sensitive findings in retrieved context chunk before passing downstream
+            chunk["text"] = redact_text(chunk.get("text", ""))
+            chunk["sanitized"] = True
+            run.history.append(f"Redacted {len(findings)} sensitive pattern(s) in context from {chunk.get('file_path')}")
     run.security_findings.extend(context_findings)
 
+    # Check if a critical live secret (e.g. AWS credential) was found in context
     if context_findings:
-        context_policy = evaluate_policy(request_text, context_findings)
-        if context_policy["decision"] in (PolicyAction.BLOCK.value, PolicyAction.REVIEW.value):
-            run.advance(WorkflowStage.NEEDS_REVIEW,
-                        f"sensitive data found in retrieved context — {context_policy['explanation']}")
-            return _finish(run)
+        has_critical_secret = any(
+            f.get("category") == "credential" and f.get("severity") == "critical"
+            for f in context_findings
+        )
+        if has_critical_secret:
+            context_policy = evaluate_policy(request_text, context_findings)
+            if context_policy["decision"] == PolicyAction.BLOCK.value:
+                try:
+                    repo_root = os.path.join(os.path.dirname(__file__), "..")
+                    run.impact_report = analyze_impact(request_text, repo_root, top_k=5)
+                except Exception:
+                    pass
+                run.advance(WorkflowStage.BLOCKED,
+                            f"Live credential detected in retrieved repository context — {context_policy['explanation']}")
+                return _finish(run)
 
     # --- Stage: Change-impact analysis (Phase 5, Professor Idea #1 focused slice) ---
     run.advance(WorkflowStage.IMPACT_ANALYSIS)
@@ -195,6 +224,17 @@ def resume_workflow(
     run.advance(WorkflowStage.CONTEXT_RETRIEVAL)
     if not run.retrieved_context:
         try:
+            from app.rag.embed_store import get_client, COLLECTION_NAME, index_chunks
+            from app.rag.ingest import ingest_repository
+            client = get_client()
+            try:
+                info = client.get_collection(COLLECTION_NAME)
+                is_empty = (info.points_count == 0)
+            except Exception:
+                is_empty = True
+            if is_empty and "PYTEST_CURRENT_TEST" not in os.environ:
+                repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+                index_chunks(ingest_repository(repo_root))
             run.retrieved_context = search(run.request_text, top_k=5)
         except Exception as e:
             run.retrieved_context = []
@@ -210,9 +250,10 @@ def resume_workflow(
         context_findings.extend(_scan(chunk_text))
         safety = inspect_prompt_safety(chunk_text)
         if not safety["is_safe"]:
-            run.history.append(f"Indirect Prompt Injection sanitized: {safety['reason']}")
+            reason = safety.get("explanation") or safety.get("reason") or "adversarial pattern detected"
+            run.history.append(f"Indirect Prompt Injection sanitized: {reason}")
             chunk["sanitized"] = True
-            chunk["text"] = f"[SANITIZED: {safety['reason']}]"
+            chunk["text"] = f"[SANITIZED: {reason}]"
     run.security_findings.extend(context_findings)
     save_run(run)
 

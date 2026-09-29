@@ -25,16 +25,15 @@ def load_test_cases() -> list[dict]:
 
 
 def normalize_path(path: str) -> str:
-    """Normalize file paths for consistent comparison."""
-    # 1. Normalize separators
-    path = path.replace("\\", "/")
-    # 2. Remove leading 'app/' if present
-    if path.startswith("app/"):
+    """Normalize file paths for consistent comparison across absolute and relative inputs."""
+    path = path.replace("\\", "/").lower()
+    while "//" in path:
+        path = path.replace("//", "/")
+    if "/app/" in path:
+        path = path.split("/app/", 1)[1]
+    elif path.startswith("app/"):
         path = path[len("app/"):]
-    # 3. Strip leading './'
-    path = path.lstrip("./")
-    # 4. Lowercase for case-insensitivity
-    return path.lower()
+    return path.lstrip("./")
 
 
 def evaluate() -> dict:

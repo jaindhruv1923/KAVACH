@@ -28,7 +28,9 @@ Read the docs in this order:
 
 ## Quick Links
 
-- **Test Results**: 164/164 tests passing - See [FINAL_REPORT.md](FINAL_REPORT.md)
+- **Test Results**: 274/274 tests passing (100% pass rate) - See [FINAL_REPORT.md](FINAL_REPORT.md)
+- **Cyber Defense Suite**: 13 specialized engines & 15-vector Red-Team Simulator (100% Interception)
+- **Tough Test Suite**: 54 edge-case tests in `tests/test_cyber_defense_tough.py`
 - **How to Run**: See [RUNNING_KAVACH.md](RUNNING_KAVACH.md)
 - **Demo Scenarios**: See [demo_repo/DEMO.md](demo_repo/DEMO.md)
 - **Implementation Status**: See [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md)
@@ -41,21 +43,38 @@ kavach/
 │   │   ├── rag/          # Phase 1 - Repository indexing + search
 │   │   ├── agent/        # Phase 2 - Workflow orchestration
 │   │   ├── generation/   # Phase 3 - Evidence-grounded code generation
-│   │   ├── security/     # Phase 4 - PII detection & evaluation
+│   │   ├── security/     # Phase 4 & Cyber Defense - 13 specialized security engines
+│   │   │   ├── obfuscation_detector.py   # Base64/Hex/ROT13/Leet/Homoglyphs
+│   │   │   ├── steganography_shield.py   # Bidi Trojan Source CVE-2021-42574
+│   │   │   ├── ssrf_shield.py            # AWS IMDSv1/v2, GCP, Azure, Decimal IP
+│   │   │   ├── taint_tracker.py          # AST inter-procedural data slicing
+│   │   │   ├── vulnerability_scanner.py  # AST unsafe sinks (eval/exec/pickle)
+│   │   │   ├── typosquat_shield.py       # Damerau-Levenshtein distance
+│   │   │   ├── polyglot_firewall.py      # Python, npm, Go supply-chain
+│   │   │   ├── merkle_ledger.py          # Cryptographic SHA-256 DPDP ledger
+│   │   │   ├── mitre_mapper.py           # MITRE ATLAS & OWASP LLM Top 10
+│   │   │   ├── cicd_gatekeeper.py        # Pre-merge git diff PR bot
+│   │   │   ├── consensus_engine.py       # AST Jaccard cross-model verifier
+│   │   │   ├── sandbox_monitor.py        # Process jail & secret stripping
+│   │   │   └── cyber_attack_simulator.py # 15-vector automated red team
 │   │   ├── impact/       # Phase 5 - Change impact analysis
-│   │   └── main.py       # FastAPI entrypoint (10 endpoints)
+│   │   └── main.py       # FastAPI entrypoint (21 endpoints)
 │   ├── requirements.txt   # Dependencies (pytest, httpx, fastapi, qdrant, etc.)
 │   └── setup_env.py      # Configure LLM API keys
-├── frontend/             # Dashboard HTML, CSS, and JavaScript
-├── tests/                # Comprehensive pytest suite (164 tests, all passing)
+├── frontend/             # Dashboard HTML, CSS, and JavaScript (with Red-Team & Merkle tabs)
+├── tests/                # Comprehensive pytest suite (274 tests, all passing)
+│   ├── test_cyber_defense_tough.py # 54 tough non-redundant cyber tests
 │   ├── conftest.py       # Shared fixtures
 │   ├── test_rag.py       # Phase 1 tests
 │   ├── test_agent.py     # Phase 2 tests
 │   ├── test_generation.py # Phase 3 tests
 │   ├── test_security.py  # Phase 4 tests
 │   ├── test_impact.py    # Phase 5 tests
-│   ├── test_api_endpoints.py # All 10 API endpoints
-│   └── test_integration.py # End-to-end workflows
+│   ├── test_api_endpoints.py # API endpoints
+│   ├── test_integration.py # End-to-end workflows
+│   ├── test_security_v2.py # Policy engine & redaction tests
+│   └── test_advanced_features.py # Metrics, MCP & HITL tests
+
 ├── demo_repo/            # Sample codebase for demo
 │   ├── auth.py           # Authentication module
 │   ├── database.py       # Database layer

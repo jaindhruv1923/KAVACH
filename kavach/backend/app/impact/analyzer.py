@@ -12,6 +12,7 @@ This is a focused component, not a full repository-intelligence product —
 see docs/IMPACT_ANALYSIS_SPEC.md's scope discipline note.
 """
 
+import os
 from app.rag.embed_store import index_chunks, search
 from app.rag.ingest import ingest_repository
 from app.impact.dependency_graph import build_dependency_graph, find_dependent_files
@@ -61,6 +62,15 @@ def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> l
     except Exception:
         graph = {}
 
+    # Fallback keyword matching over dependency graph if semantic search had no hits
+    if not file_scores and graph:
+        import re
+        words = set(re.findall(r"[a-zA-Z]{3,}", change_description.lower()))
+        for fpath in graph.keys():
+            base = os.path.splitext(os.path.basename(fpath))[0].lower()
+            if base in words or any(w in base or base in w for w in words):
+                file_scores[fpath] = {"semantic_score": 0.30, "dependency_hit": False}
+
     # Use the top semantic hit's file (most likely to be the "changed" file)
     # as the hint for finding its dependents, if any semantic hits exist.
     if file_scores:
@@ -77,19 +87,79 @@ def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> l
     # --- Combine into a final ranked report ---
     report = []
     for file_path, info in file_scores.items():
-        score = SEMANTIC_WEIGHT * info["semantic_score"]
-        if info["dependency_hit"]:
-            score += DEPENDENCY_BONUS
+        semantic_component = round(SEMANTIC_WEIGHT * info["semantic_score"], 3)
+        dep_component = round(DEPENDENCY_BONUS if info["dependency_hit"] else 0.0, 3)
+        score = round(min(semantic_component + dep_component, 1.0), 3)
+
         reasons = []
-        if info["semantic_score"] > 0:
-            reasons.append("semantically related to the change description")
+        breakdown_items = []
         if info["dependency_hit"]:
             reasons.append("imports/references the most-related file")
+            breakdown_items.append(
+                "⚡ AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports."
+            )
+        if info["semantic_score"] > 0:
+            reasons.append("semantically related to the change description")
+            breakdown_items.append(
+                f"🧠 Semantic Alignment (+{semantic_component:.3f}): Vector embedding similarity ({info['semantic_score']:.2f} cosine score) with requested change intent."
+            )
+
+        # Determine Significance and Impact Tier
+        if score >= 0.35:
+            tier = "CRITICAL"
+            significance = "Highest Impact — Direct Blast Radius (High Risk of Cascading Failure)"
+            action_hint = "Prioritize regression tests and inspect caller interfaces before applying changes."
+        elif score >= 0.25:
+            tier = "HIGH"
+            significance = "High Impact — Direct Import Dependency or Strong Architectural Coupling"
+            action_hint = "Verify exported signatures and run integration tests for this module."
+        elif score >= 0.15:
+            tier = "MODERATE"
+            significance = "Moderate Impact — Shared Business Domain / Semantic Overlap"
+            action_hint = "Review logic for consistency with shared domain assumptions."
+        else:
+            tier = "LOW"
+            significance = "Low Impact — Peripheral / Advisory Context"
+            action_hint = "Standard code review and lint checks are sufficient."
+
+        # Clear human-readable justification explaining exactly WHY this score was assigned:
+        if info["dependency_hit"] and info["semantic_score"] > 0:
+            score_justification = (
+                f"Score {score:.3f} was assigned because this file combines semantic alignment "
+                f"(+{semantic_component:.3f}) with an explicit AST import link (+0.400 bonus) to the target module."
+            )
+        elif info["dependency_hit"]:
+            score_justification = (
+                f"Score {score:.3f} was assigned because this file has a direct AST import dependency "
+                f"(+0.400 bonus) on the modified module, meaning parameter or signature changes will directly ripple here."
+            )
+        elif info["semantic_score"] > 0:
+            score_justification = (
+                f"Score {score:.3f} was assigned based on vector embedding semantic similarity "
+                f"(+{semantic_component:.3f} from {info['semantic_score']:.2f} cosine distance) matching the requested feature."
+            )
+        else:
+            score_justification = f"Score {score:.3f} reflects low or advisory coupling to the requested change."
+
         report.append({
             "file_path": file_path,
-            "relevance_score": round(min(score, 1.0), 3),
+            "relevance_score": score,
+            "score_percentage": int(round(score * 100)),
             "reason": "; ".join(reasons) if reasons else "weak signal",
+            "impact_tier": tier,
+            "significance": significance,
+            "score_justification": score_justification,
+            "breakdown": breakdown_items,
+            "action_hint": action_hint,
+            "semantic_score": round(info["semantic_score"], 3),
+            "dependency_hit": info["dependency_hit"],
+            "is_highest_impact": False,
         })
 
     report.sort(key=lambda r: r["relevance_score"], reverse=True)
+    if report and report[0]["relevance_score"] > 0:
+        report[0]["is_highest_impact"] = True
+        if report[0]["impact_tier"] != "CRITICAL":
+            report[0]["impact_tier"] = "CRITICAL"
+            report[0]["significance"] = "Highest Impact — Primary Target Component"
     return report[:top_k]

@@ -55,24 +55,40 @@ python -m pytest tests -v
 **Expected Output**:
 ```
 ...
-tests/test_rag.py::TestIngestion::test_chunk_text_basic PASSED
-tests/test_rag.py::TestIngestion::test_ingest_repository PASSED
-tests/test_security.py::TestPIIDetection::test_pan_detection PASSED
+tests/test_cyber_defense_tough.py::test_base64_obfuscated_injection_payload_decloaked PASSED
+tests/test_cyber_defense_tough.py::test_merkle_tree_ledger_inclusion_proof_and_tamper_detection PASSED
+tests/test_cyber_defense_tough.py::test_cyber_attack_simulator_full_matrix_interception PASSED
 ...
-======================== 164 passed, 1 warning in the latest clean run ========================
+======================== 274 passed, exit code 0 ========================
+```
+
+### Run Tough Cyber Defense & Red-Teaming Tests
+
+```bash
+# Run the 54 tough adversarial tests
+python -m pytest tests/test_cyber_defense_tough.py -v
+
+# Run the complete automated project verification
+python verify_project.py
 ```
 
 ### Run Specific Test Module
 
 ```bash
+# Test Cyber Defense & Red-Team Suite (54 tests)
+python -m pytest tests/test_cyber_defense_tough.py -v
+
 # Test Phase 1 RAG only
 python -m pytest tests/test_rag.py -v
 
 # Test Phase 2 Agent only
 python -m pytest tests/test_agent.py -v
 
-# Test Phase 4 Security only
+# Test Phase 4 Security Core only
 python -m pytest tests/test_security.py -v
+
+# Test Phase 4 Security v2 & Policy Engine
+python -m pytest tests/test_security_v2.py -v
 
 # Test Phase 5 Impact Analysis only
 python -m pytest tests/test_impact.py -v
