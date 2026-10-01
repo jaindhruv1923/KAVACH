@@ -4853,3 +4853,103 @@ function sendChatPrompt(promptText) {
 window.toggleChatbot = toggleChatbot;
 window.handleChatSubmit = handleChatSubmit;
 window.sendChatPrompt = sendChatPrompt;
+
+function selectEnterpriseStage(stageNum) {
+  for (let i = 1; i <= 5; i++) {
+    const card = document.getElementById(`ent-stage-${i}`);
+    if (card) card.classList.toggle("active", i === stageNum);
+  }
+
+  const inspector = document.getElementById("enterprise-stage-inspector");
+  if (!inspector) return;
+
+  const data = {
+    1: {
+      badge: "STAGE 01: DEVELOPER / AGENT INTENT",
+      sub: "CURSOR • COPILOT • DEVIN • CLAUDE CODE",
+      beforeTag: "RAW AGENT INSTRUCTION",
+      beforeCode: `// Prompt initiated in IDE by Developer or Agent:
+query: "Refactor payment_service.py to integrate new Stripe webhook
+and update customer credit cards in database table users"`,
+      afterTag: "INTERCEPTION STATUS",
+      afterCode: `[KAVACH Gateway Intercepted]
+Event: Agent Tool Call -> File Write Request
+Target Repo: enterprise/payments
+Status: Paused for Pre-Flight Zero-Trust Verification`
+    },
+    2: {
+      badge: "STAGE 02: KAVACH PRE-FLIGHT TOKEN VAULT",
+      sub: "DPDP ACT 2023 • GDPR ARTICLE 32 • ZERO EXFILTRATION",
+      beforeTag: "BEFORE KAVACH (Unsafe Egress)",
+      beforeCode: `// Developer prompt to OpenAI/Claude:
+query: "Calculate interest on user KYC 4532 8765 1092
+with AWS_KEY=AKIAIOSFODNN7EXAMPLE99 and phone 9876543210"`,
+      afterTag: "AFTER KAVACH TOKEN VAULT (Sanitized)",
+      afterCode: `// Zero-Knowledge Transformed Prompt:
+query: "Calculate interest on user KYC <VAULT_TOKEN_AADHAAR_92>
+with AWS_KEY=<REDACTED_AWS_KEY_01> and phone <VAULT_PHONE_IN_10>"
+[Audit] 3 sensitive entities vaulted in 3.4ms • Zero leaks`
+    },
+    3: {
+      badge: "STAGE 03: AST-RAG EVIDENCE GROUNDING & SLOPSQUATTING SHIELD",
+      sub: "PYPI / NPM LIVE REGISTRY CHECK • AST PARSING",
+      beforeTag: "HALLUCINATED AI DEPENDENCY",
+      beforeCode: `// Agent suggested import in diff:
+import fast_crypto_jwt_security  # Non-existent package!
+import boto3
+# Hacker could register fast_crypto_jwt_security on PyPI`,
+      afterTag: "KAVACH AST DEFENSE VERDICT",
+      afterCode: `[AST Package Firewall Result]
+Package 'fast_crypto_jwt_security' NOT found on verified registry!
+Verdict: BLOCKED (Typosquatting / Slopsquatting Attack Prevented)
+Action: Prompt LLM to use approved 'cryptography>=41.0.0'`
+    },
+    4: {
+      badge: "STAGE 04: MULTI-LLM CONSENSUS & CHANGE-IMPACT RADAR",
+      sub: "CROSS-MODEL VERIFICATION • BLAST-RADIUS RADAR",
+      beforeTag: "LOCALIZED UNCHECKED CHANGE",
+      beforeCode: `// Agent modifies auth_validator(token, scope):
+- def auth_validator(token, scope):
++ def auth_validator(token, scope, timeout_sec=5):
+// Looks harmless locally, but breaks 6 caller services!`,
+      afterTag: "KAVACH BLAST RADIUS & CONSENSUS",
+      afterCode: `[Change-Impact Analysis]
+Target File: auth.py -> 6 downstream microservices affected!
+Consensus Vote: Gemini (NEEDS_REVIEW) + Groq (NEEDS_REVIEW)
+Policy Decision: REVIEW REQUIRED by Staff Security Engineer`
+    },
+    5: {
+      badge: "STAGE 05: CRYPTOGRAPHIC MERKLE LEDGER & PRODUCTION CI/CD",
+      sub: "IMMUTABLE AUDIT TRAIL • MITRE ATT&CK MAPPING",
+      beforeTag: "UNVERIFIED PULL REQUEST",
+      beforeCode: `// PR #412 opened by AI Agent directly
+CI Status: Traditional CI only runs basic linter
+Audit: No record of prompts, model hallucinations, or secrets`,
+      afterTag: "KAVACH ATTESTATION SEAL",
+      afterCode: `[KAVACH Cryptographic Attestation]
+Event Hash: e8f49b1a0d7e2f5b902e41a6b7c893fa1e920d43
+Merkle Root: c8f49b1a0d7e2f5b902e41a6b7c893fa1e920d4371
+MITRE ATT&CK: M1038 (Execution Prevention) - VERIFIED
+CI/CD Pipeline: APPROVED & MERGED TO PRODUCTION`
+    }
+  };
+
+  const current = data[stageNum] || data[2];
+  inspector.innerHTML = `
+    <div class="inspector-header">
+      <span class="inspector-badge" id="inspector-badge">${current.badge}</span>
+      <span style="font-size:0.78rem;color:var(--text-dim);font-family:var(--font-mono);">${current.sub}</span>
+    </div>
+    <div class="inspector-content-grid">
+      <div class="inspector-panel">
+        <span class="panel-tag">${current.beforeTag}</span>
+        <pre class="inspector-code danger"><code>${escapeHtml(current.beforeCode)}</code></pre>
+      </div>
+      <div class="inspector-panel">
+        <span class="panel-tag">${current.afterTag}</span>
+        <pre class="inspector-code safe"><code>${escapeHtml(current.afterCode)}</code></pre>
+      </div>
+    </div>
+  `;
+}
+window.selectEnterpriseStage = selectEnterpriseStage;

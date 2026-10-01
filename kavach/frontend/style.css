@@ -6322,3 +6322,211 @@ button:active:not(:disabled),
 }
 
 
+
+/* ==========================================================================
+   ENTERPRISE ILLUSTRATION & PIPELINE STYLES
+   ========================================================================== */
+
+.enterprise-flow-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0 24px;
+  overflow-x: auto;
+  padding: 8px 4px 16px;
+}
+
+@media (max-width: 1024px) {
+  .enterprise-flow-container {
+    flex-direction: column;
+  }
+  .flow-arrow-connector {
+    transform: rotate(90deg);
+    margin: 4px auto;
+  }
+}
+
+.flow-stage-card {
+  flex: 1;
+  min-width: 180px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.flow-stage-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.flow-stage-card.active {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, var(--bg-surface-elevated) 100%);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25), var(--shadow-md);
+}
+
+.stage-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(37, 99, 235, 0.1);
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  align-self: flex-start;
+}
+
+.stage-icon-box {
+  font-size: 1.6rem;
+  line-height: 1;
+  margin: 4px 0 2px;
+}
+
+.stage-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.stage-sub {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.stage-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+  flex: 1;
+}
+
+.stage-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+.stage-badge.danger {
+  background: rgba(220, 38, 38, 0.1);
+  color: #DC2626;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.stage-badge.safe {
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669;
+  border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+.stage-badge.accent {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.stage-badge.warning {
+  background: rgba(217, 119, 6, 0.1);
+  color: #D97706;
+  border: 1px solid rgba(217, 119, 6, 0.25);
+}
+
+.flow-arrow-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
+.stage-inspector-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 14px;
+}
+
+.inspector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 16px;
+}
+
+.inspector-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(37, 99, 235, 0.1);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.inspector-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.inspector-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.panel-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.inspector-code {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.inspector-code.danger {
+  background: rgba(220, 38, 38, 0.05);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  color: var(--text-primary);
+}
+
+.inspector-code.safe {
+  background: rgba(5, 150, 105, 0.05);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  color: var(--text-primary);
+}

@@ -81,6 +81,63 @@
   ]
 }
 </script>
+
+<script>
+// Fail-safe global view switchers — guaranteed available instantly
+function switchToViewGlobal(targetId, navBtnId, hash) {
+  const views = ['product-view', 'workspace-view', 'usecases-view', 'research-view', 'defense-view'];
+  const btns = ['nav-btn-product', 'nav-btn-workspace', 'nav-btn-usecases', 'nav-btn-research', 'nav-btn-defense'];
+  views.forEach(v => {
+    const el = document.getElementById(v);
+    if (el) el.style.display = (v === targetId) ? 'flex' : 'none';
+  });
+  btns.forEach(b => {
+    const el = document.getElementById(b);
+    if (el) el.classList.toggle('active', b === navBtnId);
+  });
+  if (hash) {
+    history.replaceState(null, null, '#' + hash);
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.switchToUseCases = function() {
+  switchToViewGlobal('usecases-view', 'nav-btn-usecases', 'use-cases');
+};
+window.switchToProduct = function(sec) {
+  switchToViewGlobal('product-view', 'nav-btn-product', 'overview');
+};
+window.switchToWorkspace = function() {
+  switchToViewGlobal('workspace-view', 'nav-btn-workspace', 'workspace');
+};
+window.switchToResearch = function() {
+  switchToViewGlobal('research-view', 'nav-btn-research', 'research');
+};
+window.switchToDefense = function() {
+  switchToViewGlobal('defense-view', 'nav-btn-defense', 'defense');
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  const map = {
+    'nav-btn-product': window.switchToProduct,
+    'nav-btn-workspace': window.switchToWorkspace,
+    'nav-btn-usecases': window.switchToUseCases,
+    'nav-btn-research': window.switchToResearch,
+    'nav-btn-defense': window.switchToDefense
+  };
+  Object.keys(map).forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.onclick = map[id];
+  });
+
+  const h = window.location.hash;
+  if (h === '#use-cases' || h === '#usecases') window.switchToUseCases();
+  else if (h === '#research') window.switchToResearch();
+  else if (h === '#defense') window.switchToDefense();
+  else if (h === '#workspace') window.switchToWorkspace();
+});
+</script>
+
 </head>
 <body>
 
@@ -1275,7 +1332,6 @@ from pydantic import BaseModel</textarea>
   </div><!-- end #workspace-view -->
 
   <!-- ============================================================ -->
-  <!-- 3. EN  <!-- ============================================================ -->
   <!-- 3. ENTERPRISE REAL-WORLD USE CASES & DEPLOYMENTS VIEW        -->
   <!-- ============================================================ -->
   <div id="usecases-view" style="display:none;">
@@ -1337,6 +1393,120 @@ from pydantic import BaseModel</textarea>
         <span class="research-stat-detail">Cryptographic proof of every AI prompt, policy decision, and code modification.</span>
       </div>
     </div>
+
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE ENTERPRISE INTEGRATION BLUEPRINT ILLUSTRATION     -->
+    <!-- ============================================================ -->
+    <section class="research-section enterprise-illustration-section">
+      <div class="research-section-header">
+        <div>
+          <h2 class="research-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            Interactive Enterprise Architecture &amp; Integration Blueprint
+          </h2>
+          <p style="color:var(--text-secondary);font-size:0.86rem;margin:4px 0 0;">
+            Click on any stage below to inspect how developer prompts and AI agent diffs are governed across the Zero-Trust control plane.
+          </p>
+        </div>
+        <span class="badge" style="background:#EFF6FF;color:var(--accent);font-size:0.75rem;">INTERACTIVE 5-STAGE LIFECYCLE</span>
+      </div>
+
+      <!-- Visual 5-Stage Animated Pipeline -->
+      <div class="enterprise-flow-container">
+        
+        <!-- Stage 1 -->
+        <div class="flow-stage-card" onclick="selectEnterpriseStage(1)" id="ent-stage-1">
+          <div class="stage-step-num">STAGE 01</div>
+          <div class="stage-icon-box">💻</div>
+          <h4 class="stage-title">AI Coding Request</h4>
+          <span class="stage-sub">Developer IDE / Cursor / Devin</span>
+          <p class="stage-desc">Developer or autonomous bot prompts an LLM with code and internal database schemas.</p>
+          <div class="stage-badge danger">⚠️ Raw Secret &amp; PII Risk</div>
+        </div>
+
+        <div class="flow-arrow-connector">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="flow-stage-card active" onclick="selectEnterpriseStage(2)" id="ent-stage-2">
+          <div class="stage-step-num">STAGE 02</div>
+          <div class="stage-icon-box">🔐</div>
+          <h4 class="stage-title">Token Vault Shield</h4>
+          <span class="stage-sub">KAVACH Pre-Flight Interceptor</span>
+          <p class="stage-desc">Client-side PII &amp; API keys are redacted into synthetic encrypted tokens before egress.</p>
+          <div class="stage-badge safe">🛡️ Zero Cloud Egress</div>
+        </div>
+
+        <div class="flow-arrow-connector">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="flow-stage-card" onclick="selectEnterpriseStage(3)" id="ent-stage-3">
+          <div class="stage-step-num">STAGE 03</div>
+          <div class="stage-icon-box">🌲</div>
+          <h4 class="stage-title">AST-RAG Grounding</h4>
+          <span class="stage-sub">Context &amp; Call Graph Engine</span>
+          <p class="stage-desc">Indexes multi-file repository AST and checks PyPI/npm registries for slopsquatting.</p>
+          <div class="stage-badge accent">📚 Verified Registry AST</div>
+        </div>
+
+        <div class="flow-arrow-connector">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="flow-stage-card" onclick="selectEnterpriseStage(4)" id="ent-stage-4">
+          <div class="stage-step-num">STAGE 04</div>
+          <div class="stage-icon-box">🚦</div>
+          <h4 class="stage-title">Consensus &amp; Policy</h4>
+          <span class="stage-sub">Risk-Adaptive Gatekeeper</span>
+          <p class="stage-desc">Evaluates blast-radius impact. Multi-LLM consensus decides: ALLOW, REVIEW, or BLOCK.</p>
+          <div class="stage-badge warning">⚡ Multi-LLM Verified</div>
+        </div>
+
+        <div class="flow-arrow-connector">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+
+        <!-- Stage 5 -->
+        <div class="flow-stage-card" onclick="selectEnterpriseStage(5)" id="ent-stage-5">
+          <div class="stage-step-num">STAGE 05</div>
+          <div class="stage-icon-box">🚀</div>
+          <h4 class="stage-title">CI/CD Production</h4>
+          <span class="stage-sub">Merkle Attestation &amp; Merge</span>
+          <p class="stage-desc">Cryptographically signs audit record into Merkle Ledger mapped to MITRE ATT&amp;CK before merge.</p>
+          <div class="stage-badge safe">✅ 100% Audit Ready</div>
+        </div>
+
+      </div>
+
+      <!-- Live Inspector Box for the Selected Stage -->
+      <div id="enterprise-stage-inspector" class="stage-inspector-box">
+        <div class="inspector-header">
+          <span class="inspector-badge" id="inspector-badge">STAGE 02: KAVACH PRE-FLIGHT TOKEN VAULT</span>
+          <span style="font-size:0.78rem;color:var(--text-dim);font-family:var(--font-mono);">DPDP ACT 2023 • GDPR ARTICLE 32 • ZERO EXFILTRATION</span>
+        </div>
+        <div class="inspector-content-grid">
+          <div class="inspector-panel">
+            <span class="panel-tag">BEFORE KAVACH (Unsafe Egress)</span>
+            <pre class="inspector-code danger"><code>// Developer prompt to OpenAI/Claude:
+query: "Calculate interest on user KYC 4532 8765 1092
+with AWS_KEY=AKIAIOSFODNN7EXAMPLE99 and phone 9876543210"</code></pre>
+          </div>
+          <div class="inspector-panel">
+            <span class="panel-tag">AFTER KAVACH TOKEN VAULT (Sanitized)</span>
+            <pre class="inspector-code safe"><code>// Zero-Knowledge Transformed Prompt:
+query: "Calculate interest on user KYC &lt;VAULT_TOKEN_AADHAAR_92&gt;
+with AWS_KEY=&lt;REDACTED_AWS_KEY_01&gt; and phone &lt;VAULT_PHONE_IN_10&gt;"
+[Audit] 3 sensitive entities vaulted in 3.4ms • Zero leaks</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- 4 Real-World Enterprise Use Cases Grid -->
     <section class="research-section">
