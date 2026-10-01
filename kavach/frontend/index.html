@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2.3.0">
 
 <!-- Structured Data (Schema.org JSON-LD) -->
 <script type="application/ld+json">
@@ -117,6 +117,29 @@ window.switchToResearch = function() {
 window.switchToDefense = function() {
   switchToViewGlobal('defense-view', 'nav-btn-defense', 'defense');
 };
+
+// Fail-safe playbook interaction hooks
+window.selectPlaybookIndustry = window.selectPlaybookIndustry || function(k) {
+  if (window.PLAYBOOK_DATA) {
+    window.PLAYBOOK_DATA.currentIndustry = k;
+    window.PLAYBOOK_DATA.currentStep = 1;
+    if (typeof window.renderPlaybookStep === 'function') window.renderPlaybookStep();
+  }
+};
+window.selectPlaybookStep = window.selectPlaybookStep || function(s) {
+  if (window.PLAYBOOK_DATA) {
+    window.PLAYBOOK_DATA.currentStep = s;
+    if (typeof window.renderPlaybookStep === 'function') window.renderPlaybookStep();
+  }
+};
+window.togglePlaybookBranchMode = window.togglePlaybookBranchMode || function(m) {
+  if (window.PLAYBOOK_DATA) {
+    window.PLAYBOOK_DATA.currentMode = m;
+    if (typeof window.renderPlaybookStep === 'function') window.renderPlaybookStep();
+  }
+};
+window.togglePlaybookAutoPlay = window.togglePlaybookAutoPlay || function() {};
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const map = {
@@ -3425,6 +3448,6 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
 </div>
 
 <script src="query_library.js"></script>
-<script src="app.js?v=2.2.0"></script>
+<script src="app.js?v=2.3.0"></script>
 </body>
 </html>
