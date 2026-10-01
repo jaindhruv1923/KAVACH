@@ -23,7 +23,7 @@ print("Env loaded.")
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.responses import RedirectResponse, StreamingResponse
+from starlette.responses import RedirectResponse, StreamingResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -122,10 +122,31 @@ app.mount(
 )
 
 
-@app.get("/", include_in_schema=False)
+@app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_root():
-    """Serve the frontend entrypoint for browser users."""
-    return RedirectResponse(url="/static/index.html", status_code=307)
+    """Serve the frontend entrypoint cleanly directly at root without redirects."""
+    return FileResponse(os.path.join(FRONTEND_DIR, "index.html"), media_type="text/html")
+
+
+@app.get("/style.css", include_in_schema=False)
+def serve_root_css():
+    return FileResponse(os.path.join(FRONTEND_DIR, "style.css"), media_type="text/css")
+
+
+@app.get("/app.js", include_in_schema=False)
+def serve_root_js():
+    return FileResponse(os.path.join(FRONTEND_DIR, "app.js"), media_type="application/javascript")
+
+
+@app.get("/query_library.js", include_in_schema=False)
+def serve_root_query_library():
+    return FileResponse(os.path.join(FRONTEND_DIR, "query_library.js"), media_type="application/javascript")
+
+
+@app.get("/figure1_architecture.png", include_in_schema=False)
+def serve_root_arch_png():
+    return FileResponse(os.path.join(FRONTEND_DIR, "figure1_architecture.png"), media_type="image/png")
+
 
 
 # ============================================================
