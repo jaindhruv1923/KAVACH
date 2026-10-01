@@ -103,6 +103,7 @@ function switchToViewGlobal(targetId, navBtnId, hash) {
 
 window.switchToUseCases = function() {
   switchToViewGlobal('usecases-view', 'nav-btn-usecases', 'use-cases');
+  if (typeof renderPlaybookStep === 'function') renderPlaybookStep();
 };
 window.switchToProduct = function(sec) {
   switchToViewGlobal('product-view', 'nav-btn-product', 'overview');
@@ -1504,6 +1505,80 @@ with AWS_KEY=&lt;REDACTED_AWS_KEY_01&gt; and phone &lt;VAULT_PHONE_IN_10&gt;"
 [Audit] 3 sensitive entities vaulted in 3.4ms • Zero leaks</code></pre>
           </div>
         </div>
+      </div>
+    </section>
+
+
+
+    <!-- ============================================================ -->
+    <!-- REAL-WORLD INDUSTRY PLAYBOOK & PROCESS ROADMAP               -->
+    <!-- ============================================================ -->
+    <section class="research-section enterprise-playbook-section" id="enterprise-playbook-section">
+      <div class="research-section-header">
+        <div>
+          <h2 class="research-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Real-World Industry Decision Roadmap &amp; Process Simulator
+          </h2>
+          <p style="color:var(--text-secondary);font-size:0.86rem;margin:4px 0 0;">
+            Experience step-by-step how a real enterprise (e.g. Digital Bank, Healthcare SaaS, E-Commerce Cloud) governs AI coding assistants in production.
+          </p>
+        </div>
+        <span class="badge" style="background:#ECFDF5;color:var(--safe);border-color:#A7F3D0;font-size:0.75rem;">LIVE PROCESS ROADMAP</span>
+      </div>
+
+      <div class="playbook-container">
+        
+        <!-- Industry Selector Bar -->
+        <div class="playbook-industry-bar">
+          <button type="button" class="playbook-ind-btn active" id="pbook-tab-bank" onclick="selectPlaybookIndustry('bank')">
+            🏦 Tier-1 Digital Bank (Fintech &amp; Core Payments)
+          </button>
+          <button type="button" class="playbook-ind-btn" id="pbook-tab-health" onclick="selectPlaybookIndustry('health')">
+            🏥 Healthcare Provider (HIPAA &amp; Patient Records)
+          </button>
+          <button type="button" class="playbook-ind-btn" id="pbook-tab-ecommerce" onclick="selectPlaybookIndustry('ecommerce')">
+            🛒 Global E-Commerce (Black Friday Checkout Engine)
+          </button>
+        </div>
+
+        <!-- 5-Step Process Roadmap Stepper -->
+        <div class="playbook-stepper-track">
+          <button type="button" class="playbook-step-btn active" id="pstep-btn-1" onclick="selectPlaybookStep(1)">
+            <div class="playbook-step-circle">01</div>
+            <span class="playbook-step-label">Initial Setup<br>&amp; Repo Connect</span>
+          </button>
+          <div class="playbook-step-connector"></div>
+
+          <button type="button" class="playbook-step-btn" id="pstep-btn-2" onclick="selectPlaybookStep(2)">
+            <div class="playbook-step-circle">02</div>
+            <span class="playbook-step-label">Developer Prompt<br>&amp; Token Vault</span>
+          </button>
+          <div class="playbook-step-connector"></div>
+
+          <button type="button" class="playbook-step-btn" id="pstep-btn-3" onclick="selectPlaybookStep(3)">
+            <div class="playbook-step-circle">03</div>
+            <span class="playbook-step-label">AI Code Gen<br>&amp; AST Check</span>
+          </button>
+          <div class="playbook-step-connector"></div>
+
+          <button type="button" class="playbook-step-btn" id="pstep-btn-4" onclick="selectPlaybookStep(4)">
+            <div class="playbook-step-circle">04</div>
+            <span class="playbook-step-label">Blast Radius<br>&amp; Policy Gate</span>
+          </button>
+          <div class="playbook-step-connector"></div>
+
+          <button type="button" class="playbook-step-btn" id="pstep-btn-5" onclick="selectPlaybookStep(5)">
+            <div class="playbook-step-circle">05</div>
+            <span class="playbook-step-label">Merkle Audit<br>&amp; CI/CD Merge</span>
+          </button>
+        </div>
+
+        <!-- Main Interactive Scenario Display Card -->
+        <div class="playbook-main-card" id="playbook-main-card">
+          <!-- Dynamically populated by renderPlaybookStep() -->
+        </div>
+
       </div>
     </section>
 
