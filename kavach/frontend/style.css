@@ -6154,3 +6154,170 @@ button:active:not(:disabled),
   border: 1px solid rgba(37, 99, 235, 0.3);
 }
 
+/* ==========================================================================
+   ENTERPRISE USE CASES & REAL-WORLD ARCHITECTURE STYLES
+   ========================================================================== */
+
+.enterprise-usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .enterprise-usecase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.enterprise-usecase-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.enterprise-usecase-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.usecase-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.usecase-tag-env {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--bg-surface-elevated);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.usecase-tag-tier {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(37, 99, 235, 0.08);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  letter-spacing: 0.03em;
+}
+
+.usecase-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.usecase-block {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.usecase-block p {
+  margin: 4px 0 0;
+}
+
+.usecase-block-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.usecase-block.threat {
+  background: rgba(220, 38, 38, 0.05);
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  color: var(--text-secondary);
+}
+
+.usecase-block.threat .usecase-block-label {
+  color: #DC2626;
+}
+
+.usecase-block.solution {
+  background: rgba(5, 150, 105, 0.05);
+  border: 1px solid rgba(5, 150, 105, 0.18);
+  color: var(--text-secondary);
+}
+
+.usecase-block.solution .usecase-block-label {
+  color: #059669;
+}
+
+.usecase-block.roi {
+  background: rgba(37, 99, 235, 0.04);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  color: var(--text-secondary);
+}
+
+.usecase-block.roi .usecase-block-label {
+  color: var(--accent);
+}
+
+.deployment-models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.deployment-model-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: all var(--transition-fast);
+}
+
+.deployment-model-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.model-num {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
+.deployment-model-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.deployment-model-card p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+

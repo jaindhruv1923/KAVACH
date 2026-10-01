@@ -2426,13 +2426,14 @@ function updateSEOViewMeta(viewKey) {
   const titles = {
     product: "Kavach — Security-Governed Agentic AI DevOps Platform | Zero-Trust LLM Guardrails",
     workspace: "Live Security Console & Workspace — Kavach Enterprise AI",
-    research: "IEEE Research Benchmark & Empirical Publications — Kavach AI",
+    research: "Enterprise Real-World Deployments & Use Cases — Kavach AI",
     defense: "Cyber Defense & Zero-Trust Adversary Sandbox — Kavach AI"
   };
 
   const descs = {
     product: "Kavach wraps generative LLM pipelines with real-time OWASP guardrails, AST blast-radius analysis, zero-knowledge privacy vaults, closed-loop ReAct reflexion, and CycloneDX SBOM attestations.",
     workspace: "Interactive security workspace for real-time prompt governance, PyPI typosquatting defense, PII token vaulting, and automated ReAct code healing.",
+    research: "Explore where and how enterprises deploy KAVACH in real-world production: CI/CD PR gatekeepers, LLM privacy proxies, blast-radius mitigation, and Merkle audit ledgers.",
     research: "Academic benchmark methodology, ablation studies, and empirical evaluation comparing Kavach against NeMo Guardrails, Llama-Guard, and LangChain.",
     defense: "Live adversarial cyber defense sandbox testing 15+ attack vectors: prompt injection, Trojan Source CVE-2021-42574, SSRF cloud metadata, and supply-chain slopsquatting."
   };
