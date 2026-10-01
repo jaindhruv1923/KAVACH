@@ -2426,14 +2426,15 @@ function updateSEOViewMeta(viewKey) {
   const titles = {
     product: "Kavach — Security-Governed Agentic AI DevOps Platform | Zero-Trust LLM Guardrails",
     workspace: "Live Security Console & Workspace — Kavach Enterprise AI",
-    research: "Enterprise Real-World Deployments & Use Cases — Kavach AI",
+    usecases: "Enterprise Real-World Deployments & Use Cases — Kavach AI",
+    research: "IEEE Research Benchmark & Empirical Publications — Kavach AI",
     defense: "Cyber Defense & Zero-Trust Adversary Sandbox — Kavach AI"
   };
 
   const descs = {
     product: "Kavach wraps generative LLM pipelines with real-time OWASP guardrails, AST blast-radius analysis, zero-knowledge privacy vaults, closed-loop ReAct reflexion, and CycloneDX SBOM attestations.",
     workspace: "Interactive security workspace for real-time prompt governance, PyPI typosquatting defense, PII token vaulting, and automated ReAct code healing.",
-    research: "Explore where and how enterprises deploy KAVACH in real-world production: CI/CD PR gatekeepers, LLM privacy proxies, blast-radius mitigation, and Merkle audit ledgers.",
+    usecases: "Explore where and how enterprises deploy KAVACH in real-world production: CI/CD PR gatekeepers, LLM privacy proxies, blast-radius mitigation, and Merkle audit ledgers.",
     research: "Academic benchmark methodology, ablation studies, and empirical evaluation comparing Kavach against NeMo Guardrails, Llama-Guard, and LangChain.",
     defense: "Live adversarial cyber defense sandbox testing 15+ attack vectors: prompt injection, Trojan Source CVE-2021-42574, SSRF cloud metadata, and supply-chain slopsquatting."
   };
@@ -2483,19 +2484,23 @@ window.updateSEOViewMeta = updateSEOViewMeta;
 function switchToWorkspace(focusTargetId = null) {
   const prodView = document.getElementById("product-view");
   const wsView = document.getElementById("workspace-view");
+  const ucView = document.getElementById("usecases-view");
   const resView = document.getElementById("research-view");
   const defView = document.getElementById("defense-view");
   const navProd = document.getElementById("nav-btn-product");
   const navWs = document.getElementById("nav-btn-workspace");
+  const navUc = document.getElementById("nav-btn-usecases");
   const navRes = document.getElementById("nav-btn-research");
   const navDef = document.getElementById("nav-btn-defense");
 
   if (prodView) prodView.style.display = "none";
+  if (ucView) ucView.style.display = "none";
   if (resView) resView.style.display = "none";
   if (defView) defView.style.display = "none";
   if (wsView) wsView.style.display = "flex";
 
   if (navProd) navProd.classList.remove("active");
+  if (navUc) navUc.classList.remove("active");
   if (navRes) navRes.classList.remove("active");
   if (navDef) navDef.classList.remove("active");
   if (navWs) navWs.classList.add("active");
@@ -2543,19 +2548,23 @@ function switchToWorkspace(focusTargetId = null) {
 function switchToProduct(targetSectionId = null) {
   const prodView = document.getElementById("product-view");
   const wsView = document.getElementById("workspace-view");
+  const ucView = document.getElementById("usecases-view");
   const resView = document.getElementById("research-view");
   const defView = document.getElementById("defense-view");
   const navProd = document.getElementById("nav-btn-product");
   const navWs = document.getElementById("nav-btn-workspace");
+  const navUc = document.getElementById("nav-btn-usecases");
   const navRes = document.getElementById("nav-btn-research");
   const navDef = document.getElementById("nav-btn-defense");
 
   if (wsView) wsView.style.display = "none";
+  if (ucView) ucView.style.display = "none";
   if (resView) resView.style.display = "none";
   if (defView) defView.style.display = "none";
   if (prodView) prodView.style.display = "flex";
 
   if (navWs) navWs.classList.remove("active");
+  if (navUc) navUc.classList.remove("active");
   if (navRes) navRes.classList.remove("active");
   if (navDef) navDef.classList.remove("active");
   if (navProd) navProd.classList.add("active");
@@ -2577,23 +2586,61 @@ function switchToProduct(targetSectionId = null) {
   }, 60);
 }
 
-function switchToResearch() {
+function switchToUseCases() {
   const prodView = document.getElementById("product-view");
   const wsView = document.getElementById("workspace-view");
+  const ucView = document.getElementById("usecases-view");
   const resView = document.getElementById("research-view");
   const defView = document.getElementById("defense-view");
   const navProd = document.getElementById("nav-btn-product");
   const navWs = document.getElementById("nav-btn-workspace");
+  const navUc = document.getElementById("nav-btn-usecases");
   const navRes = document.getElementById("nav-btn-research");
   const navDef = document.getElementById("nav-btn-defense");
 
   if (prodView) prodView.style.display = "none";
   if (wsView) wsView.style.display = "none";
+  if (resView) resView.style.display = "none";
+  if (defView) defView.style.display = "none";
+  if (ucView) ucView.style.display = "flex";
+
+  if (navProd) navProd.classList.remove("active");
+  if (navWs) navWs.classList.remove("active");
+  if (navRes) navRes.classList.remove("active");
+  if (navDef) navDef.classList.remove("active");
+  if (navUc) navUc.classList.add("active");
+
+  window.location.hash = "use-cases";
+  updateSEOViewMeta("usecases");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  setTimeout(() => {
+    if (typeof initScrollReveals === "function") initScrollReveals();
+    if (typeof initMagneticButtons === "function") initMagneticButtons();
+  }, 60);
+}
+
+function switchToResearch() {
+  const prodView = document.getElementById("product-view");
+  const wsView = document.getElementById("workspace-view");
+  const ucView = document.getElementById("usecases-view");
+  const resView = document.getElementById("research-view");
+  const defView = document.getElementById("defense-view");
+  const navProd = document.getElementById("nav-btn-product");
+  const navWs = document.getElementById("nav-btn-workspace");
+  const navUc = document.getElementById("nav-btn-usecases");
+  const navRes = document.getElementById("nav-btn-research");
+  const navDef = document.getElementById("nav-btn-defense");
+
+  if (prodView) prodView.style.display = "none";
+  if (wsView) wsView.style.display = "none";
+  if (ucView) ucView.style.display = "none";
   if (defView) defView.style.display = "none";
   if (resView) resView.style.display = "flex";
 
   if (navProd) navProd.classList.remove("active");
   if (navWs) navWs.classList.remove("active");
+  if (navUc) navUc.classList.remove("active");
   if (navDef) navDef.classList.remove("active");
   if (navRes) navRes.classList.add("active");
 
@@ -2610,20 +2657,24 @@ function switchToResearch() {
 function switchToDefense() {
   const prodView = document.getElementById("product-view");
   const wsView = document.getElementById("workspace-view");
+  const ucView = document.getElementById("usecases-view");
   const resView = document.getElementById("research-view");
   const defView = document.getElementById("defense-view");
   const navProd = document.getElementById("nav-btn-product");
   const navWs = document.getElementById("nav-btn-workspace");
+  const navUc = document.getElementById("nav-btn-usecases");
   const navRes = document.getElementById("nav-btn-research");
   const navDef = document.getElementById("nav-btn-defense");
 
   if (prodView) prodView.style.display = "none";
   if (wsView) wsView.style.display = "none";
+  if (ucView) ucView.style.display = "none";
   if (resView) resView.style.display = "none";
   if (defView) defView.style.display = "flex";
 
   if (navProd) navProd.classList.remove("active");
   if (navWs) navWs.classList.remove("active");
+  if (navUc) navUc.classList.remove("active");
   if (navRes) navRes.classList.remove("active");
   if (navDef) navDef.classList.add("active");
 
@@ -3436,6 +3487,7 @@ window.runAttackSimulation = runAttackSimulation;
 window.copySimPayload = copySimPayload;
 window.clearSimConsole = clearSimConsole;
 window.switchToDefense = switchToDefense;
+window.switchToUseCases = switchToUseCases;
 window.loadCustomExploitPreset = loadCustomExploitPreset;
 window.analyzeCustomExploitLive = analyzeCustomExploitLive;
 window.simulateHoneytokenTripLive = simulateHoneytokenTripLive;
@@ -4642,6 +4694,8 @@ window.updateSEOViewMeta = updateSEOViewMeta;
 const initialHash = window.location.hash;
 if (initialHash === "#workspace") {
   switchToWorkspace();
+} else if (initialHash === "#use-cases" || initialHash === "#usecases") {
+  switchToUseCases();
 } else if (initialHash === "#research") {
   switchToResearch();
 } else if (initialHash === "#defense") {
