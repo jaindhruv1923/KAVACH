@@ -5270,6 +5270,8 @@ function renderPlaybookStep() {
   const isProtected = PLAYBOOK_DATA.currentMode === "protected";
 
   container.innerHTML = `
+    <div class="scan-laser-line"></div>
+
     <!-- Top Header -->
     <div class="playbook-header-row">
       <div>
