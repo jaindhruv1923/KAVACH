@@ -106,6 +106,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==========================================================================
+   INTERACTIVE NEURAL CONSTELLATION CANVAS (PARTICLE MESH WEB)
+   ========================================================================== */
+#interactive-particle-web {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Boht zaroori: Taaki clicks aur buttons block na hon */
+  z-index: 10;
+  opacity: 0.85;
+}
+
 /* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
