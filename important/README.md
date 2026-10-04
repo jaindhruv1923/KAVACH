@@ -2,14 +2,14 @@
 
 This directory contains **all the essential, verified, and official assets** of the **KAVACH** Capstone Project (`PRJ-IV` & `CSE3101` Agentic AI).
 
-[← Back to Master README](../README.md) &nbsp;|&nbsp; [View Archived Legacy Assets (`../unimportant`)](../unimportant)
+[← Back to Master README](../README.md) &nbsp;|&nbsp; [🛡️ Platform Implementation Guide (`kavach/`)](kavach/README.md) &nbsp;|&nbsp; [📦 Archived Legacy Files (`../unimportant`)](../unimportant/README.md)
 
 ---
 
 ## 📁 Directory Structure & Contents
 
-### 1. [`kavach/`](kavach/) (Core Platform & Codebase)
-The complete operational, containerized software engineering platform:
+### 1. [`kavach/`](kavach/README.md) (Core Platform & Codebase)
+The complete operational, containerized software engineering platform (Full Guide: [**`kavach/README.md`**](kavach/README.md)):
 * [`backend/`](kavach/backend/): FastAPI REST endpoints, Agentic RAG, AST blast radius, Dual-Engine LLM router, Sentinel guardrails.
 * [`frontend/`](kavach/frontend/): Dark-mode Mission Control dashboard (`#08090D` slate, `#00D2FF` cyan), real-time SSE telemetry, and multimodal Groq Whisper speech-to-text.
 * [`tests/`](kavach/tests/): 278+ automated unit, integration, and cyber defense tests.

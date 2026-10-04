@@ -2,7 +2,7 @@
 
 This directory contains **archived, intermediate, legacy, and draft files** that are no longer needed in active development but are preserved for audit and historical reference.
 
-[← Back to Root README](../README.md) &nbsp;|&nbsp; [Go to Official Assets (`../important`)](../important)
+[← Back to Master README](../README.md) &nbsp;|&nbsp; [📂 Official Assets Overview (`../important`)](../important/README.md) &nbsp;|&nbsp; [🛡️ Platform Implementation Guide](../important/kavach/README.md)
 
 ---
 
@@ -35,5 +35,6 @@ This directory contains **archived, intermediate, legacy, and draft files** that
 ---
 
 > [!NOTE]
-> All current, official, and working deliverables are located in [**`../important/`**](../important).
+> All current, official, and working deliverables are located in [**`../important/README.md`**](../important/README.md) and the operational platform in [**`../important/kavach/README.md`**](../important/kavach/README.md).
+
 

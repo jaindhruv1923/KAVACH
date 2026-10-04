@@ -12,16 +12,25 @@
 
 ---
 
+<p align="center">
+  <a href="important/kavach/README.md"><b>🛡️ Platform Engine Guide</b></a> &nbsp;•&nbsp;
+  <a href="important/README.md"><b>📂 Official Artifacts Index</b></a> &nbsp;•&nbsp;
+  <a href="unimportant/README.md"><b>📦 Archived Legacy Backups</b></a> &nbsp;•&nbsp;
+  <a href="important/kavach/FINAL_REPORT.md"><b>📊 Final Project Report</b></a> &nbsp;•&nbsp;
+  <a href="important/kavach/RUNNING_KAVACH.md"><b>⚡ Running Kavach</b></a>
+</p>
+
 > [!IMPORTANT]
-> ### 🗂️ Clean Repository Organization
-> * **[`important/`](important/):** Contains **all canonical, official & production assets**:
->   - **[`important/kavach/`](important/kavach/)**: Full operational platform (FastAPI backend, dark-mode frontend, 278+ tests, data, demo).
+> ### 🗂️ Clean Repository Organization & Documentation Hub
+> * **[`important/`](important/README.md):** Contains **all canonical, official & production assets**:
+>   - **[`important/kavach/`](important/kavach/README.md)**: Full operational platform engine (FastAPI backend, dark-mode frontend, 278+ tests, data, demo). Complete guide: [**`important/kavach/README.md`**](important/kavach/README.md).
 >   - **[`important/01_Master_Presentations/`](important/01_Master_Presentations/)**: Master 24-slide PowerPoint (`.pptx`), interactive web presentation (`.html`), speaker scripts.
 >   - **[`important/02_Official_Reports_and_Synopses/`](important/02_Official_Reports_and_Synopses/)**: Midterm synopsis reports (`.docx`, `.md`), academic blueprints, and charters.
 >   - **[`important/03_Architecture_and_Flowcharts/`](important/03_Architecture_and_Flowcharts/)**: System architecture Mermaid files (`.mmd`), viewer, and explanations.
 >   - **[`important/04_Viva_Defense_and_Evaluation/`](important/04_Viva_Defense_and_Evaluation/)**: Comprehensive viva defense Q&A guide, cheatsheets, and 42-run benchmarks.
 >   - **[`important/05_IEEE_Research_Publication/`](important/05_IEEE_Research_Publication/)**: Complete IEEE publication bundle, papers, and benchmark tables.
-> * **[`unimportant/`](unimportant/):** Contains **archived legacy phases, rough work, scratch scripts, old documentation dumps, and legacy demo prototypes**.
+>   - *Complete Index & Directory Guide:* [**`important/README.md`**](important/README.md)
+> * **[`unimportant/`](unimportant/README.md):** Contains **archived legacy phases, rough work, scratch scripts, old documentation dumps, and legacy demo prototypes**. Complete archive guide: [**`unimportant/README.md`**](unimportant/README.md).
 
 ---
 
@@ -97,16 +106,69 @@ However, **deploying unconstrained, naive autonomous agents inside enterprise co
 
 ## 📸 Visual Showcase & Interface Gallery
 
-The platform features a commercial-grade, dark-mode-first mission control dashboard (`#08090D` canvas, `#12151D` glassmorphic cards, `#00D2FF` electric cyan accents) engineered for real-time DevOps telemetry:
+The platform features a commercial-grade, dark-mode-first mission control dashboard (`#08090D` canvas, `#12151D` glassmorphic cards, `#00D2FF` electric cyan accents) engineered for real-time DevOps telemetry and deterministic security governance:
 
-| View | Screenshot / Preview | Description |
-| :--- | :--- | :--- |
-| **Command Center Overview** | ![Dashboard Overview](important/kavach/artifacts/screenshots/Photo2_KAVACH_Dashboard_Overview.png) | Unified mission-control dashboard featuring live KPI counters (Runs, Reviews, Blocks), system heartbeat, workflow telemetry, and execution stage graph. |
-| **FastAPI Backend & API Docs** | ![Backend Architecture](important/kavach/artifacts/screenshots/Photo1_Backend_API%20Architecture.png) | Interactive Swagger UI exposing all 10 REST endpoints across orchestration, security evaluation, GitHub ingestion, and RAG search. |
-| **Real-Time Security Interception** | ![Security Interception](important/kavach/artifacts/screenshots/Secruity_Block_Review_1.png) | Immediate pre-execution halt intercepting a developer prompt containing sensitive national identifiers (Aadhaar/PAN), preventing cloud dispatch. |
-| **AST Blast-Radius Analysis** | ![Impact Analysis](important/kavach/artifacts/screenshots/Change_Impact_Analysis.png) | Bidirectional dependency impact graph computing transitive blast radius and affected modules using Python AST parsing. |
-| **CI/CD Security Gate PASS** | ![CI Gate](important/kavach/docs/screenshots/02_CI_Security_Gate_PASS.png) | Automated CI gate enforcing mathematical precision, recall, and F1 benchmarks across real evaluation corpora before PR merge. |
-| **278 Passing Automated Tests** | ![Test Suite](important/kavach/docs/screenshots/01_Final_Test_Suite_164_Passed.png) | Comprehensive automated pytest suite passing 278/278 tests across unit, integration, RAG, agent, and security modules. |
+### 🖥️ KAVACH Mission-Control Security Dashboard
+<p align="center">
+  <a href="important/kavach/artifacts/screenshots/Photo2_KAVACH_Dashboard_Overview.png">
+    <img src="important/kavach/artifacts/screenshots/Photo2_KAVACH_Dashboard_Overview.png" width="100%" alt="KAVACH Mission Control Dashboard" />
+  </a>
+  <br>
+  <em>Figure 1: KAVACH Mission-Control Security Dashboard featuring live KPI telemetry counters (Runs, Reviews, Blocks), system heartbeat, execution stage transitions, and Groq Whisper multimodal voice input.</em>
+</p>
+
+### 🛡️ Subsystem Previews & Verification Telemetry
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🚨 Real-Time Security Interception</h4>
+      <a href="important/kavach/artifacts/screenshots/Secruity_Block_Review_1.png">
+        <img src="important/kavach/artifacts/screenshots/Secruity_Block_Review_1.png" width="100%" alt="Real-Time Security Interception" />
+      </a>
+      <p align="center"><em>Pre-execution halt intercepting developer requests containing sensitive Indian national IDs (Aadhaar/PAN) or credentials, preventing cloud LLM egress.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">🔬 AST Blast-Radius & Impact Graph</h4>
+      <a href="important/kavach/artifacts/screenshots/Change_Impact_Analysis.png">
+        <img src="important/kavach/artifacts/screenshots/Change_Impact_Analysis.png" width="100%" alt="AST Blast Radius Analysis" />
+      </a>
+      <p align="center"><em>Bidirectional dependency impact analysis parsing Python ASTs to compute transitive blast radius and affected downstream modules before code execution.</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">⚡ FastAPI Backend & Swagger API Gateway</h4>
+      <a href="important/kavach/artifacts/screenshots/Photo1_Backend_API_Architecture.png">
+        <img src="important/kavach/artifacts/screenshots/Photo1_Backend_API_Architecture.png" width="100%" alt="FastAPI Backend & Swagger API Docs" />
+      </a>
+      <p align="center"><em>Interactive OpenAPI documentation exposing 10 high-performance RESTful endpoints across agent orchestration, security evaluation, RAG search, and GitHub ingestion.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">🛡️ Automated CI/CD Quality Gate (100% Pass)</h4>
+      <a href="important/kavach/docs/screenshots/02_CI_Security_Gate_PASS.png">
+        <img src="important/kavach/docs/screenshots/02_CI_Security_Gate_PASS.png" width="100%" alt="CI/CD Quality Gate PASS" />
+      </a>
+      <p align="center"><em>Automated pre-merge CI gate enforcing mathematical precision (1.00), recall (1.00), and F1-score benchmarks across authentic evaluation datasets before PR merge.</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🧪 278 Automated Tests Passing</h4>
+      <a href="important/kavach/docs/screenshots/01_Final_Test_Suite_164_Passed.png">
+        <img src="important/kavach/docs/screenshots/01_Final_Test_Suite_164_Passed.png" width="100%" alt="278 Passing Pytest Automated Tests" />
+      </a>
+      <p align="center"><em>Comprehensive test suite achieving 100% pass rate across unit, integration, RAG vector retrieval, and advanced cyber-defense engine modules.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">🏛️ 5-Tier System Topology & Security Boundary</h4>
+      <a href="important/kavach/artifacts/screenshots/figure1_architecture.png">
+        <img src="important/kavach/artifacts/screenshots/figure1_architecture.png" width="100%" alt="KAVACH 5-Tier System Topology" />
+      </a>
+      <p align="center"><em>Formal IEEE system architecture diagram illustrating the deterministic pre-execution, retrieval, generation, and CI verification trust boundaries.</em></p>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -387,15 +449,22 @@ These 4 major research-grade architectures represent the long-term enterprise vi
 
 ```
 PRJ-IV Work/
-├── README.md                              # ← Master GitHub Documentation (This file)
+├── README.md                              # 🌟 Master Repository README (This File)
 ├── run_kavach.bat                         # One-click Windows batch launcher (Backend + UI)
 ├── run_kavach.ps1                         # One-click PowerShell launcher (Backend + UI)
 ├── verify_project.py                      # One-command full 278-test & 10 E2E defense verification
 ├── run_tests.py                           # Fast pytest test runner wrapper
+├── Dockerfile                             # Containerized platform build file
 ├── .gitignore                             # Git ignore rules
 │
 ├── important/                             # 🌟 CANONICAL PRODUCTION CODEBASE & ARTIFACTS
-│   ├── kavach/                            # Operational Platform Service
+│   ├── README.md                          # 📂 Guide to Official Assets & Deliverables Index
+│   ├── kavach/                            # Operational Platform Service Engine
+│   │   ├── README.md                      # 🛡️ Operational Engine & Backend Technical Guide
+│   │   ├── FINAL_REPORT.md                # 📊 Full Project Verification Report (278/278 Tests)
+│   │   ├── RUNNING_KAVACH.md              # ⚡ Step-by-Step Platform Execution Guide
+│   │   ├── PROJECT_MAP.md                 # 🗺️ Feature-to-File Mapping & Demonstration Index
+│   │   ├── DEPLOYMENT_GUIDE.md            # 🐳 Production Docker & Deployment Manual
 │   │   ├── backend/                       # FastAPI Backend Service (10 endpoints, FSM, RAG, AST)
 │   │   │   ├── app/                       # Core modules (agent, generation, impact, rag, security)
 │   │   │   ├── ci_security_gate.py        # Automated CI evaluation gate script
@@ -408,9 +477,7 @@ PRJ-IV Work/
 │   │   ├── demo_repo/                     # Mock Codebase for live vulnerability demonstrations
 │   │   ├── artifacts/                     # Captured Evidence, Screenshots & Reports
 │   │   ├── docs/                          # Architecture & technical specifications
-│   │   ├── tools/                         # Automated scripts & presentation builders
-│   │   ├── verify_project.py              # Canonical project verification engine
-│   │   └── run_tests.py                   # Canonical pytest runner
+│   │   └── tools/                         # Automated scripts & presentation builders
 │   │
 │   ├── 01_Master_Presentations/           # Master 24-Slide Deck (.pptx), Web Slides (.html), Scripts
 │   ├── 02_Official_Reports_and_Synopses/  # Midterm Synopsis (.docx, .md), Master Blueprints, Charters
@@ -419,6 +486,7 @@ PRJ-IV Work/
 │   └── 05_IEEE_Research_Publication/      # IEEE Submission bundle, papers, LaTeX tables
 │
 └── unimportant/                           # 📦 ARCHIVED LEGACY PHASES & ROUGH WORK
+    ├── README.md                          # 📦 Navigational Guide to Archived & Legacy Work
     ├── 01_Archived_Legacy_Phases/         # Phases 1-5 development milestone archives
     ├── 02_MidSem_Rough_Work/              # Intermediate rough notes & drafts
     ├── 03_Older_Documentation_Dumps/      # Legacy documentation backups
