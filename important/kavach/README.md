@@ -31,6 +31,85 @@ Explore the technical specifications:
 6. [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md) — Current implementation milestones
 7. [docs/PEAS_AND_PERSONA_SPECIFICATION.md](docs/PEAS_AND_PERSONA_SPECIFICATION.md) — PEAS model and agent personas
 
+## 📸 Visual Architecture & Subsystem Gallery
+
+<p align="center">
+  <a href="artifacts/screenshots/Photo2_KAVACH_Dashboard_Overview.png">
+    <img src="artifacts/screenshots/Photo2_KAVACH_Dashboard_Overview.png" width="100%" alt="KAVACH Mission Control Security Dashboard" />
+  </a>
+  <br>
+  <em>Figure 1: KAVACH Mission-Control Security Dashboard featuring real-time KPI counters (Runs, Reviews, Blocks), system health indicators, execution stage transitions, and Groq Whisper multimodal voice input.</em>
+</p>
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🔄 8-Stage Deterministic FSM Lifecycle</h4>
+      <a href="artifacts/screenshots/ss2.png">
+        <img src="artifacts/screenshots/ss2.png" width="100%" alt="8-Stage Deterministic FSM Lifecycle" />
+      </a>
+      <p align="center"><em>Deterministic finite state machine pipeline enforcing pre-execution guardrails, AST blast-radius analysis, dual LLM router, and immutable audit logs.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">🛡️ Stage 1 Pre-Execution Sentinel</h4>
+      <a href="artifacts/screenshots/ss8.png">
+        <img src="artifacts/screenshots/ss8.png" width="100%" alt="Stage 1 Pre-Execution Sentinel" />
+      </a>
+      <p align="center"><em>Real-time interception of Indian national Aadhaar identifier (<code>9876******098</code>) calculating risk score 0.85 and triggering immediate BLOCKED state.</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🔄 Autonomous ReAct Self-Healing Sandbox</h4>
+      <a href="artifacts/screenshots/ss10.png">
+        <img src="artifacts/screenshots/ss10.png" width="100%" alt="Autonomous ReAct Self-Healing Sandbox" />
+      </a>
+      <p align="center"><em>Closed-loop ReAct reflexion engine: diagnoses AssertionError on Iteration 1, generates targeted repair patch, and verifies test pass on Iteration 2.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">📦 PyPI Slopsquatting & Dependency Firewall</h4>
+      <a href="artifacts/screenshots/ss11.png">
+        <img src="artifacts/screenshots/ss11.png" width="100%" alt="PyPI Slopsquatting & Dependency Firewall" />
+      </a>
+      <p align="center"><em>Parses AST imports in real time and queries official PyPI JSON APIs to intercept hallucinated packages before execution.</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">📜 Cryptographic SHA-256 Merkle Ledger</h4>
+      <a href="artifacts/screenshots/ss16.png">
+        <img src="artifacts/screenshots/ss16.png" width="100%" alt="Cryptographic SHA-256 Merkle Ledger" />
+      </a>
+      <p align="center"><em>Verifies append-only SHA-256 Merkle root integrity providing mathematical tamper-evident non-repudiation under India DPDP Act 2023.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">🎯 15-Vector Adversarial Red-Team Simulator</h4>
+      <a href="artifacts/screenshots/ss15.png">
+        <img src="artifacts/screenshots/ss15.png" width="100%" alt="15-Vector Adversarial Red-Team Simulator" />
+      </a>
+      <p align="center"><em>100% Interception rate across 19 tested attack vectors mapped to MITRE ATLAS™ and OWASP Top 10 for LLMs.</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🧪 Official Pytest Suite: 278 Tests Passing</h4>
+      <a href="artifacts/screenshots/ss23.png">
+        <img src="artifacts/screenshots/ss23.png" width="100%" alt="278 Passing Pytest Automated Tests" />
+      </a>
+      <p align="center"><em>Official terminal test execution achieving 100% pass rate across 278 unit, integration, RAG vector retrieval, and advanced cyber-defense tests.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">✅ Full Canonical E2E Cyber Verification</h4>
+      <a href="artifacts/screenshots/ss24.png">
+        <img src="artifacts/screenshots/ss24.png" width="100%" alt="Canonical Verification Terminal Execution" />
+      </a>
+      <p align="center"><em>Terminal verification executing <code>verify_project.py</code>: 278 pytest tests passed + ALL 10 E2E CYBER DEFENSE VERIFICATIONS PASSED (100% SUCCESS).</em></p>
+    </td>
+  </tr>
+</table>
+
+*(Complete 24-slide visual evidence gallery available at [**`artifacts/screenshots/`**](artifacts/screenshots/) and in the [**Master Visual Showcase**](../../README.md#-visual-showcase--interface-gallery))*
+
 ## ⚡ Quick Links & Key Metrics
 
 - **Master Repository README**: [Master README](../../README.md)
