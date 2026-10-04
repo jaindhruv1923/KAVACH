@@ -154,11 +154,11 @@ The platform features a commercial-grade, dark-mode-first mission control dashbo
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h4 align="center">🧪 278 Automated Tests Passing</h4>
-      <a href="important/kavach/docs/screenshots/01_Final_Test_Suite_164_Passed.png">
-        <img src="important/kavach/docs/screenshots/01_Final_Test_Suite_164_Passed.png" width="100%" alt="278 Passing Pytest Automated Tests" />
+      <h4 align="center">🧪 Official Pytest Suite: 278 Tests Passing</h4>
+      <a href="important/kavach/artifacts/screenshots/ss23.png">
+        <img src="important/kavach/artifacts/screenshots/ss23.png" width="100%" alt="278 Passing Pytest Automated Tests" />
       </a>
-      <p align="center"><em>Comprehensive test suite achieving 100% pass rate across unit, integration, RAG vector retrieval, and advanced cyber-defense engine modules.</em></p>
+      <p align="center"><em>Official terminal test execution achieving 100% pass rate across 278 unit, integration, RAG vector retrieval, and advanced cyber-defense engine tests.</em></p>
     </td>
     <td width="50%" valign="top">
       <h4 align="center">🏛️ 5-Tier System Topology & Security Boundary</h4>
@@ -166,6 +166,59 @@ The platform features a commercial-grade, dark-mode-first mission control dashbo
         <img src="important/kavach/artifacts/screenshots/figure1_architecture.png" width="100%" alt="KAVACH 5-Tier System Topology" />
       </a>
       <p align="center"><em>Formal IEEE system architecture diagram illustrating the deterministic pre-execution, retrieval, generation, and CI verification trust boundaries.</em></p>
+    </td>
+  </tr>
+</table>
+
+### 🔐 Cyber Defense & Autonomous Innovations Gallery
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🔄 Autonomous ReAct Self-Healing Loop</h4>
+      <a href="important/kavach/artifacts/screenshots/ss10.png">
+        <img src="important/kavach/artifacts/screenshots/ss10.png" width="100%" alt="Autonomous ReAct Self-Healing Loop" />
+      </a>
+      <p align="center"><em>Closed-loop ReAct reflexion engine: diagnoses AssertionError on Iteration 1, generates targeted repair patch, and verifies test pass on Iteration 2.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">📦 PyPI Slopsquatting & Dependency Firewall</h4>
+      <a href="important/kavach/artifacts/screenshots/ss11.png">
+        <img src="important/kavach/artifacts/screenshots/ss11.png" width="100%" alt="PyPI Slopsquatting & Dependency Firewall" />
+      </a>
+      <p align="center"><em>Parses AST imports in real time and queries official PyPI JSON APIs to intercept hallucinated packages (e.g. <code>completely_fake_ai_auth_lib_9999</code>).</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🔒 Zero-Knowledge Tokenization Vault (DPDP Act)</h4>
+      <a href="important/kavach/artifacts/screenshots/ss13.png">
+        <img src="important/kavach/artifacts/screenshots/ss13.png" width="100%" alt="Zero-Knowledge Tokenization Vault" />
+      </a>
+      <p align="center"><em>Swaps sensitive Aadhaar and phone numbers with synthetic identifiers before LLM cloud dispatch, safely rehydrating responses in memory.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">🎯 15-Vector Adversarial Red-Team Simulator</h4>
+      <a href="important/kavach/artifacts/screenshots/ss15.png">
+        <img src="important/kavach/artifacts/screenshots/ss15.png" width="100%" alt="15-Vector Red-Team Simulator" />
+      </a>
+      <p align="center"><em>100% Interception rate across 19 tested attack vectors mapped to MITRE ATLAS™ and OWASP Top 10 for LLMs (Base64, Trojan Source, SSRF, RCE).</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">📜 Cryptographic SHA-256 Merkle Audit Ledger</h4>
+      <a href="important/kavach/artifacts/screenshots/ss16.png">
+        <img src="important/kavach/artifacts/screenshots/ss16.png" width="100%" alt="Cryptographic Merkle Audit Ledger" />
+      </a>
+      <p align="center"><em>Verifies append-only SHA-256 Merkle root integrity providing mathematical tamper-evident non-repudiation under India DPDP Act 2023.</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">✅ Full Canonical E2E Cyber Verification</h4>
+      <a href="important/kavach/artifacts/screenshots/ss24.png">
+        <img src="important/kavach/artifacts/screenshots/ss24.png" width="100%" alt="Canonical Verification Terminal Execution" />
+      </a>
+      <p align="center"><em>Terminal verification executing <code>verify_project.py</code>: 278 pytest tests passed + ALL 10 E2E CYBER DEFENSE VERIFICATIONS PASSED (100% SUCCESS).</em></p>
     </td>
   </tr>
 </table>

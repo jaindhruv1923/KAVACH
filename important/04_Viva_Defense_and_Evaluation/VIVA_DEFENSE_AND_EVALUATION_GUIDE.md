@@ -66,8 +66,32 @@
 > 1. **Finite Iteration Cap:** Hard ceiling of $N = 3$ reflection cycles.
 > 2. **Ephemeral Sandbox Isolation:** Subprocesses run in temporary directories with strict 5.0-second timeouts. If a process hangs, the entire process tree is terminated via `taskkill`/`SIGKILL`.
 > 3. **Fallback Escalation:** If iteration 3 fails to achieve a clean test run, the state machine transitions to `NEEDS_REVIEW` and generates an explainable diagnostic report for human gatekeeper intervention."*
+> 
+> * **Visual Proof:** [Autonomous ReAct Reflection Loop Repair (`ss10.png`)](../kavach/artifacts/screenshots/ss10.png)
 
 ---
 
 ### Q10: "Show us evidence of your 40+ runs and persona linkages." (Slide 2 Row 5)
 > **Answer:** *"We have 42 persistently logged runs stored in `backend/data/workflow_runs.json`, viewable via `GET /agent/runs` and `/observability/stats`. Each run contains complete stage transition history, latency breakdowns per agent, token costs, security findings, and explicit linkage to four target user personas: Junior Developer, DevOps Lead, Security Auditor, and Automated CI/CD Webhook."*
+> 
+> * **Visual Proof:** [Recorded Runs History & Telemetry (`ss7.png`)](../kavach/artifacts/screenshots/ss7.png) & [Canonical Verification Trace (`ss24.png`)](../kavach/artifacts/screenshots/ss24.png)
+
+---
+
+## 2. Empirical Cyber Defense & Examiner Proof Gallery
+
+When examiners request empirical proof during the defense, cite the high-resolution evidence captured in [`important/kavach/artifacts/screenshots/`](../kavach/artifacts/screenshots/):
+
+| Examination Defense Topic | Empirical Evidence | Visual Screenshot Link |
+| :--- | :--- | :---: |
+| **Full Automated Pytest Suite** | Official clean execution passing all 278 unit, integration, and security tests in 58s. | [`ss23.png`](../kavach/artifacts/screenshots/ss23.png) |
+| **All 10 E2E Verifications** | Canonical `verify_project.py` verifying all 10 cyber defense engines with 100% success. | [`ss24.png`](../kavach/artifacts/screenshots/ss24.png) |
+| **15-Vector Red-Team Simulator** | 19 attacks tested, 19 intercepted (100.0% interception rate) mapped to MITRE ATLAS. | [`ss15.png`](../kavach/artifacts/screenshots/ss15.png) |
+| **Cryptographic Merkle Ledger** | Append-only SHA-256 Merkle root verification under India DPDP Act 2023. | [`ss16.png`](../kavach/artifacts/screenshots/ss16.png) |
+| **PyPI Slopsquatting Defense** | Real-time AST import interception of phantom package `completely_fake_ai_auth_lib_9999`. | [`ss11.png`](../kavach/artifacts/screenshots/ss11.png) |
+| **Autonomous ReAct Reflection** | Automatic traceback capture and candidate repair verified passing on iteration 2. | [`ss10.png`](../kavach/artifacts/screenshots/ss10.png) |
+| **State-Sponsored Hacker Defense** | Interception of APT-29 / CozyBear Base64 + Unicode RLO prompt obfuscation. | [`ss19.png`](../kavach/artifacts/screenshots/ss19.png) |
+| **Active Honeytoken Tripwires** | Intrusion interception and session quarantine on decoy canary AWS / JWT keys. | [`ss20.png`](../kavach/artifacts/screenshots/ss20.png) |
+| **150-Vector Adversarial Matrix** | 99.3% overall interception rate across obfuscation, slopsquatting, and kernel RCE. | [`ss21.png`](../kavach/artifacts/screenshots/ss21.png) |
+| **MITRE ATLAS Threat Matrix** | Standardized mapping of adversarial techniques against Kavach mathematical defenses. | [`ss22.png`](../kavach/artifacts/screenshots/ss22.png) |
+

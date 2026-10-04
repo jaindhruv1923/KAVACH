@@ -24,34 +24,34 @@
 
 ---
 
-## ⏱️ Master 24-Slide Agenda & Timing Matrix (15-Minute Defense)
+## ⏱️ Master 24-Slide Agenda, Timing & Visual Capture Matrix (15-Minute Defense)
 
-| Slide # | Slide Title | Evaluation Rubric | Marks | Time | Presenter |
-| :---: | :---| :---| :---: | :---: | :---: |
-| **1** | Title Slide & Academic Identity | Project Identification | — | 0:40 min | Dhruv Jain |
-| **2** | Executive Summary: Autonomous Coding Agent Revolution | Problem Context | — | 0:40 min | Dhruv Jain |
-| **3** | Threat Modeling: 5 Fatal Vulnerabilities of AI Agents | Rubric 1: Problem Definition | 5 M | 1:00 min | Dhruv Jain |
-| **4** | Literature Review: Autonomous Agents & Attacks (Part 1) | Rubric 2: Comprehensiveness of Lit. | 5 M | 1:00 min | Dev Garg |
-| **5** | Literature Review: Code RAG & Compliance (Part 2) | Rubric 2: Comprehensiveness of Lit. | 5 M | 1:00 min | Dev Garg |
-| **6** | Critical Research Gaps Matrix (SOTA Baseline vs. KAVACH) | Rubric 3: Research Gap | 5 M | 1:15 min | Ansh Rohilla |
-| **7** | Concrete Research Objectives & Quantitative Target KPIs | Rubric 1: Measurable Outcomes | — | 0:45 min | Ansh Rohilla |
-| **8** | Master Mind Map: KAVACH High-Level Taxonomy | Rubric 4: Proposed Methodology | — | 0:45 min | Ansh Adhikari |
-| **9** | Flowchart 1: End-to-End System Architecture (5-Tier Stack) | Rubric 4: System Architecture | 5 M | 1:15 min | Ansh Adhikari |
-| **10** | Flowchart 2: 6-Stage Governed DevOps Lifecycle (FSM) | Rubric 4: Execution Workflow | — | 1:00 min | Ansh Adhikari |
-| **11** | Mathematical Foundations & Information Theory | Rubric 4: Algorithmic Rigor | — | 1:00 min | Dhruv Jain |
-| **12** | Deep-Dive 1: Sentinel Pre-Execution Guardrails | Rubric 4: Tools & Techniques | — | 0:40 min | Dev Garg |
-| **13** | Flowchart 4: Multilingual Zero-Knowledge Token Vault (DPDP) | Rubric 4: Privacy Architecture | — | 1:00 min | Dev Garg |
-| **14** | Deep-Dive 3: AST-Aware Code Chunking & Agentic RAG | Rubric 4: Knowledge Retrieval | — | 0:40 min | Ansh Rohilla |
-| **15** | Deep-Dive 4: Static AST Blast Radius & Change-Impact | Rubric 4: Static Analysis | — | 0:45 min | Ansh Rohilla |
-| **16** | Flowchart 3: AST Supply-Chain Package Firewall & Slopsquatting | Rubric 4: Supply Chain Security | — | 1:00 min | Ansh Adhikari |
-| **17** | Flowchart 5: Closed-Loop ReAct Self-Healing Sandbox | Rubric 4: Sandbox & Convergence | — | 1:00 min | Ansh Adhikari |
-| **18** | Deep-Dive 7: Dual-Engine LLM Router & Air-Gapped Privacy | Rubric 4: Inference Isolation | — | 0:40 min | Dhruv Jain |
-| **19** | Deep-Dive 8: Anthropic Model Context Protocol (MCP) Server | Rubric 4: Tool Interoperability | — | 0:40 min | Dhruv Jain |
-| **20** | Mission Control Dashboard & Multimodal Voice Observability | Rubric 4: Telemetry & Frontend | — | 0:40 min | Dhruv Jain |
-| **21** | Empirical Evaluation: 4 Benchmark Datasets & Findings | Rubric 4: Evaluation & Testing | 5 M | 1:00 min | Dhruv Jain |
-| **22** | Viva Defense Master Guide: Top 4 Examiner Questions | Examination Defense | — | 1:00 min | All Members |
-| **23** | Production Roadmap & Future Expansion (Phases 2 & 3) | Project Evolution | — | 0:40 min | All Members |
-| **24** | Conclusion, Academic Deliverables & Live Demonstration | Summary & Close | — | 0:35 min | Dhruv Jain |
+| Slide # | Slide Title | Evaluation Rubric | Marks | Time | Presenter | Visual Capture |
+| :---: | :---| :---| :---: | :---: | :---: | :---: |
+| **1** | Title Slide & Academic Identity | Project Identification | — | 0:40 min | Dhruv Jain | [`ss1.png`](../kavach/artifacts/screenshots/ss1.png) |
+| **2** | Executive Summary: Autonomous Coding Agent Revolution | Problem Context | — | 0:40 min | Dhruv Jain | [`ss5.png`](../kavach/artifacts/screenshots/ss5.png) |
+| **3** | Threat Modeling: 5 Fatal Vulnerabilities of AI Agents | Rubric 1: Problem Definition | 5 M | 1:00 min | Dhruv Jain | [`ss19.png`](../kavach/artifacts/screenshots/ss19.png) |
+| **4** | Literature Review: Autonomous Agents & Attacks (Part 1) | Rubric 2: Comprehensiveness of Lit. | 5 M | 1:00 min | Dev Garg | [`ss22.png`](../kavach/artifacts/screenshots/ss22.png) |
+| **5** | Literature Review: Code RAG & Compliance (Part 2) | Rubric 2: Comprehensiveness of Lit. | 5 M | 1:00 min | Dev Garg | [`ss14.png`](../kavach/artifacts/screenshots/ss14.png) |
+| **6** | Critical Research Gaps Matrix (SOTA Baseline vs. KAVACH) | Rubric 3: Research Gap | 5 M | 1:15 min | Ansh Rohilla | [`ss5.png`](../kavach/artifacts/screenshots/ss5.png) |
+| **7** | Concrete Research Objectives & Quantitative Target KPIs | Rubric 1: Measurable Outcomes | — | 0:45 min | Ansh Rohilla | [`ss4.png`](../kavach/artifacts/screenshots/ss4.png) |
+| **8** | Master Mind Map: KAVACH High-Level Taxonomy | Rubric 4: Proposed Methodology | — | 0:45 min | Ansh Adhikari | [`ss2.png`](../kavach/artifacts/screenshots/ss2.png) |
+| **9** | Flowchart 1: End-to-End System Architecture (5-Tier Stack) | Rubric 4: System Architecture | 5 M | 1:15 min | Ansh Adhikari | [`ss2.png`](../kavach/artifacts/screenshots/ss2.png) |
+| **10** | Flowchart 2: 6-Stage Governed DevOps Lifecycle (FSM) | Rubric 4: Execution Workflow | — | 1:00 min | Ansh Adhikari | [`ss3.png`](../kavach/artifacts/screenshots/ss3.png) |
+| **11** | Mathematical Foundations & Information Theory | Rubric 4: Algorithmic Rigor | — | 1:00 min | Dhruv Jain | [`ss16.png`](../kavach/artifacts/screenshots/ss16.png) |
+| **12** | Deep-Dive 1: Sentinel Pre-Execution Guardrails | Rubric 4: Tools & Techniques | — | 0:40 min | Dev Garg | [`ss8.png`](../kavach/artifacts/screenshots/ss8.png) |
+| **13** | Flowchart 4: Multilingual Zero-Knowledge Token Vault (DPDP) | Rubric 4: Privacy Architecture | — | 1:00 min | Dev Garg | [`ss13.png`](../kavach/artifacts/screenshots/ss13.png) |
+| **14** | Deep-Dive 3: AST-Aware Code Chunking & Agentic RAG | Rubric 4: Knowledge Retrieval | — | 0:40 min | Ansh Rohilla | [`ss9.png`](../kavach/artifacts/screenshots/ss9.png) |
+| **15** | Deep-Dive 4: Static AST Blast Radius & Change-Impact | Rubric 4: Static Analysis | — | 0:45 min | Ansh Rohilla | [`ss9.png`](../kavach/artifacts/screenshots/ss9.png) |
+| **16** | Flowchart 3: AST Supply-Chain Package Firewall & Slopsquatting | Rubric 4: Supply Chain Security | — | 1:00 min | Ansh Adhikari | [`ss11.png`](../kavach/artifacts/screenshots/ss11.png) |
+| **17** | Flowchart 5: Closed-Loop ReAct Self-Healing Sandbox | Rubric 4: Sandbox & Convergence | — | 1:00 min | Ansh Adhikari | [`ss10.png`](../kavach/artifacts/screenshots/ss10.png) |
+| **18** | Deep-Dive 7: Dual-Engine LLM Router & Air-Gapped Privacy | Rubric 4: Inference Isolation | — | 0:40 min | Dhruv Jain | [`ss12.png`](../kavach/artifacts/screenshots/ss12.png) |
+| **19** | Deep-Dive 8: Anthropic Model Context Protocol (MCP) Server | Rubric 4: Tool Interoperability | — | 0:40 min | Dhruv Jain | [`ss6.png`](../kavach/artifacts/screenshots/ss6.png) |
+| **20** | Mission Control Dashboard & Multimodal Voice Observability | Rubric 4: Telemetry & Frontend | — | 0:40 min | Dhruv Jain | [`ss6.png`](../kavach/artifacts/screenshots/ss6.png) |
+| **21** | Empirical Evaluation: 4 Benchmark Datasets & Findings | Rubric 4: Evaluation & Testing | 5 M | 1:00 min | Dhruv Jain | [`ss15.png`](../kavach/artifacts/screenshots/ss15.png) |
+| **22** | Viva Defense Master Guide: Top 4 Examiner Questions | Examination Defense | — | 1:00 min | All Members | [`ss21.png`](../kavach/artifacts/screenshots/ss21.png) |
+| **23** | Production Roadmap & Future Expansion (Phases 2 & 3) | Project Evolution | — | 0:40 min | All Members | [`ss24.png`](../kavach/artifacts/screenshots/ss24.png) |
+| **24** | Conclusion, Academic Deliverables & Live Demonstration | Summary & Close | — | 0:35 min | Dhruv Jain | [`ss23.png`](../kavach/artifacts/screenshots/ss23.png) |
 
 ---
 

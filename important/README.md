@@ -15,6 +15,7 @@ The complete operational, containerized software engineering platform (Full Guid
 * [`tests/`](kavach/tests/): 278+ automated unit, integration, and cyber defense tests.
 * [`data/`](kavach/data/): Multilingual test corpus (Hinglish PII, Aadhaar/PAN) and AST impact test cases.
 * [`demo_repo/`](kavach/demo_repo/): Interactive test repository for live vulnerability simulations.
+* [`artifacts/screenshots/`](kavach/artifacts/screenshots/): Complete 24-slide visual evidence gallery (`ss1.png` – `ss24.png`), system architecture diagrams, and benchmark verification proofs.
 * [`verify_project.py`](kavach/verify_project.py): One-command automated verification script.
 
 ### 2. [`01_Master_Presentations/`](01_Master_Presentations/)
