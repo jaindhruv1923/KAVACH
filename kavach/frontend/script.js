@@ -12,6 +12,16 @@ function initInteractiveParticleWeb() {
   if (!ctx) return;
   window.__particleWebInitialized = true;
 
+  // Enforce fixed full-screen overlay styles directly on element
+  canvas.style.position = "fixed";
+  canvas.style.top = "0";
+  canvas.style.left = "0";
+  canvas.style.inset = "0";
+  canvas.style.pointerEvents = "none";
+  canvas.style.zIndex = "10";
+  canvas.style.opacity = "0.85";
+  canvas.style.display = "block";
+
   let width = window.innerWidth;
   let height = window.innerHeight;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -32,14 +42,14 @@ function initInteractiveParticleWeb() {
   const particles = [];
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const isCyan = Math.random() > 0.65;
+    const isCyan = Math.random() > 0.6;
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * 0.55,
       vy: (Math.random() - 0.5) * 0.55,
-      radius: Math.random() * 1.8 + 1.8,
-      color: isCyan ? "rgba(14, 165, 233, 0.75)" : "rgba(37, 99, 235, 0.68)",
+      radius: Math.random() * 2.0 + 2.0,
+      color: isCyan ? "rgba(14, 165, 233, 0.85)" : "rgba(37, 99, 235, 0.80)",
       pulse: Math.random() * Math.PI * 2
     });
   }
@@ -99,25 +109,25 @@ function initInteractiveParticleWeb() {
         const dyM = p.y - mouse.y;
         const distM = Math.sqrt(dxM * dxM + dyM * dyM);
 
-        if (distM < 190) {
-          const mAlpha = (1 - distM / 190) * 0.75;
+        if (distM < 200) {
+          const mAlpha = (1 - distM / 200) * 0.85;
           ctx.strokeStyle = `rgba(14, 165, 233, ${mAlpha.toFixed(2)})`;
-          ctx.lineWidth = 1.3;
+          ctx.lineWidth = 1.4;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
           ctx.stroke();
 
           // Magnetic attraction effect
-          if (distM > 20) {
-            p.x -= (dxM / distM) * 0.35;
-            p.y -= (dyM / distM) * 0.35;
+          if (distM > 15) {
+            p.x -= (dxM / distM) * 0.45;
+            p.y -= (dyM / distM) * 0.45;
           }
         }
       }
 
       // 2. Particle Dot draw karna (pulsing size ke saath)
-      const rad = p.radius + Math.sin(p.pulse) * 0.35;
+      const rad = p.radius + Math.sin(p.pulse) * 0.4;
       ctx.fillStyle = p.color;
       ctx.beginPath();
       ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
@@ -130,10 +140,10 @@ function initInteractiveParticleWeb() {
         const dy = p.y - p2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 135) {
-          const alpha = (1 - dist / 135) * 0.35;
+        if (dist < 140) {
+          const alpha = (1 - dist / 140) * 0.40;
           ctx.strokeStyle = `rgba(37, 99, 235, ${alpha.toFixed(2)})`;
-          ctx.lineWidth = 0.9;
+          ctx.lineWidth = 1.0;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
@@ -144,15 +154,15 @@ function initInteractiveParticleWeb() {
 
     // 4. Cursor ke chaaron taraf glowing ring
     if (mouse.active && mouse.x > 0 && mouse.y > 0) {
-      ctx.fillStyle = "rgba(14, 165, 233, 0.75)";
+      ctx.fillStyle = "rgba(14, 165, 233, 0.9)";
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 3.2, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 3.5, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.strokeStyle = "rgba(14, 165, 233, 0.3)";
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(14, 165, 233, 0.5)";
+      ctx.lineWidth = 1.2;
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 8, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 9, 0, Math.PI * 2);
       ctx.stroke();
     }
 

@@ -125,27 +125,55 @@ app.mount(
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_root():
     """Serve the frontend entrypoint cleanly directly at root without redirects."""
-    return FileResponse(os.path.join(FRONTEND_DIR, "index.html"), media_type="text/html")
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "index.html"),
+        media_type="text/html",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
 
 
 @app.get("/style.css", include_in_schema=False)
 def serve_root_css():
-    return FileResponse(os.path.join(FRONTEND_DIR, "style.css"), media_type="text/css")
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "style.css"),
+        media_type="text/css",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
 
 
 @app.get("/app.js", include_in_schema=False)
 def serve_root_js():
-    return FileResponse(os.path.join(FRONTEND_DIR, "app.js"), media_type="application/javascript")
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "app.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
+@app.get("/script.js", include_in_schema=False)
+def serve_root_script():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "script.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
 
 
 @app.get("/query_library.js", include_in_schema=False)
 def serve_root_query_library():
-    return FileResponse(os.path.join(FRONTEND_DIR, "query_library.js"), media_type="application/javascript")
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "query_library.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
 
 
 @app.get("/figure1_architecture.png", include_in_schema=False)
 def serve_root_arch_png():
-    return FileResponse(os.path.join(FRONTEND_DIR, "figure1_architecture.png"), media_type="image/png")
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "figure1_architecture.png"),
+        media_type="image/png"
+    )
 
 
 
