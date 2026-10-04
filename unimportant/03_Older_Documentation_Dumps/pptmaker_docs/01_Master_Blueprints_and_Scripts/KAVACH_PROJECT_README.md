@@ -12,19 +12,6 @@
 
 ---
 
-> [!IMPORTANT]
-> ### 🗂️ Clean Repository Organization
-> * **[`important/`](file:///c:/Users/jaind/Videos/PRJ-IV%20Work/important):** Contains **all relevant & necessary project assets**:
->   - **`important/kavach/`**: Full operational platform (FastAPI backend, dark-mode frontend, 164+ tests, data, demo).
->   - **`important/01_Master_Presentations/`**: Master 24-slide PowerPoint (`.pptx`), interactive web presentation (`.html`), speaker scripts.
->   - **`important/02_Official_Reports_and_Synopses/`**: Midterm synopsis reports (`.docx`, `.md`), academic blueprints, and charters.
->   - **`important/03_Architecture_and_Flowcharts/`**: System architecture Mermaid files (`.mmd`), viewer, and explanations.
->   - **`important/04_Viva_Defense_and_Evaluation/`**: Comprehensive viva defense Q&A guide, cheatsheets, and 42-run benchmarks.
->   - **`important/05_IEEE_Research_Publication/`**: Complete IEEE publication bundle, papers, and benchmark tables.
-> * **[`unimportant/`](file:///c:/Users/jaind/Videos/PRJ-IV%20Work/unimportant):** Contains **archived legacy phases, rough work, scratch scripts, old documentation dumps, and legacy demo prototypes**.
-
----
-
 ## 📌 Table of Contents
 
 1. [Executive Overview & Problem Statement](#-executive-overview--problem-statement)

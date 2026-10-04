@@ -13,9 +13,5 @@ echo.
 start http://localhost:8000
 echo Server is running. Press CTRL+C in this terminal to stop.
 echo ============================================================================
-if exist "important\kavach\backend" (
-    python -m uvicorn app.main:app --app-dir important/kavach/backend --host 127.0.0.1 --port 8000 --reload
-) else (
-    python -m uvicorn app.main:app --app-dir kavach/backend --host 127.0.0.1 --port 8000 --reload
-)
+python -m uvicorn app.main:app --app-dir kavach/backend --host 127.0.0.1 --port 8000 --reload
 pause
