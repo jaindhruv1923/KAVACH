@@ -78,4 +78,4 @@ In accordance with the faculty requirement:
 
 1. **Cross-Training Sessions:** All team members participated in code walk-throughs of the AST visitor, Qdrant cosine similarity search, Shannon entropy calculations, and MCP JSON-RPC handlers.
 2. **Modular Codebase:** Every module possesses isolated unit test coverage, allowing any team member to modify and re-verify code live during evaluation.
-3. **Defense Preparation:** All members have reviewed the [Viva Defense Guide](file:///c:/Users/jaind/Videos/PRJ-IV%20Work/kavach/docs/submissions/VIVA_DEFENSE_AND_EVALUATION_GUIDE.md) and understand both the theoretical underpinnings and runtime implementation.
+3. **Defense Preparation:** All members have reviewed the [Viva Defense Guide](VIVA_DEFENSE_AND_EVALUATION_GUIDE.md) and understand both the theoretical underpinnings and runtime implementation.

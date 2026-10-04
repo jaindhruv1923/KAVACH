@@ -7,7 +7,7 @@
 
 ## 1. Executive Summary
 
-This document summarizes the **42 logged, persistent evaluation runs** stored in `kavach/backend/data/workflow_runs.json` and exposed in real-time via `GET /agent/runs` and `GET /observability/stats`.
+This document summarizes the **42 logged, persistent evaluation runs** stored in [`workflow_runs.json`](../kavach/backend/data/workflow_runs.json) and exposed in real-time via `GET /agent/runs` and `GET /observability/stats`.
 
 ### 1.1 High-Level Run Breakdown
 * **Total Executed Runs:** **42** (Exceeds the faculty minimum of 40)

@@ -1,27 +1,27 @@
 # 🛡️ KAVACH (कवच)
 ### Security-Governed Agentic AI DevOps & Observability Platform
 
-[![Tests Passing](https://img.shields.io/badge/Tests-164%2F164%20Passing-00E599?style=for-the-badge&logo=pytest&logoColor=black)](kavach/tests)
+[![Tests Passing](https://img.shields.io/badge/Tests-278%2F278%20Passing-00E599?style=for-the-badge&logo=pytest&logoColor=black)](important/kavach/tests)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Qdrant Vector DB](https://img.shields.io/badge/Vector%20DB-Qdrant-DC2626?style=for-the-badge&logo=qdrant&logoColor=white)](https://qdrant.tech)
 [![Speech-to-Text](https://img.shields.io/badge/Voice-Groq%20Whisper%20v3-F55036?style=for-the-badge&logo=groq&logoColor=white)](https://groq.com)
 [![LLM Support](https://img.shields.io/badge/LLM-Gemini%202.5%20%7C%20Ollama-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
 [![Protocol](https://img.shields.io/badge/Protocol-MCP%20Ready-7C3AED?style=for-the-badge)](https://modelcontextprotocol.io)
-[![Academic Alignment](https://img.shields.io/badge/CSE3101%20Agentic%20AI-9.6%2F10-F59E0B?style=for-the-badge)](KAVACH_AGENTIC_AI_MASTER_BLUEPRINT.md)
+[![Academic Alignment](https://img.shields.io/badge/CSE3101%20Agentic%20AI-9.6%2F10-F59E0B?style=for-the-badge)](important/02_Official_Reports_and_Synopses/KAVACH_AGENTIC_AI_MASTER_BLUEPRINT.md)
 
 ---
 
 > [!IMPORTANT]
 > ### 🗂️ Clean Repository Organization
-> * **[`important/`](file:///c:/Users/jaind/Videos/PRJ-IV%20Work/important):** Contains **all relevant & necessary project assets**:
->   - **`important/kavach/`**: Full operational platform (FastAPI backend, dark-mode frontend, 164+ tests, data, demo).
->   - **`important/01_Master_Presentations/`**: Master 24-slide PowerPoint (`.pptx`), interactive web presentation (`.html`), speaker scripts.
->   - **`important/02_Official_Reports_and_Synopses/`**: Midterm synopsis reports (`.docx`, `.md`), academic blueprints, and charters.
->   - **`important/03_Architecture_and_Flowcharts/`**: System architecture Mermaid files (`.mmd`), viewer, and explanations.
->   - **`important/04_Viva_Defense_and_Evaluation/`**: Comprehensive viva defense Q&A guide, cheatsheets, and 42-run benchmarks.
->   - **`important/05_IEEE_Research_Publication/`**: Complete IEEE publication bundle, papers, and benchmark tables.
-> * **[`unimportant/`](file:///c:/Users/jaind/Videos/PRJ-IV%20Work/unimportant):** Contains **archived legacy phases, rough work, scratch scripts, old documentation dumps, and legacy demo prototypes**.
+> * **[`important/`](important/):** Contains **all canonical, official & production assets**:
+>   - **[`important/kavach/`](important/kavach/)**: Full operational platform (FastAPI backend, dark-mode frontend, 278+ tests, data, demo).
+>   - **[`important/01_Master_Presentations/`](important/01_Master_Presentations/)**: Master 24-slide PowerPoint (`.pptx`), interactive web presentation (`.html`), speaker scripts.
+>   - **[`important/02_Official_Reports_and_Synopses/`](important/02_Official_Reports_and_Synopses/)**: Midterm synopsis reports (`.docx`, `.md`), academic blueprints, and charters.
+>   - **[`important/03_Architecture_and_Flowcharts/`](important/03_Architecture_and_Flowcharts/)**: System architecture Mermaid files (`.mmd`), viewer, and explanations.
+>   - **[`important/04_Viva_Defense_and_Evaluation/`](important/04_Viva_Defense_and_Evaluation/)**: Comprehensive viva defense Q&A guide, cheatsheets, and 42-run benchmarks.
+>   - **[`important/05_IEEE_Research_Publication/`](important/05_IEEE_Research_Publication/)**: Complete IEEE publication bundle, papers, and benchmark tables.
+> * **[`unimportant/`](unimportant/):** Contains **archived legacy phases, rough work, scratch scripts, old documentation dumps, and legacy demo prototypes**.
 
 ---
 
@@ -37,7 +37,7 @@
    - [Phase 4: Multi-Layer Security Engine & CI Gate](#4-multi-layer-security-engine--ci-gate)
    - [Phase 5: AST Blast-Radius & Change-Impact Analysis](#5-ast-blast-radius--change-impact-analysis)
    - [Security Command Center Dashboard](#6-security-command-center-dashboard-frontend)
-   - [Automated Verification & 164 Passing Tests](#7-automated-verification--164-passing-tests)
+   - [Automated Verification & 278 Passing Tests](#7-automated-verification--278-passing-tests)
 5. [What We Are About To Do (Next Sprint / Immediate Roadmap)](#-what-we-are-about-to-do-next-sprint--immediate-roadmap)
    - [KAVACH PR Guardian (GitHub Pull Request Gateway)](#1-kavach-pr-guardian-github-pr-gateway)
    - [Air-Gapped Local LLM Switch (Ollama)](#2-air-gapped-local-llm-switch-ollama)
@@ -101,12 +101,12 @@ The platform features a commercial-grade, dark-mode-first mission control dashbo
 
 | View | Screenshot / Preview | Description |
 | :--- | :--- | :--- |
-| **Command Center Overview** | ![Dashboard Overview](kavach/artifacts/screenshots/Photo2_KAVACH_Dashboard_Overview.png) | Unified mission-control dashboard featuring live KPI counters (Runs, Reviews, Blocks), system heartbeat, workflow telemetry, and execution stage graph. |
-| **FastAPI Backend & API Docs** | ![Backend Architecture](kavach/artifacts/screenshots/Photo1_Backend_API Architecture.png) | Interactive Swagger UI exposing all 10 REST endpoints across orchestration, security evaluation, GitHub ingestion, and RAG search. |
-| **Real-Time Security Interception** | ![Security Interception](kavach/artifacts/screenshots/Secruity_Block_Review_1.png) | Immediate pre-execution halt intercepting a developer prompt containing sensitive national identifiers (Aadhaar/PAN), preventing cloud dispatch. |
-| **AST Blast-Radius Analysis** | ![Impact Analysis](kavach/artifacts/screenshots/Change_Impact_Analysis.png) | Bidirectional dependency impact graph computing transitive blast radius and affected modules using Python AST parsing. |
-| **CI/CD Security Gate PASS** | ![CI Gate](kavach/docs/screenshots/02_CI_Security_Gate_PASS.png) | Automated CI gate enforcing mathematical precision, recall, and F1 benchmarks across real evaluation corpora before PR merge. |
-| **164 Passing Automated Tests** | ![Test Suite](kavach/docs/screenshots/01_Final_Test_Suite_164_Passed.png) | Comprehensive automated pytest suite passing 164/164 tests across unit, integration, RAG, agent, and security modules. |
+| **Command Center Overview** | ![Dashboard Overview](important/kavach/artifacts/screenshots/Photo2_KAVACH_Dashboard_Overview.png) | Unified mission-control dashboard featuring live KPI counters (Runs, Reviews, Blocks), system heartbeat, workflow telemetry, and execution stage graph. |
+| **FastAPI Backend & API Docs** | ![Backend Architecture](important/kavach/artifacts/screenshots/Photo1_Backend_API%20Architecture.png) | Interactive Swagger UI exposing all 10 REST endpoints across orchestration, security evaluation, GitHub ingestion, and RAG search. |
+| **Real-Time Security Interception** | ![Security Interception](important/kavach/artifacts/screenshots/Secruity_Block_Review_1.png) | Immediate pre-execution halt intercepting a developer prompt containing sensitive national identifiers (Aadhaar/PAN), preventing cloud dispatch. |
+| **AST Blast-Radius Analysis** | ![Impact Analysis](important/kavach/artifacts/screenshots/Change_Impact_Analysis.png) | Bidirectional dependency impact graph computing transitive blast radius and affected modules using Python AST parsing. |
+| **CI/CD Security Gate PASS** | ![CI Gate](important/kavach/docs/screenshots/02_CI_Security_Gate_PASS.png) | Automated CI gate enforcing mathematical precision, recall, and F1 benchmarks across real evaluation corpora before PR merge. |
+| **278 Passing Automated Tests** | ![Test Suite](important/kavach/docs/screenshots/01_Final_Test_Suite_164_Passed.png) | Comprehensive automated pytest suite passing 278/278 tests across unit, integration, RAG, agent, and security modules. |
 
 ---
 
@@ -187,10 +187,10 @@ stateDiagram-v2
 
 ## 🛠️ What We Have Done (Built & Operational Baseline)
 
-KAVACH is not an idea or a slide deck; **it is an operational, fully verified software engineering platform with 164 passing automated tests and over 3,500 lines of robust Python and modern frontend code**:
+KAVACH is not an idea or a slide deck; **it is an operational, fully verified software engineering platform with 278 passing automated tests and over 3,500 lines of robust Python and modern frontend code**:
 
 ### 1. Agentic RAG Foundation (Qdrant + Dense Embeddings)
-* **Location:** [`kavach/backend/app/rag/`](kavach/backend/app/rag/)
+* **Location:** [`important/kavach/backend/app/rag/`](important/kavach/backend/app/rag/)
 * **Implementation:**
   * `embed_store.py`: In-memory and persistent vector store powered by **Qdrant** with 384-dimensional dense vector embeddings generated via `sentence-transformers/all-MiniLM-L6-v2`.
   * `ingest.py`: Code-aware syntax chunker extracting class boundaries, function signatures, and docstrings with contextual line numbers.
@@ -198,21 +198,21 @@ KAVACH is not an idea or a slide deck; **it is an operational, fully verified so
 * **Key Metric:** Real-time semantic retrieval within $< 45$ms over indexed repository codebases.
 
 ### 2. Finite State Machine Agent Orchestrator
-* **Location:** [`kavach/backend/app/agent/`](kavach/backend/app/agent/)
+* **Location:** [`important/kavach/backend/app/agent/`](important/kavach/backend/app/agent/)
 * **Implementation:**
   * `orchestrator.py`: Deterministic finite state machine managing 10 structured execution stages: `REQUEST_RECEIVED`, `PLANNING`, `CONTEXT_RETRIEVAL`, `SECURITY_CHECK`, `IMPACT_ANALYSIS`, `GENERATION`, `VALIDATION`, `NEEDS_REVIEW`, `BLOCKED`, and `COMPLETE`.
   * `planner.py`: Goal decomposition breaking natural language requirements into structured sub-tasks.
   * `state.py`: Transactional session state manager recording immutable execution traces and timestamps into SQLite.
 
 ### 3. Evidence-Grounded Code Generation
-* **Location:** [`kavach/backend/app/generation/`](kavach/backend/app/generation/)
+* **Location:** [`important/kavach/backend/app/generation/`](important/kavach/backend/app/generation/)
 * **Implementation:**
   * `generator.py`: Prompt synthesis strictly binding generated code to retrieved RAG repository evidence, explicitly preventing hallucinatory drift.
   * `llm_client.py`: Multi-provider LLM abstraction supporting **Google Gemini 2.5 Flash**, **Groq Cloud**, and an air-gapped **Local Ollama** fallback.
   * `validator.py`: Static AST validator (`ast.parse`) checking generated Python code for syntax integrity, unclosed brackets, and indentation errors before execution.
 
 ### 4. Multi-Layer Security Engine & CI Gate
-* **Location:** [`kavach/backend/app/security/`](kavach/backend/app/security/)
+* **Location:** [`important/kavach/backend/app/security/`](important/kavach/backend/app/security/)
 * **Implementation:**
   * `detector.py`: Context-aware regular expression engine detecting sensitive national identifiers (Indian Aadhaar numbers with checksum validation, PAN cards, passport patterns) while differentiating safe bare numeric strings (ports, IDs, order numbers).
   * `secret_detector.py`: **Shannon entropy calculation engine** combined with targeted signatures for AWS access keys, GitHub Personal Access Tokens (PATs), RSA/SSH private keys, and high-entropy database connection strings.
@@ -222,14 +222,14 @@ KAVACH is not an idea or a slide deck; **it is an operational, fully verified so
   * `ci_security_gate.py`: Automated CI pipeline validator computing empirical Precision, Recall, and F1 scores against standardized test corpora.
 
 ### 5. AST Blast-Radius & Change-Impact Analysis
-* **Location:** [`kavach/backend/app/impact/`](kavach/backend/app/impact/)
+* **Location:** [`important/kavach/backend/app/impact/`](important/kavach/backend/app/impact/)
 * **Implementation:**
   * `analyzer.py`: Abstract Syntax Tree parser analyzing Python source trees to extract `Import`, `ImportFrom`, `ClassDef`, `FunctionDef`, and `Call` symbol references.
   * `dependency_graph.py`: Bidirectional graph builder mapping upstream callers and downstream dependents across repository modules.
   * `evaluator.py`: Hybrid impact evaluator computing blast-radius scores by weighting structural AST call connections against semantic vector similarity.
 
 ### 6. Security Command Center Dashboard (Frontend)
-* **Location:** [`kavach/frontend/`](kavach/frontend/)
+* **Location:** [`important/kavach/frontend/`](important/kavach/frontend/)
 * **Implementation:**
   * `index.html`, `style.css`, `app.js`: Dark-mode SaaS observability dashboard (Datadog/Grafana aesthetic) featuring live KPI counters, animated execution stage cards, and responsive workflow surfaces.
   * **Multimodal Speech-to-Text:** Dual-engine voice processing using **Groq Cloud Whisper API** (`whisper-large-v3-turbo`) with real-time UI feedback and seamless fallback to the browser Web Speech API.
@@ -237,8 +237,8 @@ KAVACH is not an idea or a slide deck; **it is an operational, fully verified so
   * **Public GitHub Ingestion:** Ingestion tool (`POST /github/ingest`) cloning and indexing any public GitHub repository directly into Qdrant for immediate agent analysis.
   * **Persistent Gemini Visibility:** Safe configuration status indicator (`GET /config/status`) confirming API key readiness without exposing sensitive tokens.
 
-### 7. Automated Verification & 164 Passing Tests
-* **Location:** [`kavach/tests/`](kavach/tests/)
+### 7. Automated Verification & 278 Passing Tests
+* **Location:** [`important/kavach/tests/`](important/kavach/tests/)
 * **Coverage:**
   * `test_rag.py`: 21 tests (chunking, vector storage, semantic search)
   * `test_agent.py`: 28 tests (FSM transitions, planning, halt triggers)
@@ -247,7 +247,9 @@ KAVACH is not an idea or a slide deck; **it is an operational, fully verified so
   * `test_impact.py`: 20 tests (AST parsing, dependency graphs, blast-radius scoring)
   * `test_api_endpoints.py`: 33 tests (all 10 FastAPI endpoints, error handling)
   * `test_integration.py`: 19 tests (end-to-end full lifecycle workflows)
-* **One-Command Verification:** [`kavach/verify_project.py`](kavach/verify_project.py) automatically executes the entire 164-test suite, validates the CI security gate, and tests the live FastAPI server.
+  * `test_advanced_features.py`: 56 tests (MCP server, token vault, policy matrices)
+  * `test_cyber_defense_tough.py`: 54 tests (13 specialized security engines & obfuscation)
+* **One-Command Verification:** [`verify_project.py`](verify_project.py) (or [`important/kavach/verify_project.py`](important/kavach/verify_project.py)) automatically executes the entire 278-test suite, validates the CI security gate, and executes 10 E2E live cyber defense checks.
 
 ---
 
@@ -293,7 +295,7 @@ These features represent the immediate implementation milestone transitioning KA
 
 ## 🚀 What We Would Do In The Future (Enterprise & Research Roadmap)
 
-These 4 major research-grade architectures represent the long-term enterprise vision of KAVACH, fully detailed in our [KAVACH Master Blueprint](KAVACH_AGENTIC_AI_MASTER_BLUEPRINT.md):
+These 4 major research-grade architectures represent the long-term enterprise vision of KAVACH, fully detailed in our [KAVACH Master Blueprint](important/02_Official_Reports_and_Synopses/KAVACH_AGENTIC_AI_MASTER_BLUEPRINT.md):
 
 ```
 +---------------------------------------------------------------------------------------+
@@ -386,80 +388,42 @@ These 4 major research-grade architectures represent the long-term enterprise vi
 ```
 PRJ-IV Work/
 ├── README.md                              # ← Master GitHub Documentation (This file)
-├── KAVACH_AGENTIC_AI_MASTER_BLUEPRINT.md  # Exhaustive 539-line academic & technical blueprint
-├── .gitignore                             # Production ignore rules (cache, venv, secrets, logs)
+├── run_kavach.bat                         # One-click Windows batch launcher (Backend + UI)
+├── run_kavach.ps1                         # One-click PowerShell launcher (Backend + UI)
+├── verify_project.py                      # One-command full 278-test & 10 E2E defense verification
+├── run_tests.py                           # Fast pytest test runner wrapper
+├── .gitignore                             # Git ignore rules
 │
-├── kavach/                                # 🌟 CANONICAL RUNNABLE PLATFORM
-│   ├── backend/                           # FastAPI Backend Service
-│   │   ├── app/
-│   │   │   ├── agent/                     # FSM Orchestrator, Planner, State Management
-│   │   │   ├── generation/                # LLM Client (Gemini/Ollama), Generator, AST Validator
-│   │   │   ├── impact/                    # AST Parser, Dependency Graph, Blast-Radius Evaluator
-│   │   │   ├── rag/                       # Code Chunking, Ingestion, Qdrant Vector Store
-│   │   │   ├── security/                  # PII Regex, Shannon Entropy, Policy Engine
-│   │   │   └── main.py                    # FastAPI entrypoint (10 REST endpoints)
-│   │   ├── ci_security_gate.py            # Automated CI evaluation gate script
-│   │   ├── eval_rag.py                    # RAG retrieval precision evaluation
-│   │   ├── eval_results.json              # Benchmark evaluation output
-│   │   ├── requirements.txt               # Backend dependencies (fastapi, qdrant, pytest, etc.)
-│   │   └── schema.sql                     # SQLite database schema for audit persistence
+├── important/                             # 🌟 CANONICAL PRODUCTION CODEBASE & ARTIFACTS
+│   ├── kavach/                            # Operational Platform Service
+│   │   ├── backend/                       # FastAPI Backend Service (10 endpoints, FSM, RAG, AST)
+│   │   │   ├── app/                       # Core modules (agent, generation, impact, rag, security)
+│   │   │   ├── ci_security_gate.py        # Automated CI evaluation gate script
+│   │   │   ├── eval_rag.py                # RAG retrieval precision evaluation
+│   │   │   ├── requirements.txt           # Python backend dependencies
+│   │   │   └── schema.sql                 # SQLite database schema for audit persistence
+│   │   ├── frontend/                      # Mission Control Dashboard (HTML, CSS, JS, Voice STT)
+│   │   ├── tests/                         # Comprehensive Automated Test Suite (278 Passing Tests)
+│   │   ├── data/                          # Multilingual corpora, security cases & benchmarks
+│   │   ├── demo_repo/                     # Mock Codebase for live vulnerability demonstrations
+│   │   ├── artifacts/                     # Captured Evidence, Screenshots & Reports
+│   │   ├── docs/                          # Architecture & technical specifications
+│   │   ├── tools/                         # Automated scripts & presentation builders
+│   │   ├── verify_project.py              # Canonical project verification engine
+│   │   └── run_tests.py                   # Canonical pytest runner
 │   │
-│   ├── frontend/                          # Security Command Center Dashboard
-│   │   ├── index.html                     # Responsive dark-mode HTML5 UI
-│   │   ├── style.css                      # Glassmorphic CSS styling & animations
-│   │   └── app.js                         # Telemetry counters, Whisper voice, API hooks
-│   │
-│   ├── tests/                             # Comprehensive Automated Test Suite (164 Tests)
-│   │   ├── conftest.py                    # Shared pytest fixtures & mock clients
-│   │   ├── test_agent.py                  # Phase 2: Orchestrator & state machine tests (28 tests)
-│   │   ├── test_api_endpoints.py          # REST API endpoints & error handling tests (33 tests)
-│   │   ├── test_generation.py             # Phase 3: Evidence-grounded generation tests (19 tests)
-│   │   ├── test_impact.py                 # Phase 5: AST dependency & blast radius tests (20 tests)
-│   │   ├── test_integration.py            # End-to-end full lifecycle workflow tests (19 tests)
-│   │   ├── test_rag.py                    # Phase 1: Ingestion & vector search tests (21 tests)
-│   │   ├── test_security.py               # Phase 4: PII & secret detector tests (24 tests)
-│   │   └── test_security_v2.py            # Security policy v2 evaluation tests (4 tests)
-│   │
-│   ├── data/                              # Evaluation Corpora & Test Cases
-│   │   ├── test_corpus.json               # Security detection test cases
-│   │   ├── security_v2_test_cases.json    # Advanced security test cases
-│   │   ├── impact_test_cases.json         # 5 dependency impact benchmark scenarios
-│   │   └── multilingual_test_corpus.md    # Reference test documentation
-│   │
-│   ├── demo_repo/                         # Mock Codebase for Interactive Demonstrations
-│   │   ├── api.py                         # Example FastAPI routing endpoints
-│   │   ├── auth.py                        # Authentication & token verification module
-│   │   ├── database.py                    # Database connection handler
-│   │   └── DEMO.md                        # Step-by-step interactive demonstration guide
-│   │
-│   ├── artifacts/                         # Captured Evidence, Screenshots & Reports
-│   │   ├── reports/                       # CI gate reports and test results
-│   │   └── screenshots/                   # Dashboard, API, and terminal captures
-│   │
-│   ├── docs/                              # Formal Architecture & Technical Specifications
-│   │   ├── ARCHITECTURE.md                # Component design & pipeline specification
-│   │   ├── PROJECT_SPEC.md                # Requirements & non-negotiable quality rules
-│   │   ├── SECURITY_SPEC.md               # Detection patterns & risk score formula
-│   │   ├── IMPLEMENTATION_ROADMAP.md      # Phased build progression
-│   │   ├── IMPLEMENTATION_STATUS.md       # Status report of all deliverables
-│   │   └── screenshots/                   # Verification screenshots
-│   │
-│   ├── tools/                             # Automation & Presentation Generators
-│   │   └── presentations/                 # Python scripts generating 24-slide decks
-│   │
-│   ├── PROJECT_MAP.md                     # File mapping & quick navigation
-│   ├── FINAL_REPORT.md                    # Comprehensive project summary
-│   ├── RUNNING_KAVACH.md                  # Complete execution & command guide
-│   ├── run_tests.py                       # Automated pytest runner
-│   └── verify_project.py                  # One-command full system verification script
+│   ├── 01_Master_Presentations/           # Master 24-Slide Deck (.pptx), Web Slides (.html), Scripts
+│   ├── 02_Official_Reports_and_Synopses/  # Midterm Synopsis (.docx, .md), Master Blueprints, Charters
+│   ├── 03_Architecture_and_Flowcharts/    # System Architecture Mermaid (.mmd) & Viewer (.html)
+│   ├── 04_Viva_Defense_and_Evaluation/    # Viva Q&A Guide, 42-run benchmarks, Matrix
+│   └── 05_IEEE_Research_Publication/      # IEEE Submission bundle, papers, LaTeX tables
 │
-├── docs/                                  # Executive Documents & Presentations
-│   ├── presentations/                     # Master slide decks (.pptx) & command guides (.pdf)
-│   └── reference/                         # Synopsis reports (.docx) & academic references
-│
-└── archive/                               # Historical Phased Implementations
-    ├── phases/                            # Phase 1 through Phase 5 milestone snapshots
-    └── legacy/                            # Initial project charters & early drafts
+└── unimportant/                           # 📦 ARCHIVED LEGACY PHASES & ROUGH WORK
+    ├── 01_Archived_Legacy_Phases/         # Phases 1-5 development milestone archives
+    ├── 02_MidSem_Rough_Work/              # Intermediate rough notes & drafts
+    ├── 03_Older_Documentation_Dumps/      # Legacy documentation backups
+    ├── 04_Scratch_and_OneOff_Scripts/     # One-off test and verification scripts
+    └── 05_Old_Demo_Prototypes/            # Early prototype scanner
 ```
 
 ---
@@ -479,7 +443,6 @@ cd KAVACH
 
 ### 2. Set Up Virtual Environment & Dependencies
 ```bash
-cd kavach/backend
 python -m venv .venv
 
 # On Windows (PowerShell):
@@ -489,43 +452,43 @@ python -m venv .venv
 source .venv/bin/activate
 
 # Install all dependencies:
-pip install -r requirements.txt
+pip install -r important/kavach/backend/requirements.txt
 ```
 
 ### 3. Configure Environment Variables (Optional for Gemini / Groq)
-Create a `.env` file inside `kavach/backend/` (or copy from `.env.example`):
+Create a `.env` file inside `important/kavach/backend/` (or copy from `.env.example`):
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
 GROQ_API_KEY=your_groq_api_key_here
 ```
-*(Note: Kavach works out-of-the-box in local mock mode even without API keys!)*
+*(Note: Kavach works out-of-the-box in local deterministic mode even without external API keys!)*
 
-### 4. Run the Full Test Suite (164 Passing Tests)
-From the `kavach/` directory:
+### 4. Run the Full Test Suite (278 Passing Tests)
+From the repository root:
 ```bash
-# Run all tests:
-python -m pytest tests -q
+# Run pytest test runner:
+python run_tests.py
 
-# Or run the comprehensive system verification script:
+# Or run the comprehensive 10-step full system verification:
 python verify_project.py
 ```
+*(Alternatively, navigate to `important/kavach` and run `python verify_project.py`)*
 
-### 5. Launch the Platform
+### 5. Launch the Platform (1-Click)
 
-#### Terminal 1: Start Backend API (FastAPI)
+#### Option A: 1-Click Launch Script (Recommended)
+* **On Windows (Batch):** Double-click `run_kavach.bat`
+* **On Windows (PowerShell):** `./run_kavach.ps1`
+
+Both scripts automatically launch the unified FastAPI server (serving both the backend API and the static frontend dashboard at `http://127.0.0.1:8000`) and open the browser.
+
+#### Option B: Manual Command
 ```powershell
-cd kavach
-python -m uvicorn app.main:app --app-dir backend --reload --host 127.0.0.1 --port 8000
+python -m uvicorn app.main:app --app-dir important/kavach/backend --reload --host 127.0.0.1 --port 8000
 ```
+* **Mission Control Dashboard:** [`http://127.0.0.1:8000`](http://127.0.0.1:8000)
 * **API Swagger Documentation:** [`http://127.0.0.1:8000/docs`](http://127.0.0.1:8000/docs)
 * **Backend Health Check:** [`http://127.0.0.1:8000/health`](http://127.0.0.1:8000/health)
-
-#### Terminal 2: Start Frontend Command Center Dashboard
-```powershell
-cd kavach
-python -m http.server 5500 --directory frontend
-```
-* **Mission Control Dashboard:** [`http://127.0.0.1:5500`](http://127.0.0.1:5500)
 
 ---
 
@@ -606,7 +569,7 @@ Kavach exposes a clean, documented RESTful API conforming to OpenAPI 3.0:
 
 | Syllabus Module & Topic | Mapped Course Outcome | Kavach Implementation |
 | :--- | :---: | :--- |
-| **Agent Foundations & Lifecycle** | **CO1** | `app/agent/orchestrator.py`: Formal 10-stage FSM state machine with lifecycle hooks. |
+| **Agent Foundations & Lifecycle** | **CO1** | [`app/agent/orchestrator.py`](important/kavach/backend/app/agent/orchestrator.py): Formal 10-stage FSM state machine with lifecycle hooks. |
 | **Reasoning & Prompting Strategies** | **CO1, CO2, CO3** | ReAct reflection loops, iterative planning, and explicit chain-of-thought traces. |
 | **Agentic RAG & Vector Embeddings** | **CO1, CO2, CO3** | Qdrant vector database + `sentence-transformers` 384-d dense embeddings + MRR evaluation. |
 | **CrewAI & Multi-Agent Frameworks** | **CO1, CO2, CO3** | Hierarchical 5-agent crew architecture (`SupervisorAgent`, `SentinelAgent`, `DevOpsCoderAgent`). |
@@ -639,7 +602,7 @@ Kavach exposes a clean, documented RESTful API conforming to OpenAPI 3.0:
 
 | Subsystem | Metric | Measured Value | Target Benchmark | Verdict |
 | :--- | :--- | :---: | :---: | :---: |
-| **Automated Test Suite** | Total Passing Tests | **164 / 164** | 100% Passing | ✅ **PASS** |
+| **Automated Test Suite** | Total Passing Tests | **278 / 278** | 100% Passing | ✅ **PASS** |
 | **CI Security Gate** | Detection Precision | **1.00 (100%)** | $\ge 0.95$ | ✅ **PASS** |
 | **CI Security Gate** | Detection Recall | **1.00 (100%)** | $\ge 0.95$ | ✅ **PASS** |
 | **CI Security Gate** | F1-Score | **1.00 (100%)** | $\ge 0.95$ | ✅ **PASS** |

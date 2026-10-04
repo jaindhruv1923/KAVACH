@@ -8,8 +8,8 @@ Utilities that are not part of the running application live here.
 Run from the workspace root with:
 
 ```powershell
-python kavach/tools/presentations/update_kavach_presentation.py
-python kavach/tools/presentations/build_new_additions_presentation.py
+python important/kavach/tools/presentations/update_kavach_presentation.py
+python important/kavach/tools/presentations/build_new_additions_presentation.py
 ```
 
 These scripts write presentations to `docs/presentations/` and do not modify backend or frontend runtime code.

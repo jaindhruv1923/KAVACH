@@ -464,4 +464,4 @@ flowchart LR
    - Press `P` to toggle speaker scripts and timing.  
    - Press `F` for full-screen presentation mode.
 3. **Automated Verification:**  
-   Run `python kavach/verify_project.py` to demonstrate 100% test pass status during viva defense.
+   Run `python verify_project.py` (or `python important/kavach/verify_project.py`) to demonstrate 100% test pass status during viva defense.

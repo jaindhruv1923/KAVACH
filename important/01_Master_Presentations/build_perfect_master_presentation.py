@@ -1073,7 +1073,7 @@ def build_presentation():
         "We thank our mentors Prof. Anusha Chhabra and Dr. Soharab Hossain Shaikh, and we are now delighted to conduct our live demonstration and take your questions.")
 
     # Output Presentation
-    output_dir = r"c:\Users\jaind\Videos\PRJ-IV Work\pptmaker docs"
+    output_dir = os.path.dirname(os.path.abspath(__file__))
     output_path = os.path.join(output_dir, "KAVACH_PERFECT_COMPREHENSIVE_MASTER_DECK.pptx")
     prs.save(output_path)
     print(f"SUCCESS: Generated 24-slide Master PowerPoint deck at: {output_path}")

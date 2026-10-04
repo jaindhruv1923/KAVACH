@@ -54,7 +54,7 @@ Render is the simplest and most reliable platform for hosting full-stack Python/
 1. Go to [railway.app](https://railway.app).
 2. Click **New Project** &rarr; **Deploy from GitHub repo**.
 3. Select your `kavach` repository.
-4. Railway will automatically detect the [Dockerfile](file:///c:/Users/jaind/Videos/PRJ-IV%20Work/kavach/Dockerfile).
+4. Railway will automatically detect the [Dockerfile](Dockerfile).
 5. In **Settings** &rarr; **Networking**, click **Generate Domain** to get a public `*.up.railway.app` URL.
 
 ---
