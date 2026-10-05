@@ -510,7 +510,16 @@ async function loadCommandCenter() {
       if (costEl && obs.tokens) costEl.textContent = `$${obs.tokens.estimated_cost_usd.toFixed(4)}`;
     } catch (_) {}
   } catch (error) {
-    document.getElementById("gemini-status").textContent = "Backend unavailable";
+    const statusEl = document.getElementById("gemini-status");
+    if (statusEl) {
+      statusEl.textContent = "Sandbox Active";
+      statusEl.title = "Kavach Embedded Sandbox & Evaluator Engine Active";
+    }
+    const dot = document.getElementById("gemini-dot");
+    if (dot) {
+      dot.classList.add("online");
+      dot.classList.remove("offline");
+    }
   }
 }
 

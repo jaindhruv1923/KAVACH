@@ -1,8 +1,8 @@
 [
   {
-    "id": "34b55206-b808-4be7-b827-4760b754091c",
-    "workflow_id": "34b55206-b808-4be7-b827-4760b754091c",
-    "timestamp": "2026-10-04 12:33:07 UTC",
+    "id": "6a579b81-0693-4d88-a305-b501d58d2a8d",
+    "workflow_id": "6a579b81-0693-4d88-a305-b501d58d2a8d",
+    "timestamp": "2026-10-05 07:50:47 UTC",
     "request_text": "Refactor the authentication module for better testability",
     "final_stage": "COMPLETE",
     "stage": "COMPLETE",
@@ -47,46 +47,83 @@
     },
     "impact_report": [
       {
-        "file_path": "utils.py",
-        "relevance_score": 0.072,
-        "score_percentage": 7,
-        "reason": "semantically related to the change description",
+        "file_path": "agent/orchestrator.py",
+        "relevance_score": 0.195,
+        "score_percentage": 20,
+        "reason": "imports/references the most-related file; semantically related to the change description",
         "impact_tier": "CRITICAL",
         "significance": "Highest Impact \u2014 Primary Target Component",
-        "score_justification": "Score 0.072 was assigned based on vector embedding semantic similarity (+0.072 from 0.12 cosine distance) matching the requested feature.",
+        "score_justification": "Score 0.195 was assigned because this file combines semantic alignment (+0.075) with an explicit AST import link (+0.400 bonus) to the target module.",
         "breakdown": [
-          "\ud83e\udde0 Semantic Alignment (+0.072): Vector embedding similarity (0.12 cosine score) with requested change intent."
+          "\u26a1 AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports.",
+          "\ud83e\udde0 Semantic Alignment (+0.075): Vector embedding similarity (0.10 cosine score) with requested change intent."
         ],
-        "action_hint": "Standard code review and lint checks are sufficient.",
-        "semantic_score": 0.12,
-        "dependency_hit": false,
+        "action_hint": "Review logic for consistency with shared domain assumptions.",
+        "semantic_score": 0.1,
+        "dependency_hit": true,
         "is_highest_impact": true
       },
       {
-        "file_path": "database\\models.py",
-        "relevance_score": 0.0,
-        "score_percentage": 0,
-        "reason": "weak signal",
+        "file_path": "agent/planner.py",
+        "relevance_score": 0.105,
+        "score_percentage": 10,
+        "reason": "semantically related to the change description",
         "impact_tier": "LOW",
         "significance": "Low Impact \u2014 Peripheral / Advisory Context",
-        "score_justification": "Score 0.000 reflects low or advisory coupling to the requested change.",
-        "breakdown": [],
+        "score_justification": "Score 0.105 was assigned based on vector embedding semantic similarity (+0.105 from 0.14 cosine distance) matching the requested feature.",
+        "breakdown": [
+          "\ud83e\udde0 Semantic Alignment (+0.105): Vector embedding similarity (0.14 cosine score) with requested change intent."
+        ],
         "action_hint": "Standard code review and lint checks are sufficient.",
-        "semantic_score": 0.0,
+        "semantic_score": 0.14,
         "dependency_hit": false,
         "is_highest_impact": false
       },
       {
-        "file_path": "auth\\login.py",
-        "relevance_score": 0.0,
-        "score_percentage": 0,
-        "reason": "weak signal",
+        "file_path": "a2a/__init__.py",
+        "relevance_score": 0.053,
+        "score_percentage": 5,
+        "reason": "semantically related to the change description",
         "impact_tier": "LOW",
         "significance": "Low Impact \u2014 Peripheral / Advisory Context",
-        "score_justification": "Score 0.000 reflects low or advisory coupling to the requested change.",
-        "breakdown": [],
+        "score_justification": "Score 0.053 was assigned based on vector embedding semantic similarity (+0.053 from 0.07 cosine distance) matching the requested feature.",
+        "breakdown": [
+          "\ud83e\udde0 Semantic Alignment (+0.053): Vector embedding similarity (0.07 cosine score) with requested change intent."
+        ],
         "action_hint": "Standard code review and lint checks are sufficient.",
-        "semantic_score": 0.0,
+        "semantic_score": 0.07,
+        "dependency_hit": false,
+        "is_highest_impact": false
+      },
+      {
+        "file_path": "adk/__init__.py",
+        "relevance_score": 0.053,
+        "score_percentage": 5,
+        "reason": "semantically related to the change description",
+        "impact_tier": "LOW",
+        "significance": "Low Impact \u2014 Peripheral / Advisory Context",
+        "score_justification": "Score 0.053 was assigned based on vector embedding semantic similarity (+0.053 from 0.07 cosine distance) matching the requested feature.",
+        "breakdown": [
+          "\ud83e\udde0 Semantic Alignment (+0.053): Vector embedding similarity (0.07 cosine score) with requested change intent."
+        ],
+        "action_hint": "Standard code review and lint checks are sufficient.",
+        "semantic_score": 0.07,
+        "dependency_hit": false,
+        "is_highest_impact": false
+      },
+      {
+        "file_path": "agent/graph_of_thought.py",
+        "relevance_score": 0.053,
+        "score_percentage": 5,
+        "reason": "semantically related to the change description",
+        "impact_tier": "LOW",
+        "significance": "Low Impact \u2014 Peripheral / Advisory Context",
+        "score_justification": "Score 0.053 was assigned based on vector embedding semantic similarity (+0.053 from 0.07 cosine distance) matching the requested feature.",
+        "breakdown": [
+          "\ud83e\udde0 Semantic Alignment (+0.053): Vector embedding similarity (0.07 cosine score) with requested change intent."
+        ],
+        "action_hint": "Standard code review and lint checks are sufficient.",
+        "semantic_score": 0.07,
         "dependency_hit": false,
         "is_highest_impact": false
       }
@@ -135,7 +172,7 @@
         "verdict": "SAFE",
         "explanation": "Prompt passed adversarial injection screening."
       },
-      "merkle_root": "c13dfedc49a9b6009f78906ffeaba93b484c89821901a383ea649b7656ae7a9ed2edcee65ef45cca425cb9ac8a5a9532eddb18e42e1d6559833497668f9585dc",
+      "merkle_root": "1677a969f257173b15181b3e2d96f2db056016198a6d3d5657fa1deb0b2abc88e85d01d0bd4469d26e95b62974d418cdf8ed7c59a357510f1bb87ab287a1011d",
       "mitre_atlas": [],
       "owasp_llm": []
     },
@@ -148,7 +185,7 @@
       "WorkflowStage.IMPACT_ANALYSIS -> WorkflowStage.GENERATION",
       "WorkflowStage.GENERATION -> WorkflowStage.COMPLETE (workflow completed: planning + RAG + impact analysis + generation + security + validation)"
     ],
-    "duration_ms": 90.46,
+    "duration_ms": 338.95,
     "run_type": "workflow",
     "metadata": {}
   }

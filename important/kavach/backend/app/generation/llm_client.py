@@ -21,6 +21,46 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-lite-latest")
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 
+OLLAMA_BASE_URL = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5-coder:7b")
+AIR_GAPPED_MODE = os.environ.get("AIR_GAPPED_MODE", "false").lower() in ("true", "1")
+
+
+def set_air_gapped_mode(enabled: bool):
+    global AIR_GAPPED_MODE
+    AIR_GAPPED_MODE = enabled
+    os.environ["AIR_GAPPED_MODE"] = "true" if enabled else "false"
+
+
+def get_privacy_status() -> dict:
+    return {
+        "air_gapped_mode": AIR_GAPPED_MODE,
+        "ollama_base_url": OLLAMA_BASE_URL,
+        "ollama_model": OLLAMA_MODEL,
+        "cloud_provider": "google-gemini",
+        "gemini_model": GEMINI_MODEL,
+    }
+
+
+def call_ollama(prompt: str, model: str = None) -> str:
+    """Execute local LLM inference via Ollama HTTP REST API with zero data egress."""
+    target_model = model or OLLAMA_MODEL
+    url = f"{OLLAMA_BASE_URL.rstrip('/')}/api/generate"
+    payload = json.dumps({"model": target_model, "prompt": prompt, "stream": False}).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=payload,
+        headers={"Content-Type": "application/json", "User-Agent": "Kavach-Privacy-Agent/1.0"},
+        method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            return data.get("response", "")
+    except Exception as e:
+        return f"[Ollama local model '{target_model}' offline or uncontactable: {e}]"
+
+
 
 DEFAULT_GEMINI_KEY = ""
 
@@ -117,6 +157,9 @@ def call_llm(prompt: str) -> str:
             "Kavach is an enterprise-grade AI DevOps security governance platform built by Dhruv Jain.\n\n"
             "```python\ndef authenticated_handler():\n    # Secure handler implementation\n    return True\n```"
         )
+
+    if AIR_GAPPED_MODE:
+        return call_ollama(prompt)
 
     if GEMINI_API_KEY == "" and ("GEMINI_API_KEY" in os.environ or "test" in sys.argv[0]):
         key = ""

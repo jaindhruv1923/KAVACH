@@ -10,9 +10,12 @@ This directory contains **all the essential, verified, and official assets** of 
 
 ### 1. [`kavach/`](kavach/README.md) (Core Platform & Codebase)
 The complete operational, containerized software engineering platform (Full Guide: [**`kavach/README.md`**](kavach/README.md)):
-* [`backend/`](kavach/backend/): FastAPI REST endpoints, Agentic RAG, AST blast radius, Dual-Engine LLM router, Sentinel guardrails.
+* [`backend/`](kavach/backend/): FastAPI REST & SSE endpoints, Agentic RAG (Qdrant), AST blast radius, Dual-Engine LLM router (Gemini + Local Ollama), Sentinel guardrails.
+* [`backend/app/adk/`](kavach/backend/app/adk/): Native Google ADK (`LlmAgent`, `CoordinatorAgent`, Callbacks, Transient/Persistent Memory, DAG Workflow Graph).
+* [`backend/app/a2a/`](kavach/backend/app/a2a/): Google Agent2Agent (A2A) Protocol (SHA-256 signed message envelopes, peer discovery bus, multi-agent consensus voting).
+* [`backend/app/crew/`](kavach/backend/app/crew/): CrewAI Framework (Specialized Personas, Tasks, and stateful Workflow Automation with Flows).
 * [`frontend/`](kavach/frontend/): Dark-mode Mission Control dashboard (`#08090D` slate, `#00D2FF` cyan), real-time SSE telemetry, and multimodal Groq Whisper speech-to-text.
-* [`tests/`](kavach/tests/): 278+ automated unit, integration, and cyber defense tests.
+* [`tests/`](kavach/tests/): 302+ automated unit, integration, and cyber defense tests (including `test_syllabus_advanced_modules.py`).
 * [`data/`](kavach/data/): Multilingual test corpus (Hinglish PII, Aadhaar/PAN) and AST impact test cases.
 * [`demo_repo/`](kavach/demo_repo/): Interactive test repository for live vulnerability simulations.
 * [`artifacts/screenshots/`](kavach/artifacts/screenshots/): Complete 24-slide visual evidence gallery (`ss1.png` – `ss24.png`), system architecture diagrams, and benchmark verification proofs.
@@ -27,6 +30,7 @@ The definitive presentation decks for midterm and final evaluation:
 
 ### 3. [`02_Official_Reports_and_Synopses/`](02_Official_Reports_and_Synopses/)
 The formal academic deliverables:
+* [`CSE3101_COURSE_HANDOUT_LINE_BY_LINE_ALIGNMENT.md`](02_Official_Reports_and_Synopses/CSE3101_COURSE_HANDOUT_LINE_BY_LINE_ALIGNMENT.md): **Definitive line-by-line verification against the official CSE3101 Agentic AI Course Handout (Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari).**
 * [`PRJ_IV_SYNOPSIS_REPORT.docx`](02_Official_Reports_and_Synopses/PRJ_IV_SYNOPSIS_REPORT.docx) & [`PRJ_IV_SYNOPSIS_REPORT.md`](02_Official_Reports_and_Synopses/PRJ_IV_SYNOPSIS_REPORT.md): Comprehensive midterm project synopsis report.
 * [`KAVACH_AGENTIC_AI_MASTER_BLUEPRINT.md`](02_Official_Reports_and_Synopses/KAVACH_AGENTIC_AI_MASTER_BLUEPRINT.md): Exhaustive academic specification and CSE3101 course syllabus alignment matrix.
 * [`KAVACH_MidTerm_Synopsis_Report.docx`](02_Official_Reports_and_Synopses/KAVACH_MidTerm_Synopsis_Report.docx): Formal mid-term project synopsis document.
@@ -61,10 +65,17 @@ Academic publication deliverables:
 * [`experiments/`](05_IEEE_Research_Publication/experiments/): Benchmark runner scripts and diagram generators.
 * [`tables/`](05_IEEE_Research_Publication/tables/): Comparative baseline LaTeX tables.
 
+### 7. [`CSE3101_Official_Submission_Packages/`](CSE3101_Official_Submission_Packages/)
+Turnkey phase-wise zip packages generated for direct university portal submission:
+* [`CSE3101_Phase1_Submission_Bundle.zip`](CSE3101_Official_Submission_Packages/CSE3101_Phase1_Submission_Bundle.zip): 10% Evaluation (Project Charter, 16-Week Schedule, RACIS Team Matrix, PEAS Specification).
+* [`CSE3101_Phase2_Submission_Bundle.zip`](CSE3101_Official_Submission_Packages/CSE3101_Phase2_Submission_Bundle.zip): 30% Evaluation (Progress vs Plan Report, Working Prototype Proof, 42-Run Benchmark Dataset).
+* [`CSE3101_Phase3_EndTerm_Capstone_Bundle.zip`](CSE3101_Official_Submission_Packages/CSE3101_Phase3_EndTerm_Capstone_Bundle.zip): 40% Evaluation (Line-by-Line Alignment Document, 24-Slide Master PPTX Deck, Viva Defense Cheatsheets, Rubrics $C_1 - C_{15}$ Attestation).
+
 ---
 
 ## 🚀 Execution Commands
 
 * **Launch Platform (UI + API):** Double-click `run_kavach.bat` or execute `run_kavach.ps1` from root.
 * **Run Test Suite:** `python important/kavach/verify_project.py` (or `python kavach/verify_project.py` from within `important/`).
+* **Generate University Submission Packages:** `python important/tools/generate_cse3101_submission_package.py`.
 

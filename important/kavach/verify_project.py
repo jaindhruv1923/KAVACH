@@ -134,11 +134,48 @@ print(f"[OK] Cryptographic Merkle Ledger: Records={res10['total_records']}, Root
 assert res10["is_valid"] is True
 assert res10["tamper_detected"] is False
 
+# Test 11: Google ADK LlmAgent & CoordinatorAgent (Module 4)
+resp11 = client.get("/adk/agents")
+assert resp11.status_code == 200
+res11 = resp11.json()
+print(f"[OK] Google ADK Engine: Framework={res11['framework']}, Coordinator={res11['coordinator']['name']}")
+assert res11["framework"] == "Google Agent Development Kit (ADK)"
 
+# Test 12: Google Agent-to-Agent (A2A) Protocol (Module 5)
+resp12 = client.get("/a2a/peers")
+assert resp12.status_code == 200
+res12 = resp12.json()
+print(f"[OK] Agent-to-Agent (A2A) Protocol: Active Peers={res12['peer_count']}, Protocol={res12['protocol']}")
+assert res12["peer_count"] >= 4
+
+# Test 13: CrewAI Stateful Flows (@start, @listen) (Module 3)
+resp13 = client.post("/crew/flow", json={"prompt": "Deploy secure microservice"})
+assert resp13.status_code == 200
+res13 = resp13.json()
+print(f"[OK] CrewAI Flows Automation: Flow={res13['flow_name']}, Execution Steps={len(res13['execution_log'])}")
+assert res13["flow_name"] == "KavachDevOpsFlow"
+
+# Test 14: Reasoning Strategies Suite (ReAct, CoT, ToT, Self-Consistency) (Module 2)
+resp14 = client.post("/reasoning/strategies", json={"query": "Implement OAuth2 rotation"})
+assert resp14.status_code == 200
+res14 = resp14.json()
+print(f"[OK] Reasoning Strategies Suite: Evaluated Paradigms={len(res14['comparison_table'])} (ReAct, CoT, ToT, COTS)")
+assert len(res14["comparison_table"]) == 4
+
+# Test 15: Multimodal Vision Analysis (Module 7)
+resp15 = client.post("/security/multimodal/vision-audit", json={
+    "image_identifier": "architecture_diagram.png",
+    "diagram_description": "Network diagram with unencrypted HTTP port 80 and direct public database connection."
+})
+assert resp15.status_code == 200
+res15 = resp15.json()
+print(f"[OK] Multimodal Vision Auditor: Modality={res15['modality']}, Threats Flagged={res15['findings_count']}")
+assert res15["security_verdict"] == "FAILED"
 
 print("\n" + "=" * 60)
-print("ALL 10 E2E CYBER DEFENSE VERIFICATIONS PASSED (100% SUCCESS)!")
+print("ALL 15 E2E CYBER DEFENSE & AGENTIC AI SYLLABUS VERIFICATIONS PASSED (100% SUCCESS)!")
 print("=" * 60)
+
 
 
 

@@ -18,9 +18,9 @@ from app.rag.ingest import ingest_repository
 from app.impact.dependency_graph import build_dependency_graph, find_dependent_files
 
 # Weights for combining the two signals into one relevance score.
-SEMANTIC_WEIGHT = 0.6
-DEPENDENCY_WEIGHT = 0.4
-DEPENDENCY_BONUS = 0.4  # flat bonus added when a file is an explicit dependent
+SEMANTIC_WEIGHT = 0.75
+DEPENDENCY_WEIGHT = 0.25
+DEPENDENCY_BONUS = 0.20  # flat bonus added when a file is an explicit dependent
 
 
 def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> list[dict]:
@@ -48,13 +48,22 @@ def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> l
             index_chunks(ingest_repository(repo_root))
             semantic_hits = search(change_description, top_k=top_k * 2)
 
-    # Deduplicate to file level — a file may have multiple matching chunks;
-    # keep its best (highest) semantic score.
+    def _norm(p: str) -> str:
+        s = p.replace("\\", "/").lower()
+        while "//" in s:
+            s = s.replace("//", "/")
+        if "/app/" in s:
+            s = s.split("/app/", 1)[1]
+        elif s.startswith("app/"):
+            s = s[len("app/"):]
+        return s.lstrip("./")
+
+    # Deduplicate to file level using normalized path keys
     file_scores: dict[str, dict] = {}
     for hit in semantic_hits:
-        fp = hit["file_path"]
+        fp = _norm(hit["file_path"])
         if fp not in file_scores or hit["score"] > file_scores[fp]["semantic_score"]:
-            file_scores[fp] = {"semantic_score": hit["score"], "dependency_hit": False}
+            file_scores[fp] = {"semantic_score": hit["score"] * 0.35, "dependency_hit": False}
 
     # --- Signal 2: explicit dependency graph ---
     try:
@@ -62,33 +71,82 @@ def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> l
     except Exception:
         graph = {}
 
-    # Fallback keyword matching over dependency graph if semantic search had no hits
-    if not file_scores and graph:
-        import re
-        words = set(re.findall(r"[a-zA-Z]{3,}", change_description.lower()))
-        for fpath in graph.keys():
-            base = os.path.splitext(os.path.basename(fpath))[0].lower()
-            if base in words or any(w in base or base in w for w in words):
-                file_scores[fpath] = {"semantic_score": 0.30, "dependency_hit": False}
+    # --- Signal 2: Hybrid lexical, keyword coverage & symbol matching ---
+    import re
+    raw_words = [w.lower() for w in re.findall(r"[a-zA-Z]{3,}", change_description)]
+    stopwords = {"the", "for", "and", "that", "how", "used", "from", "with", "modify", "change", "update", "logic", "are", "down"}
+    meaningful_words = [w for w in raw_words if w not in stopwords]
+    if not meaningful_words:
+        meaningful_words = raw_words
 
-    # Use the top semantic hit's file (most likely to be the "changed" file)
-    # as the hint for finding its dependents, if any semantic hits exist.
-    if file_scores:
-        top_file = max(file_scores.items(), key=lambda kv: kv[1]["semantic_score"])[0]
-        # Use the file's own name (without extension) as a naive import hint.
-        module_hint = top_file.replace("\\", "/").split("/")[-1].replace(".py", "")
-        dependents = find_dependent_files(graph, module_hint)
-        for dep_file in dependents:
-            if dep_file not in file_scores:
-                file_scores[dep_file] = {"semantic_score": 0.0, "dependency_hit": True}
+    def _stem(word: str) -> str:
+        for sfx in ("tion", "sion", "ing", "ment", "ers", "er", "or", "ed", "es", "s"):
+            if word.endswith(sfx) and len(word) - len(sfx) >= 3:
+                return word[:-len(sfx)]
+        return word
+
+    for fpath, meta in graph.items():
+        clean_path = _norm(fpath)
+        base = os.path.splitext(os.path.basename(clean_path))[0]
+        defines_str = " ".join(meta.get("defines", [])).lower()
+        imports_str = " ".join(meta.get("imports", [])).lower()
+        
+        full_p = os.path.join(repo_root, fpath)
+        content = ""
+        if os.path.isfile(full_p):
+            try:
+                with open(full_p, "r", encoding="utf-8", errors="ignore") as f:
+                    content = f.read(5000).lower()
+            except Exception:
+                content = ""
+
+        matched_words = 0
+        path_matches = 0.0
+        for w in meaningful_words:
+            w_stem = _stem(w)
+            in_base = (w == base or w_stem == _stem(base) or w in base)
+            in_path = (w in clean_path or w_stem in clean_path)
+            in_def = (w in defines_str or w_stem in defines_str)
+            in_content = bool(re.search(r"\b" + re.escape(w) + r"\b", content))
+
+            if in_base:
+                path_matches += 3.5
+                matched_words += 1
+            elif in_path:
+                path_matches += 1.8
+                matched_words += 1
+            elif in_def:
+                matched_words += 1
+            elif in_content:
+                matched_words += 0.5
+
+        if matched_words > 0:
+            coverage = (matched_words / len(meaningful_words)) * 0.70
+            path_bonus = min(0.30, path_matches * 0.08)
+            lexical_score = round(coverage + path_bonus, 3)
+            if clean_path not in file_scores:
+                file_scores[clean_path] = {"semantic_score": lexical_score, "dependency_hit": False}
             else:
-                file_scores[dep_file]["dependency_hit"] = True
+                file_scores[clean_path]["semantic_score"] = max(file_scores[clean_path]["semantic_score"], lexical_score)
+
+    # Find dependents for top-ranking relevant files
+    if file_scores:
+        sorted_files = sorted(file_scores.items(), key=lambda kv: kv[1]["semantic_score"], reverse=True)[:3]
+        for top_file, _ in sorted_files:
+            module_hint = os.path.splitext(os.path.basename(top_file))[0]
+            dependents = find_dependent_files(graph, module_hint)
+            for dep_file in dependents:
+                cdep = _norm(dep_file)
+                if cdep not in file_scores:
+                    file_scores[cdep] = {"semantic_score": 0.10, "dependency_hit": True}
+                else:
+                    file_scores[cdep]["dependency_hit"] = True
 
     # --- Combine into a final ranked report ---
     report = []
     for file_path, info in file_scores.items():
         semantic_component = round(SEMANTIC_WEIGHT * info["semantic_score"], 3)
-        dep_component = round(DEPENDENCY_BONUS if info["dependency_hit"] else 0.0, 3)
+        dep_component = round(0.12 if info["dependency_hit"] else 0.0, 3)
         score = round(min(semantic_component + dep_component, 1.0), 3)
 
         reasons = []
@@ -162,4 +220,9 @@ def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> l
         if report[0]["impact_tier"] != "CRITICAL":
             report[0]["impact_tier"] = "CRITICAL"
             report[0]["significance"] = "Highest Impact — Primary Target Component"
+
+    # Dynamic confidence thresholding: avoid padding with irrelevant low-confidence files
+    confident = [r for r in report if r["relevance_score"] >= 0.22]
+    if len(confident) >= 2:
+        return confident[:top_k]
     return report[:top_k]
