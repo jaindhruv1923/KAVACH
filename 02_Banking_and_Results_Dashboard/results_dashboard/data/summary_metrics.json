@@ -1,0 +1,96 @@
+{
+  "total_operations": 20,
+  "kavach_events": 10,
+  "banking_events": 10,
+  "threats_blocked": 5,
+  "critical_threats_blocked": 5,
+  "hitl_quarantined": 0,
+  "banking_volume_inr": 53550.0,
+  "average_risk_score": 0.308,
+  "compliance_pass_rate": 75.0,
+  "merkle_anchors_active": 20,
+  "hsm_fips_signatures": 20,
+  "recent_ticker": [
+    {
+      "event_id": "KAVACH-97a09614-a78",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor the authentication module for better...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-16 17:05:17 UTC",
+      "risk_level": "LOW"
+    },
+    {
+      "event_id": "KAVACH-5742ecb0-9cb",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor the authentication module for better...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-16 17:00:23 UTC",
+      "risk_level": "LOW"
+    },
+    {
+      "event_id": "KAVACH-31bb5ba3-2b3",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: 12454323454",
+      "status": "REQUIRES_REVIEW",
+      "formatted_time": "2026-10-16 16:41:51 UTC",
+      "risk_level": "HIGH"
+    },
+    {
+      "event_id": "KAVACH-d20612e0-d42",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor the authentication module for better...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-16 16:39:43 UTC",
+      "risk_level": "LOW"
+    },
+    {
+      "event_id": "KAVACH-c6903212-c44",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor the authentication module for better...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-16 11:06:04 UTC",
+      "risk_level": "LOW"
+    },
+    {
+      "event_id": "EVT-KAV-1792141284360-3932B0",
+      "platform": "KAVACH",
+      "action_title": "Agentic Code Gen & Security Gate Cleared",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-16 09:01:24 UTC",
+      "risk_level": "SAFE"
+    },
+    {
+      "event_id": "KAVACH-64676619-3af",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: 12454323454",
+      "status": "REQUIRES_REVIEW",
+      "formatted_time": "2026-10-16 08:47:31 UTC",
+      "risk_level": "HIGH"
+    },
+    {
+      "event_id": "KAVACH-5cfde955-518",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: ",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-16 08:47:24 UTC",
+      "risk_level": "LOW"
+    },
+    {
+      "event_id": "EVT-BAN-1792070152174-CACADE",
+      "platform": "BANKING",
+      "action_title": "OWASP LLM01 Prompt Injection Intercepted",
+      "status": "BLOCKED",
+      "formatted_time": "2026-10-15 13:15:52 UTC",
+      "risk_level": "CRITICAL"
+    },
+    {
+      "event_id": "EVT-BAN-1792070150768-A6B113",
+      "platform": "BANKING",
+      "action_title": "OWASP LLM01 Prompt Injection Intercepted",
+      "status": "BLOCKED",
+      "formatted_time": "2026-10-15 13:15:50 UTC",
+      "risk_level": "CRITICAL"
+    }
+  ],
+  "last_synced_at": "2026-10-16 17:07:02 UTC"
+}
