@@ -26,6 +26,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse, StreamingResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from typing import Optional, List, Dict, Any, Union, Tuple, Set
 
 from app.rag.ingest import chunk_text, ingest_repository
 from app.rag.embed_store import index_chunks, search
