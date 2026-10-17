@@ -1,5 +1,220 @@
 [
   {
+    "event_id": "KAVACH-98de71db-865",
+    "platform": "KAVACH",
+    "category": "AI_AGENT",
+    "action_title": "Workflow Run: Call me at 9876543210 or email test@example.c...",
+    "actor": "DevSecOps Engineer",
+    "target": "Agent Pipeline",
+    "status": "SUCCESS",
+    "risk_score": 0.365,
+    "risk_level": "MEDIUM",
+    "amount": 0.0,
+    "summary": "Decision=REDACT based on detected categories [email, phone_number] combined with a 'low'-risk requested action.",
+    "details_json": "{\"id\": \"98de71db-8656-406f-b4e8-74f335f6878f\", \"workflow_id\": \"98de71db-8656-406f-b4e8-74f335f6878f\", \"timestamp\": \"2026-10-17 02:12:13 UTC\", \"request_text\": \"Call me at 9876543210 or email test@example.com urgently\", \"final_stage\": \"CONTEXT_RETRIEVAL\", \"stage\": \"CONTEXT_RETRIEVAL\", \"verdict\": \"ALLOWED\", \"plan\": [\"Understand the request and identify its scope\", \"Identify existing test files\", \"Determine what new tests are needed\", \"Retrieve grounding evidence from the repository (RAG)\", \"Run security/policy checks on the request and any retrieved context\"], \"retrieved_context\": [], \"security_findings\": [{\"category\": \"phone_number\", \"value\": \"9876543210\", \"action\": \"REDACT\", \"severity\": \"medium\", \"confidence\": 0.85, \"reason\": \"Matches mobile phone number format: 9876543210\"}, {\"category\": \"email\", \"value\": \"test@example.com\", \"action\": \"REDACT\", \"severity\": \"medium\", \"confidence\": 0.95, \"reason\": \"Matches email address format\"}], \"generation_result\": {}, \"validation_result\": {}, \"impact_report\": [], \"policy_decision\": {\"decision\": \"REDACT\", \"action\": \"REDACT\", \"verdict\": \"REDACT\", \"risk_score\": 0.365, \"action_risk_classification\": \"low\", \"data_findings_count\": 2, \"highest_severity\": \"medium\", \"explanation\": \"Decision=REDACT based on detected categories [email, phone_number] combined with a 'low'-risk requested action.\", \"steganography\": {\"has_steganography\": false, \"has_bidi_attack\": false, \"cleaned_text\": \"Call me at 9876543210 or email test@example.com urgently\", \"stripped_characters_count\": 0, \"threats\": [], \"threat_count\": 0, \"risk_score\": 0.0}, \"obfuscation\": {\"original_text\": \"Call me at 9876543210 or email test@example.com urgently\", \"is_obfuscated\": false, \"detected_encodings\": [], \"decloaked_texts\": [], \"unified_normalized_text\": \"Call me at 9876543210 or email test@example.com urgently\", \"obfuscation_risk_score\": 0.0, \"details\": []}, \"ssrf\": {\"is_ssrf_threat\": false, \"threat_count\": 0, \"threats\": [], \"risk_score\": 0.0, \"explanation\": \"No SSRF or cloud metadata access detected.\"}, \"prompt_safety\": {\"is_safe\": true, \"threat_detected\": false, \"risk_level\": \"NONE\", \"threat_count\": 0, \"threats\": [], \"sanitized_prompt\": \"Call me at 9876543210 or email test@example.com urgently\", \"verdict\": \"SAFE\", \"explanation\": \"Prompt passed adversarial injection screening.\"}, \"merkle_root\": \"669f15c6266cef6924c14974a5027c17679d6f845eaec4947a22412a66ab2580498be4bcc592ea41248572f594d7a3e5a088a7f22600121c44d4c0fc1cc17abe\", \"mitre_atlas\": [\"AML.T0051: LLM Prompt Injection\"], \"owasp_llm\": [\"LLM01: Prompt Injection\"]}, \"redacted_request_text\": \"Call me at [REDACTED:phone_number] or email [REDACTED:email] urgently\", \"history\": [\"WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.PLANNING\", \"WorkflowStage.PLANNING -> WorkflowStage.CONTEXT_RETRIEVAL\"], \"duration_ms\": 0.0, \"run_type\": \"workflow\", \"metadata\": {}}",
+    "merkle_hash": "4884796bebc2ae377c482658286960a8481e96dd2fc009d0298343951d43db9bbcdfc5549a553523a039e7a3cc356459f90681e18433768af615eeb0749f5c5b",
+    "created_at": 1792203133.0,
+    "formatted_time": "2026-10-17 02:12:13 UTC",
+    "details": {
+      "id": "98de71db-8656-406f-b4e8-74f335f6878f",
+      "workflow_id": "98de71db-8656-406f-b4e8-74f335f6878f",
+      "timestamp": "2026-10-17 02:12:13 UTC",
+      "request_text": "Call me at 9876543210 or email test@example.com urgently",
+      "final_stage": "CONTEXT_RETRIEVAL",
+      "stage": "CONTEXT_RETRIEVAL",
+      "verdict": "ALLOWED",
+      "plan": [
+        "Understand the request and identify its scope",
+        "Identify existing test files",
+        "Determine what new tests are needed",
+        "Retrieve grounding evidence from the repository (RAG)",
+        "Run security/policy checks on the request and any retrieved context"
+      ],
+      "retrieved_context": [],
+      "security_findings": [
+        {
+          "category": "phone_number",
+          "value": "9876543210",
+          "action": "REDACT",
+          "severity": "medium",
+          "confidence": 0.85,
+          "reason": "Matches mobile phone number format: 9876543210"
+        },
+        {
+          "category": "email",
+          "value": "test@example.com",
+          "action": "REDACT",
+          "severity": "medium",
+          "confidence": 0.95,
+          "reason": "Matches email address format"
+        }
+      ],
+      "generation_result": {},
+      "validation_result": {},
+      "impact_report": [],
+      "policy_decision": {
+        "decision": "REDACT",
+        "action": "REDACT",
+        "verdict": "REDACT",
+        "risk_score": 0.365,
+        "action_risk_classification": "low",
+        "data_findings_count": 2,
+        "highest_severity": "medium",
+        "explanation": "Decision=REDACT based on detected categories [email, phone_number] combined with a 'low'-risk requested action.",
+        "steganography": {
+          "has_steganography": false,
+          "has_bidi_attack": false,
+          "cleaned_text": "Call me at 9876543210 or email test@example.com urgently",
+          "stripped_characters_count": 0,
+          "threats": [],
+          "threat_count": 0,
+          "risk_score": 0.0
+        },
+        "obfuscation": {
+          "original_text": "Call me at 9876543210 or email test@example.com urgently",
+          "is_obfuscated": false,
+          "detected_encodings": [],
+          "decloaked_texts": [],
+          "unified_normalized_text": "Call me at 9876543210 or email test@example.com urgently",
+          "obfuscation_risk_score": 0.0,
+          "details": []
+        },
+        "ssrf": {
+          "is_ssrf_threat": false,
+          "threat_count": 0,
+          "threats": [],
+          "risk_score": 0.0,
+          "explanation": "No SSRF or cloud metadata access detected."
+        },
+        "prompt_safety": {
+          "is_safe": true,
+          "threat_detected": false,
+          "risk_level": "NONE",
+          "threat_count": 0,
+          "threats": [],
+          "sanitized_prompt": "Call me at 9876543210 or email test@example.com urgently",
+          "verdict": "SAFE",
+          "explanation": "Prompt passed adversarial injection screening."
+        },
+        "merkle_root": "669f15c6266cef6924c14974a5027c17679d6f845eaec4947a22412a66ab2580498be4bcc592ea41248572f594d7a3e5a088a7f22600121c44d4c0fc1cc17abe",
+        "mitre_atlas": [
+          "AML.T0051: LLM Prompt Injection"
+        ],
+        "owasp_llm": [
+          "LLM01: Prompt Injection"
+        ]
+      },
+      "redacted_request_text": "Call me at [REDACTED:phone_number] or email [REDACTED:email] urgently",
+      "history": [
+        "WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.PLANNING",
+        "WorkflowStage.PLANNING -> WorkflowStage.CONTEXT_RETRIEVAL"
+      ],
+      "duration_ms": 0.0,
+      "run_type": "workflow",
+      "metadata": {}
+    }
+  },
+  {
+    "event_id": "KAVACH-bdaf5f7e-d95",
+    "platform": "KAVACH",
+    "category": "AI_AGENT",
+    "action_title": "Workflow Run: 12454323454",
+    "actor": "DevSecOps Engineer",
+    "target": "Agent Pipeline",
+    "status": "REQUIRES_REVIEW",
+    "risk_score": 0.584,
+    "risk_level": "HIGH",
+    "amount": 0.0,
+    "summary": "Decision=REVIEW based on detected categories [sensitive_number] combined with a 'low'-risk requested action.",
+    "details_json": "{\"id\": \"bdaf5f7e-d958-4307-8471-4435ad1c4a96\", \"workflow_id\": \"bdaf5f7e-d958-4307-8471-4435ad1c4a96\", \"timestamp\": \"2026-10-16 17:07:03 UTC\", \"request_text\": \"12454323454\", \"final_stage\": \"NEEDS_REVIEW\", \"stage\": \"NEEDS_REVIEW\", \"verdict\": \"NEEDS_REVIEW\", \"plan\": [], \"retrieved_context\": [], \"security_findings\": [{\"category\": \"sensitive_number\", \"value\": \"12454323454\", \"action\": \"BLOCK\", \"severity\": \"high\", \"confidence\": 0.85, \"reason\": \"Sensitive numeric identifier / sequence: 12454323454\"}], \"generation_result\": {}, \"validation_result\": {}, \"impact_report\": [], \"policy_decision\": {\"decision\": \"REVIEW\", \"action\": \"REVIEW\", \"verdict\": \"REVIEW\", \"risk_score\": 0.584, \"action_risk_classification\": \"low\", \"data_findings_count\": 1, \"highest_severity\": \"high\", \"explanation\": \"Decision=REVIEW based on detected categories [sensitive_number] combined with a 'low'-risk requested action.\", \"steganography\": {\"has_steganography\": false, \"has_bidi_attack\": false, \"cleaned_text\": \"12454323454\", \"stripped_characters_count\": 0, \"threats\": [], \"threat_count\": 0, \"risk_score\": 0.0}, \"obfuscation\": {\"original_text\": \"12454323454\", \"is_obfuscated\": false, \"detected_encodings\": [], \"decloaked_texts\": [], \"unified_normalized_text\": \"12454323454\", \"obfuscation_risk_score\": 0.0, \"details\": []}, \"ssrf\": {\"is_ssrf_threat\": false, \"threat_count\": 0, \"threats\": [], \"risk_score\": 0.0, \"explanation\": \"No SSRF or cloud metadata access detected.\"}, \"prompt_safety\": {\"is_safe\": true, \"threat_detected\": false, \"risk_level\": \"NONE\", \"threat_count\": 0, \"threats\": [], \"sanitized_prompt\": \"12454323454\", \"verdict\": \"SAFE\", \"explanation\": \"Prompt passed adversarial injection screening.\"}, \"merkle_root\": \"3234a28f48d14a0d438b770ae5e866a44b212ada1eb9d7c81edd299a1c38b5be755b65d906f65ea54c913506c300aca17f9edec68b469ce035fcfb7aaa08a76e\", \"mitre_atlas\": [\"AML.T0051: LLM Prompt Injection\"], \"owasp_llm\": [\"LLM01: Prompt Injection\"]}, \"redacted_request_text\": \"[REDACTED:sensitive_number]\", \"history\": [\"WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.NEEDS_REVIEW (Decision=REVIEW based on detected categories [sensitive_number] combined with a 'low'-risk requested action.)\"], \"duration_ms\": 19.52, \"run_type\": \"workflow\", \"metadata\": {}}",
+    "merkle_hash": "06d39d3407a06ee9194efebd06189afeb1e33baacc6466597e6e18ad0da6b0061712b85c414e35f3aecb955f0da9a98de96dd9e6ac9bc99339e434108b9c28bb",
+    "created_at": 1792170423.0,
+    "formatted_time": "2026-10-16 17:07:03 UTC",
+    "details": {
+      "id": "bdaf5f7e-d958-4307-8471-4435ad1c4a96",
+      "workflow_id": "bdaf5f7e-d958-4307-8471-4435ad1c4a96",
+      "timestamp": "2026-10-16 17:07:03 UTC",
+      "request_text": "12454323454",
+      "final_stage": "NEEDS_REVIEW",
+      "stage": "NEEDS_REVIEW",
+      "verdict": "NEEDS_REVIEW",
+      "plan": [],
+      "retrieved_context": [],
+      "security_findings": [
+        {
+          "category": "sensitive_number",
+          "value": "12454323454",
+          "action": "BLOCK",
+          "severity": "high",
+          "confidence": 0.85,
+          "reason": "Sensitive numeric identifier / sequence: 12454323454"
+        }
+      ],
+      "generation_result": {},
+      "validation_result": {},
+      "impact_report": [],
+      "policy_decision": {
+        "decision": "REVIEW",
+        "action": "REVIEW",
+        "verdict": "REVIEW",
+        "risk_score": 0.584,
+        "action_risk_classification": "low",
+        "data_findings_count": 1,
+        "highest_severity": "high",
+        "explanation": "Decision=REVIEW based on detected categories [sensitive_number] combined with a 'low'-risk requested action.",
+        "steganography": {
+          "has_steganography": false,
+          "has_bidi_attack": false,
+          "cleaned_text": "12454323454",
+          "stripped_characters_count": 0,
+          "threats": [],
+          "threat_count": 0,
+          "risk_score": 0.0
+        },
+        "obfuscation": {
+          "original_text": "12454323454",
+          "is_obfuscated": false,
+          "detected_encodings": [],
+          "decloaked_texts": [],
+          "unified_normalized_text": "12454323454",
+          "obfuscation_risk_score": 0.0,
+          "details": []
+        },
+        "ssrf": {
+          "is_ssrf_threat": false,
+          "threat_count": 0,
+          "threats": [],
+          "risk_score": 0.0,
+          "explanation": "No SSRF or cloud metadata access detected."
+        },
+        "prompt_safety": {
+          "is_safe": true,
+          "threat_detected": false,
+          "risk_level": "NONE",
+          "threat_count": 0,
+          "threats": [],
+          "sanitized_prompt": "12454323454",
+          "verdict": "SAFE",
+          "explanation": "Prompt passed adversarial injection screening."
+        },
+        "merkle_root": "3234a28f48d14a0d438b770ae5e866a44b212ada1eb9d7c81edd299a1c38b5be755b65d906f65ea54c913506c300aca17f9edec68b469ce035fcfb7aaa08a76e",
+        "mitre_atlas": [
+          "AML.T0051: LLM Prompt Injection"
+        ],
+        "owasp_llm": [
+          "LLM01: Prompt Injection"
+        ]
+      },
+      "redacted_request_text": "[REDACTED:sensitive_number]",
+      "history": [
+        "WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.NEEDS_REVIEW (Decision=REVIEW based on detected categories [sensitive_number] combined with a 'low'-risk requested action.)"
+      ],
+      "duration_ms": 19.52,
+      "run_type": "workflow",
+      "metadata": {}
+    }
+  },
+  {
     "event_id": "KAVACH-97a09614-a78",
     "platform": "KAVACH",
     "category": "AI_AGENT",

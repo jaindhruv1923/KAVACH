@@ -1,16 +1,32 @@
 {
-  "total_operations": 20,
-  "kavach_events": 10,
+  "total_operations": 22,
+  "kavach_events": 12,
   "banking_events": 10,
   "threats_blocked": 5,
   "critical_threats_blocked": 5,
   "hitl_quarantined": 0,
   "banking_volume_inr": 53550.0,
-  "average_risk_score": 0.308,
-  "compliance_pass_rate": 75.0,
-  "merkle_anchors_active": 20,
-  "hsm_fips_signatures": 20,
+  "average_risk_score": 0.323,
+  "compliance_pass_rate": 77.3,
+  "merkle_anchors_active": 22,
+  "hsm_fips_signatures": 22,
   "recent_ticker": [
+    {
+      "event_id": "KAVACH-98de71db-865",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Call me at 9876543210 or email test@example.c...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-17 02:12:13 UTC",
+      "risk_level": "MEDIUM"
+    },
+    {
+      "event_id": "KAVACH-bdaf5f7e-d95",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: 12454323454",
+      "status": "REQUIRES_REVIEW",
+      "formatted_time": "2026-10-16 17:07:03 UTC",
+      "risk_level": "HIGH"
+    },
     {
       "event_id": "KAVACH-97a09614-a78",
       "platform": "KAVACH",
@@ -74,23 +90,7 @@
       "status": "SUCCESS",
       "formatted_time": "2026-10-16 08:47:24 UTC",
       "risk_level": "LOW"
-    },
-    {
-      "event_id": "EVT-BAN-1792070152174-CACADE",
-      "platform": "BANKING",
-      "action_title": "OWASP LLM01 Prompt Injection Intercepted",
-      "status": "BLOCKED",
-      "formatted_time": "2026-10-15 13:15:52 UTC",
-      "risk_level": "CRITICAL"
-    },
-    {
-      "event_id": "EVT-BAN-1792070150768-A6B113",
-      "platform": "BANKING",
-      "action_title": "OWASP LLM01 Prompt Injection Intercepted",
-      "status": "BLOCKED",
-      "formatted_time": "2026-10-15 13:15:50 UTC",
-      "risk_level": "CRITICAL"
     }
   ],
-  "last_synced_at": "2026-10-16 17:07:02 UTC"
+  "last_synced_at": "2026-10-17 04:43:27 UTC"
 }

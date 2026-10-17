@@ -1,4 +1,6 @@
 event_id,platform,category,action_title,actor,target,status,risk_score,risk_level,amount,formatted_time
+"KAVACH-98de71db-865","KAVACH","AI_AGENT","Workflow Run: Call me at 9876543210 or email test@example.c...","DevSecOps Engineer","Agent Pipeline","SUCCESS",0.365,"MEDIUM",0.0,"2026-10-17 02:12:13 UTC"
+"KAVACH-bdaf5f7e-d95","KAVACH","AI_AGENT","Workflow Run: 12454323454","DevSecOps Engineer","Agent Pipeline","REQUIRES_REVIEW",0.584,"HIGH",0.0,"2026-10-16 17:07:03 UTC"
 "KAVACH-97a09614-a78","KAVACH","AI_AGENT","Workflow Run: Refactor the authentication module for better...","DevSecOps Engineer","Agent Pipeline","SUCCESS",0.0,"LOW",0.0,"2026-10-16 17:05:17 UTC"
 "KAVACH-5742ecb0-9cb","KAVACH","AI_AGENT","Workflow Run: Refactor the authentication module for better...","DevSecOps Engineer","Agent Pipeline","SUCCESS",0.0,"LOW",0.0,"2026-10-16 17:00:23 UTC"
 "KAVACH-31bb5ba3-2b3","KAVACH","AI_AGENT","Workflow Run: 12454323454","DevSecOps Engineer","Agent Pipeline","REQUIRES_REVIEW",0.584,"HIGH",0.0,"2026-10-16 16:41:51 UTC"
