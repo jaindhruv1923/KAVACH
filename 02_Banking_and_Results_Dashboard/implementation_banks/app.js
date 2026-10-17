@@ -20,6 +20,8 @@
 let API_BASE = 'http://127.0.0.1:8050';
 if (window.location.port === '8050') {
   API_BASE = window.location.origin;
+} else if (window.location.pathname && window.location.pathname.startsWith('/bank')) {
+  API_BASE = window.location.origin + '/bank';
 }
 
 let isBackendLive = false;

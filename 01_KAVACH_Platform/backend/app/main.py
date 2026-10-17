@@ -127,6 +127,41 @@ app.mount(
     name="static",
 )
 
+# ============================================================
+# MOUNT MULTI-SERVICE SUITE (BHARAT BANK & RESULTS COCKPIT)
+# ============================================================
+try:
+    _candidate_dashboard_dirs = [
+        os.path.abspath(os.path.join(PROJECT_ROOT, "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(PROJECT_ROOT, "..", "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "02_Banking_and_Results_Dashboard")),
+        "/app/02_Banking_and_Results_Dashboard",
+    ]
+    dash_dir = next((d for d in _candidate_dashboard_dirs if os.path.exists(d)), None)
+    if dash_dir:
+        bank_dir = os.path.join(dash_dir, "implementation_banks")
+        results_dir = os.path.join(dash_dir, "results_dashboard")
+        for p in [dash_dir, bank_dir, results_dir]:
+            if p not in sys.path and os.path.exists(p):
+                sys.path.insert(0, p)
+
+        try:
+            from implementation_banks.server import app as bank_app
+            app.mount("/bank", bank_app)
+            print("[KAVACH Unified] Mounted Bharat Core Banking Highway at /bank")
+        except Exception as bank_err:
+            print(f"[KAVACH Unified] Bank app mount skipped: {bank_err}")
+
+        try:
+            from results_hub import app as results_app
+            app.mount("/results", results_app)
+            print("[KAVACH Unified] Mounted Results Cockpit at /results")
+        except Exception as res_err:
+            print(f"[KAVACH Unified] Results app mount skipped: {res_err}")
+except Exception as suite_err:
+    print(f"[KAVACH Unified] Multi-service suite initialization skipped: {suite_err}")
+
 
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_root():

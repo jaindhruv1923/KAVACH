@@ -18,6 +18,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy source code and frontend assets
 COPY 01_KAVACH_Platform/backend /app/backend
 COPY 01_KAVACH_Platform/frontend /app/frontend
+COPY 02_Banking_and_Results_Dashboard /app/02_Banking_and_Results_Dashboard
 
 # Ensure persistent directories exist
 RUN mkdir -p /app/backend/data /app/backend/qdrant_storage
