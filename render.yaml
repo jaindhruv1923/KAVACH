@@ -5,8 +5,8 @@ services:
     env: python
     region: singapore
     plan: free
-    buildCommand: pip install -r important/kavach/backend/requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir important/kavach/backend
+    buildCommand: pip install -r 01_KAVACH_Platform/backend/requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir 01_KAVACH_Platform/backend
     envVars:
       - key: PYTHONUNBUFFERED
         value: "1"
@@ -20,11 +20,13 @@ services:
     env: python
     region: singapore
     plan: free
-    buildCommand: pip install -r implementation_banks/requirements.txt
-    startCommand: uvicorn implementation_banks.server:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r 02_Banking_and_Results_Dashboard/implementation_banks/requirements.txt
+    startCommand: python -m uvicorn implementation_banks.server:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHONUNBUFFERED
         value: "1"
+      - key: PYTHONPATH
+        value: "02_Banking_and_Results_Dashboard"
     healthCheckPath: /api/bank/accounts
 
   # 3. Unified Operations & Results Cockpit (Port 8090)
@@ -33,8 +35,8 @@ services:
     env: python
     region: singapore
     plan: free
-    buildCommand: pip install -r results/requirements.txt
-    startCommand: uvicorn results_hub:app --host 0.0.0.0 --port $PORT --app-dir results
+    buildCommand: pip install -r 02_Banking_and_Results_Dashboard/results_dashboard/requirements.txt
+    startCommand: python -m uvicorn results_hub:app --host 0.0.0.0 --port $PORT --app-dir 02_Banking_and_Results_Dashboard/results_dashboard
     envVars:
       - key: PYTHONUNBUFFERED
         value: "1"

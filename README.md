@@ -1,3 +1,14 @@
+---
+title: KAVACH Zero-Trust Agentic AI DevOps & Multi-Agent Governance
+emoji: 🛡️
+colorFrom: green
+colorTo: emerald
+sdk: docker
+app_port: 8000
+pinned: false
+license: apache-2.0
+---
+
 # 🛡️ KAVACH (कवच)
 ### Security-Governed Agentic AI DevOps & Observability Platform
 

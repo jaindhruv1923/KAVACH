@@ -11,13 +11,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy backend requirements and install dependencies
-COPY important/kavach/backend/requirements.txt /app/backend/requirements.txt
+COPY 01_KAVACH_Platform/backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r /app/backend/requirements.txt
 
 # Copy source code and frontend assets
-COPY important/kavach/backend /app/backend
-COPY important/kavach/frontend /app/frontend
+COPY 01_KAVACH_Platform/backend /app/backend
+COPY 01_KAVACH_Platform/frontend /app/frontend
 
 # Ensure persistent directories exist
 RUN mkdir -p /app/backend/data /app/backend/qdrant_storage
