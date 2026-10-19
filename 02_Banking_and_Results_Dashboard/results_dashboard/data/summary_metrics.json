@@ -1,96 +1,24 @@
 {
-  "total_operations": 22,
-  "kavach_events": 12,
-  "banking_events": 10,
-  "threats_blocked": 5,
-  "critical_threats_blocked": 5,
+  "total_operations": 1,
+  "kavach_events": 1,
+  "banking_events": 0,
+  "threats_blocked": 0,
+  "critical_threats_blocked": 0,
   "hitl_quarantined": 0,
-  "banking_volume_inr": 53550.0,
-  "average_risk_score": 0.323,
-  "compliance_pass_rate": 77.3,
-  "merkle_anchors_active": 22,
-  "hsm_fips_signatures": 22,
+  "banking_volume_inr": 0.0,
+  "average_risk_score": 0.0,
+  "compliance_pass_rate": 100.0,
+  "merkle_anchors_active": 1,
+  "hsm_fips_signatures": 1,
   "recent_ticker": [
     {
-      "event_id": "KAVACH-98de71db-865",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: Call me at 9876543210 or email test@example.c...",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-17 02:12:13 UTC",
-      "risk_level": "MEDIUM"
-    },
-    {
-      "event_id": "KAVACH-bdaf5f7e-d95",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: 12454323454",
-      "status": "REQUIRES_REVIEW",
-      "formatted_time": "2026-10-16 17:07:03 UTC",
-      "risk_level": "HIGH"
-    },
-    {
-      "event_id": "KAVACH-97a09614-a78",
+      "event_id": "KAVACH-9be5f736-f0c",
       "platform": "KAVACH",
       "action_title": "Workflow Run: Refactor the authentication module for better...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-16 17:05:17 UTC",
-      "risk_level": "LOW"
-    },
-    {
-      "event_id": "KAVACH-5742ecb0-9cb",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: Refactor the authentication module for better...",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-16 17:00:23 UTC",
-      "risk_level": "LOW"
-    },
-    {
-      "event_id": "KAVACH-31bb5ba3-2b3",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: 12454323454",
-      "status": "REQUIRES_REVIEW",
-      "formatted_time": "2026-10-16 16:41:51 UTC",
-      "risk_level": "HIGH"
-    },
-    {
-      "event_id": "KAVACH-d20612e0-d42",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: Refactor the authentication module for better...",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-16 16:39:43 UTC",
-      "risk_level": "LOW"
-    },
-    {
-      "event_id": "KAVACH-c6903212-c44",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: Refactor the authentication module for better...",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-16 11:06:04 UTC",
-      "risk_level": "LOW"
-    },
-    {
-      "event_id": "EVT-KAV-1792141284360-3932B0",
-      "platform": "KAVACH",
-      "action_title": "Agentic Code Gen & Security Gate Cleared",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-16 09:01:24 UTC",
-      "risk_level": "SAFE"
-    },
-    {
-      "event_id": "KAVACH-64676619-3af",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: 12454323454",
-      "status": "REQUIRES_REVIEW",
-      "formatted_time": "2026-10-16 08:47:31 UTC",
-      "risk_level": "HIGH"
-    },
-    {
-      "event_id": "KAVACH-5cfde955-518",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: ",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-16 08:47:24 UTC",
+      "formatted_time": "2026-10-19 07:42:19 UTC",
       "risk_level": "LOW"
     }
   ],
-  "last_synced_at": "2026-10-17 04:43:27 UTC"
+  "last_synced_at": "2026-10-19 07:47:34 UTC"
 }
