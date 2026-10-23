@@ -4255,7 +4255,7 @@ git push space main
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
               <div>
                 <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:800; display:flex; align-items:center; gap:8px;">
-                  <span>💭 KAVACH Comic-Book Chronicles &middot; ELI5 Explainer Clouds</span>
+                  <span>KAVACH Comic-Book Chronicles &middot; ELI5 Explainer Clouds</span>
                   <span class="comic-count-badge">20 TOPICS COVERED</span>
                 </h3>
                 <p style="margin:3px 0 0 0; font-size:0.78rem; color:#64748B;">
@@ -4272,11 +4272,11 @@ git push space main
             <!-- Filter Bar -->
             <div class="comic-modal-filterbar" style="margin-bottom:18px; border-radius:12px; border:2px solid #0F172A;">
               <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
-              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">🛡️ Security &amp; Sentinel</button>
-              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">🧠 Google ADK &amp; Triage</button>
-              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">📚 RAG &amp; AST Blast Radius</button>
-              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">🔌 MCP &amp; A2A Protocols</button>
-              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">🎬 FSM &amp; CrewAI Flows</button>
+              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">Security &amp; Sentinel</button>
+              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">Google ADK &amp; Triage</button>
+              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">RAG &amp; AST Blast Radius</button>
+              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">MCP &amp; A2A Protocols</button>
+              <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">FSM &amp; CrewAI Flows</button>
             </div>
 
             <!-- Comic Cards Grid -->
@@ -4340,7 +4340,7 @@ git push space main
           <button type="button" class="prof-tab-btn" id="prof-modal-btn-security" data-tab="security" onclick="window.switchProfTab('security')">8. Guardrails &amp; Variances</button>
           <button type="button" class="prof-tab-btn" id="prof-modal-btn-deploy" data-tab="deploy" onclick="window.switchProfTab('deploy')">11. Cloud Deploy</button>
           <button type="button" class="prof-tab-btn" id="prof-modal-btn-coverage" data-tab="coverage" onclick="window.switchProfTab('coverage')" style="background:#ECFDF5; border:1px solid #10B981; color:#065F46; font-weight:700;">📊 Coverage Matrix (30 Marks)</button>
-          <button type="button" class="prof-tab-btn" id="prof-modal-btn-comic" data-tab="comic" onclick="window.switchProfTab('comic')" style="background:#FEF9C3; border:1px solid #CA8A04; color:#854D0E; font-weight:700;">💭 Comic Chronicles (ELI5)</button>
+          <button type="button" class="prof-tab-btn" id="prof-modal-btn-comic" data-tab="comic" onclick="window.switchProfTab('comic')" style="background:#FEF9C3; border:1px solid #CA8A04; color:#854D0E; font-weight:700;">Comic Chronicles (ELI5)</button>
         </div>
 
         <!-- Content Area -->

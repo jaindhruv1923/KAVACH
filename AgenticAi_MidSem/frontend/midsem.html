@@ -17,6 +17,8 @@ window.location.replace("index.html#earlier-midsem");
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3.1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 </head>
 <body>
 
@@ -705,7 +707,7 @@ window.location.replace("index.html#earlier-midsem");
     <section id="comic-cloud-showcase" class="product-section reveal-on-scroll is-revealed" style="background:#FFFDF0; border:2.5px solid #0F172A; border-radius:20px; padding:28px 32px; margin:32px 0; box-shadow:6px 8px 0px #0F172A;">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
         <div>
-          <span class="comic-action-badge" style="background:#EF4444;">💥 COMIC BOOK CHRONICLES</span>
+          <span class="comic-action-badge" style="background:#EF4444;">COMIC BOOK CHRONICLES</span>
           <h2 style="font-size:1.4rem; font-weight:900; color:#0F172A; margin:6px 0 2px 0;">ELI5 Animated Comic Clouds &amp; 1-Liner Comprehension Engine</h2>
           <p style="margin:0; font-size:0.86rem; color:#475569;">
             Every complex mid-sem concept explained in simple, fun 1-liners and comic metaphors—with full mathematical rigor and code dossiers underneath!
@@ -720,11 +722,11 @@ window.location.replace("index.html#earlier-midsem");
 
       <div class="comic-modal-filterbar" style="margin-bottom:20px; border-radius:12px; border:2px solid #0F172A;">
         <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">🛡️ Security &amp; Sentinel</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">🧠 Google ADK &amp; Triage</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">📚 RAG &amp; AST Blast Radius</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">🔌 MCP &amp; A2A Protocols</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">🎬 FSM &amp; CrewAI Flows</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">Security &amp; Sentinel</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">Google ADK &amp; Triage</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">RAG &amp; AST Blast Radius</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">MCP &amp; A2A Protocols</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">FSM &amp; CrewAI Flows</button>
       </div>
 
       <div id="comic-inpage-container" style="display:flex; flex-direction:column; gap:16px;">
@@ -1492,7 +1494,7 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
       <button type="button" class="prof-tab-btn" id="prof-btn-eval" onclick="window.switchProfTab('eval')">9, 10. E2E Perf &amp; Cost</button>
       <button type="button" class="prof-tab-btn" id="prof-btn-deploy" onclick="window.switchProfTab('deploy')">11. Cloud Deploy</button>
       <button type="button" class="prof-tab-btn" id="prof-btn-coverage" onclick="window.switchProfTab('coverage')" style="background:#ECFDF5; border:1px solid #10B981; color:#065F46; font-weight:700;">📊 Coverage Matrix (30 Marks)</button>
-      <button type="button" class="prof-tab-btn" id="prof-btn-comic" onclick="window.switchProfTab('comic')" style="background:#FEF9C3; border:1px solid #CA8A04; color:#854D0E; font-weight:700;">💭 Comic Chronicles (ELI5)</button>
+      <button type="button" class="prof-tab-btn" id="prof-btn-comic" onclick="window.switchProfTab('comic')" style="background:#FEF9C3; border:1px solid #CA8A04; color:#854D0E; font-weight:700;">Comic Chronicles (ELI5)</button>
     </div>
 
     <!-- Content Area -->
