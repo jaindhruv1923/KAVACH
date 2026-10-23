@@ -1,0 +1,79 @@
+[
+  {
+    "id": "aa173676-0a74-4b5b-99c7-25956649916c",
+    "workflow_id": "aa173676-0a74-4b5b-99c7-25956649916c",
+    "timestamp": "2026-10-23 03:59:35 UTC",
+    "request_text": "Test persistence workflow",
+    "final_stage": "CONTEXT_RETRIEVAL",
+    "stage": "CONTEXT_RETRIEVAL",
+    "verdict": "ALLOWED",
+    "plan": [
+      "Understand the request and identify its scope",
+      "Identify existing test files",
+      "Determine what new tests are needed",
+      "Retrieve grounding evidence from the repository (RAG)",
+      "Run security/policy checks on the request and any retrieved context"
+    ],
+    "retrieved_context": [],
+    "security_findings": [],
+    "generation_result": {},
+    "validation_result": {},
+    "impact_report": [],
+    "policy_decision": {
+      "decision": "ALLOW",
+      "action": "ALLOW",
+      "verdict": "ALLOW",
+      "risk_score": 0.0,
+      "action_risk_classification": "low",
+      "data_findings_count": 0,
+      "highest_severity": "none",
+      "explanation": "No significant sensitive-data or high-risk-action signal detected.",
+      "steganography": {
+        "has_steganography": false,
+        "has_bidi_attack": false,
+        "cleaned_text": "Test persistence workflow",
+        "stripped_characters_count": 0,
+        "threats": [],
+        "threat_count": 0,
+        "risk_score": 0.0
+      },
+      "obfuscation": {
+        "original_text": "Test persistence workflow",
+        "is_obfuscated": false,
+        "detected_encodings": [],
+        "decloaked_texts": [],
+        "unified_normalized_text": "Test persistence workflow",
+        "obfuscation_risk_score": 0.0,
+        "details": []
+      },
+      "ssrf": {
+        "is_ssrf_threat": false,
+        "threat_count": 0,
+        "threats": [],
+        "risk_score": 0.0,
+        "explanation": "No SSRF or cloud metadata access detected."
+      },
+      "prompt_safety": {
+        "is_safe": true,
+        "threat_detected": false,
+        "risk_level": "NONE",
+        "threat_count": 0,
+        "threats": [],
+        "sanitized_prompt": "Test persistence workflow",
+        "verdict": "SAFE",
+        "explanation": "Prompt passed adversarial injection screening."
+      },
+      "merkle_root": "53365b8612bdd9d0c26ead62872c892575f37be99ffcf453da294531790c5d48eb077d0546d0a53dd397c1cc8b42c837784ab235613357e09940bdf17cb7c2c4",
+      "mitre_atlas": [],
+      "owasp_llm": []
+    },
+    "redacted_request_text": "Test persistence workflow",
+    "history": [
+      "WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.PLANNING",
+      "WorkflowStage.PLANNING -> WorkflowStage.CONTEXT_RETRIEVAL"
+    ],
+    "duration_ms": 0.0,
+    "run_type": "workflow",
+    "metadata": {}
+  }
+]

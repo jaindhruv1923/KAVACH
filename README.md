@@ -24,20 +24,21 @@ license: apache-2.0
 ---
 
 <p align="center">
+  <a href="AgenticAi_MidSem/README.md"><b>🎓 CSE3101 Mid-Sem Capstone Package</b></a> &nbsp;•&nbsp;
   <a href="01_KAVACH_Platform/README.md"><b>🛡️ KAVACH Platform Guide</b></a> &nbsp;•&nbsp;
   <a href="02_Banking_and_Results_Dashboard/README.md"><b>🏦 Banking & Results Cockpit</b></a> &nbsp;•&nbsp;
   <a href="03_Documentation/README.md"><b>📚 Master Documentation Hub</b></a> &nbsp;•&nbsp;
-  <a href="#-visual-showcase--interface-gallery"><b>📸 24-Slide Visual Gallery</b></a> &nbsp;•&nbsp;
   <a href="03_Documentation/FINAL_SYNOPSIS_REPORT.md"><b>📊 Final Synopsis Report</b></a> &nbsp;•&nbsp;
   <a href="01_KAVACH_Platform/RUNNING_KAVACH.md"><b>⚡ Running Kavach</b></a>
 </p>
 
 > [!IMPORTANT]
-> ### 🗂️ Clean 3-Tier Enterprise Repository Architecture
-> The repository is organized into three distinct, highly structured modules:
-> 1. **[`01_KAVACH_Platform/`](01_KAVACH_Platform/README.md):** Complete operational KAVACH platform (FastAPI backend, dark-mode frontend, Google ADK callbacks, A2A protocol, 461 passing tests, multi-cloud deployment configs).
-> 2. **[`02_Banking_and_Results_Dashboard/`](02_Banking_and_Results_Dashboard/README.md):** Bharat Commercial Core Banking System (`implementation_banks/`), Real-Time Telemetry Results Cockpit (`results_dashboard/`), and Unified Cross-Platform Integration Suite (`tests_unified/`).
-> 3. **[`03_Documentation/`](03_Documentation/README.md):** Complete official academic deliverables, 85KB Final Synopsis Report, 24-slide Master Presentations, IEEE research paper, and 92-capture visual audit archive.
+> ### 🗂️ Clean Multi-Module Repository Architecture
+> The repository is organized into distinct, highly structured modules:
+> 1. **[`AgenticAi_MidSem/`](AgenticAi_MidSem/README.md):** Pure CSE3101 Agentic AI Mid-Sem Capstone Package (Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari). Isolates the core multi-agent DevOps platform, Google ADK 8-hook callbacks, Canonical Medical Triage Pipeline, CrewAI Flows, A2A/MCP protocols, 306 passing tests, and 10 academic deliverables.
+> 2. **[`01_KAVACH_Platform/`](01_KAVACH_Platform/README.md):** Complete operational KAVACH platform (FastAPI backend, dark-mode frontend, Google ADK callbacks, A2A protocol, 461 passing tests, multi-cloud deployment configs).
+> 3. **[`02_Banking_and_Results_Dashboard/`](02_Banking_and_Results_Dashboard/README.md):** Bharat Commercial Core Banking System (`implementation_banks/`), Real-Time Telemetry Results Cockpit (`results_dashboard/`), and Unified Cross-Platform Integration Suite (`tests_unified/`).
+> 4. **[`03_Documentation/`](03_Documentation/README.md):** Complete official academic deliverables, 85KB Final Synopsis Report, 24-slide Master Presentations, IEEE research paper, and 92-capture visual audit archive.
 
 ---
 
