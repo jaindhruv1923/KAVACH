@@ -90,7 +90,14 @@ function switchToViewGlobal(targetId, navBtnId, hash) {
   const views = ['product-view', 'improvised-view', 'workspace-view', 'usecases-view', 'research-view', 'defense-view', 'eval-view', 'professor-view'];
   views.forEach(v => {
     const el = document.getElementById(v);
-    if (el) el.style.display = (v === targetId) ? 'block' : 'none';
+    if (el) {
+      if (v === targetId) {
+        el.style.display = (v === 'product-view' || v === 'workspace-view' || v === 'usecases-view' || v === 'research-view' || v === 'defense-view') ? 'flex' : 'block';
+        el.querySelectorAll('.reveal-on-scroll, .stagger-container').forEach(r => r.classList.add('is-revealed'));
+      } else {
+        el.style.display = 'none';
+      }
+    }
   });
   if (hash) {
     history.replaceState(null, null, '#' + hash);
@@ -1292,6 +1299,37 @@ document.addEventListener('DOMContentLoaded', function() {
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- KAVACH Comic-Book Chronicles & ELI5 Cloud Explainers -->
+    <section id="comic-cloud-showcase" class="product-section reveal-on-scroll is-revealed" style="background:#FFFDF0; border:2.5px solid #0F172A; border-radius:20px; padding:28px 32px; margin:32px 0; box-shadow:6px 8px 0px #0F172A;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+        <div>
+          <span class="comic-action-badge" style="background:#EF4444;">💥 COMIC BOOK CHRONICLES</span>
+          <h2 style="font-size:1.4rem; font-weight:900; color:#0F172A; margin:6px 0 2px 0;">ELI5 Animated Comic Clouds &amp; 1-Liner Comprehension Engine</h2>
+          <p style="margin:0; font-size:0.86rem; color:#475569;">
+            Every complex mid-sem concept explained in simple, fun 1-liners and comic metaphors—with full mathematical rigor and code dossiers underneath!
+          </p>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(true)">Expand All Dossiers</button>
+          <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(false)">Collapse All</button>
+          <button type="button" class="comic-btn-expand-all" style="background:#FEF08A; font-weight:800;" onclick="window.openComicExplainerModal()">Fullscreen Gallery (20 Topics) &rarr;</button>
+        </div>
+      </div>
+
+      <div class="comic-modal-filterbar" style="margin-bottom:20px; border-radius:12px; border:2px solid #0F172A;">
+        <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">🛡️ Security &amp; Sentinel</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">🧠 Google ADK &amp; Triage</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">📚 RAG &amp; AST Blast Radius</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">🔌 MCP &amp; A2A Protocols</button>
+        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">🎬 FSM &amp; CrewAI Flows</button>
+      </div>
+
+      <div id="comic-inpage-container" style="display:flex; flex-direction:column; gap:16px;">
+        <!-- Rendered dynamically by comic_explainer.js -->
       </div>
     </section>
 
@@ -5611,36 +5649,6 @@ def parse_deploy_spec(user_payload):
     <div id="query-library-container" class="query-library-grid">
       <!-- Dynamically rendered by query_library.js -->
     </div>
-    <!-- KAVACH Comic-Book Chronicles & ELI5 Cloud Explainers -->
-    <section id="comic-cloud-showcase" class="product-section reveal-on-scroll" style="background:#FFFDF0; border:2.5px solid #0F172A; border-radius:20px; padding:28px 32px; margin:32px 0; box-shadow:6px 8px 0px #0F172A;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
-        <div>
-          <span class="comic-action-badge" style="background:#EF4444;">💥 COMIC BOOK CHRONICLES</span>
-          <h2 style="font-size:1.4rem; font-weight:900; color:#0F172A; margin:6px 0 2px 0;">ELI5 Animated Comic Clouds &amp; 1-Liner Comprehension Engine</h2>
-          <p style="margin:0; font-size:0.86rem; color:#475569;">
-            Every complex mid-sem concept explained in simple, fun 1-liners and comic metaphors—with full mathematical rigor and code dossiers underneath!
-          </p>
-        </div>
-        <div style="display:flex; gap:8px;">
-          <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(true)">Expand All Dossiers</button>
-          <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(false)">Collapse All</button>
-          <button type="button" class="comic-btn-expand-all" style="background:#FEF08A; font-weight:800;" onclick="window.openComicExplainerModal()">Fullscreen Gallery (20 Topics) &rarr;</button>
-        </div>
-      </div>
-
-      <div class="comic-modal-filterbar" style="margin-bottom:20px; border-radius:12px; border:2px solid #0F172A;">
-        <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">🛡️ Security &amp; Sentinel</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">🧠 Google ADK &amp; Triage</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">📚 RAG &amp; AST Blast Radius</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">🔌 MCP &amp; A2A Protocols</button>
-        <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">🎬 FSM &amp; CrewAI Flows</button>
-      </div>
-
-      <div id="comic-inpage-container" style="display:flex; flex-direction:column; gap:16px;">
-        <!-- Rendered dynamically by comic_explainer.js -->
-      </div>
-    </section>
   </div>
 </div>
 

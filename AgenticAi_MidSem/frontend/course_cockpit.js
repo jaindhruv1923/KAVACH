@@ -4280,7 +4280,7 @@ git push space main
             </div>
 
             <!-- Comic Cards Grid -->
-            <div id="comic-cards-container" style="display:flex; flex-direction:column; gap:16px;">
+            <div id="comic-cockpit-cards-container" class="comic-cards-container" style="display:flex; flex-direction:column; gap:16px;">
               ${topics.map(t => window.renderComicCloudCard(t, false)).join("")}
             </div>
           </div>

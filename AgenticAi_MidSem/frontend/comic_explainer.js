@@ -277,7 +277,7 @@
   // Helper to render comic cloud HTML
   function renderComicCloudCard(topic, isExpanded) {
     return `
-      <div class="comic-cloud-card" id="comic-card-${topic.id}" data-id="${topic.id}">
+      <div class="comic-cloud-card ${isExpanded ? 'drawer-open' : ''}" id="comic-card-${topic.id}" data-id="${topic.id}">
         <!-- Floating Animated Comic Cloud -->
         <div class="comic-thought-bubble">
           <div class="comic-cloud-header">
@@ -338,9 +338,23 @@
     if (!drawer || !card) return;
     const isOpen = drawer.classList.contains("open");
     drawer.classList.toggle("open", !isOpen);
+    card.classList.toggle("drawer-open", !isOpen);
     const btn = card.querySelector(".comic-btn-toggle");
     if (btn) {
       btn.innerHTML = !isOpen ? '▲ Hide Technical Dossier' : '▼ Inspect Full Technical Dossier & Formula';
+    }
+  };
+
+  // Toggle transparency peek mode so background page is 100% visible
+  window.toggleComicModalTransparency = function () {
+    const modal = document.getElementById("comic-explainer-modal");
+    const btn = document.getElementById("comic-peek-btn");
+    if (!modal) return;
+    const isPeek = modal.classList.toggle("peek-mode");
+    if (btn) {
+      btn.innerHTML = isPeek ? '👓 Normal View' : '👓 Peek Behind';
+      btn.style.background = isPeek ? '#10B981' : '#FFFFFF';
+      btn.style.color = isPeek ? '#FFFFFF' : '#0F172A';
     }
   };
 
@@ -372,10 +386,11 @@
               </p>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="comic-btn-expand-all" id="comic-peek-btn" onclick="window.toggleComicModalTransparency()" title="Peek at dashboard behind modal">👓 Peek Behind</button>
             <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(true)">Expand All Dossiers</button>
             <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(false)">Collapse All</button>
-            <button type="button" class="comic-modal-close" onclick="window.closeComicExplainerModal()">&times;</button>
+            <button type="button" class="comic-modal-close" onclick="window.closeComicExplainerModal()" title="Close">&times;</button>
           </div>
         </div>
 
@@ -400,6 +415,7 @@
       if (e.target === modal) window.closeComicExplainerModal();
     };
 
+    modal.classList.remove("peek-mode");
     modal.classList.add("open");
     modal.style.display = "flex";
   };
@@ -407,7 +423,7 @@
   window.closeComicExplainerModal = function () {
     const modal = document.getElementById("comic-explainer-modal");
     if (modal) {
-      modal.classList.remove("open");
+      modal.classList.remove("open", "peek-mode");
       modal.style.display = "none";
     }
   };
@@ -415,6 +431,9 @@
   window.toggleAllComicDetails = function (expand) {
     document.querySelectorAll(".comic-details-drawer").forEach(drawer => {
       drawer.classList.toggle("open", expand);
+    });
+    document.querySelectorAll(".comic-cloud-card").forEach(card => {
+      card.classList.toggle("drawer-open", expand);
     });
     document.querySelectorAll(".comic-btn-toggle").forEach(btn => {
       btn.innerHTML = expand ? '▲ Hide Technical Dossier' : '▼ Inspect Full Technical Dossier & Formula';
@@ -449,6 +468,10 @@
     const inpage = document.getElementById("comic-inpage-container");
     if (inpage) {
       inpage.innerHTML = filtered.map(t => renderComicCloudCard(t, false)).join("");
+    }
+    const cockpitContainer = document.getElementById("comic-cockpit-cards-container");
+    if (cockpitContainer) {
+      cockpitContainer.innerHTML = filtered.map(t => renderComicCloudCard(t, false)).join("");
     }
   };
 
