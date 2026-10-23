@@ -342,5 +342,94 @@
     "duration_ms": 5.81,
     "run_type": "workflow",
     "metadata": {}
+  },
+  {
+    "id": "9845244d-6365-4a59-a079-e0aab7527339",
+    "workflow_id": "9845244d-6365-4a59-a079-e0aab7527339",
+    "timestamp": "2026-10-23 04:33:29 UTC",
+    "request_text": "Deploy microservice with AWS_SECRET_KEY=AKIAIOSFODNN7EXAMPLEB5F3489872134567",
+    "final_stage": "BLOCKED",
+    "stage": "BLOCKED",
+    "verdict": "BLOCKED",
+    "plan": [],
+    "retrieved_context": [],
+    "security_findings": [
+      {
+        "category": "credential",
+        "value": "AKIAIOSFODNN7EXAMPLEB5F3489872134567",
+        "action": "BLOCK",
+        "severity": "critical",
+        "confidence": 0.95,
+        "reason": "Matches a known credential prefix format (e.g. sk-, AIza, AKIA, ghp_, xox*)"
+      }
+    ],
+    "generation_result": {},
+    "validation_result": {},
+    "impact_report": [],
+    "policy_decision": {
+      "decision": "BLOCK",
+      "action": "BLOCK",
+      "verdict": "BLOCK",
+      "risk_score": 0.85,
+      "action_risk_classification": "medium",
+      "data_findings_count": 1,
+      "highest_severity": "critical",
+      "explanation": "Decision=BLOCK based on detected categories [credential] combined with a 'medium'-risk requested action.",
+      "steganography": {
+        "has_steganography": false,
+        "has_bidi_attack": false,
+        "cleaned_text": "Deploy microservice with AWS_SECRET_KEY=AKIAIOSFODNN7EXAMPLEB5F3489872134567",
+        "stripped_characters_count": 0,
+        "threats": [],
+        "threat_count": 0,
+        "risk_score": 0.0
+      },
+      "obfuscation": {
+        "original_text": "Deploy microservice with AWS_SECRET_KEY=AKIAIOSFODNN7EXAMPLEB5F3489872134567",
+        "is_obfuscated": true,
+        "detected_encodings": [
+          "LEETSPEAK_SUBSTITUTION"
+        ],
+        "decloaked_texts": [
+          "deploy microservice with aws_secret_key=akiaiosfodnntexamplebsfea898t2ieas6t"
+        ],
+        "unified_normalized_text": "Deploy microservice with AWS_SECRET_KEY=AKIAIOSFODNN7EXAMPLEB5F3489872134567 deploy microservice with aws_secret_key=akiaiosfodnntexamplebsfea898t2ieas6t",
+        "obfuscation_risk_score": 0.4,
+        "details": [
+          "Leetspeak normalization revealed masked security triggers: de-obfuscated terms"
+        ]
+      },
+      "ssrf": {
+        "is_ssrf_threat": false,
+        "threat_count": 0,
+        "threats": [],
+        "risk_score": 0.0,
+        "explanation": "No SSRF or cloud metadata access detected."
+      },
+      "prompt_safety": {
+        "is_safe": true,
+        "threat_detected": false,
+        "risk_level": "NONE",
+        "threat_count": 0,
+        "threats": [],
+        "sanitized_prompt": "Deploy microservice with AWS_SECRET_KEY=AKIAIOSFODNN7EXAMPLEB5F3489872134567",
+        "verdict": "SAFE",
+        "explanation": "Prompt passed adversarial injection screening."
+      },
+      "merkle_root": "0540bff90f0216d46aacc22f320355700fab5e3ad76a75effd42700c80797c9186cd95fb1b8a428e774031bc7373bcfec44728ce4b805eb8126066d9704d4a24",
+      "mitre_atlas": [
+        "AML.T0051: LLM Prompt Injection"
+      ],
+      "owasp_llm": [
+        "LLM01: Prompt Injection"
+      ]
+    },
+    "redacted_request_text": "Deploy microservice with AWS_SECRET_KEY=[REDACTED:credential]",
+    "history": [
+      "WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.BLOCKED (Decision=BLOCK based on detected categories [credential] combined with a 'medium'-risk requested action.)"
+    ],
+    "duration_ms": 6.19,
+    "run_type": "workflow",
+    "metadata": {}
   }
 ]

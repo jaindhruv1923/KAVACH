@@ -2,6 +2,7 @@
  * 💭 KAVACH COMIC CLOUD EXPLAINER & ELI5 COMPREHENSION ENGINE
  * CSE3101: Agentic AI — Mid-Semester Project Evaluation
  * Faculty: Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari
+ * Team: Dhruv Jain (230532), Dev Garg (230487), Ansh Rohilla (230794), Ansh Adhikari (230822)
  *
  * Provides animated comic-book thought/speech bubbles with punchy 1-liners,
  * playful metaphors, and full technical dossiers (equations, files, test commands).
@@ -205,6 +206,71 @@
       codeFile: "backend/app/security/multimodal_vision.py",
       testCmd: "pytest tests/test_syllabus_advanced_modules.py -k test_multimodal_vision_auditor_threat_detection",
       rubric: "Criterion C8 (Requirements Met — 10 Marks)"
+    },
+    {
+      id: "hitl_quarantine",
+      badge: "🚨 HALT & CATCH FIRE!",
+      badgeColor: "#DC2626",
+      topic: "Human-in-the-Loop (HITL) Dynamic Quarantine Gate",
+      oneLiner: "If an agent wants to delete database tables or change >40% of the codebase, it is frozen in mid-air until a living human engineer signs off!",
+      metaphor: "The red nuclear launch button requiring two physical keys turned by two human officers before any irreversible payload fires.",
+      math: "\\text{Verdict} = \\begin{cases} \\text{EXECUTE} & \\text{if } B(v) \\le 0.40 \\land \\text{Risk} = \\text{LOW} \\\\ \\text{QUARANTINE} & \\text{if } B(v) > 0.40 \\lor \\text{Destructive Op} \\end{cases}",
+      details: "Intercepts high-risk AST modifications (SQL DROP TABLE, rm -rf, os.system) and transitive blast radius B(v) > 0.40 into an interactive HITL approval inbox before code application.",
+      codeFile: "backend/app/agent/hitl_quarantine.py",
+      testCmd: "pytest tests/test_syllabus_advanced_modules.py -k test_human_in_the_loop",
+      rubric: "Criterion C8 (Requirements Met — 10 Marks)"
+    },
+    {
+      id: "merkle_audit",
+      badge: "⛓️ UNBREAKABLE CHAIN!",
+      badgeColor: "#0284C7",
+      topic: "Cryptographic Merkle Tree Audit Trail",
+      oneLiner: "Hashes every single agent thought, prompt, and tool invocation into a cryptographic blockchain tree—if anyone tampers with a single character, the root hash shatters!",
+      metaphor: "Like stamping a wax royal seal on every page of a legal contract; any eraser smudge instantly reveals tampering.",
+      math: "H_{\\text{root}} = H(H_{\\text{left}} \\parallel H_{\\text{right}}), \\quad H(x) = \\text{SHA-256}(x)",
+      details: "Builds a balanced binary Merkle hash tree over all intermediate agent transitions. Provides O(log N) inclusion proofs for tamper-evident compliance during audit inspections.",
+      codeFile: "backend/app/audit/merkle_tree.py",
+      testCmd: "pytest tests/test_syllabus_advanced_modules.py -k test_merkle_provenance",
+      rubric: "Criterion C7 (Technical Understanding — 5 Marks)"
+    },
+    {
+      id: "cyclonedx_sbom",
+      badge: "📜 NUTRITION LABEL!",
+      badgeColor: "#4F46E5",
+      topic: "CycloneDX SBOM & SLSA Level 3 Attestation",
+      oneLiner: "Generates a certified software ingredient list showing every library, author, license, and cryptographic hash—zero mystery blackbox code!",
+      metaphor: "The FDA food nutrition label on cereal boxes: shows exact calories, ingredients, and allergen warnings before you take a bite.",
+      math: "\\text{SBOM} = \\{ \\text{UUID}, \\text{Metadata}, \\text{Components } c_i = (\\text{name}, \\text{version}, \\text{hash}, \\text{license}) \\}",
+      details: "Produces CycloneDX v1.5 standard JSON/XML Software Bill of Materials (SBOM) and signed SLSA Level 3 build provenance records for all synthesized software artifacts.",
+      codeFile: "backend/app/security/sbom.py",
+      testCmd: "pytest tests/test_syllabus_advanced_modules.py -k test_cyclonedx_sbom",
+      rubric: "Criterion C8 (Requirements Met — 10 Marks)"
+    },
+    {
+      id: "react_reflexion",
+      badge: "🔄 SECOND CHANCE!",
+      badgeColor: "#D97706",
+      topic: "ReAct Reflexion & Closed-Loop Episodic Memory",
+      oneLiner: "The agent writes in its diary: 'I tried X, it returned an error, so I deduced Y and will now try Z'—learning dynamically instead of repeating the same mistake!",
+      metaphor: "A gamer who loses a life on Level 3, remembers where the spike trap was, and jumps over it on the second try.",
+      math: "\\tau_t = (s_t, a_t, o_t, r_t) \\implies M_{t+1} = M_t \\cup \\{ \\text{Reflexion}(\\tau_t) \\}",
+      details: "Implements Yao et al. & Shinn et al. Reflexion memory buffers where verbal error self-reflections are prepended into episodic agent state to guide subsequent retry cycles.",
+      codeFile: "backend/app/agent/reflexion.py",
+      testCmd: "pytest tests/test_syllabus_advanced_modules.py -k test_closed_loop_react",
+      rubric: "Criterion C8 (Requirements Met — 10 Marks)"
+    },
+    {
+      id: "dpdp_vault",
+      badge: "🛡️ SHREDDER!",
+      badgeColor: "#059669",
+      topic: "DPDP Act 2023 Zero-Knowledge Privacy Vault",
+      oneLiner: "Instantly masks Indian Aadhaar, PAN, phone numbers, and emails with random synthetic tokens before any LLM sees them, and unmasks them only upon return!",
+      metaphor: "A coat-check desk at a luxury event: you give your real coat, you get a plastic claim ticket #42, and nobody inside knows what your real coat looks like.",
+      math: "\\text{Tokenize: } x \\mapsto t_x \\in \\mathcal{T}, \\quad \\text{Vault}(t_x) = x \\quad (\\text{Egress}_{\\text{PII}} = \\emptyset)",
+      details: "Complies with India's Digital Personal Data Protection Act 2023. Intercepts sensitive citizen data, creates in-memory nonces, and sends only pseudonymized representations to LLMs.",
+      codeFile: "backend/app/security/privacy_vault.py",
+      testCmd: "pytest tests/test_syllabus_advanced_modules.py -k test_dpdp_privacy_vault",
+      rubric: "Criterion C7 (Technical Understanding — 5 Marks)"
     }
   ];
 
@@ -315,7 +381,7 @@
 
         <!-- Filter Bar -->
         <div class="comic-modal-filterbar">
-          <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 15 Topics</button>
+          <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
           <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">🛡️ Security &amp; Sentinel</button>
           <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">🧠 Google ADK &amp; Triage</button>
           <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">📚 RAG &amp; AST Blast Radius</button>
@@ -358,14 +424,14 @@
   window.filterComicTopics = function (category) {
     document.querySelectorAll(".comic-filter-chip").forEach(chip => {
       chip.classList.remove("active");
-      if (chip.getAttribute("onclick").includes(`'${category}'`)) {
+      if (chip.getAttribute("onclick") && chip.getAttribute("onclick").includes(`'${category}'`)) {
         chip.classList.add("active");
       }
     });
 
     let filtered = COMIC_TOPICS;
     if (category === 'security') {
-      filtered = COMIC_TOPICS.filter(t => ['shannon_entropy', 'verhoeff_d5', 'package_firewall', 'airgap_privacy'].includes(t.id));
+      filtered = COMIC_TOPICS.filter(t => ['shannon_entropy', 'verhoeff_d5', 'package_firewall', 'airgap_privacy', 'dpdp_vault', 'hitl_quarantine', 'merkle_audit', 'cyclonedx_sbom'].includes(t.id));
     } else if (category === 'adk') {
       filtered = COMIC_TOPICS.filter(t => ['adk_callbacks', 'medical_triage'].includes(t.id));
     } else if (category === 'rag') {
@@ -373,17 +439,105 @@
     } else if (category === 'protocols') {
       filtered = COMIC_TOPICS.filter(t => ['mcp_protocol', 'a2a_protocol'].includes(t.id));
     } else if (category === 'orchestration') {
-      filtered = COMIC_TOPICS.filter(t => ['fsm_orchestrator', 'crewai_flows', 'reasoning_paradigms', 'self_healing_sandbox', 'vision_auditor'].includes(t.id));
+      filtered = COMIC_TOPICS.filter(t => ['fsm_orchestrator', 'crewai_flows', 'reasoning_paradigms', 'self_healing_sandbox', 'vision_auditor', 'react_reflexion'].includes(t.id));
     }
 
     const container = document.getElementById("comic-cards-container");
     if (container) {
       container.innerHTML = filtered.map(t => renderComicCloudCard(t, false)).join("");
     }
+    const inpage = document.getElementById("comic-inpage-container");
+    if (inpage) {
+      inpage.innerHTML = filtered.map(t => renderComicCloudCard(t, false)).join("");
+    }
   };
+
+  // Popover tooltip engine for hover/click on specific topics
+  window.showComicPopover = function (event, topicId) {
+    const topic = COMIC_TOPICS.find(t => t.id === topicId);
+    if (!topic) return;
+
+    let popover = document.getElementById("comic-floating-popover");
+    if (!popover) {
+      popover = document.createElement("div");
+      popover.id = "comic-floating-popover";
+      popover.className = "comic-floating-popover";
+      document.body.appendChild(popover);
+    }
+
+    popover.innerHTML = `
+      <div class="comic-popover-cloud">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span class="comic-action-badge" style="background:${topic.badgeColor}; font-size:0.68rem; padding:2px 7px;">${topic.badge}</span>
+          <button type="button" onclick="window.hideComicPopover()" style="background:none; border:none; color:#0F172A; font-weight:800; cursor:pointer; font-size:1.1rem; line-height:1;">&times;</button>
+        </div>
+        <div style="font-weight:800; font-size:0.86rem; color:#0F172A; margin-bottom:6px;">${topic.topic}</div>
+        <div style="font-size:0.82rem; line-height:1.4; color:#1E293B; background:#FEF9C3; border:1px dashed #CA8A04; border-radius:8px; padding:8px 10px; margin-bottom:8px;">
+          &ldquo;${topic.oneLiner}&rdquo;
+        </div>
+        <div style="font-size:0.75rem; color:#475569; margin-bottom:8px;">
+          💡 <strong>Metaphor:</strong> ${topic.metaphor}
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <code style="font-size:0.7rem; color:#7C3AED; background:#FAF5FF; padding:2px 6px; border-radius:4px;">${topic.math}</code>
+          <button type="button" onclick="window.openComicExplainerModal('${topic.id}')" style="background:#0F172A; color:#FEF08A; border:none; padding:4px 10px; border-radius:6px; font-size:0.72rem; font-weight:700; cursor:pointer;">
+            Full Dossier &rarr;
+          </button>
+        </div>
+      </div>
+    `;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = Math.min(window.innerWidth - 340, Math.max(16, rect.left));
+    const y = rect.bottom + 10;
+
+    popover.style.left = `${x}px`;
+    popover.style.top = `${y}px`;
+    popover.classList.add("visible");
+  };
+
+  window.hideComicPopover = function () {
+    const popover = document.getElementById("comic-floating-popover");
+    if (popover) {
+      popover.classList.remove("visible");
+    }
+  };
+
+  // Mount Floating Comic Trigger Button in Corner & Init Inpage Container
+  function initComicComponents() {
+    // 1. Floating trigger button
+    if (!document.getElementById("comic-floating-trigger")) {
+      const btn = document.createElement("button");
+      btn.id = "comic-floating-trigger";
+      btn.className = "comic-floating-trigger";
+      btn.type = "button";
+      btn.innerHTML = `
+        <span class="comic-trigger-tail"></span>
+        <span class="comic-trigger-icon">💭</span>
+        <span class="comic-trigger-text">Comic Clouds (ELI5)</span>
+      `;
+      btn.onclick = () => window.openComicExplainerModal();
+      btn.title = "Click to open KAVACH Animated Comic Cloud Explainers (ELI5 for Every Topic!)";
+      document.body.appendChild(btn);
+    }
+
+    // 2. Render In-Page Showcase if container is present
+    const inpage = document.getElementById("comic-inpage-container");
+    if (inpage && inpage.children.length === 0) {
+      inpage.innerHTML = COMIC_TOPICS.map(t => renderComicCloudCard(t, false)).join("");
+    }
+  }
+
+  // Initialize once DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initComicComponents);
+  } else {
+    initComicComponents();
+  }
 
   // Expose dataset globally
   window.KAVACH_COMIC_TOPICS = COMIC_TOPICS;
   window.renderComicCloudCard = renderComicCloudCard;
 
 })();
+
