@@ -137,6 +137,7 @@ app.mount(
 
 
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
+@app.api_route("/index.html", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_root():
     """Serve the frontend entrypoint cleanly directly at root without redirects."""
     return FileResponse(
@@ -279,6 +280,15 @@ def serve_root_arch_png():
 def serve_root_academic_weapon():
     return FileResponse(
         os.path.join(FRONTEND_DIR, "academic_weapon.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
+@app.get("/comic_explainer.js", include_in_schema=False)
+def serve_root_comic_explainer():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "comic_explainer.js"),
         media_type="application/javascript",
         headers={"Cache-Control": "no-cache, must-revalidate"}
     )
@@ -2812,6 +2822,14 @@ def execute_mcp_tool_direct(req: McpDirectCallRequest):
         }
     }
     return handle_mcp_request(rpc_payload)
+
+
+@app.get("/{static_file:path}", include_in_schema=False)
+def serve_fallback_frontend_file(static_file: str):
+    full_path = os.path.join(FRONTEND_DIR, static_file)
+    if os.path.isfile(full_path):
+        return FileResponse(full_path, headers={"Cache-Control": "no-cache, must-revalidate"})
+    raise HTTPException(status_code=404, detail="File not found")
 
 
 

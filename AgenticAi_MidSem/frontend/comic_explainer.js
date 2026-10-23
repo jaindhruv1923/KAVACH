@@ -452,46 +452,53 @@
 
     const topicsToRender = filterId ? COMIC_TOPICS.filter(t => t.id === filterId) : COMIC_TOPICS;
 
-    modal.innerHTML = `
-      <div class="comic-modal-window">
-        <!-- Sticky Header with Comic Title -->
-        <div class="comic-modal-header">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="comic-action-badge" style="background:#0F172A; color:#FEF08A; font-size:0.85rem; padding:6px 12px;">ELI5</span>
-            <div>
-              <div style="display:flex; align-items:center; gap:8px;">
-                <h2 class="comic-modal-h2">KAVACH Comic-Book Chronicles &middot; ELI5 Explainer Clouds</h2>
-                <span class="comic-count-badge">${topicsToRender.length} TOPICS COVERED</span>
+    let container = modal.querySelector("#comic-cards-container");
+    if (!container) {
+      modal.innerHTML = `
+        <div class="comic-modal-window">
+          <!-- Sticky Header with Comic Title -->
+          <div class="comic-modal-header">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span class="comic-action-badge" style="background:#0F172A; color:#FEF08A; font-size:0.85rem; padding:6px 12px;">ELI5</span>
+              <div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <h2 class="comic-modal-h2">KAVACH Comic-Book Chronicles &middot; ELI5 Explainer Clouds</h2>
+                  <span class="comic-count-badge" id="comic-modal-count-badge">${topicsToRender.length} TOPICS COVERED</span>
+                </div>
+                <p class="comic-modal-sub">
+                  CSE3101: Agentic AI &middot; Fun 1-liner animated comic clouds for every topic, backed by 100% rigorous mathematics &amp; code dossiers!
+                </p>
               </div>
-              <p class="comic-modal-sub">
-                CSE3101: Agentic AI &middot; Fun 1-liner animated comic clouds for every topic, backed by 100% rigorous mathematics &amp; code dossiers!
-              </p>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <button type="button" class="comic-btn-expand-all" id="comic-peek-btn" onclick="window.toggleComicModalTransparency()" title="Peek at dashboard behind modal">Peek Behind</button>
+              <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(true)">Expand All Dossiers</button>
+              <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(false)">Collapse All</button>
+              <button type="button" class="comic-modal-close" onclick="window.closeComicExplainerModal()" title="Close">&times;</button>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <button type="button" class="comic-btn-expand-all" id="comic-peek-btn" onclick="window.toggleComicModalTransparency()" title="Peek at dashboard behind modal">Peek Behind</button>
-            <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(true)">Expand All Dossiers</button>
-            <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(false)">Collapse All</button>
-            <button type="button" class="comic-modal-close" onclick="window.closeComicExplainerModal()" title="Close">&times;</button>
+
+          <!-- Filter Bar -->
+          <div class="comic-modal-filterbar">
+            <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
+            <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">Security &amp; Sentinel</button>
+            <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">Google ADK &amp; Triage</button>
+            <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">RAG &amp; AST Blast Radius</button>
+            <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">MCP &amp; A2A Protocols</button>
+            <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">FSM &amp; CrewAI Flows</button>
+          </div>
+
+          <!-- Scrollable Cards Grid -->
+          <div class="comic-modal-body" id="comic-cards-container">
+            ${topicsToRender.map(t => renderComicCloudCard(t, false)).join("")}
           </div>
         </div>
-
-        <!-- Filter Bar -->
-        <div class="comic-modal-filterbar">
-          <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
-          <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">Security &amp; Sentinel</button>
-          <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">Google ADK &amp; Triage</button>
-          <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">RAG &amp; AST Blast Radius</button>
-          <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">MCP &amp; A2A Protocols</button>
-          <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">FSM &amp; CrewAI Flows</button>
-        </div>
-
-        <!-- Scrollable Cards Grid -->
-        <div class="comic-modal-body" id="comic-cards-container">
-          ${topicsToRender.map(t => renderComicCloudCard(t, false)).join("")}
-        </div>
-      </div>
-    `;
+      `;
+    } else {
+      container.innerHTML = topicsToRender.map(t => renderComicCloudCard(t, false)).join("");
+      const countBadge = modal.querySelector("#comic-modal-count-badge");
+      if (countBadge) countBadge.textContent = `${topicsToRender.length} TOPICS COVERED`;
+    }
 
     modal.onclick = function (e) {
       if (e.target === modal) window.closeComicExplainerModal();
@@ -499,7 +506,11 @@
 
     modal.classList.remove("peek-mode");
     modal.classList.add("open");
-    modal.style.display = "flex";
+    modal.style.setProperty("display", "flex", "important");
+    modal.style.setProperty("opacity", "1", "important");
+    modal.style.setProperty("pointer-events", "auto", "important");
+    modal.style.setProperty("visibility", "visible", "important");
+    modal.style.setProperty("z-index", "2147483647", "important");
 
     // If specific topic requested, expand its drawer
     if (filterId) {
@@ -525,9 +536,14 @@
     const modal = document.getElementById("comic-explainer-modal");
     if (modal) {
       modal.classList.remove("open", "peek-mode");
-      modal.style.display = "none";
+      modal.style.setProperty("display", "none", "important");
+      modal.style.setProperty("opacity", "0", "important");
+      modal.style.setProperty("pointer-events", "none", "important");
     }
   };
+
+  window._realOpenComicExplainerModal = window.openComicExplainerModal;
+  window._realCloseComicExplainerModal = window.closeComicExplainerModal;
 
   window.toggleAllComicDetails = function (expand) {
     const modal = document.getElementById("comic-explainer-modal");
@@ -639,6 +655,15 @@
 
   // Mount Floating Comic Trigger Button in Corner & Init Inpage Container
   function initComicComponents() {
+    // 0. Wire up Header Comic Explainer Button if present
+    const headerBtns = document.querySelectorAll("#header-comic-explainer-btn, .btn-comic-header");
+    headerBtns.forEach(btn => {
+      btn.onclick = (e) => {
+        if (e) e.preventDefault();
+        window.openComicExplainerModal();
+      };
+    });
+
     // 1. Floating trigger button
     if (!document.getElementById("comic-floating-trigger")) {
       const btn = document.createElement("button");

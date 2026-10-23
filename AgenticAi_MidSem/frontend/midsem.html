@@ -19,6 +19,7 @@ window.location.replace("index.html#earlier-midsem");
 <link rel="stylesheet" href="style.css?v=3.1.0">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="comic_explainer.js?v=3.3.0"></script>
 </head>
 <body>
 
@@ -40,7 +41,63 @@ window.location.replace("index.html#earlier-midsem");
   </nav>
 
   <div class="nav-actions">
-    <button type="button" class="btn-serious magnetic-btn" onclick="window.openComicExplainerModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #FEF08A 0%, #FDE047 100%); color:#0F172A; font-weight:800; border:2px solid #0F172A; box-shadow:3px 3px 0px #0F172A; cursor:pointer;" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
+  <script>
+    window.openComicExplainerModal = function(filterId) {
+      if (typeof window._realOpenComicExplainerModal === 'function') {
+        window._realOpenComicExplainerModal(filterId);
+        return;
+      }
+      var modal = document.getElementById('comic-explainer-modal');
+      if (modal) {
+        modal.classList.remove('peek-mode');
+        modal.classList.add('open');
+        modal.style.setProperty('display', 'flex', 'important');
+        modal.style.setProperty('opacity', '1', 'important');
+        modal.style.setProperty('pointer-events', 'auto', 'important');
+        modal.style.setProperty('visibility', 'visible', 'important');
+        modal.style.setProperty('z-index', '2147483647', 'important');
+      }
+      if (typeof window.KAVACH_COMIC_TOPICS !== 'undefined' && typeof window.renderComicCloudCard === 'function') {
+        var container = document.getElementById('comic-cards-container');
+        if (container && (!container.children || container.children.length === 0)) {
+          var topics = filterId ? window.KAVACH_COMIC_TOPICS.filter(function(t) { return t.id === filterId; }) : window.KAVACH_COMIC_TOPICS;
+          container.innerHTML = topics.map(function(t) { return window.renderComicCloudCard(t, false); }).join('');
+        }
+      } else {
+        var s = document.createElement('script');
+        s.src = 'comic_explainer.js?v=' + Date.now();
+        s.onload = function() {
+          if (typeof window.openComicExplainerModal === 'function') {
+            window.openComicExplainerModal(filterId);
+          }
+        };
+        document.head.appendChild(s);
+      }
+    };
+
+    window.closeComicExplainerModal = function() {
+      if (typeof window._realCloseComicExplainerModal === 'function') {
+        window._realCloseComicExplainerModal();
+        return;
+      }
+      var modal = document.getElementById('comic-explainer-modal');
+      if (modal) {
+        modal.classList.remove('open', 'peek-mode');
+        modal.style.setProperty('display', 'none', 'important');
+        modal.style.setProperty('opacity', '0', 'important');
+        modal.style.setProperty('pointer-events', 'none', 'important');
+      }
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (window.closeProfessorReviewModal) window.closeProfessorReviewModal();
+        if (window.closeCourseCockpitModal) window.closeCourseCockpitModal();
+        window.closeComicExplainerModal();
+      }
+    });
+  </script>
+    <button type="button" id="header-comic-explainer-btn" class="btn-comic-header btn-serious magnetic-btn" onclick="window.openComicExplainerModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #FEF08A 0%, #FDE047 100%); color:#0F172A; font-weight:800; border:2px solid #0F172A; box-shadow:2.5px 2.5px 0px #0F172A; cursor:pointer;" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
       Comic Explainers (ELI5)
     </button>
     <button type="button" class="btn-serious magnetic-btn" onclick="window.openProfessorReviewModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
@@ -1466,6 +1523,48 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
 <script src="app.js?v=3.2.0"></script>
 <script src="course_cockpit.js?v=3.2.0"></script>
 <script src="improvised_controller.js?v=3.2.0"></script>
+
+<!-- KAVACH COMIC CHRONICLES ELI5 EXPLAINER MODAL -->
+<div id="comic-explainer-modal" class="comic-modal-backdrop" style="display:none !important; position:fixed !important; top:0 !important; left:0 !important; width:100vw !important; height:100vh !important; background:rgba(15,23,42,0.35) !important; backdrop-filter:blur(2px) !important; z-index:2147483647 !important; align-items:center !important; justify-content:center !important; padding:20px 16px !important; box-sizing:border-box !important;">
+  <div class="comic-modal-window">
+    <!-- Sticky Header with Comic Title -->
+    <div class="comic-modal-header">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="comic-action-badge" style="background:#0F172A; color:#FEF08A; font-size:0.85rem; padding:6px 12px;">ELI5</span>
+        <div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <h2 class="comic-modal-h2">KAVACH Comic-Book Chronicles &middot; ELI5 Explainer Clouds</h2>
+            <span class="comic-count-badge" id="comic-modal-count-badge">20 TOPICS COVERED</span>
+          </div>
+          <p class="comic-modal-sub">
+            CSE3101: Agentic AI &middot; Fun 1-liner animated comic clouds for every topic, backed by 100% rigorous mathematics &amp; code dossiers!
+          </p>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="comic-btn-expand-all" id="comic-peek-btn" onclick="window.toggleComicModalTransparency()" title="Peek at dashboard behind modal">Peek Behind</button>
+        <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(true)">Expand All Dossiers</button>
+        <button type="button" class="comic-btn-expand-all" onclick="window.toggleAllComicDetails(false)">Collapse All</button>
+        <button type="button" class="comic-modal-close" onclick="window.closeComicExplainerModal()" title="Close">&times;</button>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="comic-modal-filterbar">
+      <button type="button" class="comic-filter-chip active" onclick="window.filterComicTopics('all')">All 20 Topics</button>
+      <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('security')">Security &amp; Sentinel</button>
+      <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('adk')">Google ADK &amp; Triage</button>
+      <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('rag')">RAG &amp; AST Blast Radius</button>
+      <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('protocols')">MCP &amp; A2A Protocols</button>
+      <button type="button" class="comic-filter-chip" onclick="window.filterComicTopics('orchestration')">FSM &amp; CrewAI Flows</button>
+    </div>
+
+    <!-- Scrollable Cards Grid -->
+    <div class="comic-modal-body" id="comic-cards-container">
+      <!-- Populated dynamically by comic_explainer.js -->
+    </div>
+  </div>
+</div>
 
 <!-- PROFESSOR PRANSHU TIWARI PROJECT REVIEW STANDARDIZATION MODAL (11/11) -->
 <div id="professor-review-modal" class="course-modal-backdrop" style="display:none !important; position:fixed !important; top:0 !important; left:0 !important; width:100vw !important; height:100vh !important; background:rgba(4,8,16,0.92) !important; backdrop-filter:blur(10px) !important; z-index:2147483647 !important; align-items:center !important; justify-content:center !important; padding:16px !important; box-sizing:border-box !important;">
