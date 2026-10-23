@@ -4845,16 +4845,13 @@ git push space main
   window.switchProfTab = switchProfTab;
   window.openProfessorReviewModal = openProfessorReviewModal;
   window.closeProfessorReviewModal = closeProfessorReviewModal;
-  window.openCourseCockpitModal = openCourseCockpitModal;
-  window.closeCourseCockpitModal = closeCourseCockpitModal;
-  window.openMedicalTriageDemoModal = openMedicalTriageDemoModal;
-  window.closeMedicalTriageModal = closeMedicalTriageModal;
+  // Note: openCourseCockpitModal, closeCourseCockpitModal, openMedicalTriageDemoModal, closeMedicalTriageModal are already defined on window above
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
-      closeProfessorReviewModal();
-      closeCourseCockpitModal();
-      closeMedicalTriageModal();
+      if (typeof closeProfessorReviewModal === "function") closeProfessorReviewModal();
+      if (typeof window.closeCourseCockpitModal === "function") window.closeCourseCockpitModal();
+      if (typeof window.closeMedicalTriageModal === "function") window.closeMedicalTriageModal();
     }
   });
 

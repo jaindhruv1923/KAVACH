@@ -347,14 +347,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <script>
     window.openProfessorReviewModal = function() {
-      if (typeof window.switchProfTab === 'function') {
-        var modal = document.getElementById('professor-review-modal');
-        if (modal) {
-          modal.classList.add('open');
-          modal.style.setProperty('display', 'flex', 'important');
-          modal.style.setProperty('opacity', '1', 'important');
-          modal.style.setProperty('pointer-events', 'auto', 'important');
-        }
+      var modal = document.getElementById('professor-review-modal');
+      if (modal && typeof window.switchProfTab === 'function') {
+        modal.classList.add('open');
+        modal.style.setProperty('display', 'flex', 'important');
+        modal.style.setProperty('opacity', '1', 'important');
+        modal.style.setProperty('pointer-events', 'auto', 'important');
         window.switchProfTab('blackboard');
       } else {
         var s = document.createElement('script');
@@ -379,14 +377,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.openCourseCockpitModal = function() {
-      if (typeof window.switchCockpitTab === 'function') {
-        var modal = document.getElementById('course-cockpit-modal');
-        if (modal) {
-          modal.classList.add('open');
-          modal.style.setProperty('display', 'flex', 'important');
-          modal.style.setProperty('opacity', '1', 'important');
-          modal.style.setProperty('pointer-events', 'auto', 'important');
-        }
+      var modal = document.getElementById('course-cockpit-modal');
+      if (modal && typeof window.switchCockpitTab === 'function') {
+        modal.classList.add('open');
+        modal.style.setProperty('display', 'flex', 'important');
+        modal.style.setProperty('opacity', '1', 'important');
+        modal.style.setProperty('pointer-events', 'auto', 'important');
         window.switchCockpitTab('overview');
       } else {
         var s = document.createElement('script');
@@ -411,14 +407,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.openMedicalTriageDemoModal = function() {
-      if (typeof window.switchTriageTab === 'function') {
-        var modal = document.getElementById('medical-triage-modal');
-        if (modal) {
-          modal.classList.add('open');
-          modal.style.setProperty('display', 'flex', 'important');
-          modal.style.setProperty('opacity', '1', 'important');
-          modal.style.setProperty('pointer-events', 'auto', 'important');
-        }
+      var modal = document.getElementById('medical-triage-modal');
+      if (modal && typeof window.switchTriageTab === 'function') {
+        modal.classList.add('open');
+        modal.style.setProperty('display', 'flex', 'important');
+        modal.style.setProperty('opacity', '1', 'important');
+        modal.style.setProperty('pointer-events', 'auto', 'important');
       } else {
         var s = document.createElement('script');
         s.src = 'course_cockpit.js?v=' + Date.now();
