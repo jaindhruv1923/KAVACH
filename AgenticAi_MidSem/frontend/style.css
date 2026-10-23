@@ -9565,3 +9565,407 @@ button:active:not(:disabled),
   animation: spin 0.8s linear infinite;
 }
 
+/* ==========================================================================
+   COMIC CLOUD EXPLAINER & ELI5 THOUGHT BUBBLE SYSTEM
+   ========================================================================== */
+
+@keyframes comicFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-0.4deg);
+  }
+}
+
+@keyframes comicPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes cloudPuff {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Comic Cloud Card */
+.comic-cloud-card {
+  position: relative;
+  margin-bottom: 24px;
+  animation: cloudPuff 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Authentic Comic Thought Bubble with Puffy Scalloped Appearance & Pop Shadow */
+.comic-thought-bubble {
+  position: relative;
+  background: #FFFFFF;
+  border: 2.5px solid #0F172A;
+  border-radius: 24px;
+  padding: 22px 26px;
+  box-shadow: 5px 6px 0px #0F172A;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: comicFloat 5s ease-in-out infinite;
+}
+
+.comic-thought-bubble:hover {
+  transform: translateY(-3px);
+  box-shadow: 7px 9px 0px #0F172A;
+}
+
+/* Cloud Tail / Little Thought Bubbles */
+.comic-thought-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 36px;
+  width: 14px;
+  height: 14px;
+  background: #FFFFFF;
+  border: 2.5px solid #0F172A;
+  border-radius: 50%;
+  box-shadow: 2px 2px 0px #0F172A;
+}
+
+.comic-thought-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 24px;
+  width: 9px;
+  height: 9px;
+  background: #FFFFFF;
+  border: 2px solid #0F172A;
+  border-radius: 50%;
+  box-shadow: 1px 1px 0px #0F172A;
+}
+
+/* Header & Badges */
+.comic-cloud-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.comic-action-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.76rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 2px solid #0F172A;
+  box-shadow: 2px 2px 0px #0F172A;
+  letter-spacing: 0.05em;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+.comic-topic-title {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.01em;
+}
+
+/* Comic Speech One-Liner */
+.comic-speech-text {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #1E293B;
+  background: #FEF9C3;
+  border: 2px dashed #CA8A04;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+}
+
+/* ELI5 Metaphor Bar */
+.comic-metaphor-bar {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: #334155;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 9px 14px;
+  margin-bottom: 14px;
+}
+
+/* Footer & Buttons */
+.comic-cloud-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.comic-btn-toggle {
+  background: #0F172A;
+  color: #FFFFFF;
+  border: 2px solid #0F172A;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #2563EB;
+  transition: all 0.15s ease;
+}
+
+.comic-btn-toggle:hover {
+  background: #2563EB;
+  border-color: #1D4ED8;
+  transform: translateY(-1px);
+  box-shadow: 3px 4px 0px #0F172A;
+}
+
+.comic-rubric-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* Technical Dossier Expansion Drawer */
+.comic-details-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0;
+  background: #F8FAFC;
+  border: 2px solid #0F172A;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  margin-top: -6px;
+  box-shadow: 4px 5px 0px #0F172A;
+}
+
+.comic-details-drawer.open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 18px 24px;
+}
+
+.comic-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comic-detail-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.comic-math-code {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #7C3AED;
+  background: #FAF5FF;
+  border: 1px solid #E9D5FF;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.comic-detail-p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #1E293B;
+}
+
+.comic-file-path {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: #0F172A;
+  background: #E2E8F0;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.comic-cmd-code {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: #059669;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Modal Window for Full Comic Explainer Gallery */
+.comic-modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  z-index: 2147483647;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.comic-modal-window {
+  max-width: 1100px;
+  width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: #FFFBEB;
+  border: 3.5px solid #0F172A;
+  border-radius: 20px;
+  box-shadow: 10px 12px 0px #0F172A;
+  overflow: hidden;
+}
+
+.comic-modal-header {
+  padding: 18px 24px;
+  background: #FEF08A;
+  border-bottom: 3px solid #0F172A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.comic-header-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(2px 2px 0px #0F172A);
+  animation: comicFloat 3s ease-in-out infinite;
+}
+
+.comic-modal-h2 {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #0F172A;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.comic-count-badge {
+  background: #0F172A;
+  color: #FEF08A;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.comic-modal-sub {
+  margin: 4px 0 0 0;
+  font-size: 0.8rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.comic-btn-expand-all {
+  background: #FFFFFF;
+  border: 2px solid #0F172A;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #0F172A;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #0F172A;
+}
+
+.comic-btn-expand-all:hover {
+  background: #F1F5F9;
+  transform: translateY(-1px);
+}
+
+.comic-modal-close {
+  background: #EF4444;
+  border: 2px solid #0F172A;
+  color: #FFFFFF;
+  font-size: 1.4rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0px #0F172A;
+  line-height: 1;
+}
+
+.comic-modal-close:hover {
+  background: #DC2626;
+  transform: scale(1.08);
+}
+
+.comic-modal-filterbar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #FFFFFF;
+  border-bottom: 2px solid #0F172A;
+  overflow-x: auto;
+}
+
+.comic-filter-chip {
+  background: #F1F5F9;
+  border: 2px solid #CBD5E1;
+  color: #334155;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.comic-filter-chip.active,
+.comic-filter-chip:hover {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-color: #0F172A;
+  box-shadow: 2px 2px 0px #38BDF8;
+}
+
+.comic-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  background: #F8FAFC;
+}
+
+

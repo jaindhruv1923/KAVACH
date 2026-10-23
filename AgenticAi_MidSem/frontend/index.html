@@ -439,7 +439,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.closeMedicalTriageModal();
       }
     });
-  </script>
+      <button type="button" id="header-comic-explainer-btn" class="btn-serious magnetic-btn" onclick="window.openComicExplainerModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #FEF08A 0%, #FDE047 100%); color:#0F172A; font-weight:800; border:2px solid #0F172A; box-shadow:3px 3px 0px #0F172A; cursor:pointer;" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
+        💭 Comic Explainers (ELI5)
+      </button>
       <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
         Professor Review (11/11)
       </button>
@@ -5617,6 +5619,7 @@ def parse_deploy_spec(user_payload):
 <script src="improvised_controller.js?v=3.2.0"></script>
 <script src="course_cockpit.js?v=3.2.0"></script>
 <script src="academic_weapon.js?v=3.2.0"></script>
+<script src="comic_explainer.js?v=3.2.0"></script>
 <!-- Floating Interactive Pathway Telemetry Dock -->
 <div id="floating-pathway-dock" class="floating-pathway-dock" aria-live="polite">
   <div class="dock-status-label">

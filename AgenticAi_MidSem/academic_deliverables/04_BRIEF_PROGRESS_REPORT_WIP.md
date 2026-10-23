@@ -24,6 +24,7 @@ $$\text{User Request} \longrightarrow \text{Sentinel Check} \longrightarrow \tex
 * **Automated Pytest Test Suite:** **306 Passed out of 306 Tests (100% Pass Rate).**
 * **Advanced Modules Pre-Delivered:** Google ADK 8-Hook Callbacks, Canonical Medical Triage Pipeline, CrewAI Flows, Anthropic MCP Server, and Google A2A Byzantine Protocol.
 * **Working Prototype:** Fully interactive dark-mode dashboard running at [`http://127.0.0.1:8000`](http://127.0.0.1:8000).
+* **Interactive Comic Cloud Explainers (ELI5):** Animated comic-book thought-bubble system translating all 15 syllabus and architectural topics into punchy 1-liners and intuitive analogies, backed by full mathematical dossiers.
 
 ---
 
