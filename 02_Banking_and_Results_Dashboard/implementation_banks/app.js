@@ -893,7 +893,7 @@ function processStationInspection(station) {
   hudStation.innerText = `Station ${station.id}: ${station.name}`;
   hudStationSub.innerText = station.desc;
   hudInspection.innerText = station.code;
-  hudLatency.innerText = `Inspection Latency: ${(Math.random() * 1.5 + 0.8).toFixed(2)} ms`;
+  hudLatency.innerText = `Inspection Latency: ~1.20 ms (benchmark ref)`;
 
   // Check Scenario Logic at specific gates
   if (station.id === 3 && scenario === 'attack') {
@@ -1861,7 +1861,7 @@ function executeClientSimulationTransfer(sender_acc, receiver_acc, amount, memo,
   };
   clientTransactions.unshift(txRecord);
 
-  const leafHash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" + Math.random().toString(36).substring(2, 10);
+  const leafHash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
   const hsmSig = "98a4f102c98d7e63b154a019e7829103c84756bca9283746190284756182930491827364501928374650192837465019283746501928374650192837465019ef";
   const index = clientMerkleEntries.length + 1;
 

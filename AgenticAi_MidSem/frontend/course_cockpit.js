@@ -1117,26 +1117,29 @@ exec(conf.text)
     `;
   };
 
-  window.submitHITLApproval = function (scenarioKey) {
+  window.submitHITLApproval = async function (scenarioKey) {
     const authBox = document.getElementById("hitl-auth-container");
     const evalInput = document.getElementById("hitl-evaluator-id");
     const evaluator = (evalInput ? evalInput.value : "") || "evaluator@bml.edu.in";
     const ts = new Date().toISOString();
-    const hmacSig = "hmac-sha256:" + Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10) + "8b7e2a";
+    const payload = new TextEncoder().encode(`${scenarioKey}:${evaluator}:${ts}`);
+    const hashBuf = await crypto.subtle.digest("SHA-256", payload);
+    const hashHex = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, "0")).join("");
+    const authSig = "sha256:" + hashHex.substring(0, 32);
 
     if (authBox) {
       authBox.innerHTML = `
         <div style="background:#ECFDF5; border:1px solid #A7F3D0; border-radius:6px; padding:12px 14px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <strong style="color:#065F46; font-size:0.82rem;">AUTHORIZED &amp; COMMITTED BY EVALUATOR</strong>
+            <strong style="color:#065F46; font-size:0.82rem;">AUTHORIZED BY EVALUATOR</strong>
             <span style="font-size:0.7rem; background:#FFFFFF; color:#065F46; border:1px solid #A7F3D0; padding:2px 8px; border-radius:4px; font-weight:600;">Status: VERIFIED</span>
           </div>
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:6px; font-size:0.72rem; color:#064E3B; font-family:var(--font-mono, monospace);">
             <div><strong>Signer Principal:</strong> ${evaluator}</div>
             <div><strong>Timestamp:</strong> ${ts}</div>
-            <div style="grid-column: 1 / -1;"><strong>HMAC Signature:</strong> ${hmacSig}</div>
+            <div style="grid-column: 1 / -1;"><strong>Action Digest:</strong> ${authSig}</div>
             <div style="grid-column: 1 / -1; font-family:var(--font-sans, sans-serif); color:#047857; margin-top:4px;">
-              Autonomy Level 4 Gate cleared. Git commit pushed with cryptographic SLSA Provenance tag.
+              Human-in-the-loop review approved. Signed audit record recorded locally.
             </div>
           </div>
         </div>

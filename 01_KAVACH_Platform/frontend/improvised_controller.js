@@ -288,7 +288,7 @@
       "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
       "bomFormat": "CycloneDX",
       "specVersion": "1.5",
-      "serialNumber": "urn:uuid:" + Math.random().toString(36).substring(2, 15),
+      "serialNumber": "urn:uuid:" + (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : "00000000-0000-4000-8000-000000000000"),
       "version": 1,
       "metadata": {
         "timestamp": new Date().toISOString(),
@@ -530,21 +530,24 @@
     }).join("");
   };
 
-  window.actHitlRun = function (idx, decision) {
+  window.actHitlRun = async function (idx, decision) {
     if (MOCK_HITL_RUNS[idx]) {
       MOCK_HITL_RUNS[idx].status = decision;
       window.renderHitlInbox();
       const toast = document.getElementById("hitl-action-toast");
       if (toast) {
         toast.style.display = "block";
-        const txHash = "0x" + Array.from({length: 32}, () => Math.floor(Math.random()*16).toString(16)).join("");
+        const payload = new TextEncoder().encode(`${MOCK_HITL_RUNS[idx].id}:${decision}:${Date.now()}`);
+        const hashBuf = await crypto.subtle.digest("SHA-256", payload);
+        const hashHex = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, "0")).join("");
+        const txHash = "sha256:" + hashHex.substring(0, 32);
         toast.innerHTML = `
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
             <div>
-              Cryptographic Merkle Proof: Run <strong>${MOCK_HITL_RUNS[idx].id}</strong> recorded as <strong>${decision}</strong> by SecOps Admin.<br>
-              <span style="font-family:var(--font-mono);font-size:0.72rem;color:rgba(255,255,255,0.8);">Tx Hash: ${txHash}</span>
+              HITL Operator Action Logged: Run <strong>${MOCK_HITL_RUNS[idx].id}</strong> recorded as <strong>${decision}</strong> by SecOps Admin.<br>
+              <span style="font-family:var(--font-mono);font-size:0.72rem;color:rgba(255,255,255,0.8);">Action Digest: ${txHash}</span>
             </div>
-            <button type="button" class="pill-btn" style="background:#FFF;color:#0F172A;padding:2px 8px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText('${txHash}')">Copy Tx</button>
+            <button type="button" class="pill-btn" style="background:#FFF;color:#0F172A;padding:2px 8px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText('${txHash}')">Copy Digest</button>
           </div>
         `;
         setTimeout(() => { toast.style.display = "none"; }, 5000);
