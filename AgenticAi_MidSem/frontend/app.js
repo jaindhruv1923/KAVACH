@@ -5521,20 +5521,9 @@ CI/CD Pipeline: APPROVED & MERGED TO PRODUCTION`
 window.selectEnterpriseStage = selectEnterpriseStage;
 
 // ==========================================================================
-// INTERACTIVE NEURAL CONSTELLATION CANVAS (DISABLED PER USER REQUEST)
+// INTERACTIVE NEURAL CONSTELLATION CANVAS (STRICT MONOCHROME)
 // ==========================================================================
-function initInteractiveParticleWeb() {
-  const canvas = document.getElementById("interactive-particle-web");
-  if (canvas && canvas.parentNode) {
-    canvas.parentNode.removeChild(canvas);
-  }
-  return;
+if (typeof window.initInteractiveParticleWeb === 'function') {
+  window.initInteractiveParticleWeb();
 }
 
-
-window.initInteractiveParticleWeb = initInteractiveParticleWeb;
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initInteractiveParticleWeb);
-} else {
-  initInteractiveParticleWeb();
-}

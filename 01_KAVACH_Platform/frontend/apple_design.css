@@ -1,56 +1,56 @@
 /* ==========================================================================
-   KAVACH — APPLE PRO CUPERTINO HIGH-CONTRAST DESIGN SYSTEM
-   Inspired by apple.com/apple-intelligence, Pro Display & macOS Sequoia
-   Black & White Ultra-High-Contrast Hierarchy + Animated Contrast Sweep Hover
+   KAVACH — APPLE PRO CUPERTINO STRICT BLACK & WHITE DESIGN SYSTEM
+   Ultra-High-Contrast Monochrome Hierarchy + Signature Contrast Sweep Hover
+   Pure Space Black Canvas, Titanium Glass Cards, Pure White Dots & Laser Mesh
    ========================================================================== */
 
 :root {
-  /* Surface Layers: Apple Space Black & Titanium Glass */
+  /* Surface Layers: Pitch Black & Titanium Obsidian Glass */
   --bg-base: #000000 !important;
   --bg-canvas: #000000 !important;
-  --bg-surface: #111113 !important;
-  --bg-surface-elevated: #18181B !important;
-  --bg-surface-hover: #222226 !important;
-  --bg-surface-active: #2D2D32 !important;
+  --bg-surface: #0C0C0E !important;
+  --bg-surface-elevated: #141416 !important;
+  --bg-surface-hover: #1E1E22 !important;
+  --bg-surface-active: #28282D !important;
 
-  /* Borders: Ultra-Fine Laser Translucent Borders */
+  /* Borders: Ultra-Fine Laser Translucent White Borders */
   --border-subtle: rgba(255, 255, 255, 0.16) !important;
-  --border-medium: rgba(255, 255, 255, 0.26) !important;
+  --border-medium: rgba(255, 255, 255, 0.28) !important;
   --border-hover: #FFFFFF !important;
-  --border-focus: #0071E3 !important;
+  --border-focus: #FFFFFF !important;
 
-  /* Typography: Razor-Sharp High-Contrast Hierarchy (Black & White) */
+  /* Typography: Razor-Sharp High-Contrast Monochrome (Pure White & Crisp Silver) */
   --text-primary: #FFFFFF !important;
   --text-secondary: #F1F5F9 !important;
   --text-dim: #CBD5E1 !important;
   --text-disabled: #94A3B8 !important;
 
-  /* Apple Brand & Status Accents */
-  --accent: #FFFFFF !important;           /* High-contrast Apple White */
-  --accent-secondary: #0071E3 !important;
-  --accent-gradient: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%) !important;
+  /* Apple Brand & Status Accents: 100% Monochrome Keynote */
+  --accent: #FFFFFF !important;
+  --accent-secondary: #E2E8F0 !important;
+  --accent-gradient: linear-gradient(180deg, #FFFFFF 0%, #D4D4D8 100%) !important;
   --accent-glow: rgba(255, 255, 255, 0.35) !important;
   --accent-subtle: rgba(255, 255, 255, 0.12) !important;
 
-  /* High-Contrast Luminous Status Palette (Readable on Black) */
-  --safe: #30D158 !important;             /* Apple Green */
-  --safe-bg: rgba(48, 209, 88, 0.16) !important;
-  --safe-border: rgba(48, 209, 88, 0.45) !important;
-  --safe-glow: rgba(48, 209, 88, 0.3) !important;
+  /* Status Tokens: Clean High-Contrast Monochrome */
+  --safe: #FFFFFF !important;
+  --safe-bg: rgba(255, 255, 255, 0.08) !important;
+  --safe-border: rgba(255, 255, 255, 0.28) !important;
+  --safe-glow: rgba(255, 255, 255, 0.25) !important;
 
-  --review: #FFD60A !important;           /* Apple Bright Amber */
-  --review-bg: rgba(255, 214, 10, 0.16) !important;
-  --review-border: rgba(255, 214, 10, 0.45) !important;
-  --review-glow: rgba(255, 214, 10, 0.3) !important;
+  --review: #FFFFFF !important;
+  --review-bg: rgba(255, 255, 255, 0.08) !important;
+  --review-border: rgba(255, 255, 255, 0.28) !important;
+  --review-glow: rgba(255, 255, 255, 0.25) !important;
 
-  --blocked: #FF453A !important;          /* Apple Luminous Red */
-  --blocked-bg: rgba(255, 69, 58, 0.16) !important;
-  --blocked-border: rgba(255, 69, 58, 0.45) !important;
-  --blocked-glow: rgba(255, 69, 58, 0.3) !important;
+  --blocked: #FFFFFF !important;
+  --blocked-bg: rgba(255, 255, 255, 0.08) !important;
+  --blocked-border: rgba(255, 255, 255, 0.28) !important;
+  --blocked-glow: rgba(255, 255, 255, 0.25) !important;
 
   --neutral: #CBD5E1 !important;
-  --neutral-bg: rgba(203, 213, 225, 0.12) !important;
-  --neutral-border: rgba(203, 213, 225, 0.35) !important;
+  --neutral-bg: rgba(255, 255, 255, 0.06) !important;
+  --neutral-border: rgba(255, 255, 255, 0.2) !important;
 
   /* Typography Font Stacks */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", sans-serif !important;
@@ -80,6 +80,32 @@ html, body {
   letter-spacing: -0.015em !important;
 }
 
+/* Canvas sits at z-index: 0 so it floats in space behind all UI cards */
+#interactive-particle-web {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  opacity: 0.75 !important;
+  display: block !important;
+}
+
+/* Foreground content stays cleanly elevated at z-index >= 2 */
+.app-header,
+.container,
+main,
+#product-view,
+.product-hero,
+.project-scope-banner,
+.defense-hero,
+.terminal-section {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
 /* ==========================================================================
    UNIVERSAL TEXT READABILITY OVERRIDES (High-Contrast Crisp White & Silver)
    ========================================================================== */
@@ -91,6 +117,18 @@ h1, h2, h3, h4, h5, h6,
 .terminal-title, strong, b, dt, th {
   color: #FFFFFF !important;
   font-weight: 700 !important;
+}
+
+/* Headline Titanium Gradients (Monochrome Apple Keynote) */
+.hero-title span,
+.defense-title span,
+.brand-title span,
+h1 span, h2 span, h3 span,
+.section-title span {
+  background: linear-gradient(180deg, #FFFFFF 0%, #D4D4D8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #FFFFFF !important;
 }
 
 /* Body Text & Paragraphs: Bright Crisp Silver-White */
@@ -124,89 +162,55 @@ p, .hero-subtitle, .section-intro p, .section-desc, .defense-subtitle,
 [style*="color:#1e293b"], [style*="color: #1e293b"],
 [style*="color:#334155"], [style*="color: #334155"],
 [style*="color:#475569"], [style*="color: #475569"],
-[style*="color:#111827"], [style*="color: #111827"] {
-  color: #FFFFFF !important;
-}
-
-/* Secondary muted inline text */
+[style*="color:#111827"], [style*="color: #111827"],
 [style*="color:#64748B"], [style*="color: #64748B"],
 [style*="color:#94A3B8"], [style*="color: #94A3B8"],
 [style*="color:#86868B"], [style*="color: #86868B"] {
-  color: #CBD5E1 !important;
+  color: #F1F5F9 !important;
 }
 
-/* Colored Status Inline Text: Convert to High-Luminance Readable Hues */
+/* Eliminate All Rainbow Status Inline Text: Force High-Luminance White */
 [style*="color:#065F46"], [style*="color: #065F46"],
 [style*="color:#047857"], [style*="color: #047857"],
-[style*="color:#059669"], [style*="color: #059669"] {
-  color: #4ADE80 !important; /* Luminous Emerald */
-}
-
+[style*="color:#059669"], [style*="color: #059669"],
 [style*="color:#991B1B"], [style*="color: #991B1B"],
 [style*="color:#DC2626"], [style*="color: #DC2626"],
-[style*="color:#B91C1C"], [style*="color: #B91C1C"] {
-  color: #FF6B8B !important; /* Luminous Red/Pink */
-}
-
+[style*="color:#B91C1C"], [style*="color: #B91C1C"],
 [style*="color:#854D0E"], [style*="color: #854D0E"],
 [style*="color:#D97706"], [style*="color: #D97706"],
-[style*="color:#B45309"], [style*="color: #B45309"] {
-  color: #FDE047 !important; /* Luminous Yellow/Amber */
-}
-
+[style*="color:#B45309"], [style*="color: #B45309"],
 [style*="color:#1D4ED8"], [style*="color: #1D4ED8"],
 [style*="color:#2563EB"], [style*="color: #2563EB"],
-[style*="color:#1E40AF"], [style*="color: #1E40AF"] {
-  color: #60A5FA !important; /* Luminous Blue */
-}
-
+[style*="color:#1E40AF"], [style*="color: #1E40AF"],
 [style*="color:#6B21A8"], [style*="color: #6B21A8"],
 [style*="color:#7C3AED"], [style*="color: #7C3AED"] {
-  color: #C084FC !important; /* Luminous Purple */
+  color: #FFFFFF !important;
 }
 
 /* ==========================================================================
-   CONVERT ALL LIGHT/WHITE CONTAINERS INTO APPLE OBSIDIAN TILES
+   CONVERT ALL LIGHT/WHITE CONTAINERS INTO TITANIUM OBSIDIAN TILES
    ========================================================================== */
 [style*="background:#FFFFFF"], [style*="background: #FFFFFF"],
 [style*="background:#FFF"], [style*="background: #FFF"],
 [style*="background:#F8FAFC"], [style*="background: #F8FAFC"],
-[style*="background:#F1F5F9"], [style*="background: #F1F5F9"] {
-  background: #151518 !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
-  color: #FFFFFF !important;
+[style*="background:#F1F5F9"], [style*="background: #F1F5F9"],
+.scope-context-pill {
+  background: #0E0E10 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #F1F5F9 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Light Alert Containers Re-mapped to Luminous Dark Tints */
-[style*="background:#FEF2F2"], [style*="background: #FEF2F2"] {
-  background: rgba(255, 69, 58, 0.16) !important;
-  border-color: rgba(255, 69, 58, 0.45) !important;
-  color: #FECDD3 !important;
-}
-
-[style*="background:#ECFDF5"], [style*="background: #ECFDF5"] {
-  background: rgba(48, 209, 88, 0.16) !important;
-  border-color: rgba(48, 209, 88, 0.45) !important;
-  color: #D1FAE5 !important;
-}
-
-[style*="background:#EFF6FF"], [style*="background: #EFF6FF"] {
-  background: rgba(0, 113, 227, 0.16) !important;
-  border-color: rgba(0, 113, 227, 0.45) !important;
-  color: #DBEAFE !important;
-}
-
+/* Convert Pastels to Monochrome Dark Glass */
+[style*="background:#FEF2F2"], [style*="background: #FEF2F2"],
+[style*="background:#ECFDF5"], [style*="background: #ECFDF5"],
+[style*="background:#EFF6FF"], [style*="background: #EFF6FF"],
 [style*="background:#FFFBEB"], [style*="background: #FFFBEB"],
-[style*="background:#FEF9C3"], [style*="background: #FEF9C3"] {
-  background: rgba(255, 214, 10, 0.16) !important;
-  border-color: rgba(255, 214, 10, 0.45) !important;
-  color: #FEF3C7 !important;
-}
-
+[style*="background:#FEF9C3"], [style*="background: #FEF9C3"],
 [style*="background:#F3E8FF"], [style*="background: #F3E8FF"] {
-  background: rgba(191, 90, 242, 0.16) !important;
-  border-color: rgba(191, 90, 242, 0.45) !important;
-  color: #F3E8FF !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  color: #FFFFFF !important;
 }
 
 /* ==========================================================================
@@ -269,7 +273,7 @@ button > *,
 }
 
 /* --------------------------------------------------------------------------
-   GROUP A: WHITE BUTTONS (Black Text on White Pill)
+   GROUP A: WHITE BUTTONS (Solid Black Text on Solid White Pill)
    On hover: A deep black animated curtain sweeps in; text flips to Pure White!
    -------------------------------------------------------------------------- */
 .btn-serious,
@@ -352,7 +356,7 @@ button > *,
 }
 
 /* --------------------------------------------------------------------------
-   GROUP B: DARK / FROSTED GLASS BUTTONS (White Text on Dark Pill)
+   GROUP B: FROSTED GLASS BUTTONS (Solid White Text on Dark Pill)
    On hover: A pure white animated curtain sweeps in; text flips to Pure Black!
    -------------------------------------------------------------------------- */
 .btn-secondary,
@@ -366,11 +370,11 @@ button > *,
 .btn-dark {
   background: rgba(255, 255, 255, 0.08) !important;
   color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
   border-radius: 980px !important;
   font-weight: 600 !important;
   padding: 8px 18px !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 .btn-secondary > *,
@@ -451,199 +455,15 @@ button > *,
   stroke: #000000 !important;
 }
 
-/* --------------------------------------------------------------------------
-   GROUP C: SPECIALIZED HEADER ACTION BUTTONS (Vibrant, Fully Visible)
-   -------------------------------------------------------------------------- */
-
-/* 1. Comic Explainers (ELI5) */
-#header-comic-explainer-btn,
-.btn-comic-header {
-  background: #FFD60A !important;
-  color: #000000 !important;
-  border: 1.5px solid #FFD60A !important;
-  border-radius: 980px !important;
-  font-weight: 800 !important;
-  padding: 0 16px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 2px 10px rgba(255, 214, 10, 0.35) !important;
-}
-
-#header-comic-explainer-btn:hover,
-.btn-comic-header:hover {
-  background: #E5C000 !important;
-  color: #000000 !important;
-  box-shadow: 0 0 20px rgba(255, 214, 10, 0.6) !important;
-  transform: translateY(-1px) scale(1.02) !important;
-}
-
-/* 2. Professor Review (11/11) */
-#header-prof-review-btn {
-  background: #30D158 !important;
-  color: #000000 !important;
-  border: 1.5px solid #30D158 !important;
-  border-radius: 980px !important;
-  font-weight: 800 !important;
-  padding: 0 16px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 2px 10px rgba(48, 209, 88, 0.35) !important;
-}
-
-#header-prof-review-btn:hover {
-  background: #25A344 !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 0 20px rgba(48, 209, 88, 0.6) !important;
-  transform: translateY(-1px) scale(1.02) !important;
-}
-
-/* 3. Mid-Sem Cockpit & Results Cockpit */
-#header-course-cockpit-btn,
-#header-results-cockpit-btn {
-  background: #0071E3 !important;
-  color: #FFFFFF !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
-  border-radius: 980px !important;
-  font-weight: 700 !important;
-  padding: 0 16px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 2px 12px rgba(0, 113, 227, 0.4) !important;
-}
-
-#header-course-cockpit-btn:hover,
-#header-results-cockpit-btn:hover {
-  background: #FFFFFF !important;
-  color: #000000 !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 0 0 24px rgba(255, 255, 255, 0.45) !important;
-  transform: translateY(-1px) scale(1.02) !important;
-}
-
-/* 4. Medical Triage & Bank Highway */
-#header-medical-triage-btn,
-#header-bank-highway-btn {
-  background: rgba(100, 210, 255, 0.14) !important;
-  color: #64D2FF !important;
-  border: 1.5px solid rgba(100, 210, 255, 0.45) !important;
-  border-radius: 980px !important;
-  font-weight: 700 !important;
-  padding: 0 16px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 2px 10px rgba(100, 210, 255, 0.2) !important;
-}
-
-#header-medical-triage-btn:hover,
-#header-bank-highway-btn:hover {
-  background: #64D2FF !important;
-  color: #000000 !important;
-  border-color: #64D2FF !important;
-  box-shadow: 0 0 24px rgba(100, 210, 255, 0.6) !important;
-  transform: translateY(-1px) scale(1.02) !important;
-}
-
-/* 5. Defense Tour */
-#header-defense-tour-btn,
-.btn-defense-tour {
-  background: rgba(255, 255, 255, 0.12) !important;
-  color: #FFFFFF !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
-  border-radius: 980px !important;
-  font-weight: 600 !important;
-  padding: 0 16px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#header-defense-tour-btn:hover,
-.btn-defense-tour:hover {
-  background: #FFFFFF !important;
-  color: #000000 !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
-  transform: translateY(-1px) scale(1.02) !important;
-}
-
-/* 6. Multi-Modal Voice Cockpit */
-#header-voice-btn,
-.voice-header-btn {
-  background: rgba(191, 90, 242, 0.16) !important;
-  color: #BF5AF2 !important;
-  border: 1.5px solid rgba(191, 90, 242, 0.45) !important;
-  border-radius: 980px !important;
-  font-weight: 700 !important;
-  padding: 0 16px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 2px 10px rgba(191, 90, 242, 0.2) !important;
-}
-
-#header-voice-btn:hover,
-.voice-header-btn:hover {
-  background: #BF5AF2 !important;
-  color: #000000 !important;
-  border-color: #BF5AF2 !important;
-  box-shadow: 0 0 24px rgba(191, 90, 242, 0.6) !important;
-  transform: translateY(-1px) scale(1.02) !important;
-}
-
-/* --------------------------------------------------------------------------
-   GROUP D: FLOATING AI COPILOT LAUNCHER (#chatbot-launcher)
-   -------------------------------------------------------------------------- */
-#chatbot-launcher {
-  background: #0071E3 !important;
-  color: #FFFFFF !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
-  border-radius: 980px !important;
-  box-shadow: 0 8px 30px rgba(0, 113, 227, 0.5) !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  padding: 12px 20px !important;
-  cursor: pointer !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-#chatbot-launcher:hover {
-  background: #0077ED !important;
-  color: #FFFFFF !important;
-  transform: translateY(-3px) scale(1.04) !important;
-  box-shadow: 0 12px 36px rgba(0, 113, 227, 0.7) !important;
-}
-
-#chatbot-launcher span,
-#chatbot-launcher .chatbot-launcher-label {
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
-  font-size: 0.88rem !important;
-}
-
-#chatbot-launcher svg {
-  stroke: #FFFFFF !important;
-}
-
 /* ==========================================================================
-   APPLE PRO TRANSLUCENT NAVIGATION BAR
+   HEADER ROW: SINGLE-LINE UNWRAPPED BUTTONS (STRICTLY BLACK & WHITE)
    ========================================================================== */
 .app-header {
-  background: rgba(0, 0, 0, 0.85) !important;
-  backdrop-filter: saturate(180%) blur(20px) !important;
-  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+  background: rgba(0, 0, 0, 0.92) !important;
+  backdrop-filter: saturate(180%) blur(25px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(25px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.95) !important;
 }
 
 .brand-title {
@@ -652,12 +472,87 @@ button > *,
   letter-spacing: -0.03em !important;
 }
 
-/* Segmented Scope Pill Controller */
+.nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.nav-actions > *,
+.nav-actions button,
+.nav-actions a {
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  padding: 0 16px !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  border-radius: 980px !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Header Action Buttons in Pure White & Titanium Glass */
+#header-prof-review-btn,
+#header-comic-explainer-btn,
+#header-course-cockpit-btn,
+#header-results-cockpit-btn,
+#header-medical-triage-btn,
+#header-bank-highway-btn,
+#header-defense-tour-btn,
+#header-voice-btn,
+.btn-comic-header,
+.btn-defense-tour,
+.voice-header-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+#header-prof-review-btn:hover,
+#header-comic-explainer-btn:hover,
+#header-course-cockpit-btn:hover,
+#header-results-cockpit-btn:hover,
+#header-medical-triage-btn:hover,
+#header-bank-highway-btn:hover,
+#header-defense-tour-btn:hover,
+#header-voice-btn:hover,
+.btn-comic-header:hover,
+.btn-defense-tour:hover,
+.voice-header-btn:hover {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+#header-launch-console-btn {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1.5px solid #FFFFFF !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Segmented Scope Pill Controller (Pure Monochrome) */
 .header-pathway-selector {
   background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 980px !important;
   padding: 3px !important;
+  display: inline-flex !important;
+  align-items: center !important;
 }
 
 .pathway-tab {
@@ -666,8 +561,9 @@ button > *,
   border-radius: 980px !important;
   border: none !important;
   font-weight: 600 !important;
-  font-size: 0.78rem !important;
+  font-size: 0.80rem !important;
   padding: 6px 16px !important;
+  white-space: nowrap !important;
 }
 
 .pathway-tab:hover {
@@ -677,49 +573,179 @@ button > *,
 .pathway-tab.active {
   background: #FFFFFF !important;
   color: #000000 !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.35) !important;
+}
+
+.pathway-tab.active .pathway-chip {
+  background: rgba(0, 0, 0, 0.15) !important;
+  color: #000000 !important;
 }
 
 .pathway-chip {
-  background: rgba(0, 0, 0, 0.15) !important;
-  color: inherit !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
   border-radius: 980px !important;
+  padding: 2px 7px !important;
+  font-size: 0.72rem !important;
 }
 
-/* --------------------------------------------------------------------------
-   SUB-NAV RAILS (.nav-switch-btn)
-   High contrast, highly legible, animated hover sweep
-   -------------------------------------------------------------------------- */
-.nav-switch-btn {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #F1F5F9 !important;
+.pulse-dot-green {
+  background: #FFFFFF !important;
+  box-shadow: 0 0 10px #FFFFFF !important;
+}
+
+/* ==========================================================================
+   SUB-NAV RAILS (.nav-switch-btn): 100% VISIBLE & HIGH-CONTRAST
+   ========================================================================== */
+.app-header-subnav {
+  background: rgba(8, 8, 10, 0.94) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 8px 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.nav-switcher {
+  background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 980px !important;
+  padding: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+
+.nav-switch-btn {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: 1px solid transparent !important;
   font-size: 0.82rem !important;
   font-weight: 600 !important;
-  padding: 6px 16px !important;
+  padding: 7px 18px !important;
   border-radius: 980px !important;
-  margin: 0 2px !important;
+  white-space: nowrap !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .nav-switch-btn:hover {
-  background: #FFFFFF !important;
-  color: #000000 !important;
-  border-color: #FFFFFF !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.28) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.25) !important;
 }
 
 .nav-switch-btn.active {
-  color: #000000 !important;
   background: #FFFFFF !important;
+  color: #000000 !important;
   border-color: #FFFFFF !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.45) !important;
+}
+
+/* ==========================================================================
+   SCOPE CONTROLLER & BUTTONS (Black & White)
+   ========================================================================== */
+.project-scope-banner {
+  background: #0E0E10 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.85) !important;
+  padding: 20px 24px !important;
+}
+
+.scope-toggle-buttons {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.scope-toggle-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 980px !important;
+  padding: 8px 18px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+}
+
+.scope-toggle-btn:hover {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.35) !important;
+}
+
+.scope-toggle-btn.active {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ==========================================================================
+   FLOATING AI ASSISTANT LAUNCHER (#chatbot-launcher)
+   ========================================================================== */
+#chatbot-launcher {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid #FFFFFF !important;
+  border-radius: 980px !important;
+  box-shadow: 0 6px 28px rgba(255, 255, 255, 0.25), 0 0 16px rgba(255, 255, 255, 0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 20px !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#chatbot-launcher:hover {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  transform: translateY(-3px) scale(1.04) !important;
+  box-shadow: 0 8px 36px rgba(255, 255, 255, 0.5) !important;
+}
+
+#chatbot-launcher span,
+#chatbot-launcher .chatbot-launcher-label {
+  color: inherit !important;
   font-weight: 700 !important;
-  box-shadow: 0 2px 16px rgba(255, 255, 255, 0.4) !important;
+  font-size: 0.88rem !important;
+}
+
+#chatbot-launcher svg {
+  stroke: currentColor !important;
+}
+
+/* ==========================================================================
+   FLOATING PATHWAY DOCK (#floating-pathway-dock)
+   ========================================================================== */
+#floating-pathway-dock,
+.floating-pathway-dock {
+  background: rgba(12, 12, 14, 0.95) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 980px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+}
+
+#dock-pulse-dot,
+.pathway-indicator-dot {
+  background: #FFFFFF !important;
+  box-shadow: 0 0 12px #FFFFFF !important;
 }
 
 /* ==========================================================================
    HERO TELEMETRY CHIPS & BADGES
-   ========================================================================= */
+   ========================================================================== */
 .telemetry-chip-strip {
   display: flex !important;
   gap: 10px !important;
@@ -729,26 +755,30 @@ button > *,
 }
 
 .telemetry-chip {
-  background: #18181B !important;
+  background: #111113 !important;
   border: 1px solid rgba(255, 255, 255, 0.24) !important;
   border-radius: 980px !important;
   padding: 8px 18px !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
-  color: #CBD5E1 !important;
+  color: #E2E8F0 !important;
   font-size: 0.84rem !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7) !important;
 }
 
 .telemetry-chip span {
-  color: #CBD5E1 !important;
+  color: #E2E8F0 !important;
 }
 
 .telemetry-chip strong,
 .telemetry-chip b {
   color: #FFFFFF !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
+}
+
+.telemetry-chip svg {
+  stroke: #FFFFFF !important;
 }
 
 /* ==========================================================================
@@ -765,19 +795,19 @@ button > *,
   align-items: center !important;
   gap: 6px !important;
   background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: #F5F5F7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: #FFFFFF !important;
   border-radius: 980px !important;
   padding: 5px 16px !important;
   font-size: 0.74rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
 }
 
 .hero-creator-badge {
   background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 980px !important;
   color: #E2E8F0 !important;
   padding: 5px 16px !important;
@@ -790,15 +820,7 @@ button > *,
   letter-spacing: -0.035em !important;
   line-height: 1.06 !important;
   margin: 20px 0 16px 0 !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-.hero-title span {
-  background: linear-gradient(90deg, #2997FF 0%, #BF5AF2 50%, #FF375F 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  color: #FFFFFF !important;
 }
 
 .hero-subtitle {
@@ -817,7 +839,6 @@ button > *,
 .card,
 .launchpad-card,
 .product-section,
-#project-scope-banner,
 #zero-token-telemetry-strip,
 .kavach-card,
 .bento-card,
@@ -825,10 +846,10 @@ button > *,
 .defense-telemetry-card,
 .defense-pillar-card,
 .theory-card {
-  background: #111113 !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: #0C0C0E !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: 22px !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.8) !important;
   color: #FFFFFF !important;
 }
 
@@ -837,8 +858,8 @@ button > *,
 .defense-telemetry-card:hover,
 .defense-pillar-card:hover {
   transform: scale(1.006) translateY(-2px) !important;
-  border-color: rgba(255, 255, 255, 0.28) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 20px 50px rgba(0, 0, 0, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 20px 50px rgba(0, 0, 0, 0.95) !important;
 }
 
 /* ==========================================================================
@@ -848,8 +869,8 @@ input[type="text"],
 input[type="search"],
 select,
 textarea {
-  background: #1C1C1E !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  background: #141416 !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
   border-radius: 12px !important;
   color: #FFFFFF !important;
   font-family: var(--font-sans) !important;
@@ -862,11 +883,11 @@ select:focus,
 textarea:focus {
   outline: none !important;
   border-color: #FFFFFF !important;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3) !important;
 }
 
 select option {
-  background: #1C1C1E !important;
+  background: #141416 !important;
   color: #FFFFFF !important;
 }
 
@@ -875,7 +896,7 @@ select option {
    ========================================================================== */
 .course-modal-backdrop,
 .modal-backdrop {
-  background: rgba(0, 0, 0, 0.88) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
 }
@@ -883,11 +904,11 @@ select option {
 .course-modal-window,
 .modal-dialog,
 .modal-content {
-  background: #161617 !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: #111113 !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 24px !important;
   color: #FFFFFF !important;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
 }
 
 .course-modal-window *,
@@ -896,8 +917,8 @@ select option {
 }
 
 .prof-tab-btn {
-  background: #2C2C2E !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: #242428 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   color: #CBD5E1 !important;
   border-radius: 980px !important;
   padding: 6px 16px !important;
@@ -912,8 +933,8 @@ select option {
   background: #FFFFFF !important;
   border-color: #FFFFFF !important;
   color: #000000 !important;
-  font-weight: 700 !important;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.35) !important;
 }
 
 /* ==========================================================================
@@ -926,15 +947,15 @@ table {
   width: 100% !important;
   border-radius: 14px !important;
   overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
 }
 
 .kavach-comparison-table th,
 table th {
-  background: #1C1C1E !important;
+  background: #18181B !important;
   color: #FFFFFF !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
-  font-weight: 700 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  font-weight: 800 !important;
   text-transform: uppercase !important;
   font-size: 0.74rem !important;
   letter-spacing: 0.04em !important;
@@ -943,33 +964,19 @@ table th {
 
 .kavach-comparison-table td,
 table td {
-  background: #111113 !important;
+  background: #0C0C0E !important;
   color: #F1F5F9 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   padding: 12px 16px !important;
-}
-
-/* ==========================================================================
-   APPLE DYNAMIC ISLAND FLOATING DOCK
-   ========================================================================== */
-#floating-pathway-dock,
-.floating-pathway-dock {
-  background: rgba(24, 24, 27, 0.92) !important;
-  backdrop-filter: blur(25px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  border-radius: 980px !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-  color: #FFFFFF !important;
 }
 
 /* ==========================================================================
    CODE BLOCKS & MONOSPACE TERMINAL CONTAINERS
    ========================================================================== */
 pre, code, .terminal-window, .terminal-container {
-  background: #09090B !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: #08080A !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: 12px !important;
-  color: #64D2FF !important;
+  color: #FFFFFF !important;
   font-family: var(--font-mono) !important;
 }
