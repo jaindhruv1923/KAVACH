@@ -73,8 +73,10 @@ def run_workflow(request_text: str) -> WorkflowRun:
         return _finish(run)
 
     # --- Stage: Planning ---
+    # Privacy boundary: pass sanitized/redacted request to planner, never raw PII.
     run.advance(WorkflowStage.PLANNING)
-    run.plan = plan_request(request_text)
+    planning_input = run.redacted_request_text if run.redacted_request_text else redact_text(request_text)
+    run.plan = plan_request(planning_input)
     save_run(run)
 
     # --- Stage: Context retrieval (RAG) ---

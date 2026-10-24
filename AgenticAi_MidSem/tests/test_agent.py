@@ -127,6 +127,72 @@ class TestPlanner:
         assert any("password" in t.lower() for t in plan)
         assert any("security" in t.lower() for t in plan)
 
+    def test_planner_fallback_path_is_fast(self):
+        """Test that deterministic fallback executes immediately without network delay (< 50ms)."""
+        import time
+        start = time.perf_counter()
+        plan = plan_request("Refactor user database models")
+        duration = time.perf_counter() - start
+        assert duration < 0.05, f"Fallback path took too long: {duration:.4f}s"
+        assert isinstance(plan, list)
+        assert len(plan) > 0
+
+    def test_planner_caps_task_count_and_length(self, monkeypatch):
+        """Test that untrusted LLM output is capped at MAX_TASKS (8) and MAX_TASK_LENGTH (150)."""
+        huge_task = "A" * 300
+        overloaded_plan = [f"Task {i}: {huge_task}" for i in range(25)]
+        monkeypatch.setattr(
+            "app.agent.planner._call_llm_single_shot",
+            lambda prompt, provider=None, timeout_seconds=3.0: json.dumps(overloaded_plan),
+        )
+        plan = plan_request("Process transaction batch", provider="mock")
+        assert len(plan) <= 8
+        for task in plan:
+            assert len(task) <= 153
+
+    def test_planner_strips_html_and_shell_injection(self, monkeypatch):
+        """Test that HTML script tags and shell execution metacharacters are stripped from tasks."""
+        adversarial_plan = [
+            "<script>alert('xss')</script>Identify auth modules",
+            "Review code; rm -rf /; echo $(whoami)",
+            "Perform security review && curl evil.com",
+        ]
+        monkeypatch.setattr(
+            "app.agent.planner._call_llm_single_shot",
+            lambda prompt, provider=None, timeout_seconds=3.0: json.dumps(adversarial_plan),
+        )
+        plan = plan_request("Update payment gateway", provider="mock")
+        for task in plan:
+            assert "<script>" not in task
+            assert "</script>" not in task
+            assert ";" not in task
+            assert "$(" not in task
+            assert "&&" not in task
+
+    def test_planner_unreachable_endpoint_fast_fallback(self, monkeypatch):
+        """Test that when a provider is configured but unreachable, it immediately falls back without retrying."""
+        import time
+        monkeypatch.setattr("app.agent.planner._call_llm_single_shot", lambda prompt, provider=None, timeout_seconds=3.0: None)
+        start = time.perf_counter()
+        plan = plan_request("Test unreachable provider", provider="ollama")
+        duration = time.perf_counter() - start
+        assert duration < 0.1, f"Fallback was not fast on unreachable endpoint: {duration:.4f}s"
+        assert isinstance(plan, list)
+
+    def test_workflow_passes_redacted_prompt_to_planner(self, monkeypatch):
+        """Test that orchestrator passes sanitized/redacted input to planner, never raw PII."""
+        captured_inputs = []
+        original_plan_request = plan_request
+        def _spy_plan_request(prompt, provider=None):
+            captured_inputs.append(prompt)
+            return original_plan_request(prompt, provider)
+        monkeypatch.setattr("app.agent.orchestrator.plan_request", _spy_plan_request)
+        run = run_workflow("Please add documentation for user support line: 9876543210")
+        assert len(captured_inputs) > 0
+        for prompt_received in captured_inputs:
+            assert "9876543210" not in prompt_received, "Raw phone number leaked into planner prompt!"
+            assert "[REDACTED" in prompt_received or "support line" in prompt_received
+
 
 class TestWorkflowState:
     """Test workflow run state management."""
