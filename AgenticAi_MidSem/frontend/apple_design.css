@@ -80,7 +80,7 @@ html, body {
   letter-spacing: -0.015em !important;
 }
 
-/* Canvas sits at z-index: 0 so it floats in space behind all UI cards */
+/* Canvas sits at z-index: 99999 so constellation dots float visibly in the foreground over UI cards */
 #interactive-particle-web {
   position: fixed !important;
   top: 0 !important;
@@ -88,8 +88,8 @@ html, body {
   width: 100vw !important;
   height: 100vh !important;
   pointer-events: none !important;
-  z-index: 0 !important;
-  opacity: 0.75 !important;
+  z-index: 99999 !important;
+  opacity: 0.92 !important;
   display: block !important;
 }
 
@@ -239,6 +239,7 @@ button,
 .scope-toggle-btn {
   position: relative !important;
   overflow: hidden !important;
+  isolation: isolate !important;
   z-index: 1 !important;
   cursor: pointer !important;
   font-family: var(--font-sans) !important;
@@ -320,7 +321,7 @@ button > *,
   transform: scaleX(0) !important;
   transform-origin: right !important;
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  z-index: 1 !important;
+  z-index: 0 !important;
 }
 
 .btn-serious:hover::before,
@@ -411,7 +412,7 @@ button > *,
   transform: scaleX(0) !important;
   transform-origin: right !important;
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  z-index: 1 !important;
+  z-index: 0 !important;
 }
 
 .btn-secondary:hover::before,
@@ -599,13 +600,17 @@ button > *,
    SUB-NAV RAILS (.nav-switch-btn): 100% VISIBLE & HIGH-CONTRAST
    ========================================================================== */
 .app-header-subnav {
-  background: rgba(8, 8, 10, 0.94) !important;
+  background: rgba(8, 8, 10, 0.96) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-  padding: 8px 0 !important;
+  padding: 8px 16px !important;
   display: flex !important;
   justify-content: center !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
 }
 
 .nav-switcher {
@@ -615,7 +620,9 @@ button > *,
   padding: 4px !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 3px !important;
+  gap: 4px !important;
+  flex-wrap: nowrap !important;
+  max-width: 100% !important;
 }
 
 .nav-switch-btn {
@@ -623,10 +630,13 @@ button > *,
   color: #FFFFFF !important;
   border: 1px solid transparent !important;
   font-size: 0.82rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   padding: 7px 18px !important;
   border-radius: 980px !important;
   white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
@@ -957,7 +967,7 @@ table th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
-  font-size: 0.74rem !important;
+  font-size: 0.76rem !important;
   letter-spacing: 0.04em !important;
   padding: 12px 16px !important;
 }
@@ -970,13 +980,405 @@ table td {
   padding: 12px 16px !important;
 }
 
+/* High-Contrast Badges on Right-Side Comparison Matrix */
+.delta-badge {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  font-size: 0.74rem !important;
+  border: 1.5px solid #FFFFFF !important;
+  border-radius: 980px !important;
+  padding: 4px 10px !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  letter-spacing: 0.02em !important;
+  white-space: nowrap !important;
+}
+
 /* ==========================================================================
-   CODE BLOCKS & MONOSPACE TERMINAL CONTAINERS
+   UNIVERSAL BLACK TEXT ENFORCEMENT ON ALL WHITE / LIGHT CARDS & CONTAINERS
    ========================================================================== */
-pre, code, .terminal-window, .terminal-container {
-  background: #08080A !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-radius: 12px !important;
-  color: #FFFFFF !important;
+.card[style*="background:#FFF"],
+.card[style*="background: #FFF"],
+.card[style*="background:#fff"],
+.card[style*="background: #fff"],
+.card[style*="background:#FFFFFF"],
+.card[style*="background: #FFFFFF"],
+.card.innovation-showcase-card,
+#warroom-arena-card,
+#forensic-replay-card,
+#consensus-radar-card,
+#dossier-generator-card,
+#voice-cockpit-card,
+#cve-playground-card,
+#xai-playground-card,
+#hitl-playground-card,
+#rbac-playground-card,
+#theory-diagram-viewport,
+.stage-nav-banner,
+.prof-content-pane,
+.course-modal-window,
+.white-card,
+.card-white,
+[style*="background:#FFFDF0"],
+[style*="background: #FFFDF0"],
+[style*="background:#FFFFFF"]:not(.nav-switch-btn):not(button):not(.badge):not(.pill-btn):not(.btn):not(.term-tab),
+[style*="background: #FFFFFF"]:not(.nav-switch-btn):not(button):not(.badge):not(.pill-btn):not(.btn):not(.term-tab) {
+  color: #0F172A !important;
+}
+
+/* Headings in White Cards: Solid Black */
+.card[style*="background:#FFF"] h1, .card[style*="background:#FFF"] h2, .card[style*="background:#FFF"] h3, .card[style*="background:#FFF"] h4, .card[style*="background:#FFF"] h5, .card[style*="background:#FFF"] h6,
+.card[style*="background:#FFFFFF"] h1, .card[style*="background:#FFFFFF"] h2, .card[style*="background:#FFFFFF"] h3, .card[style*="background:#FFFFFF"] h4, .card[style*="background:#FFFFFF"] h5, .card[style*="background:#FFFFFF"] h6,
+.card.innovation-showcase-card h1, .card.innovation-showcase-card h2, .card.innovation-showcase-card h3, .card.innovation-showcase-card h4, .card.innovation-showcase-card h5, .card.innovation-showcase-card h6,
+#warroom-arena-card h1, #warroom-arena-card h2, #warroom-arena-card h3, #warroom-arena-card h4,
+#forensic-replay-card h1, #forensic-replay-card h2, #forensic-replay-card h3, #forensic-replay-card h4,
+#consensus-radar-card h1, #consensus-radar-card h2, #consensus-radar-card h3, #consensus-radar-card h4,
+#dossier-generator-card h1, #dossier-generator-card h2, #dossier-generator-card h3, #dossier-generator-card h4,
+#voice-cockpit-card h1, #voice-cockpit-card h2, #voice-cockpit-card h3, #voice-cockpit-card h4,
+#cve-playground-card h1, #cve-playground-card h2, #cve-playground-card h3,
+#xai-playground-card h1, #xai-playground-card h2, #xai-playground-card h3,
+#hitl-playground-card h1, #hitl-playground-card h2, #hitl-playground-card h3,
+#rbac-playground-card h1, #rbac-playground-card h2, #rbac-playground-card h3,
+#theory-diagram-viewport h1, #theory-diagram-viewport h2, #theory-diagram-viewport h3,
+.stage-nav-banner h1, .stage-nav-banner h2, .stage-nav-banner h3,
+.prof-content-pane h1, .prof-content-pane h2, .prof-content-pane h3,
+.white-card h1, .white-card h2, .white-card h3,
+[style*="background:#FFFDF0"] h1, [style*="background:#FFFDF0"] h2, [style*="background:#FFFDF0"] h3 {
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+  background: none !important;
+}
+
+/* Body and descriptions in White Cards */
+.card[style*="background:#FFF"] p, .card[style*="background:#FFF"] span:not(.badge):not(.delta-badge), .card[style*="background:#FFF"] div, .card[style*="background:#FFF"] li, .card[style*="background:#FFF"] td, .card[style*="background:#FFF"] label, .card[style*="background:#FFF"] strong,
+.card[style*="background:#FFFFFF"] p, .card[style*="background:#FFFFFF"] span:not(.badge):not(.delta-badge), .card[style*="background:#FFFFFF"] div, .card[style*="background:#FFFFFF"] li, .card[style*="background:#FFFFFF"] td, .card[style*="background:#FFFFFF"] label, .card[style*="background:#FFFFFF"] strong,
+.card.innovation-showcase-card p, .card.innovation-showcase-card span:not(.badge):not(.delta-badge), .card.innovation-showcase-card div, .card.innovation-showcase-card li, .card.innovation-showcase-card strong,
+#warroom-arena-card p, #warroom-arena-card span:not(.badge):not(.delta-badge), #warroom-arena-card div, #warroom-arena-card li, #warroom-arena-card strong,
+#forensic-replay-card p, #forensic-replay-card span:not(.badge):not(.delta-badge), #forensic-replay-card div, #forensic-replay-card li, #forensic-replay-card strong,
+#consensus-radar-card p, #consensus-radar-card span:not(.badge):not(.delta-badge), #consensus-radar-card div, #consensus-radar-card li, #consensus-radar-card strong,
+#dossier-generator-card p, #dossier-generator-card span:not(.badge):not(.delta-badge), #dossier-generator-card div, #dossier-generator-card li, #dossier-generator-card strong,
+#voice-cockpit-card p, #voice-cockpit-card span:not(.badge):not(.delta-badge), #voice-cockpit-card div, #voice-cockpit-card li, #voice-cockpit-card strong,
+#cve-playground-card p, #cve-playground-card span:not(.badge):not(.delta-badge), #cve-playground-card div, #cve-playground-card li, #cve-playground-card strong,
+#xai-playground-card p, #xai-playground-card span:not(.badge):not(.delta-badge), #xai-playground-card div, #xai-playground-card li, #xai-playground-card strong,
+#hitl-playground-card p, #hitl-playground-card span:not(.badge):not(.delta-badge), #hitl-playground-card div, #hitl-playground-card li, #hitl-playground-card strong,
+#rbac-playground-card p, #rbac-playground-card span:not(.badge):not(.delta-badge), #rbac-playground-card div, #rbac-playground-card li, #rbac-playground-card strong,
+#theory-diagram-viewport p, #theory-diagram-viewport span:not(.badge):not(.delta-badge), #theory-diagram-viewport div, #theory-diagram-viewport li, #theory-diagram-viewport strong,
+.stage-nav-banner p, .stage-nav-banner span:not(.badge):not(.delta-badge), .stage-nav-banner div, .stage-nav-banner strong,
+.prof-content-pane p, .prof-content-pane span:not(.badge):not(.delta-badge), .prof-content-pane div, .prof-content-pane li, .prof-content-pane strong,
+.white-card p, .white-card span:not(.badge):not(.delta-badge), .white-card div, .white-card li, .white-card strong,
+[style*="background:#FFFDF0"] p, [style*="background:#FFFDF0"] span:not(.badge):not(.delta-badge), [style*="background:#FFFDF0"] div, [style*="background:#FFFDF0"] strong {
+  color: #1E293B !important;
+}
+
+.card[style*="background:#FFF"] .meta-text,
+.card[style*="background:#FFF"] .text-secondary,
+.card[style*="background:#FFFFFF"] .meta-text,
+.card[style*="background:#FFFFFF"] .text-secondary,
+.card.innovation-showcase-card .meta-text,
+.card.innovation-showcase-card .card-desc,
+.white-card .meta-text {
+  color: #64748B !important;
+}
+
+/* ==========================================================================
+   LIGHT CODE TERMINALS (Xcode Pro / Keynote Clean White Terminal Suite)
+   ========================================================================== */
+.terminal-mission-control,
+.sim-terminal-wrapper,
+.terminal-window,
+.terminal-container {
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+
+/* Terminal Window Header (macOS style top bar) */
+.terminal-window-header,
+.sim-terminal-bar {
+  background: #F8FAFC !important;
+  border-bottom: 1.5px solid #E2E8F0 !important;
+  color: #0F172A !important;
+  padding: 10px 18px !important;
+}
+
+.term-window-title,
+.term-title {
+  color: #1E293B !important;
+  font-weight: 700 !important;
   font-family: var(--font-mono) !important;
+  font-size: 0.78rem !important;
+}
+
+.term-window-dots,
+.term-dots {
+  display: flex !important;
+  gap: 7px !important;
+}
+
+.term-window-dot,
+.term-dot {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.term-window-dot.close, .term-dot.red {
+  background: #FF5F56 !important;
+  border: 1px solid #E0443E !important;
+}
+.term-window-dot.min, .term-dot.yellow {
+  background: #FFBD2E !important;
+  border: 1px solid #DEA123 !important;
+}
+.term-window-dot.max, .term-dot.green {
+  background: #27C93F !important;
+  border: 1px solid #1AAB29 !important;
+}
+
+.term-header-actions button,
+.term-clear-btn {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+}
+
+/* Terminal Tabs Strip */
+.terminal-tabs-strip {
+  background: #F1F5F9 !important;
+  border-bottom: 1.5px solid #E2E8F0 !important;
+  padding: 6px 14px !important;
+}
+
+.terminal-tabs-strip .term-tab {
+  background: #E2E8F0 !important;
+  color: #475569 !important;
+  border: 1px solid #CBD5E1 !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+}
+
+.terminal-tabs-strip .term-tab:hover {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+.terminal-tabs-strip .term-tab.active {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #94A3B8 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Terminal Toolbar */
+.terminal-toolbar-bar {
+  background: #F8FAFC !important;
+  border-bottom: 1.5px solid #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+.term-chip {
+  background: #FFFFFF !important;
+  color: #334155 !important;
+  border: 1px solid #CBD5E1 !important;
+  font-weight: 600 !important;
+}
+
+.term-chip.active {
+  background: #0F172A !important;
+  color: #FFFFFF !important;
+  border-color: #0F172A !important;
+}
+
+/* Terminal Screen Output Area */
+.terminal-screen-wrapper,
+#cli-terminal-screen,
+.sim-terminal-body,
+#sim-terminal-log,
+.term-raw-screen {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  font-family: var(--font-mono) !important;
+  border: none !important;
+}
+
+.terminal-screen-wrapper::-webkit-scrollbar,
+.sim-terminal-body::-webkit-scrollbar {
+  width: 7px !important;
+}
+.terminal-screen-wrapper::-webkit-scrollbar-track,
+.sim-terminal-body::-webkit-scrollbar-track {
+  background: #F8FAFC !important;
+}
+.terminal-screen-wrapper::-webkit-scrollbar-thumb,
+.sim-terminal-body::-webkit-scrollbar-thumb {
+  background: #CBD5E1 !important;
+  border-radius: 980px !important;
+}
+.terminal-screen-wrapper::-webkit-scrollbar-thumb:hover,
+.sim-terminal-body::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8 !important;
+}
+
+/* Terminal Log Rows */
+.term-row {
+  color: #0F172A !important;
+}
+
+.term-row:hover {
+  background: #F8FAFC !important;
+}
+
+.term-row.selected {
+  background: #EFF6FF !important;
+  border-left: 3px solid #2563EB !important;
+}
+
+.term-line-num {
+  color: #94A3B8 !important;
+  font-weight: 600 !important;
+}
+
+.term-time {
+  color: #64748B !important;
+  font-weight: 500 !important;
+}
+
+.term-row-text .check-title {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+.term-row-text .check-detail {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+.term-dur {
+  color: #64748B !important;
+  font-weight: 600 !important;
+}
+
+.term-line {
+  color: #0F172A !important;
+}
+
+/* Interactive Simulator Box inside Terminal */
+.cli-simulator-box {
+  background: #F8FAFC !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  color: #0F172A !important;
+}
+
+.cli-simulator-box input,
+.cli-simulator-box select {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1px solid #CBD5E1 !important;
+}
+
+/* Terminal Inspector Drawer */
+.terminal-inspector-drawer,
+#term-inspector-drawer {
+  background: #F8FAFC !important;
+  border-top: 1.5px solid #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+.terminal-inspector-drawer h4,
+.terminal-inspector-drawer h5 {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+/* Code Blocks, Pre, and Code Snippets */
+pre, code, .inspector-code, .code-snippet, .code-block {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 10px !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* ==========================================================================
+   VIBRANT SYNTAX HIGHLIGHTING (Red, Green, Blue, Amber, Purple)
+   ========================================================================== */
+
+/* 1. Green: Pass, Safe, Clean, Approved */
+.badge-pass,
+.term-pass,
+.t-green,
+.term-line.safe,
+.text-safe,
+.status-safe {
+  background: #ECFDF5 !important;
+  color: #059669 !important;
+  border: 1px solid #A7F3D0 !important;
+  font-weight: 700 !important;
+}
+
+/* 2. Red: Threat, Danger, Blocked, Failed, Injection */
+.badge-blocked,
+.term-fail,
+.t-red,
+.term-line.danger,
+.text-blocked,
+.status-danger {
+  background: #FEF2F2 !important;
+  color: #DC2626 !important;
+  border: 1px solid #FECACA !important;
+  font-weight: 700 !important;
+}
+
+/* 3. Amber / Yellow: Review, Warning, Quarantined, Caution */
+.badge-review,
+.term-warn,
+.t-amber,
+.term-line.warning,
+.text-review,
+.status-review {
+  background: #FFFBEB !important;
+  color: #D97706 !important;
+  border: 1px solid #FDE68A !important;
+  font-weight: 700 !important;
+}
+
+/* 4. Royal Blue / Cyan: Info, Commands, Telemetry, Active */
+.badge-info,
+.term-info,
+.t-cyan,
+.term-line.info,
+.text-accent,
+.status-info {
+  background: #EFF6FF !important;
+  color: #2563EB !important;
+  border: 1px solid #BFDBFE !important;
+  font-weight: 700 !important;
+}
+
+/* 5. Purple: Provenance, Merkle, DPDP Vault, AST */
+.badge-cmd,
+.t-purple,
+.term-decor {
+  background: #F5F3FF !important;
+  color: #7C3AED !important;
+  border: 1px solid #DDD6FE !important;
+  font-weight: 700 !important;
+}
+
+/* 6. Bold & Dim Utility Tokens */
+.t-bold {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+.t-dim, .term-dim, .term-muted {
+  color: #64748B !important;
 }

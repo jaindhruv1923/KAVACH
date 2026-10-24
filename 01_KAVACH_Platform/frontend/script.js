@@ -5,21 +5,30 @@
  */
 function initInteractiveParticleWeb() {
   if (window.__particleWebInitialized) return;
-  const canvas = document.getElementById("interactive-particle-web");
-  if (!canvas) return;
+  let canvas = document.getElementById("interactive-particle-web");
+  if (!canvas) {
+    canvas = document.createElement("canvas");
+    canvas.id = "interactive-particle-web";
+    canvas.setAttribute("aria-hidden", "true");
+    if (document.body) {
+      document.body.prepend(canvas);
+    } else {
+      document.addEventListener("DOMContentLoaded", () => document.body.prepend(canvas));
+    }
+  }
 
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
   window.__particleWebInitialized = true;
 
-  // Enforce fixed full-screen overlay styles directly on element (z-index: 0 so it stays behind UI cards)
+  // Enforce fixed full-screen overlay styles directly on element (z-index: 99999 so dots float visibly in front of UI cards)
   canvas.style.position = "fixed";
   canvas.style.top = "0";
   canvas.style.left = "0";
   canvas.style.inset = "0";
   canvas.style.pointerEvents = "none";
-  canvas.style.zIndex = "0";
-  canvas.style.opacity = "0.75";
+  canvas.style.zIndex = "99999";
+  canvas.style.opacity = "0.92";
   canvas.style.display = "block";
 
   let width = window.innerWidth;
