@@ -1,6 +1,6 @@
 """
-Google ADK Medical Triage Agent Pipeline for KAVACH.
-Direct implementation of CSE3101 Professor's Architecture & Quiz Reference:
+CSE3101 course exercise (not part of the banking platform).
+Standalone academic exercise demonstrating Google ADK multi-agent callbacks, state machines, and triage branching:
 - Root Guardrail: block_sensitive
 - Triage Agent: Rates urgency, summarizes symptoms -> state["triage"]
 - triage_after callback: sets state["urgency"] ("HIGH" vs "NORMAL")

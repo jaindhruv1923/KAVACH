@@ -129,11 +129,44 @@ app.mount(
 )
 
 # ============================================================
-# KAVACH AGENTIC AI — DEDICATED MID-SEM PLATFORM (CSE3101)
+# MOUNT MULTI-SERVICE SUITE (BHARAT BANK & RESULTS COCKPIT)
 # ============================================================
-# Pure Agentic AI execution engine for CSE3101 Mid-Sem Evaluation
-# Faculty: Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari
-# Banking and results cockpit are decoupled for this pure academic submission.
+try:
+    _candidate_dashboard_dirs = [
+        os.path.abspath(os.path.join(PROJECT_ROOT, "..", "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(PROJECT_ROOT, "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "02_Banking_and_Results_Dashboard")),
+        "/app/02_Banking_and_Results_Dashboard",
+    ]
+    dash_dir = next((d for d in _candidate_dashboard_dirs if os.path.exists(d)), None)
+    if dash_dir:
+        bank_dir = os.path.join(dash_dir, "implementation_banks")
+        results_dir = os.path.join(dash_dir, "results_dashboard")
+        for p in [dash_dir, bank_dir, results_dir]:
+            if p not in sys.path and os.path.exists(p):
+                sys.path.insert(0, p)
+
+        try:
+            from implementation_banks.server import app as bank_app
+            @app.api_route("/bank", methods=["GET", "HEAD"], include_in_schema=False)
+            def redirect_bank():
+                return RedirectResponse(url="/bank/", status_code=307)
+            app.mount("/bank", bank_app)
+            print("[KAVACH Unified] Mounted Bharat Core Banking Highway at /bank")
+        except Exception as bank_err:
+            print(f"[KAVACH Unified] Bank app mount skipped: {bank_err}")
+
+        try:
+            from results_hub import app as results_app
+            @app.api_route("/results", methods=["GET", "HEAD"], include_in_schema=False)
+            def redirect_results():
+                return RedirectResponse(url="/results/", status_code=307)
+            app.mount("/results", results_app)
+            print("[KAVACH Unified] Mounted Results Cockpit at /results")
+        except Exception as res_err:
+            print(f"[KAVACH Unified] Results app mount skipped: {res_err}")
+except Exception as suite_err:
+    print(f"[KAVACH Unified] Multi-service suite initialization skipped: {suite_err}")
 
 
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
@@ -180,31 +213,6 @@ def frontend_console():
         headers={"Cache-Control": "no-cache, must-revalidate"}
     )
 
-
-# Dynamically locate Results Dashboard across unified workspace layout
-_potential_results_dirs = [
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "02_Banking_and_Results_Dashboard", "results_dashboard")),
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "..", "02_Banking_and_Results_Dashboard", "results_dashboard")),
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "..", "results")),
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "results")),
-]
-RESULTS_DIR = next((p for p in _potential_results_dirs if os.path.exists(p)), _potential_results_dirs[0])
-
-try:
-    import sys
-    if RESULTS_DIR not in sys.path:
-        sys.path.insert(0, RESULTS_DIR)
-    import results_hub
-    app.mount("/results", results_hub.app)
-except Exception as _res_mount_err:
-    print(f"[Kavach] Notice: could not mount /results sub-app: {_res_mount_err}")
-    @app.api_route("/results", methods=["GET", "HEAD"], include_in_schema=False)
-    def frontend_results_fallback():
-        return FileResponse(
-            os.path.join(RESULTS_DIR, "index.html"),
-            media_type="text/html",
-            headers={"Cache-Control": "no-cache, must-revalidate"}
-        )
 
 @app.api_route("/results.html", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_results_html():
@@ -296,8 +304,11 @@ def serve_root_comic_explainer():
 
 @app.get("/kavach_ieee_submission_bundle.zip", include_in_schema=False)
 def serve_root_ieee_bundle():
+    bundle_path = os.path.join(FRONTEND_DIR, "kavach_ieee_submission_bundle.zip")
+    if not os.path.exists(bundle_path):
+        raise HTTPException(status_code=404, detail="Submission bundle not found")
     return FileResponse(
-        os.path.join(FRONTEND_DIR, "kavach_ieee_submission_bundle.zip"),
+        bundle_path,
         media_type="application/zip",
         filename="kavach_ieee_submission_bundle.zip"
     )

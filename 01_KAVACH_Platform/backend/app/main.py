@@ -149,6 +149,9 @@ try:
 
         try:
             from implementation_banks.server import app as bank_app
+            @app.api_route("/bank", methods=["GET", "HEAD"], include_in_schema=False)
+            def redirect_bank():
+                return RedirectResponse(url="/bank/", status_code=307)
             app.mount("/bank", bank_app)
             print("[KAVACH Unified] Mounted Bharat Core Banking Highway at /bank")
         except Exception as bank_err:
@@ -156,6 +159,9 @@ try:
 
         try:
             from results_hub import app as results_app
+            @app.api_route("/results", methods=["GET", "HEAD"], include_in_schema=False)
+            def redirect_results():
+                return RedirectResponse(url="/results/", status_code=307)
             app.mount("/results", results_app)
             print("[KAVACH Unified] Mounted Results Cockpit at /results")
         except Exception as res_err:
@@ -207,31 +213,6 @@ def frontend_console():
         headers={"Cache-Control": "no-cache, must-revalidate"}
     )
 
-
-# Dynamically locate Results Dashboard across unified workspace layout
-_potential_results_dirs = [
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "02_Banking_and_Results_Dashboard", "results_dashboard")),
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "..", "02_Banking_and_Results_Dashboard", "results_dashboard")),
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "..", "results")),
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "results")),
-]
-RESULTS_DIR = next((p for p in _potential_results_dirs if os.path.exists(p)), _potential_results_dirs[0])
-
-try:
-    import sys
-    if RESULTS_DIR not in sys.path:
-        sys.path.insert(0, RESULTS_DIR)
-    import results_hub
-    app.mount("/results", results_hub.app)
-except Exception as _res_mount_err:
-    print(f"[Kavach] Notice: could not mount /results sub-app: {_res_mount_err}")
-    @app.api_route("/results", methods=["GET", "HEAD"], include_in_schema=False)
-    def frontend_results_fallback():
-        return FileResponse(
-            os.path.join(RESULTS_DIR, "index.html"),
-            media_type="text/html",
-            headers={"Cache-Control": "no-cache, must-revalidate"}
-        )
 
 @app.api_route("/results.html", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_results_html():
@@ -314,8 +295,11 @@ def serve_root_academic_weapon():
 
 @app.get("/kavach_ieee_submission_bundle.zip", include_in_schema=False)
 def serve_root_ieee_bundle():
+    bundle_path = os.path.join(FRONTEND_DIR, "kavach_ieee_submission_bundle.zip")
+    if not os.path.exists(bundle_path):
+        raise HTTPException(status_code=404, detail="Submission bundle not found")
     return FileResponse(
-        os.path.join(FRONTEND_DIR, "kavach_ieee_submission_bundle.zip"),
+        bundle_path,
         media_type="application/zip",
         filename="kavach_ieee_submission_bundle.zip"
     )
