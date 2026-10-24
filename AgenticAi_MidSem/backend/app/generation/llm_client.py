@@ -66,81 +66,19 @@ DEFAULT_GEMINI_KEY = ""
 
 
 def get_gemini_api_key() -> str:
+    """Retrieve Gemini API key strictly from the GEMINI_API_KEY environment variable."""
     global GEMINI_API_KEY
-
-    # If GEMINI_API_KEY is explicitly set to empty string in os.environ (e.g. during testing)
-    if "GEMINI_API_KEY" in os.environ and os.environ["GEMINI_API_KEY"] == "":
-        return ""
-
-    if GEMINI_API_KEY:
-        return GEMINI_API_KEY
-
-    key = os.environ.get("GEMINI_API_KEY", "").strip()
-    if not key:
-        backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-        kavach_dir = os.path.abspath(os.path.join(backend_dir, ".."))
-        workspace_dir = os.path.abspath(os.path.join(kavach_dir, ".."))
-
-        # Candidate key files to inspect
-        key_files = [
-            os.path.join(kavach_dir, "keys", "gemini_key.txt"),
-            os.path.join(backend_dir, "keys", "gemini_key.txt"),
-            os.path.join(backend_dir, "gemini_key.txt"),
-            os.path.join(kavach_dir, "gemini_key.txt"),
-            os.path.join(workspace_dir, "gemini_key.txt"),
-            os.path.join(workspace_dir, "keys", "gemini_key.txt"),
-        ]
-        for kf in key_files:
-            if os.path.exists(kf):
-                try:
-                    with open(kf, "r", encoding="utf-8") as f:
-                        val = f.read().strip()
-                        if val and not val.startswith("#"):
-                            key = val
-                            break
-                except Exception:
-                    pass
-
-        # Candidate .env files
-        if not key:
-            env_files = [
-                os.path.join(backend_dir, ".env"),
-                os.path.join(kavach_dir, ".env"),
-                os.path.join(workspace_dir, ".env"),
-            ]
-            for ef in env_files:
-                if os.path.exists(ef):
-                    try:
-                        with open(ef, "r", encoding="utf-8") as f:
-                            for line in f:
-                                if line.strip().startswith("GEMINI_API_KEY="):
-                                    val = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-                                    if val:
-                                        key = val
-                                        break
-                        if key:
-                            break
-                    except Exception:
-                        pass
-
-        # Fallback to hardcoded default key if still nothing
-        if not key and "GEMINI_API_KEY" not in os.environ:
-            key = DEFAULT_GEMINI_KEY
-
-        if key:
-            GEMINI_API_KEY = key
-            os.environ["GEMINI_API_KEY"] = key
-    return key
-
-
-# Initialize GEMINI_API_KEY if available on disk
-if "GEMINI_API_KEY" not in os.environ or os.environ["GEMINI_API_KEY"]:
-    GEMINI_API_KEY = get_gemini_api_key()
+    if "GEMINI_API_KEY" in os.environ:
+        val = os.environ.get("GEMINI_API_KEY", "").strip()
+        GEMINI_API_KEY = val
+        return val
+    return GEMINI_API_KEY.strip()
 
 
 def is_llm_configured() -> bool:
-    if GEMINI_API_KEY == "" and "GEMINI_API_KEY" in os.environ:
-        return False
+    """Check if an LLM is configured (either local air-gapped Ollama or cloud Gemini with key)."""
+    if AIR_GAPPED_MODE:
+        return True
     return bool(get_gemini_api_key())
 
 

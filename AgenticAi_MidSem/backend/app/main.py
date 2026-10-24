@@ -344,38 +344,13 @@ class GeminiConfigRequest(BaseModel):
 
 @app.post("/config/gemini")
 def update_gemini_config(payload: GeminiConfigRequest):
-    """Safely configure or clear the Gemini API key from the frontend dashboard."""
+    """Safely configure or clear the Gemini API key in-memory for the current session."""
     key = payload.api_key.strip()
-    env_path = os.path.join(PROJECT_ROOT, "backend", ".env")
-    root_env = os.path.join(PROJECT_ROOT, ".env")
-    key_file1 = os.path.join(PROJECT_ROOT, "backend", "keys", "gemini_key.txt")
-    key_file2 = os.path.join(PROJECT_ROOT, "keys", "gemini_key.txt")
-    key_file3 = os.path.join(PROJECT_ROOT, "backend", "gemini_key.txt")
-
     if key:
-        for ef in (env_path, root_env):
-            try:
-                with open(ef, "w", encoding="utf-8") as f:
-                    f.write(f"GEMINI_API_KEY={key}\nGEMINI_MODEL=gemini-flash-lite-latest\n")
-            except Exception:
-                pass
-        for kf in (key_file1, key_file2, key_file3):
-            try:
-                os.makedirs(os.path.dirname(kf), exist_ok=True)
-                with open(kf, "w", encoding="utf-8") as f:
-                    f.write(f"{key}\n")
-            except Exception:
-                pass
         os.environ["GEMINI_API_KEY"] = key
         from app.generation import llm_client
         llm_client.GEMINI_API_KEY = key
     else:
-        for ef in (env_path, root_env, key_file1, key_file2, key_file3):
-            if os.path.exists(ef):
-                try:
-                    os.remove(ef)
-                except Exception:
-                    pass
         os.environ.pop("GEMINI_API_KEY", None)
         from app.generation import llm_client
         llm_client.GEMINI_API_KEY = ""

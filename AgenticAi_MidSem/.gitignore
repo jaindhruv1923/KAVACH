@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.token
+*key.txt
+gemini_key.txt
+*gemini_key*
+keys/
+**/keys/
+
+# Testing & Cache
+.pytest_cache/
+.coverage
+scratch/

@@ -12,8 +12,16 @@ build/
 
 # Env / secrets
 .env
-.env.local
+.env.*
+!.env.example
 *.key
+*.pem
+*.token
+*key.txt
+gemini_key.txt
+*gemini_key*
+keys/
+**/keys/
 
 # Databases
 *.sqlite3
