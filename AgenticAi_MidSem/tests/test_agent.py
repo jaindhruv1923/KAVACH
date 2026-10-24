@@ -421,3 +421,34 @@ class TestWorkflowIntegration:
         # Later stages should build on earlier ones
         if run.impact_report:
             assert run.plan is not None, "Impact analysis depends on planning"
+
+
+class TestOrchestrationModes:
+    """Test Google ADK Coordinator routing and fail-safe deterministic fallback (Step 3)."""
+
+    def test_default_orchestration_is_google_adk(self):
+        """Test that default workflow execution is governed by Google ADK Coordinator."""
+        run = run_workflow("Simple safe ping request")
+        assert run.metadata.get("orchestration_engine") == "GOOGLE_ADK_COORDINATOR"
+        assert run.metadata.get("adk_coordinator") == "ADK_Kavach_Coordinator"
+        assert "adk_subagents" in run.metadata
+        assert "SentinelAgent" in run.metadata["adk_subagents"]
+        assert "CoderAgent" in run.metadata["adk_subagents"]
+
+    def test_explicit_deterministic_mode(self):
+        """Test explicit execution in deterministic fallback pipeline."""
+        run = run_workflow("Simple safe ping request", mode="deterministic")
+        assert run.metadata.get("orchestration_engine") == "DETERMINISTIC_PIPELINE"
+        assert run.stage in {WorkflowStage.COMPLETE, WorkflowStage.BLOCKED, WorkflowStage.NEEDS_REVIEW}
+
+    def test_adk_framework_fallback_on_error(self, monkeypatch):
+        """Test that an unexpected exception in ADK coordinator gracefully triggers deterministic fallback."""
+        def _failing_adk(text):
+            raise RuntimeError("Simulated ADK coordinator network or dependency partition")
+        monkeypatch.setattr("app.agent.orchestrator.run_workflow_adk", _failing_adk)
+        
+        run = run_workflow("Simple safe ping request")
+        assert run.metadata.get("orchestration_engine") == "DETERMINISTIC_FALLBACK"
+        assert "Simulated ADK coordinator" in run.metadata.get("framework_fallback_reason", "")
+        assert run.stage in {WorkflowStage.COMPLETE, WorkflowStage.BLOCKED, WorkflowStage.NEEDS_REVIEW}
+
