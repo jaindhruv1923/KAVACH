@@ -1,29 +1,29 @@
 /* ==========================================================================
    KAVACH — APPLE PRO CUPERTINO HIGH-CONTRAST DESIGN SYSTEM
    Inspired by apple.com/apple-intelligence, Pro Display & macOS Sequoia
-   Black & White Ultra-High-Contrast Hierarchy + Animated Contrast Hover
+   Black & White Ultra-High-Contrast Hierarchy + Animated Contrast Sweep Hover
    ========================================================================== */
 
 :root {
   /* Surface Layers: Apple Space Black & Titanium Glass */
   --bg-base: #000000 !important;
   --bg-canvas: #000000 !important;
-  --bg-surface: #121214 !important;
-  --bg-surface-elevated: #1C1C1E !important;
-  --bg-surface-hover: #262629 !important;
-  --bg-surface-active: #323236 !important;
+  --bg-surface: #111113 !important;
+  --bg-surface-elevated: #18181B !important;
+  --bg-surface-hover: #222226 !important;
+  --bg-surface-active: #2D2D32 !important;
 
   /* Borders: Ultra-Fine Laser Translucent Borders */
-  --border-subtle: rgba(255, 255, 255, 0.14) !important;
-  --border-medium: rgba(255, 255, 255, 0.22) !important;
+  --border-subtle: rgba(255, 255, 255, 0.16) !important;
+  --border-medium: rgba(255, 255, 255, 0.26) !important;
   --border-hover: #FFFFFF !important;
   --border-focus: #0071E3 !important;
 
   /* Typography: Razor-Sharp High-Contrast Hierarchy (Black & White) */
   --text-primary: #FFFFFF !important;
-  --text-secondary: #E2E8F0 !important;
-  --text-dim: #94A3B8 !important;
-  --text-disabled: #64748B !important;
+  --text-secondary: #F1F5F9 !important;
+  --text-dim: #CBD5E1 !important;
+  --text-disabled: #94A3B8 !important;
 
   /* Apple Brand & Status Accents */
   --accent: #FFFFFF !important;           /* High-contrast Apple White */
@@ -81,42 +81,58 @@ html, body {
 }
 
 /* ==========================================================================
-   UNIVERSAL TEXT READABILITY OVERRIDES (Eliminates All Unreadable Dark Text)
+   UNIVERSAL TEXT READABILITY OVERRIDES (High-Contrast Crisp White & Silver)
    ========================================================================== */
 
 /* All Headings: Razor-Sharp Pure White */
 h1, h2, h3, h4, h5, h6,
-.hero-title, .brand-title, .section-intro h2,
-strong, b, dt {
+.hero-title, .brand-title, .section-intro h2, .section-title,
+.defense-title, .modal-title, .card-title, .flowchart-title,
+.terminal-title, strong, b, dt, th {
   color: #FFFFFF !important;
   font-weight: 700 !important;
 }
 
 /* Body Text & Paragraphs: Bright Crisp Silver-White */
-p, .hero-subtitle, .section-intro p, dd, li {
-  color: #E2E8F0 !important;
+p, .hero-subtitle, .section-intro p, .section-desc, .defense-subtitle,
+.card-desc, dd, li, td, .explainer-content, .defense-telemetry-desc {
+  color: #F1F5F9 !important;
   line-height: 1.6 !important;
 }
 
-/* Subtitles & Descriptions */
-.section-intro p {
+/* Subtitles, Meta Labels & Supporting Descriptions */
+.section-intro p, .subtitle, .meta-text, .timestamp {
   color: #CBD5E1 !important;
 }
 
-/* Override Any Lingering Inline Dark Colors from Light-Mode Templates */
+/* Metric Labels & Stat Descriptions */
+.stat-label, .metric-label, .telemetry-label, .defense-telemetry-label {
+  color: #CBD5E1 !important;
+  font-weight: 600 !important;
+}
+
+/* Metric Values & Stat Numbers */
+.stat-value, .metric-value, .telemetry-value, .defense-telemetry-value {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+/* Eliminate All Dark Slate Colors from Light-Mode Stylesheets */
 [style*="color:#0F172A"], [style*="color: #0F172A"],
 [style*="color:#0f172a"], [style*="color: #0f172a"],
 [style*="color:#1E293B"], [style*="color: #1E293B"],
 [style*="color:#1e293b"], [style*="color: #1e293b"],
 [style*="color:#334155"], [style*="color: #334155"],
-[style*="color:#475569"], [style*="color: #475569"] {
-  color: #F1F5F9 !important;
+[style*="color:#475569"], [style*="color: #475569"],
+[style*="color:#111827"], [style*="color: #111827"] {
+  color: #FFFFFF !important;
 }
 
 /* Secondary muted inline text */
 [style*="color:#64748B"], [style*="color: #64748B"],
-[style*="color:#94A3B8"], [style*="color: #94A3B8"] {
-  color: #A1A1A6 !important;
+[style*="color:#94A3B8"], [style*="color: #94A3B8"],
+[style*="color:#86868B"], [style*="color: #86868B"] {
+  color: #CBD5E1 !important;
 }
 
 /* Colored Status Inline Text: Convert to High-Luminance Readable Hues */
@@ -150,61 +166,64 @@ p, .hero-subtitle, .section-intro p, dd, li {
 }
 
 /* ==========================================================================
-   CONVERT ALL LINGERING LIGHT/WHITE CONTAINERS INTO APPLE OBSIDIAN TILES
+   CONVERT ALL LIGHT/WHITE CONTAINERS INTO APPLE OBSIDIAN TILES
    ========================================================================== */
 [style*="background:#FFFFFF"], [style*="background: #FFFFFF"],
 [style*="background:#FFF"], [style*="background: #FFF"],
 [style*="background:#F8FAFC"], [style*="background: #F8FAFC"],
 [style*="background:#F1F5F9"], [style*="background: #F1F5F9"] {
-  background: #18181B !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
-  color: #F8FAFC !important;
+  background: #151518 !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
 }
 
 /* Light Alert Containers Re-mapped to Luminous Dark Tints */
 [style*="background:#FEF2F2"], [style*="background: #FEF2F2"] {
-  background: rgba(255, 69, 58, 0.14) !important;
-  border-color: rgba(255, 69, 58, 0.4) !important;
+  background: rgba(255, 69, 58, 0.16) !important;
+  border-color: rgba(255, 69, 58, 0.45) !important;
   color: #FECDD3 !important;
 }
 
 [style*="background:#ECFDF5"], [style*="background: #ECFDF5"] {
-  background: rgba(48, 209, 88, 0.14) !important;
-  border-color: rgba(48, 209, 88, 0.4) !important;
+  background: rgba(48, 209, 88, 0.16) !important;
+  border-color: rgba(48, 209, 88, 0.45) !important;
   color: #D1FAE5 !important;
 }
 
 [style*="background:#EFF6FF"], [style*="background: #EFF6FF"] {
-  background: rgba(0, 113, 227, 0.14) !important;
-  border-color: rgba(0, 113, 227, 0.4) !important;
+  background: rgba(0, 113, 227, 0.16) !important;
+  border-color: rgba(0, 113, 227, 0.45) !important;
   color: #DBEAFE !important;
 }
 
 [style*="background:#FFFBEB"], [style*="background: #FFFBEB"],
 [style*="background:#FEF9C3"], [style*="background: #FEF9C3"] {
-  background: rgba(255, 214, 10, 0.14) !important;
-  border-color: rgba(255, 214, 10, 0.4) !important;
+  background: rgba(255, 214, 10, 0.16) !important;
+  border-color: rgba(255, 214, 10, 0.45) !important;
   color: #FEF3C7 !important;
 }
 
 [style*="background:#F3E8FF"], [style*="background: #F3E8FF"] {
-  background: rgba(191, 90, 242, 0.14) !important;
-  border-color: rgba(191, 90, 242, 0.4) !important;
+  background: rgba(191, 90, 242, 0.16) !important;
+  border-color: rgba(191, 90, 242, 0.45) !important;
   color: #F3E8FF !important;
 }
 
 /* ==========================================================================
-   BUTTONS: SIGNATURE ANIMATED CONTRAST SWEEP (White-on-Black / Black-on-White)
+   BUTTON ARCHITECTURE & ANIMATED CONTRAST SWEEP HOVER
    ========================================================================== */
 
-/* Base Button Properties: High-Definition Apple Pills */
+/* Universal Button Geometry */
 button,
+.btn,
 .btn-serious,
 .btn-primary,
 .btn-secondary,
 .btn-launchpad-primary,
 .btn-launchpad-secondary,
 .btn-eval-secondary,
+.btn-defense-primary,
+.btn-defense-secondary,
 .btn-serious-lg,
 .btn-secondary-lg,
 .pill-btn,
@@ -220,14 +239,45 @@ button,
   cursor: pointer !important;
   font-family: var(--font-sans) !important;
   user-select: none !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-sizing: border-box !important;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Primary Action Buttons (Keynote White Pill) */
+/* Ensure text and SVGs inside buttons are ALWAYS above the animated background */
+button > *,
+.btn > *,
+.btn-serious > *,
+.btn-primary > *,
+.btn-secondary > *,
+.btn-launchpad-primary > *,
+.btn-launchpad-secondary > *,
+.btn-defense-primary > *,
+.btn-defense-secondary > *,
+.magnetic-btn > *,
+.dock-action-btn > *,
+.nav-switch-btn > * {
+  position: relative !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              stroke 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              fill 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* --------------------------------------------------------------------------
+   GROUP A: WHITE BUTTONS (Black Text on White Pill)
+   On hover: A deep black animated curtain sweeps in; text flips to Pure White!
+   -------------------------------------------------------------------------- */
 .btn-serious,
 .btn-primary,
 .btn-launchpad-primary,
-.btn-serious-lg {
+.btn-serious-lg,
+.btn-white,
+#header-launch-console-btn {
   background: #FFFFFF !important;
   color: #000000 !important;
   border: 1.5px solid #FFFFFF !important;
@@ -238,27 +288,24 @@ button,
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25) !important;
 }
 
-/* Secondary Frosted Glass Buttons (Cupertino Dark Glass Pill) */
-.btn-secondary,
-.btn-secondary-lg,
-.btn-launchpad-secondary,
-.btn-eval-secondary,
-.pill-btn,
-.dock-action-btn {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  border-radius: 980px !important;
-  font-weight: 600 !important;
-  padding: 8px 18px !important;
+.btn-serious > *,
+.btn-primary > *,
+.btn-launchpad-primary > *,
+.btn-serious-lg > *,
+.btn-white > *,
+#header-launch-console-btn > * {
+  color: #000000 !important;
+  stroke: #000000 !important;
 }
 
-/* Animated Hover Background Layer (Sweeps smoothly across) */
+/* Animated Black Sweep Curtain */
 .btn-serious::before,
 .btn-primary::before,
 .btn-launchpad-primary::before,
-.btn-serious-lg::before {
-  content: '' !important;
+.btn-serious-lg::before,
+.btn-white::before,
+#header-launch-console-btn::before {
+  content: "" !important;
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -269,16 +316,87 @@ button,
   transform: scaleX(0) !important;
   transform-origin: right !important;
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  z-index: -1 !important;
+  z-index: 1 !important;
 }
 
+.btn-serious:hover::before,
+.btn-primary:hover::before,
+.btn-launchpad-primary:hover::before,
+.btn-serious-lg:hover::before,
+.btn-white:hover::before,
+#header-launch-console-btn:hover::before {
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+}
+
+.btn-serious:hover,
+.btn-primary:hover,
+.btn-launchpad-primary:hover,
+.btn-serious-lg:hover,
+.btn-white:hover,
+#header-launch-console-btn:hover {
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.45), 0 8px 24px rgba(0, 0, 0, 0.9) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+.btn-serious:hover > *,
+.btn-primary:hover > *,
+.btn-launchpad-primary:hover > *,
+.btn-serious-lg:hover > *,
+.btn-white:hover > *,
+#header-launch-console-btn:hover > * {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* --------------------------------------------------------------------------
+   GROUP B: DARK / FROSTED GLASS BUTTONS (White Text on Dark Pill)
+   On hover: A pure white animated curtain sweeps in; text flips to Pure Black!
+   -------------------------------------------------------------------------- */
+.btn-secondary,
+.btn-secondary-lg,
+.btn-launchpad-secondary,
+.btn-eval-secondary,
+.btn-defense-secondary,
+.pill-btn,
+.dock-action-btn,
+.scope-toggle-btn,
+.btn-dark {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 980px !important;
+  font-weight: 600 !important;
+  padding: 8px 18px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-secondary > *,
+.btn-secondary-lg > *,
+.btn-launchpad-secondary > *,
+.btn-eval-secondary > *,
+.btn-defense-secondary > *,
+.pill-btn > *,
+.dock-action-btn > *,
+.scope-toggle-btn > *,
+.btn-dark > * {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* Animated White Sweep Curtain */
 .btn-secondary::before,
 .btn-secondary-lg::before,
 .btn-launchpad-secondary::before,
 .btn-eval-secondary::before,
+.btn-defense-secondary::before,
 .pill-btn::before,
-.dock-action-btn::before {
-  content: '' !important;
+.dock-action-btn::before,
+.scope-toggle-btn::before,
+.btn-dark::before {
+  content: "" !important;
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -289,34 +407,18 @@ button,
   transform: scaleX(0) !important;
   transform-origin: right !important;
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  z-index: -1 !important;
-}
-
-/* Hover States: Trigger Animated Sweep & Invert Contrast */
-.btn-serious:hover::before,
-.btn-primary:hover::before,
-.btn-launchpad-primary:hover::before,
-.btn-serious-lg:hover::before {
-  transform: scaleX(1) !important;
-  transform-origin: left !important;
-}
-
-.btn-serious:hover,
-.btn-primary:hover,
-.btn-launchpad-primary:hover,
-.btn-serious-lg:hover {
-  color: #FFFFFF !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 0 0 24px rgba(255, 255, 255, 0.4), 0 8px 24px rgba(0, 0, 0, 0.8) !important;
-  transform: translateY(-2px) scale(1.02) !important;
+  z-index: 1 !important;
 }
 
 .btn-secondary:hover::before,
 .btn-secondary-lg:hover::before,
 .btn-launchpad-secondary:hover::before,
 .btn-eval-secondary:hover::before,
+.btn-defense-secondary:hover::before,
 .pill-btn:hover::before,
-.dock-action-btn:hover::before {
+.dock-action-btn:hover::before,
+.scope-toggle-btn:hover::before,
+.btn-dark:hover::before {
   transform: scaleX(1) !important;
   transform-origin: left !important;
 }
@@ -325,41 +427,212 @@ button,
 .btn-secondary-lg:hover,
 .btn-launchpad-secondary:hover,
 .btn-eval-secondary:hover,
+.btn-defense-secondary:hover,
 .pill-btn:hover,
-.dock-action-btn:hover {
+.dock-action-btn:hover,
+.scope-toggle-btn:hover,
+.btn-dark:hover {
   color: #000000 !important;
   border-color: #FFFFFF !important;
-  box-shadow: 0 0 24px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.4), 0 8px 24px rgba(0, 0, 0, 0.9) !important;
   transform: translateY(-2px) scale(1.02) !important;
 }
 
-/* Header Buttons */
+.btn-secondary:hover > *,
+.btn-secondary-lg:hover > *,
+.btn-launchpad-secondary:hover > *,
+.btn-eval-secondary:hover > *,
+.btn-defense-secondary:hover > *,
+.pill-btn:hover > *,
+.dock-action-btn:hover > *,
+.scope-toggle-btn:hover > *,
+.btn-dark:hover > * {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* --------------------------------------------------------------------------
+   GROUP C: SPECIALIZED HEADER ACTION BUTTONS (Vibrant, Fully Visible)
+   -------------------------------------------------------------------------- */
+
+/* 1. Comic Explainers (ELI5) */
+#header-comic-explainer-btn,
+.btn-comic-header {
+  background: #FFD60A !important;
+  color: #000000 !important;
+  border: 1.5px solid #FFD60A !important;
+  border-radius: 980px !important;
+  font-weight: 800 !important;
+  padding: 0 16px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 10px rgba(255, 214, 10, 0.35) !important;
+}
+
+#header-comic-explainer-btn:hover,
+.btn-comic-header:hover {
+  background: #E5C000 !important;
+  color: #000000 !important;
+  box-shadow: 0 0 20px rgba(255, 214, 10, 0.6) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* 2. Professor Review (11/11) */
 #header-prof-review-btn {
   background: #30D158 !important;
   color: #000000 !important;
-  border: none !important;
-  font-weight: 700 !important;
+  border: 1.5px solid #30D158 !important;
   border-radius: 980px !important;
+  font-weight: 800 !important;
+  padding: 0 16px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 10px rgba(48, 209, 88, 0.35) !important;
 }
 
 #header-prof-review-btn:hover {
-  background: #28B84D !important;
+  background: #25A344 !important;
   color: #FFFFFF !important;
-  box-shadow: 0 0 20px rgba(48, 209, 88, 0.5) !important;
+  box-shadow: 0 0 20px rgba(48, 209, 88, 0.6) !important;
+  transform: translateY(-1px) scale(1.02) !important;
 }
 
-#header-comic-explainer-btn {
-  background: #FFD60A !important;
-  color: #000000 !important;
-  border: none !important;
-  font-weight: 700 !important;
+/* 3. Mid-Sem Cockpit & Results Cockpit */
+#header-course-cockpit-btn,
+#header-results-cockpit-btn {
+  background: #0071E3 !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
   border-radius: 980px !important;
+  font-weight: 700 !important;
+  padding: 0 16px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 12px rgba(0, 113, 227, 0.4) !important;
 }
 
-#header-comic-explainer-btn:hover {
-  background: #E5C000 !important;
+#header-course-cockpit-btn:hover,
+#header-results-cockpit-btn:hover {
+  background: #FFFFFF !important;
   color: #000000 !important;
-  box-shadow: 0 0 20px rgba(255, 214, 10, 0.5) !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.45) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* 4. Medical Triage & Bank Highway */
+#header-medical-triage-btn,
+#header-bank-highway-btn {
+  background: rgba(100, 210, 255, 0.14) !important;
+  color: #64D2FF !important;
+  border: 1.5px solid rgba(100, 210, 255, 0.45) !important;
+  border-radius: 980px !important;
+  font-weight: 700 !important;
+  padding: 0 16px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 10px rgba(100, 210, 255, 0.2) !important;
+}
+
+#header-medical-triage-btn:hover,
+#header-bank-highway-btn:hover {
+  background: #64D2FF !important;
+  color: #000000 !important;
+  border-color: #64D2FF !important;
+  box-shadow: 0 0 24px rgba(100, 210, 255, 0.6) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* 5. Defense Tour */
+#header-defense-tour-btn,
+.btn-defense-tour {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 980px !important;
+  font-weight: 600 !important;
+  padding: 0 16px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#header-defense-tour-btn:hover,
+.btn-defense-tour:hover {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* 6. Multi-Modal Voice Cockpit */
+#header-voice-btn,
+.voice-header-btn {
+  background: rgba(191, 90, 242, 0.16) !important;
+  color: #BF5AF2 !important;
+  border: 1.5px solid rgba(191, 90, 242, 0.45) !important;
+  border-radius: 980px !important;
+  font-weight: 700 !important;
+  padding: 0 16px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 10px rgba(191, 90, 242, 0.2) !important;
+}
+
+#header-voice-btn:hover,
+.voice-header-btn:hover {
+  background: #BF5AF2 !important;
+  color: #000000 !important;
+  border-color: #BF5AF2 !important;
+  box-shadow: 0 0 24px rgba(191, 90, 242, 0.6) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* --------------------------------------------------------------------------
+   GROUP D: FLOATING AI COPILOT LAUNCHER (#chatbot-launcher)
+   -------------------------------------------------------------------------- */
+#chatbot-launcher {
+  background: #0071E3 !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  border-radius: 980px !important;
+  box-shadow: 0 8px 30px rgba(0, 113, 227, 0.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 20px !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#chatbot-launcher:hover {
+  background: #0077ED !important;
+  color: #FFFFFF !important;
+  transform: translateY(-3px) scale(1.04) !important;
+  box-shadow: 0 12px 36px rgba(0, 113, 227, 0.7) !important;
+}
+
+#chatbot-launcher span,
+#chatbot-launcher .chatbot-launcher-label {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+}
+
+#chatbot-launcher svg {
+  stroke: #FFFFFF !important;
 }
 
 /* ==========================================================================
@@ -389,7 +662,7 @@ button,
 
 .pathway-tab {
   background: transparent !important;
-  color: #A1A1A6 !important;
+  color: #CBD5E1 !important;
   border-radius: 980px !important;
   border: none !important;
   font-weight: 600 !important;
@@ -413,27 +686,69 @@ button,
   border-radius: 980px !important;
 }
 
-/* Sub-Nav Rails */
+/* --------------------------------------------------------------------------
+   SUB-NAV RAILS (.nav-switch-btn)
+   High contrast, highly legible, animated hover sweep
+   -------------------------------------------------------------------------- */
 .nav-switch-btn {
-  background: transparent !important;
-  color: #A1A1A6 !important;
-  border: none !important;
-  font-size: 0.78rem !important;
-  font-weight: 500 !important;
-  padding: 6px 14px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #F1F5F9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  padding: 6px 16px !important;
   border-radius: 980px !important;
+  margin: 0 2px !important;
 }
 
 .nav-switch-btn:hover {
-  color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.28) !important;
 }
 
 .nav-switch-btn.active {
   color: #000000 !important;
   background: #FFFFFF !important;
+  border-color: #FFFFFF !important;
   font-weight: 700 !important;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 2px 16px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ==========================================================================
+   HERO TELEMETRY CHIPS & BADGES
+   ========================================================================== */
+.telemetry-chip-strip {
+  display: flex !important;
+  gap: 10px !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 24px !important;
+}
+
+.telemetry-chip {
+  background: #18181B !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 980px !important;
+  padding: 8px 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #CBD5E1 !important;
+  font-size: 0.84rem !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+}
+
+.telemetry-chip span {
+  color: #CBD5E1 !important;
+}
+
+.telemetry-chip strong,
+.telemetry-chip b {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
 }
 
 /* ==========================================================================
@@ -475,7 +790,7 @@ button,
   letter-spacing: -0.035em !important;
   line-height: 1.06 !important;
   margin: 20px 0 16px 0 !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.75) 100%) !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -506,19 +821,24 @@ button,
 #zero-token-telemetry-strip,
 .kavach-card,
 .bento-card,
-.course-card {
-  background: #121214 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+.course-card,
+.defense-telemetry-card,
+.defense-pillar-card,
+.theory-card {
+  background: #111113 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
   border-radius: 22px !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.7) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.75) !important;
   color: #FFFFFF !important;
 }
 
 .card:hover,
-.bento-card:hover {
+.bento-card:hover,
+.defense-telemetry-card:hover,
+.defense-pillar-card:hover {
   transform: scale(1.006) translateY(-2px) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 20px 50px rgba(0, 0, 0, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 20px 50px rgba(0, 0, 0, 0.9) !important;
 }
 
 /* ==========================================================================
@@ -529,7 +849,7 @@ input[type="search"],
 select,
 textarea {
   background: #1C1C1E !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 12px !important;
   color: #FFFFFF !important;
   font-family: var(--font-sans) !important;
@@ -553,30 +873,34 @@ select option {
 /* ==========================================================================
    MODALS (Apple Sheet & Glass Backdrop)
    ========================================================================== */
-.course-modal-backdrop {
-  background: rgba(0, 0, 0, 0.85) !important;
+.course-modal-backdrop,
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.88) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
 }
 
-.course-modal-window {
+.course-modal-window,
+.modal-dialog,
+.modal-content {
   background: #161617 !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 24px !important;
   color: #FFFFFF !important;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
-.course-modal-window * {
+.course-modal-window *,
+.modal-content * {
   color: #F8FAFC !important;
 }
 
 .prof-tab-btn {
   background: #2C2C2E !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #A1A1A6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #CBD5E1 !important;
   border-radius: 980px !important;
-  padding: 6px 14px !important;
+  padding: 6px 16px !important;
 }
 
 .prof-tab-btn:hover {
@@ -602,14 +926,14 @@ table {
   width: 100% !important;
   border-radius: 14px !important;
   overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
 }
 
 .kavach-comparison-table th,
 table th {
   background: #1C1C1E !important;
   color: #FFFFFF !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   font-size: 0.74rem !important;
@@ -619,8 +943,8 @@ table th {
 
 .kavach-comparison-table td,
 table td {
-  background: #121214 !important;
-  color: #E2E8F0 !important;
+  background: #111113 !important;
+  color: #F1F5F9 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 12px 16px !important;
 }
@@ -630,21 +954,21 @@ table td {
    ========================================================================== */
 #floating-pathway-dock,
 .floating-pathway-dock {
-  background: rgba(28, 28, 30, 0.9) !important;
+  background: rgba(24, 24, 27, 0.92) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 980px !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
   color: #FFFFFF !important;
 }
 
 /* ==========================================================================
    CODE BLOCKS & MONOSPACE TERMINAL CONTAINERS
    ========================================================================== */
-pre, code, .terminal-window {
-  background: #0B0B0C !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+pre, code, .terminal-window, .terminal-container {
+  background: #09090B !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
   border-radius: 12px !important;
   color: #64D2FF !important;
   font-family: var(--font-mono) !important;

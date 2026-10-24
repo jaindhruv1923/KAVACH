@@ -387,13 +387,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   </script>
-      <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
+      <button type="button" id="header-prof-review-btn" class="magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
         Professor Review (11/11)
       </button>
-      <a href="/results/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700;" title="Unified Cross-Platform Results Cockpit">
+      <a href="/results/" target="_blank" id="header-results-cockpit-btn" class="magnetic-btn" title="Unified Cross-Platform Results Cockpit">
         Results Cockpit
       </a>
-      <a href="/bank/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#F8FAFC; font-weight:600;" title="Bharat Core Banking Highway">
+      <a href="/bank/" target="_blank" id="header-bank-highway-btn" class="magnetic-btn" title="Bharat Core Banking Highway">
         Bank Highway
       </a>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
@@ -402,8 +402,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="button" id="header-voice-btn" class="voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
         Voice Cockpit
       </button>
-      <button type="button" class="btn-serious magnetic-btn" onclick="switchToWorkspace()">
-        Launch Console <span class="arrow-shift">&rarr;</span>
+      <button type="button" id="header-launch-console-btn" class="magnetic-btn" onclick="switchToWorkspace()" title="Launch Live Incident Console">
+        Launch Console &rarr;
       </button>
     </div>
   </div>

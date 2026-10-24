@@ -494,16 +494,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   </script>
 
-      <button type="button" id="header-comic-explainer-btn" class="btn-comic-header btn-serious magnetic-btn" onclick="window.openComicExplainerModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #FEF08A 0%, #FDE047 100%); color:#0F172A; font-weight:800; border:2px solid #0F172A; box-shadow:2.5px 2.5px 0px #0F172A; cursor:pointer;" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
+      <button type="button" id="header-comic-explainer-btn" class="btn-comic-header magnetic-btn" onclick="window.openComicExplainerModal()" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
         Comic Explainers (ELI5)
       </button>
-      <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
+      <button type="button" id="header-prof-review-btn" class="magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
         Professor Review (11/11)
       </button>
-      <button type="button" class="btn-serious magnetic-btn" onclick="window.openCourseCockpitModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700;" title="CSE3101 Agentic AI Course Handout & Mid-Sem Cockpit">
+      <button type="button" id="header-course-cockpit-btn" class="magnetic-btn" onclick="window.openCourseCockpitModal()" title="CSE3101 Agentic AI Course Handout & Mid-Sem Cockpit">
         Mid-Sem Cockpit
       </button>
-      <button type="button" class="btn-serious magnetic-btn" onclick="if(window.openMedicalTriageDemoModal) window.openMedicalTriageDemoModal(); else window.switchToEval();" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; font-weight:600;" title="Google ADK Medical Triage Multi-Agent Pipeline (Call 112/108 vs OTC)">
+      <button type="button" id="header-medical-triage-btn" class="magnetic-btn" onclick="if(window.openMedicalTriageDemoModal) window.openMedicalTriageDemoModal(); else window.switchToEval();" title="Google ADK Medical Triage Multi-Agent Pipeline (Call 112/108 vs OTC)">
         Medical Triage
       </button>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
@@ -512,8 +512,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="button" id="header-voice-btn" class="voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
         Voice Cockpit
       </button>
-      <button type="button" class="btn-serious magnetic-btn" onclick="switchToWorkspace()">
-        Launch Console <span class="arrow-shift">&rarr;</span>
+      <button type="button" id="header-launch-console-btn" class="magnetic-btn" onclick="switchToWorkspace()" title="Launch Live Incident Console">
+        Launch Console &rarr;
       </button>
     </div>
   </div>
@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <nav class="nav-switcher" id="main-nav-switcher" role="tablist" aria-label="Context Navigation Tabs">
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('theory-blueprints-section', this)" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:600;" title="Theoretical Understanding & Animated Architectural Blueprints">Theory &amp; Diagrams</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('theory-blueprints-section', this)" title="Theoretical Understanding &amp; Animated Architectural Blueprints">Theory &amp; Diagrams</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks (20/20)</button>
       <button type="button" class="nav-switch-btn" onclick="switchToWorkspace()">Console</button>
       <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Defense Matrix</button>
