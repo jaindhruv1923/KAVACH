@@ -222,7 +222,7 @@ class MerkleAuditLedger:
                 "crypto_suite": self.crypto_suite,
                 "tamper_detected": False,
                 "length_extension_immune": True,
-                "quantum_security_margin": "256_BITS_GROVER_RESISTANT",
+                "collision_security_margin": "256_BITS_COLLISION_RESISTANCE",
             }
 
         for idx, entry in enumerate(self.entries):
@@ -263,13 +263,13 @@ class MerkleAuditLedger:
             "merkle_root": self.root_hash,
             "crypto_suite": self.crypto_suite,
             "crypto_standard": "NIST_FIPS_202_SHA3_512_KECCAK_SPONGE",
-            "quantum_security_margin": "256_BITS_GROVER_RESISTANT",
+            "collision_security_margin": "256_BITS_COLLISION_RESISTANCE",
             "length_extension_immune": True,
             "tamper_detected": False,
             "statutory_compliance": "INDIAN_DPDP_ACT_2023_SECTIONS_8_9_VERIFIED",
             "evaluator_defense_brief": (
                 "Upgraded from legacy SHA-256 (Merkle-Damgard) to NIST FIPS 202 SHA3-512 (Keccak Sponge). "
-                "Immune to Length Extension Attacks, with 256-bit post-quantum collision security margin."
+                "Immune to Length Extension Attacks by sponge permutation design, providing 256-bit collision security."
             )
         }
 

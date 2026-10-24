@@ -316,15 +316,16 @@ def serve_root_academic_weapon():
     )
 
 
+@app.get("/kavach_evaluation_dossier.zip", include_in_schema=False)
 @app.get("/kavach_ieee_submission_bundle.zip", include_in_schema=False)
-def serve_root_ieee_bundle():
+def serve_root_evaluation_bundle():
     bundle_path = os.path.join(FRONTEND_DIR, "kavach_ieee_submission_bundle.zip")
     if not os.path.exists(bundle_path):
-        raise HTTPException(status_code=404, detail="Submission bundle not found")
+        raise HTTPException(status_code=404, detail="Evaluation dossier bundle not found")
     return FileResponse(
         bundle_path,
         media_type="application/zip",
-        filename="kavach_ieee_submission_bundle.zip"
+        filename="kavach_evaluation_dossier.zip"
     )
 
 
