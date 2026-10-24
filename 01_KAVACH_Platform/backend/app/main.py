@@ -1320,7 +1320,85 @@ def merkle_proof_endpoint(index: int):
         )
 
 
+class MerkleTamperDemoRequest(BaseModel):
+    target_index: Optional[int] = None
+    tamper_payload: Optional[str] = "MALICIOUS_UNAUTHORIZED_RECORD_OVERWRITE"
+
+
+@app.post("/security/merkle/tamper-demo")
+def merkle_tamper_demo_endpoint(payload: Optional[MerkleTamperDemoRequest] = None):
+    """
+    Demonstrate cryptographic tamper detection on an in-memory clone of the ledger.
+    Guarantees the live global_merkle_ledger is never corrupted.
+    Returns:
+    - pre_tamper_verification: status before injection (valid)
+    - post_tamper_verification: tamper_detected: True with exact corrupted_index
+    - real_ledger_untouched: True
+    """
+    import copy
+
+    # Clone the live ledger
+    ledger_copy = copy.deepcopy(global_merkle_ledger)
+
+    # Ensure ledger clone has at least 3 sample events for demonstration
+    if len(ledger_copy.entries) < 3:
+        ledger_copy.record_event(
+            "DPDP_DE_IDENTIFICATION",
+            "SentinelAgent",
+            "REDACT",
+            {"sanitized_fields": ["aadhaar_verhoeff", "pan_card"], "records": 2}
+        )
+        ledger_copy.record_event(
+            "POLICY_ENFORCEMENT",
+            "PolicyEngine",
+            "ALLOW",
+            {"risk_score": 0.0, "risk_tier": "SAFE"}
+        )
+        ledger_copy.record_event(
+            "SBOM_CYCLONEDX_ATTESTATION",
+            "PackageFirewall",
+            "ALLOW",
+            {"pypi_status": "CLEAN", "components_verified": 14}
+        )
+
+    target_idx = 1
+    if payload and payload.target_index is not None:
+        target_idx = max(0, min(payload.target_index, len(ledger_copy.entries) - 1))
+
+    original_entry = copy.deepcopy(ledger_copy.entries[target_idx])
+    original_root = ledger_copy.get_merkle_root()
+    pre_tamper = ledger_copy.verify_ledger_integrity()
+
+    # Corrupt a single field in the entry details of the COPY
+    tamper_val = (payload.tamper_payload if payload and payload.tamper_payload else "MALICIOUS_UNAUTHORIZED_RECORD_OVERWRITE")
+    ledger_copy.entries[target_idx]["details"]["tampered_injected_field"] = tamper_val
+
+    # Re-run integrity verification on the copy
+    post_tamper = ledger_copy.verify_ledger_integrity()
+
+    return {
+        "status": "TAMPER_DETECTED" if post_tamper.get("tamper_detected") else "TAMPER_UNDETECTED",
+        "demo_scope": "IN_MEMORY_ISOLATED_LEDGER_CLONE",
+        "real_ledger_untouched": True,
+        "target_index": target_idx,
+        "original_merkle_root": original_root,
+        "pre_tamper_verification": pre_tamper,
+        "tampered_entry_details": {
+            "index": target_idx,
+            "original_details": original_entry["details"],
+            "tampered_details": ledger_copy.entries[target_idx]["details"],
+            "stored_leaf_hash": ledger_copy.entries[target_idx]["leaf_hash"],
+        },
+        "post_tamper_verification": post_tamper,
+        "mathematical_explanation": (
+            f"Preimage for leaf index {target_idx} was modified. Recalculating hash(preimage) != stored leaf_hash. "
+            f"Tamper was deterministically detected and isolated at corrupted index {post_tamper.get('corrupted_index')}."
+        ),
+    }
+
+
 class FindingsPayload(BaseModel):
+
     findings: list[dict]
 
 
