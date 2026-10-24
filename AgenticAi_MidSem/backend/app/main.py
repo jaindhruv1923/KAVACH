@@ -15,6 +15,7 @@ import re
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
 
@@ -44,37 +45,15 @@ from app.generation.llm_client import is_llm_configured
 
 
 # ============================================================
-# FASTAPI APPLICATION
+# FASTAPI LIFESPAN & APPLICATION
 # ============================================================
 
-app = FastAPI(
-    title="Kavach",
-    description="Security-Governed Agentic AI DevOps Platform — backend API",
-    version="0.0.1",
-)
-
-# ============================================================
-# CORS
-# ============================================================
-#
-# A single fully permissive CORS layer. Registering a second CORSMiddleware
-# (as an earlier revision did) emits *duplicated* Access-Control-Allow-Origin
-# headers on every response, which browsers reject outright, silently breaking
-# cross-origin dashboard calls. Keep exactly one registration here.
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_origin_regex=r".*",
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
-@app.on_event("startup")
-def prewarm_models():
-    """Pre-warm local SentenceTransformer embedding model and Qdrant in background to ensure instant user requests."""
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Lifespan event handler replacing deprecated @app.on_event.
+    Pre-warms local SentenceTransformer embedding model and Qdrant in background thread.
+    """
     import threading
     def _warmup():
         try:
@@ -93,6 +72,50 @@ def prewarm_models():
         except Exception:
             pass
     threading.Thread(target=_warmup, daemon=True).start()
+    yield
+
+
+app = FastAPI(
+    title="Kavach",
+    description="Security-Governed Agentic AI DevOps Platform — backend API",
+    version="0.0.1",
+    lifespan=lifespan,
+)
+
+# ============================================================
+# CORS
+# ============================================================
+#
+# Configured via CORS_ORIGINS environment variable.
+# Defaults strictly to localhost origins for security hygiene.
+
+def get_allowed_origins() -> list[str]:
+    """Retrieve allowed CORS origins from CORS_ORIGINS environment variable."""
+    env_origins = os.getenv("CORS_ORIGINS", "").strip()
+    if env_origins:
+        return [o.strip() for o in env_origins.split(",") if o.strip()]
+    return [
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "null",
+    ]
+
+_allowed_origins = get_allowed_origins()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=_allowed_origins,
+    allow_credentials=False if "*" in _allowed_origins else True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # ============================================================

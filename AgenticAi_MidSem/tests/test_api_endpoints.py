@@ -484,3 +484,37 @@ class TestCommunicationProtocols:
         assert data["commit_count"] == 1
         assert "QUEUED_FOR_EVALUATION" in data["governance_status"]
 
+
+class TestCorsAndStartupHygiene:
+    """Test CORS allowed/blocked origins and lifespan startup hygiene (Step 2)."""
+
+    def test_cors_allowed_localhost_origin(self, client):
+        """Test preflight request from allowed localhost origin returns CORS header."""
+        res = client.options(
+            "/health",
+            headers={
+                "Origin": "http://localhost:8000",
+                "Access-Control-Request-Method": "GET",
+            },
+        )
+        assert res.status_code == 200
+        assert res.headers.get("access-control-allow-origin") == "http://localhost:8000"
+
+    def test_cors_blocked_unauthorized_origin(self, client):
+        """Test request from unauthorized external origin does NOT receive CORS header."""
+        res = client.options(
+            "/health",
+            headers={
+                "Origin": "http://malicious-attacker.com",
+                "Access-Control-Request-Method": "GET",
+            },
+        )
+        assert res.headers.get("access-control-allow-origin") is None
+
+    def test_cors_env_parsing(self, monkeypatch):
+        """Test that get_allowed_origins parses CORS_ORIGINS environment variable."""
+        from app.main import get_allowed_origins
+        monkeypatch.setenv("CORS_ORIGINS", "https://kavach.bml.edu.in, https://dashboard.kavach.local")
+        origins = get_allowed_origins()
+        assert origins == ["https://kavach.bml.edu.in", "https://dashboard.kavach.local"]
+
