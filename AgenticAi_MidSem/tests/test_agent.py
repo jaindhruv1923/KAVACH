@@ -3,10 +3,11 @@ Phase 2 - Agent Orchestrator Tests
 Tests for workflow coordination, planning, and state management.
 """
 
+import json
 import pytest
 from app.agent.orchestrator import run_workflow
 from app.agent.state import WorkflowRun, WorkflowStage, save_run, get_run, list_runs
-from app.agent.planner import plan_request
+from app.agent.planner import plan_request, deterministic_fallback_planner
 
 
 class TestPlanner:
@@ -70,6 +71,61 @@ class TestPlanner:
         for plan in plans:
             security_tasks = [t for t in plan if "security" in t.lower() or "check" in t.lower()]
             assert len(security_tasks) > 0
+
+    def test_llm_planner_success_gemini(self, monkeypatch):
+        """Test honest LLM planning path via Gemini JSON response."""
+        sample_plan = [
+            "Analyze authentication requirements",
+            "Retrieve repository security modules",
+            "Generate compliant token validation",
+            "Run policy enforcement checks",
+        ]
+        monkeypatch.setattr("app.generation.llm_client.is_llm_configured", lambda: True)
+        monkeypatch.setattr("app.generation.llm_client.call_llm", lambda prompt: json.dumps(sample_plan))
+        plan = plan_request("Add OAuth2 login support", provider="gemini")
+        assert plan == sample_plan
+
+    def test_llm_planner_markdown_wrapped_json(self, monkeypatch):
+        """Test LLM planner parsing JSON wrapped in markdown code fence."""
+        sample_plan = [
+            "Inspect database schemas",
+            "Verify migration scripts",
+            "Perform security review",
+        ]
+        raw_response = f"```json\n{json.dumps(sample_plan)}\n```"
+        monkeypatch.setattr("app.generation.llm_client.is_llm_configured", lambda: True)
+        monkeypatch.setattr("app.generation.llm_client.call_llm", lambda prompt: raw_response)
+        plan = plan_request("Migrate users table to PostgreSQL")
+        assert plan == sample_plan
+
+    def test_llm_planner_ollama_option(self, monkeypatch):
+        """Test honest LLM planning path with the Ollama local option."""
+        sample_plan = [
+            "Check local endpoints",
+            "Retrieve offline context",
+            "Apply security policies",
+        ]
+        monkeypatch.setattr("app.generation.llm_client.call_ollama", lambda prompt: json.dumps(sample_plan))
+        plan = plan_request("Audit local routes", provider="ollama")
+        assert plan == sample_plan
+
+    def test_llm_planner_fallback_on_malformed_json(self, monkeypatch):
+        """Test fallback when LLM returns unstructured text instead of JSON."""
+        monkeypatch.setattr("app.generation.llm_client.is_llm_configured", lambda: True)
+        monkeypatch.setattr("app.generation.llm_client.call_llm", lambda prompt: "I cannot produce a plan right now.")
+        plan = plan_request("Update auth middleware")
+        # Should gracefully fall back to deterministic planner
+        assert isinstance(plan, list)
+        assert any("auth" in t.lower() for t in plan)
+        assert any("security" in t.lower() for t in plan)
+
+    def test_deterministic_fallback_planner_direct(self):
+        """Test deterministic fallback planner directly."""
+        plan = deterministic_fallback_planner("Check database connection and password")
+        assert isinstance(plan, list)
+        assert any("database" in t.lower() for t in plan)
+        assert any("password" in t.lower() for t in plan)
+        assert any("security" in t.lower() for t in plan)
 
 
 class TestWorkflowState:

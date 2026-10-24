@@ -1,21 +1,29 @@
 """
 Planner (Phase 2 — see docs/AGENT_SPEC.md).
 
-IMPORTANT — honest note for the report/viva: this is currently a simple, rule-based
-planner, NOT an LLM call. Building the orchestrator's plumbing (state machine, RAG
-wiring, security gating) doesn't require an LLM to be working yet, so this stub lets
-Phase 2 be built and tested independently of API/Ollama setup.
-
-Swap `plan_request()`'s body for a real LLM call (local via Ollama, or cloud) once
-that's set up — the function signature and return shape are designed so nothing else
-in the orchestrator needs to change when you do.
+Implements honest LLM-based task decomposition (Google Gemini or local Ollama)
+that returns a structured JSON plan of concrete engineering sub-tasks.
+Includes a clearly named deterministic fallback (`deterministic_fallback_planner`)
+when the LLM is unconfigured, unreachable, or returns invalid JSON.
 """
 
+import json
+import logging
 import re
+from typing import List, Optional
 
+logger = logging.getLogger("kavach.planner")
 
-# Very simple keyword-based task decomposition. This is intentionally naive —
-# it exists to prove the workflow end-to-end, not to be the final planning logic.
+# Structured prompt for LLM task decomposition
+_PLANNER_SYSTEM_PROMPT = (
+    "You are an AI DevOps Task Planner. Break down the following developer software request "
+    "into an ordered list of 3 to 6 concrete, actionable engineering sub-tasks.\n"
+    "Rules:\n"
+    "1. Always include repository context retrieval and security/policy compliance verification.\n"
+    "2. Return ONLY a valid JSON array of strings (e.g. [\"Task 1\", \"Task 2\"]).\n"
+    "3. Do not include markdown formatting, markdown code blocks, or explanatory preamble."
+)
+
 _TASK_KEYWORDS = {
     "auth": ["Identify authentication-related files", "Review existing auth logic"],
     "password": ["Locate password handling code", "Check password reset flow if present"],
@@ -25,13 +33,12 @@ _TASK_KEYWORDS = {
 }
 
 
-def plan_request(request_text: str) -> list[str]:
+def deterministic_fallback_planner(request_text: str) -> List[str]:
     """
-    Break a natural-language developer request into a structured list of
-    sub-tasks. Currently rule-based (see module docstring) — replace with an
-    LLM call for real planning once an LLM is available.
+    Deterministic rule-based task decomposition fallback.
+    Explicitly invoked when the LLM service is offline, unconfigured, or returns malformed output.
     """
-    text_lower = request_text.lower()
+    text_lower = request_text.lower() if request_text else ""
     tasks = ["Understand the request and identify its scope"]
 
     matched_any = False
@@ -52,3 +59,75 @@ def plan_request(request_text: str) -> list[str]:
     tasks.append("Run security/policy checks on the request and any retrieved context")
 
     return tasks
+
+
+def _extract_json_array(text: str) -> Optional[List[str]]:
+    """Clean and parse a JSON array from raw LLM output, stripping markdown fences if present."""
+    if not text:
+        return None
+    cleaned = text.strip()
+    # Strip markdown code blocks like ```json ... ``` or ``` ... ```
+    if cleaned.startswith("```"):
+        lines = cleaned.splitlines()
+        if lines and lines[0].startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+        cleaned = "\n".join(lines).strip()
+
+    # Search for JSON array boundaries if surrounding commentary exists
+    start_idx = cleaned.find("[")
+    end_idx = cleaned.rfind("]")
+    if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
+        cleaned = cleaned[start_idx : end_idx + 1]
+
+    try:
+        parsed = json.loads(cleaned)
+        if isinstance(parsed, list) and all(isinstance(item, str) for item in parsed) and len(parsed) > 0:
+            return parsed
+    except Exception:
+        pass
+    return None
+
+
+def plan_request(request_text: str, provider: Optional[str] = None) -> List[str]:
+    """
+    Break a natural-language developer request into a structured list of sub-tasks.
+
+    Execution strategy:
+    1. Attempts honest LLM task decomposition via Gemini or Ollama.
+    2. Parses and validates the structured JSON plan.
+    3. If LLM is unconfigured, unreachable, or fails schema validation,
+       gracefully switches to `deterministic_fallback_planner`.
+    """
+    if not request_text or not request_text.strip():
+        return deterministic_fallback_planner(request_text)
+
+    # Check if LLM is available
+    try:
+        from app.generation.llm_client import (
+            call_llm,
+            call_ollama,
+            is_llm_configured,
+            AIR_GAPPED_MODE,
+        )
+
+        use_ollama = (provider == "ollama") or (AIR_GAPPED_MODE and provider != "gemini")
+        llm_ready = is_llm_configured() or use_ollama
+
+        if llm_ready:
+            prompt = f"{_PLANNER_SYSTEM_PROMPT}\n\nDeveloper Request:\n{request_text.strip()}"
+            if use_ollama:
+                response_text = call_ollama(prompt)
+            else:
+                response_text = call_llm(prompt)
+
+            if response_text and not response_text.startswith("[Ollama local model") and not response_text.startswith("[STUB RESPONSE"):
+                plan = _extract_json_array(response_text)
+                if plan:
+                    return plan
+                logger.warning("LLM planner output failed JSON schema validation; invoking deterministic fallback.")
+    except Exception as e:
+        logger.warning(f"LLM planner invocation error: {e}; invoking deterministic fallback.")
+
+    return deterministic_fallback_planner(request_text)
