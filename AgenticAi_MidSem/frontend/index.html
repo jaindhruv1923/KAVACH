@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>" Kavach " ~ Security-Governed Agentic AI DevOps Platform | Zero-Trust LLM Guardrails</title>
+<title>CSE3101: Agentic AI — Mid-Sem Evaluation Platform & Working Prototype | BML Munjal University</title>
 
 <!-- Primary Meta Tags -->
-<meta name="title" content="Kavach — Security-Governed Agentic AI DevOps Platform">
-<meta name="description" content="Kavach wraps generative LLM pipelines with real-time OWASP guardrails, AST blast-radius analysis, zero-knowledge DPDP vaults, closed-loop ReAct reflexion, and CycloneDX SBOM attestations.">
-<meta name="keywords" content="Agentic AI, AI Cybersecurity, DevSecOps, OWASP LLM Top 10, AST Blast Radius, Code Synthesis Security, DPDP Act 2023, Zero-Knowledge Vault, Merkle Tree Audit, ReAct Reflexion, CycloneDX SBOM, MITRE ATLAS">
+<meta name="title" content="CSE3101: Agentic AI — Mid-Sem Evaluation Platform | BML Munjal University">
+<meta name="description" content="CSE3101 Agentic AI Mid-Sem Working Prototype: 5-Persona Agent Lifecycle FSM, Google ADK 8-Hook Callbacks, CrewAI Stateful Flows, ReAct/CoT/ToT Reasoning, A2A/MCP Protocols, and Medical Triage Pipeline. Evaluated by Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari.">
+<meta name="keywords" content="CSE3101, Agentic AI, Google ADK, CrewAI, Agent2Agent, MCP, ReAct Reasoning, AST Blast Radius, Medical Triage Pipeline, BML Munjal University, Dhruv Jain">
 <meta name="author" content="Dhruv Jain">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="theme-color" content="#0F172A">
+<meta name="theme-color" content="#2563EB">
 <meta name="color-scheme" content="dark light">
 <link rel="canonical" href="https://github.com/jaindhruv1923/kavach">
 
@@ -328,20 +327,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <header class="app-header">
   <!-- Top Row: Brand, Primary Pathway Toggle, and Quick Action Buttons -->
   <div class="app-header-main">
-    <div class="nav-brand" onclick="switchToProduct()">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span class="brand-title">Kavach</span>
-      <span class="badge" style="border-color:var(--border-subtle);color:var(--accent);font-size:0.68rem;padding:2px 7px;">v2.1 ENTERPRISE</span>
+    <div class="nav-brand" onclick="switchToProduct()" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span class="brand-title" style="font-weight:800; font-size:1.15rem; color:#0F172A; letter-spacing:-0.02em;">Agentic AI</span>
+      <span class="badge" style="background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">CSE3101 MID-SEM</span>
     </div>
 
-    <!-- Primary Pathway Scope Selector (Centered, Spacious) -->
-    <div class="header-pathway-selector" role="radiogroup" aria-label="Project Scope Pathway">
-      <button type="button" id="pathway-btn-midsem" class="pathway-tab active" onclick="activatePathwayMode('midsem')" title="View Mid-Sem Foundation scope & architecture">
-        Earlier (Mid-Sem) <span class="pathway-chip">v1.0</span>
-      </button>
-      <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="View Newly Added Post-Mid-Sem Innovations">
-        <span class="pulse-dot-green"></span> New (Improvised) <span class="pathway-chip">v3.0</span>
-      </button>
+    <!-- Handout Syllabus Header Indicator (Centered, Spacious) -->
+    <div class="header-pathway-selector" role="region" aria-label="Course Handout Information" style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:0.75rem; font-weight:700; color:#1E293B; background:#F8FAFC; border:1px solid #CBD5E1; padding:4px 10px; border-radius:6px;">
+        🏛️ BML Munjal University &bull; 7th Sem B.Tech CSE
+      </span>
+      <span style="font-size:0.75rem; font-weight:700; color:#065F46; background:#ECFDF5; border:1px solid #A7F3D0; padding:4px 10px; border-radius:6px;">
+        👨‍🏫 Faculty: Dr. Soharab Hossain Shaikh &amp; Mr. Pranshu Tiwari
+      </span>
     </div>
 
     <div class="nav-actions">
@@ -483,139 +482,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     };
 
-    window.getLiveServiceUrl = function(service) {
-      var isPort8000 = window.location.port === '8000';
-      var isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
-      if (isPort8000) {
-        return '/' + service + '/';
-      }
-      if (isLocal) {
-        return 'http://127.0.0.1:8000/' + service + '/';
-      }
-      if (service === 'bank') {
-        return '../../02_Banking_and_Results_Dashboard/implementation_banks/index.html';
-      } else {
-        return '../../02_Banking_and_Results_Dashboard/results_dashboard/index.html';
-      }
-    };
-
-    window.openBankingHighwayModal = function() {
-      var modal = document.getElementById('banking-highway-modal');
-      var bankUrl = window.getLiveServiceUrl('bank');
-      if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'banking-highway-modal';
-        modal.className = 'course-modal-backdrop';
-        modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(15,23,42,0.65); backdrop-filter:blur(6px); z-index:2147483647; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;';
-        modal.innerHTML = 
-          '<div class="course-modal-window" style="max-width:1300px; width:98%; height:92vh; display:flex; flex-direction:column; background:#FFFFFF !important; border:1.5px solid #CBD5E1 !important; box-shadow:0 25px 70px rgba(0,0,0,0.35) !important; border-radius:14px !important; overflow:hidden;">' +
-            '<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#F8FAFC !important; border-bottom:1px solid #E2E8F0; flex-shrink:0;">' +
-              '<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">' +
-                '<span style="font-size:1.3rem;">🏦</span>' +
-                '<div>' +
-                  '<h3 style="margin:0; font-size:1.05rem; font-weight:700; color:#0F172A;">Bharat Core Bank &times; KAVACH Enterprise Banking Highway</h3>' +
-                  '<div style="font-size:0.74rem; color:#64748B;">Tier-1 Commercial Banking Engine &bull; RBI Master Direction &amp; DPDP Act 2023 Compliant &bull; 100/100 Tests Passing</div>' +
-                '</div>' +
-                '<span style="background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:980px;">LIVE EMBEDDED ENGINE</span>' +
-              '</div>' +
-              '<div style="display:flex; align-items:center; gap:8px;">' +
-                '<a href="' + bankUrl + '" target="_blank" class="btn-serious" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; padding:6px 14px; background:#2563EB; color:#FFFFFF; border:none; border-radius:6px; font-weight:600; cursor:pointer;" title="Open in separate browser tab">' +
-                  'Open Full Window &nearr;' +
-                '</a>' +
-                '<button type="button" onclick="window.closeBankingHighwayModal()" style="background:none; border:none; font-size:1.6rem; color:#64748B; cursor:pointer; line-height:1;" title="Close">&times;</button>' +
-              '</div>' +
-            '</div>' +
-            '<iframe id="banking-highway-iframe" src="' + bankUrl + '" style="flex:1; width:100%; border:none; background:#F8FAFC;" title="Bharat Core Bank Dashboard"></iframe>' +
-          '</div>';
-        document.body.appendChild(modal);
-      }
-      modal.style.setProperty('display', 'flex', 'important');
-      modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('pointer-events', 'auto', 'important');
-      var iframe = document.getElementById('banking-highway-iframe');
-      if (iframe && (!iframe.src || iframe.src === 'about:blank')) {
-        iframe.src = bankUrl;
-      }
-    };
-
-    window.closeBankingHighwayModal = function() {
-      var modal = document.getElementById('banking-highway-modal');
-      if (modal) {
-        modal.style.setProperty('display', 'none', 'important');
-        modal.style.setProperty('opacity', '0', 'important');
-        modal.style.setProperty('pointer-events', 'none', 'important');
-      }
-    };
-
-    window.openResultsCockpitModal = function() {
-      var modal = document.getElementById('results-cockpit-modal');
-      var resultsUrl = window.getLiveServiceUrl('results');
-      if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'results-cockpit-modal';
-        modal.className = 'course-modal-backdrop';
-        modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(15,23,42,0.65); backdrop-filter:blur(6px); z-index:2147483647; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;';
-        modal.innerHTML = 
-          '<div class="course-modal-window" style="max-width:1300px; width:98%; height:92vh; display:flex; flex-direction:column; background:#FFFFFF !important; border:1.5px solid #CBD5E1 !important; box-shadow:0 25px 70px rgba(0,0,0,0.35) !important; border-radius:14px !important; overflow:hidden;">' +
-            '<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#F8FAFC !important; border-bottom:1px solid #E2E8F0; flex-shrink:0;">' +
-              '<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">' +
-                '<span style="font-size:1.3rem;">📊</span>' +
-                '<div>' +
-                  '<h3 style="margin:0; font-size:1.05rem; font-weight:700; color:#0F172A;">KAVACH &times; BHARAT BANK — Unified Operations &amp; Results Cockpit</h3>' +
-                  '<div style="font-size:0.74rem; color:#64748B;">Cross-Platform Real-Time Telemetry &bull; NIST SHA3-512 Merkle Ledger Stream &bull; Live Event Ingestion</div>' +
-                '</div>' +
-                '<span style="background:#ECFDF5; color:#047857; border:1px solid #A7F3D0; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:980px;">LIVE OPERATIONS</span>' +
-              '</div>' +
-              '<div style="display:flex; align-items:center; gap:8px;">' +
-                '<a href="' + resultsUrl + '" target="_blank" class="btn-serious" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; padding:6px 14px; background:#059669; color:#FFFFFF; border:none; border-radius:6px; font-weight:600; cursor:pointer;" title="Open in separate browser tab">' +
-                  'Open Full Window &nearr;' +
-                '</a>' +
-                '<button type="button" onclick="window.closeResultsCockpitModal()" style="background:none; border:none; font-size:1.6rem; color:#64748B; cursor:pointer; line-height:1;" title="Close">&times;</button>' +
-              '</div>' +
-            '</div>' +
-            '<iframe id="results-cockpit-iframe" src="' + resultsUrl + '" style="flex:1; width:100%; border:none; background:#F8FAFC;" title="Unified Results Dashboard"></iframe>' +
-          '</div>';
-        document.body.appendChild(modal);
-      }
-      modal.style.setProperty('display', 'flex', 'important');
-      modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('pointer-events', 'auto', 'important');
-      var iframe = document.getElementById('results-cockpit-iframe');
-      if (iframe && (!iframe.src || iframe.src === 'about:blank')) {
-        iframe.src = resultsUrl;
-      }
-    };
-
-    window.closeResultsCockpitModal = function() {
-      var modal = document.getElementById('results-cockpit-modal');
-      if (modal) {
-        modal.style.setProperty('display', 'none', 'important');
-        modal.style.setProperty('opacity', '0', 'important');
-        modal.style.setProperty('pointer-events', 'none', 'important');
-      }
-    };
-
-    window.openBankingHighway = window.openBankingHighwayModal;
-    window.openResultsCockpit = window.openResultsCockpitModal;
-
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         window.closeProfessorReviewModal();
         window.closeCourseCockpitModal();
         window.closeMedicalTriageModal();
         window.closeComicExplainerModal();
-        window.closeBankingHighwayModal();
-        window.closeResultsCockpitModal();
       }
     });
   </script>
 
-      <button type="button" id="header-bank-highway-btn" class="btn-serious magnetic-btn" onclick="window.openBankingHighwayModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #0284C7 0%, #0369A1 100%); color:#fff; font-weight:700; border:1px solid #38BDF8;" title="Bharat Core Banking Highway (Autonomous FinTech Safeguard)">
-        🏦 Bank Highway
-      </button>
-      <button type="button" id="header-results-cockpit-btn" class="btn-serious magnetic-btn" onclick="window.openResultsCockpitModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700; border:1px solid #60A5FA;" title="Unified Operations & Results Cockpit (Live Telemetry & NIST Merkle Stream)">
-        📊 Results Cockpit
-      </button>
       <button type="button" id="header-comic-explainer-btn" class="btn-comic-header btn-serious magnetic-btn" onclick="window.openComicExplainerModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #FEF08A 0%, #FDE047 100%); color:#0F172A; font-weight:800; border:2px solid #0F172A; box-shadow:2.5px 2.5px 0px #0F172A; cursor:pointer;" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
         Comic Explainers (ELI5)
       </button>
@@ -652,8 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
       <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
       <button type="button" class="nav-switch-btn" onclick="switchToProfessorReview()">Professor Review</button>
-      <button type="button" class="nav-switch-btn" onclick="window.openBankingHighwayModal()" style="font-weight:700;color:#0284C7;" title="Open Bharat Core Banking Highway Cockpit">🏦 Bank Highway</button>
-      <button type="button" class="nav-switch-btn" onclick="window.openResultsCockpitModal()" style="font-weight:700;color:#2563EB;" title="Open Live Operations & Results Dashboard">📊 Results Cockpit</button>
+      <button type="button" class="nav-switch-btn" onclick="window.openCourseCockpitModal()" style="font-weight:700;color:#2563EB;" title="Open Line-by-Line Handout Syllabus Cockpit">📘 Handout Cockpit</button>
     </nav>
   </div>
 
@@ -667,22 +542,30 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- ============================================================ -->
   <div id="product-view">
 
-    <!-- Project Scope & Chronology Navigator -->
-    <div class="project-scope-banner" id="project-scope-banner">
-      <div class="scope-banner-header">
+    <!-- CSE3101: Agentic AI Course Handout Compliance & Blueprint Banner -->
+    <div class="project-scope-banner" id="project-scope-banner" style="background:#F8FAFC; border:1.5px solid #BFDBFE; border-radius:12px; padding:18px 24px; margin-bottom:20px; box-shadow:0 2px 8px rgba(37,99,235,0.06);">
+      <div class="scope-banner-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
         <div class="scope-banner-title">
-          <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:0.75rem;">PROJECT CHRONOLOGY &amp; SCOPE NAVIGATOR</span>
-          <strong>Foundations vs Newly Improvised Innovations</strong>
+          <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:0.75rem;font-weight:700;">CSE3101: AGENTIC AI &bull; MID-SEM CAPSTONE</span>
+          <strong style="color:#0F172A; font-size:1.05rem; margin-left:8px;">Official Course Handout Compliance &amp; Multi-Agent Syllabus Hub (Modules 1–7)</strong>
         </div>
-        <div class="scope-toggle-buttons">
-          <button type="button" class="scope-toggle-btn active" id="scope-btn-all" onclick="filterFeatureScope('all')">Show Entire Platform</button>
-          <button type="button" class="scope-toggle-btn" id="scope-btn-earlier" onclick="filterFeatureScope('earlier')">What We Did Earlier (Mid-Sem Foundation)</button>
-          <button type="button" class="scope-toggle-btn" id="scope-btn-new" onclick="filterFeatureScope('new')">What We Added New (Improvised v3.0)</button>
-          <button type="button" class="scope-toggle-btn" id="scope-btn-matrix" onclick="switchToComparison()">Head-to-Head Comparison Matrix</button>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn-serious" onclick="window.openCourseCockpitModal()" style="background:#2563EB; color:#fff; font-size:0.78rem; padding:6px 14px; border-radius:6px; font-weight:700; cursor:pointer;" title="Open Line-by-Line Handout Blueprint & Rubric Matrix">
+            📘 Syllabus Cockpit (C1&ndash;C15)
+          </button>
+          <button type="button" class="btn-serious" onclick="window.switchToProfessorReview()" style="background:#059669; color:#fff; font-size:0.78rem; padding:6px 14px; border-radius:6px; font-weight:700; cursor:pointer;" title="Open Professor Pranshu Tiwari & Dr. Soharab Hossain Shaikh Evaluation Matrix">
+            🎓 Professor Review (11/11)
+          </button>
+          <button type="button" class="btn-serious" onclick="window.openMedicalTriageDemoModal()" style="background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; font-size:0.78rem; padding:6px 14px; border-radius:6px; font-weight:700; cursor:pointer;" title="Launch Google ADK Medical Triage Multi-Agent Pipeline Demo">
+            🏥 Medical Triage (ADK)
+          </button>
+          <button type="button" class="btn-serious" onclick="window.openComicExplainerModal()" style="background:#FEF9C3; border:1px solid #CA8A04; color:#854D0E; font-size:0.78rem; padding:6px 14px; border-radius:6px; font-weight:700; cursor:pointer;" title="Open ELI5 Animated Comic Explainer Clouds for Every Topic">
+            💭 Comic Explainers (ELI5)
+          </button>
         </div>
       </div>
-      <div class="scope-context-pill" id="scope-context-pill">
-        Showing all integrated capabilities: Baseline 8-stage air-gapped deterministic pipeline, AST blast-radius analyzer, zero-knowledge DPDP vaults, plus 10 newly engineered post-mid-sem innovations (CVE Threat Feed, 4-tier RBAC, XAI Token Saliency Heatmap, Budget Circuit Breaker, and Two-Way RAG Sanitizer).
+      <div class="scope-context-pill" id="scope-context-pill" style="margin-top:12px; font-size:0.83rem; color:#475569; line-height:1.55;">
+        <strong>Strict Course Handout Specification:</strong> Mapped to <strong>BML Munjal University CSE3101: Agentic AI</strong> (Faculty: <strong>Dr. Soharab Hossain Shaikh &amp; Mr. Pranshu Tiwari</strong>). Covers 5-Persona Agent Lifecycle FSM, Google ADK 8-Hook Callback Architecture, CrewAI Stateful Flows, ReAct Reflexion, Google A2A &amp; Anthropic MCP Protocols, Verhoeff DPDP Checksums, and Isolated Medical Triage Pipeline.
       </div>
     </div>
 
@@ -763,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="product-hero">
       <div class="hero-eyebrow">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Enterprise AI DevOps Security &amp; Observability
+        CSE3101: Agentic AI &bull; BML Munjal University &bull; Mid-Sem Evaluation Platform
       </div>
 
       <div class="hero-creator-badge parallax-layer">
@@ -782,26 +665,23 @@ document.addEventListener('DOMContentLoaded', function() {
           LinkedIn
         </a>
       </div>
-      <h1 class="hero-title clip-reveal-text">Ship AI-Generated Code with <span>Enterprise Security</span> &amp; SLSA Provenance</h1>
+      <h1 class="hero-title clip-reveal-text">Autonomous Multi-Agent AI Systems with <span>Google ADK, CrewAI</span> &amp; Formal Guardrails</h1>
       <p class="hero-subtitle">
-        Kavach wraps generative LLM pipelines with real-time OWASP guardrails, AST blast-radius analysis, zero-knowledge privacy vaults, closed-loop ReAct reflexion, and cryptographic CycloneDX SBOM attestations.
+        CSE3101: Agentic AI Working Prototype &middot; BML Munjal University &middot; Evaluated by Dr. Soharab Hossain Shaikh &amp; Mr. Pranshu Tiwari &middot; 5-Persona Agent Lifecycle FSM, Google ADK 8-Hook Callbacks, CrewAI Stateful Flows, ReAct Reflexion, Google A2A / MCP Protocols, and Isolated Medical Triage Pipeline.
       </p>
 
       <div class="hero-cta-cluster">
         <button type="button" class="btn-serious-lg magnetic-btn" onclick="switchToWorkspace()">
-          Let's jump to serious stuff <span class="arrow-shift">&rarr;</span>
+          Launch Agentic Console <span class="arrow-shift">&rarr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="window.openBankingHighwayModal()" style="border-color:#0284C7;color:#0369A1;background:#F0F9FF;font-weight:700;" title="Launch Commercial Core Banking Engine & Autonomous Highway Simulation">
-          🏦 Bharat Bank Highway &rarr;
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="window.openCourseCockpitModal()" style="border-color:#2563EB;color:#1D4ED8;background:#EFF6FF;font-weight:700;" title="Open Line-by-Line Handout Blueprint & Rubric Matrix">
+          📘 Course Handout Cockpit (C1&ndash;C15) <span class="arrow-shift">&rarr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="window.openResultsCockpitModal()" style="border-color:#2563EB;color:#1D4ED8;background:#EFF6FF;font-weight:700;" title="Open Unified Operations & Telemetry Results Cockpit">
-          📊 Results Cockpit &rarr;
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="window.openMedicalTriageDemoModal()" style="border-color:#0284C7;color:#0369A1;background:#F0F9FF;font-weight:700;" title="Launch Google ADK Medical Triage Multi-Agent Pipeline Demo">
+          🏥 Medical Triage Pipeline (ADK) <span class="arrow-shift">&rarr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('new')" style="border-color:#10B981;color:#047857;background:#ECFDF5;font-weight:700;">
-          Explore Newly Added Features (Improvised v3.0) <span class="arrow-shift">&rarr;</span>
-        </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('earlier')" style="border-color:#2563EB;color:#1D4ED8;background:#EFF6FF;font-weight:700;">
-          Review Earlier Foundation (Mid-Sem) <span class="arrow-shift-down">&darr;</span>
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="window.openComicExplainerModal()" style="border-color:#CA8A04;color:#854D0E;background:#FEF9C3;font-weight:700;" title="Open ELI5 Animated Comic Explainer Clouds for Every Topic">
+          💭 Comic Cloud Explainers (ELI5) <span class="arrow-shift">&rarr;</span>
         </button>
         <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('architecture-flowchart')">
           Inspect Architecture Flowchart <span class="arrow-shift-down">&darr;</span>
@@ -817,24 +697,24 @@ document.addEventListener('DOMContentLoaded', function() {
           <span>Master Checks Passed</span>
         </div>
         <div class="hero-stat-card">
-          <strong style="color:var(--accent);">164 / 164</strong>
-          <span>Pytest Tests (100%)</span>
+          <strong style="color:var(--accent);">306 / 306</strong>
+          <span>Agentic Pytest Suite (100%)</span>
         </div>
         <div class="hero-stat-card">
-          <strong style="color:var(--blocked);">15 / 15</strong>
-          <span>Cyber Red-Team Intercept</span>
+          <strong style="color:var(--safe);">8 / 8 Hooks</strong>
+          <span>Google ADK Callbacks</span>
         </div>
         <div class="hero-stat-card">
-          <strong>39 ms</strong>
-          <span>Guardrail Latency</span>
+          <strong style="color:var(--accent);">4 Paradigms</strong>
+          <span>ReAct &bull; CoT &bull; ToT &bull; Self-Consistency</span>
         </div>
         <div class="hero-stat-card">
-          <strong>100%</strong>
-          <span>Zero-Knowledge Vault</span>
+          <strong style="color:var(--safe);">100%</strong>
+          <span>Verhoeff DPDP Checksum</span>
         </div>
         <div class="hero-stat-card">
-          <strong>42 Runs</strong>
-          <span>Persona Telemetry</span>
+          <strong style="color:#059669;">11 / 11</strong>
+          <span>Professor Review Verified</span>
         </div>
       </div>
     </section>
