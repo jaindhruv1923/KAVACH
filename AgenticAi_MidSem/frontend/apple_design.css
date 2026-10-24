@@ -1,55 +1,56 @@
 /* ==========================================================================
-   KAVACH — APPLE PRO CUPERTINO DESIGN SYSTEM OVERLAY
-   Inspired by apple.com/apple-intelligence, Apple Pro Display & macOS Sequoia
+   KAVACH — APPLE PRO CUPERTINO HIGH-CONTRAST DESIGN SYSTEM
+   Inspired by apple.com/apple-intelligence, Pro Display & macOS Sequoia
+   Black & White Ultra-High-Contrast Hierarchy + Animated Contrast Hover
    ========================================================================== */
 
 :root {
   /* Surface Layers: Apple Space Black & Titanium Glass */
   --bg-base: #000000 !important;
-  --bg-canvas: #070709 !important;
-  --bg-surface: #161617 !important;
+  --bg-canvas: #000000 !important;
+  --bg-surface: #121214 !important;
   --bg-surface-elevated: #1C1C1E !important;
   --bg-surface-hover: #262629 !important;
   --bg-surface-active: #323236 !important;
 
   /* Borders: Ultra-Fine Laser Translucent Borders */
-  --border-subtle: rgba(255, 255, 255, 0.09) !important;
-  --border-medium: rgba(255, 255, 255, 0.16) !important;
-  --border-hover: #0071E3 !important;
+  --border-subtle: rgba(255, 255, 255, 0.14) !important;
+  --border-medium: rgba(255, 255, 255, 0.22) !important;
+  --border-hover: #FFFFFF !important;
   --border-focus: #0071E3 !important;
 
-  /* Typography: Apple High-Contrast Hierarchy */
-  --text-primary: #F5F5F7 !important;
-  --text-secondary: #A1A1A6 !important;
-  --text-dim: #86868B !important;
-  --text-disabled: #636366 !important;
+  /* Typography: Razor-Sharp High-Contrast Hierarchy (Black & White) */
+  --text-primary: #FFFFFF !important;
+  --text-secondary: #E2E8F0 !important;
+  --text-dim: #94A3B8 !important;
+  --text-disabled: #64748B !important;
 
   /* Apple Brand & Status Accents */
-  --accent: #0071E3 !important;           /* Apple Royal Blue */
-  --accent-secondary: #0077ED !important;
-  --accent-gradient: linear-gradient(135deg, #0071E3 0%, #479CFF 100%) !important;
-  --accent-glow: rgba(0, 113, 227, 0.35) !important;
-  --accent-subtle: rgba(0, 113, 227, 0.12) !important;
+  --accent: #FFFFFF !important;           /* High-contrast Apple White */
+  --accent-secondary: #0071E3 !important;
+  --accent-gradient: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%) !important;
+  --accent-glow: rgba(255, 255, 255, 0.35) !important;
+  --accent-subtle: rgba(255, 255, 255, 0.12) !important;
 
-  /* Apple Status Palette */
+  /* High-Contrast Luminous Status Palette (Readable on Black) */
   --safe: #30D158 !important;             /* Apple Green */
-  --safe-bg: rgba(48, 209, 88, 0.12) !important;
-  --safe-border: rgba(48, 209, 88, 0.28) !important;
-  --safe-glow: rgba(48, 209, 88, 0.25) !important;
+  --safe-bg: rgba(48, 209, 88, 0.16) !important;
+  --safe-border: rgba(48, 209, 88, 0.45) !important;
+  --safe-glow: rgba(48, 209, 88, 0.3) !important;
 
-  --review: #FF9F0A !important;           /* Apple Amber */
-  --review-bg: rgba(255, 159, 10, 0.12) !important;
-  --review-border: rgba(255, 159, 10, 0.28) !important;
-  --review-glow: rgba(255, 159, 10, 0.25) !important;
+  --review: #FFD60A !important;           /* Apple Bright Amber */
+  --review-bg: rgba(255, 214, 10, 0.16) !important;
+  --review-border: rgba(255, 214, 10, 0.45) !important;
+  --review-glow: rgba(255, 214, 10, 0.3) !important;
 
-  --blocked: #FF453A !important;          /* Apple Red */
-  --blocked-bg: rgba(255, 69, 58, 0.12) !important;
-  --blocked-border: rgba(255, 69, 58, 0.28) !important;
-  --blocked-glow: rgba(255, 69, 58, 0.25) !important;
+  --blocked: #FF453A !important;          /* Apple Luminous Red */
+  --blocked-bg: rgba(255, 69, 58, 0.16) !important;
+  --blocked-border: rgba(255, 69, 58, 0.45) !important;
+  --blocked-glow: rgba(255, 69, 58, 0.3) !important;
 
-  --neutral: #8E8E93 !important;
-  --neutral-bg: rgba(142, 142, 147, 0.12) !important;
-  --neutral-border: rgba(142, 142, 147, 0.28) !important;
+  --neutral: #CBD5E1 !important;
+  --neutral-bg: rgba(203, 213, 225, 0.12) !important;
+  --neutral-border: rgba(203, 213, 225, 0.35) !important;
 
   /* Typography Font Stacks */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", sans-serif !important;
@@ -62,16 +63,16 @@
   --radius-full: 980px !important;
 
   /* Apple Spring Motion */
-  --transition-fast: 160ms cubic-bezier(0.28, 0.11, 0.32, 1) !important;
-  --transition-normal: 280ms cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+  --transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  --transition-normal: 280ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* ==========================================================================
-   GLOBAL CANVAS & BASE RESETS (Apple Obsidian Space Black)
+   GLOBAL CANVAS & BASE RESETS (Pitch Black & Pure White)
    ========================================================================== */
 html, body {
   background-color: #000000 !important;
-  color: #F5F5F7 !important;
+  color: #FFFFFF !important;
   color-scheme: dark !important;
   font-family: var(--font-sans) !important;
   -webkit-font-smoothing: antialiased !important;
@@ -80,33 +81,310 @@ html, body {
 }
 
 /* ==========================================================================
+   UNIVERSAL TEXT READABILITY OVERRIDES (Eliminates All Unreadable Dark Text)
+   ========================================================================== */
+
+/* All Headings: Razor-Sharp Pure White */
+h1, h2, h3, h4, h5, h6,
+.hero-title, .brand-title, .section-intro h2,
+strong, b, dt {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+/* Body Text & Paragraphs: Bright Crisp Silver-White */
+p, .hero-subtitle, .section-intro p, dd, li {
+  color: #E2E8F0 !important;
+  line-height: 1.6 !important;
+}
+
+/* Subtitles & Descriptions */
+.section-intro p {
+  color: #CBD5E1 !important;
+}
+
+/* Override Any Lingering Inline Dark Colors from Light-Mode Templates */
+[style*="color:#0F172A"], [style*="color: #0F172A"],
+[style*="color:#0f172a"], [style*="color: #0f172a"],
+[style*="color:#1E293B"], [style*="color: #1E293B"],
+[style*="color:#1e293b"], [style*="color: #1e293b"],
+[style*="color:#334155"], [style*="color: #334155"],
+[style*="color:#475569"], [style*="color: #475569"] {
+  color: #F1F5F9 !important;
+}
+
+/* Secondary muted inline text */
+[style*="color:#64748B"], [style*="color: #64748B"],
+[style*="color:#94A3B8"], [style*="color: #94A3B8"] {
+  color: #A1A1A6 !important;
+}
+
+/* Colored Status Inline Text: Convert to High-Luminance Readable Hues */
+[style*="color:#065F46"], [style*="color: #065F46"],
+[style*="color:#047857"], [style*="color: #047857"],
+[style*="color:#059669"], [style*="color: #059669"] {
+  color: #4ADE80 !important; /* Luminous Emerald */
+}
+
+[style*="color:#991B1B"], [style*="color: #991B1B"],
+[style*="color:#DC2626"], [style*="color: #DC2626"],
+[style*="color:#B91C1C"], [style*="color: #B91C1C"] {
+  color: #FF6B8B !important; /* Luminous Red/Pink */
+}
+
+[style*="color:#854D0E"], [style*="color: #854D0E"],
+[style*="color:#D97706"], [style*="color: #D97706"],
+[style*="color:#B45309"], [style*="color: #B45309"] {
+  color: #FDE047 !important; /* Luminous Yellow/Amber */
+}
+
+[style*="color:#1D4ED8"], [style*="color: #1D4ED8"],
+[style*="color:#2563EB"], [style*="color: #2563EB"],
+[style*="color:#1E40AF"], [style*="color: #1E40AF"] {
+  color: #60A5FA !important; /* Luminous Blue */
+}
+
+[style*="color:#6B21A8"], [style*="color: #6B21A8"],
+[style*="color:#7C3AED"], [style*="color: #7C3AED"] {
+  color: #C084FC !important; /* Luminous Purple */
+}
+
+/* ==========================================================================
+   CONVERT ALL LINGERING LIGHT/WHITE CONTAINERS INTO APPLE OBSIDIAN TILES
+   ========================================================================== */
+[style*="background:#FFFFFF"], [style*="background: #FFFFFF"],
+[style*="background:#FFF"], [style*="background: #FFF"],
+[style*="background:#F8FAFC"], [style*="background: #F8FAFC"],
+[style*="background:#F1F5F9"], [style*="background: #F1F5F9"] {
+  background: #18181B !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #F8FAFC !important;
+}
+
+/* Light Alert Containers Re-mapped to Luminous Dark Tints */
+[style*="background:#FEF2F2"], [style*="background: #FEF2F2"] {
+  background: rgba(255, 69, 58, 0.14) !important;
+  border-color: rgba(255, 69, 58, 0.4) !important;
+  color: #FECDD3 !important;
+}
+
+[style*="background:#ECFDF5"], [style*="background: #ECFDF5"] {
+  background: rgba(48, 209, 88, 0.14) !important;
+  border-color: rgba(48, 209, 88, 0.4) !important;
+  color: #D1FAE5 !important;
+}
+
+[style*="background:#EFF6FF"], [style*="background: #EFF6FF"] {
+  background: rgba(0, 113, 227, 0.14) !important;
+  border-color: rgba(0, 113, 227, 0.4) !important;
+  color: #DBEAFE !important;
+}
+
+[style*="background:#FFFBEB"], [style*="background: #FFFBEB"],
+[style*="background:#FEF9C3"], [style*="background: #FEF9C3"] {
+  background: rgba(255, 214, 10, 0.14) !important;
+  border-color: rgba(255, 214, 10, 0.4) !important;
+  color: #FEF3C7 !important;
+}
+
+[style*="background:#F3E8FF"], [style*="background: #F3E8FF"] {
+  background: rgba(191, 90, 242, 0.14) !important;
+  border-color: rgba(191, 90, 242, 0.4) !important;
+  color: #F3E8FF !important;
+}
+
+/* ==========================================================================
+   BUTTONS: SIGNATURE ANIMATED CONTRAST SWEEP (White-on-Black / Black-on-White)
+   ========================================================================== */
+
+/* Base Button Properties: High-Definition Apple Pills */
+button,
+.btn-serious,
+.btn-primary,
+.btn-secondary,
+.btn-launchpad-primary,
+.btn-launchpad-secondary,
+.btn-eval-secondary,
+.btn-serious-lg,
+.btn-secondary-lg,
+.pill-btn,
+.magnetic-btn,
+.dock-action-btn,
+.nav-switch-btn,
+.pathway-tab,
+.prof-tab-btn,
+.scope-toggle-btn {
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  cursor: pointer !important;
+  font-family: var(--font-sans) !important;
+  user-select: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Primary Action Buttons (Keynote White Pill) */
+.btn-serious,
+.btn-primary,
+.btn-launchpad-primary,
+.btn-serious-lg {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1.5px solid #FFFFFF !important;
+  border-radius: 980px !important;
+  font-weight: 700 !important;
+  padding: 10px 24px !important;
+  letter-spacing: -0.01em !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Secondary Frosted Glass Buttons (Cupertino Dark Glass Pill) */
+.btn-secondary,
+.btn-secondary-lg,
+.btn-launchpad-secondary,
+.btn-eval-secondary,
+.pill-btn,
+.dock-action-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 980px !important;
+  font-weight: 600 !important;
+  padding: 8px 18px !important;
+}
+
+/* Animated Hover Background Layer (Sweeps smoothly across) */
+.btn-serious::before,
+.btn-primary::before,
+.btn-launchpad-primary::before,
+.btn-serious-lg::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #000000 !important;
+  border-radius: inherit !important;
+  transform: scaleX(0) !important;
+  transform-origin: right !important;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: -1 !important;
+}
+
+.btn-secondary::before,
+.btn-secondary-lg::before,
+.btn-launchpad-secondary::before,
+.btn-eval-secondary::before,
+.pill-btn::before,
+.dock-action-btn::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #FFFFFF !important;
+  border-radius: inherit !important;
+  transform: scaleX(0) !important;
+  transform-origin: right !important;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: -1 !important;
+}
+
+/* Hover States: Trigger Animated Sweep & Invert Contrast */
+.btn-serious:hover::before,
+.btn-primary:hover::before,
+.btn-launchpad-primary:hover::before,
+.btn-serious-lg:hover::before {
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+}
+
+.btn-serious:hover,
+.btn-primary:hover,
+.btn-launchpad-primary:hover,
+.btn-serious-lg:hover {
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.4), 0 8px 24px rgba(0, 0, 0, 0.8) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+.btn-secondary:hover::before,
+.btn-secondary-lg:hover::before,
+.btn-launchpad-secondary:hover::before,
+.btn-eval-secondary:hover::before,
+.pill-btn:hover::before,
+.dock-action-btn:hover::before {
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary-lg:hover,
+.btn-launchpad-secondary:hover,
+.btn-eval-secondary:hover,
+.pill-btn:hover,
+.dock-action-btn:hover {
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.8) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Header Buttons */
+#header-prof-review-btn {
+  background: #30D158 !important;
+  color: #000000 !important;
+  border: none !important;
+  font-weight: 700 !important;
+  border-radius: 980px !important;
+}
+
+#header-prof-review-btn:hover {
+  background: #28B84D !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 20px rgba(48, 209, 88, 0.5) !important;
+}
+
+#header-comic-explainer-btn {
+  background: #FFD60A !important;
+  color: #000000 !important;
+  border: none !important;
+  font-weight: 700 !important;
+  border-radius: 980px !important;
+}
+
+#header-comic-explainer-btn:hover {
+  background: #E5C000 !important;
+  color: #000000 !important;
+  box-shadow: 0 0 20px rgba(255, 214, 10, 0.5) !important;
+}
+
+/* ==========================================================================
    APPLE PRO TRANSLUCENT NAVIGATION BAR
    ========================================================================== */
 .app-header {
-  background: rgba(0, 0, 0, 0.78) !important;
+  background: rgba(0, 0, 0, 0.85) !important;
   backdrop-filter: saturate(180%) blur(20px) !important;
   -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8) !important;
-}
-
-.app-header-main {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.9) !important;
 }
 
 .brand-title {
-  color: #F5F5F7 !important;
-  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
   letter-spacing: -0.03em !important;
 }
 
-/* Apple Segmented Scope Controller (Pill Shape) */
+/* Segmented Scope Pill Controller */
 .header-pathway-selector {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 980px !important;
   padding: 3px !important;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4) !important;
 }
 
 .pathway-tab {
@@ -116,7 +394,6 @@ html, body {
   border: none !important;
   font-weight: 600 !important;
   font-size: 0.78rem !important;
-  transition: all 0.2s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
   padding: 6px 16px !important;
 }
 
@@ -125,120 +402,38 @@ html, body {
 }
 
 .pathway-tab.active {
-  background: #1C1C1E !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
 }
 
 .pathway-chip {
-  background: rgba(255, 255, 255, 0.12) !important;
-  color: #F5F5F7 !important;
+  background: rgba(0, 0, 0, 0.15) !important;
+  color: inherit !important;
   border-radius: 980px !important;
-  font-weight: 700 !important;
 }
 
-/* Apple Sub-Nav Rails */
-.app-header-subnav {
-  background: transparent !important;
-}
-
+/* Sub-Nav Rails */
 .nav-switch-btn {
   background: transparent !important;
-  color: #86868B !important;
+  color: #A1A1A6 !important;
   border: none !important;
   font-size: 0.78rem !important;
   font-weight: 500 !important;
   padding: 6px 14px !important;
   border-radius: 980px !important;
-  transition: all 0.2s ease !important;
 }
 
 .nav-switch-btn:hover {
-  color: #F5F5F7 !important;
-  background: rgba(255, 255, 255, 0.06) !important;
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.12) !important;
 }
 
 .nav-switch-btn.active {
-  color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.14) !important;
-  font-weight: 600 !important;
-}
-
-/* ==========================================================================
-   APPLE PILL BUTTONS (Tactile & Minimalist)
-   ========================================================================== */
-.btn-serious,
-.btn-primary,
-.btn-launchpad-primary,
-.btn-serious-lg {
-  background: #0071E3 !important;
-  color: #FFFFFF !important;
-  border-radius: 980px !important;
-  border: none !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.01em !important;
-  padding: 10px 22px !important;
-  box-shadow: 0 4px 16px rgba(0, 113, 227, 0.35) !important;
-  transition: all 0.22s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
-  cursor: pointer !important;
-}
-
-.btn-serious:hover,
-.btn-primary:hover,
-.btn-launchpad-primary:hover,
-.btn-serious-lg:hover {
-  background: #0077ED !important;
-  transform: scale(1.02) !important;
-  box-shadow: 0 6px 22px rgba(0, 113, 227, 0.5) !important;
-}
-
-.btn-serious:active,
-.btn-primary:active,
-.btn-launchpad-primary:active,
-.btn-serious-lg:active {
-  transform: scale(0.97) !important;
-}
-
-/* Secondary Frosted Pill Buttons */
-.btn-secondary,
-.btn-secondary-lg,
-.btn-launchpad-secondary,
-.btn-eval-secondary,
-.pill-btn,
-.magnetic-btn {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #F5F5F7 !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: 980px !important;
-  transition: all 0.2s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
-}
-
-.btn-secondary:hover,
-.btn-secondary-lg:hover,
-.btn-launchpad-secondary:hover,
-.btn-eval-secondary:hover,
-.pill-btn:hover {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: rgba(255, 255, 255, 0.28) !important;
-  color: #FFFFFF !important;
-  transform: translateY(-1px) !important;
-}
-
-/* Header Action Buttons in App-Header */
-#header-prof-review-btn {
-  background: #30D158 !important;
   color: #000000 !important;
-  border: none !important;
+  background: #FFFFFF !important;
   font-weight: 700 !important;
-  box-shadow: 0 4px 16px rgba(48, 209, 88, 0.35) !important;
-}
-
-#header-comic-explainer-btn {
-  background: #FFD60A !important;
-  color: #000000 !important;
-  border: none !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 16px rgba(255, 214, 10, 0.35) !important;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.25) !important;
 }
 
 /* ==========================================================================
@@ -254,37 +449,33 @@ html, body {
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #A1A1A6 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #F5F5F7 !important;
   border-radius: 980px !important;
-  padding: 4px 14px !important;
+  padding: 5px 16px !important;
   font-size: 0.74rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
-  margin-bottom: 16px !important;
 }
 
 .hero-creator-badge {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
   border-radius: 980px !important;
-  color: #A1A1A6 !important;
-  padding: 4px 14px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  font-size: 0.76rem !important;
+  color: #E2E8F0 !important;
+  padding: 5px 16px !important;
+  font-size: 0.78rem !important;
 }
 
 .hero-title {
   font-size: clamp(2.4rem, 5.2vw, 4.4rem) !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
   letter-spacing: -0.035em !important;
   line-height: 1.06 !important;
   margin: 20px 0 16px 0 !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.68) 100%) !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.75) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -296,8 +487,8 @@ html, body {
 }
 
 .hero-subtitle {
-  color: #86868B !important;
-  font-size: 1.15rem !important;
+  color: #CBD5E1 !important;
+  font-size: 1.18rem !important;
   line-height: 1.55 !important;
   max-width: 780px !important;
   margin: 0 auto 30px auto !important;
@@ -316,33 +507,18 @@ html, body {
 .kavach-card,
 .bento-card,
 .course-card {
-  background: #161617 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #121214 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 22px !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 16px 40px rgba(0, 0, 0, 0.6) !important;
-  color: #F5F5F7 !important;
-  transition: transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1), box-shadow 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.7) !important;
+  color: #FFFFFF !important;
 }
 
 .card:hover,
 .bento-card:hover {
   transform: scale(1.006) translateY(-2px) !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 20px 50px rgba(0, 0, 0, 0.75) !important;
-}
-
-/* Deep Dark Bento Inner Tiles */
-#zero-token-telemetry-strip > div > div[style*="background"],
-.card div[style*="background:#F8FAFC"],
-.card div[style*="background: #F8FAFC"],
-.card div[style*="background:#FFF"],
-.card div[style*="background: #FFF"],
-.card div[style*="background:#FFFFFF"],
-.card div[style*="background: #FFFFFF"] {
-  background: #1C1C1E !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  border-radius: 14px !important;
-  color: #F5F5F7 !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 20px 50px rgba(0, 0, 0, 0.85) !important;
 }
 
 /* ==========================================================================
@@ -353,12 +529,11 @@ input[type="search"],
 select,
 textarea {
   background: #1C1C1E !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 12px !important;
-  color: #F5F5F7 !important;
+  color: #FFFFFF !important;
   font-family: var(--font-sans) !important;
   font-size: 0.85rem !important;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 input[type="text"]:focus,
@@ -366,54 +541,55 @@ input[type="search"]:focus,
 select:focus,
 textarea:focus {
   outline: none !important;
-  border-color: #0071E3 !important;
-  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.3) !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25) !important;
+}
+
+select option {
+  background: #1C1C1E !important;
+  color: #FFFFFF !important;
 }
 
 /* ==========================================================================
    MODALS (Apple Sheet & Glass Backdrop)
    ========================================================================== */
 .course-modal-backdrop {
-  background: rgba(0, 0, 0, 0.75) !important;
+  background: rgba(0, 0, 0, 0.85) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
 }
 
 .course-modal-window {
-  background: #1C1C1E !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: #161617 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 24px !important;
-  color: #F5F5F7 !important;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
-.course-modal-window div[style*="background: #FFFFFF"],
-.course-modal-window div[style*="background:#FFFFFF"],
-.course-modal-window div[style*="background: #F8FAFC"],
-.course-modal-window div[style*="background:#F8FAFC"] {
-  background: #1C1C1E !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  color: #F5F5F7 !important;
+.course-modal-window * {
+  color: #F8FAFC !important;
 }
 
 .prof-tab-btn {
   background: #2C2C2E !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   color: #A1A1A6 !important;
   border-radius: 980px !important;
   padding: 6px 14px !important;
 }
 
 .prof-tab-btn:hover {
-  background: #3A3A3C !important;
-  color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  color: #000000 !important;
 }
 
 .prof-tab-btn.active {
-  background: #0071E3 !important;
-  border-color: #0071E3 !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 2px 10px rgba(0, 113, 227, 0.4) !important;
+  background: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* ==========================================================================
@@ -426,26 +602,26 @@ table {
   width: 100% !important;
   border-radius: 14px !important;
   overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
 .kavach-comparison-table th,
 table th {
   background: #1C1C1E !important;
-  color: #A1A1A6 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  font-weight: 600 !important;
+  color: #FFFFFF !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  font-weight: 700 !important;
   text-transform: uppercase !important;
-  font-size: 0.72rem !important;
+  font-size: 0.74rem !important;
   letter-spacing: 0.04em !important;
   padding: 12px 16px !important;
 }
 
 .kavach-comparison-table td,
 table td {
-  background: #161617 !important;
-  color: #F5F5F7 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: #121214 !important;
+  color: #E2E8F0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 12px 16px !important;
 }
 
@@ -454,17 +630,13 @@ table td {
    ========================================================================== */
 #floating-pathway-dock,
 .floating-pathway-dock {
-  background: rgba(28, 28, 30, 0.85) !important;
+  background: rgba(28, 28, 30, 0.9) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 980px !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-  color: #F5F5F7 !important;
-}
-
-.dock-action-btn {
-  border-radius: 980px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
 }
 
 /* ==========================================================================
@@ -472,7 +644,7 @@ table td {
    ========================================================================== */
 pre, code, .terminal-window {
   background: #0B0B0C !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 12px !important;
   color: #64D2FF !important;
   font-family: var(--font-mono) !important;
