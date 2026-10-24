@@ -158,6 +158,8 @@ window.renderDynamicNavbar = function(mode) {
       <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
       <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
       <button type="button" class="nav-switch-btn" onclick="switchToProfessorReview()">Professor Review</button>
+      <button type="button" class="nav-switch-btn" onclick="window.openBankingHighwayModal()" style="font-weight:700;color:#0284C7;" title="Open Bharat Core Banking Highway Cockpit">🏦 Bank Highway</button>
+      <button type="button" class="nav-switch-btn" onclick="window.openResultsCockpitModal()" style="font-weight:700;color:#2563EB;" title="Open Live Operations & Results Dashboard">📊 Results Cockpit</button>
     `;
   } else {
     container.innerHTML = `
@@ -171,6 +173,8 @@ window.renderDynamicNavbar = function(mode) {
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('hitl-playground-card', this)">Quarantine</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Comparison Matrix</button>
       <button type="button" class="nav-switch-btn" onclick="switchToProfessorReview()">Professor Review</button>
+      <button type="button" class="nav-switch-btn" onclick="window.openBankingHighwayModal()" style="font-weight:700;color:#0284C7;" title="Open Bharat Core Banking Highway Cockpit">🏦 Bank Highway</button>
+      <button type="button" class="nav-switch-btn" onclick="window.openResultsCockpitModal()" style="font-weight:700;color:#2563EB;" title="Open Live Operations & Results Dashboard">📊 Results Cockpit</button>
     `;
   }
 };
@@ -380,21 +384,143 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     };
 
+    window.getLiveServiceUrl = function(service) {
+      if (window.location.protocol === 'file:') {
+        if (service === 'bank') {
+          return '../../02_Banking_and_Results_Dashboard/implementation_banks/index.html';
+        } else {
+          return '../../02_Banking_and_Results_Dashboard/results_dashboard/index.html';
+        }
+      }
+      if (window.location.port === '8000') {
+        return service === 'bank' ? '/bank/' : '/results/';
+      }
+      if (window.location.port === '5500') {
+        return service === 'bank' ? 'http://127.0.0.1:8000/bank/' : 'http://127.0.0.1:8000/results/';
+      }
+      if (service === 'bank') {
+        return '../../02_Banking_and_Results_Dashboard/implementation_banks/index.html';
+      } else {
+        return '../../02_Banking_and_Results_Dashboard/results_dashboard/index.html';
+      }
+    };
+
+    window.openBankingHighwayModal = function() {
+      var modal = document.getElementById('banking-highway-modal');
+      var bankUrl = window.getLiveServiceUrl('bank');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'banking-highway-modal';
+        modal.className = 'course-modal-backdrop';
+        modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(15,23,42,0.65); backdrop-filter:blur(6px); z-index:2147483647; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;';
+        modal.innerHTML = 
+          '<div class="course-modal-window" style="max-width:1300px; width:98%; height:92vh; display:flex; flex-direction:column; background:#FFFFFF !important; border:1.5px solid #CBD5E1 !important; box-shadow:0 25px 70px rgba(0,0,0,0.35) !important; border-radius:14px !important; overflow:hidden;">' +
+            '<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#F8FAFC !important; border-bottom:1px solid #E2E8F0; flex-shrink:0;">' +
+              '<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">' +
+                '<span style="font-size:1.3rem;">🏦</span>' +
+                '<div>' +
+                  '<h3 style="margin:0; font-size:1.05rem; font-weight:700; color:#0F172A;">Bharat Core Bank &times; KAVACH Enterprise Banking Highway</h3>' +
+                  '<div style="font-size:0.74rem; color:#64748B;">Tier-1 Commercial Banking Engine &bull; RBI Master Direction &amp; DPDP Act 2023 Compliant &bull; 100/100 Tests Passing</div>' +
+                '</div>' +
+                '<span style="background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:980px;">LIVE EMBEDDED ENGINE</span>' +
+              '</div>' +
+              '<div style="display:flex; align-items:center; gap:8px;">' +
+                '<a href="' + bankUrl + '" target="_blank" class="btn-serious" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; padding:6px 14px; background:#2563EB; color:#FFFFFF; border:none; border-radius:6px; font-weight:600; cursor:pointer;" title="Open in separate browser tab">' +
+                  'Open Full Window &nearr;' +
+                '</a>' +
+                '<button type="button" onclick="window.closeBankingHighwayModal()" style="background:none; border:none; font-size:1.6rem; color:#64748B; cursor:pointer; line-height:1;" title="Close">&times;</button>' +
+              '</div>' +
+            '</div>' +
+            '<iframe id="banking-highway-iframe" src="' + bankUrl + '" style="flex:1; width:100%; border:none; background:#F8FAFC;" title="Bharat Core Bank Dashboard"></iframe>' +
+          '</div>';
+        document.body.appendChild(modal);
+      }
+      modal.style.setProperty('display', 'flex', 'important');
+      modal.style.setProperty('opacity', '1', 'important');
+      modal.style.setProperty('pointer-events', 'auto', 'important');
+      var iframe = document.getElementById('banking-highway-iframe');
+      if (iframe && (!iframe.src || iframe.src === 'about:blank')) {
+        iframe.src = bankUrl;
+      }
+    };
+
+    window.closeBankingHighwayModal = function() {
+      var modal = document.getElementById('banking-highway-modal');
+      if (modal) {
+        modal.style.setProperty('display', 'none', 'important');
+        modal.style.setProperty('opacity', '0', 'important');
+        modal.style.setProperty('pointer-events', 'none', 'important');
+      }
+    };
+
+    window.openResultsCockpitModal = function() {
+      var modal = document.getElementById('results-cockpit-modal');
+      var resultsUrl = window.getLiveServiceUrl('results');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'results-cockpit-modal';
+        modal.className = 'course-modal-backdrop';
+        modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(15,23,42,0.65); backdrop-filter:blur(6px); z-index:2147483647; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;';
+        modal.innerHTML = 
+          '<div class="course-modal-window" style="max-width:1300px; width:98%; height:92vh; display:flex; flex-direction:column; background:#FFFFFF !important; border:1.5px solid #CBD5E1 !important; box-shadow:0 25px 70px rgba(0,0,0,0.35) !important; border-radius:14px !important; overflow:hidden;">' +
+            '<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#F8FAFC !important; border-bottom:1px solid #E2E8F0; flex-shrink:0;">' +
+              '<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">' +
+                '<span style="font-size:1.3rem;">📊</span>' +
+                '<div>' +
+                  '<h3 style="margin:0; font-size:1.05rem; font-weight:700; color:#0F172A;">KAVACH &times; BHARAT BANK — Unified Operations &amp; Results Cockpit</h3>' +
+                  '<div style="font-size:0.74rem; color:#64748B;">Cross-Platform Real-Time Telemetry &bull; NIST SHA3-512 Merkle Ledger Stream &bull; Live Event Ingestion</div>' +
+                '</div>' +
+                '<span style="background:#ECFDF5; color:#047857; border:1px solid #A7F3D0; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:980px;">LIVE OPERATIONS</span>' +
+              '</div>' +
+              '<div style="display:flex; align-items:center; gap:8px;">' +
+                '<a href="' + resultsUrl + '" target="_blank" class="btn-serious" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; padding:6px 14px; background:#059669; color:#FFFFFF; border:none; border-radius:6px; font-weight:600; cursor:pointer;" title="Open in separate browser tab">' +
+                  'Open Full Window &nearr;' +
+                '</a>' +
+                '<button type="button" onclick="window.closeResultsCockpitModal()" style="background:none; border:none; font-size:1.6rem; color:#64748B; cursor:pointer; line-height:1;" title="Close">&times;</button>' +
+              '</div>' +
+            '</div>' +
+            '<iframe id="results-cockpit-iframe" src="' + resultsUrl + '" style="flex:1; width:100%; border:none; background:#F8FAFC;" title="Unified Results Dashboard"></iframe>' +
+          '</div>';
+        document.body.appendChild(modal);
+      }
+      modal.style.setProperty('display', 'flex', 'important');
+      modal.style.setProperty('opacity', '1', 'important');
+      modal.style.setProperty('pointer-events', 'auto', 'important');
+      var iframe = document.getElementById('results-cockpit-iframe');
+      if (iframe && (!iframe.src || iframe.src === 'about:blank')) {
+        iframe.src = resultsUrl;
+      }
+    };
+
+    window.closeResultsCockpitModal = function() {
+      var modal = document.getElementById('results-cockpit-modal');
+      if (modal) {
+        modal.style.setProperty('display', 'none', 'important');
+        modal.style.setProperty('opacity', '0', 'important');
+        modal.style.setProperty('pointer-events', 'none', 'important');
+      }
+    };
+
+    window.openBankingHighway = window.openBankingHighwayModal;
+    window.openResultsCockpit = window.openResultsCockpitModal;
+
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         window.closeProfessorReviewModal();
+        window.closeBankingHighwayModal();
+        window.closeResultsCockpitModal();
       }
     });
   </script>
+      <button type="button" id="header-bank-highway-btn" class="btn-serious magnetic-btn" onclick="window.openBankingHighwayModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #0284C7 0%, #0369A1 100%); color:#fff; font-weight:700; border:1px solid #38BDF8;" title="Bharat Core Banking Highway (Autonomous FinTech Safeguard)">
+        🏦 Bank Highway
+      </button>
+      <button type="button" id="header-results-cockpit-btn" class="btn-serious magnetic-btn" onclick="window.openResultsCockpitModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700; border:1px solid #60A5FA;" title="Unified Operations & Results Cockpit (Live Telemetry & NIST Merkle Stream)">
+        📊 Results Cockpit
+      </button>
       <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
         Professor Review (11/11)
       </button>
-      <a href="/results/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700;" title="Unified Cross-Platform Results Cockpit">
-        Results Cockpit
-      </a>
-      <a href="/bank/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#F8FAFC; font-weight:600;" title="Bharat Core Banking Highway">
-        Bank Highway
-      </a>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
         Defense Tour
       </button>
@@ -481,6 +607,12 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="hero-cta-cluster">
         <button type="button" class="btn-serious-lg magnetic-btn" onclick="switchToWorkspace()">
           Let's jump to serious stuff <span class="arrow-shift">&rarr;</span>
+        </button>
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="window.openBankingHighwayModal()" style="border-color:#0284C7;color:#0369A1;background:#F0F9FF;font-weight:700;" title="Launch Commercial Core Banking Engine & Autonomous Highway Simulation">
+          🏦 Bharat Bank Highway &rarr;
+        </button>
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="window.openResultsCockpitModal()" style="border-color:#2563EB;color:#1D4ED8;background:#EFF6FF;font-weight:700;" title="Open Unified Operations & Telemetry Results Cockpit">
+          📊 Results Cockpit &rarr;
         </button>
         <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('new')" style="border-color:#10B981;color:#047857;background:#ECFDF5;font-weight:700;">
           Explore Newly Added Features (Improvised v3.0) <span class="arrow-shift">&rarr;</span>

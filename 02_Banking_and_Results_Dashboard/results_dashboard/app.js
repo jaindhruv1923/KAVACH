@@ -4,14 +4,14 @@
  */
 
 // Dynamic Base URL Resolution
-const isMountedSubApp = (typeof window !== 'undefined' && window.location && window.location.pathname.includes('/results'));
+const isMountedSubApp = (typeof window !== 'undefined' && window.location && (window.location.pathname.includes('/results') || window.location.port === '8000'));
 const baseHubOrigin = (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : 'http://127.0.0.1:8090';
 
 // Configuration & Endpoints
 const CONFIG = {
   primaryApi: isMountedSubApp ? `${baseHubOrigin}/results` : 'http://127.0.0.1:8090',
-  kavachApi: 'http://127.0.0.1:8000',
-  bankingApi: 'http://127.0.0.1:8050',
+  kavachApi: isMountedSubApp ? baseHubOrigin : 'http://127.0.0.1:8000',
+  bankingApi: isMountedSubApp ? `${baseHubOrigin}/bank` : 'http://127.0.0.1:8050',
   localDataUrl: isMountedSubApp ? `${baseHubOrigin}/results/data/unified_results.json` : './data/unified_results.json',
   localMetricsUrl: isMountedSubApp ? `${baseHubOrigin}/results/data/summary_metrics.json` : './data/summary_metrics.json',
   pollIntervalMs: 2500,

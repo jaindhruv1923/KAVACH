@@ -242,6 +242,11 @@ def frontend_results_html():
     return RedirectResponse(url="/results/", status_code=307)
 
 
+@app.api_route("/bank.html", methods=["GET", "HEAD"], include_in_schema=False)
+def frontend_bank_html():
+    return RedirectResponse(url="/bank/", status_code=307)
+
+
 
 
 
