@@ -11,9 +11,9 @@ venv/
 *.key
 *.pem
 *.token
-*key.txt
 gemini_key.txt
 *gemini_key*
+*api_key*
 keys/
 **/keys/
 
