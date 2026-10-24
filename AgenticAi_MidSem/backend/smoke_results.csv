@@ -1,0 +1,6 @@
+Query_ID,Query,Ground_Truth,Retrieved_Top_1,First_Hit_Rank,Hit_At_1,Hit_At_3,Hit_At_5,MRR_Score,Recall_At_5,Latency_ms,Command,Date_UTC,Git_Commit
+1,Authenticate user credentials with password hash verification,auth.py,auth.py,1,1,1,1,1.0,1.0,30.63,python eval_rag.py --smoke,2026-10-24 08:44:56 UTC,5464098
+2,Database connection and session record lookup,database.py,auth.py,3,0,1,1,0.3333,1.0,28.57,python eval_rag.py --smoke,2026-10-24 08:44:56 UTC,5464098
+3,API routes and endpoints for user management,api.py,api.py,1,1,1,1,1.0,1.0,31.66,python eval_rag.py --smoke,2026-10-24 08:44:56 UTC,5464098
+4,Password length validation and SHA-256 storage,auth.py,auth.py,1,1,1,1,1.0,1.0,24.38,python eval_rag.py --smoke,2026-10-24 08:44:56 UTC,5464098
+5,Kavach architecture and demonstration walkthrough,DEMO.md,main.py,0,0,0,0,0.0,0.0,27.91,python eval_rag.py --smoke,2026-10-24 08:44:56 UTC,5464098

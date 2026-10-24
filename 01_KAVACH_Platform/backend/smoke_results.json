@@ -1,0 +1,134 @@
+{
+  "benchmark_metadata": {
+    "benchmark_title": "retrieval smoke test (5 queries, 3-file demo repo)",
+    "execution_command": "python eval_rag.py --smoke",
+    "executed_at_utc": "2026-10-24 08:44:56 UTC",
+    "git_commit": "5464098",
+    "sample_size_n": 5,
+    "corpus_directory": "C:\\Users\\jaind\\Desktop\\universty_work\\PRJ-IV Work & Agentic AI\\01_KAVACH_Platform\\demo_repo",
+    "total_chunks_indexed": 17,
+    "embedding_model": "all-MiniLM-L6-v2",
+    "vector_store": "Qdrant (In-Memory)"
+  },
+  "aggregate_metrics": {
+    "hit_at_1": 0.6,
+    "hit_at_3": 0.8,
+    "hit_at_5": 0.8,
+    "mean_recall_at_5": 0.8,
+    "mean_reciprocal_rank_mrr": 0.6667,
+    "latency_ms": {
+      "mean": 28.63,
+      "median": 28.57,
+      "min": 24.38,
+      "max": 31.66,
+      "p95": 31.66
+    }
+  },
+  "query_details": [
+    {
+      "query_id": 1,
+      "query": "Authenticate user credentials with password hash verification",
+      "ground_truth": [
+        "auth.py"
+      ],
+      "retrieved_top_5": [
+        "auth.py",
+        "auth.py",
+        "api.py",
+        "demo.md",
+        "database.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 30.63
+    },
+    {
+      "query_id": 2,
+      "query": "Database connection and session record lookup",
+      "ground_truth": [
+        "database.py"
+      ],
+      "retrieved_top_5": [
+        "auth.py",
+        "api.py",
+        "database.py",
+        "adk/memory.py",
+        "database.py"
+      ],
+      "first_hit_rank": 3,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.3333333333333333,
+      "recall_at_5": 1.0,
+      "latency_ms": 28.57
+    },
+    {
+      "query_id": 3,
+      "query": "API routes and endpoints for user management",
+      "ground_truth": [
+        "api.py"
+      ],
+      "retrieved_top_5": [
+        "api.py",
+        "demo.md",
+        "main.py",
+        "demo.md",
+        "auth.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 31.66
+    },
+    {
+      "query_id": 4,
+      "query": "Password length validation and SHA-256 storage",
+      "ground_truth": [
+        "auth.py"
+      ],
+      "retrieved_top_5": [
+        "auth.py",
+        "security/merkle_ledger.py",
+        "security/merkle_ledger.py",
+        "security/sbom_generator.py",
+        "security/sbom_generator.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.38
+    },
+    {
+      "query_id": 5,
+      "query": "Kavach architecture and demonstration walkthrough",
+      "ground_truth": [
+        "DEMO.md"
+      ],
+      "retrieved_top_5": [
+        "main.py",
+        "observability/agent_evaluator.py",
+        "observability/e2e_performance_benchmarker.py",
+        "adk/agent.py",
+        "adk/__init__.py"
+      ],
+      "first_hit_rank": null,
+      "hit_at_1": 0,
+      "hit_at_3": 0,
+      "hit_at_5": 0,
+      "reciprocal_rank": 0.0,
+      "recall_at_5": 0.0,
+      "latency_ms": 27.91
+    }
+  ]
+}

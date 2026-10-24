@@ -1,96 +1,701 @@
 {
   "benchmark_metadata": {
+    "benchmark_title": "KAVACH Comprehensive RAG Retrieval Benchmark (32 queries over app/ source)",
     "execution_command": "python eval_rag.py",
-    "executed_at": "2026-10-24 08:03:28 UTC",
-    "environment": "Local Qdrant In-Memory Vector Store + all-MiniLM-L6-v2 Embeddings",
-    "corpus": "01_KAVACH_Platform/demo_repo",
-    "total_queries_evaluated": 5
+    "executed_at_utc": "2026-10-24 08:43:51 UTC",
+    "git_commit": "5464098",
+    "sample_size_n": 32,
+    "corpus_directory": "C:\\Users\\jaind\\Desktop\\universty_work\\PRJ-IV Work & Agentic AI\\01_KAVACH_Platform\\backend\\app",
+    "total_chunks_indexed": 623,
+    "embedding_model": "all-MiniLM-L6-v2",
+    "vector_store": "Qdrant (In-Memory)"
   },
-  "hit_at_5": 1.0,
-  "mean_recall_at_5": 1.0,
-  "avg_latency_ms": 9.85,
-  "median_latency_ms": 9.28,
-  "p95_latency_ms": 12.79,
-  "results": [
+  "aggregate_metrics": {
+    "hit_at_1": 0.6875,
+    "hit_at_3": 0.9688,
+    "hit_at_5": 0.9688,
+    "mean_recall_at_5": 0.9688,
+    "mean_reciprocal_rank_mrr": 0.8281,
+    "latency_ms": {
+      "mean": 24.75,
+      "median": 24.64,
+      "min": 23.31,
+      "max": 28.13,
+      "p95": 26.58
+    }
+  },
+  "query_details": [
     {
-      "query": "Authenticate user credentials with password hash verification",
+      "query_id": 1,
+      "query": "FastAPI HTTP server routes, middleware configuration, and application entrypoint",
       "ground_truth": [
-        "auth.py"
+        "main.py"
       ],
       "retrieved_top_5": [
-        "auth.py",
-        "auth.py",
-        "api.py",
-        "demo.md",
-        "database.py"
+        "main.py",
+        "main.py",
+        "main.py",
+        "main.py",
+        "security/package_firewall.py"
       ],
-      "hit": 1,
-      "recall": 1.0,
-      "latency_ms": 8.490100008202717
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 25.37
     },
     {
-      "query": "Database connection and session record lookup",
+      "query_id": 2,
+      "query": "Detection of Indian personal data PII such as PAN card, Aadhaar number, phone, email",
       "ground_truth": [
-        "database.py"
+        "security/detector.py"
       ],
       "retrieved_top_5": [
-        "auth.py",
-        "api.py",
-        "database.py",
-        "database.py",
-        "api.py"
+        "security/detector.py",
+        "security/eli5_explainer.py",
+        "security/patterns.py",
+        "security/detector.py",
+        "security/detector.py"
       ],
-      "hit": 1,
-      "recall": 1.0,
-      "latency_ms": 9.610100009012967
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 28.13
     },
     {
-      "query": "API routes and endpoints for user management",
+      "query_id": 3,
+      "query": "Regex patterns and compiled regex signatures for sensitive data detection",
       "ground_truth": [
-        "api.py"
+        "security/patterns.py"
       ],
       "retrieved_top_5": [
-        "api.py",
-        "demo.md",
-        "demo.md",
-        "auth.py",
-        "demo.md"
+        "security/injection_shield.py",
+        "security/patterns.py",
+        "security/rag_injection_sanitizer.py",
+        "security/obfuscation_detector.py",
+        "security/injection_shield.py"
       ],
-      "hit": 1,
-      "recall": 1.0,
-      "latency_ms": 9.279699996113777
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.69
     },
     {
-      "query": "Password length validation and SHA-256 storage",
+      "query_id": 4,
+      "query": "Scanning source code for exposed AWS credentials, GitHub tokens, and private keys",
       "ground_truth": [
-        "auth.py"
+        "security/secret_detector.py"
       ],
       "retrieved_top_5": [
-        "auth.py",
-        "auth.py",
-        "demo.md",
-        "database.py",
-        "demo.md"
+        "security/red_team_suite.py",
+        "security/secret_detector.py",
+        "security/rag_injection_sanitizer.py",
+        "security/ssrf_shield.py",
+        "observability/toughest_benchmark.py"
       ],
-      "hit": 1,
-      "recall": 1.0,
-      "latency_ms": 9.097900008782744
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.99
     },
     {
-      "query": "Kavach architecture and demonstration walkthrough",
+      "query_id": 5,
+      "query": "Risk-adaptive policy engine evaluating BLOCK, REVIEW, and ALLOW policy actions",
       "ground_truth": [
-        "DEMO.md"
+        "security/policy_engine.py"
       ],
       "retrieved_top_5": [
-        "demo.md",
-        "demo.md",
-        "demo.md",
-        "auth.py",
-        "demo.md"
+        "main.py",
+        "security/policy_engine.py",
+        "security/policy_engine.py",
+        "security/policy_engine.py",
+        "agent/orchestrator.py"
       ],
-      "hit": 1,
-      "recall": 1.0,
-      "latency_ms": 12.793100002454594
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.75
+    },
+    {
+      "query_id": 6,
+      "query": "Redacting sensitive PII entities and credentials before writing to audit trail",
+      "ground_truth": [
+        "security/audit_redaction.py"
+      ],
+      "retrieved_top_5": [
+        "agent/orchestrator.py",
+        "security/audit_redaction.py",
+        "security/token_vault.py",
+        "security/secret_detector.py",
+        "agent/reasoning_strategies.py"
+      ],
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.21
+    },
+    {
+      "query_id": 7,
+      "query": "Cryptographic SHA-256 Merkle tree tamper-evident immutable audit ledger",
+      "ground_truth": [
+        "security/merkle_ledger.py"
+      ],
+      "retrieved_top_5": [
+        "security/merkle_ledger.py",
+        "security/merkle_ledger.py",
+        "security/sbom_generator.py",
+        "security/merkle_ledger.py",
+        "security/merkle_ledger.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.78
+    },
+    {
+      "query_id": 8,
+      "query": "Indirect prompt injection shield and adversarial jailbreak pattern sanitization",
+      "ground_truth": [
+        "security/injection_shield.py"
+      ],
+      "retrieved_top_5": [
+        "security/injection_shield.py",
+        "security/injection_shield.py",
+        "security/policy_engine.py",
+        "security/rag_injection_sanitizer.py",
+        "main.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.55
+    },
+    {
+      "query_id": 9,
+      "query": "Software Bill of Materials SBOM generation in CycloneDX and SPDX format",
+      "ground_truth": [
+        "security/sbom_generator.py"
+      ],
+      "retrieved_top_5": [
+        "security/sbom_generator.py",
+        "observability/toughest_benchmark.py",
+        "mcp/server.py",
+        "a2a/protocol.py",
+        "crew/flows.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.22
+    },
+    {
+      "query_id": 10,
+      "query": "Constructing python abstract syntax tree AST dependency graphs across imports",
+      "ground_truth": [
+        "impact/dependency_graph.py"
+      ],
+      "retrieved_top_5": [
+        "security/package_firewall.py",
+        "impact/dependency_graph.py",
+        "impact/dependency_graph.py",
+        "mcp/server.py",
+        "security/taint_tracker.py"
+      ],
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 23.77
+    },
+    {
+      "query_id": 11,
+      "query": "Analyzing blast radius and change impact combining semantic search with dependency graph",
+      "ground_truth": [
+        "impact/analyzer.py"
+      ],
+      "retrieved_top_5": [
+        "impact/analyzer.py",
+        "crew/agents.py",
+        "impact/dependency_graph.py",
+        "impact/analyzer.py",
+        "impact/evaluator.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 23.9
+    },
+    {
+      "query_id": 12,
+      "query": "Multi-stage agent orchestrator workflow executing security, RAG, generation, and impact",
+      "ground_truth": [
+        "agent/orchestrator.py"
+      ],
+      "retrieved_top_5": [
+        "agent/orchestrator.py",
+        "agent/industry_usecases.py",
+        "adk/__init__.py",
+        "observability/e2e_performance_benchmarker.py",
+        "adk/coordinator.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 26.58
+    },
+    {
+      "query_id": 13,
+      "query": "Task decomposition breaking natural language developer requests into structured sub-tasks",
+      "ground_truth": [
+        "agent/planner.py"
+      ],
+      "retrieved_top_5": [
+        "agent/planner.py",
+        "agent/planner.py",
+        "main.py",
+        "agent/graph_of_thought.py",
+        "generation/generator.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 23.84
+    },
+    {
+      "query_id": 14,
+      "query": "Workflow run state machine managing transitions and JSON file persistence",
+      "ground_truth": [
+        "agent/state.py"
+      ],
+      "retrieved_top_5": [
+        "agent/state.py",
+        "agent/state.py",
+        "agent/persistent_store.py",
+        "main.py",
+        "agent/persistent_store.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.15
+    },
+    {
+      "query_id": 15,
+      "query": "Evidence-grounded code generation prompting Google Gemini with retrieved repository context",
+      "ground_truth": [
+        "generation/generator.py"
+      ],
+      "retrieved_top_5": [
+        "generation/generator.py",
+        "generation/generator.py",
+        "generation/llm_client.py",
+        "agent/planner.py",
+        "main.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 23.31
+    },
+    {
+      "query_id": 16,
+      "query": "Google Gemini REST client and local Ollama air-gapped inference fallback",
+      "ground_truth": [
+        "generation/llm_client.py"
+      ],
+      "retrieved_top_5": [
+        "agent/planner.py",
+        "generation/llm_client.py",
+        "generation/llm_client.py",
+        "generation/llm_client.py",
+        "observability/toughest_benchmark.py"
+      ],
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 25.77
+    },
+    {
+      "query_id": 17,
+      "query": "Validating generated python output for AST syntax correctness and safety",
+      "ground_truth": [
+        "generation/validator.py"
+      ],
+      "retrieved_top_5": [
+        "generation/validator.py",
+        "security/taint_tracker.py",
+        "security/vulnerability_scanner.py",
+        "generation/validator.py",
+        "agent/self_healer.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.64
+    },
+    {
+      "query_id": 18,
+      "query": "Repository file ingestion, markdown chunking, and code parser extraction",
+      "ground_truth": [
+        "rag/ingest.py"
+      ],
+      "retrieved_top_5": [
+        "rag/ingest.py",
+        "rag/ingest.py",
+        "rag/ingest.py",
+        "mcp/server.py",
+        "impact/dependency_graph.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.37
+    },
+    {
+      "query_id": 19,
+      "query": "Qdrant vector store client setup, collection creation, and cosine similarity search",
+      "ground_truth": [
+        "rag/embed_store.py"
+      ],
+      "retrieved_top_5": [
+        "rag/embed_store.py",
+        "mcp/server.py",
+        "rag/embed_store.py",
+        "mcp/server.py",
+        "rag/embed_store.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 25.05
+    },
+    {
+      "query_id": 20,
+      "query": "Google ADK LlmAgent lifecycle states INITIALIZED, PLANNING, EXECUTING, REFLECTING",
+      "ground_truth": [
+        "adk/agent.py"
+      ],
+      "retrieved_top_5": [
+        "adk/agent.py",
+        "adk/agent.py",
+        "main.py",
+        "adk/callbacks.py",
+        "a2a/interop_bridge.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 25.18
+    },
+    {
+      "query_id": 21,
+      "query": "Google ADK 8-hook callbacks event bus before_agent, after_model, before_tool",
+      "ground_truth": [
+        "adk/callbacks.py"
+      ],
+      "retrieved_top_5": [
+        "main.py",
+        "adk/callbacks.py",
+        "adk/callbacks.py",
+        "adk/agent.py",
+        "main.py"
+      ],
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 25.62
+    },
+    {
+      "query_id": 22,
+      "query": "Google ADK medical triage academic course exercise with urgency classifier and branching",
+      "ground_truth": [
+        "adk/medical_triage.py"
+      ],
+      "retrieved_top_5": [
+        "adk/medical_triage.py",
+        "adk/medical_triage.py",
+        "a2a/interop_bridge.py",
+        "adk/medical_triage.py",
+        "main.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.29
+    },
+    {
+      "query_id": 23,
+      "query": "Google ADK coordinator executing multi-agent DAG workflow sequences",
+      "ground_truth": [
+        "adk/coordinator.py"
+      ],
+      "retrieved_top_5": [
+        "adk/__init__.py",
+        "adk/coordinator.py",
+        "main.py",
+        "main.py",
+        "adk/workflow.py"
+      ],
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 23.9
+    },
+    {
+      "query_id": 24,
+      "query": "Google A2A agent-to-agent protocol message schema and signed task delegation envelopes",
+      "ground_truth": [
+        "a2a/protocol.py"
+      ],
+      "retrieved_top_5": [
+        "a2a/protocol.py",
+        "a2a/__init__.py",
+        "observability/toughest_benchmark.py",
+        "main.py",
+        "a2a/interop_bridge.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.54
+    },
+    {
+      "query_id": 25,
+      "query": "Cross-framework interoperability bridge translating between Google ADK and CrewAI",
+      "ground_truth": [
+        "a2a/interop_bridge.py"
+      ],
+      "retrieved_top_5": [
+        "a2a/interop_bridge.py",
+        "a2a/interop_bridge.py",
+        "agent/blackboard.py",
+        "main.py",
+        "main.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.54
+    },
+    {
+      "query_id": 26,
+      "query": "CrewAI personas Sentinel, Retriever, BlastRadiusAnalyst, Coder, and Supervisor",
+      "ground_truth": [
+        "crew/agents.py"
+      ],
+      "retrieved_top_5": [
+        "crew/__init__.py",
+        "crew/agents.py",
+        "main.py",
+        "crew/agents.py",
+        "observability/e2e_performance_benchmarker.py"
+      ],
+      "first_hit_rank": 2,
+      "hit_at_1": 0,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 0.5,
+      "recall_at_5": 1.0,
+      "latency_ms": 25.39
+    },
+    {
+      "query_id": 27,
+      "query": "CrewAI stateful flows using start and listen lifecycle decorators",
+      "ground_truth": [
+        "crew/flows.py"
+      ],
+      "retrieved_top_5": [
+        "crew/flows.py",
+        "crew/flows.py",
+        "crew/__init__.py",
+        "main.py",
+        "main.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 23.5
+    },
+    {
+      "query_id": 28,
+      "query": "Package firewall checking dependency vulnerabilities and typosquatting risks",
+      "ground_truth": [
+        "security/package_firewall.py"
+      ],
+      "retrieved_top_5": [
+        "security/polyglot_firewall.py",
+        "security/polyglot_firewall.py",
+        "security/typosquat_shield.py",
+        "security/typosquat_shield.py",
+        "security/typosquat_shield.py"
+      ],
+      "first_hit_rank": null,
+      "hit_at_1": 0,
+      "hit_at_3": 0,
+      "hit_at_5": 0,
+      "reciprocal_rank": 0.0,
+      "recall_at_5": 0.0,
+      "latency_ms": 24.67
+    },
+    {
+      "query_id": 29,
+      "query": "Server-side request forgery SSRF protection blocking private IP ranges and cloud metadata",
+      "ground_truth": [
+        "security/ssrf_shield.py"
+      ],
+      "retrieved_top_5": [
+        "security/ssrf_shield.py",
+        "security/ssrf_shield.py",
+        "security/ssrf_shield.py",
+        "security/ssrf_shield.py",
+        "main.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 24.16
+    },
+    {
+      "query_id": 30,
+      "query": "Role-based access control RBAC checking user roles and security clearance permissions",
+      "ground_truth": [
+        "security/rbac_engine.py"
+      ],
+      "retrieved_top_5": [
+        "security/rbac_engine.py",
+        "security/rbac_engine.py",
+        "main.py",
+        "security/rbac_engine.py",
+        "security/rbac_engine.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 23.86
+    },
+    {
+      "query_id": 31,
+      "query": "Cryptographic token vault for PII tokenization and reversible AES encryption",
+      "ground_truth": [
+        "security/token_vault.py"
+      ],
+      "retrieved_top_5": [
+        "security/token_vault.py",
+        "main.py",
+        "security/token_vault.py",
+        "security/token_vault.py",
+        "main.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 25.32
+    },
+    {
+      "query_id": 32,
+      "query": "Human-in-the-loop HITL approval gating workflow for dangerous or high-risk actions",
+      "ground_truth": [
+        "agent/hitl_gate.py"
+      ],
+      "retrieved_top_5": [
+        "agent/hitl_gate.py",
+        "main.py",
+        "agent/hitl_gate.py",
+        "main.py",
+        "security/policy_engine.py"
+      ],
+      "first_hit_rank": 1,
+      "hit_at_1": 1,
+      "hit_at_3": 1,
+      "hit_at_5": 1,
+      "reciprocal_rank": 1.0,
+      "recall_at_5": 1.0,
+      "latency_ms": 26.0
     }
   ]
 }

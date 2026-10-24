@@ -1,6 +1,33 @@
-Query_ID,Evaluated_Query,Ground_Truth,Retrieved_Top_1,Hit_At_5,Recall_At_5,Latency_ms,Executed_Command,Executed_At
-RAG-EVAL-01,Authenticate user credentials with password hash verification,auth.py,auth.py,1,1.0,8.49,python eval_rag.py,2026-10-24 08:03:28 UTC
-RAG-EVAL-02,Database connection and session record lookup,database.py,auth.py,1,1.0,9.61,python eval_rag.py,2026-10-24 08:03:28 UTC
-RAG-EVAL-03,API routes and endpoints for user management,api.py,api.py,1,1.0,9.28,python eval_rag.py,2026-10-24 08:03:28 UTC
-RAG-EVAL-04,Password length validation and SHA-256 storage,auth.py,auth.py,1,1.0,9.1,python eval_rag.py,2026-10-24 08:03:28 UTC
-RAG-EVAL-05,Kavach architecture and demonstration walkthrough,DEMO.md,demo.md,1,1.0,12.79,python eval_rag.py,2026-10-24 08:03:28 UTC
+Query_ID,Query,Ground_Truth,Retrieved_Top_1,First_Hit_Rank,Hit_At_1,Hit_At_3,Hit_At_5,MRR_Score,Recall_At_5,Latency_ms,Command,Date_UTC,Git_Commit
+1,"FastAPI HTTP server routes, middleware configuration, and application entrypoint",main.py,main.py,1,1,1,1,1.0,1.0,25.37,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+2,"Detection of Indian personal data PII such as PAN card, Aadhaar number, phone, email",security/detector.py,security/detector.py,1,1,1,1,1.0,1.0,28.13,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+3,Regex patterns and compiled regex signatures for sensitive data detection,security/patterns.py,security/injection_shield.py,2,0,1,1,0.5,1.0,24.69,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+4,"Scanning source code for exposed AWS credentials, GitHub tokens, and private keys",security/secret_detector.py,security/red_team_suite.py,2,0,1,1,0.5,1.0,24.99,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+5,"Risk-adaptive policy engine evaluating BLOCK, REVIEW, and ALLOW policy actions",security/policy_engine.py,main.py,2,0,1,1,0.5,1.0,24.75,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+6,Redacting sensitive PII entities and credentials before writing to audit trail,security/audit_redaction.py,agent/orchestrator.py,2,0,1,1,0.5,1.0,24.21,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+7,Cryptographic SHA-256 Merkle tree tamper-evident immutable audit ledger,security/merkle_ledger.py,security/merkle_ledger.py,1,1,1,1,1.0,1.0,24.78,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+8,Indirect prompt injection shield and adversarial jailbreak pattern sanitization,security/injection_shield.py,security/injection_shield.py,1,1,1,1,1.0,1.0,24.55,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+9,Software Bill of Materials SBOM generation in CycloneDX and SPDX format,security/sbom_generator.py,security/sbom_generator.py,1,1,1,1,1.0,1.0,24.22,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+10,Constructing python abstract syntax tree AST dependency graphs across imports,impact/dependency_graph.py,security/package_firewall.py,2,0,1,1,0.5,1.0,23.77,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+11,Analyzing blast radius and change impact combining semantic search with dependency graph,impact/analyzer.py,impact/analyzer.py,1,1,1,1,1.0,1.0,23.9,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+12,"Multi-stage agent orchestrator workflow executing security, RAG, generation, and impact",agent/orchestrator.py,agent/orchestrator.py,1,1,1,1,1.0,1.0,26.58,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+13,Task decomposition breaking natural language developer requests into structured sub-tasks,agent/planner.py,agent/planner.py,1,1,1,1,1.0,1.0,23.84,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+14,Workflow run state machine managing transitions and JSON file persistence,agent/state.py,agent/state.py,1,1,1,1,1.0,1.0,24.15,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+15,Evidence-grounded code generation prompting Google Gemini with retrieved repository context,generation/generator.py,generation/generator.py,1,1,1,1,1.0,1.0,23.31,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+16,Google Gemini REST client and local Ollama air-gapped inference fallback,generation/llm_client.py,agent/planner.py,2,0,1,1,0.5,1.0,25.77,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+17,Validating generated python output for AST syntax correctness and safety,generation/validator.py,generation/validator.py,1,1,1,1,1.0,1.0,24.64,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+18,"Repository file ingestion, markdown chunking, and code parser extraction",rag/ingest.py,rag/ingest.py,1,1,1,1,1.0,1.0,24.37,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+19,"Qdrant vector store client setup, collection creation, and cosine similarity search",rag/embed_store.py,rag/embed_store.py,1,1,1,1,1.0,1.0,25.05,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+20,"Google ADK LlmAgent lifecycle states INITIALIZED, PLANNING, EXECUTING, REFLECTING",adk/agent.py,adk/agent.py,1,1,1,1,1.0,1.0,25.18,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+21,"Google ADK 8-hook callbacks event bus before_agent, after_model, before_tool",adk/callbacks.py,main.py,2,0,1,1,0.5,1.0,25.62,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+22,Google ADK medical triage academic course exercise with urgency classifier and branching,adk/medical_triage.py,adk/medical_triage.py,1,1,1,1,1.0,1.0,24.29,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+23,Google ADK coordinator executing multi-agent DAG workflow sequences,adk/coordinator.py,adk/__init__.py,2,0,1,1,0.5,1.0,23.9,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+24,Google A2A agent-to-agent protocol message schema and signed task delegation envelopes,a2a/protocol.py,a2a/protocol.py,1,1,1,1,1.0,1.0,24.54,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+25,Cross-framework interoperability bridge translating between Google ADK and CrewAI,a2a/interop_bridge.py,a2a/interop_bridge.py,1,1,1,1,1.0,1.0,24.54,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+26,"CrewAI personas Sentinel, Retriever, BlastRadiusAnalyst, Coder, and Supervisor",crew/agents.py,crew/__init__.py,2,0,1,1,0.5,1.0,25.39,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+27,CrewAI stateful flows using start and listen lifecycle decorators,crew/flows.py,crew/flows.py,1,1,1,1,1.0,1.0,23.5,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+28,Package firewall checking dependency vulnerabilities and typosquatting risks,security/package_firewall.py,security/polyglot_firewall.py,0,0,0,0,0.0,0.0,24.67,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+29,Server-side request forgery SSRF protection blocking private IP ranges and cloud metadata,security/ssrf_shield.py,security/ssrf_shield.py,1,1,1,1,1.0,1.0,24.16,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+30,Role-based access control RBAC checking user roles and security clearance permissions,security/rbac_engine.py,security/rbac_engine.py,1,1,1,1,1.0,1.0,23.86,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+31,Cryptographic token vault for PII tokenization and reversible AES encryption,security/token_vault.py,security/token_vault.py,1,1,1,1,1.0,1.0,25.32,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
+32,Human-in-the-loop HITL approval gating workflow for dangerous or high-risk actions,agent/hitl_gate.py,agent/hitl_gate.py,1,1,1,1,1.0,1.0,26.0,python eval_rag.py,2026-10-24 08:43:51 UTC,5464098
