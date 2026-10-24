@@ -2179,6 +2179,85 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
 
+        <!-- SIMULATOR 5: KAIKEI (会計) CRYPTOGRAPHIC LEDGER & TAMPER DEMO -->
+        <div id="kaikei-playground-card" class="card motion-spring-card watermelon-card" style="background:var(--watermelon-dark, #0A0E1A);border:1px solid rgba(0, 229, 153, 0.3);padding:24px;border-radius:12px;color:#F8FAFC;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#00E599;box-shadow:0 0 10px #00E599;" class="pulse-active-shield"></span>
+              <div style="font-weight:700;font-size:1.05rem;color:#F8FAFC;letter-spacing:-0.01em;">5. Kaikei (会計) Cryptographic Ledger &amp; Tamper Sandbox</div>
+            </div>
+            <span class="badge" style="background:rgba(0, 229, 153, 0.15);color:#00E599;border:1px solid rgba(0, 229, 153, 0.4);font-weight:700;font-size:0.72rem;padding:3px 8px;border-radius:4px;">NIST FIPS 202 SHA3-512</span>
+          </div>
+          <p style="font-size:0.83rem;color:#94A3B8;margin-bottom:14px;line-height:1.5;">
+            Tamper-evident accounting ledger for autonomous AI actions. Demonstrates that any retroactive modification of historical actions breaks the Merkle root and is pinpointed to the exact corrupted leaf index without mutating live production state.
+          </p>
+
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-family:var(--font-mono);font-size:0.74rem;">
+            <div style="color:#64748B;margin-bottom:2px;">Live Production Merkle Root:</div>
+            <div id="kaikei-live-root" style="color:#00F0FF;word-break:break-all;font-weight:600;">Computing live NIST SHA3-512 root...</div>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+            <button type="button" class="motion-spring-btn" style="background:#00E599;color:#0A0E1A;border:none;padding:8px 16px;border-radius:6px;font-weight:700;font-size:0.80rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;" onclick="window.runLiveMerkleVerify()">
+              <span>✓ Verify Live Ledger</span>
+            </button>
+            <button type="button" class="motion-spring-btn" style="background:#FF3B69;color:#FFFFFF;border:none;padding:8px 16px;border-radius:6px;font-weight:700;font-size:0.80rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;" onclick="window.runAdversarialTamperDemo(1)">
+              <span>⚡ Adversarial Tamper Sandbox (Leaf #1)</span>
+            </button>
+            <button type="button" class="motion-spring-btn" style="background:rgba(255,255,255,0.08);color:#CBD5E1;border:1px solid rgba(255,255,255,0.15);padding:8px 12px;border-radius:6px;font-weight:600;font-size:0.78rem;cursor:pointer;" onclick="window.runAdversarialTamperDemo(2)">
+              <span>Tamper Leaf #2</span>
+            </button>
+          </div>
+
+          <div id="kaikei-sandbox-output" style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:14px;font-family:var(--font-mono);font-size:0.78rem;min-height:90px;color:#E2E8F0;">
+            <div style="color:#64748B;">Click <strong>"Verify Live Ledger"</strong> or <strong>"Adversarial Tamper Sandbox"</strong> to execute cryptographic audit via backend API.</div>
+          </div>
+        </div>
+
+        <!-- SIMULATOR 6: MANUS AUTONOMOUS EXECUTION TRANSPARENCY HUD -->
+        <div id="manus-playground-card" class="card motion-spring-card watermelon-card" style="background:var(--watermelon-dark, #0A0E1A);border:1px solid rgba(0, 240, 255, 0.3);padding:24px;border-radius:12px;color:#F8FAFC;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#00F0FF;box-shadow:0 0 10px #00F0FF;" class="pulse-active-shield"></span>
+              <div style="font-weight:700;font-size:1.05rem;color:#F8FAFC;letter-spacing:-0.01em;">6. Manus Autonomous Execution HUD</div>
+            </div>
+            <span class="badge" style="background:rgba(0, 240, 255, 0.15);color:#00F0FF;border:1px solid rgba(0, 240, 255, 0.4);font-weight:700;font-size:0.72rem;padding:3px 8px;border-radius:4px;">GOOGLE ADK COORDINATOR</span>
+          </div>
+          <p style="font-size:0.83rem;color:#94A3B8;margin-bottom:14px;line-height:1.5;">
+            Step-by-step cognitive observability pipeline exposing the autonomous agent lifecycle: Strategic Thought, Subagent Action, Vector/AST Observation, and Closed-Loop Reflection.
+          </p>
+
+          <!-- 4-Stage Stepper Micro-Interaction -->
+          <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:8px;margin-bottom:14px;">
+            <button type="button" class="motion-spring-btn manus-step-btn" style="background:rgba(37,99,235,0.2);border:1px solid #2563EB;color:#93C5FD;padding:8px 6px;border-radius:6px;font-size:0.75rem;font-weight:700;cursor:pointer;text-align:center;" onclick="window.inspectManusStage('thought')">
+              🧠 1. Thought
+            </button>
+            <button type="button" class="motion-spring-btn manus-step-btn" style="background:rgba(217,119,6,0.2);border:1px solid #D97706;color:#FDE68A;padding:8px 6px;border-radius:6px;font-size:0.75rem;font-weight:700;cursor:pointer;text-align:center;" onclick="window.inspectManusStage('action')">
+              ⚡ 2. Action
+            </button>
+            <button type="button" class="motion-spring-btn manus-step-btn" style="background:rgba(5,150,105,0.2);border:1px solid #059669;color:#A7F3D0;padding:8px 6px;border-radius:6px;font-size:0.75rem;font-weight:700;cursor:pointer;text-align:center;" onclick="window.inspectManusStage('observation')">
+              👁️ 3. Observe
+            </button>
+            <button type="button" class="motion-spring-btn manus-step-btn" style="background:rgba(124,58,237,0.2);border:1px solid #7C3AED;color:#DDD6FE;padding:8px 6px;border-radius:6px;font-size:0.75rem;font-weight:700;cursor:pointer;text-align:center;" onclick="window.inspectManusStage('reflection')">
+              🎯 4. Reflect
+            </button>
+          </div>
+
+          <!-- Manus Telemetry Drawer -->
+          <div id="manus-telemetry-drawer" style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px;font-family:var(--font-mono);font-size:0.78rem;">
+            <div id="manus-drawer-title" style="color:#00F0FF;font-weight:700;margin-bottom:8px;">
+              🧠 Manus Stage 01: Thought &amp; Strategic Decomposition
+            </div>
+            <pre id="manus-drawer-content" style="margin:0;max-height:160px;overflow-y:auto;color:#E2E8F0;font-size:0.74rem;line-height:1.45;white-space:pre-wrap;">{
+  "stage": "PLANNING",
+  "agent": "PlannerAgent (Google ADK LlmAgent)",
+  "privacy_boundary": "Raw developer prompt de-identified via redact_text() before planner dispatch",
+  "sanitized_prompt": "Add authentication to the login module",
+  "orchestration_engine": "GOOGLE_ADK_COORDINATOR"
+}</pre>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -5442,6 +5521,7 @@ def parse_deploy_spec(user_payload):
 <script src="improvised_controller.js?v=3.2.0"></script>
 <script src="course_cockpit.js?v=3.2.0"></script>
 <script src="academic_weapon.js?v=3.2.0"></script>
+<script src="watermelon_manus_kaikei.js?v=3.2.0"></script>
 <!-- Floating Interactive Pathway Telemetry Dock -->
 <div id="floating-pathway-dock" class="floating-pathway-dock" aria-live="polite">
   <div class="dock-status-label">
