@@ -1,0 +1,479 @@
+/* ==========================================================================
+   KAVACH — APPLE PRO CUPERTINO DESIGN SYSTEM OVERLAY
+   Inspired by apple.com/apple-intelligence, Apple Pro Display & macOS Sequoia
+   ========================================================================== */
+
+:root {
+  /* Surface Layers: Apple Space Black & Titanium Glass */
+  --bg-base: #000000 !important;
+  --bg-canvas: #070709 !important;
+  --bg-surface: #161617 !important;
+  --bg-surface-elevated: #1C1C1E !important;
+  --bg-surface-hover: #262629 !important;
+  --bg-surface-active: #323236 !important;
+
+  /* Borders: Ultra-Fine Laser Translucent Borders */
+  --border-subtle: rgba(255, 255, 255, 0.09) !important;
+  --border-medium: rgba(255, 255, 255, 0.16) !important;
+  --border-hover: #0071E3 !important;
+  --border-focus: #0071E3 !important;
+
+  /* Typography: Apple High-Contrast Hierarchy */
+  --text-primary: #F5F5F7 !important;
+  --text-secondary: #A1A1A6 !important;
+  --text-dim: #86868B !important;
+  --text-disabled: #636366 !important;
+
+  /* Apple Brand & Status Accents */
+  --accent: #0071E3 !important;           /* Apple Royal Blue */
+  --accent-secondary: #0077ED !important;
+  --accent-gradient: linear-gradient(135deg, #0071E3 0%, #479CFF 100%) !important;
+  --accent-glow: rgba(0, 113, 227, 0.35) !important;
+  --accent-subtle: rgba(0, 113, 227, 0.12) !important;
+
+  /* Apple Status Palette */
+  --safe: #30D158 !important;             /* Apple Green */
+  --safe-bg: rgba(48, 209, 88, 0.12) !important;
+  --safe-border: rgba(48, 209, 88, 0.28) !important;
+  --safe-glow: rgba(48, 209, 88, 0.25) !important;
+
+  --review: #FF9F0A !important;           /* Apple Amber */
+  --review-bg: rgba(255, 159, 10, 0.12) !important;
+  --review-border: rgba(255, 159, 10, 0.28) !important;
+  --review-glow: rgba(255, 159, 10, 0.25) !important;
+
+  --blocked: #FF453A !important;          /* Apple Red */
+  --blocked-bg: rgba(255, 69, 58, 0.12) !important;
+  --blocked-border: rgba(255, 69, 58, 0.28) !important;
+  --blocked-glow: rgba(255, 69, 58, 0.25) !important;
+
+  --neutral: #8E8E93 !important;
+  --neutral-bg: rgba(142, 142, 147, 0.12) !important;
+  --neutral-border: rgba(142, 142, 147, 0.28) !important;
+
+  /* Typography Font Stacks */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", sans-serif !important;
+  --font-mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace !important;
+
+  /* Apple Bento Elevation & Radius Tokens */
+  --radius-sm: 8px !important;
+  --radius-md: 14px !important;
+  --radius-lg: 22px !important;
+  --radius-full: 980px !important;
+
+  /* Apple Spring Motion */
+  --transition-fast: 160ms cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+  --transition-normal: 280ms cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+}
+
+/* ==========================================================================
+   GLOBAL CANVAS & BASE RESETS (Apple Obsidian Space Black)
+   ========================================================================== */
+html, body {
+  background-color: #000000 !important;
+  color: #F5F5F7 !important;
+  color-scheme: dark !important;
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* ==========================================================================
+   APPLE PRO TRANSLUCENT NAVIGATION BAR
+   ========================================================================== */
+.app-header {
+  background: rgba(0, 0, 0, 0.78) !important;
+  backdrop-filter: saturate(180%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+.app-header-main {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.brand-title {
+  color: #F5F5F7 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* Apple Segmented Scope Controller (Pill Shape) */
+.header-pathway-selector {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 980px !important;
+  padding: 3px !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+.pathway-tab {
+  background: transparent !important;
+  color: #A1A1A6 !important;
+  border-radius: 980px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  font-size: 0.78rem !important;
+  transition: all 0.2s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+  padding: 6px 16px !important;
+}
+
+.pathway-tab:hover {
+  color: #FFFFFF !important;
+}
+
+.pathway-tab.active {
+  background: #1C1C1E !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.pathway-chip {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #F5F5F7 !important;
+  border-radius: 980px !important;
+  font-weight: 700 !important;
+}
+
+/* Apple Sub-Nav Rails */
+.app-header-subnav {
+  background: transparent !important;
+}
+
+.nav-switch-btn {
+  background: transparent !important;
+  color: #86868B !important;
+  border: none !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  padding: 6px 14px !important;
+  border-radius: 980px !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-switch-btn:hover {
+  color: #F5F5F7 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.nav-switch-btn.active {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   APPLE PILL BUTTONS (Tactile & Minimalist)
+   ========================================================================== */
+.btn-serious,
+.btn-primary,
+.btn-launchpad-primary,
+.btn-serious-lg {
+  background: #0071E3 !important;
+  color: #FFFFFF !important;
+  border-radius: 980px !important;
+  border: none !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  padding: 10px 22px !important;
+  box-shadow: 0 4px 16px rgba(0, 113, 227, 0.35) !important;
+  transition: all 0.22s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+  cursor: pointer !important;
+}
+
+.btn-serious:hover,
+.btn-primary:hover,
+.btn-launchpad-primary:hover,
+.btn-serious-lg:hover {
+  background: #0077ED !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 6px 22px rgba(0, 113, 227, 0.5) !important;
+}
+
+.btn-serious:active,
+.btn-primary:active,
+.btn-launchpad-primary:active,
+.btn-serious-lg:active {
+  transform: scale(0.97) !important;
+}
+
+/* Secondary Frosted Pill Buttons */
+.btn-secondary,
+.btn-secondary-lg,
+.btn-launchpad-secondary,
+.btn-eval-secondary,
+.pill-btn,
+.magnetic-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #F5F5F7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 980px !important;
+  transition: all 0.2s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary-lg:hover,
+.btn-launchpad-secondary:hover,
+.btn-eval-secondary:hover,
+.pill-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Header Action Buttons in App-Header */
+#header-prof-review-btn {
+  background: #30D158 !important;
+  color: #000000 !important;
+  border: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(48, 209, 88, 0.35) !important;
+}
+
+#header-comic-explainer-btn {
+  background: #FFD60A !important;
+  color: #000000 !important;
+  border: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(255, 214, 10, 0.35) !important;
+}
+
+/* ==========================================================================
+   HERO PRESENTATION & TITANIUM GRADIENT HEADLINES
+   ========================================================================== */
+.product-hero {
+  background: transparent !important;
+  padding: 60px 0 40px 0 !important;
+  text-align: center !important;
+}
+
+.hero-eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #A1A1A6 !important;
+  border-radius: 980px !important;
+  padding: 4px 14px !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 16px !important;
+}
+
+.hero-creator-badge {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 980px !important;
+  color: #A1A1A6 !important;
+  padding: 4px 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 0.76rem !important;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.06 !important;
+  margin: 20px 0 16px 0 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.68) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.hero-title span {
+  background: linear-gradient(90deg, #2997FF 0%, #BF5AF2 50%, #FF375F 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.hero-subtitle {
+  color: #86868B !important;
+  font-size: 1.15rem !important;
+  line-height: 1.55 !important;
+  max-width: 780px !important;
+  margin: 0 auto 30px auto !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* ==========================================================================
+   BENTO GRID CARDS & GLASS SURFACES
+   ========================================================================== */
+.card,
+.launchpad-card,
+.product-section,
+#project-scope-banner,
+#zero-token-telemetry-strip,
+.kavach-card,
+.bento-card,
+.course-card {
+  background: #161617 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 22px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+  color: #F5F5F7 !important;
+  transition: transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1), box-shadow 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) !important;
+}
+
+.card:hover,
+.bento-card:hover {
+  transform: scale(1.006) translateY(-2px) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 20px 50px rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Deep Dark Bento Inner Tiles */
+#zero-token-telemetry-strip > div > div[style*="background"],
+.card div[style*="background:#F8FAFC"],
+.card div[style*="background: #F8FAFC"],
+.card div[style*="background:#FFF"],
+.card div[style*="background: #FFF"],
+.card div[style*="background:#FFFFFF"],
+.card div[style*="background: #FFFFFF"] {
+  background: #1C1C1E !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  color: #F5F5F7 !important;
+}
+
+/* ==========================================================================
+   INPUTS, TEXTAREAS & CONTROLS (Apple Dark Field Styles)
+   ========================================================================== */
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+  background: #1C1C1E !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  color: #F5F5F7 !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.85rem !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: #0071E3 !important;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.3) !important;
+}
+
+/* ==========================================================================
+   MODALS (Apple Sheet & Glass Backdrop)
+   ========================================================================== */
+.course-modal-backdrop {
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+}
+
+.course-modal-window {
+  background: #1C1C1E !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 24px !important;
+  color: #F5F5F7 !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.course-modal-window div[style*="background: #FFFFFF"],
+.course-modal-window div[style*="background:#FFFFFF"],
+.course-modal-window div[style*="background: #F8FAFC"],
+.course-modal-window div[style*="background:#F8FAFC"] {
+  background: #1C1C1E !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #F5F5F7 !important;
+}
+
+.prof-tab-btn {
+  background: #2C2C2E !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #A1A1A6 !important;
+  border-radius: 980px !important;
+  padding: 6px 14px !important;
+}
+
+.prof-tab-btn:hover {
+  background: #3A3A3C !important;
+  color: #FFFFFF !important;
+}
+
+.prof-tab-btn.active {
+  background: #0071E3 !important;
+  border-color: #0071E3 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 10px rgba(0, 113, 227, 0.4) !important;
+}
+
+/* ==========================================================================
+   TABLES & PROVENANCE MATRICES
+   ========================================================================== */
+.kavach-comparison-table,
+table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  width: 100% !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.kavach-comparison-table th,
+table th {
+  background: #1C1C1E !important;
+  color: #A1A1A6 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.04em !important;
+  padding: 12px 16px !important;
+}
+
+.kavach-comparison-table td,
+table td {
+  background: #161617 !important;
+  color: #F5F5F7 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 12px 16px !important;
+}
+
+/* ==========================================================================
+   APPLE DYNAMIC ISLAND FLOATING DOCK
+   ========================================================================== */
+#floating-pathway-dock,
+.floating-pathway-dock {
+  background: rgba(28, 28, 30, 0.85) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 980px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  color: #F5F5F7 !important;
+}
+
+.dock-action-btn {
+  border-radius: 980px !important;
+}
+
+/* ==========================================================================
+   CODE BLOCKS & MONOSPACE TERMINAL CONTAINERS
+   ========================================================================== */
+pre, code, .terminal-window {
+  background: #0B0B0C !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  color: #64D2FF !important;
+  font-family: var(--font-mono) !important;
+}
