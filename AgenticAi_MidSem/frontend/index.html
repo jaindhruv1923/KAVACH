@@ -42,7 +42,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=2.5.1">
-<link rel="stylesheet" href="apple_design.css?v=1.0.0">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="comic_explainer.js?v=3.3.0"></script>
@@ -326,9 +325,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 
-<!-- Interactive Neural Constellation Canvas (Particle Mesh Web - Floating in Foreground) -->
-<canvas id="interactive-particle-web" aria-hidden="true" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;opacity:0.92;display:block;"></canvas>
-
 <header class="app-header">
   <!-- Top Row: Brand, Primary Pathway Toggle, and Quick Action Buttons -->
   <div class="app-header-main">
@@ -497,16 +493,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   </script>
 
-      <button type="button" id="header-comic-explainer-btn" class="btn-comic-header magnetic-btn" onclick="window.openComicExplainerModal()" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
+      <button type="button" id="header-comic-explainer-btn" class="btn-comic-header btn-serious magnetic-btn" onclick="window.openComicExplainerModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #FEF08A 0%, #FDE047 100%); color:#0F172A; font-weight:800; border:2px solid #0F172A; box-shadow:2.5px 2.5px 0px #0F172A; cursor:pointer;" title="Comic Cloud Explainers — 1-Liner Animated Comics & Technical Dossiers for Every Topic">
         Comic Explainers (ELI5)
       </button>
-      <button type="button" id="header-prof-review-btn" class="magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
+      <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
         Professor Review (11/11)
       </button>
-      <button type="button" id="header-course-cockpit-btn" class="magnetic-btn" onclick="window.openCourseCockpitModal()" title="CSE3101 Agentic AI Course Handout & Mid-Sem Cockpit">
+      <button type="button" class="btn-serious magnetic-btn" onclick="window.openCourseCockpitModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700;" title="CSE3101 Agentic AI Course Handout & Mid-Sem Cockpit">
         Mid-Sem Cockpit
       </button>
-      <button type="button" id="header-medical-triage-btn" class="magnetic-btn" onclick="if(window.openMedicalTriageDemoModal) window.openMedicalTriageDemoModal(); else window.switchToEval();" title="Google ADK Medical Triage Multi-Agent Pipeline (Call 112/108 vs OTC)">
+      <button type="button" class="btn-serious magnetic-btn" onclick="if(window.openMedicalTriageDemoModal) window.openMedicalTriageDemoModal(); else window.switchToEval();" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; font-weight:600;" title="Google ADK Medical Triage Multi-Agent Pipeline (Call 112/108 vs OTC)">
         Medical Triage
       </button>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
@@ -515,8 +511,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="button" id="header-voice-btn" class="voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
         Voice Cockpit
       </button>
-      <button type="button" id="header-launch-console-btn" class="magnetic-btn" onclick="switchToWorkspace()" title="Launch Live Incident Console">
-        Launch Console &rarr;
+      <button type="button" class="btn-serious magnetic-btn" onclick="switchToWorkspace()">
+        Launch Console <span class="arrow-shift">&rarr;</span>
       </button>
     </div>
   </div>
@@ -526,7 +522,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <nav class="nav-switcher" id="main-nav-switcher" role="tablist" aria-label="Context Navigation Tabs">
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('theory-blueprints-section', this)" title="Theoretical Understanding &amp; Animated Architectural Blueprints">Theory &amp; Diagrams</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('theory-blueprints-section', this)" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:600;" title="Theoretical Understanding & Animated Architectural Blueprints">Theory &amp; Diagrams</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks (20/20)</button>
       <button type="button" class="nav-switch-btn" onclick="switchToWorkspace()">Console</button>
       <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Defense Matrix</button>
@@ -550,7 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="project-scope-banner" id="project-scope-banner">
       <div class="scope-banner-header">
         <div class="scope-banner-title">
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:#FFFFFF;border-color:rgba(255,255,255,0.22);font-size:0.75rem;">PROJECT CHRONOLOGY &amp; SCOPE NAVIGATOR</span>
+          <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:0.75rem;">PROJECT CHRONOLOGY &amp; SCOPE NAVIGATOR</span>
           <strong>Foundations vs Newly Improvised Innovations</strong>
         </div>
         <div class="scope-toggle-buttons">
@@ -566,24 +562,24 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <!-- Zero-Token Economics & DPDP Privacy Telemetry Strip -->
-    <div id="zero-token-telemetry-strip" style="background:#0E0E10; border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:18px 24px; box-shadow:0 16px 40px rgba(0,0,0,0.8); margin:20px 0 24px 0;">
+    <div id="zero-token-telemetry-strip" style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:12px; padding:18px 24px; box-shadow:0 1px 3px rgba(0,0,0,0.03); margin:20px 0 24px 0;">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
         <div>
           <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
-            <span style="background:rgba(255,255,255,0.1); color:#FFFFFF; border:1px solid rgba(255,255,255,0.25); font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:4px;">
+            <span style="background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE; font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:4px;">
               MODULE 1, 3 &amp; 5 TELEMETRY
             </span>
-            <strong style="font-size:0.95rem; color:#FFFFFF;">Zero-Token Economics &amp; DPDP Privacy Interceptor</strong>
+            <strong style="font-size:0.95rem; color:#0F172A;">Zero-Token Economics &amp; DPDP Privacy Interceptor</strong>
           </div>
-          <p style="font-size:0.78rem; color:#E2E8F0; margin:0; line-height:1.45;">
+          <p style="font-size:0.78rem; color:#475569; margin:0; line-height:1.45;">
             Deterministic pre-execution interception eliminates 100% of LLM inference compute costs on adversarial queries while guaranteeing 0 KB cloud data egress under the Indian DPDP Act 2023.
           </p>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <button type="button" class="btn-eval-secondary" onclick="window.simulateAttackSavingsWave()" style="background:rgba(255,255,255,0.08) !important; border:1px solid rgba(255,255,255,0.25) !important; color:#FFFFFF !important; font-size:0.75rem; font-weight:600; padding:7px 14px; border-radius:6px; cursor:pointer;" title="Simulate incoming adversarial payload and verify zero cloud tokens wasted">
+          <button type="button" class="btn-eval-secondary" onclick="window.simulateAttackSavingsWave()" style="background:#EFF6FF !important; border:1px solid #BFDBFE !important; color:#1D4ED8 !important; font-size:0.75rem; font-weight:600; padding:7px 14px; border-radius:6px; cursor:pointer;" title="Simulate incoming adversarial payload and verify zero cloud tokens wasted">
             Simulate Attack Wave (+24.6k Tokens)
           </button>
-          <button type="button" class="btn-eval-secondary" onclick="window.openCourseCockpitModal(); window.switchCockpitTab('ablation');" style="background:#FFFFFF !important; border:1px solid #FFFFFF !important; color:#000000 !important; font-size:0.75rem; font-weight:700; padding:7px 14px; border-radius:6px; cursor:pointer;" title="Open live side-by-side empirical comparison">
+          <button type="button" class="btn-eval-secondary" onclick="window.openCourseCockpitModal(); window.switchCockpitTab('ablation');" style="background:#FFFFFF !important; border:1px solid #CBD5E1 !important; color:#0F172A !important; font-size:0.75rem; font-weight:600; padding:7px 14px; border-radius:6px; cursor:pointer;" title="Open live side-by-side empirical comparison">
             Open Dual-Pane Ablation &rarr;
           </button>
         </div>
@@ -591,48 +587,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- 4-Column Live Metric Counters Grid -->
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:12px;">
-        <div style="background:#141416; border:1px solid rgba(255,255,255,0.16); border-radius:8px; padding:12px 14px;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 14px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:0.7rem; color:#CBD5E1; font-weight:600; text-transform:uppercase;">Tokens Conserved</span>
-            <span style="font-size:0.65rem; background:rgba(255,255,255,0.12); color:#FFFFFF; border:1px solid rgba(255,255,255,0.25); padding:1px 6px; border-radius:4px; font-weight:700;">100% DROP</span>
+            <span style="font-size:0.7rem; color:#64748B; font-weight:600; text-transform:uppercase;">Tokens Conserved</span>
+            <span style="font-size:0.65rem; background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; padding:1px 6px; border-radius:4px; font-weight:700;">100% DROP</span>
           </div>
-          <div id="stat-tokens-saved" style="font-size:1.45rem; font-weight:800; color:#FFFFFF; font-family:var(--font-mono, monospace); line-height:1.2;">184,250</div>
-          <div style="font-size:0.72rem; color:#CBD5E1; margin-top:4px;">Pre-execution intercept halts LLM invocation</div>
+          <div id="stat-tokens-saved" style="font-size:1.45rem; font-weight:800; color:#059669; font-family:var(--font-mono, monospace); line-height:1.2;">184,250</div>
+          <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Pre-execution intercept halts LLM invocation</div>
         </div>
 
-        <div style="background:#141416; border:1px solid rgba(255,255,255,0.16); border-radius:8px; padding:12px 14px;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 14px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:0.7rem; color:#CBD5E1; font-weight:600; text-transform:uppercase;">Cost Avoided</span>
-            <span style="font-size:0.65rem; background:rgba(255,255,255,0.12); color:#FFFFFF; border:1px solid rgba(255,255,255,0.25); padding:1px 6px; border-radius:4px; font-weight:700;">CLAUDE / GPT-4</span>
+            <span style="font-size:0.7rem; color:#64748B; font-weight:600; text-transform:uppercase;">Cost Avoided</span>
+            <span style="font-size:0.65rem; background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE; padding:1px 6px; border-radius:4px; font-weight:700;">CLAUDE / GPT-4</span>
           </div>
-          <div id="stat-cost-avoided" style="font-size:1.45rem; font-weight:800; color:#FFFFFF; font-family:var(--font-mono, monospace); line-height:1.2;">$3.685</div>
-          <div style="font-size:0.72rem; color:#CBD5E1; margin-top:4px;">Direct financial inference savings</div>
+          <div id="stat-cost-avoided" style="font-size:1.45rem; font-weight:800; color:#2563EB; font-family:var(--font-mono, monospace); line-height:1.2;">$3.685</div>
+          <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Direct financial inference savings</div>
         </div>
 
-        <div style="background:#141416; border:1px solid rgba(255,255,255,0.16); border-radius:8px; padding:12px 14px;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 14px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:0.7rem; color:#CBD5E1; font-weight:600; text-transform:uppercase;">Compute Latency Saved</span>
-            <span style="font-size:0.65rem; background:rgba(255,255,255,0.12); color:#FFFFFF; border:1px solid rgba(255,255,255,0.25); padding:1px 6px; border-radius:4px; font-weight:700;">99.6% SPEEDUP</span>
+            <span style="font-size:0.7rem; color:#64748B; font-weight:600; text-transform:uppercase;">Compute Latency Saved</span>
+            <span style="font-size:0.65rem; background:#F3E8FF; color:#6B21A8; border:1px solid #E9D5FF; padding:1px 6px; border-radius:4px; font-weight:700;">99.6% SPEEDUP</span>
           </div>
-          <div id="stat-latency-saved" style="font-size:1.45rem; font-weight:800; color:#FFFFFF; font-family:var(--font-mono, monospace); line-height:1.2;">58.4s</div>
-          <div style="font-size:0.72rem; color:#CBD5E1; margin-top:4px;">11.4ms intercept vs 3,200ms cloud round-trip</div>
+          <div id="stat-latency-saved" style="font-size:1.45rem; font-weight:800; color:#7C3AED; font-family:var(--font-mono, monospace); line-height:1.2;">58.4s</div>
+          <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">11.4ms intercept vs 3,200ms cloud round-trip</div>
         </div>
 
-        <div style="background:#141416; border:1px solid rgba(255,255,255,0.16); border-radius:8px; padding:12px 14px;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 14px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:0.7rem; color:#CBD5E1; font-weight:600; text-transform:uppercase;">Cloud Egress (DPDP)</span>
-            <span style="font-size:0.65rem; background:rgba(255,255,255,0.12); color:#FFFFFF; border:1px solid rgba(255,255,255,0.25); padding:1px 6px; border-radius:4px; font-weight:700;">VERIFIED</span>
+            <span style="font-size:0.7rem; color:#64748B; font-weight:600; text-transform:uppercase;">Cloud Egress (DPDP)</span>
+            <span style="font-size:0.65rem; background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; padding:1px 6px; border-radius:4px; font-weight:700;">VERIFIED</span>
           </div>
-          <div id="stat-egress-leaked" style="font-size:1.45rem; font-weight:800; color:#FFFFFF; font-family:var(--font-mono, monospace); line-height:1.2;">0.00 KB</div>
-          <div style="font-size:0.72rem; color:#CBD5E1; margin-top:4px;">Verhoeff D5 Checksum &amp; Zero-Knowledge Vault</div>
+          <div id="stat-egress-leaked" style="font-size:1.45rem; font-weight:800; color:#059669; font-family:var(--font-mono, monospace); line-height:1.2;">0.00 KB</div>
+          <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Verhoeff D5 Checksum &amp; Zero-Knowledge Vault</div>
         </div>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; flex-wrap:wrap; gap:8px;">
-        <span id="stat-savings-pulse-badge" style="font-size:0.72rem; color:#FFFFFF; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); padding:3px 10px; border-radius:4px; font-weight:600;">
+        <span id="stat-savings-pulse-badge" style="font-size:0.72rem; color:#065F46; background:#ECFDF5; border:1px solid #A7F3D0; padding:3px 10px; border-radius:4px; font-weight:600;">
           All Inbound Attacks Intercepted Deterministically &middot; 0 LLM Tokens Wasted
         </span>
-        <span style="font-size:0.72rem; color:#CBD5E1;">
+        <span style="font-size:0.72rem; color:#64748B;">
           Evaluated against 50 canonical OWASP LLM01 &amp; DPDP 2023 vectors
         </span>
       </div>
@@ -646,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       <div class="hero-creator-badge parallax-layer">
-        <span class="badge" style="color:#FFFFFF;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);">
+        <span class="badge" style="color:var(--accent);border-color:rgba(37,99,235,0.25);background:rgba(37,99,235,0.06);">
           PROJECT LEAD
         </span>
         <span>Engineered by <strong>Dhruv Jain</strong> &middot; B.Tech Final Year at <strong>BML Munjal University</strong></span>
@@ -670,16 +666,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <button type="button" class="btn-serious-lg magnetic-btn" onclick="switchToWorkspace()">
           Let's jump to serious stuff <span class="arrow-shift">&rarr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('new')">
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('new')" style="border-color:#10B981;color:#047857;background:#ECFDF5;font-weight:700;">
           Explore Newly Added Features (Improvised v3.0) <span class="arrow-shift">&rarr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('earlier')">
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('earlier')" style="border-color:#2563EB;color:#1D4ED8;background:#EFF6FF;font-weight:700;">
           Review Earlier Foundation (Mid-Sem) <span class="arrow-shift-down">&darr;</span>
         </button>
         <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('architecture-flowchart')">
           Inspect Architecture Flowchart <span class="arrow-shift-down">&darr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('terminal-results-section')">
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('terminal-results-section')" style="border-color:rgba(16,185,129,0.35);color:var(--safe);background:rgba(16,185,129,0.05);">
           Terminal Verification Suite (20/20 Checks) <span class="arrow-shift-down">&darr;</span>
         </button>
       </div>

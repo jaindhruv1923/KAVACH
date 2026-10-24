@@ -1,34 +1,25 @@
 /**
  * Interactive Neural Constellation Canvas (Particle Mesh / Constellation Web)
- * High-performance Vanilla HTML5 Canvas simulation in STRICT MONOCHROME (Pure White & Space Black).
- * High-DPI scaling, dynamic distance linking, mouse magnetism, and laser tracking.
+ * High-performance Vanilla HTML5 Canvas physics simulation with high-DPI
+ * scaling, dynamic distance linking, mouse magnetism, and radar tracking.
  */
 function initInteractiveParticleWeb() {
   if (window.__particleWebInitialized) return;
-  let canvas = document.getElementById("interactive-particle-web");
-  if (!canvas) {
-    canvas = document.createElement("canvas");
-    canvas.id = "interactive-particle-web";
-    canvas.setAttribute("aria-hidden", "true");
-    if (document.body) {
-      document.body.prepend(canvas);
-    } else {
-      document.addEventListener("DOMContentLoaded", () => document.body.prepend(canvas));
-    }
-  }
+  const canvas = document.getElementById("interactive-particle-web");
+  if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
   window.__particleWebInitialized = true;
 
-  // Enforce fixed full-screen overlay styles directly on element (z-index: 99999 so dots float visibly in front of UI cards)
+  // Enforce fixed full-screen overlay styles directly on element
   canvas.style.position = "fixed";
   canvas.style.top = "0";
   canvas.style.left = "0";
   canvas.style.inset = "0";
   canvas.style.pointerEvents = "none";
   canvas.style.zIndex = "99999";
-  canvas.style.opacity = "0.92";
+  canvas.style.opacity = "0.85";
   canvas.style.display = "block";
 
   let width = window.innerWidth;
@@ -46,19 +37,19 @@ function initInteractiveParticleWeb() {
   resize();
   window.addEventListener("resize", resize, { passive: true });
 
-  // Dynamic particle count based on display viewport
-  const PARTICLE_COUNT = Math.min(120, Math.max(70, Math.floor((width * height) / 12500)));
+  // Screen size ke hisaab se automatic particle count
+  const PARTICLE_COUNT = Math.min(115, Math.max(65, Math.floor((width * height) / 13000)));
   const particles = [];
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const isBright = Math.random() > 0.35;
+    const isCyan = Math.random() > 0.6;
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-      radius: Math.random() * 1.8 + 1.8,
-      color: isBright ? "rgba(255, 255, 255, 0.92)" : "rgba(230, 230, 240, 0.55)",
+      vx: (Math.random() - 0.5) * 0.55,
+      vy: (Math.random() - 0.5) * 0.55,
+      radius: Math.random() * 2.0 + 2.0,
+      color: isCyan ? "rgba(14, 165, 233, 0.85)" : "rgba(37, 99, 235, 0.80)",
       pulse: Math.random() * Math.PI * 2
     });
   }
@@ -106,22 +97,22 @@ function initInteractiveParticleWeb() {
       p.y += p.vy;
       p.pulse += 0.03;
 
-      // Wrap around screen boundaries
+      // Screen se bahar jaye toh opposite side se wapas aana
       if (p.x < 0) p.x = width;
       else if (p.x > width) p.x = 0;
       if (p.y < 0) p.y = height;
       else if (p.y > height) p.y = 0;
 
-      // 1. Mouse Interactive Laser Link (Pure White & Silver)
+      // 1. Mouse ke saath Laser Line & Magnetic Pull
       if (mouse.active) {
         const dxM = p.x - mouse.x;
         const dyM = p.y - mouse.y;
         const distM = Math.sqrt(dxM * dxM + dyM * dyM);
 
         if (distM < 200) {
-          const mAlpha = (1 - distM / 200) * 0.70;
-          ctx.strokeStyle = `rgba(255, 255, 255, ${mAlpha.toFixed(2)})`;
-          ctx.lineWidth = 1.2;
+          const mAlpha = (1 - distM / 200) * 0.85;
+          ctx.strokeStyle = `rgba(14, 165, 233, ${mAlpha.toFixed(2)})`;
+          ctx.lineWidth = 1.4;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
@@ -135,14 +126,14 @@ function initInteractiveParticleWeb() {
         }
       }
 
-      // 2. Pure White Particle Dot (with subtle pulsing breath)
-      const rad = p.radius + Math.sin(p.pulse) * 0.35;
+      // 2. Particle Dot draw karna (pulsing size ke saath)
+      const rad = p.radius + Math.sin(p.pulse) * 0.4;
       ctx.fillStyle = p.color;
       ctx.beginPath();
       ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
       ctx.fill();
 
-      // 3. Connect neighboring dots with Pure White Laser lines
+      // 3. Aas-paas ke dots ko aapas me connect karna
       for (let j = i + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const dx = p.x - p2.x;
@@ -150,9 +141,9 @@ function initInteractiveParticleWeb() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 140) {
-          const alpha = (1 - dist / 140) * 0.32;
-          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha.toFixed(2)})`;
-          ctx.lineWidth = 0.9;
+          const alpha = (1 - dist / 140) * 0.40;
+          ctx.strokeStyle = `rgba(37, 99, 235, ${alpha.toFixed(2)})`;
+          ctx.lineWidth = 1.0;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
@@ -161,14 +152,14 @@ function initInteractiveParticleWeb() {
       }
     }
 
-    // 4. Cursor Halo (Monochrome Glow Ring)
+    // 4. Cursor ke chaaron taraf glowing ring
     if (mouse.active && mouse.x > 0 && mouse.y > 0) {
-      ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+      ctx.fillStyle = "rgba(14, 165, 233, 0.9)";
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, 3.5, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+      ctx.strokeStyle = "rgba(14, 165, 233, 0.5)";
       ctx.lineWidth = 1.2;
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, 9, 0, Math.PI * 2);

@@ -42,7 +42,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=2.5.1">
-<link rel="stylesheet" href="apple_design.css?v=1.0.0">
 
 <!-- Structured Data (Schema.org JSON-LD) -->
 <script type="application/ld+json">
@@ -315,8 +314,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 
-<!-- Interactive Neural Constellation Canvas (Particle Mesh Web - Floating in Foreground) -->
-<canvas id="interactive-particle-web" aria-hidden="true" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;opacity:0.92;display:block;"></canvas>
+<!-- Interactive Neural Constellation Canvas (Particle Mesh Web - Always in front with pointer-events: none) -->
+<canvas id="interactive-particle-web" aria-hidden="true" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;opacity:0.82;display:block;"></canvas>
 
 <header class="app-header">
   <!-- Top Row: Brand, Primary Pathway Toggle, and Quick Action Buttons -->
@@ -387,13 +386,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   </script>
-      <button type="button" id="header-prof-review-btn" class="magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
+      <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
         Professor Review (11/11)
       </button>
-      <a href="/results/" target="_blank" id="header-results-cockpit-btn" class="magnetic-btn" title="Unified Cross-Platform Results Cockpit">
+      <a href="/results/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700;" title="Unified Cross-Platform Results Cockpit">
         Results Cockpit
       </a>
-      <a href="/bank/" target="_blank" id="header-bank-highway-btn" class="magnetic-btn" title="Bharat Core Banking Highway">
+      <a href="/bank/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#F8FAFC; font-weight:600;" title="Bharat Core Banking Highway">
         Bank Highway
       </a>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
@@ -402,8 +401,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="button" id="header-voice-btn" class="voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
         Voice Cockpit
       </button>
-      <button type="button" id="header-launch-console-btn" class="magnetic-btn" onclick="switchToWorkspace()" title="Launch Live Incident Console">
-        Launch Console &rarr;
+      <button type="button" class="btn-serious magnetic-btn" onclick="switchToWorkspace()">
+        Launch Console <span class="arrow-shift">&rarr;</span>
       </button>
     </div>
   </div>
@@ -436,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="project-scope-banner" id="project-scope-banner">
       <div class="scope-banner-header">
         <div class="scope-banner-title">
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:#FFFFFF;border-color:rgba(255,255,255,0.22);font-size:0.75rem;">PROJECT CHRONOLOGY &amp; SCOPE NAVIGATOR</span>
+          <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:0.75rem;">PROJECT CHRONOLOGY &amp; SCOPE NAVIGATOR</span>
           <strong>Foundations vs Newly Improvised Innovations</strong>
         </div>
         <div class="scope-toggle-buttons">
@@ -459,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       <div class="hero-creator-badge parallax-layer">
-        <span class="badge" style="color:#FFFFFF;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);">
+        <span class="badge" style="color:var(--accent);border-color:rgba(37,99,235,0.25);background:rgba(37,99,235,0.06);">
           PROJECT LEAD
         </span>
         <span>Engineered by <strong>Dhruv Jain</strong> &middot; B.Tech Final Year at <strong>BML Munjal University</strong></span>
@@ -483,16 +482,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <button type="button" class="btn-serious-lg magnetic-btn" onclick="switchToWorkspace()">
           Let's jump to serious stuff <span class="arrow-shift">&rarr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('new')">
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('new')" style="border-color:#10B981;color:#047857;background:#ECFDF5;font-weight:700;">
           Explore Newly Added Features (Improvised v3.0) <span class="arrow-shift">&rarr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('earlier')">
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="filterFeatureScope('earlier')" style="border-color:#2563EB;color:#1D4ED8;background:#EFF6FF;font-weight:700;">
           Review Earlier Foundation (Mid-Sem) <span class="arrow-shift-down">&darr;</span>
         </button>
         <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('architecture-flowchart')">
           Inspect Architecture Flowchart <span class="arrow-shift-down">&darr;</span>
         </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('terminal-results-section')">
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('terminal-results-section')" style="border-color:rgba(16,185,129,0.35);color:var(--safe);background:rgba(16,185,129,0.05);">
           Terminal Verification Suite (20/20 Checks) <span class="arrow-shift-down">&darr;</span>
         </button>
       </div>
