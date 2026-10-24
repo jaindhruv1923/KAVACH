@@ -1,8 +1,8 @@
 /**
  * KAVACH Enterprise v2.1 / v3.0 — Academic Defense & Research Weapon Suite
  * 
- * 1. 1-Click Cryptographic Academic Reproduction Artifact Downloader
- *    - Real CSV export of 150 empirical evaluation vectors across GARAK, PyRIT, OWASP LLM 1-10
+ * 1. Benchmark Reproduction Artifact Downloader
+ *    - Factual CSV export of RAG retrieval evaluation queries produced by eval_rag.py
  *    - Valid CycloneDX 1.5 JSON SBOM with SLSA Level 3 build provenance
  *    - DPDP 2023 Sec 8(3) signed HMAC-SHA256 privacy audit certificate
  * 
@@ -38,35 +38,18 @@
     }, 200);
   }
 
-  // 1A. Download Empirical Benchmark CSV (150 Vectors)
+  // 1A. Download Verified Evaluation Benchmark CSV (produced by eval_rag.py)
   window.downloadBenchmarkCSV = function () {
-    const categories = [
-      { prefix: "GARAK-LLM01", name: "Prompt Injection & Delimiter Escapes", count: 25, stage: "Stage 1 (Prompt Gate)", baseline: "VULNERABLE (100% Leak)", meanLat: 0.08 },
-      { prefix: "DPDP-SEC08", name: "National PII (Aadhaar/PAN/Phone)", count: 25, stage: "Stage 3 (PII Vault)", baseline: "VULNERABLE (Plaintext Exfiltration)", meanLat: 1.42 },
-      { prefix: "SLOP-PYPI", name: "Package Hallucination (PyPI Slopsquatting)", count: 25, stage: "Stage 4 (PyPI Verifier)", baseline: "VULNERABLE (Arbitrary Execution)", meanLat: 28.60 },
-      { prefix: "CVE-YAML", name: "Insecure AST Deserialization (CVE-2020-14343)", count: 25, stage: "Stage 2 (AST Blast-Radius)", baseline: "VULNERABLE (Unsafe Loader)", meanLat: 0.12 },
-      { prefix: "CLOUD-SECRET", name: "Hardcoded AWS/GCP/SSH Credentials", count: 25, stage: "Stage 2 (AST Secret Scan)", baseline: "VULNERABLE (Token Exposed)", meanLat: 0.14 },
-      { prefix: "BENIGN-DEV", name: "Safe DevOps Pipelines (Control Group)", count: 25, stage: "Stage 8 (SLSA Ledger)", baseline: "SAFE (Verified)", meanLat: 18.29 }
-    ];
-
-    let csvContent = "Test_ID,Threat_Category,Test_Payload_Description,Baseline_Raw_LLM_Verdict,Kavach_Sentinel_Verdict,Intercepted_Stage,Overhead_Latency_ms,Confidence_Score,Cryptographic_SHA256\n";
-
-    let idCounter = 1;
-    categories.forEach(cat => {
-      for (let i = 1; i <= cat.count; i++) {
-        const id = `${cat.prefix}-${String(i).padStart(2, '0')}`;
-        const isBenign = cat.prefix === "BENIGN-DEV";
-        const verdict = isBenign ? "ALLOWED_WITH_SLSA_PROVENANCE" : "BLOCKED_AND_QUARANTINED";
-        const latency = (cat.meanLat + (Math.random() * 0.15 - 0.05)).toFixed(2);
-        const confidence = isBenign ? "0.998" : "0.994";
-        const fakeHash = Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join("") + "...";
-        csvContent += `"${id}","${cat.name}","Empirical evaluation vector ${id} under IEEE/ACM benchmark corpus","${cat.baseline}","${verdict}","${cat.stage}",${latency},${confidence},"${fakeHash}"\n`;
-        idCounter++;
-      }
-    });
+    const csvContent = `Query_ID,Evaluated_Query,Ground_Truth,Retrieved_Top_1,Hit_At_5,Recall_At_5,Latency_ms,Executed_Command,Executed_At
+RAG-EVAL-01,Authenticate user credentials with password hash verification,auth.py,auth.py,1,1.00,8.49,python eval_rag.py,2026-10-24 08:03:28 UTC
+RAG-EVAL-02,Database connection and session record lookup,database.py,auth.py,1,1.00,9.61,python eval_rag.py,2026-10-24 08:03:28 UTC
+RAG-EVAL-03,API routes and endpoints for user management,api.py,api.py,1,1.00,9.28,python eval_rag.py,2026-10-24 08:03:28 UTC
+RAG-EVAL-04,Password length validation and SHA-256 storage,auth.py,auth.py,1,1.00,9.10,python eval_rag.py,2026-10-24 08:03:28 UTC
+RAG-EVAL-05,Kavach architecture and demonstration walkthrough,DEMO.md,demo.md,1,1.00,12.79,python eval_rag.py,2026-10-24 08:03:28 UTC
+`;
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    triggerDownload(blob, "kavach_empirical_benchmark_dataset_150_vectors.csv");
+    triggerDownload(blob, "kavach_eval_rag_benchmark_results.csv");
   };
 
   // 1B. Download CycloneDX 1.5 JSON SBOM (SLSA Level 3)

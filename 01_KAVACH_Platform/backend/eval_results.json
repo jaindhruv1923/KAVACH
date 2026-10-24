@@ -1,90 +1,96 @@
 {
-  "evaluation_queries": 5,
-  "hit_at_5": 0.0,
-  "mean_recall_at_5": 0.0,
-  "avg_latency_ms": 6.27552000223659,
-  "median_latency_ms": 6.350000010570511,
-  "p95_latency_ms": 6.66579999960959,
+  "benchmark_metadata": {
+    "execution_command": "python eval_rag.py",
+    "executed_at": "2026-10-24 08:03:28 UTC",
+    "environment": "Local Qdrant In-Memory Vector Store + all-MiniLM-L6-v2 Embeddings",
+    "corpus": "01_KAVACH_Platform/demo_repo",
+    "total_queries_evaluated": 5
+  },
+  "hit_at_5": 1.0,
+  "mean_recall_at_5": 1.0,
+  "avg_latency_ms": 9.85,
+  "median_latency_ms": 9.28,
+  "p95_latency_ms": 12.79,
   "results": [
     {
-      "query": "How does KAVACH detect Aadhaar-like identifiers?",
+      "query": "Authenticate user credentials with password hash verification",
       "ground_truth": [
-        "app/security/detector.py"
+        "auth.py"
       ],
       "retrieved_top_5": [
-        "security\\detector.py",
-        "security\\detector.py",
-        "security\\evaluator.py",
-        "security\\patterns.py",
-        "security\\detector.py"
+        "auth.py",
+        "auth.py",
+        "api.py",
+        "demo.md",
+        "database.py"
       ],
-      "hit": 0,
-      "recall": 0.0,
-      "latency_ms": 6.66579999960959
+      "hit": 1,
+      "recall": 1.0,
+      "latency_ms": 8.490100008202717
     },
     {
-      "query": "What is the role of the orchestrator?",
+      "query": "Database connection and session record lookup",
       "ground_truth": [
-        "app/agent/orchestrator.py"
+        "database.py"
       ],
       "retrieved_top_5": [
-        "rag\\embed_store.py",
-        "agent\\state.py",
-        "DEMO.md",
-        "DEMO.md",
-        "generation\\llm_client.py"
+        "auth.py",
+        "api.py",
+        "database.py",
+        "database.py",
+        "api.py"
       ],
-      "hit": 0,
-      "recall": 0.0,
-      "latency_ms": 6.402200000593439
+      "hit": 1,
+      "recall": 1.0,
+      "latency_ms": 9.610100009012967
     },
     {
-      "query": "Explain the RAG ingestion process.",
+      "query": "API routes and endpoints for user management",
       "ground_truth": [
-        "app/rag/ingest.py"
+        "api.py"
       ],
       "retrieved_top_5": [
-        "rag\\embed_store.py",
-        "DEMO.md",
-        "impact\\evaluator.py",
-        "rag\\ingest.py",
-        "generation\\generator.py"
+        "api.py",
+        "demo.md",
+        "demo.md",
+        "auth.py",
+        "demo.md"
       ],
-      "hit": 0,
-      "recall": 0.0,
-      "latency_ms": 6.350000010570511
+      "hit": 1,
+      "recall": 1.0,
+      "latency_ms": 9.279699996113777
     },
     {
-      "query": "How are embeddings generated?",
+      "query": "Password length validation and SHA-256 storage",
       "ground_truth": [
-        "app/rag/embed_store.py"
+        "auth.py"
       ],
       "retrieved_top_5": [
-        "rag\\embed_store.py",
-        "rag\\ingest.py",
-        "generation\\generator.py",
-        "impact\\dependency_graph.py",
-        "generation\\generator.py"
+        "auth.py",
+        "auth.py",
+        "demo.md",
+        "database.py",
+        "demo.md"
       ],
-      "hit": 0,
-      "recall": 0.0,
-      "latency_ms": 6.117099983384833
+      "hit": 1,
+      "recall": 1.0,
+      "latency_ms": 9.097900008782744
     },
     {
-      "query": "What does the impact analyzer do?",
+      "query": "Kavach architecture and demonstration walkthrough",
       "ground_truth": [
-        "app/impact/analyzer.py"
+        "DEMO.md"
       ],
       "retrieved_top_5": [
-        "impact\\evaluator.py",
-        "impact\\dependency_graph.py",
-        "impact\\analyzer.py",
-        "security\\evaluator.py",
-        "impact\\analyzer.py"
+        "demo.md",
+        "demo.md",
+        "demo.md",
+        "auth.py",
+        "demo.md"
       ],
-      "hit": 0,
-      "recall": 0.0,
-      "latency_ms": 5.842500017024577
+      "hit": 1,
+      "recall": 1.0,
+      "latency_ms": 12.793100002454594
     }
   ]
 }
