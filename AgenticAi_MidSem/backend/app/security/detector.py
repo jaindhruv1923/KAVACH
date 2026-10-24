@@ -3,7 +3,7 @@ Kavach security detection engine.
 
 Detects sensitive PII and identifiers:
   - PAN (Permanent Account Number)
-  - Aadhaar / National ID (12-digit formatted or unformatted)
+  - Aadhaar / National ID (12-digit formatted or unformatted validated with Verhoeff checksum)
   - Phone numbers (10 digits)
   - Email addresses
   - Bank account numbers & generic sensitive numeric identifiers (9-18 digits)
@@ -21,13 +21,15 @@ from app.security.patterns import (
     PAN_CONTEXT_WORDS,
     _has_nearby_context,
 )
+from app.security.verhoeff import validate_aadhaar_candidate
 
 # Severity + default action per category
 SEVERITY_MAP = {
     "PAN": {"severity": "high", "action": "BLOCK"},
     "Aadhaar-like": {"severity": "high", "action": "BLOCK"},
     "bank_account": {"severity": "high", "action": "BLOCK"},
-    "sensitive_number": {"severity": "high", "action": "BLOCK"},
+    "possible_id": {"severity": "low", "action": "REDACT"},
+    "sensitive_number": {"severity": "low", "action": "REDACT"},
     "phone_number": {"severity": "medium", "action": "REDACT"},
     "email": {"severity": "medium", "action": "REDACT"},
 }
@@ -64,7 +66,7 @@ def detect_pii(text: str) -> list[dict]:
         )
         findings.append(_make_finding("PAN", match.group(), confidence, reason))
 
-    # --- Aadhaar-like / 12-digit number ---
+    # --- Aadhaar-like / 12-digit candidate ---
     for match in AADHAAR_PATTERN.finditer(text):
         val = match.group()
         # Ensure it is a 12-digit number (formatted or plain)
@@ -76,14 +78,35 @@ def detect_pii(text: str) -> list[dict]:
                     "bank_account", val, 0.90,
                     f"12-digit number with bank/account context: {val}"
                 ))
+                continue
+
+            has_context = _has_nearby_context(text, match.start(), match.end(), AADHAAR_CONTEXT_WORDS)
+            v_res = validate_aadhaar_candidate(val)
+
+            if v_res["is_valid_aadhaar"]:
+                if has_context:
+                    findings.append(_make_finding(
+                        "Aadhaar-like", val, 0.98,
+                        f"12-digit verified national identifier (Aadhaar format with valid Verhoeff checksum: {val}), with identity context nearby"
+                    ))
+                else:
+                    # 12-digit candidate satisfies Verhoeff, but lacks identity context
+                    # Categorize as low-confidence possible_id (REDACT, not hard BLOCK)
+                    findings.append(_make_finding(
+                        "possible_id", val, 0.60,
+                        f"12-digit candidate with valid Verhoeff checksum, but lacking identity context (possible ID): {val}"
+                    ))
+            elif has_context:
+                # 12 digits near identity context, but failed Verhoeff checksum or invalid leading 0/1
+                # Clearly label as low-confidence possible ID; DO NOT trigger hard BLOCK.
+                findings.append(_make_finding(
+                    "possible_id", val, 0.40,
+                    f"Possible ID candidate with identity context, but failed Aadhaar validation: {v_res['reject_reason']} ({val})"
+                ))
             else:
-                has_context = _has_nearby_context(text, match.start(), match.end(), AADHAAR_CONTEXT_WORDS)
-                confidence = 0.95 if has_context else 0.85
-                reason = (
-                    f"12-digit national identifier (Aadhaar format: {val})"
-                    + (", with identity context nearby" if has_context else "")
-                )
-                findings.append(_make_finding("Aadhaar-like", val, confidence, reason))
+                # Random 12-digit number (order number, tracking number, timestamp) with NO identity context and NO valid Verhoeff.
+                # Do NOT flag as Aadhaar-like!
+                pass
 
     # --- Phone number: 10 digits (with optional +91) ---
     for match in PHONE_PATTERN.finditer(text):
@@ -117,10 +140,23 @@ def detect_pii(text: str) -> list[dict]:
         has_bank_ctx = _has_nearby_context(text, match.start(), match.end(), BANK_ACCOUNT_CONTEXT_WORDS)
 
         if has_aadhaar_ctx:
-            findings.append(_make_finding(
-                "Aadhaar-like", val, 0.90,
-                f"Sensitive numeric identifier with Aadhaar/ID context: {val}"
-            ))
+            if len(digits_only) == 12:
+                v_res = validate_aadhaar_candidate(val)
+                if v_res["is_valid_aadhaar"]:
+                    findings.append(_make_finding(
+                        "Aadhaar-like", val, 0.95,
+                        f"Verified Aadhaar national identifier (valid Verhoeff checksum): {val}"
+                    ))
+                else:
+                    findings.append(_make_finding(
+                        "possible_id", val, 0.40,
+                        f"Possible ID candidate with identity context, but failed Aadhaar validation: {v_res['reject_reason']} ({val})"
+                    ))
+            else:
+                findings.append(_make_finding(
+                    "possible_id", val, 0.40,
+                    f"Possible ID candidate near identity context ({len(digits_only)} digits): {val}"
+                ))
         elif has_bank_ctx:
             findings.append(_make_finding(
                 "bank_account", val, 0.85,
@@ -128,9 +164,8 @@ def detect_pii(text: str) -> list[dict]:
             ))
         else:
             findings.append(_make_finding(
-                "sensitive_number", val, 0.85,
-                f"Sensitive numeric identifier / sequence: {val}"
+                "sensitive_number", val, 0.50,
+                f"Numeric identifier sequence: {val}"
             ))
 
     return findings
-

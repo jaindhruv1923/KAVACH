@@ -55,38 +55,105 @@ class TestPIIDetection:
         assert email_findings[0]["severity"] == "medium"
 
     def test_aadhaar_with_context(self):
-        """Test Aadhaar detection with context words."""
-        text = "My Aadhaar is 1234 5678 9012"
+        """Test Aadhaar detection with valid Verhoeff checksum and context words."""
+        text = "My Aadhaar is 2345 6789 0124"
         findings = detect_pii(text)
         
         aadhaar_findings = [f for f in findings if f["category"] == "Aadhaar-like"]
         assert len(aadhaar_findings) > 0
         assert aadhaar_findings[0]["action"] == "BLOCK"
         assert aadhaar_findings[0]["severity"] == "high"
+        assert aadhaar_findings[0]["confidence"] >= 0.90
+
+    def test_verhoeff_valid_formats(self):
+        """Test valid Aadhaar numbers across formats (spaces, hyphens, unformatted)."""
+        valid_samples = [
+            "Aadhaar: 2345 6789 0124",
+            "UIDAI: 3675-9834-2159",
+            "National ID: 543210987652",
+            "UID: 9876 5432 1096",
+            "Resident Aadhaar: 9999 8888 7779"
+        ]
+        for s in valid_samples:
+            findings = detect_pii(s)
+            assert any(f["category"] == "Aadhaar-like" and f["action"] == "BLOCK" for f in findings), f"Failed for {s}"
+
+    def test_random_12_digit_order_numbers_not_blocked(self):
+        """Test that random 12-digit order numbers do NOT trigger hard BLOCK or Aadhaar-like classification."""
+        samples = [
+            "Order confirmation #987654321098 placed",
+            "Shipment tracking number 401298471203 in transit",
+            "Invoice ref INV-202610248192 generated",
+            "Database timestamp ms: 171928471920 logged",
+            "E-commerce barcode UPC 847291837492 scanned"
+        ]
+        for s in samples:
+            findings = detect_pii(s)
+            assert not any(f["category"] == "Aadhaar-like" for f in findings), f"False Aadhaar match in: {s}"
+            assert not any(f.get("action") == "BLOCK" for f in findings), f"Hard block false positive in: {s}"
+
+    def test_digits_inside_longer_strings(self):
+        """Test that digits inside longer strings or hashes are not misidentified as Aadhaar."""
+        samples = [
+            "Credit card 4111 2222 3333 4444 charged",
+            "Transaction hash 0x234567890124abcd on chain",
+            "Git commit 234567890124abcdef0123456789012345678901",
+            "UUID urn:uuid:23456789-0124-4000-8000-000000000000"
+        ]
+        for s in samples:
+            findings = detect_pii(s)
+            assert not any(f["category"] == "Aadhaar-like" for f in findings), f"False Aadhaar match in: {s}"
+
+    def test_hindi_and_hinglish_context(self):
+        """Test Aadhaar and PAN detection with Hindi and Hinglish context."""
+        hindi_samples = [
+            "मेरा आधार नंबर 2345 6789 0124 है",
+            "पहचान पत्र आधार कार्ड 3675 9834 2159",
+            "mera aadhaar number 5432 1098 7652 verify karo",
+            "apna aadhar card 9876 5432 1096 update karein",
+            "पैन कार्ड नंबर BNZPK8472M दर्ज करें"
+        ]
+        for s in hindi_samples:
+            findings = detect_pii(s)
+            assert len(findings) > 0, f"Failed to detect PII in: {s}"
+            assert any(f["action"] == "BLOCK" for f in findings), f"Expected BLOCK in: {s}"
+
+    def test_pan_near_misses(self):
+        """Test that PAN near-misses (invalid lengths, wrong letter/digit positions) are not flagged as PAN."""
+        near_misses = [
+            "Invalid PAN: ABCDE12345 (ends in digit)",
+            "Invalid PAN: ABCD12345F (only 4 prefix letters)",
+            "Invalid PAN: 12345ABCDE (digits first)",
+            "Invalid PAN: ABCDE1234 (only 9 chars)",
+            "Invalid PAN: ABCDE1234FG (11 chars)"
+        ]
+        for s in near_misses:
+            findings = detect_pii(s)
+            assert not any(f["category"] == "PAN" for f in findings), f"False PAN match in: {s}"
+
+    def test_low_confidence_possible_id_no_hard_block(self):
+        """Test that invalid 12-digit candidates near ID context are labeled possible_id and NEVER trigger hard BLOCK."""
+        invalid_candidates = [
+            "My Aadhaar is 0987 6543 2109",  # leading 0
+            "Citizen Aadhaar 1234 5678 9012",  # leading 1
+            "Aadhaar card 2345 6789 0120",  # bad checksum (expected 4)
+            "UID: 5432 1098 7650",  # bad checksum
+            "my aadhar card number is 12454323454"  # 11 digits
+        ]
+        for s in invalid_candidates:
+            findings = detect_pii(s)
+            assert len(findings) > 0, f"Expected detection in: {s}"
+            assert not any(f["category"] == "Aadhaar-like" for f in findings), f"Invalid candidate tagged as Aadhaar: {s}"
+            assert all(f.get("action") != "BLOCK" for f in findings), f"Hard block triggered on low-confidence ID: {s}"
+            assert any(f["category"] == "possible_id" and f["action"] == "REDACT" for f in findings)
 
     def test_bare_aadhaar_detection(self):
-        """Test that a bare 12-digit number is detected as Aadhaar-like or sensitive number."""
+        """Test that a bare 12-digit number without context is handled safely without hard BLOCK."""
         text = "123456789012"
         findings = detect_pii(text)
         assert len(findings) > 0
-        assert any(f["category"] in ("Aadhaar-like", "sensitive_number") for f in findings)
-
-    def test_bare_sensitive_number_detection(self):
-        """Test bare sensitive number detection."""
-        text = "12454323454"
-        findings = detect_pii(text)
-        assert len(findings) > 0
-        assert any(f["category"] in ("sensitive_number", "Aadhaar-like") for f in findings)
-
-    def test_aadhaar_with_arbitrary_number(self):
-        """Test that entering 'my aadhar card number is 12454323454' flags it with Aadhaar context."""
-        text = "my aadhar card number is 12454323454"
-        findings = detect_pii(text)
-        
-        assert len(findings) > 0
-        assert any(f["category"] in ("Aadhaar-like", "sensitive_number") for f in findings)
-        assert findings[0]["severity"] == "high"
-        assert findings[0]["action"] == "BLOCK"
+        assert not any(f["category"] == "Aadhaar-like" for f in findings)
+        assert all(f.get("action") != "BLOCK" for f in findings)
 
     def test_bank_account_with_context(self):
         """Test bank account detection with context."""

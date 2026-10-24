@@ -6,7 +6,7 @@ import re
 
 PAN_PATTERN = re.compile(r"\b[A-Z]{5}[0-9]{4}[A-Z]{1}\b")
 # Matches formatted (1234 5678 9012, 1234-5678-9012) and unformatted (123456789012) 12-digit numbers
-AADHAAR_PATTERN = re.compile(r"\b\d{4}[\s-]?\d{4}[\s-]?\d{4}\b")
+AADHAAR_PATTERN = re.compile(r"\b(?:\d{4}\s\d{4}\s\d{4}|\d{4}-\d{4}-\d{4}|\d{12})\b")
 PHONE_PATTERN = re.compile(r"\b(?:\+91[\-\s]?)?[6-9]\d{9}\b")
 EMAIL_PATTERN = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
 # Generic long digit sequence (9 to 18 digits) for sensitive numeric identifiers,
@@ -24,16 +24,29 @@ AADHAAR_CONTEXT_WORDS = [
     "government id", "govt id", "national id", "national identification",
     "identity document", "identification number", "id number",
     "identity card", "national identity", "aadhar card", "aadhaar card",
+    "beneficiary id", "citizen id", "applicant id", "applicant",
+    # Hindi & Hinglish context
+    "आधार", "आधार कार्ड", "पहचान पत्र", "युआईडीएआई", "यूआईडीएआई",
+    "aadhar sankhya", "aadhaar sankhya", "aadhar no", "aadhaar no",
+    "mera aadhar", "mera aadhaar", "apna aadhar", "apna aadhaar",
+    "pehchan patra", "shashan id", "nagarik id",
 ]
 
 # Context words that indicate the surrounding text refers to a PAN
-PAN_CONTEXT_WORDS = ["pan", "pan card", "pan number"]
+PAN_CONTEXT_WORDS = [
+    "pan", "pan card", "pan number",
+    # Hindi & Hinglish context
+    "पैन", "पैन कार्ड", "पैन नंबर", "pan sankhya", "mera pan", "apna pan",
+]
 
 
 def _has_nearby_context(text: str, match_start: int, match_end: int, context_words: list[str], window: int = 40) -> bool:
-    """Check if any context word appears within `window` characters of a match."""
-    lower_text = text.lower()
+    """Check if any context word appears within `window` characters of a match (word boundary aware)."""
     start = max(0, match_start - window)
     end = min(len(text), match_end + window)
-    surrounding = lower_text[start:end]
-    return any(word.lower() in surrounding for word in context_words)
+    surrounding = text[start:end]
+    for word in context_words:
+        pattern = r"(?<!\w)" + re.escape(word) + r"(?!\w)"
+        if re.search(pattern, surrounding, re.IGNORECASE):
+            return True
+    return False
