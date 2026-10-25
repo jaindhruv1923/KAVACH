@@ -484,3 +484,20 @@ class TestCommunicationProtocols:
         assert data["commit_count"] == 1
         assert "QUEUED_FOR_EVALUATION" in data["governance_status"]
 
+
+class TestErrorHandling:
+    """Test API error handling and input validation."""
+
+    def test_invalid_github_url_returns_400(self, client):
+        """Test that invalid GitHub URL triggers ValueError mapped to HTTP 400."""
+        response = client.post(
+            "/github/ingest",
+            json={"repository_url": "not-a-valid-github-url", "max_files": 10},
+        )
+        assert response.status_code == 400
+        data = response.json()
+        assert "detail" in data
+        assert data.get("error") == "Bad Request"
+        assert data.get("type") == "ValueError"
+
+

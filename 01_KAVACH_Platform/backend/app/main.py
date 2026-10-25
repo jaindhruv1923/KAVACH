@@ -22,7 +22,8 @@ print("Loading env...")
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 print("Env loaded.")
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse, StreamingResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -70,6 +71,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.exception_handler(ValueError)
+async def value_error_handler(request: Request, exc: ValueError):
+    """Map unhandled ValueError from domain/validation logic into clean HTTP 400 Bad Request."""
+    return JSONResponse(
+        status_code=400,
+        content={"detail": str(exc), "error": "Bad Request", "type": "ValueError"},
+    )
 
 
 @app.on_event("startup")
