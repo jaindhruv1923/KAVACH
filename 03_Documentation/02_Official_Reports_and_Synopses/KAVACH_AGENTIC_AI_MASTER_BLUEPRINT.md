@@ -471,7 +471,7 @@ These 5 features do not operate as disconnected scripts; they form a seamless, h
 
 ## 6. Project Evaluation Strategy & Scoring
 
-### 6.1 Rubric Evaluation against CSE3101 Criteria (Score: 9.6 / 10)
+### 6.1 Rubric Self-Assessment and Traceability Matrix against CSE3101 Criteria (Verified Empirical Baseline)
 
 | Evaluation Rubric Criteria | Score | Academic Justification |
 | :--- | :---: | :--- |

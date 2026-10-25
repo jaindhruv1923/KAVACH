@@ -2,7 +2,7 @@
 
 **Security-Governed Agentic AI DevOps Platform**
 
-[← Back to Master Repository README](../../README.md) &nbsp;|&nbsp; [📂 Official Assets Overview (`../`)](../README.md) &nbsp;|&nbsp; [📦 Archived Legacy Files (`../../unimportant`)](../../unimportant/README.md)
+[← Back to Master Repository README](../README.md) &nbsp;|&nbsp; [🏦 Banking & Results Cockpit](../02_Banking_and_Results_Dashboard/README.md) &nbsp;|&nbsp; [📚 Master Documentation Hub](../03_Documentation/README.md) &nbsp;|&nbsp; [📈 System Metrics (SSOT)](../docs/METRICS.md)
 
 ---
 
@@ -14,7 +14,7 @@ human review — protecting against sensitive PII leakage, credentials, API keys
 
 ## 🚀 Navigation & Start Here (READ IN THIS ORDER)
 
-1. **[FINAL_REPORT.md](FINAL_REPORT.md)** ← **START HERE** - Complete project summary, 278 test results, and status
+1. **[FINAL_REPORT.md](FINAL_REPORT.md)** ← **START HERE** - Complete project summary, 300 deterministic verification tests (641 total repository tests, see docs/METRICS.md), and status
 2. **[RUNNING_KAVACH.md](RUNNING_KAVACH.md)** - Step-by-step guide to run tests, backend, and demo
 3. **[PROJECT_MAP.md](PROJECT_MAP.md)** - Find any feature's owning file and run command
 4. **[demo_repo/DEMO.md](demo_repo/DEMO.md)** - Interactive demonstration scenarios
@@ -92,7 +92,7 @@ Explore the technical specifications:
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h4 align="center">🧪 Official Pytest Suite: 278 Tests Passing</h4>
+      <h4 align="center">🧪 Official Pytest Suite: 300 Deterministic Tests (641 Total) Passing</h4>
       <a href="artifacts/screenshots/ss23.png">
         <img src="artifacts/screenshots/ss23.png" width="100%" alt="278 Passing Pytest Automated Tests" />
       </a>
@@ -114,7 +114,7 @@ Explore the technical specifications:
 
 - **Master Repository README**: [Master README](../../README.md)
 - **Official Artifacts Index**: [Important README](../README.md)
-- **Test Results**: **278 / 278 tests passing (100% pass rate)** — See [FINAL_REPORT.md](FINAL_REPORT.md)
+- **Test Results**: **278 / 300 deterministic tests (641 total repository tests) passing (100% pass rate)** — See [FINAL_REPORT.md](FINAL_REPORT.md)
 - **Cyber Defense Suite**: 13 specialized engines & 15-vector Red-Team Simulator (100% Interception)
 - **Tough Test Suite**: 54 edge-case tests in [`tests/test_cyber_defense_tough.py`](tests/test_cyber_defense_tough.py)
 - **Execution Guide**: See [RUNNING_KAVACH.md](RUNNING_KAVACH.md)
@@ -241,7 +241,7 @@ See [demo_repo/DEMO.md](demo_repo/DEMO.md) for 7 interactive scenarios.
 | - | API Endpoints (10 REST + 11 Extension) | ✅ Complete | 33 passing |
 | - | End-to-End Integration | ✅ Complete | 19 passing |
 
-**Overall**: **278/278 tests passing** in the latest clean run.
+**Overall**: **278/300 deterministic tests (641 total repository tests) passing** in the latest clean run.
 
 ## 👨‍🏫 For Reviewers & Evaluators
 

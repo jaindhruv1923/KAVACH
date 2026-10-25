@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "generated_at": "2026-10-25T02:33:17Z",
-    "git_commit_hash": "04e89730286e1915b6a62d8ca48b6d56f6ac28c5",
+    "generated_at": "2026-10-25T02:34:01Z",
+    "git_commit_hash": "ad2277e21fd1af43a7d9204262d7639395849682",
     "source_of_truth_script": "scripts/generate_metrics.py",
     "principle": "Measured reality is the source of truth. Documents must match measured reality."
   },
@@ -272,23 +272,23 @@
     "pii_detector_latency": {
       "runs": 30,
       "median_ms": 0.017,
-      "p95_ms": 0.019,
-      "min_ms": 0.017,
-      "max_ms": 0.044
+      "p95_ms": 0.022,
+      "min_ms": 0.016,
+      "max_ms": 0.034
     },
     "secret_detector_latency": {
       "runs": 30,
       "median_ms": 0.019,
-      "p95_ms": 0.021,
+      "p95_ms": 0.022,
       "min_ms": 0.019,
-      "max_ms": 0.054
+      "max_ms": 0.055
     },
     "agent_workflow_e2e_latency": {
       "runs": 30,
-      "median_ms": 608.437,
-      "p95_ms": 692.615,
-      "min_ms": 222.505,
-      "max_ms": 846.544
+      "median_ms": 665.734,
+      "p95_ms": 783.159,
+      "min_ms": 257.523,
+      "max_ms": 814.1
     }
   }
 }

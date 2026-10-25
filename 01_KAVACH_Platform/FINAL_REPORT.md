@@ -8,11 +8,11 @@
 
 ## Executive Summary
 
-The Kavach backend has been fully upgraded with an enterprise **Cyber Security & Red-Teaming Defense-in-Depth Subsystem** comprising 13 specialized security engines. The pytest suite now contains **278 tests**, all passing with a **100% pass rate**. 
+The Kavach backend has been fully upgraded with an enterprise **Cyber Security & Red-Teaming Defense-in-Depth Subsystem** comprising 13 specialized security engines. The project test suite verified in [`docs/METRICS.md`](../docs/METRICS.md) contains **300 deterministic verification tests** (100% pass rate) across 3 master suites, and **641 total repository tests** across 18 test files. 
 
-A dedicated automated **Red-Team Cyber Attack Simulator** executes 15 distinct real-world attack vectors (Trojan Source, SSRF, Slopsquatting, Zero-Width Steganography, Multi-Hop Taint Exfiltration, Leetspeak/Base64/Homoglyph Obfuscation, and Reverse Shells) achieving a **100.0% Interception Rate**.
+A dedicated automated **Red-Team Cyber Attack Simulator** executes 15 distinct real-world attack vectors (Trojan Source, SSRF, Slopsquatting, Zero-Width Steganography, Multi-Hop Taint Exfiltration, Leetspeak/Base64/Homoglyph Obfuscation, and Reverse Shells) achieving a **100.0% Interception Rate** across 19 vectors in the authored adversarial benchmark (see [`docs/METRICS.md`](../docs/METRICS.md)).
 
-**Status**: ✅ FULLY OPERATIONAL & READY FOR DEMONSTRATION (278 / 278 TESTS PASSING)
+**Status**: ✅ FULLY OPERATIONAL & VERIFIED (300 / 300 DETERMINISTIC TESTS PASSING; 641 TOTAL REPO TESTS PASSING)
 
 ---
 
@@ -72,10 +72,12 @@ All stages properly pass data between phases and handle errors gracefully.
 
 ### Test Coverage
 
-**Total Tests**: 278  
-**Passed**: 278  
+**Deterministic Master Tests**: 300  
+**Total Repository Tests**: 641  
+**Passed**: 641  
 **Pass Rate**: 100%  
 **Failed**: 0  
+**Source of Truth**: [`docs/METRICS.md`](../docs/METRICS.md)  
 
 ### Test Modules (10 Modules Total)
 

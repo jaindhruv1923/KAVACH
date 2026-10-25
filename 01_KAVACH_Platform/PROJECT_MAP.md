@@ -16,13 +16,13 @@ Use this map when demonstrating a random part of the project.
 
 ### API layer
 
-- `backend/app/main.py`: FastAPI app, routes, CORS, static dashboard serving, safe configuration status.
+- `backend/app/main.py`: FastAPI app, 120 registered routes (142 total unified endpoints across platform), CORS, static dashboard serving, safe configuration status (see [`docs/METRICS.md`](../docs/METRICS.md)).
 
 ### Agent workflow
 
 - `backend/app/agent/state.py`: workflow stages, run state, in-memory run store.
 - `backend/app/agent/planner.py`: request-to-plan decomposition.
-- `backend/app/agent/orchestrator.py`: complete request lifecycle and security checkpoints.
+- `backend/app/agent/orchestrator.py`: complete request lifecycle across 6 active execution stages (REQUEST_RECEIVED, PLANNING, CONTEXT_RETRIEVAL, SECURITY_CHECK, IMPACT_ANALYSIS, GENERATION) and 3 terminal decision states (COMPLETE, BLOCKED, NEEDS_REVIEW).
 
 ### Security
 
@@ -39,6 +39,11 @@ Use this map when demonstrating a random part of the project.
 - `backend/app/rag/embed_store.py`: embeddings, Qdrant indexing, similarity search.
 - `backend/app/impact/analyzer.py`: affected-file ranking.
 - `backend/app/impact/dependency_graph.py`: Python import/dependency analysis.
+
+### Agent Framework Implementations (ADK-Pattern & CrewAI-Pattern)
+
+- `backend/app/adk/`: Custom ADK-pattern architectural implementation modeling Google ADK specifications (8-hook callbacks across before/after agent, model, and tool lifecycle phases, LlmAgent, coordinator, and medical triage) with zero external pip dependencies.
+- `backend/app/crew/`: Custom CrewAI-pattern architectural flow runner (sequential and hierarchical multi-agent execution) with zero external pip dependencies.
 
 ### Generation and validation
 

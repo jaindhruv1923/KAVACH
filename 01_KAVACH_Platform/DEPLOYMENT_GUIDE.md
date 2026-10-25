@@ -25,7 +25,7 @@ Render is the simplest and most reliable platform for hosting full-stack Python/
    git add .
    git commit -m "feat: complete KAVACH security platform with 100+ query library"
    git branch -M main
-   git remote add origin https://github.com/<your-username>/kavach.git
+   git remote add origin https://github.com/jaindhruv1923/KAVACH.git
    git push -u origin main
    ```
 
@@ -96,7 +96,7 @@ If you prefer full control on an Ubuntu VPS ($4-$6/mo on DigitalOcean, Hetzner, 
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/<your-username>/kavach.git
+git clone https://github.com/jaindhruv1923/KAVACH.git
 cd kavach
 
 # 2. Launch container with Docker Compose
