@@ -361,15 +361,15 @@ In strict adherence to the university capstone guidelines, project development i
 
 | Academic Week | Dates | Milestone Focus | Technical Deliverables & Status |
 | :---: | :--- | :--- | :--- |
-| **Weeks 1–2** | Jul 27 – Aug 07 | Foundation & PEAS Formulation | • Enterprise threat model for autonomous coding agents.<br>• Formal PEAS specification & 4 user persona definitions. (✅ Completed) |
-| **Weeks 3–4** | Aug 10 – Aug 21 | Reasoning, Prompts & RAG | • COTS, ReAct, and standard prompt benchmarking.<br>• Qdrant dense vector store integration with AST code chunking. (✅ Completed) |
-| **Week 5** | Aug 24 – Aug 28 | **Phase-1 Evaluation (Current)** | • **One-Page Charter & Synopsis Report submission.**<br>• **16-Week Timeline, RACIS Matrix, and Viva Defense.** (✅ **Current Phase**) |
-| **Weeks 6–7** | Aug 31 – Sep 11 | Safety Gating & Entropy Tooling | • Shannon entropy detector ($H > 4.5$) for API credentials.<br>• Context-aware Indian DPDP regex scanner (Aadhaar/PAN). (✅ Completed) |
-| **Weeks 8–9** | Sep 14 – Sep 25 | AST Dependency & Dual-Engine LLM | • Python AST module call graph & blast-radius scoring.<br>• Dual-engine routing: Gemini 2.5 Flash vs local Ollama. (✅ Completed) |
-| **Weeks 10–11** | Sep 28 – Oct 09 | Supply-Chain Firewall & Sandboxing | • AST import interceptor with live PyPI registry probing.<br>• Ephemeral sandbox with ReAct self-healing loop (3 cycles). (✅ Completed) |
+| **Weeks 1–2** | Jul 27 – Aug 07 | Foundation & PEAS Formulation | • Enterprise threat model for autonomous coding agents.<br>• Formal PEAS specification & 4 user persona definitions. ([PASS] Completed) |
+| **Weeks 3–4** | Aug 10 – Aug 21 | Reasoning, Prompts & RAG | • COTS, ReAct, and standard prompt benchmarking.<br>• Qdrant dense vector store integration with AST code chunking. ([PASS] Completed) |
+| **Week 5** | Aug 24 – Aug 28 | **Phase-1 Evaluation (Current)** | • **One-Page Charter & Synopsis Report submission.**<br>• **16-Week Timeline, RACIS Matrix, and Viva Defense.** ([PASS] **Current Phase**) |
+| **Weeks 6–7** | Aug 31 – Sep 11 | Safety Gating & Entropy Tooling | • Shannon entropy detector ($H > 4.5$) for API credentials.<br>• Context-aware Indian DPDP regex scanner (Aadhaar/PAN). ([PASS] Completed) |
+| **Weeks 8–9** | Sep 14 – Sep 25 | AST Dependency & Dual-Engine LLM | • Python AST module call graph & blast-radius scoring.<br>• Dual-engine routing: Gemini 2.5 Flash vs local Ollama. ([PASS] Completed) |
+| **Weeks 10–11** | Sep 28 – Oct 09 | Supply-Chain Firewall & Sandboxing | • AST import interceptor with live PyPI registry probing.<br>• Ephemeral sandbox with ReAct self-healing loop (3 cycles). ([PASS] Completed) |
 | **Week 12** | Oct 12 – Oct 16 | **Phase-2 Milestone Evaluation** | • **Working prototype demonstration and live test run.**<br>• **Telemetry streaming to Mission Control UI.** (Scheduled) |
-| **Weeks 13–14** | Oct 19 – Oct 30 | MCP Server & UI Mission Control | • Model Context Protocol (MCP) JSON-RPC 2.0 tool server.<br>• Dark-mode dashboard with SSE telemetry & Groq Whisper. (✅ Completed) |
-| **Week 15** | Nov 02 – Nov 06 | Empirical 42-Run Benchmark | • 42 execution traces logged across 4 personas.<br>• LLM-as-a-Judge rating (4.90/5.0) and latency profiling. (✅ Completed) |
+| **Weeks 13–14** | Oct 19 – Oct 30 | MCP Server & UI Mission Control | • Model Context Protocol (MCP) JSON-RPC 2.0 tool server.<br>• Dark-mode dashboard with SSE telemetry & Groq Whisper. ([PASS] Completed) |
+| **Week 15** | Nov 02 – Nov 06 | Empirical 42-Run Benchmark | • 42 execution traces logged across 4 personas.<br>• LLM-as-a-Judge rating (4.90/5.0) and latency profiling. ([PASS] Completed) |
 | **Week 16** | Nov 09 – Nov 20 | **Final Capstone Defense (Phase-3)** | • **Comprehensive Final Project Report & IEEE manuscript.**<br>• **End-Term Viva, full system demonstration.** (Scheduled) |
 
 ### 11.2 Team Responsibility Matrix & Mandatory Role Rotation (RACIS)

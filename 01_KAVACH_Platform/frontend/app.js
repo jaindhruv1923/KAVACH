@@ -518,13 +518,13 @@ async function loadCommandCenter() {
   } catch (error) {
     const statusEl = document.getElementById("gemini-status");
     if (statusEl) {
-      statusEl.textContent = "Sandbox Active";
-      statusEl.title = "Kavach Embedded Sandbox & Evaluator Engine Active";
+      statusEl.textContent = "Backend Offline";
+      statusEl.title = "Could not connect to Kavach backend: " + error.message;
     }
     const dot = document.getElementById("gemini-dot");
     if (dot) {
-      dot.classList.add("online");
-      dot.classList.remove("offline");
+      dot.classList.remove("online");
+      dot.classList.add("offline");
     }
   }
 }
@@ -691,7 +691,7 @@ requestInput.addEventListener("keydown", event => {
 });
 
 function hideAllResultCards() {
-  ["workflow-gate-banner", "security-card", "policy-card", "pipeline-card", "rag-card", "impact-card",
+  ["workflow-gate-banner", "security-card", "policy-card", "pipeline-card", "agentic-trace-card", "rag-card", "impact-card",
    "generation-card", "validation-card", "history-card"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = "none";
@@ -728,7 +728,7 @@ function renderWorkflowGateBanner(data) {
 
   if (isBlocked) {
     banner.innerHTML = `
-      <div class="gate-icon">🛑</div>
+      <div class="gate-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
       <div class="gate-content">
         <div class="gate-title">Workflow Execution Halted by Zero-Trust Policy Gate (Stage: BLOCKED)</div>
         <div class="gate-desc">
@@ -742,7 +742,7 @@ function renderWorkflowGateBanner(data) {
     `;
   } else if (isReview) {
     banner.innerHTML = `
-      <div class="gate-icon">⚠️</div>
+      <div class="gate-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
       <div class="gate-content">
         <div class="gate-title">Workflow Held for Human-in-the-Loop Review (Stage: NEEDS_REVIEW)</div>
         <div class="gate-desc">
@@ -764,12 +764,150 @@ function renderWorkflowResult(data) {
   renderSecurityStatus(data);
   renderPolicyDecision(data);
   renderPipeline(data);
+  renderAgenticTrace(data);
   renderRagEvidence(data);
   renderImpactAnalysis(data);
   renderGeneration(data);
   renderValidation(data);
   renderHistory(data);
 }
+
+function renderAgenticTrace(data) {
+  const card = document.getElementById("agentic-trace-card");
+  const container = document.getElementById("agentic-trace-container");
+  if (!card || !container) return;
+
+  const steps = data.steps || [];
+  const toolsExecuted = data.tools_executed || [];
+  const proposedPatch = data.proposed_patch || "";
+  const testResults = data.test_results;
+  const requiresApproval = data.requires_approval;
+  const approvalToken = data.approval_token || "";
+  const runId = data.workflow_id || data.id;
+
+  if (steps.length === 0 && toolsExecuted.length === 0 && !proposedPatch && !testResults) {
+    card.style.display = "none";
+    return;
+  }
+
+  card.style.display = "block";
+
+  // Build steps HTML
+  let stepsHtml = "";
+  if (steps.length > 0) {
+    stepsHtml = steps.map(step => {
+      const stepNum = step.step_number || 1;
+      const agentRole = step.agent_role || "Coordinator";
+      const actionName = step.action || "none";
+      const thoughtText = step.thought || "";
+      const actionInput = step.action_input || {};
+      const observation = step.observation || {};
+      const durationMs = step.duration_ms ? `${step.duration_ms}ms` : "";
+
+      const obsFormatted = typeof observation === "object" ? JSON.stringify(observation, null, 2) : String(observation);
+
+      return `
+        <div class="agentic-step-box" style="margin-bottom:14px;padding:14px;background:var(--bg-canvas);border:1px solid var(--border-subtle);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="badge" style="background:var(--accent-glow);color:var(--accent);font-weight:700;">STEP ${stepNum}</span>
+              <strong style="font-size:0.9rem;color:var(--text-primary);">${escapeHtml(agentRole)} Persona</strong>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">${durationMs}</span>
+              <span class="badge" style="background:var(--neutral-bg);border-color:var(--border-medium);font-size:0.75rem;">Action: <code>${escapeHtml(actionName)}</code></span>
+            </div>
+          </div>
+          ${thoughtText ? `
+            <div style="margin-bottom:10px;padding:8px 12px;background:var(--accent-subtle);border-left:3px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.83rem;color:var(--text-secondary);">
+              <strong>Reasoning Thought:</strong> ${escapeHtml(thoughtText)}
+            </div>
+          ` : ""}
+          <div style="margin-bottom:8px;font-size:0.8rem;">
+            <strong style="color:var(--text-dim);">Action Input:</strong>
+            <pre style="margin:4px 0;padding:8px;background:var(--bg-base);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.75rem;overflow-x:auto;">${escapeHtml(JSON.stringify(actionInput, null, 2))}</pre>
+          </div>
+          <div style="font-size:0.8rem;">
+            <strong style="color:var(--text-dim);">Real Tool Observation:</strong>
+            <pre style="margin:4px 0;padding:8px;background:var(--bg-base);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.75rem;max-height:220px;overflow-y:auto;white-space:pre-wrap;">${escapeHtml(obsFormatted)}</pre>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // Build proposed patch block if present
+  let patchHtml = "";
+  if (proposedPatch) {
+    patchHtml = `
+      <div style="margin-top:16px;padding:14px;background:var(--bg-canvas);border:1px solid var(--border-medium);border-radius:var(--radius-md);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="badge" style="background:var(--review-bg);color:var(--review);font-weight:700;">PROPOSED PATCH (UNIFIED DIFF)</span>
+            <span style="font-size:0.82rem;color:var(--text-secondary);">Bounded workspace modification</span>
+          </div>
+          ${requiresApproval ? `
+            <button type="button" class="pill-btn active" style="background:var(--safe);color:#fff;font-weight:700;" onclick="approveAgentPatch('${runId}', '${approvalToken}')">
+              Authorize Patch Application &rarr;
+            </button>
+          ` : ""}
+        </div>
+        <pre style="padding:10px;background:#0f172a;color:#e2e8f0;border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.78rem;overflow-x:auto;white-space:pre-wrap;">${escapeHtml(proposedPatch)}</pre>
+      </div>
+    `;
+  }
+
+  // Build test results block if present
+  let testHtml = "";
+  if (testResults) {
+    const isSuccess = testResults.exit_code === 0;
+    testHtml = `
+      <div style="margin-top:16px;padding:14px;background:${isSuccess ? 'var(--safe-bg)' : 'var(--blocked-bg)'};border:1px solid ${isSuccess ? 'var(--safe-border)' : 'var(--blocked-border)'};border-radius:var(--radius-md);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <strong style="color:${isSuccess ? 'var(--safe)' : 'var(--blocked)'};font-size:0.9rem;">
+            ${isSuccess ? '[PASS] REAL TEST SUITE VERIFICATION PASSED' : '[FAIL] TEST SUITE FAILED (ReAct Reflection Triggered)'}
+          </strong>
+          <span class="badge">Exit Code: ${testResults.exit_code}</span>
+        </div>
+        <p style="margin:4px 0;font-size:0.82rem;color:var(--text-secondary);">Target: <code>${escapeHtml(testResults.test_path || '')}</code> • Duration: ${testResults.duration_seconds || 0}s</p>
+        ${testResults.stdout ? `<pre style="padding:8px;background:var(--bg-canvas);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.74rem;max-height:180px;overflow-y:auto;white-space:pre-wrap;">${escapeHtml(testResults.stdout)}</pre>` : ''}
+      </div>
+    `;
+  }
+
+  const summaryPill = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:10px 14px;background:var(--bg-base);border-radius:var(--radius-md);flex-wrap:wrap;gap:8px;">
+      <div>
+        <strong style="color:var(--text-primary);font-size:0.88rem;">Autonomous ReAct Loop Telemetry</strong>
+        <span style="font-size:0.8rem;color:var(--text-dim);margin-left:8px;">(${steps.length} iteration(s) • ${toolsExecuted.length} real tool(s) invoked)</span>
+      </div>
+      <div>
+        ${toolsExecuted.map(t => `<span class="badge" style="margin-left:4px;font-size:0.72rem;background:var(--bg-canvas);">[TOOL] ${escapeHtml(t)}</span>`).join("")}
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = summaryPill + stepsHtml + patchHtml + testHtml;
+}
+
+async function approveAgentPatch(runId, token) {
+  try {
+    const res = await safeFetch(`${API_BASE}/agent/approve/${runId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        approved: true,
+        approval_token: token,
+        supervisor_id: "Dhruv Jain (Chief AI Architect)"
+      })
+    });
+    alert(`Supervisor Approval Granted!\nStatus: ${res.status}\nMessage: ${res.message}`);
+    submitBtn.click();
+  } catch (err) {
+    alert(`Approval failed: ${err.message}`);
+  }
+}
+
 
 function renderSecurityStatus(data) {
   const card = document.getElementById("security-card");
@@ -936,15 +1074,15 @@ function renderRagEvidence(data) {
 
   el.innerHTML = `
     <div style="font-size:0.83rem;color:var(--text-dim);margin-bottom:12px;padding:4px 8px;background:var(--bg-surface-elevated);border-radius:var(--radius-sm);border:1px solid var(--border-subtle);">
-      ⚡ <strong>${context.length} Grounding Chunks</strong> retrieved from indexed codebase via dense vector embeddings.
+      <strong>${context.length} Grounding Chunks</strong> retrieved from indexed codebase via dense vector embeddings.
     </div>
     ${context.map((chunk, idx) => `
       <div class="evidence-chunk">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:8px;flex-wrap:wrap;">
-          <span class="file-path">📄 ${escapeHtml(chunk.file_path)} <span style="color:var(--text-dim);font-size:0.75rem;">(chunk #${chunk.chunk_index !== undefined ? chunk.chunk_index : idx})</span></span>
+          <span class="file-path">${escapeHtml(chunk.file_path)} <span style="color:var(--text-dim);font-size:0.75rem;">(chunk #${chunk.chunk_index !== undefined ? chunk.chunk_index : idx})</span></span>
           <span class="score">Score: ${(chunk.score || 0).toFixed(3)}</span>
         </div>
-        ${chunk.sanitized ? `<div style="font-size:0.74rem;color:var(--safe);margin-bottom:4px;font-weight:600;">🛡️ Sanitized by Security / Delimiter Shield</div>` : ''}
+        ${chunk.sanitized ? `<div style="font-size:0.74rem;color:var(--safe);margin-bottom:4px;font-weight:600;">Sanitized by Security / Delimiter Shield</div>` : ''}
         <div class="snippet">${escapeHtml((chunk.text || "").slice(0, 350))}${chunk.text && chunk.text.length > 350 ? "..." : ""}</div>
       </div>
     `).join("")}
@@ -1038,9 +1176,8 @@ function renderImpactAnalysis(data) {
       <div class="impact-card-rich ${isTop ? 'highest-impact-card' : ''}">
         <div class="impact-card-header">
           <div class="impact-file-info">
-            <span class="impact-file-icon">📄</span>
             <strong class="impact-file-name">${escapeHtml(item.file_path)}</strong>
-            ${isTop ? `<span class="badge highest-badge">🔥 HIGHEST IMPACT TARGET</span>` : ''}
+            ${isTop ? `<span class="badge highest-badge">CRITICAL IMPACT TARGET</span>` : ''}
             <span class="badge tier-badge-${tierClass}">${tier} IMPACT</span>
           </div>
           <div class="impact-score-badge-wrap">
@@ -1056,7 +1193,6 @@ function renderImpactAnalysis(data) {
 
         <!-- Significance of Score -->
         <div class="impact-significance-row">
-          <span class="significance-icon">⚠️</span>
           <div class="significance-body">
             <span class="significance-label">Significance of Score:</span>
             <span class="significance-text">${escapeHtml(significance)}</span>
@@ -1066,7 +1202,6 @@ function renderImpactAnalysis(data) {
         <!-- Reason Behind The Score (Enlisted factors) -->
         <div class="score-reason-container">
           <div class="score-reason-header">
-            <span class="reason-header-icon">🔍</span>
             <strong>Why this score was assigned (Factor Breakdown):</strong>
           </div>
           <div class="score-reason-narrative">
@@ -1076,7 +1211,7 @@ function renderImpactAnalysis(data) {
           <div class="score-factors-grid">
             <div class="factor-pill ${item.dependency_hit ? 'hit' : 'miss'}">
               <div class="factor-pill-title">
-                ${item.dependency_hit ? '⚡ AST Import Link: ACTIVE (+0.40)' : '○ AST Import Link: None (+0.00)'}
+                ${item.dependency_hit ? 'AST Import Link: ACTIVE (+0.40)' : 'AST Import Link: None (+0.00)'}
               </div>
               <div class="factor-pill-desc">
                 ${item.dependency_hit 
@@ -1087,7 +1222,7 @@ function renderImpactAnalysis(data) {
 
             <div class="factor-pill ${item.semantic_score > 0 ? 'hit' : 'miss'}">
               <div class="factor-pill-title">
-                🧠 Vector Semantic Alignment: ${item.semantic_score ? `${item.semantic_score.toFixed(2)} Cosine (+${(item.semantic_score * 0.6).toFixed(3)})` : 'None (+0.00)'}
+                Vector Semantic Alignment: ${item.semantic_score ? `${item.semantic_score.toFixed(2)} Cosine (+${(item.semantic_score * 0.6).toFixed(3)})` : 'None (+0.00)'}
               </div>
               <div class="factor-pill-desc">
                 ${item.semantic_score > 0
@@ -1138,7 +1273,7 @@ function renderGeneration(data) {
 
   card.style.display = "block";
   const configNote = gen.llm_configured
-    ? `<p class="status-line status-safe">✓ Live LLM Synthesis (Gemini) · Grounded in ${gen.evidence_chunks_used || 0} Repository Chunks</p>`
+    ? `<p class="status-line status-safe">[PASS] Live LLM Synthesis (Gemini) · Grounded in ${gen.evidence_chunks_used || 0} Repository Chunks</p>`
     : `<p class="status-line status-review">Stub response — no GEMINI_API_KEY configured on the backend</p>`;
 
   el.innerHTML = configNote + `<pre class="code-block">${escapeHtml(gen.generated_output || "(no output)")}</pre>`;
@@ -1174,7 +1309,7 @@ function renderValidation(data) {
   if (val.valid_syntax) {
     el.innerHTML = `
       <div class="validation-box valid">
-        <div class="validation-status-title">✓ Syntax Quality Gate: PASS</div>
+        <div class="validation-status-title">[PASS] Syntax Quality Gate: PASS</div>
         <p style="margin:4px 0 8px;font-size:0.84rem;color:var(--text-secondary);">Generated Python code successfully parsed by Python AST compiler. Zero syntax errors detected.</p>
         ${val.extracted_code ? `<pre class="code-block" style="max-height:220px;overflow-y:auto;">${escapeHtml(val.extracted_code)}</pre>` : ''}
       </div>
@@ -1182,7 +1317,7 @@ function renderValidation(data) {
   } else {
     el.innerHTML = `
       <div class="validation-box invalid">
-        <div class="validation-status-title" style="color:var(--blocked);">✗ Quality Gate Notice: ${escapeHtml(val.error || "Syntax verification failed")}</div>
+        <div class="validation-status-title" style="color:var(--blocked);">[FAIL] Quality Gate Notice: ${escapeHtml(val.error || "Syntax verification failed")}</div>
         ${val.extracted_code ? `<pre class="code-block" style="border-color:var(--blocked-border);">${escapeHtml(val.extracted_code)}</pre>` : ''}
       </div>
     `;
@@ -1584,6 +1719,11 @@ window.switchAdvancedTab = function(tabId) {
 let lastVaultId = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+  const bankLink = document.getElementById("header-bank-highway-btn");
+  if (bankLink && window.location.port === "5500") {
+    bankLink.href = "/KAVACH-main/02_Banking_and_Results_Dashboard/implementation_banks/index.html";
+  }
+
   // 1. Self-Healing Code Loop
   const healBtn = document.getElementById("adv-heal-btn");
   const healOut = document.getElementById("adv-heal-output");
@@ -1979,7 +2119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const res = await safeFetch(`${API_BASE}/security/cyber-attack/simulate`, { method: "POST" });
         let html = `<div style="background:var(--bg-canvas);border:1px solid var(--border-medium);border-radius:8px;padding:14px;">`;
         html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-          <h4 style="margin:0;color:var(--safe);">🛡️ Red-Team Benchmark Verdict: ${res.security_posture}</h4>
+          <h4 style="margin:0;color:var(--safe);">Red-Team Benchmark Verdict: ${res.security_posture}</h4>
           <span class="badge" style="border-color:var(--safe-border);color:var(--safe);font-weight:700;">${res.interception_rate_percent}% INTERCEPTION RATE</span>
         </div>`;
         html += `<div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:10px;margin-bottom:14px;">
@@ -2005,7 +2145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cyberOut.innerHTML = `<p class="status-line status-blocked">Error: ${escapeHtml(err.message)}</p>`;
       } finally {
         cyberBtn.disabled = false;
-        cyberBtn.textContent = "🚨 Run Full Cyber Red-Team Benchmark (15 Vectors)";
+        cyberBtn.textContent = "Run Full Cyber Red-Team Benchmark (15 Vectors)";
       }
     });
   }
@@ -2023,7 +2163,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const res = await safeFetch(`${API_BASE}/security/merkle/verify`);
         let html = `<div style="background:var(--bg-canvas);border:1px solid var(--safe-border);border-radius:8px;padding:14px;">`;
-        html += `<h4 style="margin:0 0 8px;color:var(--safe);">✅ Cryptographic Audit Ledger Verified (DPDP Act 2023)</h4>`;
+        html += `<h4 style="margin:0 0 8px;color:var(--safe);">Cryptographic Audit Ledger Verified (DPDP Act 2023)</h4>`;
         html += `<p style="font-size:0.82rem;font-family:var(--font-mono);margin:0 0 6px;"><strong>Merkle Root Hash:</strong> ${escapeHtml(res.merkle_root || "N/A")}</p>`;
         html += `<p style="font-size:0.82rem;color:var(--text-secondary);margin:0;">Total Audited Records: <strong>${res.total_records || 0}</strong> &bull; Tamper Detected: <strong>${res.tamper_detected ? "YES (ALERT)" : "FALSE (100% IMMUTABLE)"}</strong></p>`;
         html += `</div>`;
@@ -2046,7 +2186,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ code: sampleTaintCode })
         });
         let html = `<div style="background:var(--bg-canvas);border:1px solid ${res.has_taint_leak ? 'var(--blocked-border)' : 'var(--safe-border)'};border-radius:8px;padding:14px;">`;
-        html += `<h4 style="margin:0 0 8px;color:${res.has_taint_leak ? 'var(--blocked)' : 'var(--safe)'};">${res.has_taint_leak ? '🚨 Inter-Procedural Taint Leak Flagged' : '✅ Clean Data Flow'}</h4>`;
+        html += `<h4 style="margin:0 0 8px;color:${res.has_taint_leak ? 'var(--blocked)' : 'var(--safe)'};">${res.has_taint_leak ? '[ALERT] Inter-Procedural Taint Leak Flagged' : '[PASS] Clean Data Flow'}</h4>`;
         html += `<p style="font-size:0.82rem;margin:0 0 6px;">Tainted Variables: <code>${(res.tainted_variables || []).join(', ')}</code></p>`;
         (res.leaks || []).forEach(l => {
           html += `<div style="padding:6px 8px;font-size:0.78rem;font-family:var(--font-mono);background:var(--blocked-bg);color:var(--blocked);border-radius:4px;margin-top:4px;">
@@ -2073,7 +2213,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ content: samplePkgJson, manifest_type: "npm" })
         });
         let html = `<div style="background:var(--bg-canvas);border:1px solid ${res.is_safe ? 'var(--safe-border)' : 'var(--blocked-border)'};border-radius:8px;padding:14px;">`;
-        html += `<h4 style="margin:0 0 8px;color:${res.is_safe ? 'var(--safe)' : 'var(--blocked)'};">${res.is_safe ? '✅ NPM Manifest Verified' : '🚨 NPM Supply-Chain Risk Flagged'}</h4>`;
+        html += `<h4 style="margin:0 0 8px;color:${res.is_safe ? 'var(--safe)' : 'var(--blocked)'};">${res.is_safe ? '[PASS] NPM Manifest Verified' : '[ALERT] NPM Supply-Chain Risk Flagged'}</h4>`;
         (res.blocked_packages || []).forEach(bp => {
           html += `<div style="padding:6px 8px;font-size:0.78rem;font-family:var(--font-mono);background:var(--blocked-bg);color:var(--blocked);border-radius:4px;margin-top:4px;">
             Package: ${escapeHtml(bp.package)} &bull; ${escapeHtml(bp.detail)}
@@ -2299,7 +2439,7 @@ function updateFlowchartTelemetry() {
   if (statusLabel) {
     const currentStage = FLOWCHART_STAGES[activeFlowchartIndex];
     if (activeFlowchartIndex === FLOWCHART_STAGES.length - 1) {
-      statusLabel.innerHTML = `🛡️ <strong>PIPELINE ATTESTED</strong> &bull; ZERO THREATS &bull; SLSA LEVEL 3 COMPLIANT`;
+      statusLabel.innerHTML = `<strong>PIPELINE ATTESTED</strong> &bull; ZERO THREATS &bull; SLSA LEVEL 3 COMPLIANT`;
     } else {
       statusLabel.innerHTML = `GATE ${currentStage.num}: <strong>${escapeHtml(currentStage.title)}</strong> ACTIVE &bull; ${cumLatency.toFixed(2)} ms TOTAL`;
     }
@@ -2835,7 +2975,7 @@ No pre-flight token vault or AST package check enabled.`,
 [VAULTED] AWS Secret Key -> <REDACTED_AWS_KEY_01>
 [EGRESS] Sanitized prompt dispatched to Claude 3.5 Sonnet
 [STATUS] Zero customer PII or cloud credentials leaked!`,
-          unprotectedSnippet: `💥 DISASTER IN UNPROTECTED ENVIRONMENT:
+          unprotectedSnippet: `[UNPROTECTED ENVIRONMENT EXPLOIT]:
 Plaintext Aadhaar and production AWS secret sent to external cloud LLM API!
 Stored in public model training transcripts & external cache.
 Violation: DPDP Act 2023 Section 8 (Fine: ₹250 Crores / $30 Million).`,
@@ -2854,7 +2994,7 @@ import py_upi_fast_crypto  # Hallucinated non-existent package!`,
 [ALERT] Package 'py_upi_fast_crypto' NOT FOUND ON REGISTRY!
 [THREAT] Hallucinated Dependency / Slopsquatting Attack Vector
 [ACTION] BLOCKED! Agent forced to substitute verified 'cryptography>=41.0.0'`,
-          unprotectedSnippet: `💥 DISASTER IN UNPROTECTED ENVIRONMENT:
+          unprotectedSnippet: `[UNPROTECTED ENVIRONMENT EXPLOIT]:
 Developer runs 'pip install py_upi_fast_crypto' blindly.
 Attacker registered that exact package name 2 hours prior containing reverse shell.
 Attacker gains root container access to bank payment database!`,
@@ -2874,9 +3014,9 @@ Attacker gains root container access to bank payment database!`,
  - fraud_alert.py (Silent exception)
  - loan_ledger.py (Downstream drift)
 [POLICY DECISION] Risk 0.94 -> HALT AT HUMAN GATEKEEPER`,
-          unprotectedSnippet: `💥 DISASTER IN UNPROTECTED ENVIRONMENT:
+          unprotectedSnippet: `[UNPROTECTED ENVIRONMENT EXPLOIT]:
 PR merged directly.
-4 core banking microservices crash in production at 10:00 AM.
+4 core banking microservices crash in production at 10:0 PM.
 30,000 ATM and UPI transactions fail across the nation.`,
           verdict: "HUMAN GATEKEEPER HALT",
           verdictType: "review",
@@ -2892,7 +3032,7 @@ PR merged directly.
 [INCLUSION PROOF] Cryptographic verification: VALID
 [COMPLIANCE] PCI-DSS 4.0 Section 6.5.1 & RBI Cyber Security: PASS
 [CI/CD] GitHub Actions webhook triggered • Deployed to Production safely!`,
-          unprotectedSnippet: `💥 UNPROTECTED ENVIRONMENT:
+          unprotectedSnippet: `[UNPROTECTED ENVIRONMENT]:
 Audit logs are scattered across ephemeral containers.
 No cryptographic proof of who modified what.
 External compliance auditors fail SOC2 certification.`,
@@ -2929,7 +3069,7 @@ External compliance auditors fail SOC2 certification.`,
 [REDACTED] John Doe -> <PATIENT_HASH_8471>
 [REDACTED] MRN-89412 -> <VAULT_MRN_992>
 [STATUS] Fully HIPAA Compliant Anonymized Egress`,
-          unprotectedSnippet: `💥 Medical records exposed to third-party model! $50,000 fine per record under HIPAA.`,
+          unprotectedSnippet: `[CRITICAL BREACH] Medical records exposed to third-party model! $50,000 fine per record under HIPAA.`,
           verdict: "PATIENT PII VAULTED",
           verdictType: "allow",
           metrics: "Zero Patient Data Leaked • HIPAA Compliant"
@@ -2941,7 +3081,7 @@ External compliance auditors fail SOC2 certification.`,
           kavachAction: "KAVACH SSRF Shield intercepts AWS IMDSv1 metadata probe -> Drops connection and flags critical security alert.",
           protectedSnippet: `[SSRF SHIELD] Detected AWS IMDSv1 link-local address: 169.254.169.254
 [VERDICT] BLOCKED • Cloud instance IAM credential harvesting prevented!`,
-          unprotectedSnippet: `💥 Attacker exfiltrates hospital AWS root IAM role and dumps 500,000 patient records!`,
+          unprotectedSnippet: `[CRITICAL BREACH] Attacker exfiltrates hospital AWS root IAM role and dumps 500,000 patient records!`,
           verdict: "SSRF EXFILTRATION BLOCKED",
           verdictType: "block",
           metrics: "Cloud IAM Saved • MITRE T1552 Blocked"
@@ -2954,7 +3094,7 @@ External compliance auditors fail SOC2 certification.`,
           protectedSnippet: `[IMPACT RADAR] dosage calculation altered in 3 ICU ward routes
 [CONSENSUS] Multi-LLM Check: Gemini (REJECT) + Groq (REJECT)
 [STATUS] Medical dosage drift caught before code execution`,
-          unprotectedSnippet: `💥 Dosing math error deployed to automated pharmacy infusion pumps!`,
+          unprotectedSnippet: `[CRITICAL BREACH] Dosing math error deployed to automated pharmacy infusion pumps!`,
           verdict: "DOSAGE DRIFT CAUGHT",
           verdictType: "review",
           metrics: "ICU Ward Safety Verified • Multi-LLM Consensus"
@@ -3000,7 +3140,7 @@ External compliance auditors fail SOC2 certification.`,
 [REDACTED] sk_live_51M... -> <MOCK_STRIPE_SANDBOX_KEY>
 [REDACTED] Card 4242... -> <SYNTHETIC_CARD_TOKEN_01>
 [STATUS] Zero production payment credentials exposed!`,
-          unprotectedSnippet: `💥 Live Stripe secret key exposed in public LLM transcript! Attacker drains merchant wallet.`,
+          unprotectedSnippet: `[CRITICAL BREACH] Live Stripe secret key exposed in public LLM transcript! Attacker drains merchant wallet.`,
           verdict: "PAYMENT KEYS SHIELDED",
           verdictType: "allow",
           metrics: "Stripe Secret Vaulted in 1.9ms • 0 Leaks"
@@ -3014,7 +3154,7 @@ External compliance auditors fail SOC2 certification.`,
 [ANALYSIS] Checkout throughput degradation: -89.4%
 [REACT SELF-HEALER] Auto-synthesizing non-blocking async Redis lock
 [VERDICT] Auto-healed in 1 iteration • High-concurrency preserved!`,
-          unprotectedSnippet: `💥 Black Friday checkout crashes! Website displays 504 Gateway Timeout for 45 minutes ($3.8M lost).`,
+          unprotectedSnippet: `[CRITICAL BREACH] Black Friday checkout crashes! Website displays 504 Gateway Timeout for 45 minutes ($3.8M lost).`,
           verdict: "DEADLOCK AUTO-HEALED",
           verdictType: "allow",
           metrics: "45,000 req/s Preserved • Zero Downtime"
@@ -3027,7 +3167,7 @@ External compliance auditors fail SOC2 certification.`,
           protectedSnippet: `[POLYGLOT FIREWALL] License check on 'node-fast-crypto-gpl'
 [LICENSE] GPL-3.0 (Copyleft Contamination Risk)
 [VERDICT] BLOCKED • Enforced MIT/Apache-2.0 approved alternative`,
-          unprotectedSnippet: `💥 Proprietary codebase legally contaminated with copyleft open-source license.`,
+          unprotectedSnippet: `[CRITICAL BREACH] Proprietary codebase legally contaminated with copyleft open-source license.`,
           verdict: "IP CONTAMINATION BLOCKED",
           verdictType: "block",
           metrics: "Commercial IP Protected • License Safe"
@@ -3162,7 +3302,7 @@ function renderPlaybookStep() {
     <div class="playbook-verdict-banner playbook-animate-fade">
       <div class="playbook-verdict-left">
         <span class="playbook-verdict-pill ${isProtected ? step.verdictType : 'block'}">
-          ${isProtected ? safePlaybookEscape(step.verdict) : '💥 PRODUCTION BREACH / OUTAGE'}
+          ${isProtected ? safePlaybookEscape(step.verdict) : 'CRITICAL PRODUCTION BREACH / OUTAGE'}
         </span>
         <span style="font-size:0.84rem;color:var(--text-secondary);font-weight:600;">
           ${isProtected ? safePlaybookEscape(step.metrics) : 'Regulatory Penalty • Production Outage • Stolen Credentials'}
@@ -3261,7 +3401,7 @@ function copyBibtexCitation() {
     }
   }).catch(() => {
     if (btn) {
-      btn.innerText = "✓ Copied!";
+      btn.innerText = "Copied!";
       setTimeout(() => { btn.innerHTML = origHtml; }, 2000);
     }
   });
@@ -3510,7 +3650,7 @@ function runAttackSimulation() {
 
   if (term) {
     const timeStr = new Date().toLocaleTimeString();
-    term.innerHTML += `<div class="term-line alert" style="margin-top:8px;">[${timeStr}] ⚠️ INCOMING ADVERSARIAL PACKET DETECTED! (${scen.mitreTag})</div>`;
+    term.innerHTML += `<div class="term-line alert" style="margin-top:8px;">[${timeStr}] [ALERT] INCOMING ADVERSARIAL PACKET DETECTED! (${scen.mitreTag})</div>`;
     term.scrollTop = term.scrollHeight;
   }
 
@@ -3557,7 +3697,7 @@ function runAttackSimulation() {
             const timeStr = new Date().toLocaleTimeString();
             term.innerHTML += `
               <div class="term-line safe" style="font-weight:700;margin-top:6px;border-top:1px dashed var(--safe-border);padding-top:6px;">
-                [${timeStr}] ✔ [DEFENSE COMPLETE] ${scen.verdict}. Attack completely thwarted.
+                [${timeStr}] [DEFENSE COMPLETE] ${scen.verdict}. Attack completely thwarted.
               </div>
             `;
             term.scrollTop = term.scrollHeight;
@@ -3584,7 +3724,7 @@ function copySimPayload() {
     }
   }).catch(() => {
     if (btn) {
-      btn.innerText = "✓ Copied!";
+      btn.innerText = "Copied!";
       setTimeout(() => { btn.innerHTML = origHtml; }, 2000);
     }
   });
@@ -3726,7 +3866,7 @@ function analyzeCustomExploitLive() {
       btn.classList.add("btn-state-success");
       btn.innerHTML = `
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        <span>Countermeasures Active ✓</span>
+        <span>Countermeasures Active [ENABLED]</span>
       `;
       setTimeout(() => {
         btn.classList.remove("btn-state-success");
@@ -3804,7 +3944,7 @@ function analyzeCustomExploitLive() {
       if (summaryEl) {
         summaryEl.innerHTML = `
           <div style="background:var(--blocked-bg);border:1px solid var(--blocked-border);padding:10px 12px;border-radius:6px;color:#991B1B;animation:viewFadeIn 0.25s ease;">
-            <strong>🚨 THREAT DETECTED &bull; PIPELINE HARD ABORTED</strong>
+            <strong>THREAT DETECTED &bull; PIPELINE HARD ABORTED</strong>
             <ul style="margin:6px 0 0;padding-left:18px;">
               ${threats.map(t => `<li><strong>${t}</strong></li>`).join("")}
             </ul>
@@ -3825,7 +3965,7 @@ function analyzeCustomExploitLive() {
       if (summaryEl) {
         summaryEl.innerHTML = `
           <div style="background:var(--review-bg);border:1px solid var(--review-border);padding:10px 12px;border-radius:6px;color:#92400E;animation:viewFadeIn 0.25s ease;">
-            <strong>⚠️ ELEVATED RISK &bull; HUMAN-IN-THE-LOOP REQUIRED</strong>
+            <strong>ELEVATED RISK &bull; HUMAN-IN-THE-LOOP REQUIRED</strong>
             <p style="margin:4px 0 0;font-size:0.75rem;">Elevated entropy or sensitive patterns detected. Routed to Supervisor Authorization Gate.</p>
           </div>
         `;
@@ -3843,7 +3983,7 @@ function analyzeCustomExploitLive() {
       if (summaryEl) {
         summaryEl.innerHTML = `
           <div style="background:var(--safe-bg);border:1px solid var(--safe-border);padding:10px 12px;border-radius:6px;color:#065F46;animation:viewFadeIn 0.25s ease;">
-            <strong>✔ CLEAN INPUT &bull; NORMAL EXECUTION PERMITTED</strong>
+            <strong>CLEAN INPUT &bull; NORMAL EXECUTION PERMITTED</strong>
             <p style="margin:4px 0 0;font-size:0.75rem;">No adversarial injection, dangerous system calls, or credential exfiltration detected.</p>
           </div>
         `;
@@ -3892,7 +4032,7 @@ function simulateHoneytokenTripLive() {
       <div style="background:#FEF2F2;border:1.5px solid #DC2626;border-radius:var(--radius-md);padding:14px 18px;color:#991B1B;">
         <div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:0.92rem;margin-bottom:6px;">
           <span class="live-pulse" style="background:#DC2626;"></span>
-          🚨 CRITICAL HONEYTOKEN TRIPWIRE ACTIVATED &bull; INTRUSION INTERCEPTED
+          CRITICAL HONEYTOKEN TRIPWIRE ACTIVATED &bull; INTRUSION INTERCEPTED
         </div>
         <p style="margin:0 0 8px;font-size:0.82rem;line-height:1.45;">
           [${timeStr}] Decoy Canary Credential (<code>AKIA-KAVACH-CANARY-8819-DECOY</code>) was accessed by an unauthorized agent inspection query.
@@ -4825,21 +4965,21 @@ function renderRawTerminalScreen(screen) {
 
   if (TERMINAL_DATA.activeTab === "master") {
     rawText += `============================================================================\n`;
-    rawText += ` 🛡️  KAVACH MASTER VERIFICATION SUITE — MID-TERM ACADEMIC EVALUATION\n`;
+    rawText += ` [SECURITY] KAVACH MASTER VERIFICATION SUITE — MID-TERM ACADEMIC EVALUATION\n`;
     rawText += ` Course: PRJ-IV Capstone | Evaluator: Prof. Anusha Chhabra | Date: 29/09/2026\n`;
     rawText += `============================================================================\n\n`;
 
     TERMINAL_DATA.masterChecks.forEach(c => {
-      let icon = (c.verdict === "PASS" || c.verdict === "ALLOWED") ? "✅ PASS" : (c.verdict === "BLOCKED" ? "🛡️ BLOCKED" : "⚠️ NEEDS_REVIEW");
+      let icon = (c.verdict === "PASS" || c.verdict === "ALLOWED") ? "PASS" : (c.verdict === "BLOCKED" ? "BLOCKED" : "NEEDS_REVIEW");
       rawText += `[${icon}] Check ${String(c.id).padStart(2, '0')}: ${c.title}\n`;
       rawText += `         └─ ${c.details} (${c.duration_ms} ms)\n`;
     });
 
     rawText += `\n============================================================================\n`;
-    rawText += ` 🏁 FINAL SUMMARY: 20 / 20 CHECKS PASSED (100% SUCCESS RATE)\n`;
+    rawText += ` [SUMMARY] FINAL SUMMARY: 20 / 20 CHECKS PASSED (100% SUCCESS RATE)\n`;
     rawText += ` Total Verification Duration: 452.8 ms\n`;
     rawText += `============================================================================\n`;
-    rawText += `🎉 ALL DELIVERABLES AND FUNCTIONALITIES ARE 100% OPERATIONAL & UP TO DATE!\n`;
+    rawText += `[VERIFIED] ALL DELIVERABLES AND FUNCTIONALITIES ARE 100% OPERATIONAL & UP TO DATE!\n`;
 
   } else if (TERMINAL_DATA.activeTab === "pytest") {
     rawText += `........................................................................ [ 43%]\n`;
@@ -5028,13 +5168,13 @@ function renderCliScannerOutput(screen, activePreset, customPrompt) {
     <div style="font-family:var(--font-mono); font-size:0.76rem; line-height:1.6; color:#CBD5E1;">
       <div style="color:#60A5FA; font-weight:700;">$ python repo_scanner_demo/main.py --prompt "${escapeHtml(query)}"</div>
       <div style="color:#94A3B8; margin-top:2px;">======================================================================</div>
-      <div style="color:#FFFFFF; font-weight:700;">🛡️  KAVACH 5-PHASE GOVERNED DEVOPS &amp; CODE GENERATION PIPELINE</div>
+      <div style="color:#FFFFFF; font-weight:700;">[PIPELINE] KAVACH 5-PHASE GOVERNED DEVOPS &amp; CODE GENERATION PIPELINE</div>
       <div style="color:#94A3B8;">======================================================================</div>
       <div style="color:#38BDF8;">[*] Ingesting Codebase: c:\\Users\\jaind\\Videos\\PRJ-IV Work\\kavach\\demo_repo</div>
       <div style="color:#34D399;">[+] Ingested 5 files (842 lines, 14 syntactic AST chunks)</div>
       <div style="margin-top:6px; color:#F8FAFC; font-weight:700;">[*] REQUEST: "${escapeHtml(query)}"</div>
       <div style="color:#64748B;">----------------------------------------------------------------------</div>
-      <div style="color:#FBBF24; font-weight:700; margin:6px 0;">📊 EXECUTION PIPELINE PHASES:</div>
+      <div style="color:#FBBF24; font-weight:700; margin:6px 0;">[PHASES] EXECUTION PIPELINE PHASES:</div>
   `;
 
   p.phases.forEach(ph => {
@@ -5054,11 +5194,11 @@ function renderCliScannerOutput(screen, activePreset, customPrompt) {
   outHtml += `
       <div style="color:#64748B; margin-top:6px;">----------------------------------------------------------------------</div>
       <div style="font-weight:700; color:#FFFFFF; font-size:0.8rem;">
-        🎯 FINAL GOVERNANCE VERDICT: <span style="color:${vCol}; font-weight:700;">[${p.verdict}]</span> (Stage: ${p.verdict === 'ALLOWED' ? 'SUCCESS' : 'PRE_EXECUTION_BLOCKED'})
+        [VERDICT] FINAL GOVERNANCE VERDICT: <span style="color:${vCol}; font-weight:700;">[${p.verdict}]</span> (Stage: ${p.verdict === 'ALLOWED' ? 'SUCCESS' : 'PRE_EXECUTION_BLOCKED'})
       </div>
-      <div style="color:#94A3B8;">⏱️  Total Duration: ${p.total_duration_ms} ms &bull; Security Guard Overhead: 18.4 ms (&lt;2%)</div>
+      <div style="color:#94A3B8;">Duration: ${p.total_duration_ms} ms &bull; Security Guard Overhead: 18.4 ms (&lt;2%)</div>
       <div style="color:#64748B;">======================================================================</div>
-      <div style="color:#60A5FA; font-weight:700; margin-top:8px;">📄 OUTPUT / GENERATED RESULT:</div>
+      <div style="color:#60A5FA; font-weight:700; margin-top:8px;">[OUTPUT] GENERATED RESULT:</div>
       <pre style="background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:10px; margin-top:4px; color:${p.verdict === 'ALLOWED' ? '#6EE7B7' : '#FCA5A5'}; font-size:0.73rem; overflow-x:auto;">${escapeHtml(p.output)}</pre>
     </div>
   `;
@@ -5147,7 +5287,7 @@ function copyTerminalLogs() {
     const copyBtnText = document.getElementById("copy-term-btn-text");
     if (copyBtnText) {
       const orig = copyBtnText.textContent;
-      copyBtnText.textContent = "✔ Copied!";
+      copyBtnText.textContent = "Copied!";
       setTimeout(() => copyBtnText.textContent = orig, 2000);
     }
   }).catch(() => {

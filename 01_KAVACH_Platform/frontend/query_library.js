@@ -1231,13 +1231,13 @@ function renderQueryLibraryList() {
 
   container.innerHTML = filtered.map(item => {
     let verdictClass = "verdict-pill-allowed";
-    let verdictIcon = "✅";
+    let verdictIcon = "ALLOW";
     if (item.verdict === "BLOCKED") {
       verdictClass = "verdict-pill-blocked";
-      verdictIcon = "🛡️";
+      verdictIcon = "BLOCK";
     } else if (item.verdict === "NEEDS_REVIEW") {
       verdictClass = "verdict-pill-review";
-      verdictIcon = "⚠️";
+      verdictIcon = "REVIEW";
     }
 
     const safeEscapedQuery = escapeQueryHtml(item.query);
@@ -1311,7 +1311,7 @@ function runQueryInstantly(queryId) {
     closeQueryLibraryModal();
 
     textarea.scrollIntoView({ behavior: "smooth", block: "center" });
-    showLibraryToast(`⚡ Executing Vector ${item.id} (${item.verdict})...`);
+    showLibraryToast(`Executing Vector ${item.id} (${item.verdict})...`);
 
     setTimeout(() => {
       submitBtn.click();
@@ -1335,7 +1335,7 @@ function loadRandomQueryIntoRequest() {
     textarea.scrollIntoView({ behavior: "smooth", block: "center" });
     textarea.focus();
 
-    showLibraryToast(`🎲 Random Vector ${randomItem.id} Loaded: "${randomItem.title}"`);
+    showLibraryToast(`Random Vector ${randomItem.id} Loaded: "${randomItem.title}"`);
   }
 }
 
@@ -1346,7 +1346,7 @@ async function copyQuerySnippet(buttonEl, text) {
   try {
     await navigator.clipboard.writeText(text);
     const origText = buttonEl.textContent;
-    buttonEl.textContent = "Copied! ✓";
+    buttonEl.textContent = "Copied!";
     buttonEl.style.color = "var(--safe)";
     setTimeout(() => {
       buttonEl.textContent = origText;
@@ -1360,7 +1360,7 @@ async function copyQuerySnippet(buttonEl, text) {
     t.select();
     document.execCommand("copy");
     document.body.removeChild(t);
-    buttonEl.textContent = "Copied! ✓";
+    buttonEl.textContent = "Copied!";
     setTimeout(() => { buttonEl.textContent = "Copy"; }, 1200);
   }
 }

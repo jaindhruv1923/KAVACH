@@ -547,7 +547,7 @@ class KavachBankingShield:
         """Return list of transactions queued in HITL escrow for officer sign-off."""
         return list(self.pending_hitl_transactions.values())
 
-    def approve_hitl_transfer(self, pending_id: str, approver_officer_id: str = "OFFICER-007") -> Dict[str, Any]:
+    def approve_hitl_transfer(self, pending_id: str, approver_officer_id: str = "OFFICER-007", officer_notes: str = "") -> Dict[str, Any]:
         """Senior Compliance Officer approves a queued high-value transfer."""
         if pending_id not in self.pending_hitl_transactions:
             return {"status": "ERROR", "message": f"Pending HITL transaction '{pending_id}' not found."}
@@ -563,7 +563,7 @@ class KavachBankingShield:
             approver_officer_id=approver_officer_id,
         )
 
-    def reject_hitl_transfer(self, pending_id: str, officer_notes: str = "Suspicious high-value transfer") -> Dict[str, Any]:
+    def reject_hitl_transfer(self, pending_id: str, officer_notes: str = "Suspicious high-value transfer", rejector_officer_id: str = "OFFICER-007") -> Dict[str, Any]:
         """Compliance Officer rejects a queued high-value transfer."""
         if pending_id not in self.pending_hitl_transactions:
             return {"status": "ERROR", "message": f"Pending HITL transaction '{pending_id}' not found."}

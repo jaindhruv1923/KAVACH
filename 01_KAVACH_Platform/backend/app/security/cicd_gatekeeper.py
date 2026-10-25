@@ -66,7 +66,7 @@ def audit_git_patch_diff(diff_text: str, pr_number: int = 1) -> Dict[str, Any]:
             "blocked_reasons": [],
             "warnings": [],
             "files_analyzed": 0,
-            "pr_comment_markdown": "### 🛡️ KAVACH CI/CD Gate: Clean Diff\nNo additions detected in pull request diff."
+            "pr_comment_markdown": "### [SECURITY] KAVACH CI/CD Gate: Clean Diff\nNo additions detected in pull request diff."
         }
 
     diff_map = parse_git_diff_additions(diff_text)
@@ -133,7 +133,7 @@ def audit_git_patch_diff(diff_text: str, pr_number: int = 1) -> Dict[str, Any]:
     )
 
     # Format Markdown PR Comment
-    status_icon = "🟢" if verdict == "ALLOWED" else ("🟡" if verdict == "NEEDS_REVIEW" else "🔴")
+    status_icon = "[ALLOWED]" if verdict == "ALLOWED" else ("[NEEDS_REVIEW]" if verdict == "NEEDS_REVIEW" else "[BLOCKED]")
     comment_md = f"""## {status_icon} KAVACH Autonomous CI/CD Pre-Merge Gate: **{verdict}**
 
 | Audit Metric | Verdict & Status |
@@ -144,20 +144,20 @@ def audit_git_patch_diff(diff_text: str, pr_number: int = 1) -> Dict[str, Any]:
 | **Warnings Flagged** | `{len(warnings)}` review items |
 | **Merkle Ledger Root** | `{ledger_entry['merkle_root'][:16]}...` |
 
-### 🔍 Security Findings Breakdown:
+### Security Findings Breakdown:
 """
     if blocked_reasons:
-        comment_md += "\n**🚨 Blocking Issues (Merge Halted):**\n"
+        comment_md += "\n**Blocking Issues (Merge Halted):**\n"
         for r in blocked_reasons:
-            comment_md += f"- ❌ {r}\n"
+            comment_md += f"- [BLOCKED] {r}\n"
 
     if warnings:
-        comment_md += "\n**⚠️ Security Warnings (Review Required):**\n"
+        comment_md += "\n**Security Warnings (Review Required):**\n"
         for w in warnings:
-            comment_md += f"- ⚠️ {w}\n"
+            comment_md += f"- [WARNING] {w}\n"
 
     if not blocked_reasons and not warnings:
-        comment_md += "\n✅ **100% Policy Clean:** Zero credential leaks, zero package hallucinations, and zero dangerous sinks detected.\n"
+        comment_md += "\n[PASS] **100% Policy Clean:** Zero credential leaks, zero package hallucinations, and zero dangerous sinks detected.\n"
 
     return {
         "verdict": verdict,

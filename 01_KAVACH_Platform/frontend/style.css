@@ -9528,3 +9528,1373 @@ button:active:not(:disabled),
   border-bottom: 1px solid #E2E8F0;
   overflow-x: auto;
 }
+
+/* ==========================================================================
+   ELI5 (EXPLAIN LIKE I'M 5) ACADEMIC & MATHEMATICAL KNOWLEDGE HUB STYLES
+   BML Munjal University — CSE3101: Agentic AI
+   ========================================================================== */
+
+.eli5-trigger-container {
+  width: 100%;
+  margin: 10px 0 12px 0;
+}
+
+/* =============================================================================
+   Enterprise Blue & White Governance & Knowledge Systems:
+   - Explain Like I'm 5 (ELI5) Academic & Math Codex
+   - Official Government Rules & Statutory Codex
+   Strict Clean Blue, White & Slate Enterprise Aesthetics
+   ============================================================================= */
+
+/* Statutory / Compliance Badges */
+.comic-pow-burst {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border: 1px solid #BFDBFE;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.comic-burst-inverted {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+.comic-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #F8FAFC;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.comic-badge-inverted {
+  background: #0F172A !important;
+  color: #F8FAFC !important;
+  border: 1px solid #1E293B !important;
+}
+
+/* =============================================================================
+   KAVACH Dashboard Gateway Buttons (Clean Blue & White)
+   ============================================================================= */
+.eli5-trigger-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  text-align: left;
+  user-select: none;
+}
+
+.eli5-trigger-button:hover {
+  border-color: #2563EB;
+  background: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.09);
+  transform: translateY(-1px);
+}
+
+.eli5-trigger-button:active {
+  transform: translateY(0);
+}
+
+.eli5-btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.eli5-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.eli5-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #2563EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.eli5-trigger-button:hover .eli5-icon-box {
+  background: #2563EB;
+  color: #FFFFFF;
+  border-color: #2563EB;
+}
+
+.eli5-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.eli5-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.eli5-main-title {
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.1px;
+}
+
+.eli5-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.77rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.eli5-btn-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.eli5-trigger-button:hover .eli5-btn-action {
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* Official Government Rules Codex Button (KAVACH Platform) */
+.comic-btn-gov-kavach {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  text-align: left;
+  user-select: none;
+}
+
+.comic-btn-gov-kavach:hover {
+  border-color: #0284C7;
+  background: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.09);
+  transform: translateY(-1px);
+}
+
+.comic-btn-gov-kavach:active {
+  transform: translateY(0);
+}
+
+.comic-kavach-btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.comic-kavach-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.gov-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: #F0F9FF;
+  border: 1px solid #BAE6FD;
+  color: #0284C7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.comic-btn-gov-kavach:hover .gov-icon-box {
+  background: #0284C7;
+  color: #FFFFFF;
+  border-color: #0284C7;
+}
+
+.comic-kavach-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.comic-kavach-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.comic-kavach-main-title {
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.1px;
+}
+
+.comic-kavach-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.77rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.comic-kavach-btn-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.comic-btn-gov-kavach:hover .comic-kavach-btn-action {
+  background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+}
+
+/* Floating Action Button */
+.floating-eli5-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+  align-self: flex-end;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.floating-eli5-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+}
+
+/* Badges */
+.badge-outline-blue {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  border: 1px solid #BFDBFE !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem !important;
+  padding: 2px 7px !important;
+  border-radius: 5px !important;
+}
+
+.badge-outline-gov {
+  background: #F0F9FF !important;
+  color: #0369A1 !important;
+  border: 1px solid #BAE6FD !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem !important;
+  padding: 2px 7px !important;
+  border-radius: 5px !important;
+}
+
+.badge-outline-safe {
+  background: #ECFDF5 !important;
+  color: #047857 !important;
+  border: 1px solid #A7F3D0 !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem !important;
+  padding: 2px 7px !important;
+  border-radius: 5px !important;
+}
+
+/* =============================================================================
+   Modal Windows (Clean Blue & White Enterprise Theme)
+   ============================================================================= */
+#eli5-academic-modal,
+.comic-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  transition: opacity 0.2s ease;
+}
+
+#eli5-academic-modal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#eli5-academic-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.eli5-modal-window,
+.comic-modal-window {
+  max-width: 1140px;
+  width: 96%;
+  max-height: 90vh;
+  background: #FFFFFF;
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: enterpriseModalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes enterpriseModalPop {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.eli5-modal-header,
+.comic-modal-header {
+  padding: 18px 24px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.eli5-header-title-box,
+.comic-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eli5-header-title-box h3,
+.comic-header-title {
+  font-family: var(--font-sans);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.comic-header-sub {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin: 2px 0 0;
+}
+
+.gov-header-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #2563EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.comic-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eli5-close-btn,
+.comic-modal-close {
+  background: #F8FAFC;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  line-height: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.eli5-close-btn:hover,
+.comic-modal-close:hover {
+  background: #F1F5F9;
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+/* Sub-Navigation & Filters Bar */
+.eli5-subnav-bar,
+.comic-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.eli5-filter-pills,
+.comic-filter-group {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  align-items: center;
+}
+
+.eli5-pill-tab,
+.comic-pill-filter {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.eli5-pill-tab:hover,
+.comic-pill-filter:hover {
+  border-color: #2563EB;
+  color: #2563EB;
+  background: #EFF6FF;
+}
+
+.eli5-pill-tab.active,
+.comic-pill-filter.active {
+  background: #2563EB;
+  color: #FFFFFF;
+  border-color: #2563EB;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.eli5-search-input,
+.comic-search-input {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-medium);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  width: 260px;
+  outline: none;
+  background: #FFFFFF;
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.eli5-search-input:focus,
+.comic-search-input:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Executive Statutory Advisory Banner */
+.comic-speech-banner {
+  padding: 14px 24px;
+  background: #EFF6FF;
+  border-bottom: 1px solid #BFDBFE;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.comic-avatar-badge {
+  width: 36px;
+  height: 36px;
+  background: #FFFFFF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.comic-speech-bubble {
+  background: #FFFFFF;
+  border: 1px solid #BFDBFE;
+  border-radius: 10px;
+  padding: 12px 18px;
+  flex: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.comic-bubble-tag {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #1D4ED8;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.comic-bubble-text {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #1E3A8A;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Modal Body */
+.eli5-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  background: #F8FAFC;
+}
+
+.comic-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  max-height: calc(90vh - 240px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  gap: 18px;
+  background: #F8FAFC;
+}
+
+/* Course Outcomes Banner Card */
+.eli5-co-banner {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 22px;
+}
+
+.eli5-co-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.eli5-co-item {
+  background: #F8FAFC;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.eli5-co-tag {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #2563EB;
+  font-size: 0.76rem;
+  margin-bottom: 3px;
+  display: block;
+}
+
+/* ELI5 Topic Cards */
+.eli5-topic-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.eli5-topic-card:hover {
+  border-color: #2563EB;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+  transform: translateY(-1px);
+}
+
+.eli5-topic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.eli5-topic-title {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eli5-co-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.eli5-co-badge-pill {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.eli5-session-badge {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #F1F5F9;
+  color: #334155;
+  border: 1px solid #CBD5E1;
+}
+
+/* Structured Plain-English Section */
+.eli5-child-box {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-left: 4px solid #2563EB;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+
+.eli5-child-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1D4ED8;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.eli5-child-text {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #1E3A8A;
+  margin: 0;
+}
+
+/* Engineering Implementation Box */
+.eli5-reality-box {
+  background: #F8FAFC;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+
+.eli5-reality-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.eli5-reality-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Math Formula Container */
+.eli5-math-box {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  border-left: 4px solid #2563EB !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  border-radius: 10px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 14px !important;
+  position: relative !important;
+}
+
+.eli5-math-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #E2E8F0;
+}
+
+.eli5-math-tag {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #2563EB;
+  text-transform: uppercase;
+}
+
+.eli5-copy-btn {
+  background: #EFF6FF !important;
+  border: 1px solid #BFDBFE !important;
+  color: #1D4ED8 !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.eli5-copy-btn:hover {
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  border-color: #2563EB !important;
+}
+
+.eli5-formula-display {
+  padding: 8px 0;
+  overflow-x: auto;
+  color: #0F172A;
+  font-size: 1.02rem;
+}
+
+/* KaTeX Formula Display */
+.math-katex-container {
+  overflow-x: auto;
+  padding: 6px 0;
+  color: #0F172A;
+}
+
+.math-katex-container .katex {
+  font-size: 1.15em !important;
+  color: #0F172A;
+}
+
+.math-katex-container .katex-display {
+  margin: 0.5em 0 !important;
+  text-align: left !important;
+}
+
+/* Semantic HTML / CSS Academic Math Engine */
+.math-html-container {
+  font-family: "STIX Two Math", "Cambria Math", "Latin Modern Math", serif;
+  color: #0F172A;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.math-equation-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 0;
+}
+
+.math-sym-bold {
+  font-weight: 700;
+  color: #0F172A;
+  font-style: italic;
+}
+
+.math-sym-op {
+  color: #2563EB;
+  font-weight: 600;
+  padding: 0 2px;
+}
+
+.math-sym-func {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: #1E3A8A;
+  font-style: normal;
+}
+
+.math-sym-term {
+  color: #0F172A;
+}
+
+.math-sym-where {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: #475569;
+  font-style: italic;
+}
+
+.math-sigma-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1;
+  margin: 0 4px;
+}
+
+.math-sigma-sup {
+  font-size: 0.68em;
+  font-weight: 600;
+  color: #334155;
+}
+
+.math-sigma-char {
+  font-size: 1.6em;
+  line-height: 0.9;
+  color: #2563EB;
+}
+
+.math-sigma-sub {
+  font-size: 0.68em;
+  font-weight: 600;
+  color: #334155;
+}
+
+.math-fraction {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  align-items: center;
+  margin: 0 4px;
+}
+
+.math-fraction .math-num {
+  border-bottom: 1.5px solid #0F172A;
+  padding: 0 4px 2px;
+  font-size: 0.88em;
+  text-align: center;
+}
+
+.math-fraction .math-denom {
+  padding: 2px 4px 0;
+  font-size: 0.88em;
+  text-align: center;
+}
+
+.math-cases-row {
+  align-items: center;
+}
+
+.math-brace {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #2563EB;
+  line-height: 1;
+  margin: 0 4px;
+  user-select: none;
+}
+
+.math-cases-lines {
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 0.85em;
+  gap: 3px;
+}
+
+.math-subnote {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: #64748B;
+  font-style: normal;
+}
+
+.math-decision-pill {
+  margin-top: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.math-decision-pill.tag-primary {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1D4ED8;
+}
+
+.math-decision-pill.tag-danger {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #B91C1C;
+}
+
+.math-decision-pill.tag-success {
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  color: #047857;
+}
+
+.eli5-formula-vars {
+  font-family: var(--font-sans) !important;
+  font-size: 0.78rem !important;
+  color: #475569 !important;
+  margin-top: 10px !important;
+  line-height: 1.5 !important;
+  border-top: 1px solid #E2E8F0 !important;
+  padding-top: 10px !important;
+}
+
+.eli5-formula-vars code {
+  color: #1D4ED8 !important;
+  background: #EFF6FF !important;
+  border: 1px solid #DBEAFE !important;
+  padding: 1px 5px !important;
+  border-radius: 4px !important;
+}
+
+.eli5-code-ref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.eli5-code-link {
+  font-family: var(--font-mono);
+  color: #2563EB;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.eli5-code-link:hover {
+  text-decoration: underline;
+}
+
+/* =============================================================================
+   Statutory Panels (Clean Blue & White Enterprise Theme)
+   ============================================================================= */
+.comic-panel-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.comic-panel-card:hover {
+  border-color: #2563EB;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+  transform: translateY(-1px);
+}
+
+.comic-panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comic-issue-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comic-issue-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #BFDBFE;
+}
+
+.comic-burst-tag {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #334155;
+  background: #F1F5F9;
+  padding: 3px 8px;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+}
+
+.comic-cat-badge {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  background: #F8FAFC;
+  color: var(--text-secondary);
+  padding: 3px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+}
+
+.comic-statute-title {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
+  letter-spacing: -0.1px;
+}
+
+.comic-citation-box {
+  font-size: 0.78rem;
+  background: #F8FAFC;
+  border: 1px solid var(--border-subtle);
+  padding: 6px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.comic-cite-label {
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.comic-cite-text {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.comic-mandate-speech {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-left: 4px solid #2563EB;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.comic-mandate-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1D4ED8;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.comic-mandate-text {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1E3A8A;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.comic-legal-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.comic-legal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.comic-legal-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Formal Statutory Penalty Box */
+.comic-penalty-box {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-left: 4px solid #DC2626;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.comic-penalty-badge {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #B91C1C;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+.comic-penalty-desc {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #7F1D1D;
+  line-height: 1.45;
+}
+
+/* Formal System Enforcement Box */
+.comic-defense-box {
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-left: 4px solid #059669;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.comic-defense-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #047857;
+  margin-bottom: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.comic-defense-text {
+  font-size: 0.84rem;
+  color: #065F46;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.comic-action-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.comic-interactive-btn {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+}
+
+.comic-interactive-btn:hover {
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.comic-verified-tag {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #059669;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.comic-modal-footer {
+  padding: 14px 24px;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.comic-footer-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.comic-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  animation: pulseIndicator 1.8s infinite;
+}
+
+@keyframes pulseIndicator {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+
+.comic-btn-action {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+}
+
+.comic-btn-action:hover {
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.comic-btn-dismiss {
+  background: #FFFFFF;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.comic-btn-dismiss:hover {
+  background: #F8FAFC;
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+
+

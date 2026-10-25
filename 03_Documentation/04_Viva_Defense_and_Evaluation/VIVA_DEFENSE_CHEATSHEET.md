@@ -1,4 +1,4 @@
-# 🎓 KAVACH Viva Defense & Evaluator Q&A Cheatsheet
+#  KAVACH Viva Defense & Evaluator Q&A Cheatsheet
 ## *Mid-Term Presentation Defense Guide for Prof. Anusha Chhabra*
 
 **Course:** PRJ-IV Capstone Project (7th Semester B.Tech CSE)  
@@ -7,7 +7,7 @@
 
 ---
 
-## 🎯 Top Anticipated Evaluator Questions & High-Impact Answers
+##  Top Anticipated Evaluator Questions & High-Impact Answers
 
 ### 1. Literature Review & Theoretical Foundations (10 Marks)
 
@@ -100,6 +100,6 @@
 
 ---
 
-## ⚡ Quick 30-Second Elevator Pitch
+##  Quick 30-Second Elevator Pitch
 > *"Respected evaluators, autonomous coding agents like Devin and SWE-agent provide tremendous engineering velocity, but deploying them in enterprises creates catastrophic risks: supply-chain package slopsquatting, credential exfiltration, ReDoS bombs, and blast-radius regressions. KAVACH is the first deterministic, multi-stage governance framework that intercepts requests before LLM dispatch, blocks 100% of package hallucinations via an AST Supply-Chain Firewall, protects Indian PII under the DPDP Act via a Zero-Knowledge Token Vault, neutralizes 19 cyber attack vectors across 15 defense engines (including Trojan Source, SSRF, Steganography, ReDoS, and RAG Poisoning), anchors audit events to a NIST FIPS 202 SHA3-512 Post-Quantum Cryptographic Merkle ledger, and auto-repairs failing code using a closed-loop ReAct sandbox—all with under 20 ms overhead."*
 

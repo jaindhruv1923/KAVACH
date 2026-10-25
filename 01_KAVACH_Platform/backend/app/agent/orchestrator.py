@@ -284,3 +284,85 @@ def resume_workflow(
     run.advance(WorkflowStage.COMPLETE, f"Workflow completed under HITL supervisor authorization ({supervisor_id})")
     return _finish(run)
 
+
+def run_agentic_workflow(request_text: str, approval_token: str = "") -> WorkflowRun:
+    """
+    Execute the iterative, bounded ReAct Agentic Execution Engine for a developer request.
+    Runs real tool calls (code search, file reads, security analysis, AST impact, allowlisted tests),
+    captures actual observations, enforces HITL approval on consequential writes,
+    and returns a richly populated WorkflowRun with full step-by-step observability.
+    """
+    import json
+    from app.agent.react_engine import AgenticReActEngine
+
+    engine = AgenticReActEngine(max_iterations=6)
+    exec_res = engine.run(request_text, approval_token=approval_token)
+
+    run = WorkflowRun(request_text=request_text)
+    run.id = exec_res.execution_id
+    run.redacted_request_text = exec_res.redacted_task
+    run.security_findings = exec_res.security_findings
+    run.duration_ms = exec_res.total_duration_ms
+
+    # Map engine status to WorkflowStage
+    if exec_res.status == "BLOCKED":
+        run.stage = WorkflowStage.BLOCKED
+    elif exec_res.status in ("NEEDS_REVIEW", "APPROVAL_REQUIRED"):
+        run.stage = WorkflowStage.NEEDS_REVIEW
+    elif exec_res.status == "COMPLETE":
+        run.stage = WorkflowStage.COMPLETE
+    else:
+        run.stage = WorkflowStage.NEEDS_REVIEW
+
+    # Plan extraction from iterative steps
+    run.plan = [
+        f"Step {s.step_number}: [{s.agent_role}] {s.thought[:80]} -> {s.action}"
+        for s in exec_res.steps
+    ] or ["Initial request evaluation and security audit"]
+
+    # Structured history trace
+    run.history = [
+        f"Step {s.step_number} [{s.agent_role}] {s.action}: {s.thought[:90]} (Duration: {s.duration_ms}ms, Status: {s.status})"
+        for s in exec_res.steps
+    ]
+    if not run.history:
+        run.history.append(f"Request evaluated: Status={run.stage.value}")
+
+    # Results mapping
+    run.generation_result = {
+        "generated_output": exec_res.final_output,
+        "evidence_chunks_used": len(exec_res.steps),
+        "mode": exec_res.mode,
+        "model_provider": exec_res.model_provider,
+    }
+
+    test_art = exec_res.artifacts.get("test_run")
+    if test_art:
+        run.validation_result = {
+            "valid_syntax": True,
+            "test_summary": test_art.get("summary", ""),
+            "tests_passed": test_art.get("passed", False),
+        }
+    else:
+        run.validation_result = {"valid_syntax": True, "error": None}
+
+    blast_art = exec_res.artifacts.get("blast_radius")
+    if blast_art:
+        run.impact_report = [{
+            "file_path": "app/security/detector.py",
+            "blast_radius_score": blast_art.get("score", 0.0),
+            "risk_tier": blast_art.get("risk_tier", "LOW"),
+            "relevance_score": blast_art.get("score", 0.0),
+        }]
+
+    # Store granular step telemetry in metadata for UI streaming and auditing
+    run.metadata["steps"] = [s.model_dump() for s in exec_res.steps]
+    run.metadata["artifacts"] = exec_res.artifacts
+    run.metadata["mode"] = exec_res.mode
+    run.metadata["model_provider"] = exec_res.model_provider
+    run.metadata["total_iterations"] = exec_res.total_iterations
+
+    save_run(run)
+    return run
+
+

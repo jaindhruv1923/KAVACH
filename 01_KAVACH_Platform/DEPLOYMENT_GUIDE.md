@@ -1,10 +1,10 @@
-# 🚀 KAVACH: Cloud Deployment & Custom Domain Guide (e.g., `kavach.co`)
+#  KAVACH: Cloud Deployment & Custom Domain Guide (e.g., `kavach.co`)
 
 This guide shows you step-by-step how to deploy **KAVACH** permanently to the live internet with your own custom domain (e.g. `kavach.co`, `kavach.dev`, `kavach-security.io`) and free automatic HTTPS/SSL certificates.
 
 ---
 
-## ⚡ Quick Architecture Overview
+##  Quick Architecture Overview
 
 Because KAVACH is built with FastAPI mounting the frontend static assets under `/static` and redirecting `/` to the dashboard, **the entire app runs as a single unified service**:
 - **Backend API**: FastAPI on `uvicorn`
@@ -13,7 +13,7 @@ Because KAVACH is built with FastAPI mounting the frontend static assets under `
 
 ---
 
-## 🌟 Method 1: Render.com (Recommended — 100% Free Tier + Custom Domain)
+##  Method 1: Render.com (Recommended — 100% Free Tier + Custom Domain)
 
 Render is the simplest and most reliable platform for hosting full-stack Python/FastAPI projects with free SSL and custom domain support.
 
@@ -49,7 +49,7 @@ Render is the simplest and most reliable platform for hosting full-stack Python/
 
 ---
 
-## 🌐 Method 2: Railway.app (Alternative 1-Click Cloud)
+##  Method 2: Railway.app (Alternative 1-Click Cloud)
 
 1. Go to [railway.app](https://railway.app).
 2. Click **New Project** &rarr; **Deploy from GitHub repo**.
@@ -59,7 +59,7 @@ Render is the simplest and most reliable platform for hosting full-stack Python/
 
 ---
 
-## 🏷️ How to Connect Your Custom Domain (`kavach.co` / `kavach.dev`)
+## ️ How to Connect Your Custom Domain (`kavach.co` / `kavach.dev`)
 
 ### Step 1: Buy Your Domain Name
 You can purchase `kavach.co`, `kavach.dev`, `kavach.io`, or `kavach-security.org` from any registrar:
@@ -84,13 +84,13 @@ If you use Cloudflare for DNS (Free):
 | `CNAME` | `www` | `kavach-security.onrender.com` | Proxied (Orange) | Auto |
 
 Cloudflare will automatically provide:
-- 🔒 **Zero-SSL / Global HTTPS**
-- ⚡ **Global CDN Edge Caching**
-- 🛡️ **DDoS & Web Application Firewall (WAF)**
+-  **Zero-SSL / Global HTTPS**
+-  **Global CDN Edge Caching**
+- ️ **DDoS & Web Application Firewall (WAF)**
 
 ---
 
-## 🐳 Method 3: Self-Hosting with Docker (VPS / AWS / DigitalOcean)
+##  Method 3: Self-Hosting with Docker (VPS / AWS / DigitalOcean)
 
 If you prefer full control on an Ubuntu VPS ($4-$6/mo on DigitalOcean, Hetzner, or AWS Lightsail):
 
@@ -121,7 +121,7 @@ Run `certbot --nginx -d kavach.co -d www.kavach.co` to get a free SSL certificat
 
 ---
 
-## 🛡️ Checklist Before Launching Publicly
+## ️ Checklist Before Launching Publicly
 
 - [ ] Set `GEMINI_API_KEY` in your hosting dashboard environment variables.
 - [ ] Confirm `/health` returns status `200` (`https://kavach.co/health`).

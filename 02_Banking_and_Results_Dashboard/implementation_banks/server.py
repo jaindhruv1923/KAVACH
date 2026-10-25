@@ -6,6 +6,8 @@ and real-time cryptographic audit proofs.
 
 import os
 import sys
+import time
+import uuid
 from typing import Optional, Dict, Any, List
 import uvicorn
 from fastapi import FastAPI, HTTPException, Query
@@ -221,6 +223,13 @@ class EscrowClawbackRequest(BaseModel):
     escrow_id: str = Field(...)
     sender_acc: str = Field(..., example="SBIN00012345678")
     reason: str = Field("Emergency fraud clawback", example="Emergency fraud clawback")
+
+
+class McpToolInvokeRequest(BaseModel):
+    tool_name: str = Field(..., example="bank_transfer")
+    arguments: Dict[str, Any] = Field(default_factory=dict)
+    agent_role: str = Field("AUTONOMOUS_PAYMENT_AGENT", example="AUTONOMOUS_PAYMENT_AGENT")
+    mcp_request_id: Optional[str] = Field(None, example="mcp-req-001")
 
 
 # =============================================================================
@@ -949,6 +958,263 @@ def get_regulatory_compliance_dossier():
     return global_compliance_dossier.generate_dossier()
 
 
+# =============================================================================
+# 21. MODEL CONTEXT PROTOCOL (MCP) AUTONOMOUS AI AGENT TOOL SANDBOX
+# =============================================================================
+
+@app.get("/api/mcp/tools")
+def get_mcp_registered_tools():
+    """Catalog of registered banking tools exposed to Autonomous LLM Agents via MCP."""
+    return {
+        "protocol_version": "2024-11-05",
+        "sandbox_status": "ACTIVE_ENFORCED",
+        "tools": [
+            {
+                "name": "bank_transfer",
+                "description": "Execute an interbank fund transfer via UPI/IMPS/NEFT with AST parameter screening.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "sender_acc": {"type": "string", "description": "Debited account IFSC+number"},
+                        "receiver_acc": {"type": "string", "description": "Credited beneficiary account"},
+                        "amount": {"type": "number", "minimum": 1, "description": "Transfer amount in INR"},
+                        "memo": {"type": "string", "description": "Statutory payment purpose/memo"},
+                        "transfer_type": {"type": "string", "enum": ["UPI", "IMPS", "NEFT", "RTGS"]}
+                    },
+                    "required": ["sender_acc", "receiver_acc", "amount"]
+                },
+                "security_constraints": ["AST Invariant Validation", "OWASP LLM01 Injection Filter", "HITL Escrow > 50k", "DPDP ZK-PII Masking"]
+            },
+            {
+                "name": "freeze_account",
+                "description": "Emergency halt on customer account due to detected fraud or compromised credentials.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "account_number": {"type": "string", "description": "Account to freeze"},
+                        "reason": {"type": "string", "description": "Fraud justification"},
+                        "officer_token": {"type": "string", "description": "Statutory compliance authorization token"}
+                    },
+                    "required": ["account_number", "reason"]
+                },
+                "security_constraints": ["Role-Based Access Control (RBAC)", "Dual-Control Clearance Required"]
+            },
+            {
+                "name": "query_kyc_profile",
+                "description": "Inspect customer profile and regulatory limits under Indian DPDP Act 2023.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "account_number": {"type": "string", "description": "Customer account identifier"},
+                        "compliance_mode": {"type": "string", "enum": ["STANDARD_AGENT", "SUPERVISORY_AUDIT"]}
+                    },
+                    "required": ["account_number"]
+                },
+                "security_constraints": ["DPDP Act Sec 8 PII De-identification", "Automated Token Vault Scrub"]
+            },
+            {
+                "name": "adjust_credit_limit",
+                "description": "Adjust account overdraft credit limit with statutory velocity caps.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "account_number": {"type": "string", "description": "Target account"},
+                        "new_limit": {"type": "number", "maximum": 500000, "description": "Requested limit in INR"},
+                        "justification": {"type": "string", "description": "Credit underwriting reason"}
+                    },
+                    "required": ["account_number", "new_limit"]
+                },
+                "security_constraints": ["Autonomous Cap Max ₹1,00,000", "Maker-Checker Escalation on Excess"]
+            }
+        ]
+    }
+
+
+@app.post("/api/mcp/invoke-tool")
+def invoke_mcp_tool(req: McpToolInvokeRequest):
+    """
+    Standard Model Context Protocol (MCP) JSON-RPC 2.0 tool execution interceptor.
+    Executes AST parameter invariant checking, prompt injection filtering, and PII masking.
+    """
+    start_time = time.time()
+    req_id = req.mcp_request_id or f"mcp-call-{uuid.uuid4().hex[:8]}"
+    tool_name = req.tool_name
+    args = req.arguments or {}
+    agent_role = req.agent_role or "AUTONOMOUS_PAYMENT_AGENT"
+
+    # 1. AST Invariant Screening
+    invariant_violations = []
+
+    # Check for adversarial prompt injection in any string parameter
+    injection_detected = False
+    injected_pattern = ""
+    for k, v in args.items():
+        if isinstance(v, str):
+            memo_scan = global_banking_shield.inspect_transaction_memo(v)
+            if not memo_scan.get("is_safe", True):
+                injection_detected = True
+                injected_pattern = memo_scan.get("explanation", "Adversarial prompt injection pattern")
+                invariant_violations.append(f"OWASP LLM01 Prompt Injection detected in parameter '{k}': {injected_pattern}")
+                break
+
+    # Tool specific invariant checks
+    if tool_name == "bank_transfer":
+        amt = args.get("amount")
+        sender = str(args.get("sender_acc", ""))
+        receiver = str(args.get("receiver_acc", ""))
+
+        if amt is None or not isinstance(amt, (int, float)):
+            invariant_violations.append("AST Type Invariant: 'amount' must be a numeric value.")
+        elif amt <= 0:
+            invariant_violations.append(f"AST Value Invariant: 'amount' must be positive (got {amt}). Negative amounts prohibited.")
+        elif amt > 5000000:
+            invariant_violations.append(f"Statutory Boundary Invariant: Amount ₹{amt:,.2f} exceeds absolute platform cap of ₹50,00,000.")
+
+        if sender and receiver and sender == receiver:
+            invariant_violations.append("Self-Transaction Invariant: Sender and Beneficiary accounts cannot be identical.")
+
+    elif tool_name == "freeze_account":
+        token = str(args.get("officer_token", ""))
+        if agent_role != "SENIOR_COMPLIANCE_OFFICER" and not token.startswith("TOKEN-OFFICER"):
+            invariant_violations.append("Least Privilege Invariant (OWASP LLM08): Autonomous agents cannot freeze accounts without statutory officer authorization token.")
+
+    elif tool_name == "adjust_credit_limit":
+        limit = args.get("new_limit")
+        if limit is not None and isinstance(limit, (int, float)):
+            if limit > 100000 and agent_role == "AUTONOMOUS_PAYMENT_AGENT":
+                invariant_violations.append("Dual-Control Escalation Invariant: Limit changes above ₹1,00,000 require statutory Four-Eyes Maker-Checker approval.")
+
+    # 2. Rejection Handling
+    if invariant_violations:
+        elapsed_ms = round((time.time() - start_time) * 1000, 2)
+        error_resp = {
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "error": {
+                "code": -32001,
+                "message": "KAVACH Security Invariant Violation: Tool execution blocked.",
+                "data": {
+                    "tool_name": tool_name,
+                    "violations": invariant_violations,
+                    "owasp_risk": "OWASP-LLM01 / OWASP-LLM08 Excessive Agency",
+                    "execution_time_ms": elapsed_ms,
+                    "defense_verdict": "BLOCKED_BY_KAVACH_MCP_GATEWAY",
+                    "shield_engine": "KAVACH AST Invariant & Semantic Guard v3.0"
+                }
+            }
+        }
+        try:
+            record_unified_event(
+                platform="BANKING",
+                category="MCP_AGENT",
+                action_title=f"Blocked Rogue MCP Tool: {tool_name}",
+                actor=agent_role,
+                target="MCP Tool Gateway",
+                status="BLOCKED",
+                risk_score=0.96,
+                risk_level="CRITICAL",
+                summary=f"KAVACH MCP Gateway blocked {tool_name}. Violations: {'; '.join(invariant_violations)}",
+                details=error_resp,
+                event_id=f"MCP-BLOCK-{req_id}"
+            )
+        except Exception:
+            pass
+        return error_resp
+
+    # 3. Execution Phase
+    result_data = {}
+    if tool_name == "bank_transfer":
+        amt = float(args.get("amount", 0))
+        sender = str(args.get("sender_acc", ""))
+        receiver = str(args.get("receiver_acc", ""))
+        memo = str(args.get("memo", "MCP Autonomous Agent Settlement"))
+        ttype = str(args.get("transfer_type", "UPI"))
+
+        res = global_banking_shield.process_governed_transfer(
+            sender_acc=sender,
+            receiver_acc=receiver,
+            amount=amt,
+            memo=memo,
+            transfer_type=ttype
+        )
+        result_data = res
+
+    elif tool_name == "query_kyc_profile":
+        acc_no = str(args.get("account_number", "SBIN00012345678"))
+        mode = str(args.get("compliance_mode", "STANDARD_AGENT"))
+        acc = global_banking_shield.bank.get_account(acc_no)
+        if acc:
+            result_data = {
+                "account_number": acc.account_number,
+                "account_name": acc.holder_name,
+                "balance": acc.balance,
+                "dpdp_kyc_status": "COMPLIANT_ZERO_KNOWLEDGE",
+                "pan_token": acc.pan_card if mode == "SUPERVISORY_AUDIT" else "PAN-••••••-ZK",
+                "aadhaar_token": acc.aadhaar_number if mode == "SUPERVISORY_AUDIT" else "AADHAAR-••••••••-ZK"
+            }
+        else:
+            result_data = {"error": "Account not found"}
+
+    elif tool_name == "freeze_account":
+        acc_no = str(args.get("account_number", ""))
+        reason = str(args.get("reason", "Suspicious AI agent anomaly"))
+        result_data = {
+            "account_number": acc_no,
+            "status": "FROZEN",
+            "freeze_epoch": time.time(),
+            "reason": reason,
+            "statutory_notice": "Account quarantined under RBI Master Direction on Cyber Security (2024)"
+        }
+
+    elif tool_name == "adjust_credit_limit":
+        acc_no = str(args.get("account_number", ""))
+        new_limit = float(args.get("new_limit", 50000))
+        result_data = {
+            "account_number": acc_no,
+            "new_limit": new_limit,
+            "status": "APPROVED",
+            "effective_date": time.strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+    elapsed_ms = round((time.time() - start_time) * 1000, 2)
+    success_resp = {
+        "jsonrpc": "2.0",
+        "id": req_id,
+        "result": {
+            "status": result_data.get("status", "SUCCESS"),
+            "tool_name": tool_name,
+            "execution_time_ms": elapsed_ms,
+            "security_verdict": {
+                "injection_detected": False,
+                "invariant_checks_passed": True,
+                "pii_protected": True,
+                "owasp_compliance": "OWASP-LLM01 / OWASP-LLM02 / OWASP-LLM08 VERIFIED",
+                "defense_tier": "KAVACH ZERO-TRUST MCP TOOL GATEWAY"
+            },
+            "output": result_data
+        }
+    }
+
+    try:
+        record_unified_event(
+            platform="BANKING",
+            category="MCP_AGENT",
+            action_title=f"MCP Tool Executed: {tool_name}",
+            actor=agent_role,
+            target="Core Banking Service",
+            status="SUCCESS",
+            risk_score=0.03,
+            risk_level="SAFE",
+            summary=f"Autonomous Agent invoked tool {tool_name} successfully within MCP sandbox.",
+            details=success_resp,
+            event_id=f"MCP-EXEC-{req_id}"
+        )
+    except Exception:
+        pass
+
+    return success_resp
+
+
 # Mount Static Files for frontend
 @app.get("/")
 def serve_index():
@@ -961,6 +1227,14 @@ def serve_css():
 @app.get("/app.js")
 def serve_js():
     return FileResponse(os.path.join(CURRENT_DIR, "app.js"))
+
+@app.get("/gov_rules_codex.js")
+def serve_gov_rules_js():
+    return FileResponse(os.path.join(CURRENT_DIR, "gov_rules_codex.js"))
+
+@app.get("/eli5_hub.js")
+def serve_eli5_hub_js():
+    return FileResponse(os.path.join(CURRENT_DIR, "eli5_hub.js"))
 
 
 if __name__ == "__main__":

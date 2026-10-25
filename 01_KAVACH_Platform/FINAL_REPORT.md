@@ -12,47 +12,47 @@ The Kavach backend has been fully upgraded with an enterprise **Cyber Security &
 
 A dedicated automated **Red-Team Cyber Attack Simulator** executes 15 distinct real-world attack vectors (Trojan Source, SSRF, Slopsquatting, Zero-Width Steganography, Multi-Hop Taint Exfiltration, Leetspeak/Base64/Homoglyph Obfuscation, and Reverse Shells) achieving a **100.0% Interception Rate** across 19 vectors in the authored adversarial benchmark (see [`docs/METRICS.md`](../docs/METRICS.md)).
 
-**Status**: ✅ FULLY OPERATIONAL & VERIFIED (300 / 300 DETERMINISTIC TESTS PASSING; 641 TOTAL REPO TESTS PASSING)
+**Status**: [PASS] FULLY OPERATIONAL & VERIFIED (300 / 300 DETERMINISTIC TESTS PASSING; 641 TOTAL REPO TESTS PASSING)
 
 ---
 
-## Phase A: Inspection ✅ COMPLETE
+## Phase A: Inspection [PASS] COMPLETE
 
 ### Implementation Verified
 
 All five phases of Kavach are fully implemented and integrated:
 
 1. **Phase 1 - Repository Ingestion & RAG**
-   - ✅ Repository walking and file discovery
-   - ✅ Text chunking (1200 chars with 200 char overlap)
-   - ✅ Sentence-transformers embedding (all-MiniLM-L6-v2)
-   - ✅ Qdrant vector storage and similarity search
+   - [PASS] Repository walking and file discovery
+   - [PASS] Text chunking (1200 chars with 200 char overlap)
+   - [PASS] Sentence-transformers embedding (all-MiniLM-L6-v2)
+   - [PASS] Qdrant vector storage and similarity search
 
 2. **Phase 2 - Agent Orchestrator**
-   - ✅ Workflow state machine (10 stages defined)
-   - ✅ Task planning (keyword-based decomposition)
-   - ✅ In-memory workflow run storage and retrieval
-   - ✅ Full audit trail and history tracking
+   - [PASS] Workflow state machine (10 stages defined)
+   - [PASS] Task planning (keyword-based decomposition)
+   - [PASS] In-memory workflow run storage and retrieval
+   - [PASS] Full audit trail and history tracking
 
 3. **Phase 3 - Evidence-Grounded Generation**
-   - ✅ Grounded prompt construction from RAG evidence
-   - ✅ LLM integration (Gemini API with stub fallback)
-   - ✅ Code extraction from LLM responses
-   - ✅ Syntax validation using Python AST
+   - [PASS] Grounded prompt construction from RAG evidence
+   - [PASS] LLM integration (Gemini API with stub fallback)
+   - [PASS] Code extraction from LLM responses
+   - [PASS] Syntax validation using Python AST
 
 4. **Phase 4 - Security Engine**
-   - ✅ PII detection across entity types (PAN, Aadhaar/National ID, sensitive numbers, Phone, Email, Bank Account)
-   - ✅ Universal sensitive number detection (e.g., 12454323454, 123456789012, credit cards, bank accounts)
-   - ✅ Severity tiers and confidence scoring
-   - ✅ Explainability for every finding
-   - ✅ Evaluation metrics on test corpus
+   - [PASS] PII detection across entity types (PAN, Aadhaar/National ID, sensitive numbers, Phone, Email, Bank Account)
+   - [PASS] Universal sensitive number detection (e.g., 12454323454, 123456789012, credit cards, bank accounts)
+   - [PASS] Severity tiers and confidence scoring
+   - [PASS] Explainability for every finding
+   - [PASS] Evaluation metrics on test corpus
 
 5. **Phase 5 - Change Impact Analysis**
-   - ✅ Semantic similarity scoring (RAG-based)
-   - ✅ Dependency graph extraction (AST-based import analysis)
-   - ✅ Combined relevance scoring
-   - ✅ File impact ranking
-   - ✅ Evaluation metrics on impact test cases
+   - [PASS] Semantic similarity scoring (RAG-based)
+   - [PASS] Dependency graph extraction (AST-based import analysis)
+   - [PASS] Combined relevance scoring
+   - [PASS] File impact ranking
+   - [PASS] Evaluation metrics on impact test cases
 
 ### End-to-End Integration Verified
 
@@ -68,7 +68,7 @@ All stages properly pass data between phases and handle errors gracefully.
 
 ---
 
-## Phase B: Comprehensive Test Suite ✅ COMPLETE
+## Phase B: Comprehensive Test Suite [PASS] COMPLETE
 
 ### Test Coverage
 
@@ -170,11 +170,11 @@ python verify_project.py
 
 ---
 
-## Phase C: Integration Verification ✅ COMPLETE
+## Phase C: Integration Verification [PASS] COMPLETE
 
 ### End-to-End Workflow Tested
 
-✅ **Input → Planning → RAG → Security → Impact → Generation → Validation**
+[PASS] **Input → Planning → RAG → Security → Impact → Generation → Validation**
 
 - Planning identifies task decomposition
 - RAG retrieves relevant code chunks
@@ -193,7 +193,7 @@ python verify_project.py
 
 ### Error Handling
 
-✅ Graceful degradation when:
+[PASS] Graceful degradation when:
 - Repository path is invalid
 - RAG index doesn't exist yet
 - LLM API is unavailable
@@ -202,7 +202,7 @@ python verify_project.py
 
 ---
 
-## Phase D: Demonstration ✅ COMPLETE
+## Phase D: Demonstration [PASS] COMPLETE
 
 ### Demo Repository Created
 
@@ -228,15 +228,15 @@ Files:
 ### Demo Commands Provided
 
 All scenarios have:
-- ✅ Clear step-by-step instructions
-- ✅ Example curl commands
-- ✅ Swagger UI navigation
-- ✅ Expected output (JSON)
-- ✅ Explanation of results
+- [PASS] Clear step-by-step instructions
+- [PASS] Example curl commands
+- [PASS] Swagger UI navigation
+- [PASS] Expected output (JSON)
+- [PASS] Explanation of results
 
 ---
 
-## Phase E: Verification ✅ COMPLETE
+## Phase E: Verification [PASS] COMPLETE
 
 ### Test Results Summary
 
@@ -453,24 +453,24 @@ These are NOT required but could enhance the system:
 
 | Component | Status | Evidence |
 |-----------|--------|----------|
-| Phase 1 - RAG | ✅ Complete | 21 tests passing, E2E verified |
-| Phase 2 - Agent | ✅ Complete | 28 tests passing, orchestration working |
-| Phase 3 - Generation | ✅ Complete | 19 tests passing, validation working |
-| Phase 4 - Security Core | ✅ Complete | 31 tests passing, context-aware PII detection |
-| Phase 5 - Impact Analysis | ✅ Complete | 20 tests passing, AST dependency scoring |
-| Phase 6 - Advanced Observability & Copilot | ✅ Complete | 28 tests passing (Prometheus + MCP + HITL) |
-| Phase 7 - Cyber Security Defense-in-Depth | ✅ Complete | 54 tough tests passing, 13 specialized engines |
-| Red-Team Cyber Attack Simulator | ✅ Complete | 15 attack vectors tested, 100% Interception Rate |
-| API Endpoints | ✅ Complete | 32 tests passing, 21 endpoints operational |
-| Integration | ✅ Complete | 19 E2E tests passing |
-| Interactive Frontend UI | ✅ Complete | Cyber Red-Team Sim & Merkle Audit radar tabs |
-| Total Tests | ✅ Complete | **278 / 278 passing (100% pass rate)** |
+| Phase 1 - RAG | [PASS] Complete | 21 tests passing, E2E verified |
+| Phase 2 - Agent | [PASS] Complete | 28 tests passing, orchestration working |
+| Phase 3 - Generation | [PASS] Complete | 19 tests passing, validation working |
+| Phase 4 - Security Core | [PASS] Complete | 31 tests passing, context-aware PII detection |
+| Phase 5 - Impact Analysis | [PASS] Complete | 20 tests passing, AST dependency scoring |
+| Phase 6 - Advanced Observability & Copilot | [PASS] Complete | 28 tests passing (Prometheus + MCP + HITL) |
+| Phase 7 - Cyber Security Defense-in-Depth | [PASS] Complete | 54 tough tests passing, 13 specialized engines |
+| Red-Team Cyber Attack Simulator | [PASS] Complete | 15 attack vectors tested, 100% Interception Rate |
+| API Endpoints | [PASS] Complete | 32 tests passing, 21 endpoints operational |
+| Integration | [PASS] Complete | 19 E2E tests passing |
+| Interactive Frontend UI | [PASS] Complete | Cyber Red-Team Sim & Merkle Audit radar tabs |
+| Total Tests | [PASS] Complete | **278 / 278 passing (100% pass rate)** |
 
-**Overall Status**: ✅ FULLY OPERATIONAL AND PRODUCTION-HARDENED (278 / 278 PASSING)
+**Overall Status**: [PASS] FULLY OPERATIONAL AND PRODUCTION-HARDENED (278 / 278 PASSING)
 
 ---
 
-## 📸 Empirical Visual Evidence & Verification Screenshots
+##  Empirical Visual Evidence & Verification Screenshots
 
 All subsystems and benchmark metrics are backed by high-resolution visual evidence in [`artifacts/screenshots/`](artifacts/screenshots/):
 
@@ -516,13 +516,13 @@ All subsystems and benchmark metrics are backed by high-resolution visual eviden
 Kavach is a complete, enterprise-grade, defense-in-depth platform for security-governed agentic AI software engineering. From the initial 5-stage pipeline to 13 cutting-edge cyber security engines, it sets a new academic and practical benchmark for AI safety.
 
 **Key Achievements**:
-- ✅ **278 comprehensive automated tests** (100% pass rate across 10 modules)
-- ✅ **54 tough, non-redundant cyber defense test cases**
-- ✅ **15 real-world red-team attack vectors** intercepted with a **100.0% Interception Rate**
-- ✅ **Cryptographic Merkle tree audit ledger** providing DPDP Act 2023 compliance and mathematical non-repudiation
-- ✅ **AST inter-procedural taint tracking** preventing multi-hop secret exfiltration
-- ✅ **Unicode Trojan Source (CVE-2021-42574)** and Bidi override neutralizing firewall
-- ✅ **Polyglot package defense** spanning Python (PyPI), JavaScript/TypeScript (npm), and Go
-- ✅ **CI/CD pre-merge gatekeeper** generating automated GitHub PR review bot comments
-- ✅ **Ready for academic viva defense, live demonstration, and capstone evaluation**
+- [PASS] **278 comprehensive automated tests** (100% pass rate across 10 modules)
+- [PASS] **54 tough, non-redundant cyber defense test cases**
+- [PASS] **15 real-world red-team attack vectors** intercepted with a **100.0% Interception Rate**
+- [PASS] **Cryptographic Merkle tree audit ledger** providing DPDP Act 2023 compliance and mathematical non-repudiation
+- [PASS] **AST inter-procedural taint tracking** preventing multi-hop secret exfiltration
+- [PASS] **Unicode Trojan Source (CVE-2021-42574)** and Bidi override neutralizing firewall
+- [PASS] **Polyglot package defense** spanning Python (PyPI), JavaScript/TypeScript (npm), and Go
+- [PASS] **CI/CD pre-merge gatekeeper** generating automated GitHub PR review bot comments
+- [PASS] **Ready for academic viva defense, live demonstration, and capstone evaluation**
 

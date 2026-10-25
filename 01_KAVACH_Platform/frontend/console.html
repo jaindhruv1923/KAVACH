@@ -303,6 +303,18 @@ window.location.replace("index.html" + (window.location.hash || "#workspace"));
     <div id="pipeline" class="pipeline"></div>
   </section>
 
+  <!-- Genuine Agentic Reasoning Trace & Tool Execution Card (Module 1-7 & ReAct Engine) -->
+  <section class="card" id="agentic-trace-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">AGENTIC REASONING &amp; TOOL CALLING</span>
+        <h2>Agent Decision Trace &amp; Tool Execution</h2>
+      </div>
+      <span class="badge" style="border-color:var(--accent);color:var(--accent);" id="agent-loop-badge">ReAct ITERATIVE ENGINE</span>
+    </div>
+    <div id="agentic-trace-container"></div>
+  </section>
+
   <!-- E. RAG evidence -->
   <section class="card" id="rag-card" style="display:none;">
     <div class="section-heading">

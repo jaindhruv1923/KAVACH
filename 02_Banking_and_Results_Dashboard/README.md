@@ -1,4 +1,4 @@
-# 🏦 Bharat Commercial Core Banking & Unified Results Cockpit (`02_Banking_and_Results_Dashboard`)
+# Bharat Commercial Core Banking & Unified Results Cockpit (`02_Banking_and_Results_Dashboard`)
 
 Welcome to the **Commercial Core Banking System & Real-Time Telemetry Results Cockpit** module of the **KAVACH Platform**.
 
@@ -9,35 +9,35 @@ This directory brings together two mission-critical enterprise environments:
 
 ---
 
-## 📂 Subdirectory Architecture
+## Subdirectory Architecture
 
 ```
 02_Banking_and_Results_Dashboard/
-├── implementation_banks/              # Bharat Core Banking Platform & Security Shield
-│   ├── core_banking.py                # Double-entry ledger, accounts, ACID persistence
-│   ├── kavach_banking_shield.py       # 5-Gate defense highway (Prompt injection, DPDP PII, HITL)
-│   ├── advanced_banking_engines.py    # SAGA orchestrator, Maker-Checker, CBDC e-INR, HSM
-│   ├── server.py                      # FastAPI microservice (Port 8050)
-│   ├── index.html, app.js, style.css  # Interactive Banking UI & customer simulation portal
-│   ├── test_banking_100_suite.py      # Exactly 100 deterministic banking tests (100% pass)
-│   ├── test_banking_kavach.py         # 11-stage enterprise security verification
-│   └── data/                          # Persistent ledger JSON and write-ahead snapshots
-├── results_dashboard/                 # Real-Time Telemetry & Results Cockpit
-│   ├── results_hub.py                 # FastAPI telemetry engine (Port 8090)
-│   ├── index.html, app.js, style.css  # Dynamic dashboard with real-time SSE streaming
-│   └── data/                          # SQLite WAL database & JSON export snapshots
-├── tests_unified/                     # Unified Cross-Platform Integration Suite
-│   └── test_unified_100_suite.py      # Exactly 100 cross-platform stress & contract tests
-├── run_banking.bat                    # Start Banking server on Port 8050
-├── run_dashboard.bat                  # Start Results Cockpit on Port 8090
-├── run_all.bat                        # Start both Banking and Results Cockpit simultaneously
-├── run_tests.bat                      # Execute all 200 Banking + Unified tests
-└── README.md                          # This documentation file
+├── implementation_banks/ # Bharat Core Banking Platform & Security Shield
+│ ├── core_banking.py # Double-entry ledger, accounts, ACID persistence
+│ ├── kavach_banking_shield.py # 5-Gate defense highway (Prompt injection, DPDP PII, HITL)
+│ ├── advanced_banking_engines.py # SAGA orchestrator, Maker-Checker, CBDC e-INR, HSM
+│ ├── server.py # FastAPI microservice (Port 8050)
+│ ├── index.html, app.js, style.css # Interactive Banking UI & customer simulation portal
+│ ├── test_banking_100_suite.py # Exactly 100 deterministic banking tests (100% pass)
+│ ├── test_banking_kavach.py # 11-stage enterprise security verification
+│ └── data/ # Persistent ledger JSON and write-ahead snapshots
+├── results_dashboard/ # Real-Time Telemetry & Results Cockpit
+│ ├── results_hub.py # FastAPI telemetry engine (Port 8090)
+│ ├── index.html, app.js, style.css # Dynamic dashboard with real-time SSE streaming
+│ └── data/ # SQLite WAL database & JSON export snapshots
+├── tests_unified/ # Unified Cross-Platform Integration Suite
+│ └── test_unified_100_suite.py # Exactly 100 cross-platform stress & contract tests
+├── run_banking.bat # Start Banking server on Port 8050
+├── run_dashboard.bat # Start Results Cockpit on Port 8090
+├── run_all.bat # Start both Banking and Results Cockpit simultaneously
+├── run_tests.bat # Execute all 200 Banking + Unified tests
+└── README.md # This documentation file
 ```
 
 ---
 
-## ⚡ Quick Start & Run Commands
+## Quick Start & Run Commands
 
 ### 1. Launch All Services (Banking + Results)
 ```bash
@@ -72,7 +72,7 @@ python -m pytest tests_unified/test_unified_100_suite.py -q
 
 ---
 
-## 🛡️ Key Features & Technical Specifications
+## ️ Key Features & Technical Specifications
 
 | Feature | Technical Implementation | Regulatory / Security Standard |
 | :--- | :--- | :--- |
@@ -86,4 +86,4 @@ python -m pytest tests_unified/test_unified_100_suite.py -q
 
 ---
 
-[← Back to Master Repository README](../README.md) &nbsp;|&nbsp; [🛡️ KAVACH Platform (`../01_KAVACH_Platform`)](../01_KAVACH_Platform/README.md) &nbsp;|&nbsp; [📚 Master Documentation (`../03_Documentation`)](../03_Documentation/README.md)
+[← Back to Master Repository README](../README.md) &nbsp;|&nbsp; [️ KAVACH Platform (`../01_KAVACH_Platform`)](../01_KAVACH_Platform/README.md) &nbsp;|&nbsp; [ Master Documentation (`../03_Documentation`)](../03_Documentation/README.md)

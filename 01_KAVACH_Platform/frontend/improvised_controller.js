@@ -683,7 +683,7 @@
             <strong>kavach-guardian[bot]</strong> <span style="color:#64748B;font-size:0.74rem;">commented 2 seconds ago</span>
           </div>
           <div style="font-size:0.83rem;color:#1E293B;">
-            🛡️ <strong>Kavach Pre-Merge Security Audit: 2 Vulnerabilities Intercepted</strong><br>
+            <strong>Kavach Pre-Merge Security Audit: 2 Vulnerabilities Intercepted</strong><br>
             • <strong>High Secret Exposure:</strong> Hardcoded Stripe secret detected on line 12. Replaced with environmental hydration.<br>
             • <strong>Supply Chain Risk:</strong> pyyaml 5.3.1 contains CVSS 9.8 Remote Code Execution (CWE-502).<br>
             <span style="color:#059669;font-weight:700;">CI Gate Status: ALL PASS with applied auto-patches. Merge approved.</span>
@@ -704,13 +704,13 @@
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
           <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:14px;">
-            <strong style="color:#DC2626;display:block;margin-bottom:6px;font-size:0.88rem;">❌ Baseline Rigid Regex (v1.0)</strong>
+            <strong style="color:#DC2626;display:block;margin-bottom:6px;font-size:0.88rem;">[BASELINE FLAGGED] Rigid Regex (v1.0)</strong>
             <p style="font-size:0.78rem;color:#7F1D1D;margin:0 0 8px;">String: <code>order_sku = "ABCDE1234F"</code></p>
             <span style="background:#DC2626;color:#FFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">FALSE POSITIVE BLOCK</span>
             <p style="font-size:0.76rem;color:#991B1B;margin:8px 0 0;">Falsely flags e-commerce warehouse inventory SKU as statutory Indian PAN Tax ID, breaking developer build.</p>
           </div>
           <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:14px;">
-            <strong style="color:#059669;display:block;margin-bottom:6px;font-size:0.88rem;">✅ Kavach Semantic Context Gating (v3.0)</strong>
+            <strong style="color:#059669;display:block;margin-bottom:6px;font-size:0.88rem;">[VERIFIED SAFE] Kavach Semantic Context Gating (v3.0)</strong>
             <p style="font-size:0.78rem;color:#065F46;margin:0 0 8px;">String: <code>order_sku = "ABCDE1234F"</code></p>
             <span style="background:#059669;color:#FFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">SAFE PASS (SKU RECOGNIZED)</span>
             <p style="font-size:0.76rem;color:#047857;margin:8px 0 0;">&plusmn;15-word semantic window confirms non-financial catalog context. False positive suppressed. FPR dropped to <strong>2.1%</strong>.</p>
@@ -946,9 +946,9 @@
 
     let step = 0;
     const steps = [
-      "🚨 [T+0.0ms] Adversary Agent crafting attack payload across vector: " + warroomVectors[currentWarroomKey].name,
-      "⚡ [T+8.2ms] Inbound exploit packet entering Kavach Zero-Trust Gateway...",
-      "🛡️ [T+18.4ms] AST Taint Engine triggered! Forbidden syntax isolated. Sealed into Merkle Ledger block."
+      "[ALERT T+0.0ms] Adversary Agent crafting attack payload across vector: " + warroomVectors[currentWarroomKey].name,
+      "[INGEST T+8.2ms] Inbound exploit packet entering Kavach Zero-Trust Gateway...",
+      "[DEFENSE T+18.4ms] AST Taint Engine triggered! Forbidden syntax isolated. Sealed into Merkle Ledger block."
     ];
 
     if (statusBox) {
@@ -974,7 +974,7 @@
           statusBox.style.background = '#ECFDF5';
           statusBox.style.color = '#047857';
           statusBox.style.border = '1px solid #A7F3D0';
-          statusBox.innerHTML = `✅ Exploit wave repelled! 0 breaches. Interceptions: <strong>${warroomInterceptCount}</strong>.`;
+          statusBox.innerHTML = `Exploit wave repelled! 0 breaches. Interceptions: <strong>${warroomInterceptCount}</strong>.`;
         }
         if (btn) btn.disabled = false;
       }
@@ -995,7 +995,7 @@
       verified_by: "Kavach v3.0 Improvised AST & DPDP Engine"
     };
     navigator.clipboard.writeText(JSON.stringify(report, null, 2)).then(() => {
-      showToastNotification("📋 Adversarial Forensics JSON copied to clipboard!");
+      showToastNotification("Adversarial Forensics JSON copied to clipboard!");
     }).catch(() => {
       showToastNotification("Incident Forensics prepared.");
     });
@@ -1021,7 +1021,7 @@
           <div>STATUS:      <span style="color:#4ADE80;">IMMUTABLE_TAMPER_PROOF</span></div>
         </div>
         <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px;font-size:0.82rem;color:#065F46;">
-          ✅ State verification passed: Zero tampering detected. Valid under Section 8(1) DPDP Act 2023 & SLSA Level 3.
+          [VERIFIED] State verification passed: Zero tampering detected. Valid under Section 8(1) DPDP Act 2023 & SLSA Level 3.
         </div>
       `
     );
@@ -1373,7 +1373,7 @@
         btn.disabled = false;
         btn.textContent = "Run Multi-Model Voting";
       }
-      showToastNotification("✅ AST Consensus Reconciled: 3/3 Models Agree on Zero-Trust Invariants!");
+      showToastNotification("AST Consensus Reconciled: 3/3 Models Agree on Zero-Trust Invariants!");
     }, 700);
   };
 
@@ -1381,7 +1381,7 @@
     const s = consensusScenarios[currentConsensusKey];
     if (s) {
       navigator.clipboard.writeText(s.reconciledCode).then(() => {
-        showToastNotification("📋 Reconciled AST Consensus code copied!");
+        showToastNotification("Reconciled AST Consensus code copied!");
       });
     }
   };
@@ -1431,7 +1431,7 @@
           <!-- Legal & Standards Verification Grid -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
             <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:6px;padding:12px;">
-              <strong style="font-size:0.84rem;color:#1E293B;display:block;margin-bottom:6px;">🇮🇳 Indian DPDP Act 2023 Compliance</strong>
+              <strong style="font-size:0.84rem;color:#1E293B;display:block;margin-bottom:6px;">[DPDP ACT 2023] Indian Statutory Compliance</strong>
               <ul style="margin:0;padding-left:18px;font-size:0.76rem;color:#475569;line-height:1.5;">
                 <li><strong>Section 8(1) Consent & Purpose Limitation:</strong> Zero PII plaintext accessible to generative models.</li>
                 <li><strong>Section 12 Right to Erasure:</strong> Ephemeral session tokens cryptographically shredded on completion.</li>
@@ -1439,7 +1439,7 @@
               </ul>
             </div>
             <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:6px;padding:12px;">
-              <strong style="font-size:0.84rem;color:#1E293B;display:block;margin-bottom:6px;">🇪🇺 EU AI Act &amp; SLSA Framework</strong>
+              <strong style="font-size:0.84rem;color:#1E293B;display:block;margin-bottom:6px;">[EU AI ACT] SLSA Level 3 Framework</strong>
               <ul style="margin:0;padding-left:18px;font-size:0.76rem;color:#475569;line-height:1.5;">
                 <li><strong>EU AI Act Article 14:</strong> Human-in-the-Loop quarantine decision audit logged.</li>
                 <li><strong>SLSA Level 3:</strong> Hermetic build isolation with gVisor sandbox & eBPF syscall drops.</li>
@@ -1474,7 +1474,7 @@
   window.copyDossierDigest = function() {
     const digest = "0x8f4c3b99a14d5e82b7194f10034a781290bb34dc61a5e12847ff8231aa924de1";
     navigator.clipboard.writeText(digest).then(() => {
-      showToastNotification("📋 Cryptographic Merkle Root Hash copied to clipboard!");
+      showToastNotification("Cryptographic Merkle Root Hash copied to clipboard!");
     });
   };
 
@@ -1528,7 +1528,7 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    showToastNotification("💾 CycloneDX SBOM Attestation JSON downloaded!");
+    showToastNotification("CycloneDX SBOM Attestation JSON downloaded!");
   };
 
   // =========================================================================
@@ -1743,7 +1743,7 @@
     }
 
     if (intentEl) intentEl.textContent = intentName;
-    showToastNotification(`🎙️ Voice Intent: ${actionDesc}`);
+    showToastNotification(`Voice Intent: ${actionDesc}`);
   };
 
   window.runVoiceCommandShortcut = function(cmdText, btnEl) {

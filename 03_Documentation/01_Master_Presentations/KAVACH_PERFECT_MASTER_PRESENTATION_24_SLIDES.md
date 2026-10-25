@@ -1,4 +1,4 @@
-# 🛡️ KAVACH (कवच): Master 24-Slide Comprehensive Presentation Blueprint
+# ️ KAVACH (कवच): Master 24-Slide Comprehensive Presentation Blueprint
 
 **Project Title:** KAVACH: A Security-Governed Multi-Agent AI DevOps & Observability Platform  
 **Course Code:** PRJ-IV (Capstone Project) & CSE3101 (Agentic AI)  
@@ -13,7 +13,7 @@
 
 ---
 
-## 👥 Academic Engineering Team & Responsibilities
+##  Academic Engineering Team & Responsibilities
 
 | Name | Roll No. | Subsystem Responsibility | Mapped Slide Ownership |
 | :--- | :---: | :--- | :--- |
@@ -24,7 +24,7 @@
 
 ---
 
-## ⏱️ Master 24-Slide Agenda, Timing & Visual Capture Matrix (15-Minute Defense)
+## ️ Master 24-Slide Agenda, Timing & Visual Capture Matrix (15-Minute Defense)
 
 | Slide # | Slide Title | Evaluation Rubric | Marks | Time | Presenter | Visual Capture |
 | :---: | :---| :---| :---: | :---: | :---: | :---: |
@@ -55,7 +55,7 @@
 
 ---
 
-# 📑 Slide-by-Slide Detailed Content, Visuals & Speaker Scripts
+#  Slide-by-Slide Detailed Content, Visuals & Speaker Scripts
 
 ---
 
@@ -327,7 +327,7 @@ flowchart LR
     Cache -->|Miss| Query[Query live PyPI JSON API <5ms]
     Query --> Check{HTTP 200?}
     Check -->|Yes| CacheOk[Cache Safe in LRU] --> Pass[Safe to Sandbox]
-    Check -->|No / 404| Block[🛑 BLOCKED: Intercept Slopsquat]
+    Check -->|No / 404| Block[ BLOCKED: Intercept Slopsquat]
 ```
 - **Presenter:** Ansh Adhikari
 - **Speaker Transcript:**
@@ -344,10 +344,10 @@ flowchart LR
     AST -->|No| CaptureSyntax[Capture SyntaxError] --> Reflect
     AST -->|Yes| Exec[Execute Ephemeral Subprocess pytest]
     Exec --> Result{Exit Code == 0?}
-    Result -->|Yes| Sealed[🟢 PASS: Candidate Sealed]
+    Result -->|Yes| Sealed[ PASS: Candidate Sealed]
     Result -->|No| CaptureStderr[Capture stderr Traceback] --> Reflect
     Reflect[ReAct Reflection: Prompt_k+1 = Prompt_k + Traceback_k] --> Max{Counter k >= 3?}
-    Max -->|Yes| Escalate[🛑 Escalate to Human Gatekeeper]
+    Max -->|Yes| Escalate[ Escalate to Human Gatekeeper]
     Max -->|No| AutoRepair[Auto-Repair Imports / Off-by-one] --> Exec
 ```
 - **Presenter:** Ansh Adhikari
@@ -453,7 +453,7 @@ flowchart LR
 
 ---
 
-# 🚀 How to Present & View
+#  How to Present & View
 
 1. **PowerPoint Presentation (`.pptx`):**  
    Open `KAVACH_PERFECT_COMPREHENSIVE_MASTER_DECK.pptx` in Microsoft PowerPoint or Google Slides. Every slide includes complete formatted speaker notes.

@@ -1,4 +1,4 @@
-# 🛡️ KAVACH: Complete Line-by-Line CSE3101 Course Handout Alignment & Verification Guide
+# ️ KAVACH: Complete Line-by-Line CSE3101 Course Handout Alignment & Verification Guide
 
 **Course Code:** CSE3101 — Agentic AI  
 **Academic Year:** 2026–27 (7th Semester B.Tech CSE, Batch 2023)  
@@ -10,13 +10,13 @@
 
 ---
 
-## 📌 Document Overview & Purpose
+##  Document Overview & Purpose
 
 This document provides a **meticulous, line-by-line mapping and verification** between the official **CSE3101 Agentic AI Course Handout** and the **Kavach** engineering platform. Every clause, course outcome, syllabus session, rubric criterion ($C_1 - C_{15}$), and guideline from the 7-page handout is cross-referenced with exact code files, mathematical formulations, test suites, and defense proofs.
 
 ---
 
-## 📑 SECTION 1: COURSE BASICS & OBJECTIVES (Pages 1 & 2 of Handout)
+##  SECTION 1: COURSE BASICS & OBJECTIVES (Pages 1 & 2 of Handout)
 
 ### 1.1 Course Metadata Verification
 | Handout Parameter | Handout Specification | Kavach Project Compliance & Value |
@@ -79,7 +79,7 @@ This document provides a **meticulous, line-by-line mapping and verification** b
 
 ---
 
-## 📚 SECTION 2: TOPICS OF THE COURSE (Pages 3 & 4 of Handout)
+##  SECTION 2: TOPICS OF THE COURSE (Pages 3 & 4 of Handout)
 
 The syllabus covers 8 distinct modules over 16 academic weeks. Below is the session-by-session compliance audit:
 
@@ -209,18 +209,18 @@ The syllabus covers 8 distinct modules over 16 academic weeks. Below is the sess
 
 ---
 
-## 🏆 SECTION 3: ASSESSMENT PATTERN & RUBRICS ($C_1 - C_{15}$) (Pages 5 & 6)
+##  SECTION 3: ASSESSMENT PATTERN & RUBRICS ($C_1 - C_{15}$) (Pages 5 & 6)
 
 The university assessment is structured across three formal evaluation phases:
 
 ### Phase 1 Evaluation (10% Weightage — September 3rd Week)
 | Criterion | Description | Kavach Evidence Artifact | Status |
 | :---: | :--- | :--- | :---: |
-| **C1** | Problem Definition | Threat model for autonomous AI agents detailed in [`PRJ_IV_SYNOPSIS_REPORT.md`](file:///important/02_Official_Reports_and_Synopses/PRJ_IV_SYNOPSIS_REPORT.md) | ✅ Verified |
-| **C2** | Objectives and Outcomes | 5 concrete engineering goals mapped to CO1, CO2, CO3 in Master Blueprint | ✅ Verified |
-| **C3** | Methodology (partial) | 5-phase pipeline architecture in [`02_five_phase_pipeline.mmd`](file:///important/03_Architecture_and_Flowcharts/02_five_phase_pipeline.mmd) | ✅ Verified |
-| **C4** | Feasibility & Resource Planning | 16-week timeline detailed in [`PROJECT_TIMELINE_CSE3101.md`](file:///important/04_Viva_Defense_and_Evaluation/PROJECT_TIMELINE_CSE3101.md) | ✅ Verified |
-| **C5** | Individual Understanding | PEAS specifications and user persona matrices in [`PEAS_AND_PERSONA_SPECIFICATION.md`](file:///important/02_Official_Reports_and_Synopses/PEAS_AND_PERSONA_SPECIFICATION.md) | ✅ Verified |
+| **C1** | Problem Definition | Threat model for autonomous AI agents detailed in [`PRJ_IV_SYNOPSIS_REPORT.md`](file:///important/02_Official_Reports_and_Synopses/PRJ_IV_SYNOPSIS_REPORT.md) | [PASS] Verified |
+| **C2** | Objectives and Outcomes | 5 concrete engineering goals mapped to CO1, CO2, CO3 in Master Blueprint | [PASS] Verified |
+| **C3** | Methodology (partial) | 5-phase pipeline architecture in [`02_five_phase_pipeline.mmd`](file:///important/03_Architecture_and_Flowcharts/02_five_phase_pipeline.mmd) | [PASS] Verified |
+| **C4** | Feasibility & Resource Planning | 16-week timeline detailed in [`PROJECT_TIMELINE_CSE3101.md`](file:///important/04_Viva_Defense_and_Evaluation/PROJECT_TIMELINE_CSE3101.md) | [PASS] Verified |
+| **C5** | Individual Understanding | PEAS specifications and user persona matrices in [`PEAS_AND_PERSONA_SPECIFICATION.md`](file:///important/02_Official_Reports_and_Synopses/PEAS_AND_PERSONA_SPECIFICATION.md) | [PASS] Verified |
 
 **Phase 1 Deliverables Checklist:**
 - [x] One-Page Project Charter / Synopsis: [`PHASE_1_PROJECT_CHARTER.md`](file:///important/02_Official_Reports_and_Synopses/PHASE_1_PROJECT_CHARTER.md)
@@ -238,11 +238,11 @@ The university assessment is structured across three formal evaluation phases:
 ### Phase 2 Evaluation (30% Weightage — October 3rd/4th Week)
 | Criterion | Description | Kavach Evidence Artifact | Status |
 | :---: | :--- | :--- | :---: |
-| **C6** | Progress vs Plan | Milestones on schedule; all 5 core modules operational in codebase | ✅ Verified |
-| **C7** | Technical Understanding | Shannon entropy math ($H \ge 4.0$), AST reachability DAGs, Qdrant cosine similarity | ✅ Verified |
-| **C8** | Problem Solving | ReAct self-healing reflection engine autonomously resolving failing unit tests | ✅ Verified |
-| **C9** | Documentation (Working) | Full API Swagger docs, architecture flowcharts, and markdown blueprints | ✅ Verified |
-| **C10** | Individual Contribution | Component RACIS matrix tracking individual ownership across phases | ✅ Verified |
+| **C6** | Progress vs Plan | Milestones on schedule; all 5 core modules operational in codebase | [PASS] Verified |
+| **C7** | Technical Understanding | Shannon entropy math ($H \ge 4.0$), AST reachability DAGs, Qdrant cosine similarity | [PASS] Verified |
+| **C8** | Problem Solving | ReAct self-healing reflection engine autonomously resolving failing unit tests | [PASS] Verified |
+| **C9** | Documentation (Working) | Full API Swagger docs, architecture flowcharts, and markdown blueprints | [PASS] Verified |
+| **C10** | Individual Contribution | Component RACIS matrix tracking individual ownership across phases | [PASS] Verified |
 
 **Phase 2 Deliverables Checklist:**
 - [x] Updated Project Charter / Synopsis: [`PRJ_IV_SYNOPSIS_REPORT.docx`](file:///important/02_Official_Reports_and_Synopses/PRJ_IV_SYNOPSIS_REPORT.docx)
@@ -257,11 +257,11 @@ Breakdown: **Project Report (10%) + Usability & Demo (20%) + Viva (10%)**
 
 | Criterion | Description | Kavach Evidence Artifact | Status |
 | :---: | :--- | :--- | :---: |
-| **C11** | Final Product / Solution | Fully containerized, 302+ test platform with production Docker & Render support | ✅ Verified |
-| **C12** | Technical Depth | Zero-Knowledge Token Vault, PyPI package firewall, Merkle tree audit ledger, AST DAG | ✅ Verified |
-| **C13** | Innovation / Application | First platform to solve AI Slopsquatting & Indirect Prompt Injection in DevOps | ✅ Verified |
-| **C14** | Presentation & Communication | 24-slide Master presentation deck with complete speaker scripts | ✅ Verified |
-| **C15** | Individual Learning | Comprehensive Viva defense cheatsheet with mathematical proofs and examiner answers | ✅ Verified |
+| **C11** | Final Product / Solution | Fully containerized, 302+ test platform with production Docker & Render support | [PASS] Verified |
+| **C12** | Technical Depth | Zero-Knowledge Token Vault, PyPI package firewall, Merkle tree audit ledger, AST DAG | [PASS] Verified |
+| **C13** | Innovation / Application | First platform to solve AI Slopsquatting & Indirect Prompt Injection in DevOps | [PASS] Verified |
+| **C14** | Presentation & Communication | 24-slide Master presentation deck with complete speaker scripts | [PASS] Verified |
+| **C15** | Individual Learning | Comprehensive Viva defense cheatsheet with mathematical proofs and examiner answers | [PASS] Verified |
 
 **Phase 3 Deliverables Checklist:**
 - [x] Final Functional Agentic Application: `kavach/` core codebase
@@ -272,7 +272,7 @@ Breakdown: **Project Report (10%) + Usability & Demo (20%) + Viva (10%)**
 
 ---
 
-## 👥 SECTION 4: TEAM RESPONSIBILITY & UNIVERSITY COMPLIANCE (Page 7)
+##  SECTION 4: TEAM RESPONSIBILITY & UNIVERSITY COMPLIANCE (Page 7)
 
 Page 7 of the course handout establishes three non-negotiable governance policies:
 
@@ -309,7 +309,7 @@ Page 7 of the course handout establishes three non-negotiable governance policie
 
 ---
 
-## 🗂️ SECTION 5: COMPLETE CODEBASE REPOSITORY MAP
+## ️ SECTION 5: COMPLETE CODEBASE REPOSITORY MAP
 
 Every feature required by the handout is implemented in concrete source code:
 
@@ -370,7 +370,7 @@ important/kavach/
 
 ---
 
-## 🚀 SECTION 6: HOW TO DEMONSTRATE TO EXAMINERS (100% VIVA READY)
+##  SECTION 6: HOW TO DEMONSTRATE TO EXAMINERS (100% VIVA READY)
 
 When presenting to **Dr. Soharab Hossain Shaikh** and **Mr. Pranshu Tiwari**, execute these demonstration sequences:
 
@@ -431,7 +431,7 @@ Verified by automated suite: `pytest important/kavach/tests/test_professor_stand
 
 ---
 
-## 🎯 Final Examiner Summary & Conclusion
+##  Final Examiner Summary & Conclusion
 
 Kavach is **not an abstract conceptual proposal** or a superficial prompt wrapper. It is a **fully implemented, empirically evaluated, and rigorously verified Agentic AI platform** that:
 1. Directly addresses **every session, module, and learning outcome** of the **CSE3101 Agentic AI Course Handout**.

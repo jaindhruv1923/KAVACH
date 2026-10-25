@@ -40,8 +40,11 @@
 <!-- Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=2.5.1">
+<!-- KaTeX Academic Mathematical Typesetting -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
 
 <!-- Structured Data (Schema.org JSON-LD) -->
 <script type="application/ld+json">
@@ -386,13 +389,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   </script>
-      <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
-        Professor Review (11/11)
+      <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (12/12 Verified)">
+        Professor Review (12/12)
       </button>
-      <a href="/results/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color:#fff; font-weight:700;" title="Unified Cross-Platform Results Cockpit">
-        Results Cockpit
-      </a>
-      <a href="/bank/" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#F8FAFC; font-weight:600;" title="Bharat Core Banking Highway">
+      <button type="button" id="header-defense-lab-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview(); setTimeout(() => window.switchProfTab('defense-lab'), 100);" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #DC2626 0%, #B91C1C 100%); color:#fff; font-weight:700; border:1px solid #EF4444; box-shadow:0 0 16px rgba(239,68,68,0.35); cursor:pointer;" title="Academic Defense Lab: Break &amp; Heal, Step Debugger, Attack Playground, Held-Out Eval, Hinglish Voice">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Defense Lab (5 Demos)
+      </button>
+      <a href="/bank/" id="header-bank-highway-btn" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#F8FAFC; font-weight:600;" title="Bharat Core Banking Highway" onclick="if(window.location.port==='5500'){this.href='/KAVACH-main/02_Banking_and_Results_Dashboard/implementation_banks/index.html';}">
         Bank Highway
       </a>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
@@ -418,6 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
       <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
       <button type="button" class="nav-switch-btn" onclick="switchToProfessorReview()">Professor Review</button>
+      <button type="button" class="nav-switch-btn" onclick="window.switchToProfessorReview(); setTimeout(() => window.switchProfTab('defense-lab'), 100);" style="color:#DC2626; font-weight:700;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:3px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Defense Lab</button>
     </nav>
   </div>
 
@@ -2489,6 +2493,53 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
+    <!-- Dual Enterprise Governance & Knowledge Gateways -->
+    <div class="eli5-trigger-container" style="display:flex;flex-direction:column;gap:10px;margin:16px 0 14px;">
+      <!-- ELI5 Academic & Math Explainer Button (Clean Blue & White Theme) -->
+      <button type="button" id="eli5-academic-btn" class="eli5-trigger-button" onclick="openEli5AcademicModal()" title="Explain Like I'm 5: Core Topics, Mathematical Formulas & BML Munjal Univ Course Handout (CO1-CO5)">
+        <div class="eli5-btn-content">
+          <div class="eli5-btn-left">
+            <div class="eli5-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div class="eli5-text-group">
+              <div class="eli5-title-row">
+                <span class="eli5-main-title">Explain Like I'm 5 (ELI5) &middot; Academic Math &amp; AI Codex</span>
+                <span class="badge badge-outline-blue">CSE3101 &middot; CO1&ndash;CO5</span>
+              </div>
+              <span class="eli5-subtitle">Plain-English Explanations &middot; 10 Mathematical Formulations &middot; BML Munjal Sessions (1&ndash;45) &middot; Real Code Logic</span>
+            </div>
+          </div>
+          <div class="eli5-btn-action">
+            <span class="eli5-action-label">Explore Guide</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </button>
+
+      <!-- Official Government Rules & Regulations Button (Clean Blue & White Theme) -->
+      <button type="button" id="kavach-gov-rules-btn" class="comic-btn-gov-kavach" onclick="openGovRulesModal()" title="Official Government Rules & Statutory Regulations Codex (RBI, DPDP 2023, CERT-In, IT Act, Basel III)">
+        <div class="comic-kavach-btn-content">
+          <div class="comic-kavach-btn-left">
+            <div class="gov-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="comic-kavach-text-group">
+              <div class="comic-kavach-title-row">
+                <span class="comic-kavach-main-title">Official Government Rules &amp; Statutory Regulations Codex</span>
+                <span class="badge badge-outline-gov">RBI &bull; DPDP &bull; CERT-In &bull; IT ACT</span>
+              </div>
+              <span class="comic-kavach-subtitle">Sovereign Directives of India &middot; DPDP Act 2023 (₹250 Cr Safe Harbor) &middot; CERT-In 6-Hr Window &middot; RBI Dual Control &middot; IT Act 66F</span>
+            </div>
+          </div>
+          <div class="comic-kavach-btn-action">
+            <span class="comic-kavach-action-label">View Codex</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </button>
+    </div>
+
     <button id="submit-btn" class="btn-submit-workflow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:6px;vertical-align:middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Ask AI &middot; Initiate Kavach Workflow</button>
     <p id="network-error" class="status-line status-blocked" style="display:none;"></p>
   </section>
@@ -2543,6 +2594,18 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="badge">STATE MACHINE</span>
     </div>
     <div id="pipeline" class="pipeline"></div>
+  </section>
+
+  <!-- Genuine Agentic Reasoning Trace & Tool Execution Card (Module 1-7 & ReAct Engine) -->
+  <section class="card" id="agentic-trace-card" style="display:none;">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">AGENTIC REASONING &amp; TOOL CALLING</span>
+        <h2>Agent Decision Trace &amp; Tool Execution</h2>
+      </div>
+      <span class="badge" style="border-color:var(--accent);color:var(--accent);" id="agent-loop-badge">ReAct ITERATIVE ENGINE</span>
+    </div>
+    <div id="agentic-trace-container"></div>
   </section>
 
   <!-- E. RAG evidence -->
@@ -5169,7 +5232,7 @@ def parse_deploy_spec(user_payload):
         <div>
           <div style="display:flex; align-items:center; gap:10px;">
             <h2 style="font-size:1.3rem; font-weight:700; color:#0F172A; margin:0; letter-spacing:-0.02em;">Professor Pranshu Tiwari &middot; Project Review Standardization Suite</h2>
-            <span style="background:#ECFDF5; color:#059669; border:1px solid #A7F3D0; font-size:0.72rem; font-weight:700; padding:3px 10px; border-radius:9999px;">11 / 11 REQUIREMENTS VERIFIED</span>
+            <span style="background:#ECFDF5; color:#059669; border:1px solid #A7F3D0; font-size:0.72rem; font-weight:700; padding:3px 10px; border-radius:9999px;">12 / 12 REQUIREMENTS VERIFIED</span>
           </div>
           <p style="margin:4px 0 0 0; font-size:0.8rem; color:#64748B;">
             CSE3101 Agentic AI &middot; Hover Blackboard, MCP Tools, Pydantic Outputs, A2A Interop, Google ADK &amp; CrewAI, Guardrails, Provenance &amp; E2E Metrics
@@ -5190,6 +5253,7 @@ def parse_deploy_spec(user_payload):
         <button type="button" class="prof-tab-btn" id="prof-page-btn-security" data-tab="security" onclick="window.switchProfTab('security')">8. Guardrails &amp; Variances</button>
         <button type="button" class="prof-tab-btn" id="prof-page-btn-eval" data-tab="eval" onclick="window.switchProfTab('eval')">9, 10. E2E Perf &amp; Cost</button>
         <button type="button" class="prof-tab-btn" id="prof-page-btn-deploy" data-tab="deploy" onclick="window.switchProfTab('deploy')">11. Cloud Deploy</button>
+        <button type="button" class="prof-tab-btn" id="prof-page-btn-defense-lab" data-tab="defense-lab" onclick="window.switchProfTab('defense-lab')" style="background:#FEF2F2; color:#DC2626; border-color:#FECACA; font-weight:700;">12. Academic Defense Lab (5 Demos)</button>
       </div>
 
       <!-- Content Area -->
@@ -5274,7 +5338,13 @@ def parse_deploy_spec(user_payload):
 </div>
 
 <!-- Floating AI Chatbot Copilot -->
-<div id="kavach-chatbot-container">
+<div id="kavach-chatbot-container" style="display:flex;flex-direction:column;align-items:flex-end;">
+  <!-- Floating ELI5 Companion Button positioned directly above floating Ask AI launcher -->
+  <button type="button" id="floating-eli5-launcher" class="floating-eli5-btn" onclick="openEli5AcademicModal()" aria-label="Open ELI5 Syllabus & Math Guide" title="ELI5: Academic Course Handout & Mathematical Formulas">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    <span>ELI5 &middot; Math Guide</span>
+  </button>
+
   <button type="button" id="chatbot-launcher" aria-label="Open Kavach AI Copilot" title="Ask Kavach AI Copilot" onclick="toggleChatbot()">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     <span class="chatbot-launcher-label">Ask AI</span>
@@ -5374,6 +5444,96 @@ def parse_deploy_spec(user_payload):
   </div>
 </div>
 
+<!-- ELI5 (Explain Like I'm 5) Academic & Mathematical Knowledge Hub Modal -->
+<div id="eli5-academic-modal" class="modal-backdrop" style="display:none;" onclick="if(event.target===this)closeEli5AcademicModal()">
+  <div class="eli5-modal-window">
+    <div class="eli5-modal-header">
+      <div class="eli5-header-title-box">
+        <div class="eli5-header-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <h3 style="margin:0;font-size:1.15rem;letter-spacing:-0.2px;">ELI5 Academic Knowledge Hub &middot; Topics &amp; Math Guide</h3>
+            <span class="eli5-header-badge">CSE3101 &middot; CO1&ndash;CO5</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:0.78rem;color:var(--text-dim);">
+            BML Munjal University &middot; School of Engineering &amp; Technology &middot; Mentors: <strong>Dr. Soharab Hossain Shaikh &amp; Mr. Pranshu Tiwari</strong>
+          </p>
+        </div>
+      </div>
+      <button type="button" class="eli5-close-btn" onclick="closeEli5AcademicModal()" aria-label="Close modal">&times;</button>
+    </div>
+
+    <!-- Sub-navigation: Filters, Search & View Switcher -->
+    <div class="eli5-subnav-bar">
+      <div class="eli5-filter-pills">
+        <button type="button" class="eli5-pill-tab active" data-co="all" onclick="filterEli5ByCo('all')">All 10 Topics</button>
+        <button type="button" class="eli5-pill-tab" data-co="CO1" onclick="filterEli5ByCo('CO1')">CO1: Agent Foundations</button>
+        <button type="button" class="eli5-pill-tab" data-co="CO2" onclick="filterEli5ByCo('CO2')">CO2: Security &amp; Local LLMs</button>
+        <button type="button" class="eli5-pill-tab" data-co="CO3" onclick="filterEli5ByCo('CO3')">CO3: Multimodal &amp; Protocols</button>
+        <button type="button" class="eli5-pill-tab" data-co="CO4" onclick="filterEli5ByCo('CO4')">CO4: Observability &amp; Metrics</button>
+        <button type="button" class="eli5-pill-tab" id="eli5-view-handout-btn" onclick="switchEli5View('handout')">Course Handout Sessions (1&ndash;45)</button>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;">
+        <input type="text" id="eli5-search-input" class="eli5-search-input" placeholder="Search topic, formula, or concept..." oninput="handleEli5Search()">
+        <button type="button" id="eli5-view-topics-btn" class="pill-btn active" onclick="switchEli5View('topics')" style="font-size:0.74rem;padding:5px 10px;">Topics View</button>
+      </div>
+    </div>
+
+    <!-- Modal Scrollable Content Body -->
+    <div class="eli5-modal-body">
+      <!-- Course Outcomes Banner Card -->
+      <div class="eli5-co-banner">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+          <div>
+            <strong style="font-size:0.86rem;color:#065F46;letter-spacing:-0.2px;">BML Munjal University CSE3101: Agentic AI &mdash; Course Outcomes (CO) Mapping</strong>
+            <div style="font-size:0.75rem;color:#047857;margin-top:2px;">All 10 core engineering capabilities mapped directly to official syllabus accreditation outcomes</div>
+          </div>
+          <span class="badge" style="background:#059669;color:#FFFFFF;border:none;font-weight:700;font-size:0.68rem;">100% AUDITED</span>
+        </div>
+        <div class="eli5-co-grid">
+          <div class="eli5-co-item">
+            <span class="eli5-co-tag">CO1 &middot; FOUNDATIONS &amp; MULTI-AGENT</span>
+            Apply foundational principles of intelligent agents and LLMs to develop multi-agent applications.
+          </div>
+          <div class="eli5-co-item">
+            <span class="eli5-co-tag">CO2 &middot; SECURITY &amp; LOCAL LLMS</span>
+            Analyze requirements and apply agentic design patterns and local LLMs to build secure, privacy-preserving solutions.
+          </div>
+          <div class="eli5-co-item">
+            <span class="eli5-co-tag">CO3 &middot; MULTIMODAL &amp; PROTOCOLS</span>
+            Design intelligent multi-agent, multi-modal applications (Whisper audio, Vision) to automate complex tasks.
+          </div>
+          <div class="eli5-co-item">
+            <span class="eli5-co-tag">CO4 &middot; OBSERVABILITY &amp; METRICS</span>
+            Runtime event telemetry, 8-hook ADK callbacks, and cryptographic SLSA Level 3 Merkle tree provenance.
+          </div>
+          <div class="eli5-co-item">
+            <span class="eli5-co-tag">CO5 &middot; PRIVACY &amp; RATE LIMITING</span>
+            Indian DPDP Act 2023 Token Vault, air-gapped Ollama routing, and token bucket DoS defense.
+          </div>
+        </div>
+      </div>
+
+      <!-- Topics View Container -->
+      <div id="eli5-topics-view">
+        <div id="eli5-topics-container">
+          <!-- Dynamically populated by eli5_hub.js -->
+        </div>
+      </div>
+
+      <!-- Course Handout View Container -->
+      <div id="eli5-handout-view" style="display:none;">
+        <div id="eli5-handout-container">
+          <!-- Dynamically populated by eli5_hub.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 100+ Enterprise Test Query Library Modal -->
 <div id="query-library-modal" class="modal-backdrop" style="display:none;" onclick="if(event.target===this)closeQueryLibraryModal()">
   <div class="modal-content modal-content-library">
@@ -5436,12 +5596,86 @@ def parse_deploy_spec(user_payload):
   </div>
 </div>
 
+<!-- Official Government Rules & Regulations Modal (Enterprise Compliance Edition) -->
+<div id="gov-rules-modal" class="modal-backdrop comic-modal-backdrop" style="display: none;" onclick="if(event.target===this)closeGovRulesModal()">
+  <div class="comic-modal-window">
+    <!-- Header -->
+    <div class="comic-modal-header">
+      <div class="comic-header-left">
+        <div class="gov-header-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <h2 class="comic-header-title">OFFICIAL GOVERNMENT RULES &amp; STATUTORY CODEX</h2>
+            <span class="badge badge-outline-gov">SOVEREIGN DIRECTIVES OF INDIA</span>
+          </div>
+          <p class="comic-header-sub">Statutory Directives of India &amp; Global Central Banking Frameworks Enforced by KAVACH Autonomous Shield</p>
+        </div>
+      </div>
+      <div class="comic-header-right">
+        <span class="badge badge-outline-safe">100% AUDITED</span>
+        <button id="btn-close-gov-rules" class="comic-modal-close" onclick="closeGovRulesModal()" aria-label="Close modal">&times;</button>
+      </div>
+    </div>
+
+    <!-- Speech / Advisory Banner -->
+    <div class="comic-speech-banner">
+      <div class="comic-avatar-badge">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="comic-speech-bubble">
+        <div class="comic-bubble-tag">KAVACH STATUTORY GUARDIAN &bull; SOVEREIGN COMPLIANCE MANDATE</div>
+        <p class="comic-bubble-text">
+          <strong>STATUTORY ADVISORY:</strong> Systems and AI agents operate within sovereign Indian financial infrastructure. Under the <strong>DPDP Act 2023</strong>, <strong>RBI Cyber Security Framework</strong>, and <strong>CERT-In Directions</strong>, every autonomous transaction, tool invocation, and token is governed by strict law. Bypassing these gates incurs up to <strong>₹250 CRORE</strong> in regulatory fines, Section 66F criminal penalties, and immediate banking license forfeiture.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sub-Navigation: Filters & Search -->
+    <div class="comic-toolbar">
+      <div class="comic-filter-group">
+        <button type="button" class="comic-pill-filter active" data-filter="all" onclick="filterGovRules('all')">All Regulations</button>
+        <button type="button" class="comic-pill-filter" data-filter="rbi" onclick="filterGovRules('rbi')">RBI Directives</button>
+        <button type="button" class="comic-pill-filter" data-filter="dpdp" onclick="filterGovRules('dpdp')">DPDP Act 2023</button>
+        <button type="button" class="comic-pill-filter" data-filter="cert-in" onclick="filterGovRules('cert-in')">CERT-In &amp; IT Act</button>
+        <button type="button" class="comic-pill-filter" data-filter="basel" onclick="filterGovRules('basel')">Basel III &amp; SEBI</button>
+      </div>
+      <div class="comic-search-box">
+        <input type="text" id="gov-rules-search" class="comic-search-input" placeholder="Search rules, penalties, sections, keywords..." oninput="handleGovRulesSearch()">
+      </div>
+    </div>
+
+    <!-- Scrollable Panels Container -->
+    <div class="comic-modal-body" id="gov-rules-panels-container">
+      <!-- Dynamically rendered by gov_rules_codex.js -->
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="comic-modal-footer">
+      <div class="comic-footer-status">
+        <span class="comic-dot-pulse"></span>
+        <span>LIVE STATUTORY AUDITOR ACTIVE &bull; ZERO BYPASS TOLERANCE</span>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button type="button" class="comic-btn-action" onclick="printGovRulesDossier()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print Regulatory Dossier
+        </button>
+        <button type="button" class="comic-btn-dismiss" onclick="closeGovRulesModal()">Dismiss Codex</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="query_library.js?v=3.2.0"></script>
 <script src="script.js?v=3.2.0"></script>
 <script src="app.js?v=3.2.0"></script>
 <script src="improvised_controller.js?v=3.2.0"></script>
 <script src="course_cockpit.js?v=3.2.0"></script>
 <script src="academic_weapon.js?v=3.2.0"></script>
+<script src="eli5_hub.js?v=3.2.0"></script>
+<script src="gov_rules_codex.js?v=3.2.0"></script>
 <!-- Floating Interactive Pathway Telemetry Dock -->
 <div id="floating-pathway-dock" class="floating-pathway-dock" aria-live="polite">
   <div class="dock-status-label">

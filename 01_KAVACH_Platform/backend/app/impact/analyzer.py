@@ -154,12 +154,12 @@ def analyze_impact(change_description: str, repo_root: str, top_k: int = 5) -> l
         if info["dependency_hit"]:
             reasons.append("imports/references the most-related file")
             breakdown_items.append(
-                "⚡ AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports."
+                "AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports."
             )
         if info["semantic_score"] > 0:
             reasons.append("semantically related to the change description")
             breakdown_items.append(
-                f"🧠 Semantic Alignment (+{semantic_component:.3f}): Vector embedding similarity ({info['semantic_score']:.2f} cosine score) with requested change intent."
+                f"Semantic Alignment (+{semantic_component:.3f}): Vector embedding similarity ({info['semantic_score']:.2f} cosine score) with requested change intent."
             )
 
         # Determine Significance and Impact Tier

@@ -75,9 +75,9 @@ services:
     name: kavach-platform
     env: python
     region: singapore
-    plan: starter
-    buildCommand: pip install -r important/kavach/backend/requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir important/kavach/backend
+    plan: free
+    buildCommand: pip install -r 01_KAVACH_Platform/backend/requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir 01_KAVACH_Platform/backend
     envVars:
       - key: PYTHONUNBUFFERED
         value: 1
@@ -89,21 +89,23 @@ services:
     name: bharat-banking
     env: python
     region: singapore
-    plan: starter
-    buildCommand: pip install -r implementation_banks/requirements.txt
-    startCommand: uvicorn implementation_banks.server:app --host 0.0.0.0 --port $PORT
+    plan: free
+    buildCommand: pip install -r 02_Banking_and_Results_Dashboard/implementation_banks/requirements.txt
+    startCommand: python -m uvicorn implementation_banks.server:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHONUNBUFFERED
         value: 1
+      - key: PYTHONPATH
+        value: 02_Banking_and_Results_Dashboard
 
   # 3. Unified Results Cockpit
   - type: web
     name: results-cockpit
     env: python
     region: singapore
-    plan: starter
-    buildCommand: pip install fastapi uvicorn pydantic
-    startCommand: uvicorn results_hub:app --app-dir results --host 0.0.0.0 --port $PORT
+    plan: free
+    buildCommand: pip install -r 02_Banking_and_Results_Dashboard/results_dashboard/requirements.txt
+    startCommand: python -m uvicorn results_hub:app --app-dir 02_Banking_and_Results_Dashboard/results_dashboard --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHONUNBUFFERED
         value: 1
@@ -116,9 +118,9 @@ services:
 1. Fork or push repository to GitHub.
 2. In Railway Dashboard, click **New Project** &rarr; **Deploy from GitHub repo**.
 3. Create 3 services inside the same project canvas:
-   - **Service 1 (KAVACH)**: Root directory: `/`, Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir important/kavach/backend`
-   - **Service 2 (Banking)**: Root directory: `/`, Start Command: `uvicorn implementation_banks.server:app --host 0.0.0.0 --port $PORT`
-   - **Service 3 (Cockpit)**: Root directory: `/`, Start Command: `uvicorn results_hub:app --app-dir results --host 0.0.0.0 --port $PORT`
+   - **Service 1 (KAVACH)**: Root directory: `/`, Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT --app-dir 01_KAVACH_Platform/backend`
+   - **Service 2 (Banking)**: Root directory: `/`, Start Command: `python -m uvicorn implementation_banks.server:app --host 0.0.0.0 --port $PORT`
+   - **Service 3 (Cockpit)**: Root directory: `/`, Start Command: `python -m uvicorn results_hub:app --app-dir 02_Banking_and_Results_Dashboard/results_dashboard --host 0.0.0.0 --port $PORT`
 4. Set Environment Variable `PORT` on each service (automatically mapped by Railway).
 
 ---
@@ -140,13 +142,17 @@ services:
 Once deployed, verify that all 11 standardization requirements pass on the live cloud host:
 
 ```bash
-# Execute Professor Standardization 16-test suite
-pytest important/kavach/tests/test_professor_standardization.py -v
+# Execute Live End-to-End Integration Verification Suite
+python verification/live_e2e_integration_test.py
 
-# Execute all 3 master 100-test suites (300 tests)
-pytest important/kavach/tests/test_kavach_100_suite.py -q
-python -m pytest implementation_banks/test_banking_100_suite.py -q
-python -m pytest tests_unified/test_unified_100_suite.py -q
+# Execute Focused Security & Containment Checks
+python verification/focused_check.py
+
+# Execute 32 Dedicated Agentic ReAct & Tool Verification Tests
+pytest 01_KAVACH_Platform/tests/test_agent_tools.py 01_KAVACH_Platform/tests/test_react_engine.py 01_KAVACH_Platform/tests/test_agentic_api.py 01_KAVACH_Platform/tests/test_multimodal_vision.py 01_KAVACH_Platform/tests/test_mcp_protocol.py -v
+
+# Execute Full Test Suite (494 tests)
+pytest 01_KAVACH_Platform/tests/ -q
 ```
 
-All 316 tests pass deterministically with **100% success rate**.
+All suites pass deterministically with **100% success rate**.
