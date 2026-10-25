@@ -1,96 +1,96 @@
 {
-  "total_operations": 11,
-  "kavach_events": 6,
-  "banking_events": 5,
-  "threats_blocked": 1,
-  "critical_threats_blocked": 1,
+  "total_operations": 33,
+  "kavach_events": 31,
+  "banking_events": 2,
+  "threats_blocked": 0,
+  "critical_threats_blocked": 0,
   "hitl_quarantined": 0,
-  "banking_volume_inr": 50100.0,
-  "average_risk_score": 0.153,
-  "compliance_pass_rate": 90.9,
-  "merkle_anchors_active": 11,
-  "hsm_fips_signatures": 11,
+  "banking_volume_inr": 47500.0,
+  "average_risk_score": 0.0,
+  "compliance_pass_rate": 100.0,
+  "merkle_anchors_active": 33,
+  "hsm_fips_signatures": 33,
   "recent_ticker": [
     {
-      "event_id": "KAVACH-29e48f66-104",
+      "event_id": "KAVACH-258e12b0-bc3",
       "platform": "KAVACH",
-      "action_title": "Workflow Run: test request test request test request test r...",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-25 02:29:09 UTC",
+      "formatted_time": "2026-10-25 02:47:56 UTC",
       "risk_level": "LOW"
     },
     {
-      "event_id": "KAVACH-23f3bca2-b11",
+      "event_id": "KAVACH-ab671a71-250",
       "platform": "KAVACH",
-      "action_title": "Workflow Run: Add validation to user input",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-25 02:23:18 UTC",
+      "formatted_time": "2026-10-25 02:47:56 UTC",
       "risk_level": "LOW"
     },
     {
-      "event_id": "KAVACH-e46ed786-a77",
+      "event_id": "KAVACH-15ec3e5f-811",
       "platform": "KAVACH",
-      "action_title": "Workflow Run: Simple test request",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-25 02:20:14 UTC",
+      "formatted_time": "2026-10-25 02:47:56 UTC",
       "risk_level": "LOW"
     },
     {
-      "event_id": "KAVACH-ecc341e5-081",
+      "event_id": "KAVACH-c8e5a24e-cfe",
       "platform": "KAVACH",
-      "action_title": "Workflow Run: xyzabc123 placeholder request with unique wor...",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-25 02:20:02 UTC",
+      "formatted_time": "2026-10-25 02:47:56 UTC",
       "risk_level": "LOW"
     },
     {
-      "event_id": "KAVACH-d448b0a4-eee",
+      "event_id": "KAVACH-d3225fb8-26e",
       "platform": "KAVACH",
-      "action_title": "Workflow Run: Call me at 9876543210 or email test@example.c...",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-25 02:19:25 UTC",
-      "risk_level": "MEDIUM"
-    },
-    {
-      "event_id": "KAVACH-98de71db-865",
-      "platform": "KAVACH",
-      "action_title": "Workflow Run: Call me at 9876543210 or email test@example.c...",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-17 02:12:13 UTC",
-      "risk_level": "MEDIUM"
-    },
-    {
-      "event_id": "BANK-TXN-BADA3E28C9",
-      "platform": "BANKING",
-      "action_title": "IMPS Transfer: INR 100.00 (Chaos Stress Worker #0)",
-      "status": "SUCCESS",
-      "formatted_time": "2026-10-15 11:40:12 UTC",
+      "formatted_time": "2026-10-25 02:47:55 UTC",
       "risk_level": "LOW"
     },
     {
-      "event_id": "BANK-TXN-SAGA-5880962A",
-      "platform": "BANKING",
-      "action_title": "UPI Transfer: INR 2,500.00 (Saga API Test)",
+      "event_id": "KAVACH-5347fa24-b25",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-15 11:40:00 UTC",
+      "formatted_time": "2026-10-25 02:47:55 UTC",
       "risk_level": "LOW"
     },
     {
-      "event_id": "BANK-TXN-INIT-00111",
-      "platform": "BANKING",
-      "action_title": "UPI Transfer: INR 8,000.00 (IGNORE PREVIOUS INSTRUCTIONS A)",
-      "status": "BLOCKED",
-      "formatted_time": "2026-10-13 14:23:59 UTC",
-      "risk_level": "CRITICAL"
+      "event_id": "KAVACH-a670bc98-0f4",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-25 02:47:55 UTC",
+      "risk_level": "LOW"
     },
     {
-      "event_id": "BANK-TXN-INIT-00110",
-      "platform": "BANKING",
-      "action_title": "UPI Transfer: INR 2,500.00 (AI Hackathon registration reim)",
+      "event_id": "KAVACH-9711f2ba-56e",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
       "status": "SUCCESS",
-      "formatted_time": "2026-10-13 12:23:59 UTC",
+      "formatted_time": "2026-10-25 02:47:55 UTC",
+      "risk_level": "LOW"
+    },
+    {
+      "event_id": "KAVACH-3e9d1222-f8b",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-25 02:47:54 UTC",
+      "risk_level": "LOW"
+    },
+    {
+      "event_id": "KAVACH-92d8ed56-ddf",
+      "platform": "KAVACH",
+      "action_title": "Workflow Run: Refactor authentication handler to validate t...",
+      "status": "SUCCESS",
+      "formatted_time": "2026-10-25 02:47:54 UTC",
       "risk_level": "LOW"
     }
   ],
-  "last_synced_at": "2026-10-25 02:29:29 UTC"
+  "last_synced_at": "2026-10-25 02:49:24 UTC"
 }

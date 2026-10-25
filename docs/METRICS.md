@@ -1,7 +1,7 @@
 # KAVACH System Metrics (Single Source of Truth)
 
-**Generated**: `2026-10-25T02:34:01Z`  
-**Commit Hash**: `ad2277e21fd1af43a7d9204262d7639395849682`  
+**Generated**: `2026-10-25T02:47:43Z`  
+**Commit Hash**: `88c98dab836d6e071e8a43bfe932ba974f840321`  
 **Source Script**: [`scripts/generate_metrics.py`](file:///scripts/generate_metrics.py)  
 **Rule**: All documentation figures must reference or match values in this report.
 
@@ -107,6 +107,6 @@ The agent orchestrator (`app/agent/orchestrator.py`) executes **6 active lifecyc
 
 | Component | Runs | Median Latency | p95 Latency | Min Latency | Max Latency |
 |---|---|---|---|---|---|
-| **PII Detector** | 30 | **0.02 ms** | 0.02 ms | 0.02 ms | 0.03 ms |
+| **PII Detector** | 30 | **0.02 ms** | 0.02 ms | 0.02 ms | 0.04 ms |
 | **Secret Detector** | 30 | **0.02 ms** | 0.02 ms | 0.02 ms | 0.06 ms |
-| **Agent Workflow (E2E)** | 30 | **665.73 ms** | 783.16 ms | 257.52 ms | 814.10 ms |
+| **Agent Workflow (E2E)** | 30 | **334.41 ms** | 639.22 ms | 205.80 ms | 656.01 ms |
