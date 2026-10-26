@@ -203,7 +203,7 @@ const EMBED_SNIPPETS = {
 
   "multisig": `<div class="multisig-highway-track">
   <div class="agent-circle-icon agent-adk">ADK</div>
-  <div class="hsm-vault-lock">🔒</div>
+  <div class="hsm-vault-lock">VAULT</div>
   <div class="agent-circle-icon agent-crew">CREW</div>
 </div>`
 };
@@ -268,7 +268,7 @@ function initFuzzerInteractivity() {
   });
 
   burstBtn.addEventListener("click", () => {
-    burstBtn.textContent = "⚡ Mutating...";
+    burstBtn.textContent = "Mutating...";
     burstBtn.style.background = "#f59e0b";
     
     // Animate particles
@@ -279,10 +279,10 @@ function initFuzzerInteractivity() {
     });
 
     setTimeout(() => {
-      burstBtn.textContent = "✓ 489/500 Caught";
+      burstBtn.textContent = "489/500 Intercepted";
       burstBtn.style.background = "#10b981";
       setTimeout(() => {
-        burstBtn.textContent = "⚡ Mutate Burst";
+        burstBtn.textContent = "Execute Mutation Burst";
         burstBtn.style.background = "#ef4444";
       }, 2500);
     }, 1200);
@@ -314,10 +314,10 @@ function initMerkleTreeInteractivity() {
       if (lineRRight) { lineRRight.setAttribute("stroke", "#ef4444"); }
       if (lineL2) { lineL2.setAttribute("stroke", "#ef4444"); }
       if (hudText) {
-        hudText.innerHTML = "❌ TAMPER DETECTED: Root Digest Mismatch (NIST SP 800-218 Broken)!";
+        hudText.innerHTML = "[TAMPER DETECTED] Root Digest Mismatch (NIST SP 800-218 Broken)!";
         hudText.style.color = "#ef4444";
       }
-      tamperBtn.textContent = "🛡️ Re-Attest Seal";
+      tamperBtn.textContent = "Re-Attest Seal";
       tamperBtn.style.background = "rgba(16, 185, 129, 0.2)";
       tamperBtn.style.borderColor = "#10b981";
       tamperBtn.style.color = "#34d399";
@@ -332,7 +332,7 @@ function initMerkleTreeInteractivity() {
         hudText.innerHTML = "● MERKLE ROOT: 611689ea... [SLSA L3 VERIFIED]";
         hudText.style.color = "#10b981";
       }
-      tamperBtn.textContent = "⚠️ Simulate Tamper";
+      tamperBtn.textContent = "Simulate Tamper";
       tamperBtn.style.background = "rgba(239, 68, 68, 0.15)";
       tamperBtn.style.borderColor = "#ef4444";
       tamperBtn.style.color = "#f87171";

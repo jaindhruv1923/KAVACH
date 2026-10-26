@@ -8,7 +8,7 @@
     "recall": 1.0,
     "f1_score": 0.8571,
     "accuracy": 0.8361,
-    "mean_latency_ms": 0.41,
+    "mean_latency_ms": 0.39,
     "delta_f1": "0.0%"
   },
   "w/o Obfuscation Normalizer (Ablation A)": {
@@ -20,7 +20,7 @@
     "recall": 1.0,
     "f1_score": 0.8824,
     "accuracy": 0.8689,
-    "mean_latency_ms": 0.21,
+    "mean_latency_ms": 0.22,
     "delta_f1": "+2.5%"
   },
   "w/o Shannon Entropy Gate (Ablation B)": {
@@ -32,7 +32,7 @@
     "recall": 1.0,
     "f1_score": 0.8695,
     "accuracy": 0.8525,
-    "mean_latency_ms": 0.37,
+    "mean_latency_ms": 0.39,
     "delta_f1": "+1.2%"
   },
   "w/o Context-Aware Proximity (Ablation C)": {
@@ -44,7 +44,7 @@
     "recall": 0.7667,
     "f1_score": 0.7541,
     "accuracy": 0.7541,
-    "mean_latency_ms": 0.2,
+    "mean_latency_ms": 0.19,
     "delta_f1": "-10.3%"
   },
   "w/o Calibrated Risk Policy (Ablation D)": {
@@ -56,7 +56,7 @@
     "recall": 1.0,
     "f1_score": 0.8824,
     "accuracy": 0.8689,
-    "mean_latency_ms": 0.38,
+    "mean_latency_ms": 0.37,
     "delta_f1": "+2.5%"
   }
 }

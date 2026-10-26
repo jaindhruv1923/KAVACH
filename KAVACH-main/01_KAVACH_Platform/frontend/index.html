@@ -317,8 +317,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 
-<!-- Interactive Neural Constellation Canvas (Particle Mesh Web - Always in front with pointer-events: none) -->
-<canvas id="interactive-particle-web" aria-hidden="true" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;opacity:0.82;display:block;"></canvas>
+<!-- Interactive Neural Constellation Canvas (Ambient Particle Mesh Web - Layered Behind Content) -->
+<canvas id="interactive-particle-web" aria-hidden="true" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;opacity:0.18;display:block;"></canvas>
 
 <header class="app-header">
   <!-- Top Row: Brand, Primary Pathway Toggle, and Quick Action Buttons -->
@@ -389,8 +389,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   </script>
-      <button type="button" id="header-academic-weapon-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview(); setTimeout(() => window.switchProfTab('academic-frontiers'), 100);" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #4F46E5 0%, #3730A3 100%); color:#fff; font-weight:700; border:1px solid #818CF8; box-shadow:0 0 16px rgba(79,70,229,0.4); cursor:pointer;" title="Point 13: 30/30 Academic Weapon Suite (Fuzzer, Merkle Tree, Ablation, Dual-Custody Multi-Sig, ROC Calibration)">
-        🎓 30/30 Academic Suite (5 Frontiers)
+      <button type="button" id="header-academic-weapon-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview(); setTimeout(() => window.switchProfTab('academic-frontiers'), 100);" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, #4F46E5 0%, #3730A3 100%); color:#fff; font-weight:700; border:1px solid #818CF8; box-shadow:0 0 16px rgba(79,70,229,0.4); cursor:pointer; padding:0 16px !important;" title="Point 13: 30/30 Academic Weapon Suite (Fuzzer, Merkle Tree, Ablation, Dual-Custody Multi-Sig, ROC Calibration)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> 30/30 Academic Suite
       </button>
       <button type="button" id="header-prof-review-btn" class="btn-serious magnetic-btn" onclick="window.switchToProfessorReview()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (13/13 Verified)">
         Professor Review (13/13)
@@ -401,8 +401,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <a href="/bank/" id="header-bank-highway-btn" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#F8FAFC; font-weight:600;" title="Bharat Core Banking Highway" onclick="if(window.location.port==='5500'){this.href='/KAVACH-main/02_Banking_and_Results_Dashboard/implementation_banks/index.html';}">
         Bank Highway
       </a>
-      <a href="/motion/" id="header-motion-btn" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#38BDF8; font-weight:600;" title="Open KAVACH Motion Graphics Studio & Live Showcase" onclick="if(window.location.port==='5500'||window.location.pathname.includes('/01_KAVACH_Platform/')){this.href='../../motion_graphics/index.html';}">
-        🎨 Motion Studio
+      <a href="/motion/" id="header-motion-btn" target="_blank" class="btn-serious magnetic-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:rgba(30, 41, 59, 0.7); border:1px solid rgba(255,255,255,0.12); color:#38BDF8; font-weight:600; padding:0 14px !important;" title="Open KAVACH Motion Graphics Studio & Live Showcase" onclick="if(window.location.port==='5500'||window.location.pathname.includes('/01_KAVACH_Platform/')){this.href='../../motion_graphics/index.html';}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Motion Studio
       </a>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
         Defense Tour
@@ -5261,7 +5261,7 @@ def parse_deploy_spec(user_payload):
         <button type="button" class="prof-tab-btn" id="prof-page-btn-eval" data-tab="eval" onclick="window.switchProfTab('eval')">9, 10. E2E Perf &amp; Cost</button>
         <button type="button" class="prof-tab-btn" id="prof-page-btn-deploy" data-tab="deploy" onclick="window.switchProfTab('deploy')">11. Cloud Deploy</button>
         <button type="button" class="prof-tab-btn" id="prof-page-btn-defense-lab" data-tab="defense-lab" onclick="window.switchProfTab('defense-lab')" style="background:#FEF2F2; color:#DC2626; border-color:#FECACA; font-weight:700;">12. Academic Defense Lab (5 Demos)</button>
-        <button type="button" class="prof-tab-btn" id="prof-page-btn-academic-frontiers" data-tab="academic-frontiers" onclick="window.switchProfTab('academic-frontiers')" style="background:#EEF2FF; color:#4F46E5; border-color:#C7D2FE; font-weight:700;">13. 🎓 30/30 Academic Weapon Suite</button>
+        <button type="button" class="prof-tab-btn" id="prof-page-btn-academic-frontiers" data-tab="academic-frontiers" onclick="window.switchProfTab('academic-frontiers')" style="background:#EEF2FF; color:#4F46E5; border-color:#C7D2FE; font-weight:700; padding:8px 16px;">13. 30/30 Academic Suite (5 Frontiers)</button>
       </div>
 
       <!-- Content Area -->

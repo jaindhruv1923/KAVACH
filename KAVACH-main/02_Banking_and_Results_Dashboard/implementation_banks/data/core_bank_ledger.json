@@ -1,18 +1,18 @@
 {
-  "snapshot_timestamp": 1793023908.3172076,
+  "snapshot_timestamp": 1793027926.829467,
   "accounts": {
     "SBIN00012345678": {
       "account_number": "SBIN00012345678",
       "holder_name": "Dhruv Jain (Retail Savings)",
       "account_type": "SAVINGS",
-      "balance": 229500.0,
+      "balance": 229300.0,
       "pan_card": "ABCDE1234F",
       "aadhaar_number": "987654321012",
       "phone": "+91-9876543210",
       "daily_limit": 100000.0,
-      "daily_transferred_today": 30500.0,
+      "daily_transferred_today": 30700.0,
       "is_frozen": false,
-      "version": 29,
+      "version": 30,
       "overdraft_limit": 75000.0,
       "overdraft_used": 0.0
     },
@@ -35,14 +35,14 @@
       "account_number": "ICIC00045678901",
       "holder_name": "Ananya Sharma (Student Account)",
       "account_type": "STUDENT_SAVINGS",
-      "balance": 54900.0,
+      "balance": 55100.0,
       "pan_card": "BKWPS9876M",
       "aadhaar_number": "332211445566",
       "phone": "+91-9123456789",
       "daily_limit": 25000.0,
       "daily_transferred_today": 0.0,
       "is_frozen": false,
-      "version": 23,
+      "version": 24,
       "overdraft_limit": 0.0,
       "overdraft_used": 0.0
     },
@@ -462,6 +462,21 @@
       "aml_sar_alert": null,
       "timestamp": 1793023908.317188,
       "formatted_time": "2026-10-26 19:41:48"
+    },
+    {
+      "transaction_id": "TXN-54005BC6B8",
+      "status": "SUCCESS",
+      "sender_account": "SBIN00012345678",
+      "receiver_account": "ICIC00045678901",
+      "amount": 200.0,
+      "transfer_type": "NEFT",
+      "memo": "[DUAL-CUSTODY APPROVED | Sig1:A2A-SIG-.. Sig2:A2A-SIG-..] Authorized vendor payment",
+      "sender_new_balance": 229300.0,
+      "receiver_new_balance": 55100.0,
+      "sender_version": 30,
+      "aml_sar_alert": null,
+      "timestamp": 1793027926.8294199,
+      "formatted_time": "2026-10-26 20:48:46"
     }
   ],
   "fixed_deposits": [

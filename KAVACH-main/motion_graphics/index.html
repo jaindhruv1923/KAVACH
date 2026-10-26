@@ -40,15 +40,17 @@
         <button class="ctrl-btn speed-btn" data-speed="2">2.0x Warp</button>
         
         <!-- Simulation States -->
-        <button class="ctrl-btn state-btn active" data-state="normal">🟢 Normal Traffic</button>
-        <button class="ctrl-btn state-btn threat-btn" data-state="attack">🚨 Simulate Threat</button>
+        <button class="ctrl-btn state-btn active" data-state="normal">Normal Traffic</button>
+        <button class="ctrl-btn state-btn threat-btn" data-state="attack">Simulate Threat</button>
         
         <!-- Theme Toggle -->
-        <button class="ctrl-btn" id="themeToggle">🌓 Switch Theme</button>
+        <button class="ctrl-btn" id="themeToggle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>Toggle Theme
+        </button>
 
         <!-- Back to Platform -->
         <a href="../01_KAVACH_Platform/frontend/index.html" class="ctrl-btn" style="text-decoration: none;">
-          ⚡ Open Main Platform
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Return to Platform
         </a>
       </div>
     </header>
@@ -366,7 +368,7 @@
               <button class="fuzzer-cat-btn" data-cat="leetspeak">Leetspeak</button>
               <button class="fuzzer-cat-btn" data-cat="framing">Context Framing</button>
               <button class="fuzzer-cat-btn" data-cat="base64">Base64</button>
-              <button class="action-btn" id="fuzzerBurstBtn" style="padding: 4px 10px; font-size: 0.7rem; background: #ef4444; border:none; color:white; border-radius:4px; cursor:pointer;">⚡ Mutate Burst</button>
+              <button class="action-btn" id="fuzzerBurstBtn" style="padding: 6px 14px; font-size: 0.75rem; font-weight: 700; background: #ef4444; border:none; color:white; border-radius:6px; cursor:pointer;">Execute Mutation Burst</button>
             </div>
           </div>
         </div>
@@ -432,7 +434,7 @@
 
             <div class="merkle-hud-bar" id="merkleHud">
               <span id="merkleStatusText" style="color:#10b981;">● MERKLE ROOT: 611689ea... [VERIFIED]</span>
-              <button class="merkle-tamper-state-btn" id="tamperSimBtn">⚠️ Simulate Tamper</button>
+              <button class="merkle-tamper-state-btn" id="tamperSimBtn" style="padding:6px 14px; font-size:0.75rem; border-radius:6px;">Simulate Tamper</button>
             </div>
           </div>
         </div>
@@ -551,8 +553,8 @@
             </div>
 
             <div class="multisig-controls">
-              <button class="multisig-toggle-btn active" id="btnDualSigned">🟢 Dual-Custody Clearance (₹7,50,000)</button>
-              <button class="multisig-toggle-btn rogue" id="btnRogueBlocked">🚨 Rogue Single-Agent Mode</button>
+              <button class="multisig-toggle-btn active" id="btnDualSigned" style="padding:8px 14px; font-size:0.78rem;">Dual-Custody Clearance (INR 7.5L)</button>
+              <button class="multisig-toggle-btn rogue" id="btnRogueBlocked" style="padding:8px 14px; font-size:0.78rem;">Rogue Single-Agent Mode</button>
             </div>
           </div>
         </div>
@@ -579,7 +581,7 @@
       </p>
       <pre class="code-box"><code id="codeSnippet"></code></pre>
       <div style="display: flex; justify-content: flex-end;">
-        <button class="copy-btn" id="copyCodeBtn">📋 Copy Embed Code</button>
+        <button class="copy-btn" id="copyCodeBtn" style="padding:8px 18px; font-size:0.82rem; border-radius:6px; font-weight:600;">Copy Embed Code</button>
       </div>
     </div>
   </div>
