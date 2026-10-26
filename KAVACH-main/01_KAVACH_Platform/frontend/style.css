@@ -93,13 +93,13 @@ html {
 }
 
 /* Ensure fixed header does not overlap section anchor targets */
-section[id], div[id].product-section, .flowchart-wrapper, #terminal-results-section, #architecture-flowchart, #workspace-view, #research-view, #defense-view, #showcase-innovations-section, #warroom-arena-card, #forensic-replay-card, #consensus-radar-card, #dossier-generator-card, #voice-cockpit-card, #improvised-innovations-section {
-  scroll-margin-top: 64px !important;
+section[id], div[id].product-section, .flowchart-wrapper, #terminal-results-section, #architecture-flowchart, #workspace-view, #research-view, #defense-view, #showcase-innovations-section, #warroom-arena-card, #forensic-replay-card, #consensus-radar-card, #dossier-generator-card, #voice-cockpit-card, #improvised-innovations-section, #comparison-matrix-section, #cve-playground-card, #xai-playground-card, #hitl-playground-card {
+  scroll-margin-top: 76px !important;
 }
 
 body {
   margin: 0;
-  padding: 58px 0 80px;
+  padding: 70px 0 80px;
   min-height: 100vh;
   font-family: var(--font-sans);
   color: var(--text-primary);
@@ -243,17 +243,19 @@ body {
 .nav-switcher {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  justify-content: safe center;
   gap: 5px;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 0 4px;
   border-radius: 0;
   max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  flex-shrink: 1;
+  flex: 0 1 auto;
+  margin: 0 10px;
   white-space: nowrap;
 }
 
@@ -4764,10 +4766,10 @@ button,
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 3.5px;
+  height: 2px;
   width: 0%;
   background: linear-gradient(90deg, #2563EB 0%, #38BDF8 50%, #059669 100%);
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.8), 0 0 4px rgba(5, 150, 105, 0.6);
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.4), 0 0 2px rgba(5, 150, 105, 0.3);
   z-index: 102;
   pointer-events: none;
   transition: width 0.08s cubic-bezier(0.16, 1, 0.3, 1);

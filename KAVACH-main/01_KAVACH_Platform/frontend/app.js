@@ -2853,13 +2853,9 @@ window.renderDynamicNavbar = function(mode) {
     container.innerHTML = `
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('improvised-innovations-section', this)">Innovations</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('warroom-arena-card', this)">War Room</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR Replay</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('consensus-radar-card', this)">Consensus</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('dossier-generator-card', this)">Dossier</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('cve-playground-card', this)">CVE</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('xai-playground-card', this)">XAI</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('hitl-playground-card', this)">Quarantine</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Audit Matrix</button>
     `;
   }
 };
