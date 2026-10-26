@@ -165,13 +165,24 @@ def normalize_adversarial_text(text: str) -> Dict[str, Any]:
     details: List[str] = []
     risk_score = 0.0
 
+    # 0. Zero-width steganography stripping
+    zero_width_chars = {'\u200b', '\u200c', '\u200d', '\ufeff', '\u200e', '\u200f', '\u2060'}
+    stripped_text = "".join(ch for ch in text if ch not in zero_width_chars)
+    if len(stripped_text) < len(text):
+        detected_encodings.append("ZERO_WIDTH_STEGANOGRAPHY")
+        decloaked_texts.append(stripped_text)
+        details.append(f"Stripped {len(text) - len(stripped_text)} invisible zero-width steganography characters.")
+        risk_score += 0.45
+    working_text = stripped_text
+
     # 1. URL percent-decoding
-    url_decoded, url_changed = extract_and_decode_url(text)
+    url_decoded, url_changed = extract_and_decode_url(working_text)
     if url_changed:
         detected_encodings.append("URL_PERCENT_ENCODING")
         decloaked_texts.append(url_decoded)
         details.append(f"Decoded URL percent-encoding: '{url_decoded[:60]}...'")
         risk_score += 0.25
+
 
     # 2. Unicode Homoglyph normalization
     homo_normalized, homo_changed = normalize_homoglyphs(url_decoded)

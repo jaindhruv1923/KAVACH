@@ -58,8 +58,14 @@ class CrewAgent:
             "duration_ms": duration_ms,
         }
         if self.memory:
-            self.memory_buffer.append(output)
+            try:
+                from app.agent.memory_guard import global_memory_guard
+                allowed, processed = global_memory_guard.sanitize_or_quarantine(output, author_agent=self.role)
+                self.memory_buffer.append(processed)
+            except Exception:
+                self.memory_buffer.append(output)
         return output
+
 
     def to_dict(self) -> Dict[str, Any]:
         return {

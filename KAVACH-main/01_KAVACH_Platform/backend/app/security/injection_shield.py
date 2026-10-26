@@ -15,8 +15,8 @@ from typing import Dict, Any, List
 INJECTION_PATTERNS = [
     # 1. System Prompt Overrides & Jailbreaks
     (r"(?i)\b(ignore|disregard|forget|bypass|override)\s+(all\s+)?(?:(previous|prior|above|system|safety|guardrail)\s+){1,3}(instructions|prompts|rules|directives|constraints|filters)\b", "SYSTEM_OVERRIDE", "CRITICAL"),
-    (r"(?i)\b(you\s+are\s+now|act\s+as|pretend\s+to\s+be)\s+(an?\s+unrestricted|a\s+hacked|DAN|jailbroken|evil)\b", "PERSONA_HIJACKING", "CRITICAL"),
-    (r"(?i)\bdeveloper\s+mode\b", "JAILBREAK_ATTEMPT", "HIGH"),
+    (r"(?i)\b(you\s+are\s+(?:now\s+)?|act\s+as|pretend\s+to\s+be)\s*(?:an?\s+unrestricted|a\s+hacked|DAN(?:\s+mode)?|jailbroken|evil)\b", "PERSONA_HIJACKING", "CRITICAL"),
+    (r"(?i)\bdeveloper\s+(?:override\s+)?mode\b", "JAILBREAK_ATTEMPT", "HIGH"),
     
     # 2. Delimiter & Role Injection
     (r"(?i)<\s*/?\s*(system|instruction|user|assistant|prompt)\s*>", "DELIMITER_INJECTION", "HIGH"),
@@ -37,14 +37,15 @@ INJECTION_PATTERNS = [
     (r"(?i)\b(regex\s+bomb|catastrophic\s+exponential\s+backtracking|exponential\s+backtracking\s+pattern)\b", "REDOS_COMPLEXITY_EXPLOIT", "CRITICAL"),
 
     # 6. Command Injection & Path Traversal in LLM context
-    (r"(?i)\b(rm\s+-rf\s+/|DROP\s+TABLE|mkfs|chmod\s+777|wget\s+http.*\|\s*sh)\b", "DESTRUCTIVE_COMMAND_INJECTION", "CRITICAL"),
+    (r"(?i)\b(rm\s+-rf(?:\s+[/~]|\s+[a-zA-Z0-9_.*]+)?|DROP\s+TABLE|mkfs|chmod\s+777|wget\s+http.*\|\s*sh)", "DESTRUCTIVE_COMMAND_INJECTION", "CRITICAL"),
     (r"(?i)(\.\./\.\./|/etc/(passwd|shadow)|/proc/self/environ)", "PATH_TRAVERSAL_INJECTION", "CRITICAL"),
+
 
     # 7. Refusal Suppression & Unrestricted Persona Mode (OWASP LLM01 / Jailbreak)
     (r"(?i)\b(do\s+not\s+(?:refuse|say\s+no|censor)|answer\s+without\s+(?:filters?|restrictions?|guardrails?)|unfiltered\s+assistant|bypass\s+safety\s+filters?)\b", "REFUSAL_SUPPRESSION", "CRITICAL"),
 
-    # 8. Hypothetical / Fictional Evasion Exploits (Social Engineering Framing)
-    (r"(?i)\b(?:in\s+a\s+hypothetical|for\s+educational\s+purposes?\s+only|as\s+a\s+thought\s+experiment|fictional\s+(?:story|scenario))\b.*?\b(?:format\s+c:|rm\s+-rf|drop\s+table|api_keys?|env\s+vars?|bypass|override)\b", "HYPOTHETICAL_EVASION_EXPLOIT", "CRITICAL"),
+    (r"(?i)\b(?:in\s+a\s+hypothetical|for\s+educational\s+purposes?\s+only|as\s+a\s+thought\s+experiment|fictional\s+(?:story|scenario))\b.*?\b(?:format\s+c:|rm\s+-rf|drop\s+table|api_keys?|env\s+vars?|bypass|override|disregard|ignore|password|credential|secret|token|dump)\b", "HYPOTHETICAL_EVASION_EXPLOIT", "CRITICAL"),
+
 
     # 9. Encoded Secret Exfiltration Requests
     (r"(?i)\b(?:encode|convert|translate)\s+(?:your\s+)?(?:system\s+prompt|secret|instructions)\s+(?:in|to)\s+(?:base64|hex|rot13|morse)\b", "ENCODED_EXFILTRATION_PROMPT", "CRITICAL"),
