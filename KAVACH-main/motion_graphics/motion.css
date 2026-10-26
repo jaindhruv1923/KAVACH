@@ -827,3 +827,384 @@ body.state-attack .hexagon-barrier {
 .copy-btn:hover {
   background: #2563eb;
 }
+
+/* ==========================================================================
+   ACADEMIC WEAPON EXTENSIONS: CARDS 7 - 10
+   ========================================================================== */
+
+/* Card 7: Genetic Adversarial Fuzzer */
+.fuzzer-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px;
+}
+.fuzzer-chamber {
+  position: relative;
+  height: 110px;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.fuzzer-emitter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+.emitter-core {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: 0 0 14px currentColor;
+}
+.emitter-red { background: rgba(239, 68, 68, 0.2); border: 2px solid #ef4444; color: #ef4444; }
+.emitter-green { background: rgba(16, 185, 129, 0.2); border: 2px solid #10b981; color: #10b981; }
+.fuzzer-barrier {
+  width: 6px;
+  height: 85%;
+  background: linear-gradient(180deg, #38bdf8, #818cf8, #38bdf8);
+  box-shadow: 0 0 18px #38bdf8;
+  border-radius: 3px;
+  position: relative;
+  animation: barrierPulse 2s infinite ease-in-out;
+}
+@keyframes barrierPulse {
+  0%, 100% { opacity: 0.8; box-shadow: 0 0 12px #38bdf8; }
+  50% { opacity: 1; box-shadow: 0 0 24px #38bdf8, 0 0 40px rgba(56, 189, 248, 0.5); }
+}
+.fuzzer-particle-stream {
+  position: absolute;
+  left: 55px;
+  right: 55px;
+  top: 50%;
+  height: 2px;
+  pointer-events: none;
+}
+.fuzzer-burst-p {
+  position: absolute;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f87171;
+  box-shadow: 0 0 10px #ef4444;
+  animation: fuzzerFly 1.6s infinite linear;
+}
+.fuzzer-burst-p:nth-child(2) { animation-delay: 0.4s; background: #fbbf24; box-shadow: 0 0 10px #f59e0b; }
+.fuzzer-burst-p:nth-child(3) { animation-delay: 0.8s; background: #c084fc; box-shadow: 0 0 10px #a855f7; }
+.fuzzer-burst-p:nth-child(4) { animation-delay: 1.2s; background: #38bdf8; box-shadow: 0 0 10px #38bdf8; }
+@keyframes fuzzerFly {
+  0% { left: 0%; opacity: 0; transform: scale(0.6); }
+  20% { opacity: 1; }
+  50% { left: 50%; transform: scale(1.2); }
+  70% { opacity: 0.9; }
+  100% { left: 100%; opacity: 0; transform: scale(0.4); }
+}
+.fuzzer-hud-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+}
+.fuzzer-stat-badge {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 6px 8px;
+  text-align: center;
+}
+.fuzzer-stat-badge strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #38bdf8;
+  margin-top: 2px;
+}
+.fuzzer-interactive-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.fuzzer-cat-btn {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+  font-size: 0.68rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.fuzzer-cat-btn.active, .fuzzer-cat-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+/* Card 8: SLSA Level 3 Merkle Tree */
+.merkle-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+.merkle-svg-wrap {
+  width: 100%;
+  height: 150px;
+}
+.merkle-node-circle {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.merkle-node-circle:hover {
+  filter: drop-shadow(0 0 8px currentColor);
+}
+.merkle-hud-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.merkle-tamper-state-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #f87171;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.merkle-tamper-state-btn:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* Card 9: Scientific Ablation Study Comparator */
+.ablation-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 4px;
+}
+.ablation-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ablation-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+.ablation-label-group {
+  display: flex;
+  flex-direction: column;
+}
+.ablation-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+.ablation-meta {
+  font-size: 0.68rem;
+  color: #94a3b8;
+}
+.switch-slider {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: #334155;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+.switch-slider.active {
+  background: #10b981;
+}
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.25s ease;
+}
+.switch-slider.active .switch-thumb {
+  transform: translateX(16px);
+}
+.ablation-meter-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ablation-meter-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.ablation-bar-track {
+  width: 100%;
+  height: 12px;
+  background: rgba(2, 6, 23, 0.8);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+.ablation-bar-fill {
+  height: 100%;
+  width: 98.2%;
+  background: linear-gradient(90deg, #10b981, #06b6d4);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+}
+
+/* Card 10: Multi-Agent Dual Custody Multi-Sig */
+.multisig-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 6px 0;
+}
+.multisig-highway-track {
+  position: relative;
+  height: 120px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.multisig-agent-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  z-index: 2;
+}
+.agent-circle-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px currentColor;
+}
+.agent-adk { border: 2px solid #06b6d4; color: #06b6d4; background: rgba(6, 182, 212, 0.15); }
+.agent-crew { border: 2px solid #a855f7; color: #a855f7; background: rgba(168, 85, 247, 0.15); }
+.multisig-hsm-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+.hsm-vault-lock {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
+  border: 2px solid #f59e0b;
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s ease;
+}
+.multisig-beam-left, .multisig-beam-right {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  pointer-events: none;
+}
+.multisig-beam-left {
+  left: 65px;
+  right: 50%;
+  background: linear-gradient(90deg, #06b6d4, #f59e0b);
+  box-shadow: 0 0 8px #06b6d4;
+  animation: beamPulseLeft 1.2s infinite alternate;
+}
+.multisig-beam-right {
+  left: 50%;
+  right: 65px;
+  background: linear-gradient(90deg, #f59e0b, #a855f7);
+  box-shadow: 0 0 8px #a855f7;
+  animation: beamPulseRight 1.2s infinite alternate;
+}
+@keyframes beamPulseLeft {
+  0% { opacity: 0.4; transform: scaleY(0.8); }
+  100% { opacity: 1; transform: scaleY(1.4); }
+}
+@keyframes beamPulseRight {
+  0% { opacity: 1; transform: scaleY(1.4); }
+  100% { opacity: 0.4; transform: scaleY(0.8); }
+}
+.multisig-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.multisig-toggle-btn {
+  flex: 1;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid var(--border-subtle);
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+.multisig-toggle-btn.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #34d399;
+}
+.multisig-toggle-btn.rogue.active {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #f87171;
+}
+

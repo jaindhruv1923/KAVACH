@@ -55,6 +55,14 @@
           <svg class="svg-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>KAVACH</span>
         </a>
+        <a href="/#professor-review" target="_blank" class="nav-link-item btn-sm" style="background:linear-gradient(135deg, #4F46E5, #3730A3); color:#FFF; border:1px solid #818CF8; font-weight:700;" title="Point 13: 30/30 Academic Weapon Suite">
+          <svg class="svg-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>30/30 Suite</span>
+        </a>
+        <a href="../../motion_graphics/index.html" target="_blank" class="nav-link-item btn-sm" style="background:rgba(30,41,59,0.8); color:#38BDF8; border:1px solid rgba(56,189,248,0.3); font-weight:700;" title="Open KAVACH Motion Graphics Studio">
+          <svg class="svg-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span>Motion Studio</span>
+        </a>
         <a href="/#defense-lab" target="_blank" class="nav-link-item defense btn-primary btn-sm" title="Open KAVACH Academic Defense Lab">
           <svg class="svg-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           <span>Defense Lab</span>
@@ -896,6 +904,84 @@
             </div>
             <div id="sar-reports-container" class="sar-reports-list" style="max-height: 140px; overflow-y: auto; margin-top: 10px;">
               <div class="queue-empty">Zero suspicious structuring anomalies flagged in current session.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multi-Agent Dual-Custody Multi-Sig Highway (RBI CSF Mandate) -->
+        <div class="card-box" style="margin-top: 16px; background: #faf5ff; border: 1px solid #d8b4fe;">
+          <div class="card-box-header">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="badge-pill crypto" style="background: #f3e8ff; color: #7e22ce; border-color: #d8b4fe;">RBI CYBER SECURITY FRAMEWORK (CSF)</span>
+                <span class="badge-pill rbi">HIGH-VALUE TRANSACTIONS &gt; ₹5,00,000</span>
+                <span class="badge-pill dpdp">SEGREGATION OF DUTIES (SoD)</span>
+              </div>
+              <h4 class="card-box-title" style="color: #6b21a8;">Multi-Agent Dual-Custody Multi-Sig Terminal (ADK + CrewAI Co-Signing)</h4>
+              <p class="card-box-sub">Enforces cryptographic multi-signature authorization before high-value institutional transfers can execute. The initiating agent (Google ADK) must be co-signed by an independent auditing agent (CrewAI Auditor) with separate cryptographic keypairs.</p>
+            </div>
+            <span style="font-size: 11px; font-weight: 800; background: #f3e8ff; color: #7e22ce; padding: 6px 12px; border-radius: 9999px; border: 1px solid #d8b4fe;">
+              2-of-2 Multi-Sig Active
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;">
+            <div style="background: #ffffff; border: 1px solid #e9d5ff; border-radius: var(--radius-sm); padding: 12px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                <div>
+                  <label class="form-label" style="font-size: 10px;">SENDER ACCOUNT</label>
+                  <input type="text" id="dc-sender-acc" class="form-control" value="SBIN00012345678" style="font-size: 12px; font-family: monospace;">
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 10px;">RECEIVER ACCOUNT</label>
+                  <input type="text" id="dc-receiver-acc" class="form-control" value="ICIC00045678901" style="font-size: 12px; font-family: monospace;">
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                <div>
+                  <label class="form-label" style="font-size: 10px;">TRANSFER AMOUNT (INR)</label>
+                  <input type="number" id="dc-amount" class="form-control" value="750000" style="font-size: 12px; font-weight: 700; color: #7e22ce;">
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 10px;">RAIL TYPE</label>
+                  <select id="dc-rail" class="form-control" style="font-size: 12px;">
+                    <option value="NEFT">NEFT (Batch Settlement)</option>
+                    <option value="RTGS">RTGS (Gross Real-Time)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 8px;">
+                <label class="form-label" style="font-size: 10px;">1. INITIATOR SIGNATURE (GOOGLE ADK)</label>
+                <input type="text" id="dc-initiator-sig" class="form-control font-mono" value="A2A-SIG-ADK-7F9B1C" readonly style="font-size: 11px; background: #f8fafc; color: #0284c7;">
+              </div>
+
+              <div style="margin-bottom: 12px;">
+                <label class="form-label" style="font-size: 10px;">2. AUDITOR CO-SIGNATURE (CREWAI AUDITOR)</label>
+                <input type="text" id="dc-auditor-sig" class="form-control font-mono" value="A2A-SIG-CREWAI-83A4E2" style="font-size: 11px; color: #7c3aed;">
+              </div>
+
+              <div style="display: flex; gap: 8px;">
+                <button type="button" id="btn-exec-dual-custody" class="btn-primary" style="flex: 1; font-size: 11px; font-weight: 700; background: #7c3aed; border-color: #6d28d9;">
+                  Execute Dual-Signed (Compliant)
+                </button>
+                <button type="button" id="btn-exec-rogue-custody" class="btn-danger" style="flex: 1; font-size: 11px; font-weight: 700;">
+                  Simulate Rogue Bypass (Strip Sig)
+                </button>
+              </div>
+            </div>
+
+            <!-- Verification Terminal Console -->
+            <div style="background: #0f172a; border-radius: var(--radius-sm); padding: 12px; font-family: monospace; font-size: 11px; color: #e2e8f0; display: flex; flex-direction: column; justify-content: space-between;">
+              <div id="dc-console-log" style="overflow-y: auto; max-height: 180px;">
+                <div style="color: #a855f7;">[DUAL-CUSTODY HIGHWAY READY] Policy: Transfers &gt; ₹5,00,000 mandate 2-of-2 cryptographic signatures under RBI Master Direction Section 14.</div>
+                <div style="color: #64748b; margin-top: 4px;">Click "Execute Dual-Signed" to verify consensus or "Simulate Rogue Bypass" to trigger active enforcement.</div>
+              </div>
+              <div id="dc-console-status" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #334155; font-size: 10px; color: #94a3b8; display: flex; justify-content: space-between;">
+                <span>STANDBY</span>
+                <span>STATUS: READY</span>
+              </div>
             </div>
           </div>
         </div>

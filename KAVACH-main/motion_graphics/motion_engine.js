@@ -9,7 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initHashTicker();
   initControls();
   initModal();
+  initFuzzerInteractivity();
+  initMerkleTreeInteractivity();
+  initAblationInteractivity();
+  initMultisigInteractivity();
 });
+
 
 // Current active speed factor
 let currentSpeed = 1;
@@ -175,6 +180,31 @@ const EMBED_SNIPPETS = {
       </svg>
     </div>
   </div>
+</div>`,
+
+  "fuzzer": `<div class="fuzzer-box">
+  <div class="fuzzer-chamber">
+    <div class="fuzzer-emitter"><div class="emitter-core emitter-red">500</div></div>
+    <div class="fuzzer-barrier"></div>
+    <div class="fuzzer-emitter"><div class="emitter-core emitter-green">0.48ms</div></div>
+  </div>
+</div>`,
+
+  "merkle": `<div class="merkle-box">
+  <svg class="merkle-svg-wrap" viewBox="0 0 320 150">
+    <circle cx="160" cy="25" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2.5"/>
+    <text x="160" y="29" fill="#10b981" font-size="9" text-anchor="middle">ROOT</text>
+  </svg>
+</div>`,
+
+  "ablation": `<div class="ablation-meter-wrap">
+  <div class="ablation-bar-track"><div class="ablation-bar-fill" style="width: 98.2%;"></div></div>
+</div>`,
+
+  "multisig": `<div class="multisig-highway-track">
+  <div class="agent-circle-icon agent-adk">ADK</div>
+  <div class="hsm-vault-lock">🔒</div>
+  <div class="agent-circle-icon agent-crew">CREW</div>
 </div>`
 };
 
@@ -214,3 +244,191 @@ function initModal() {
     });
   }
 }
+
+// ============================================================================
+// ACADEMIC WEAPON CARD CONTROLLERS (Cards 7 - 10)
+// ============================================================================
+
+// Card 7: Genetic Adversarial Fuzzer
+function initFuzzerInteractivity() {
+  const burstBtn = document.getElementById("fuzzerBurstBtn");
+  const catBtns = document.querySelectorAll(".fuzzer-cat-btn");
+  const emitter = document.getElementById("fuzzerEmitter");
+  if (!burstBtn) return;
+
+  catBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      catBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      if (emitter) {
+        emitter.textContent = btn.dataset.cat.substring(0, 3).toUpperCase();
+        setTimeout(() => { emitter.textContent = "500"; }, 1500);
+      }
+    });
+  });
+
+  burstBtn.addEventListener("click", () => {
+    burstBtn.textContent = "⚡ Mutating...";
+    burstBtn.style.background = "#f59e0b";
+    
+    // Animate particles
+    document.querySelectorAll(".fuzzer-burst-p").forEach(p => {
+      p.style.animation = "none";
+      p.offsetHeight; // trigger reflow
+      p.style.animation = "fuzzerFly 0.8s infinite linear";
+    });
+
+    setTimeout(() => {
+      burstBtn.textContent = "✓ 489/500 Caught";
+      burstBtn.style.background = "#10b981";
+      setTimeout(() => {
+        burstBtn.textContent = "⚡ Mutate Burst";
+        burstBtn.style.background = "#ef4444";
+      }, 2500);
+    }, 1200);
+  });
+}
+
+// Card 8: SLSA Level 3 Merkle Tree
+function initMerkleTreeInteractivity() {
+  const tamperBtn = document.getElementById("tamperSimBtn");
+  const leaf2 = document.getElementById("merkleLeaf2");
+  const leaf2Text = document.getElementById("merkleLeaf2Text");
+  const rootCircle = document.getElementById("merkleRootCircle");
+  const rootText = document.getElementById("merkleRootText");
+  const hudText = document.getElementById("merkleStatusText");
+  const lineRRight = document.getElementById("line-r-right");
+  const lineL2 = document.getElementById("line-l-2");
+
+  if (!tamperBtn) return;
+
+  let isTampered = false;
+
+  tamperBtn.addEventListener("click", () => {
+    isTampered = !isTampered;
+    if (isTampered) {
+      if (leaf2) { leaf2.setAttribute("stroke", "#ef4444"); leaf2.setAttribute("fill", "rgba(239, 68, 68, 0.3)"); }
+      if (leaf2Text) { leaf2Text.setAttribute("fill", "#ef4444"); }
+      if (rootCircle) { rootCircle.setAttribute("stroke", "#ef4444"); rootCircle.setAttribute("fill", "rgba(239, 68, 68, 0.4)"); }
+      if (rootText) { rootText.setAttribute("fill", "#ef4444"); rootText.textContent = "FAIL"; }
+      if (lineRRight) { lineRRight.setAttribute("stroke", "#ef4444"); }
+      if (lineL2) { lineL2.setAttribute("stroke", "#ef4444"); }
+      if (hudText) {
+        hudText.innerHTML = "❌ TAMPER DETECTED: Root Digest Mismatch (NIST SP 800-218 Broken)!";
+        hudText.style.color = "#ef4444";
+      }
+      tamperBtn.textContent = "🛡️ Re-Attest Seal";
+      tamperBtn.style.background = "rgba(16, 185, 129, 0.2)";
+      tamperBtn.style.borderColor = "#10b981";
+      tamperBtn.style.color = "#34d399";
+    } else {
+      if (leaf2) { leaf2.setAttribute("stroke", "#a855f7"); leaf2.setAttribute("fill", "#0f172a"); }
+      if (leaf2Text) { leaf2Text.setAttribute("fill", "#a855f7"); }
+      if (rootCircle) { rootCircle.setAttribute("stroke", "#10b981"); rootCircle.setAttribute("fill", "#0f172a"); }
+      if (rootText) { rootText.setAttribute("fill", "#10b981"); rootText.textContent = "ROOT"; }
+      if (lineRRight) { lineRRight.setAttribute("stroke", "#334155"); }
+      if (lineL2) { lineL2.setAttribute("stroke", "#334155"); }
+      if (hudText) {
+        hudText.innerHTML = "● MERKLE ROOT: 611689ea... [SLSA L3 VERIFIED]";
+        hudText.style.color = "#10b981";
+      }
+      tamperBtn.textContent = "⚠️ Simulate Tamper";
+      tamperBtn.style.background = "rgba(239, 68, 68, 0.15)";
+      tamperBtn.style.borderColor = "#ef4444";
+      tamperBtn.style.color = "#f87171";
+    }
+  });
+}
+
+// Card 9: Scientific Ablation Study Comparator
+function initAblationInteractivity() {
+  const toggleProx = document.getElementById("toggleProximity");
+  const toggleEnt = document.getElementById("toggleEntropy");
+  const toggleObf = document.getElementById("toggleObfuscation");
+  const f1Text = document.getElementById("ablationF1Score");
+  const barFill = document.getElementById("ablationBarFill");
+
+  if (!toggleProx || !toggleEnt || !toggleObf) return;
+
+  function updateAblation() {
+    const pOn = toggleProx.classList.contains("active");
+    const eOn = toggleEnt.classList.contains("active");
+    const oOn = toggleObf.classList.contains("active");
+
+    let f1 = 0.982;
+    let delta = 0.0;
+
+    if (!oOn) { f1 -= 0.218; delta -= 0.218; }
+    if (!pOn) { f1 -= 0.070; delta -= 0.070; }
+    if (!eOn) { f1 -= 0.095; delta -= 0.095; }
+
+    f1 = Math.max(0.450, f1);
+
+    if (f1Text) {
+      const deltaStr = delta === 0 ? "ΔF1: 0.000" : `ΔF1: ${delta.toFixed(3)}`;
+      f1Text.textContent = `${f1.toFixed(3)} (${deltaStr})`;
+      f1Text.style.color = f1 >= 0.90 ? "#10b981" : f1 >= 0.80 ? "#f59e0b" : "#ef4444";
+    }
+
+    if (barFill) {
+      const pct = (f1 * 100).toFixed(1);
+      barFill.style.width = `${pct}%`;
+      if (f1 >= 0.90) {
+        barFill.style.background = "linear-gradient(90deg, #10b981, #06b6d4)";
+      } else if (f1 >= 0.80) {
+        barFill.style.background = "linear-gradient(90deg, #f59e0b, #fbbf24)";
+      } else {
+        barFill.style.background = "linear-gradient(90deg, #ef4444, #f87171)";
+      }
+    }
+  }
+
+  [toggleProx, toggleEnt, toggleObf].forEach(t => {
+    t.addEventListener("click", () => {
+      t.classList.toggle("active");
+      updateAblation();
+    });
+  });
+}
+
+// Card 10: Multi-Agent Dual-Custody Multi-Sig Highway
+function initMultisigInteractivity() {
+  const btnDual = document.getElementById("btnDualSigned");
+  const btnRogue = document.getElementById("btnRogueBlocked");
+  const beamRight = document.getElementById("multisigBeamRight");
+  const lock = document.getElementById("hsmVaultLock");
+  const statusBadge = document.getElementById("hsmStatusBadge");
+
+  if (!btnDual || !btnRogue) return;
+
+  btnDual.addEventListener("click", () => {
+    btnDual.classList.add("active");
+    btnRogue.classList.remove("active");
+    if (beamRight) beamRight.style.display = "block";
+    if (lock) {
+      lock.style.borderColor = "#10b981";
+      lock.style.background = "linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.3))";
+      lock.style.color = "#34d399";
+    }
+    if (statusBadge) {
+      statusBadge.textContent = "2-of-2 SIGNED: CLEARED (₹7,50,000)";
+      statusBadge.style.color = "#34d399";
+    }
+  });
+
+  btnRogue.addEventListener("click", () => {
+    btnRogue.classList.add("active");
+    btnDual.classList.remove("active");
+    if (beamRight) beamRight.style.display = "none";
+    if (lock) {
+      lock.style.borderColor = "#ef4444";
+      lock.style.background = "linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.3))";
+      lock.style.color = "#f87171";
+    }
+    if (statusBadge) {
+      statusBadge.textContent = "BLOCKED: RBI CSF (Missing Auditor Sig)";
+      statusBadge.style.color = "#f87171";
+    }
+  });
+}
+
