@@ -1,4 +1,4 @@
-name: Daily Project Heartbeat & Telemetry
+name: Daily Security & CI Telemetry Audit
 
 on:
   schedule:
@@ -7,8 +7,8 @@ on:
   workflow_dispatch: # Allows manual trigger anytime from GitHub Actions tab
 
 jobs:
-  heartbeat:
-    name: Telemetry Heartbeat & Integrity Check
+  telemetry-audit:
+    name: Execute Daily Security & Regression Audit
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,36 +20,25 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
 
-      - name: Generate Daily Telemetry & Heartbeat
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Automated Security & Guardrail Telemetry
+        id: run_telemetry
         run: |
-          CURRENT_TIME_UTC=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-          
-          mkdir -p KAVACH-main/docs
-          cat <<EOF > KAVACH-main/docs/TELEMETRY_HEARTBEAT.md
-          # KAVACH Automated System Telemetry & Pipeline Heartbeat
+          COMMIT_MSG=$(python KAVACH-main/scripts/daily_ci_telemetry.py)
+          echo "commit_msg=${COMMIT_MSG}" >> $GITHUB_OUTPUT
 
-          > Automated daily telemetry record verifying repository status, continuous integration health, and security guardrail compliance.
-
-          | Metric / Property | Status / Value |
-          | :--- | :--- |
-          | **Last Heartbeat Run** | \`${CURRENT_TIME_UTC}\` |
-          | **System State** | \`OPERATIONAL\` (All services and suites nominal) |
-          | **Security Guardrail Engine** | \`ACTIVE\` (0 CVE regression, DPDP & RBI compliance active) |
-          | **Target Branch** | \`main\` |
-          | **Automated Auditor** | \`KAVACH-CI-Telemetry-Bot\` |
-
-          ---
-          *This log is updated daily via GitHub Actions automated telemetry ping to maintain verified operational status.*
-          EOF
-
-      - name: Commit and Push Heartbeat
+      - name: Commit and Push Verified Audit Results
         run: |
           git config user.name "Dhruv Jain"
           git config user.email "jaindhruv1923@gmail.com"
-          git add KAVACH-main/docs/TELEMETRY_HEARTBEAT.md
+          git add KAVACH-main/docs/TELEMETRY_HEARTBEAT.md KAVACH-main/docs/TELEMETRY_LEDGER.json
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No telemetry changes to commit"
           else
-            git commit -m "chore(telemetry): automated daily pipeline heartbeat [$(date -u +'%Y-%m-%d')]"
+            git commit -m "${{ steps.run_telemetry.outputs.commit_msg }}"
             git push origin main
           fi
