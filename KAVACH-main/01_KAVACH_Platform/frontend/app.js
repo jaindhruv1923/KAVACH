@@ -2845,7 +2845,6 @@ window.renderDynamicNavbar = function(mode) {
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks (20/20)</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToWorkspace()">Console</button>
       <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Defense Matrix</button>
       <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
       <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
