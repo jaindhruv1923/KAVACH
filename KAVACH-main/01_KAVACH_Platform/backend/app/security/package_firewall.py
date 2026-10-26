@@ -84,8 +84,21 @@ def extract_imported_packages(python_code: str) -> List[str]:
                 root_pkg = node.module.split(".")[0].strip()
                 if root_pkg:
                     imported.add(root_pkg)
+        elif isinstance(node, ast.Call):
+            # Intercept dynamic imports (__import__('package_name') or importlib.import_module('package_name'))
+            if isinstance(node.func, ast.Name) and node.func.id == "__import__":
+                if node.args and isinstance(node.args[0], ast.Constant) and isinstance(node.args[0].value, str):
+                    root_pkg = node.args[0].value.split(".")[0].strip()
+                    if root_pkg:
+                        imported.add(root_pkg)
+            elif isinstance(node.func, ast.Attribute) and node.func.attr == "import_module":
+                if node.args and isinstance(node.args[0], ast.Constant) and isinstance(node.args[0].value, str):
+                    root_pkg = node.args[0].value.split(".")[0].strip()
+                    if root_pkg:
+                        imported.add(root_pkg)
 
     return sorted(list(imported))
+
 
 
 def query_pypi_package(package_name: str, timeout: float = 3.0) -> Optional[Dict[str, Any]]:

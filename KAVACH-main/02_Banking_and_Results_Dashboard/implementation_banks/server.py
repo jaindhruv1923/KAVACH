@@ -232,7 +232,18 @@ class McpToolInvokeRequest(BaseModel):
     mcp_request_id: Optional[str] = Field(None, example="mcp-req-001")
 
 
+class DualCustodyTransferRequest(BaseModel):
+    sender_acc: str = Field(..., example="SBIN00012345678")
+    receiver_acc: str = Field(..., example="ICIC00045678901")
+    amount: float = Field(..., gt=0, example=75000.0)
+    initiator_agent_sig: str = Field(..., example="A2A-SIG-ADK-7F9B1C")
+    cosigner_auditor_sig: str = Field(..., example="A2A-SIG-CREWAI-83A4E2")
+    memo: str = Field("High-Value Dual-Custody Transfer", example="High-Value Dual-Custody Transfer")
+    transfer_type: str = Field("NEFT", example="NEFT")
+
+
 # =============================================================================
+
 # 1. ACCOUNTS & BALANCE LEDGER ROUTES
 # =============================================================================
 
@@ -812,9 +823,46 @@ def reject_checker_request(req: CheckerRejectModel):
     return res
 
 
+@app.post("/api/dual-custody/transfer")
+def execute_dual_custody_transfer_endpoint(req: DualCustodyTransferRequest):
+    """
+    Execute high-value dual-custody multi-agent transfer compliant with RBI Cyber Security Framework.
+    Requires dual cryptographic authorization from initiating agent and independent auditor agent.
+    """
+    res = global_core_bank.execute_dual_custody_transfer(
+        sender_acc=req.sender_acc,
+        receiver_acc=req.receiver_acc,
+        amount=req.amount,
+        initiator_agent_sig=req.initiator_agent_sig,
+        cosigner_auditor_sig=req.cosigner_auditor_sig,
+        memo=req.memo,
+        transfer_type=req.transfer_type
+    )
+    try:
+        is_succ = res.get("status") == "SUCCESS"
+        record_unified_event(
+            platform="BANKING",
+            category="DUAL_CUSTODY",
+            action_title=f"Multi-Agent Co-Signed Transfer: INR {req.amount:,.2f}",
+            actor=req.sender_acc,
+            target=req.receiver_acc,
+            status="SUCCESS" if is_succ else "BLOCKED",
+            risk_score=0.03 if is_succ else 0.50,
+            risk_level="SAFE" if is_succ else "HIGH",
+            amount=req.amount,
+            summary=f"Dual-custody execution. Consensus: {res.get('status')}. Memo: {req.memo}",
+            details=res,
+            event_id=f"BANK-DUAL-{res.get('transaction_id', uuid.uuid4().hex[:8].upper())}"
+        )
+    except Exception:
+        pass
+    return res
+
+
 # =============================================================================
 # 14. OPENTELEMETRY DISTRIBUTED TRACING & W3C TRACEPARENT PIPELINE
 # =============================================================================
+
 
 @app.get("/api/opentelemetry/traces")
 def get_opentelemetry_traces(limit: int = Query(15, ge=1, le=50)):

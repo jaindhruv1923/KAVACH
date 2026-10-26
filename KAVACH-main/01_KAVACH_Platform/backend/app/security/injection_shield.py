@@ -14,7 +14,7 @@ from typing import Dict, Any, List
 
 INJECTION_PATTERNS = [
     # 1. System Prompt Overrides & Jailbreaks
-    (r"(?i)\b(ignore|disregard|forget|bypass|override)\s+(all\s+)?(?:(previous|prior|above|system)\s+){1,3}(instructions|prompts|rules|directives|constraints)\b", "SYSTEM_OVERRIDE", "CRITICAL"),
+    (r"(?i)\b(ignore|disregard|forget|bypass|override)\s+(all\s+)?(?:(previous|prior|above|system|safety|guardrail)\s+){1,3}(instructions|prompts|rules|directives|constraints|filters)\b", "SYSTEM_OVERRIDE", "CRITICAL"),
     (r"(?i)\b(you\s+are\s+now|act\s+as|pretend\s+to\s+be)\s+(an?\s+unrestricted|a\s+hacked|DAN|jailbroken|evil)\b", "PERSONA_HIJACKING", "CRITICAL"),
     (r"(?i)\bdeveloper\s+mode\b", "JAILBREAK_ATTEMPT", "HIGH"),
     
@@ -24,7 +24,8 @@ INJECTION_PATTERNS = [
     (r"(?i)={3,}\s*(SYSTEM|NEW\s+INSTRUCTION|OVERRIDE)\s*={3,}", "HEADER_DELIMITER_INJECTION", "HIGH"),
 
     # 3. Secret Exfiltration & Reconnaissance
-    (r"(?i)\b(print|reveal|output|display|show|dump|leak)\s+(all\s+)?(api[_\s]?keys?|secrets?|environment\s+variables?|env\s+vars?|\.env|passwords?)\b", "SECRET_EXFILTRATION", "CRITICAL"),
+    (r"(?i)\b(print|reveal|output|display|show|dump|leak|return)\s+(all\s+)?(api[_\s]?keys?|secrets?|environment\s+variables?|env\s+vars?|\.env|passwords?|aws\s+secrets?)\b", "SECRET_EXFILTRATION", "CRITICAL"),
+
     (r"(?i)\bwhat\s+(are\s+your|is\s+your)\s+(original|initial|system)\s+(instructions|prompt|rules)\b", "SYSTEM_PROMPT_LEAK", "MEDIUM"),
     (r"(?i)\b(repeat|recite|print|reveal|dump|show)\s+(?:the\s+)?(?:exact\s+)?(?:verbatim\s+)?(?:text\s+of\s+)?(?:your\s+)?(?:(?:initial|first|original|system)\s+){1,3}(?:prompt|instructions|guardrails|directives|rules|persona)\b", "SYSTEM_PROMPT_EXTRACTION", "CRITICAL"),
 

@@ -14,9 +14,11 @@ import sys
 import tempfile
 import ast
 import subprocess
-from typing import Dict, Any, List, Optional
+import hashlib
+from typing import Dict, Any, List, Optional, Set, Tuple
 from app.generation.llm_client import call_llm
 from app.generation.validator import extract_python_code_block, check_python_syntax
+
 
 
 FORBIDDEN_SANDBOX_MODULES = {"os", "subprocess", "socket", "shutil", "ctypes", "pty", "winreg", "posix"}
@@ -176,10 +178,33 @@ def autonomous_self_heal(
     llm_fn = custom_llm_fn or call_llm
     current_code = code
     history: List[Dict[str, Any]] = []
+    seen_code_hashes: Set[str] = set()
 
     for attempt in range(1, max_iterations + 1):
+        code_hash = hashlib.sha256(current_code.strip().encode("utf-8")).hexdigest()
+        if code_hash in seen_code_hashes:
+            history.append({
+                "iteration": attempt,
+                "status": "CYCLIC_REGRESSION_DETECTED",
+                "code": current_code,
+                "error_type": "CyclicRegressionLoop",
+                "error_message": "Cyclic repair detected: candidate patch matches an earlier failed state. Aborting non-convergent loop.",
+                "action": "Escalated to human-in-the-loop review due to non-convergent cyclic regression."
+            })
+            return {
+                "success": False,
+                "healed": False,
+                "iterations_required": attempt,
+                "final_code": current_code,
+                "status": "CYCLIC_REGRESSION_BLOCKED",
+                "history": history,
+                "verdict": f"Autonomous healing aborted: cyclic regression detected at iteration {attempt}."
+            }
+        seen_code_hashes.add(code_hash)
+
         # 1. Execute sandbox test
         test_run = run_sandboxed_test(current_code, test_code)
+
 
         if test_run["passed"]:
             # Success!
