@@ -155,22 +155,22 @@ window.renderDynamicNavbar = function(mode) {
     container.innerHTML = `
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks (20/20)</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Defense Matrix</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
     `;
   } else {
     container.innerHTML = `
-      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('improvised-innovations-section', this)">10 Innovations</button>
+      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('improvised-innovations-section', this)">Innovations</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('warroom-arena-card', this)">War Room</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR Replay</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('consensus-radar-card', this)">Consensus</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('dossier-generator-card', this)">Dossier</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('cve-playground-card', this)">CVE Feed</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('xai-playground-card', this)">XAI Saliency</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('cve-playground-card', this)">CVE</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('xai-playground-card', this)">XAI</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('hitl-playground-card', this)">Quarantine</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Comparison Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Matrix</button>
     `;
   }
 };
@@ -318,73 +318,83 @@ document.addEventListener('DOMContentLoaded', function() {
 <canvas id="interactive-particle-web" aria-hidden="true" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;opacity:0.18;display:block;"></canvas>
 
 <header class="app-header">
-  <!-- Top Row: Brand, Primary Pathway Toggle, and Quick Action Buttons -->
   <div class="app-header-main">
-    <div class="nav-brand" onclick="switchToProduct()" title="Kavach Autonomous AI Banking Security">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span class="brand-title">Kavach</span>
+    <!-- Left Section: Brand & Pathway Selector (Integrated together, zero awkward gap) -->
+    <div class="header-left-cluster">
+      <div class="nav-brand" onclick="switchToProduct()" title="Kavach Autonomous AI Banking Security">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="brand-title">Kavach</span>
+      </div>
+
+      <div class="header-pathway-selector" role="radiogroup" aria-label="Project Scope Pathway">
+        <button type="button" id="pathway-btn-midsem" class="pathway-tab active" onclick="activatePathwayMode('midsem')" title="View Mid-Sem Foundation scope & architecture">
+          Earlier <span class="pathway-chip">v1.0</span>
+        </button>
+        <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="View Newly Added Post-Mid-Sem Innovations">
+          <span class="pulse-dot-green"></span> Improvised <span class="pathway-chip">v3.0</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Primary Pathway Scope Selector (Centered, Spacious) -->
-    <div class="header-pathway-selector" role="radiogroup" aria-label="Project Scope Pathway">
-      <button type="button" id="pathway-btn-midsem" class="pathway-tab active" onclick="activatePathwayMode('midsem')" title="View Mid-Sem Foundation scope & architecture">
-        Earlier (Mid-Sem) <span class="pathway-chip">v1.0</span>
-      </button>
-      <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="View Newly Added Post-Mid-Sem Innovations">
-        <span class="pulse-dot-green"></span> New (Improvised) <span class="pathway-chip">v3.0</span>
-      </button>
-    </div>
+    <!-- Center Section: Contextual Section Navigation (Occupies the middle, zero dead space) -->
+    <nav class="nav-switcher" id="main-nav-switcher" role="tablist" aria-label="Context Navigation Tabs">
+      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
+    </nav>
 
+    <!-- Right Section: Actions & Review Hub -->
     <div class="nav-actions">
-
-  <script>
-    window.openProfessorReviewModal = function() {
-      var modal = document.getElementById('professor-review-modal');
-      if (modal) {
-        modal.classList.add('open');
-        modal.style.setProperty('display', 'flex', 'important');
-        modal.style.setProperty('opacity', '1', 'important');
-        modal.style.setProperty('pointer-events', 'auto', 'important');
-        modal.style.setProperty('position', 'fixed', 'important');
-        modal.style.setProperty('top', '0', 'important');
-        modal.style.setProperty('left', '0', 'important');
-        modal.style.setProperty('width', '100vw', 'important');
-        modal.style.setProperty('height', '100vh', 'important');
-        modal.style.setProperty('z-index', '2147483647', 'important');
-        modal.style.setProperty('justify-content', 'center', 'important');
-        modal.style.setProperty('align-items', 'center', 'important');
-      }
-      if (typeof window.switchProfTab === 'function') {
-        window.switchProfTab('blackboard');
-      } else {
-        // Fallback lazy loader if course_cockpit.js not yet parsed
-        var s = document.createElement('script');
-        s.src = 'course_cockpit.js?v=' + Date.now();
-        s.onload = function() {
+      <script>
+        window.openProfessorReviewModal = function() {
+          var modal = document.getElementById('professor-review-modal');
+          if (modal) {
+            modal.classList.add('open');
+            modal.style.setProperty('display', 'flex', 'important');
+            modal.style.setProperty('opacity', '1', 'important');
+            modal.style.setProperty('pointer-events', 'auto', 'important');
+            modal.style.setProperty('position', 'fixed', 'important');
+            modal.style.setProperty('top', '0', 'important');
+            modal.style.setProperty('left', '0', 'important');
+            modal.style.setProperty('width', '100vw', 'important');
+            modal.style.setProperty('height', '100vh', 'important');
+            modal.style.setProperty('z-index', '2147483647', 'important');
+            modal.style.setProperty('justify-content', 'center', 'important');
+            modal.style.setProperty('align-items', 'center', 'important');
+          }
           if (typeof window.switchProfTab === 'function') {
             window.switchProfTab('blackboard');
+          } else {
+            var s = document.createElement('script');
+            s.src = 'course_cockpit.js?v=' + Date.now();
+            s.onload = function() {
+              if (typeof window.switchProfTab === 'function') {
+                window.switchProfTab('blackboard');
+              }
+            };
+            document.head.appendChild(s);
           }
         };
-        document.head.appendChild(s);
-      }
-    };
 
-    window.closeProfessorReviewModal = function() {
-      var modal = document.getElementById('professor-review-modal');
-      if (modal) {
-        modal.classList.remove('open');
-        modal.style.setProperty('display', 'none', 'important');
-        modal.style.setProperty('opacity', '0', 'important');
-        modal.style.setProperty('pointer-events', 'none', 'important');
-      }
-    };
+        window.closeProfessorReviewModal = function() {
+          var modal = document.getElementById('professor-review-modal');
+          if (modal) {
+            modal.classList.remove('open');
+            modal.style.setProperty('display', 'none', 'important');
+            modal.style.setProperty('opacity', '0', 'important');
+            modal.style.setProperty('pointer-events', 'none', 'important');
+          }
+        };
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        window.closeProfessorReviewModal();
-      }
-    });
-  </script>
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            window.closeProfessorReviewModal();
+          }
+        });
+      </script>
       <button type="button" id="header-prof-review-btn" class="btn-header-review magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Standardization (13/13 Verified Points &amp; 30/30 Defense Lab)">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         <span>30/30 Review</span>
@@ -392,11 +402,11 @@ document.addEventListener('DOMContentLoaded', function() {
       </button>
       <a href="/bank/" id="header-bank-highway-btn" target="_blank" class="header-tool-btn magnetic-btn" title="Bharat Core Banking Highway" onclick="if(window.location.port==='5500'){this.href='/KAVACH-main/02_Banking_and_Results_Dashboard/implementation_banks/index.html';}">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        <span>Bank Highway</span>
+        <span>Bank</span>
       </a>
       <a href="/motion/" id="header-motion-btn" target="_blank" class="header-tool-btn magnetic-btn" title="Open KAVACH Motion Graphics Studio &amp; Live Showcase" onclick="if(window.location.port==='5500'||window.location.pathname.includes('/01_KAVACH_Platform/')){this.href='../../motion_graphics/index.html';}">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span>Motion Studio</span>
+        <span>Motion</span>
       </a>
       <button type="button" id="header-defense-tour-btn" class="header-tool-btn magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -410,18 +420,6 @@ document.addEventListener('DOMContentLoaded', function() {
         <span>Console</span> <span class="arrow-shift">&rarr;</span>
       </button>
     </div>
-  </div>
-
-  <!-- Sub-Nav Row: Contextual Section Rails (Clean, compact, fits in one frame) -->
-  <div class="app-header-subnav">
-    <nav class="nav-switcher" id="main-nav-switcher" role="tablist" aria-label="Context Navigation Tabs">
-      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks (20/20)</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Defense Matrix</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
-    </nav>
   </div>
 
   <div id="scroll-scrub-bar" class="scroll-scrub-bar" aria-hidden="true"></div>

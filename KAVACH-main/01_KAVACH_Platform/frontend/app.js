@@ -2844,22 +2844,22 @@ window.renderDynamicNavbar = function(mode) {
     container.innerHTML = `
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks (20/20)</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Defense Matrix</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
     `;
   } else {
     container.innerHTML = `
-      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('improvised-innovations-section', this)">10 Innovations</button>
+      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('improvised-innovations-section', this)">Innovations</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('warroom-arena-card', this)">War Room</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR Replay</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('consensus-radar-card', this)">Consensus</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('dossier-generator-card', this)">Dossier</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('cve-playground-card', this)">CVE Feed</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('xai-playground-card', this)">XAI Saliency</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('cve-playground-card', this)">CVE</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('xai-playground-card', this)">XAI</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('hitl-playground-card', this)">Quarantine</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Comparison Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Matrix</button>
     `;
   }
 };

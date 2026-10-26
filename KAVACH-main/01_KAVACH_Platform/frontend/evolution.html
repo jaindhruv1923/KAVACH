@@ -25,50 +25,49 @@ window.location.replace("index.html#improvised");
 <header class="app-header">
   <!-- Top Row: Brand, Pathway Toggle, Actions -->
   <div class="app-header-main">
-    <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor:pointer;" title="Kavach Autonomous AI Banking Security">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span class="brand-title">Kavach</span>
+    <div class="header-left-cluster">
+      <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor:pointer;" title="Kavach Autonomous AI Banking Security">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="brand-title">Kavach</span>
+      </div>
+
+      <div class="header-pathway-selector" role="radiogroup" aria-label="Project Scope Pathway">
+        <a href="index.html#earlier-midsem" class="pathway-tab" style="text-decoration:none;" title="View Mid-Sem Foundation scope & architecture">
+          Earlier <span class="pathway-chip">v1.0</span>
+        </a>
+        <a href="index.html#improvised" class="pathway-tab active" style="text-decoration:none;" title="View Newly Added Post-Mid-Sem Innovations">
+          <span class="pulse-dot-green"></span> Improvised <span class="pathway-chip">v3.0</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Primary Pathway Scope Selector -->
-    <div class="header-pathway-selector" role="radiogroup" aria-label="Project Scope Pathway">
-      <a href="index.html#earlier-midsem" class="pathway-tab" style="text-decoration:none;" title="View Mid-Sem Foundation scope & architecture">
-        Earlier (Mid-Sem) <span class="pathway-chip">v1.0</span>
-      </a>
-      <a href="index.html#improvised" class="pathway-tab active" style="text-decoration:none;" title="View Newly Added Post-Mid-Sem Innovations">
-        <span class="pulse-dot-green"></span> New (Improvised) <span class="pathway-chip">v3.0</span>
-      </a>
-    </div>
+    <!-- Center Navigation -->
+    <nav class="nav-switcher" role="tablist" aria-label="Main Navigation Tabs">
+      <a href="#showcase-innovations-section" class="nav-switch-btn active" style="text-decoration:none;">Innovations</a>
+      <a href="#warroom-arena-card" class="nav-switch-btn" style="text-decoration:none;">War Room</a>
+      <a href="#forensic-replay-card" class="nav-switch-btn" style="text-decoration:none;">DVR</a>
+      <a href="#consensus-radar-card" class="nav-switch-btn" style="text-decoration:none;">Consensus</a>
+      <a href="#dossier-generator-card" class="nav-switch-btn" style="text-decoration:none;">Dossier</a>
+      <a href="#cve-feed-card" class="nav-switch-btn" style="text-decoration:none;">CVE</a>
+      <a href="#xai-token-card" class="nav-switch-btn" style="text-decoration:none;">XAI</a>
+      <a href="#hitl-quarantine-card" class="nav-switch-btn" style="text-decoration:none;">Quarantine</a>
+      <a href="#comparison-matrix-section" class="nav-switch-btn" style="text-decoration:none;">Matrix</a>
+    </nav>
 
     <div class="nav-actions">
       <button type="button" class="btn-serious magnetic-btn" onclick="window.openProfessorReviewModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
-        Professor Review (11/11)
+        Professor Review
       </button>
       <button type="button" id="header-defense-tour-btn" class="btn-defense-tour magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
-        Defense Tour
+        Tour
       </button>
       <button type="button" id="header-voice-btn" class="voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
-        Voice Cockpit
+        Voice
       </button>
       <a href="index.html#workspace" class="btn-serious magnetic-btn" style="text-decoration:none;">
-        Launch Console <span class="arrow-shift">&rarr;</span>
+        Console <span class="arrow-shift">&rarr;</span>
       </a>
     </div>
-  </div>
-
-  <!-- Sub-Nav Row: Contextual Rail (Spans full width, fits in one frame with zero crowding) -->
-  <div class="app-header-subnav">
-    <nav class="nav-switcher" role="tablist" aria-label="Main Navigation Tabs">
-      <a href="#showcase-innovations-section" class="nav-switch-btn active" style="text-decoration:none;">10 Innovations</a>
-      <a href="#warroom-arena-card" class="nav-switch-btn" style="text-decoration:none;">War Room</a>
-      <a href="#forensic-replay-card" class="nav-switch-btn" style="text-decoration:none;">DVR Replay</a>
-      <a href="#consensus-radar-card" class="nav-switch-btn" style="text-decoration:none;">Consensus</a>
-      <a href="#dossier-generator-card" class="nav-switch-btn" style="text-decoration:none;">Dossier</a>
-      <a href="#cve-feed-card" class="nav-switch-btn" style="text-decoration:none;">CVE Feed</a>
-      <a href="#xai-token-card" class="nav-switch-btn" style="text-decoration:none;">XAI Saliency</a>
-      <a href="#hitl-quarantine-card" class="nav-switch-btn" style="text-decoration:none;">Quarantine</a>
-      <a href="#comparison-matrix-section" class="nav-switch-btn" style="text-decoration:none;">Comparison</a>
-    </nav>
   </div>
 
   <div id="scroll-scrub-bar" class="scroll-scrub-bar" aria-hidden="true"></div>
