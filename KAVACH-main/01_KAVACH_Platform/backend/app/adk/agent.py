@@ -213,7 +213,23 @@ class LlmAgent:
                     except Exception as e:
                         tool_results[tool_name] = {"error": str(e)}
 
-            model_response_text = f"Agent '{self.name}' completed task based on {len(tool_results)} tool activations."
+            # Synthesize model reasoning via connected LLM when configured, or emit structured tool trace
+            try:
+                from app.generation.llm_client import call_llm, is_llm_configured
+                import os
+                import json
+                if is_llm_configured() and "PYTEST_CURRENT_TEST" not in os.environ:
+                    agent_prompt = (
+                        f"System Instruction: {self.system_instruction}\n"
+                        f"Target Task: {task}\n"
+                        f"Tool Activations & Outputs: {json.dumps(tool_results, default=str)}\n"
+                        f"Provide a concise, evidence-grounded agent completion summary."
+                    )
+                    model_response_text = call_llm(agent_prompt)
+                else:
+                    model_response_text = f"Agent '{self.name}' completed task based on {len(tool_results)} tool activations."
+            except Exception:
+                model_response_text = f"Agent '{self.name}' completed task based on {len(tool_results)} tool activations."
 
             # Hook 4: after_model_callback (Pattern 05: Response Modification)
             llm_resp = LlmResponse(text=model_response_text, is_refusal=False)

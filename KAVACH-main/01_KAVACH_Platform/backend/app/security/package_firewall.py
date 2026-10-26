@@ -120,10 +120,10 @@ def query_pypi_package(package_name: str, timeout: float = 3.0) -> Optional[Dict
             _PACKAGE_CACHE[pkg_key] = None
             return None
         # In case of 5xx or transient errors, return stub with warning
-        return {"version": "unverified", "summary": f"PyPI check returned HTTP {e.code}"}
-    except Exception:
-        # Network timeout or offline mode
-        return None
+        return {"version": "unverified", "summary": f"PyPI check returned HTTP {e.code}", "status": "NETWORK_UNAVAILABLE"}
+    except Exception as e:
+        # Network timeout or offline mode - return explicit network unavailable dict rather than None
+        return {"version": "unverified", "summary": f"Network unavailable or offline ({e})", "status": "NETWORK_UNAVAILABLE"}
 
 
 def verify_code_dependencies(
@@ -133,6 +133,7 @@ def verify_code_dependencies(
 ) -> Dict[str, Any]:
     """
     Audit code dependencies against PyPI to flag hallucinated or non-existent packages.
+    Resilient to offline environments by verifying against local Python environment.
     """
     if project_internal_modules is None:
         project_internal_modules = {"app", "backend", "frontend", "tests", "tools", "data", "conftest"}
@@ -164,13 +165,39 @@ def verify_code_dependencies(
             })
             continue
 
+        # Secondary check: verify if the package is installed in local environment before marking hallucinated
+        import importlib.util
+        spec = None
+        try:
+            spec = importlib.util.find_spec(clean_name.replace("-", "_"))
+        except (ValueError, ModuleNotFoundError):
+            pass
+
+        if spec is not None:
+            verified.append({
+                "package": pkg,
+                "version": "local-installed",
+                "summary": "Verified locally in current Python environment",
+                "status": "VERIFIED_LOCAL"
+            })
+            continue
+
         if not allow_network_query:
             warnings.append(f"Network verification skipped for '{pkg}' (offline mode)")
             continue
 
         meta = query_pypi_package(clean_name)
         if meta is None:
+            # Explicit HTTP 404 from PyPI and not installed locally -> Hallucinated package
             hallucinated.append(pkg)
+        elif meta.get("status") == "NETWORK_UNAVAILABLE":
+            warnings.append(f"Network verification unavailable for '{pkg}'; marked unverified")
+            verified.append({
+                "package": pkg,
+                "version": "unverified",
+                "summary": meta.get("summary", ""),
+                "status": "UNVERIFIED_OFFLINE"
+            })
         else:
             verified.append({
                 "package": pkg,

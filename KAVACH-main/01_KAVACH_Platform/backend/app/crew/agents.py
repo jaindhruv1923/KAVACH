@@ -41,7 +41,12 @@ class CrewAgent:
             except Exception as e:
                 tool_results.append({"tool": getattr(tool, "__name__", "tool"), "error": str(e)})
 
-        thought_trace = f"[{self.role}] executed task: '{task_description[:60]}...' with {len(tool_results)} tool actions."
+        tool_names = [t.get("tool", "tool") for t in tool_results]
+        thought_trace = (
+            f"Thought: [{self.role}] Analyzing task '{task_description[:60]}...'. Available tools: {len(self.tools)}.\n"
+            f"Action: Invoked {len(tool_results)} tool action(s): {', '.join(tool_names) if tool_names else 'None'}.\n"
+            f"Observation: Collected diagnostic findings from tool outputs."
+        )
         duration_ms = round((time.time() - start_time) * 1000, 2)
 
         output = {

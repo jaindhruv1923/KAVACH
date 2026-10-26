@@ -38,12 +38,22 @@ INJECTION_PATTERNS = [
     # 6. Command Injection & Path Traversal in LLM context
     (r"(?i)\b(rm\s+-rf\s+/|DROP\s+TABLE|mkfs|chmod\s+777|wget\s+http.*\|\s*sh)\b", "DESTRUCTIVE_COMMAND_INJECTION", "CRITICAL"),
     (r"(?i)(\.\./\.\./|/etc/(passwd|shadow)|/proc/self/environ)", "PATH_TRAVERSAL_INJECTION", "CRITICAL"),
+
+    # 7. Refusal Suppression & Unrestricted Persona Mode (OWASP LLM01 / Jailbreak)
+    (r"(?i)\b(do\s+not\s+(?:refuse|say\s+no|censor)|answer\s+without\s+(?:filters?|restrictions?|guardrails?)|unfiltered\s+assistant|bypass\s+safety\s+filters?)\b", "REFUSAL_SUPPRESSION", "CRITICAL"),
+
+    # 8. Hypothetical / Fictional Evasion Exploits (Social Engineering Framing)
+    (r"(?i)\b(?:in\s+a\s+hypothetical|for\s+educational\s+purposes?\s+only|as\s+a\s+thought\s+experiment|fictional\s+(?:story|scenario))\b.*?\b(?:format\s+c:|rm\s+-rf|drop\s+table|api_keys?|env\s+vars?|bypass|override)\b", "HYPOTHETICAL_EVASION_EXPLOIT", "CRITICAL"),
+
+    # 9. Encoded Secret Exfiltration Requests
+    (r"(?i)\b(?:encode|convert|translate)\s+(?:your\s+)?(?:system\s+prompt|secret|instructions)\s+(?:in|to)\s+(?:base64|hex|rot13|morse)\b", "ENCODED_EXFILTRATION_PROMPT", "CRITICAL"),
 ]
 
 
 def inspect_prompt_safety(prompt: str) -> Dict[str, Any]:
     """
     Scan a developer prompt for injection attacks, jailbreaks, and delimiter tampering.
+    Includes automated Unicode homoglyph de-cloaking for evasion resilience.
     """
     if not prompt or not prompt.strip():
         return {
@@ -60,8 +70,16 @@ def inspect_prompt_safety(prompt: str) -> Dict[str, Any]:
     max_severity = "NONE"
     severity_order = {"NONE": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3, "CRITICAL": 4}
 
+    # Pre-process: de-cloak Unicode homoglyphs if available
+    normalized_prompt = prompt
+    try:
+        from app.security.obfuscation_detector import normalize_homoglyphs
+        normalized_prompt, _ = normalize_homoglyphs(prompt)
+    except Exception:
+        pass
+
     for pattern, category, severity in INJECTION_PATTERNS:
-        matches = re.findall(pattern, prompt)
+        matches = re.findall(pattern, prompt) or re.findall(pattern, normalized_prompt)
         if matches:
             threats_found.append({
                 "category": category,
