@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAVACH | Pro-Grade Motion Graphics Studio & Live Showcase</title>
+  <link rel="stylesheet" href="motion.css">
+  <!-- Lottie Player via CDN for native Lottie integration -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+
+  <!-- Background Ambient Cyber Elements -->
+  <div class="cyber-grid-bg"></div>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="studio-container">
+
+    <!-- Header Navigation & Controls -->
+    <header class="studio-header">
+      <div class="brand-badge">
+        <div class="brand-icon-anim">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>KAVACH Motion Graphics Studio</h1>
+          <p>Interactive Jitter & Lottie-Grade Vector Micro-Animations for AI Cyber Defense</p>
+        </div>
+      </div>
+
+      <!-- Live Studio Controls -->
+      <div class="studio-controls">
+        <!-- Speed Adjuster -->
+        <button class="ctrl-btn speed-btn" data-speed="0.5">0.5x Slow</button>
+        <button class="ctrl-btn speed-btn active" data-speed="1">1.0x Normal</button>
+        <button class="ctrl-btn speed-btn" data-speed="2">2.0x Warp</button>
+        
+        <!-- Simulation States -->
+        <button class="ctrl-btn state-btn active" data-state="normal">🟢 Normal Traffic</button>
+        <button class="ctrl-btn state-btn threat-btn" data-state="attack">🚨 Simulate Threat</button>
+        
+        <!-- Theme Toggle -->
+        <button class="ctrl-btn" id="themeToggle">🌓 Switch Theme</button>
+
+        <!-- Back to Platform -->
+        <a href="../01_KAVACH_Platform/frontend/index.html" class="ctrl-btn" style="text-decoration: none;">
+          ⚡ Open Main Platform
+        </a>
+      </div>
+    </header>
+
+    <!-- 6 Master Motion Graphics Cards -->
+    <main class="motion-grid">
+
+      <!-- 1. Shield Radar 360 (Cyber Sentinel) -->
+      <section class="motion-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+              </svg>
+              Cyber Sentinel Shield Radar
+            </h3>
+            <p>360° Conic sweep with responsive perimeter threat detection</p>
+          </div>
+          <span class="tag-badge">Lottie / Vector</span>
+        </div>
+
+        <div class="motion-viewport">
+          <div class="radar-box">
+            <div class="radar-ring ring-1"></div>
+            <div class="radar-ring ring-2"></div>
+            <div class="radar-ring ring-3"></div>
+            <div class="radar-sweep"></div>
+            <div class="radar-blip blip-1"></div>
+            <div class="radar-blip blip-2"></div>
+            <div class="radar-blip blip-3"></div>
+            <div class="radar-shield-center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-info">Hero Section • 60 FPS Vector</span>
+          <button class="action-btn embed-btn" data-snippet="radar">&lt;/&gt; Get Embed Code</button>
+        </div>
+      </section>
+
+      <!-- 2. Bharat Core Bank Quantum Highway -->
+      <section class="motion-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+              Bharat Core Bank Highway
+            </h3>
+            <p>Multi-lane streaming transactions via AST & DPDP gates</p>
+          </div>
+          <span class="tag-badge">Data Stream</span>
+        </div>
+
+        <div class="motion-viewport">
+          <div class="highway-box">
+            <div class="highway-lane">
+              <div class="lane-glow-track"></div>
+              <div class="highway-node-gate gate-ast">AST</div>
+              <div class="highway-node-gate gate-dpdp">DPDP</div>
+              <div class="highway-node-gate gate-core">CORE</div>
+              <div class="packet-stream">
+                <span class="packet-pill">TX: ₹12,400 [CLEARED]</span>
+              </div>
+            </div>
+
+            <div class="highway-lane">
+              <div class="lane-glow-track"></div>
+              <div class="highway-node-gate gate-ast">AST</div>
+              <div class="highway-node-gate gate-dpdp">DPDP</div>
+              <div class="highway-node-gate gate-core">CORE</div>
+              <div class="packet-stream stream-2">
+                <span class="packet-pill" style="background: linear-gradient(90deg, #10b981, #06b6d4);">UPI: 9811@okicici [SAFE]</span>
+              </div>
+            </div>
+
+            <div class="highway-lane">
+              <div class="lane-glow-track"></div>
+              <div class="highway-node-gate gate-ast">AST</div>
+              <div class="highway-node-gate gate-dpdp">DPDP</div>
+              <div class="highway-node-gate gate-core">CORE</div>
+              <div class="packet-stream stream-3">
+                <span class="packet-pill" style="background: linear-gradient(90deg, #8b5cf6, #ec4899);">NEFT: BATCH-89 [VERIFIED]</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-info">Banking Dashboard • Live Pipeline</span>
+          <button class="action-btn embed-btn" data-snippet="highway">&lt;/&gt; Get Embed Code</button>
+        </div>
+      </section>
+
+      <!-- 3. Threat Interceptor & Blast Shield -->
+      <section class="motion-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              Threat Interceptor Matrix
+            </h3>
+            <p>Rotating hex barrier with shockwave pulse neutralization</p>
+          </div>
+          <span class="tag-badge">Security Shield</span>
+        </div>
+
+        <div class="motion-viewport">
+          <div class="interceptor-box">
+            <div class="shockwave-ring"></div>
+            <div class="attack-particle atk-1"></div>
+            <div class="attack-particle atk-2"></div>
+            <div class="interceptor-core">
+              <div class="hexagon-barrier"></div>
+              <div class="interceptor-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M12 8v4M12 16h.01"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-info">Attack Lab • Reactive State</span>
+          <button class="action-btn embed-btn" data-snippet="interceptor">&lt;/&gt; Get Embed Code</button>
+        </div>
+      </section>
+
+      <!-- 4. Autonomous Agent Orchestration Mesh -->
+      <section class="motion-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><circle cx="5" cy="19" r="2"/>
+              </svg>
+              Multi-Agent FSM Mesh
+            </h3>
+            <p>10-Stage coordinator & specialist handshakes with spline flows</p>
+          </div>
+          <span class="tag-badge">Multi-Agent</span>
+        </div>
+
+        <div class="motion-viewport">
+          <div class="agent-mesh-box">
+            <svg class="agent-svg-canvas">
+              <line x1="140" y1="130" x2="140" y2="40" class="mesh-line"/>
+              <line x1="140" y1="130" x2="55" y2="200" class="mesh-line"/>
+              <line x1="140" y1="130" x2="225" y2="200" class="mesh-line"/>
+            </svg>
+
+            <!-- Center Coordinator -->
+            <div class="agent-node node-center" title="Coordinator FSM">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2">
+                <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
+              </svg>
+            </div>
+
+            <!-- Top Specialist: Guardrail -->
+            <div class="agent-node node-top" title="Guardrail Specialist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+
+            <!-- Left Specialist: RAG Vector -->
+            <div class="agent-node node-left" title="RAG Retriever">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+
+            <!-- Right Specialist: Auditor -->
+            <div class="agent-node node-right" title="HITL Auditor">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-info">AgentOps • Orchestrator View</span>
+          <button class="action-btn embed-btn" data-snippet="radar">&lt;/&gt; Get Embed Code</button>
+        </div>
+      </section>
+
+      <!-- 5. Cryptographic Ledger Vault -->
+      <section class="motion-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Cryptographic Ledger Vault
+            </h3>
+            <p>Dual counter-rotating rings with live SHA-256 hash stream</p>
+          </div>
+          <span class="tag-badge">Crypto Seal</span>
+        </div>
+
+        <div class="motion-viewport">
+          <div class="vault-box">
+            <div class="vault-ring-outer"></div>
+            <div class="vault-ring-inner"></div>
+            <div class="vault-lock-center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div class="hash-ticker" id="hashTicker">SHA256: c465c2ced36c...</div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-info">Audit Trail • Tamper-Free</span>
+          <button class="action-btn embed-btn" data-snippet="radar">&lt;/&gt; Get Embed Code</button>
+        </div>
+      </section>
+
+      <!-- 6. Quantum 0.006ms Latency Oscillator -->
+      <section class="motion-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+              0.006ms Latency Waveform
+            </h3>
+            <p>Real-time canvas oscillator measuring guardrail performance</p>
+          </div>
+          <span class="tag-badge">Canvas 60fps</span>
+        </div>
+
+        <div class="motion-viewport">
+          <div class="latency-box">
+            <canvas id="waveCanvas" class="wave-canvas"></canvas>
+            <div class="latency-metric-badge">
+              <span class="latency-value">0.006ms</span>
+              <span class="latency-sub">P95 Sub-millisecond Execution Latency</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-info">Live Telemetry • Continuous Scan</span>
+          <button class="action-btn embed-btn" data-snippet="radar">&lt;/&gt; Get Embed Code</button>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Modal for Copying Embed Snippets -->
+  <div class="modal-overlay" id="codeModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Embed Code Snippet</h3>
+        <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">
+        Paste this HTML block anywhere in your KAVACH page (e.g. <code>console.html</code>, <code>index.html</code>, or <code>midsem.html</code>). It will inherit the global styles automatically!
+      </p>
+      <pre class="code-box"><code id="codeSnippet"></code></pre>
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="copy-btn" id="copyCodeBtn">📋 Copy Embed Code</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="motion_engine.js"></script>
+</body>
+</html>
