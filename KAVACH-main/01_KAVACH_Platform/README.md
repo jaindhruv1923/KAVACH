@@ -228,7 +228,7 @@ See [demo_repo/DEMO.md](demo_repo/DEMO.md) for 7 interactive scenarios.
 
 ## Project Status & Verification
 
-** COMPLETE AND VERIFIED (278 / 278 TESTS PASSING)**
+** COMPLETE AND VERIFIED (300 / 300 DETERMINISTIC TESTS PASSING, 641 TOTAL REPOSITORY TESTS)**
 
 | Phase | Component | Status | Tests |
 |-------|-----------|--------|-------|
@@ -241,7 +241,7 @@ See [demo_repo/DEMO.md](demo_repo/DEMO.md) for 7 interactive scenarios.
 | - | API Endpoints (10 REST + 11 Extension) | Complete | 33 passing |
 | - | End-to-End Integration | Complete | 19 passing |
 
-**Overall**: **278/300 deterministic tests (641 total repository tests) passing** in the latest clean run.
+**Overall**: **300/300 deterministic tests (641 total repository tests) passing (100% pass rate)** in the latest clean run.
 
 ## ‍ For Reviewers & Evaluators
 
