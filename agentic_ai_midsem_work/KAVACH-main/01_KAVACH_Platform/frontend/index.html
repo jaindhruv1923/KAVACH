@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -2489,6 +2489,34 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Dual Enterprise Governance & Knowledge Gateways -->
     <div class="eli5-trigger-container" style="display:flex;flex-direction:column;gap:10px;margin:16px 0 14px;">
       <!-- ELI5 Academic & Math Explainer Button (Clean Blue & White Theme) -->
+      <!-- Master System Implementation & Execution Flowchart Button -->
+      <button type="button" id="kavach-implementation-btn" class="implementation-trigger-button" onclick="openImplementationModal('journey')" title="End-to-End System Implementation, Step-by-Step Execution Journey & Complete Architecture Flowchart">
+        <div class="impl-btn-content">
+          <div class="impl-btn-left">
+            <div class="impl-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+                <path d="M10 6.5h4M17.5 10v4M14 17.5h-4M6.5 14v-4"></path>
+              </svg>
+            </div>
+            <div class="impl-text-group">
+              <div class="impl-title-row">
+                <span class="impl-main-title">Implementation &middot; Master Architecture Flowchart &amp; Execution Journey</span>
+                <span class="badge" style="background:#ECFDF5;color:#047857;border:1px solid #A7F3D0;font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:9999px;">LIVE WORKING SYSTEM</span>
+              </div>
+              <span class="impl-subtitle">End-to-End Autonomous Pipeline &middot; 10 Sequential Stages &middot; Deterministic Gate &middot; Bounded ReAct &middot; SAGA Escrow &middot; Merkle Non-Repudiation</span>
+            </div>
+          </div>
+          <div class="impl-btn-action">
+            <span class="impl-action-label">Explore Flowchart</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </button>
+
       <button type="button" id="eli5-academic-btn" class="eli5-trigger-button" onclick="openEli5AcademicModal()" title="Explain Like I'm 5: Core Topics, Mathematical Formulas & BML Munjal Univ Course Handout (CO1-CO5)">
         <div class="eli5-btn-content">
           <div class="eli5-btn-left">
@@ -5334,6 +5362,11 @@ def parse_deploy_spec(user_payload):
 <!-- Floating AI Chatbot Copilot -->
 <div id="kavach-chatbot-container" style="display:flex;flex-direction:column;align-items:flex-end;">
   <!-- Floating ELI5 Companion Button positioned directly above floating Ask AI launcher -->
+  <button type="button" id="floating-impl-launcher" class="floating-impl-btn" onclick="openImplementationModal('journey')" aria-label="Open System Implementation Flowchart" title="System Implementation: Architecture Flowchart & Execution Walkthrough">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+    <span>Implementation Flow</span>
+  </button>
+
   <button type="button" id="floating-eli5-launcher" class="floating-eli5-btn" onclick="openEli5AcademicModal()" aria-label="Open ELI5 Syllabus & Math Guide" title="ELI5: Academic Course Handout & Mathematical Formulas">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
     <span>ELI5 &middot; Math Guide</span>
@@ -5670,6 +5703,7 @@ def parse_deploy_spec(user_payload):
 <script src="academic_weapon.js?v=3.2.0"></script>
 <script src="eli5_hub.js?v=3.2.0"></script>
 <script src="gov_rules_codex.js?v=3.2.0"></script>
+<script src="implementation_flow.js?v=3.8.0"></script>
 <!-- Floating Interactive Pathway Telemetry Dock -->
 <div id="floating-pathway-dock" class="floating-pathway-dock" aria-live="polite">
   <div class="dock-status-label">

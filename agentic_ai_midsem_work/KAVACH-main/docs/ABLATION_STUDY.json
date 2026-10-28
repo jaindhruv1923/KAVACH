@@ -8,7 +8,7 @@
     "recall": 1.0,
     "f1_score": 0.8571,
     "accuracy": 0.8361,
-    "mean_latency_ms": 0.13,
+    "mean_latency_ms": 0.12,
     "delta_f1": "0.0%"
   },
   "w/o Obfuscation Normalizer (Ablation A)": {
@@ -32,7 +32,7 @@
     "recall": 1.0,
     "f1_score": 0.8695,
     "accuracy": 0.8525,
-    "mean_latency_ms": 0.13,
+    "mean_latency_ms": 0.12,
     "delta_f1": "+1.2%"
   },
   "w/o Context-Aware Proximity (Ablation C)": {

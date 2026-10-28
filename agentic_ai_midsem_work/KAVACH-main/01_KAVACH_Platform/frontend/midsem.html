@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,6 +40,9 @@ window.location.replace("index.html#earlier-midsem");
   </nav>
 
   <div class="nav-actions">
+    <button type="button" class="btn-serious magnetic-btn" onclick="window.openImplementationModal('journey')" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #065F46 0%, #047857 100%); color:#6EE7B7; font-weight:700; border:1px solid #059669; box-shadow:0 0 16px rgba(5,150,105,0.35); cursor:pointer;" title="End-to-End System Implementation, Step-by-Step Execution Journey & Complete Architecture Flowchart">
+       Implementation Flow
+    </button>
     <button type="button" class="btn-serious magnetic-btn" onclick="window.openProfessorReviewModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
       Professor Review (11/11)
     </button>
@@ -1268,6 +1271,10 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
 
 <!-- Floating AI Chatbot Copilot -->
 <div id="kavach-chatbot-container">
+  <button type="button" id="floating-impl-launcher" class="floating-impl-btn" onclick="openImplementationModal('journey')" aria-label="Open System Implementation Flowchart" title="System Implementation: Architecture Flowchart & Execution Walkthrough">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+    <span>Implementation Flow</span>
+  </button>
   <button type="button" id="chatbot-launcher" aria-label="Open Kavach AI Copilot" title="Ask Kavach AI Copilot" onclick="toggleChatbot()">
  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> <span class="chatbot-launcher-label">Ask AI</span> </button>
 
@@ -1432,6 +1439,7 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
 <script src="app.js?v=3.2.0"></script>
 <script src="course_cockpit.js?v=3.2.0"></script>
 <script src="improvised_controller.js?v=3.2.0"></script>
+<script src="implementation_flow.js?v=3.8.0"></script>
 
 <!-- PROFESSOR PRANSHU TIWARI PROJECT REVIEW STANDARDIZATION MODAL (11/11) -->
 <div id="professor-review-modal" class="course-modal-backdrop" style="display:none !important; position:fixed !important; top:0 !important; left:0 !important; width:100vw !important; height:100vh !important; background:rgba(4,8,16,0.92) !important; backdrop-filter:blur(10px) !important; z-index:2147483647 !important; align-items:center !important; justify-content:center !important; padding:16px !important; box-sizing:border-box !important;">

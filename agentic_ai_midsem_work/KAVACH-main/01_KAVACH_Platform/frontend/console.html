@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1657,6 +1657,10 @@ from pydantic import BaseModel</textarea>
 
 <!-- Floating AI Chatbot Copilot -->
 <div id="kavach-chatbot-container">
+  <button type="button" id="floating-impl-launcher" class="floating-impl-btn" onclick="openImplementationModal('journey')" aria-label="Open System Implementation Flowchart" title="System Implementation: Architecture Flowchart & Execution Walkthrough">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+    <span>Implementation Flow</span>
+  </button>
   <button type="button" id="chatbot-launcher" aria-label="Open Kavach AI Copilot" title="Ask Kavach AI Copilot" onclick="toggleChatbot()">
  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> <span class="chatbot-launcher-label">Ask AI</span> </button>
 
@@ -1821,5 +1825,6 @@ from pydantic import BaseModel</textarea>
 <script src="app.js?v=2.5.1"></script>
 <script src="course_cockpit.js?v=2.5.1"></script>
 <script src="improvised_controller.js?v=3.1.0"></script>
+<script src="implementation_flow.js?v=3.8.0"></script>
 </body>
 </html>
