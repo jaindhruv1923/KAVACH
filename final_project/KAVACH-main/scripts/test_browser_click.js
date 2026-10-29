@@ -1,13 +1,13 @@
 const http = require('http');
 const { spawn } = require('child_process');
 
-async function testPort(port, path) {
-  console.log(`\n========================================`);
-  console.log(`TESTING http://127.0.0.1:${port}${path}`);
-  console.log(`========================================`);
+async function testHeaderAndViews(port, path) {
+  console.log(`\n======================================================`);
+  console.log(`TESTING BROWSER ON http://127.0.0.1:${port}${path}`);
+  console.log(`======================================================`);
 
   const edgePath = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
-  const dbgPort = port === 5500 ? 9225 : 9226;
+  const dbgPort = port === 5500 ? 9230 : 9231;
   const edge = spawn(edgePath, [
     '--headless=new',
     `--remote-debugging-port=${dbgPort}`,
@@ -49,58 +49,66 @@ async function testPort(port, path) {
   await send('Page.enable');
   await new Promise(r => setTimeout(r, 1200));
 
-  // Test 1: Click #pathway-btn-academic
+  // Check 1: Motion and Particle Canvas removed
   let res = await send('Runtime.evaluate', {
+    expression: `(() => {
+      const canvas = document.getElementById('interactive-particle-web');
+      const motionBtn = document.getElementById('header-motion-btn');
+      return {
+        particleCanvasPresent: !!canvas,
+        motionBtnPresent: !!motionBtn
+      };
+    })()`,
+    returnByValue: true
+  });
+  console.log('CHECK 1 (Motion & Particle Canvas Removed):', res.result.value);
+
+  // Check 2: Improvised navbar has full text (no ...eplay cut off)
+  res = await send('Runtime.evaluate', {
+    expression: `(() => {
+      window.activatePathwayMode('improvised');
+      const switcher = document.getElementById('main-nav-switcher');
+      const buttons = Array.from(switcher.querySelectorAll('button')).map(b => b.innerText.trim());
+      return {
+        pathway: window.CURRENT_PATHWAY,
+        centerNavButtons: buttons,
+        buttonCount: buttons.length
+      };
+    })()`,
+    returnByValue: true
+  });
+  console.log('CHECK 2 (Improvised Nav Buttons & Spacing):', res.result.value);
+
+  // Check 3: Click Academic Weapon Button
+  res = await send('Runtime.evaluate', {
     expression: `(() => {
       const btn = document.getElementById('pathway-btn-academic');
       if (btn) btn.click();
       const view = document.getElementById('academic-view');
-      const headerBtn = document.getElementById('header-academic-btn');
       const strip = document.getElementById('academic-pillars-strip');
+      const ws = document.getElementById('academic-pillar-workspace');
+      const chips = Array.from(strip ? strip.querySelectorAll('.academic-pillar-chip') : []).map(c => c.innerText.trim().replace(/\\s+/g, ' '));
       return {
-        clickedTab: !!btn,
         tabActive: btn && btn.classList.contains('active'),
-        headerBtnActive: headerBtn && headerBtn.classList.contains('active'),
-        viewDisplay: view ? view.style.display : null,
-        stripChips: strip ? strip.children.length : 0
+        academicViewDisplay: view ? view.style.display : null,
+        currentPathway: window.CURRENT_PATHWAY,
+        pillarChipsCount: chips.length,
+        pillarChipsSample: chips.slice(0, 4),
+        workspaceHasMath: !!(ws && ws.querySelector('#academic-math-container')),
+        workspaceHasSim: !!(ws && ws.querySelector('#academic-flow-sim'))
       };
     })()`,
     returnByValue: true
   });
-  console.log('CLICK #pathway-btn-academic RESULT:', res.result.value);
-
-  // Switch back to midsem
-  await send('Runtime.evaluate', {
-    expression: `window.activatePathwayMode('midsem')`
-  });
-
-  // Test 2: Click #header-academic-btn
-  res = await send('Runtime.evaluate', {
-    expression: `(() => {
-      const btn = document.getElementById('header-academic-btn');
-      if (btn) btn.click();
-      const tabBtn = document.getElementById('pathway-btn-academic');
-      const view = document.getElementById('academic-view');
-      const strip = document.getElementById('academic-pillars-strip');
-      return {
-        clickedHeaderBtn: !!btn,
-        headerBtnActive: btn && btn.classList.contains('active'),
-        tabActive: tabBtn && tabBtn.classList.contains('active'),
-        viewDisplay: view ? view.style.display : null,
-        stripChips: strip ? strip.children.length : 0
-      };
-    })()`,
-    returnByValue: true
-  });
-  console.log('CLICK #header-academic-btn RESULT:', res.result.value);
+  console.log('CHECK 3 (Academic Weapon 10 Frontiers Cockpit):', res.result.value);
 
   ws.close();
   edge.kill();
 }
 
 async function main() {
-  await testPort(5500, '/final_project/KAVACH-main/01_KAVACH_Platform/frontend/index.html');
-  await testPort(5502, '/KAVACH-main/01_KAVACH_Platform/frontend/index.html');
+  await testHeaderAndViews(5500, '/final_project/KAVACH-main/01_KAVACH_Platform/frontend/index.html');
+  await testHeaderAndViews(5502, '/KAVACH-main/01_KAVACH_Platform/frontend/index.html');
   process.exit(0);
 }
 

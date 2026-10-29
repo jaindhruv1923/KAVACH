@@ -136,18 +136,7 @@ body {
 /* ==========================================================================
    INTERACTIVE NEURAL CONSTELLATION CANVAS (PARTICLE MESH WEB)
    ========================================================================== */
-#interactive-particle-web {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: 100vw !important;
-  pointer-events: none !important;
-  z-index: 99999 !important;
-  opacity: 0.82;
-  overflow: hidden;
-}
+#interactive-particle-web { display: none !important; }
 
 /* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
@@ -193,13 +182,13 @@ body {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 6px 16px !important;
-  gap: 12px !important;
+  padding: 8px 24px !important;
+  gap: 16px !important;
   width: 100% !important;
-  max-width: 1560px !important;
+  max-width: 1680px !important;
   margin: 0 auto !important;
   box-sizing: border-box !important;
-  min-height: 48px !important;
+  min-height: 54px !important;
 }
 
 .header-left-cluster {
@@ -243,19 +232,18 @@ body {
 .nav-switcher {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  justify-content: safe center;
-  gap: 5px;
+  justify-content: center;
+  gap: 8px;
   background: transparent;
   border: none;
-  padding: 0 4px;
+  padding: 0 10px;
   border-radius: 0;
   max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  flex: 0 1 auto;
-  margin: 0 10px;
+  flex: 1 1 auto;
+  margin: 0 12px;
   white-space: nowrap;
 }
 
@@ -297,7 +285,7 @@ body {
 .nav-actions {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 9px;
   flex-shrink: 0;
   flex-wrap: nowrap;
   margin: 0 !important;
@@ -8489,16 +8477,16 @@ button:active:not(:disabled),
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  background: #F1F5F9;
-  border: 1px solid #CBD5E1;
+  gap: 5px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-radius: var(--radius-full);
-  padding: 2px;
-  height: 33px;
+  padding: 3px 5px;
+  height: 35px;
   box-sizing: border-box;
   flex-shrink: 0;
   margin: 0 !important;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
   transition: all var(--transition-normal);
 }
 
@@ -8513,9 +8501,9 @@ button:active:not(:disabled),
   color: #475569;
   border: 1px solid transparent;
   border-radius: var(--radius-full);
-  padding: 0 9px;
-  height: 27px;
-  font-size: 0.75rem;
+  padding: 0 13px;
+  height: 29px;
+  font-size: 0.78rem;
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -8527,7 +8515,7 @@ button:active:not(:disabled),
   justify-content: center;
   line-height: 1;
   box-sizing: border-box;
-  gap: 5px;
+  gap: 6px;
   margin: 0 !important;
 }
 
@@ -11225,4 +11213,38 @@ button:active:not(:disabled),
 }
 .header-tool-btn#header-academic-btn.active svg {
   stroke: #FFFFFF !important;
+}
+
+/* Academic Weapon Pathway Tab - Spacious & High-Contrast */
+.pathway-tab#pathway-btn-academic {
+  color: #6D28D9;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  padding: 0 14px;
+  height: 29px;
+  font-size: 0.78rem;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pathway-tab#pathway-btn-academic:hover:not(.active) {
+  background: #F5F3FF;
+  border-color: #DDD6FE;
+  color: #5B21B6;
+}
+.pathway-tab#pathway-btn-academic.active {
+  background: #7C3AED !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35) !important;
+  border: 1px solid #6D28D9 !important;
+}
+.pathway-tab#pathway-btn-academic.active .pathway-chip {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+.pathway-tab#pathway-btn-academic.active .pulse-dot-green {
+  background: #C4B5FD !important;
+  box-shadow: 0 0 8px #DDD6FE !important;
 }

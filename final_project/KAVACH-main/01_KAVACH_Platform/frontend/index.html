@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4.0.0">
+<link rel="stylesheet" href="style.css?v=4.1.0">
 <!-- KaTeX Academic Mathematical Typesetting -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
@@ -337,9 +337,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 
-<!-- Interactive Neural Constellation Canvas (Ambient Particle Mesh Web - Layered Behind Content) -->
-<canvas id="interactive-particle-web" aria-hidden="true" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;opacity:0.18;display:block;"></canvas>
-
 <header class="app-header">
   <div class="app-header-main">
     <!-- Left Section: Brand & Pathway Selector (Integrated together, zero awkward gap) -->
@@ -421,11 +418,8 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       </script>
-            <button type="button" id="header-academic-btn" class="header-tool-btn magnetic-btn" onclick="activatePathwayMode('academic')" title="10 Academic Weapon Frontiers & Live Flow Processors" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE;font-weight:700;">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        <span>10 Frontiers</span>
-      </button>
-      <button type="button" id="header-prof-review-btn" class="btn-header-review magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Standardization (13/13 Verified Points &amp; 30/30 Defense Lab)">
+            <span id="header-academic-btn" style="display:none;" onclick="activatePathwayMode('academic')"></span>
+<button type="button" id="header-prof-review-btn" class="btn-header-review magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Standardization (13/13 Verified Points &amp; 30/30 Defense Lab)">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         <span>30/30 Review</span>
         <span class="review-status-tag">13/13</span>
@@ -433,10 +427,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <a href="/bank/" id="header-bank-highway-btn" target="_blank" class="header-tool-btn magnetic-btn" title="Bharat Core Banking Highway" onclick="if(window.location.port==='5500'){this.href='/KAVACH-main/02_Banking_and_Results_Dashboard/implementation_banks/index.html';}">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         <span>Bank</span>
-      </a>
-      <a href="/motion/" id="header-motion-btn" target="_blank" class="header-tool-btn magnetic-btn" title="Open KAVACH Motion Graphics Studio &amp; Live Showcase" onclick="if(window.location.port==='5500'||window.location.pathname.includes('/01_KAVACH_Platform/')){this.href='../../motion_graphics/index.html';}">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span>Motion</span>
       </a>
       <button type="button" id="header-defense-tour-btn" class="header-tool-btn magnetic-btn" onclick="window.startDefenseTour()" title="Examiner Guided Viva Presentation Mode">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -5777,15 +5767,15 @@ def parse_deploy_spec(user_payload):
   </div>
 </div>
 
-<script src="query_library.js?v=4.0.0"></script>
-<script src="script.js?v=4.0.0"></script>
-<script src="app.js?v=4.0.0"></script>
-<script src="improvised_controller.js?v=4.0.0"></script>
-<script src="course_cockpit.js?v=4.0.0"></script>
-<script src="academic_weapon.js?v=4.0.0"></script>
-<script src="eli5_hub.js?v=4.0.0"></script>
-<script src="gov_rules_codex.js?v=4.0.0"></script>
-<script src="implementation_flow.js?v=4.0.0"></script>
+<script src="query_library.js?v=4.1.0"></script>
+<script src="script.js?v=4.1.0"></script>
+<script src="app.js?v=4.1.0"></script>
+<script src="improvised_controller.js?v=4.1.0"></script>
+<script src="course_cockpit.js?v=4.1.0"></script>
+<script src="academic_weapon.js?v=4.1.0"></script>
+<script src="eli5_hub.js?v=4.1.0"></script>
+<script src="gov_rules_codex.js?v=4.1.0"></script>
+<script src="implementation_flow.js?v=4.1.0"></script>
 <!-- Floating Interactive Pathway Telemetry Dock -->
 <div id="floating-pathway-dock" class="floating-pathway-dock" aria-live="polite">
   <div class="dock-status-label">

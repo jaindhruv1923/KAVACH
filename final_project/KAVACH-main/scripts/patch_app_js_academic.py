@@ -238,3 +238,4 @@ def patch_app_js():
 
 if __name__ == "__main__":
     patch_app_js()
+
