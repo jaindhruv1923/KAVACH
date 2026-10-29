@@ -53,19 +53,31 @@
         <span class="preset-pills-label">Quick-Load Demo Presets:</span>
         <div class="preset-pill-group">
           <button type="button" class="preset-btn" onclick="loadPreset('valid_transfer')">
-            <span class="preset-badge safe">VALID</span> 1. High-Value Wire Transfer (₹25L)
+            <span class="preset-badge safe">VALID</span> 1. High-Value Transfer (₹25L)
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('aadhaar_leak')">
+            <span class="preset-badge threat">ATTACK</span> 2. Aadhaar Leak (UID: 123432)
           </button>
           <button type="button" class="preset-btn" onclick="loadPreset('jailbreak')">
-            <span class="preset-badge threat">ATTACK</span> 2. Jailbreak & Prompt Injection
+            <span class="preset-badge threat">ATTACK</span> 3. Jailbreak & Prompt Injection
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('secret_leak')">
+            <span class="preset-badge threat">ATTACK</span> 4. AWS/GitHub Key Leak
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('sqli_attack')">
+            <span class="preset-badge threat">ATTACK</span> 5. SQL Injection Bypass
           </button>
           <button type="button" class="preset-btn" onclick="loadPreset('ast_rce')">
-            <span class="preset-badge threat">ATTACK</span> 3. Python AST RCE (CVE-2020-14343)
+            <span class="preset-badge threat">ATTACK</span> 6. Python AST RCE (CVE-2020-14343)
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('pypi_typosquat')">
+            <span class="preset-badge threat">ATTACK</span> 7. PyPI Slopsquatting
           </button>
           <button type="button" class="preset-btn" onclick="loadPreset('denial_wallet')">
-            <span class="preset-badge threat">ATTACK</span> 4. Denial-of-Wallet Loop
+            <span class="preset-badge threat">ATTACK</span> 8. Denial-of-Wallet Loop
           </button>
           <button type="button" class="preset-btn" onclick="loadPreset('dp_analytics')">
-            <span class="preset-badge math">PRIVACY</span> 5. Differential Privacy Query
+            <span class="preset-badge math">PRIVACY</span> 9. Differential Privacy (ε,δ)
           </button>
         </div>
       </div>

