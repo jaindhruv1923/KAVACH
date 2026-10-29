@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAVACH Live Agentic AI Command Center & Execution Engine</title>
+  
+  <!-- Inter & JetBrains Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       TWO-TIER COMMAND CENTER HEADER
+       ========================================================================= -->
+  <header class="cmd-header">
+    <!-- Tier 1: Brand & Status -->
+    <div class="header-tier1">
+      <div class="brand-cluster">
+        <div class="brand-icon-shield">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">
+            KAVACH Live Agentic AI Command Center
+          </div>
+          <div class="brand-subtitle">
+            Autonomous Multi-Agent Safety Swarm & Real-Time Execution Orchestrator
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="engine-status-pill">
+          <span class="status-dot"></span>
+          <span>Engine Active &middot; 6 Swarm Agents</span>
+        </div>
+        <button type="button" class="preset-btn" onclick="downloadAuditReport()" title="Export JSON Evidence">
+          <span>📥</span> Audit JSON
+        </button>
+      </div>
+    </div>
+
+    <!-- Tier 2: Evaluator Demo Presets -->
+    <div class="header-tier2">
+      <div class="presets-container">
+        <span class="preset-pills-label">Quick-Load Demo Presets:</span>
+        <div class="preset-pill-group">
+          <button type="button" class="preset-btn" onclick="loadPreset('valid_transfer')">
+            <span class="preset-badge safe">VALID</span> 1. High-Value Wire Transfer (₹25L)
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('jailbreak')">
+            <span class="preset-badge threat">ATTACK</span> 2. Jailbreak & Prompt Injection
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('ast_rce')">
+            <span class="preset-badge threat">ATTACK</span> 3. Python AST RCE (CVE-2020-14343)
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('denial_wallet')">
+            <span class="preset-badge threat">ATTACK</span> 4. Denial-of-Wallet Loop
+          </button>
+          <button type="button" class="preset-btn" onclick="loadPreset('dp_analytics')">
+            <span class="preset-badge math">PRIVACY</span> 5. Differential Privacy Query
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN 3-COLUMN DASHBOARD GRID
+       ========================================================================= -->
+  <main class="dashboard-main">
+
+    <!-- COLUMN 1: INPUT BUFFER & SWARM CONTROLS -->
+    <section class="panel-card left-col">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>📝</span> Input Buffer & Payload Studio
+        </div>
+        <span style="font-size:0.70rem; color:var(--text-muted); font-family:var(--font-mono);">RAW PROMPT</span>
+      </div>
+
+      <textarea id="prompt-input" class="input-textarea" placeholder="Enter any natural language transaction request, SQL query, or Python code block to observe live multi-agent execution..."></textarea>
+
+      <!-- Hyperparameters & Swarm Policies -->
+      <div class="param-group">
+        <div class="param-row">
+          <span class="param-label">Differential Privacy Budget (ε):</span>
+          <span style="font-family:var(--font-mono); font-weight:700; color:#38BDF8;" id="epsilon-val">0.5</span>
+        </div>
+        <input type="range" id="epsilon-slider" class="param-slider" min="0.1" max="2.0" step="0.1" value="0.5" style="width:100%;">
+      </div>
+
+      <div class="param-group" style="margin-top:0;">
+        <div class="param-row">
+          <span class="param-label">AST Strict Blast-Radius:</span>
+          <input type="checkbox" id="strict-ast-toggle" checked style="accent-color:var(--accent-purple);">
+        </div>
+        <div class="param-row">
+          <span class="param-label">NIST ML-DSA Quantum Signing:</span>
+          <input type="checkbox" id="pqc-toggle" checked style="accent-color:var(--accent-cyan);">
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons-group">
+        <button type="button" id="btn-run-swarm" class="btn-primary-swarm">
+          <span>🚀</span> Execute Multi-Agent Swarm
+        </button>
+        <div style="display:flex; gap:8px;">
+          <button type="button" id="btn-step-debug" class="btn-step-debug" style="flex:1;">
+            <span>⏯️</span> Step-by-Step
+          </button>
+          <button type="button" id="btn-reset" class="btn-step-debug" style="width:90px;">
+            <span>↺</span> Reset
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLUMN 2: MULTI-AGENT SWARM PIPELINE (THE REAL HERO) -->
+    <section class="panel-card center-col">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>🧬</span> Autonomous Multi-Agent Safety Swarm
+        </div>
+        <span style="font-size:0.72rem; color:var(--accent-purple); font-weight:700;">6 SPECIALIZED AGENTS</span>
+      </div>
+
+      <div class="swarm-pipeline-container">
+
+        <!-- Agent 1: Sentinel Intent Gate -->
+        <div id="node-sentinel" class="agent-node-card state-idle">
+          <div class="agent-left-info">
+            <div class="agent-avatar" style="color:#F43F5E;">🛡️</div>
+            <div>
+              <div class="agent-title-text">Agent 1: Sentinel Intent Gate</div>
+              <div class="agent-summary-text">Scans token entropy, delimiter escaping, and OWASP LLM01 jailbreaks.</div>
+            </div>
+          </div>
+          <div class="agent-right-status">
+            <span class="agent-latency-badge">-- ms</span>
+            <span class="agent-status-badge badge-idle">STANDBY</span>
+          </div>
+        </div>
+
+        <!-- Agent 2: AST Blast-Radius Guard -->
+        <div id="node-ast" class="agent-node-card state-idle">
+          <div class="agent-left-info">
+            <div class="agent-avatar" style="color:#EAB308;">🔍</div>
+            <div>
+              <div class="agent-title-text">Agent 2: AST Blast-Radius Guard</div>
+              <div class="agent-summary-text">Performs real Python ast.parse() traversal for CWE-502, CWE-78 & YAML exploits.</div>
+            </div>
+          </div>
+          <div class="agent-right-status">
+            <span class="agent-latency-badge">-- ms</span>
+            <span class="agent-status-badge badge-idle">STANDBY</span>
+          </div>
+        </div>
+
+        <!-- Agent 3: DPDP PII Anonymizer -->
+        <div id="node-pii" class="agent-node-card state-idle">
+          <div class="agent-left-info">
+            <div class="agent-avatar" style="color:#06B6D4;">🔒</div>
+            <div>
+              <div class="agent-title-text">Agent 3: DPDP PII Anonymizer</div>
+              <div class="agent-summary-text">Tokenizes Aadhaar (UID), PAN, and phone numbers into cryptographic Vault tokens.</div>
+            </div>
+          </div>
+          <div class="agent-right-status">
+            <span class="agent-latency-badge">-- ms</span>
+            <span class="agent-status-badge badge-idle">STANDBY</span>
+          </div>
+        </div>
+
+        <!-- Agent 4: Graph-of-Thoughts DAG Agent -->
+        <div id="node-got" class="agent-node-card state-idle">
+          <div class="agent-left-info">
+            <div class="agent-avatar" style="color:#A855F7;">🧠</div>
+            <div>
+              <div class="agent-title-text">Agent 4: Graph-of-Thoughts DAG Agent</div>
+              <div class="agent-summary-text">Evaluates causal dependency graph with Kahn's topological acyclicity sort.</div>
+            </div>
+          </div>
+          <div class="agent-right-status">
+            <span class="agent-latency-badge">-- ms</span>
+            <span class="agent-status-badge badge-idle">STANDBY</span>
+          </div>
+        </div>
+
+        <!-- Agent 5: Differential Privacy Guard -->
+        <div id="node-dp" class="agent-node-card state-idle">
+          <div class="agent-left-info">
+            <div class="agent-avatar" style="color:#3B82F6;">📊</div>
+            <div>
+              <div class="agent-title-text">Agent 5: Differential Privacy Guard</div>
+              <div class="agent-summary-text">Injects calibrated zero-mean Laplace noise scaled by sensitivity Δf / ε.</div>
+            </div>
+          </div>
+          <div class="agent-right-status">
+            <span class="agent-latency-badge">-- ms</span>
+            <span class="agent-status-badge badge-idle">STANDBY</span>
+          </div>
+        </div>
+
+        <!-- Agent 6: Post-Quantum & SAGA Ledger -->
+        <div id="node-pqc" class="agent-node-card state-idle">
+          <div class="agent-left-info">
+            <div class="agent-avatar" style="color:#10B981;">⚡</div>
+            <div>
+              <div class="agent-title-text">Agent 6: Post-Quantum & SAGA Ledger</div>
+              <div class="agent-summary-text">Signs payload with NIST FIPS 204 ML-DSA-65 & generates SLSA Level 3 Provenance.</div>
+            </div>
+          </div>
+          <div class="agent-right-status">
+            <span class="agent-latency-badge">-- ms</span>
+            <span class="agent-status-badge badge-idle">STANDBY</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COLUMN 3: TELEMETRY & BEFORE/AFTER INSPECTOR -->
+    <section class="panel-card right-col">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>📊</span> Live Swarm Telemetry
+        </div>
+        <span style="font-size:0.70rem; color:var(--text-muted); font-family:var(--font-mono);">REAL-TIME</span>
+      </div>
+
+      <!-- Telemetry Metric Grid -->
+      <div class="telemetry-grid">
+        <div class="metric-tile">
+          <div class="metric-label">Pipeline Latency</div>
+          <div id="metric-latency" class="metric-value">-- ms</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Swarm Verdict</div>
+          <div id="metric-verdict" class="metric-value" style="font-size:0.85rem;">STANDBY</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Threats Intercepted</div>
+          <div id="metric-threats" class="metric-value threat">0</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Privacy Budget</div>
+          <div id="metric-epsilon" class="metric-value quantum">ε = 0.5</div>
+        </div>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="tabs-nav">
+        <button type="button" class="tab-btn active" onclick="switchInspectorTab('output', this)">Output Diff</button>
+        <button type="button" class="tab-btn" onclick="switchInspectorTab('thoughts', this)">Agent CoT</button>
+        <button type="button" class="tab-btn" onclick="switchInspectorTab('slsa', this)">SLSA JSON</button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div id="tab-content-area" class="tab-content-area">
+        <span style="color:var(--text-muted);">// No execution performed yet. Select a preset above or enter a prompt and click "Execute Multi-Agent Swarm".</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       BOTTOM: LIVE STREAMING EXECUTION TERMINAL
+       ========================================================================= -->
+  <section class="terminal-section">
+    <div class="terminal-card">
+      <div class="terminal-header">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="terminal-dots">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+          </div>
+          <span class="terminal-title">kavach-swarm-orchestrator@production:~$ tail -f /var/log/kavach/agentic_pipeline.log</span>
+        </div>
+        <div class="terminal-actions">
+          <button type="button" class="terminal-action-btn" onclick="copyTerminalLogs()">📋 Copy Logs</button>
+          <button type="button" class="terminal-action-btn" onclick="clearTerminal()">↺ Clear</button>
+        </div>
+      </div>
+      <div id="terminal-body" class="terminal-body">
+        <!-- Streaming logs will be appended here dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Footer -->
+  <footer class="cmd-footer">
+    KAVACH Enterprise Live Agentic AI Command Center &middot; Designed for Academic Rigor & Production FinTech Security &middot; CSE3101 Agentic AI
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
