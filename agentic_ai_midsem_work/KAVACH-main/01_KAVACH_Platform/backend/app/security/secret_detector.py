@@ -38,7 +38,7 @@ ASSIGNMENT_PATTERN = re.compile(
 # before relying on this list in a real deployment (see PII_PATTERNS.md's
 # own caution about this).
 PROVIDER_PREFIX_PATTERN = re.compile(
-    r"\b(sk-[A-Za-z0-9]{20,}|AIza[A-Za-z0-9_\-]{20,}|AKIA[A-Z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9\-]{10,})\b"
+    r"\b(sk-[A-Za-z0-9_\-]{16,}|AIza[A-Za-z0-9_\-]{20,}|AKIA[A-Z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9\-]{10,})\b"
 )
 
 # Placeholder text that looks like a credential assignment but isn't one —

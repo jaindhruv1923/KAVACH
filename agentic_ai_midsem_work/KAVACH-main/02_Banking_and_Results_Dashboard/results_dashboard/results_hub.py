@@ -384,6 +384,7 @@ def health_check():
 
 
 @app.get("/api/summary")
+@app.get("/api/results/summary")
 def get_summary():
     return default_results_hub.get_summary_metrics()
 

@@ -25,6 +25,7 @@ RUN mkdir -p /app/backend/data /app/backend/qdrant_storage
 
 # Expose HTTP port (Render, Railway, Fly.io, Cloud Run inject $PORT)
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH="/app:/app/backend:/app/02_Banking_and_Results_Dashboard"
 ENV PORT=8000
 EXPOSE 8000
 

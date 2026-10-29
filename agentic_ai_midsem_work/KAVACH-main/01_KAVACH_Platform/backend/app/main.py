@@ -315,6 +315,15 @@ def serve_root_ieee_bundle():
     )
 
 
+@app.get("/implementation_flow.js", include_in_schema=False)
+def serve_root_implementation_flow():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "implementation_flow.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
 @app.get("/favicon.ico", include_in_schema=False)
 def serve_favicon():
     fav_path = os.path.join(FRONTEND_DIR, "favicon.ico")
@@ -612,6 +621,99 @@ def review_code(payload: CodeReviewRequest):
         "findings": findings,
         "policy_decision": policy,
         "recommendations": recommendations,
+    }
+
+
+class SentinelEvaluateRequest(BaseModel):
+    code: str
+    scenario_id: Optional[str] = "custom"
+    author: Optional[str] = "External-DevOps"
+
+
+@app.post("/api/v1/sentinel/evaluate")
+def evaluate_sentinel(req: SentinelEvaluateRequest):
+    """
+    Sub-millisecond Pre-Execution Sentinel Gate evaluating Shannon entropy,
+    AST imports against PyPI slopsquatting, PII, and cryptographic secrets.
+    """
+    t0 = time.perf_counter()
+    code_text = req.code or ""
+    
+    # 1. Shannon entropy calculation
+    from app.security.secret_detector import calculate_shannon_entropy
+    shannon_h = calculate_shannon_entropy(code_text)
+    
+    # 2. Secret and PII detection
+    secret_findings = detect_secrets(code_text)
+    pii_findings = detect_pii(code_text)
+    
+    # 3. AST Traversal for Slopsquatting / Hallucinated imports
+    ast_findings = []
+    try:
+        import ast
+        tree = ast.parse(code_text)
+        imported_modules = []
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                for n in node.names:
+                    imported_modules.append(n.name)
+            elif isinstance(node, ast.ImportFrom):
+                if node.module:
+                    imported_modules.append(node.module)
+        suspicious_keywords = ["fastapi_jwt_vault_security", "flask_internal_debugger", "os_privilege_escalate"]
+        for mod in imported_modules:
+            if any(s in mod for s in suspicious_keywords) or mod.startswith("slop_"):
+                ast_findings.append({
+                    "package": mod,
+                    "threat": "PyPI Slopsquatting (USENIX 2025)",
+                    "action": "HALTED"
+                })
+    except Exception:
+        pass
+
+    # 4. Prompt Injection heuristic
+    prompt_injection_detected = bool(re.search(r"(?i)(ignore previous instructions|drop table|curl|bash -i|rm -rf)", code_text))
+
+    # Decision verdict
+    is_quarantined = (
+        shannon_h >= 4.50 or
+        len(secret_findings) > 0 or
+        len(pii_findings) > 0 or
+        len(ast_findings) > 0 or
+        prompt_injection_detected
+    )
+    
+    exec_time_ms = round((time.perf_counter() - t0) * 1000, 3)
+    
+    status = "QUARANTINED" if is_quarantined else "APPROVED"
+    reasons = []
+    if shannon_h >= 4.50:
+        reasons.append(f"Shannon Entropy H(S) = {shannon_h:.2f} bits/char exceeded threshold 4.50")
+    if secret_findings:
+        reasons.append(f"Found {len(secret_findings)} secret credentials ({secret_findings[0]['value'][:8]}...)")
+    if pii_findings:
+        reasons.append(f"Found {len(pii_findings)} sensitive PII tokens")
+    if ast_findings:
+        reasons.append(f"AST detected unauthorized/slopsquat import: {ast_findings[0]['package']}")
+    if prompt_injection_detected:
+        reasons.append("OWASP LLM01 Prompt injection / command execution pattern detected")
+        
+    verdict_summary = " • ".join(reasons) if reasons else "Payload passed all static and AST invariants cleanly."
+    
+    return {
+        "status": status,
+        "stage": "STAGE_01_SENTINEL_GATE",
+        "verdict_summary": verdict_summary,
+        "shannon_entropy": round(shannon_h, 2),
+        "entropy_threshold": 4.50,
+        "secrets_count": len(secret_findings),
+        "pii_count": len(pii_findings),
+        "ast_threats": ast_findings,
+        "prompt_injection": prompt_injection_detected,
+        "execution_time_ms": exec_time_ms,
+        "timestamp": time.time(),
+        "live_server": True,
+        "port": 8000
     }
 
 

@@ -83,16 +83,16 @@ app.add_middleware(
 # --- Request Models ---
 
 class TransferRequest(BaseModel):
-    sender_acc: str = Field(..., example="SBIN00012345678")
-    receiver_acc: str = Field(..., example="ICIC00045678901")
-    amount: float = Field(..., gt=0, example=5000.0)
-    memo: str = Field("", example="Vendor monthly invoice payment")
-    transfer_type: str = Field("UPI", example="UPI")
-    expected_sender_version: Optional[int] = Field(None, example=1)
+    sender_acc: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    receiver_acc: str = Field(..., json_schema_extra={"example": "ICIC00045678901"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 5000.0})
+    memo: str = Field("", json_schema_extra={"example": "Vendor monthly invoice payment"})
+    transfer_type: str = Field("UPI", json_schema_extra={"example": "UPI"})
+    expected_sender_version: Optional[int] = Field(None, json_schema_extra={"example": 1})
 
 
 class ScanMemoRequest(BaseModel):
-    memo: str = Field(..., example="Payment for services")
+    memo: str = Field(..., json_schema_extra={"example": "Payment for services"})
 
 
 class HitlActionRequest(BaseModel):
@@ -102,8 +102,8 @@ class HitlActionRequest(BaseModel):
 
 
 class CreateDepositRequest(BaseModel):
-    account_number: str = Field(..., example="SBIN00012345678")
-    principal: float = Field(..., gt=0, example=50000.0)
+    account_number: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    principal: float = Field(..., gt=0, json_schema_extra={"example": 50000.0})
     tenure_months: int = Field(12, ge=1, le=120)
     is_senior_citizen: bool = Field(False)
 
@@ -125,10 +125,10 @@ class UpdateCardLimitsRequest(BaseModel):
 
 
 class AddBeneficiaryRequest(BaseModel):
-    owner_account: str = Field(..., example="SBIN00012345678")
-    beneficiary_account: str = Field(..., example="ICIC00045678901")
-    name: str = Field(..., example="Ananya Sharma")
-    ifsc_code: str = Field(..., example="ICIC0000042")
+    owner_account: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    beneficiary_account: str = Field(..., json_schema_extra={"example": "ICIC00045678901"})
+    name: str = Field(..., json_schema_extra={"example": "Ananya Sharma"})
+    ifsc_code: str = Field(..., json_schema_extra={"example": "ICIC0000042"})
     nickname: Optional[str] = Field("")
 
 
@@ -153,93 +153,93 @@ class KillswitchToggleRequest(BaseModel):
 
 
 class SagaTransferRequest(BaseModel):
-    sender_acc: str = Field(..., example="SBIN00012345678")
-    receiver_acc: str = Field(..., example="ICIC00045678901")
-    amount: float = Field(..., gt=0, example=5000.0)
-    memo: str = Field("", example="Protected Saga distributed vendor payment")
-    transfer_type: str = Field("UPI", example="UPI")
-    simulate_failure_at_step: Optional[str] = Field(None, example="STEP_2")
+    sender_acc: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    receiver_acc: str = Field(..., json_schema_extra={"example": "ICIC00045678901"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 5000.0})
+    memo: str = Field("", json_schema_extra={"example": "Protected Saga distributed vendor payment"})
+    transfer_type: str = Field("UPI", json_schema_extra={"example": "UPI"})
+    simulate_failure_at_step: Optional[str] = Field(None, json_schema_extra={"example": "STEP_2"})
 
 
 class MakerRequestModel(BaseModel):
-    maker_id: str = Field("MAKER-OFFICER-PRIYA", example="MAKER-OFFICER-PRIYA")
-    action_type: str = Field("HIGH_VALUE_TRANSFER", example="HIGH_VALUE_TRANSFER")
+    maker_id: str = Field("MAKER-OFFICER-PRIYA", json_schema_extra={"example": "MAKER-OFFICER-PRIYA"})
+    action_type: str = Field("HIGH_VALUE_TRANSFER", json_schema_extra={"example": "HIGH_VALUE_TRANSFER"})
     payload: Dict[str, Any] = Field(...)
-    business_justification: str = Field("Corporate quarterly dividend disbursement", example="Corporate quarterly dividend disbursement")
+    business_justification: str = Field("Corporate quarterly dividend disbursement", json_schema_extra={"example": "Corporate quarterly dividend disbursement"})
 
 
 class CheckerApproveModel(BaseModel):
     request_id: str = Field(...)
-    checker_id: str = Field("CHECKER-OFFICER-ARUN", example="CHECKER-OFFICER-ARUN")
-    checker_notes: str = Field("Dual-control authorized after AML check", example="Dual-control authorized after AML check")
+    checker_id: str = Field("CHECKER-OFFICER-ARUN", json_schema_extra={"example": "CHECKER-OFFICER-ARUN"})
+    checker_notes: str = Field("Dual-control authorized after AML check", json_schema_extra={"example": "Dual-control authorized after AML check"})
 
 
 class CheckerRejectModel(BaseModel):
     request_id: str = Field(...)
-    checker_id: str = Field("CHECKER-OFFICER-ARUN", example="CHECKER-OFFICER-ARUN")
-    rejection_reason: str = Field("Adverse media sanction alert flagged", example="Adverse media sanction alert flagged")
+    checker_id: str = Field("CHECKER-OFFICER-ARUN", json_schema_extra={"example": "CHECKER-OFFICER-ARUN"})
+    rejection_reason: str = Field("Adverse media sanction alert flagged", json_schema_extra={"example": "Adverse media sanction alert flagged"})
 
 
 class AnomalyEvalRequest(BaseModel):
-    account_number: str = Field(..., example="SBIN00012345678")
-    amount: float = Field(..., gt=0, example=45000.0)
-    origin_city: str = Field("MUMBAI", example="MUMBAI")
-    origin_ip: str = Field("103.21.244.0", example="103.21.244.0")
+    account_number: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 45000.0})
+    origin_city: str = Field("MUMBAI", json_schema_extra={"example": "MUMBAI"})
+    origin_ip: str = Field("103.21.244.0", json_schema_extra={"example": "103.21.244.0"})
 
 
 class CbdcMintRequest(BaseModel):
-    account_number: str = Field(..., example="SBIN00012345678")
-    target_wallet: str = Field("WALLET-DHRUV-CBDC", example="WALLET-DHRUV-CBDC")
-    amount: float = Field(..., gt=0, example=2500.0)
+    account_number: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    target_wallet: str = Field("WALLET-DHRUV-CBDC", json_schema_extra={"example": "WALLET-DHRUV-CBDC"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 2500.0})
 
 
 class CbdcTransferRequest(BaseModel):
-    sender_wallet: str = Field(..., example="WALLET-DHRUV-CBDC")
-    receiver_wallet: str = Field(..., example="WALLET-MERCHANT-CBDC")
-    amount: float = Field(..., gt=0, example=500.0)
+    sender_wallet: str = Field(..., json_schema_extra={"example": "WALLET-DHRUV-CBDC"})
+    receiver_wallet: str = Field(..., json_schema_extra={"example": "WALLET-MERCHANT-CBDC"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 500.0})
 
 
 class CbdcRedeemRequest(BaseModel):
-    wallet_id: str = Field(..., example="WALLET-DHRUV-CBDC")
-    account_number: str = Field(..., example="SBIN00012345678")
-    amount: float = Field(..., gt=0, example=500.0)
+    wallet_id: str = Field(..., json_schema_extra={"example": "WALLET-DHRUV-CBDC"})
+    account_number: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 500.0})
 
 
 class ChaosOccRaceRequest(BaseModel):
-    account_number: str = Field("SBIN00012345678", example="SBIN00012345678")
-    workers: int = Field(15, ge=2, le=30, example=15)
-    transfer_amount: float = Field(100.0, gt=0, example=100.0)
+    account_number: str = Field("SBIN00012345678", json_schema_extra={"example": "SBIN00012345678"})
+    workers: int = Field(15, ge=2, le=30, json_schema_extra={"example": 15})
+    transfer_amount: float = Field(100.0, gt=0, json_schema_extra={"example": 100.0})
 
 
 class EscrowCreateRequest(BaseModel):
-    sender_acc: str = Field(..., example="SBIN00012345678")
-    receiver_acc: str = Field(..., example="ICIC00045678901")
-    amount: float = Field(..., gt=0, example=10000.0)
-    duration_seconds: int = Field(60, ge=10, le=600, example=60)
-    memo: str = Field("Protected Time-Lock Escrow Transfer", example="Protected Time-Lock Escrow Transfer")
+    sender_acc: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    receiver_acc: str = Field(..., json_schema_extra={"example": "ICIC00045678901"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 10000.0})
+    duration_seconds: int = Field(60, ge=10, le=600, json_schema_extra={"example": 60})
+    memo: str = Field("Protected Time-Lock Escrow Transfer", json_schema_extra={"example": "Protected Time-Lock Escrow Transfer"})
 
 
 class EscrowClawbackRequest(BaseModel):
     escrow_id: str = Field(...)
-    sender_acc: str = Field(..., example="SBIN00012345678")
-    reason: str = Field("Emergency fraud clawback", example="Emergency fraud clawback")
+    sender_acc: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    reason: str = Field("Emergency fraud clawback", json_schema_extra={"example": "Emergency fraud clawback"})
 
 
 class McpToolInvokeRequest(BaseModel):
-    tool_name: str = Field(..., example="bank_transfer")
+    tool_name: str = Field(..., json_schema_extra={"example": "bank_transfer"})
     arguments: Dict[str, Any] = Field(default_factory=dict)
-    agent_role: str = Field("AUTONOMOUS_PAYMENT_AGENT", example="AUTONOMOUS_PAYMENT_AGENT")
-    mcp_request_id: Optional[str] = Field(None, example="mcp-req-001")
+    agent_role: str = Field("AUTONOMOUS_PAYMENT_AGENT", json_schema_extra={"example": "AUTONOMOUS_PAYMENT_AGENT"})
+    mcp_request_id: Optional[str] = Field(None, json_schema_extra={"example": "mcp-req-001"})
 
 
 class DualCustodyTransferRequest(BaseModel):
-    sender_acc: str = Field(..., example="SBIN00012345678")
-    receiver_acc: str = Field(..., example="ICIC00045678901")
-    amount: float = Field(..., gt=0, example=75000.0)
-    initiator_agent_sig: str = Field(..., example="A2A-SIG-ADK-7F9B1C")
-    cosigner_auditor_sig: str = Field(..., example="A2A-SIG-CREWAI-83A4E2")
-    memo: str = Field("High-Value Dual-Custody Transfer", example="High-Value Dual-Custody Transfer")
-    transfer_type: str = Field("NEFT", example="NEFT")
+    sender_acc: str = Field(..., json_schema_extra={"example": "SBIN00012345678"})
+    receiver_acc: str = Field(..., json_schema_extra={"example": "ICIC00045678901"})
+    amount: float = Field(..., gt=0, json_schema_extra={"example": 75000.0})
+    initiator_agent_sig: str = Field(..., json_schema_extra={"example": "A2A-SIG-ADK-7F9B1C"})
+    cosigner_auditor_sig: str = Field(..., json_schema_extra={"example": "A2A-SIG-CREWAI-83A4E2"})
+    memo: str = Field("High-Value Dual-Custody Transfer", json_schema_extra={"example": "High-Value Dual-Custody Transfer"})
+    transfer_type: str = Field("NEFT", json_schema_extra={"example": "NEFT"})
 
 
 # =============================================================================
@@ -247,6 +247,18 @@ class DualCustodyTransferRequest(BaseModel):
 # 1. ACCOUNTS & BALANCE LEDGER ROUTES
 # =============================================================================
 
+@app.get("/health")
+def health_check():
+    return {
+        "status": "HEALTHY",
+        "service": "Bharat Core Banking Highway Engine",
+        "port": 8050,
+        "dual_custody_escrow_active": True,
+        "saga_orchestrator_active": True
+    }
+
+
+@app.get("/api/bank/accounts")
 @app.get("/api/accounts")
 def get_accounts():
     """List all accounts with statutory PII masking."""
