@@ -11089,9 +11089,9 @@ button:active:not(:disabled),
   padding: 8px 12px !important;
   border-radius: 9px !important;
   border: 1px solid #E2E8F0 !important;
-  background: #FFFFFF !important;
+  background: #FFFFFF;
   color: #334155 !important;
-  font-size: 0.77rem !important;
+  font-size: 0.78rem !important;
   font-family: var(--font-sans) !important;
   font-weight: 600 !important;
   letter-spacing: -0.01em !important;
@@ -11103,7 +11103,7 @@ button:active:not(:disabled),
   justify-content: flex-start !important;
   gap: 8px !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
-  height: 38px !important;
+  height: 40px !important;
   box-sizing: border-box !important;
   min-width: 0 !important;
   overflow: hidden !important;
@@ -11111,21 +11111,34 @@ button:active:not(:disabled),
 }
 
 .academic-pillar-chip:hover {
-  background: #F8FAFC;
-  border-color: #A855F7;
-  color: #6D28D9;
+  background: #F8FAFC !important;
+  border-color: #8B5CF6 !important;
+  color: #6D28D9 !important;
+  transform: translateY(-1px);
 }
 
 .academic-pillar-chip.active {
-  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%) !important;
   color: #FFFFFF !important;
-  border-color: #6D28D9;
-  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.25);
+  border-color: #6D28D9 !important;
+  box-shadow: 0 3px 10px rgba(109, 40, 217, 0.35) !important;
+}
+
+.academic-pillar-chip.active:hover {
+  background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #5B21B6 !important;
+}
+
+.academic-pillar-chip.active .pillar-chip-name {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
 }
 
 .academic-pillar-chip.active .pillar-num-badge {
-  background: rgba(255,255,255,0.25);
-  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.28) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .pillar-num-badge {
