@@ -83,3 +83,4 @@ class ByzantineSwarmEngine:
             "consensus_block_hash": consensus_digest,
             "execution_time_ms": elapsed_ms
         }
+

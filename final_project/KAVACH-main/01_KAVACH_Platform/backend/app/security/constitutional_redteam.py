@@ -96,3 +96,4 @@ class ConstitutionalRedTeamEngine:
             "rounds": rounds,
             "status": "APPROVED_RESILIENT" if resilience_rate >= 100.0 else "VULNERABILITY_FLAGGED"
         }
+

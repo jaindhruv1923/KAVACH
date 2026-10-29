@@ -132,3 +132,4 @@ def test_statutory_compliance_dossier():
     assert res.status_code == 200
     data = res.json()
     assert data["overall_legal_rating"] == "FULL_STATUTORY_COMPLIANCE (100%)"
+

@@ -822,6 +822,129 @@ def compliance_dossier():
 
 
 # ============================================================
+# 10 ACADEMIC WEAPON RESEARCH SUITE ENDPOINTS
+# ============================================================
+
+@app.get("/api/v1/ablation/matrix")
+def get_ablation_matrix():
+    """Scientific Ablation Study: empirical F1, precision, recall and latency across 4 baselines."""
+    from app.security.scientific_ablation import ScientificAblationEngine
+    return ScientificAblationEngine().run_ablation_comparison()
+
+
+class XaiRequest(BaseModel):
+    code: str
+    verdict: Optional[str] = "QUARANTINED"
+
+
+@app.post("/api/v1/xai/counterfactual")
+def xai_counterfactual(req: XaiRequest):
+    """Causal XAI: calculates minimal counterfactual intervention to reverse security verdict."""
+    from app.security.causal_xai_explainer import CausalXaiExplainer
+    return CausalXaiExplainer().compute_counterfactual_explanation(req.code, req.verdict or "QUARANTINED")
+
+
+class LatticeRequest(BaseModel):
+    source_var: str = "api_key"
+    sink_channel: str = "public_readme"
+    sink_level: int = 1
+
+
+@app.post("/api/v1/lattice/audit")
+def lattice_audit(req: LatticeRequest):
+    """Denning's Lattice Model: audits information flow to prevent unauthorized declassification."""
+    from app.security.information_flow_lattice import InformationFlowLattice, SecurityClass
+    engine = InformationFlowLattice()
+    return engine.audit_flow(req.source_var, req.sink_channel, SecurityClass(req.sink_level))
+
+
+class WatermarkRequest(BaseModel):
+    text: str
+
+
+@app.post("/api/v1/watermark/verify")
+def watermark_verify(req: WatermarkRequest):
+    """Kirchenbauer et al. Watermarking: detects green-red cryptographic provenance seal."""
+    from app.security.agent_watermarking import AgentWatermarkingEngine
+    return AgentWatermarkingEngine().watermark_text(req.text)
+
+
+class PqcRequest(BaseModel):
+    payload: str
+    salt: Optional[str] = None
+
+
+@app.post("/api/v1/pqc/seal")
+def pqc_seal(req: PqcRequest):
+    """NIST FIPS 204 Post-Quantum Cryptography: lattice polynomial vector commitment."""
+    from app.security.pqc_quantum_shield import PostQuantumShieldEngine
+    return PostQuantumShieldEngine().generate_quantum_sealed_digest(req.payload, req.salt)
+
+
+class GotRequest(BaseModel):
+    problem: str = "Audit supply chain package and authorize payment"
+
+
+@app.post("/api/v1/got/reason")
+def got_reason(req: GotRequest):
+    """Graph of Thoughts: non-linear DAG reasoning with cyclic loop prevention."""
+    from app.agent.graph_of_thoughts_engine import GraphOfThoughtsEngine
+    return GraphOfThoughtsEngine().execute_reasoning_flow(req.problem)
+
+
+class PrivacyRequest(BaseModel):
+    raw_prompt: str
+    epsilon: Optional[float] = 0.5
+
+
+@app.post("/api/v1/privacy/distill")
+def privacy_distill(req: PrivacyRequest):
+    """Differential Privacy: Dwork (epsilon, delta)-DP Laplace noise injection."""
+    from app.security.differential_privacy import DifferentialPrivacyEngine
+    return DifferentialPrivacyEngine(epsilon=req.epsilon or 0.5).privatize_prompt_representation(req.raw_prompt)
+
+
+class DowRequest(BaseModel):
+    estimated_tokens: int = 5000
+    estimated_cost_usd: float = 0.05
+
+
+@app.post("/api/v1/dow/audit")
+def dow_audit(req: DowRequest):
+    """OWASP LLM04 Denial-of-Wallet: Token-Bucket velocity rate-limiting and circuit breaker."""
+    from app.security.denial_of_wallet_guard import DenialOfWalletGuard
+    return DenialOfWalletGuard().audit_token_consumption(req.estimated_tokens, req.estimated_cost_usd)
+
+
+class FactualityRequest(BaseModel):
+    claim: str
+    domain: Optional[str] = "rbi_ceiling"
+
+
+@app.post("/api/v1/factuality/verify")
+def factuality_verify(req: FactualityRequest):
+    """Self-Consistency Factuality: Natural Language Inference cross-entailment verification."""
+    from app.security.factuality_entailment import FactualityEntailmentEngine
+    return FactualityEntailmentEngine().verify_action_entailment(req.claim, req.domain or "rbi_ceiling")
+
+
+class SagaDemoRequest(BaseModel):
+    simulate_fail_at_step_3: bool = True
+
+
+@app.post("/api/v1/saga/unwind")
+def saga_unwind(req: SagaDemoRequest):
+    """Distributed SAGA: autonomous inverse compensation stack unwinding on workflow failure."""
+    from app.security.saga_compensation_stack import SagaCompensationOrchestrator
+    orchestrator = SagaCompensationOrchestrator()
+    orchestrator.register_step("1. Reserve Liquid Escrow", lambda: True, lambda: True)
+    orchestrator.register_step("2. Provision Ephemeral Docker Sandbox", lambda: True, lambda: True)
+    orchestrator.register_step("3. Call External LLM API", lambda: not req.simulate_fail_at_step_3, lambda: True)
+    orchestrator.register_step("4. Commit Financial Settlement", lambda: True, lambda: True)
+    return orchestrator.execute_saga()
+
+
+# ============================================================
 # PHASE 1 — REPOSITORY INGESTION + RAG
 # ============================================================
 

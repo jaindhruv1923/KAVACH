@@ -93,3 +93,4 @@ class ZkAgenticAttestationEngine:
             expected_sig == proof_bundle.get("verifier_signature") and
             proof_bundle.get("proof_valid", False) is True
         )
+
