@@ -608,6 +608,7 @@ def diagnostic_ping(target_host):
 
   const ACADEMIC_PILLARS = {
     "dp": {
+      shortName: "Differential Privacy",
       id: "dp",
       num: "01",
       name: "Differential Privacy Guard",
@@ -643,6 +644,7 @@ def diagnostic_ping(target_host):
       }
     },
     "got": {
+      shortName: "Graph-of-Thoughts DAG",
       id: "got",
       num: "02",
       name: "Graph-of-Thoughts DAG Reasoning",
@@ -683,6 +685,7 @@ def diagnostic_ping(target_host):
       }
     },
     "watermark": {
+      shortName: "Agent Watermarking",
       id: "watermark",
       num: "03",
       name: "Kirchenbauer Agent Watermarking",
@@ -721,6 +724,7 @@ def diagnostic_ping(target_host):
       }
     },
     "lattice": {
+      shortName: "Security Lattice",
       id: "lattice",
       num: "04",
       name: "Denning Security Lattice",
@@ -750,6 +754,7 @@ def diagnostic_ping(target_host):
       }
     },
     "pqc": {
+      shortName: "Post-Quantum Shield",
       id: "pqc",
       num: "05",
       name: "NIST FIPS 204 ML-DSA Post-Quantum Shield",
@@ -776,6 +781,7 @@ def diagnostic_ping(target_host):
       }
     },
     "wallet": {
+      shortName: "Denial-of-Wallet Guard",
       id: "wallet",
       num: "06",
       name: "OWASP LLM04 Denial-of-Wallet Guard",
@@ -806,6 +812,7 @@ def diagnostic_ping(target_host):
       }
     },
     "entailment": {
+      shortName: "Factuality Entailment",
       id: "entailment",
       num: "07",
       name: "Semantic Factuality Cross-Entailment NLI",
@@ -840,6 +847,7 @@ def diagnostic_ping(target_host):
       }
     },
     "saga": {
+      shortName: "SAGA Compensation",
       id: "saga",
       num: "08",
       name: "SAGA Distributed Compensation Stack",
@@ -867,6 +875,7 @@ def diagnostic_ping(target_host):
       }
     },
     "causal": {
+      shortName: "Causal Counterfactual",
       id: "causal",
       num: "09",
       name: "Judea Pearl Causal Counterfactual XAI",
@@ -893,6 +902,7 @@ def diagnostic_ping(target_host):
       }
     },
     "ablation": {
+      shortName: "Empirical Ablation",
       id: "ablation",
       num: "10",
       name: "Scientific Empirical Ablation Matrix",
@@ -938,9 +948,9 @@ def diagnostic_ping(target_host):
       const p = ACADEMIC_PILLARS[key];
       const isActive = key === activePillarId;
       stripHtml += `
-        <button type="button" class="academic-pillar-chip ${isActive ? 'active' : ''}" onclick="window.selectAcademicPillar('${key}')">
+        <button type="button" class="academic-pillar-chip ${isActive ? 'active' : ''}" onclick="window.selectAcademicPillar('${key}')" title="${p.name} (${p.badge})">
           <span class="pillar-num-badge">${p.num}</span>
-          <span>${p.name}</span>
+          <span class="pillar-chip-name">${p.shortName || p.name}</span>
         </button>
       `;
     });

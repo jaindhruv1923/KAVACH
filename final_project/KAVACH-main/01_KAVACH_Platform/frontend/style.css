@@ -11057,29 +11057,57 @@ button:active:not(:disabled),
    ========================================================================== */
 
 .academic-pillars-strip {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 10px 4px 14px;
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 10px !important;
+  padding: 8px 0 16px !important;
+  margin-bottom: 18px !important;
   border-bottom: 1px solid var(--border-subtle);
-  scrollbar-width: thin;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1100px) {
+  .academic-pillars-strip {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .academic-pillars-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .academic-pillars-strip {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 .academic-pillar-chip {
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border-medium);
-  background: #FFFFFF;
-  color: var(--text-secondary);
-  font-size: 0.76rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  padding: 8px 12px !important;
+  border-radius: 9px !important;
+  border: 1px solid #E2E8F0 !important;
+  background: #FFFFFF !important;
+  color: #334155 !important;
+  font-size: 0.77rem !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  height: 38px !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
 }
 
 .academic-pillar-chip:hover {
@@ -11291,4 +11319,12 @@ button:active:not(:disabled),
 .pathway-tab#pathway-btn-academic.active .pulse-dot-green {
   background: #C4B5FD !important;
   box-shadow: 0 0 8px #DDD6FE !important;
+}
+
+.pillar-chip-name {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  flex: 1 1 auto !important;
+  text-align: left !important;
 }
