@@ -1,6 +1,7 @@
-import importlib.util
+import importlib.util, os
 
-spec = importlib.util.spec_from_file_location('agent_engine', 'live_agent_dashboard/agent_engine.py')
+_dir = os.path.dirname(os.path.abspath(__file__))
+spec = importlib.util.spec_from_file_location('agent_engine', os.path.join(_dir, 'agent_engine.py'))
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 

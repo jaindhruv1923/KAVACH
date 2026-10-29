@@ -61,3 +61,6 @@ desktop.ini
 !.vscode/settings.json
 *.swp
 *.swo
+
+# Junction alias
+PRJ4_AG_AI_FInal_Proejct
