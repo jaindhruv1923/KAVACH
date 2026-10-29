@@ -373,6 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.openLiveSwarm = function(e) {
   if (e) e.preventDefault();
+  window.open('http://127.0.0.1:8000/', '_blank');
   if (typeof window.activatePathwayMode === 'function') {
     window.activatePathwayMode('swarm');
   }
@@ -380,6 +381,7 @@ window.openLiveSwarm = function(e) {
 
 window.openApplicationsWork = function(e) {
   if (e) e.preventDefault();
+  window.open('http://127.0.0.1:8002/', '_blank');
   if (typeof window.activatePathwayMode === 'function') {
     window.activatePathwayMode('apps');
   }
