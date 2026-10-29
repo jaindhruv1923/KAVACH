@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2.5.1">
+<link rel="stylesheet" href="style.css?v=4.0.0">
 <!-- KaTeX Academic Mathematical Typesetting -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
@@ -124,6 +124,8 @@ window.activatePathwayMode = function(mode, targetId) {
 
   const btnAcademic = document.getElementById('pathway-btn-academic');
   if (btnAcademic) btnAcademic.classList.toggle('active', mode === 'academic');
+  const headerAcademicBtn = document.getElementById('header-academic-btn');
+  if (headerAcademicBtn) headerAcademicBtn.classList.toggle('active', mode === 'academic');
 
   if (mode === 'midsem') {
     if (scopeEarlier) scopeEarlier.classList.add('active');
@@ -5775,15 +5777,15 @@ def parse_deploy_spec(user_payload):
   </div>
 </div>
 
-<script src="query_library.js?v=3.2.0"></script>
-<script src="script.js?v=3.2.0"></script>
-<script src="app.js?v=3.2.0"></script>
-<script src="improvised_controller.js?v=3.2.0"></script>
-<script src="course_cockpit.js?v=3.2.0"></script>
-<script src="academic_weapon.js?v=3.2.0"></script>
-<script src="eli5_hub.js?v=3.2.0"></script>
-<script src="gov_rules_codex.js?v=3.2.0"></script>
-<script src="implementation_flow.js?v=3.8.0"></script>
+<script src="query_library.js?v=4.0.0"></script>
+<script src="script.js?v=4.0.0"></script>
+<script src="app.js?v=4.0.0"></script>
+<script src="improvised_controller.js?v=4.0.0"></script>
+<script src="course_cockpit.js?v=4.0.0"></script>
+<script src="academic_weapon.js?v=4.0.0"></script>
+<script src="eli5_hub.js?v=4.0.0"></script>
+<script src="gov_rules_codex.js?v=4.0.0"></script>
+<script src="implementation_flow.js?v=4.0.0"></script>
 <!-- Floating Interactive Pathway Telemetry Dock -->
 <div id="floating-pathway-dock" class="floating-pathway-dock" aria-live="polite">
   <div class="dock-status-label">

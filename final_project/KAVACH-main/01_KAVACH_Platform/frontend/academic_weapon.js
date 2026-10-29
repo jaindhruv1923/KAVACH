@@ -1352,4 +1352,33 @@ def diagnostic_ping(target_host):
     }
   });
 
+
+  // Guarantee Academic Weapon button binds even if loaded after app.js
+  function bindAcademicWeaponTriggers() {
+    const btnAcademic = document.getElementById('pathway-btn-academic');
+    if (btnAcademic && !btnAcademic._kavachTrigBound) {
+      btnAcademic._kavachTrigBound = true;
+      btnAcademic.addEventListener('click', function() {
+        if (typeof window.activatePathwayMode === 'function') {
+          window.activatePathwayMode('academic');
+        }
+      });
+    }
+    const headerAcademicBtn = document.getElementById('header-academic-btn');
+    if (headerAcademicBtn && !headerAcademicBtn._kavachTrigBound) {
+      headerAcademicBtn._kavachTrigBound = true;
+      headerAcademicBtn.addEventListener('click', function() {
+        if (typeof window.activatePathwayMode === 'function') {
+          window.activatePathwayMode('academic');
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindAcademicWeaponTriggers);
+  } else {
+    bindAcademicWeaponTriggers();
+  }
+
 })();

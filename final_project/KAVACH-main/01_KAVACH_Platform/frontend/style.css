@@ -11210,3 +11210,19 @@ button:active:not(:disabled),
   background: #C4B5FD !important;
   box-shadow: 0 0 8px #DDD6FE !important;
 }
+
+/* Safeguard pointer-events so clicks on inner spans/dots bubble to pathway buttons */
+.pathway-tab * {
+  pointer-events: none !important;
+}
+
+/* Header right-side 10 Frontiers tool button active styling */
+.header-tool-btn#header-academic-btn.active {
+  background: #7C3AED !important;
+  color: #FFFFFF !important;
+  border-color: #6D28D9 !important;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35) !important;
+}
+.header-tool-btn#header-academic-btn.active svg {
+  stroke: #FFFFFF !important;
+}

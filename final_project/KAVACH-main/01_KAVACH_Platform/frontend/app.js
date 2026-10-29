@@ -2643,6 +2643,7 @@ window.updateSEOViewMeta = updateSEOViewMeta;
 const ALL_APP_VIEWS = [
   'product-view',
   'improvised-view',
+  'academic-view',
   'workspace-view',
   'defense-view',
   'eval-view',
@@ -2669,6 +2670,8 @@ function switchMasterView(targetViewId, hash = null, navBtnId = null, scrollTarg
   let mode = 'midsem';
   if (targetViewId === 'improvised-view') {
     mode = 'improvised';
+  } else if (targetViewId === 'academic-view') {
+    mode = 'academic';
   } else if (targetViewId === 'workspace-view') {
     mode = window.CURRENT_PATHWAY || 'midsem';
   }
@@ -2677,6 +2680,7 @@ function switchMasterView(targetViewId, hash = null, navBtnId = null, scrollTarg
   // 3. Update header pathway selector pills
   const btnMidsem = document.getElementById('pathway-btn-midsem');
   const btnImprovised = document.getElementById('pathway-btn-improvised');
+  const btnAcademic = document.getElementById('pathway-btn-academic');
   const scopeEarlier = document.getElementById('scope-btn-earlier');
   const scopeNew = document.getElementById('scope-btn-new');
   const scopeAll = document.getElementById('scope-btn-all');
@@ -2685,6 +2689,9 @@ function switchMasterView(targetViewId, hash = null, navBtnId = null, scrollTarg
 
   if (btnMidsem) btnMidsem.classList.toggle('active', mode === 'midsem');
   if (btnImprovised) btnImprovised.classList.toggle('active', mode === 'improvised');
+  if (btnAcademic) btnAcademic.classList.toggle('active', mode === 'academic');
+  const headerAcademicBtn = document.getElementById('header-academic-btn');
+  if (headerAcademicBtn) headerAcademicBtn.classList.toggle('active', mode === 'academic');
 
   // Strictly mutually-exclusive active button state (sirf tbi it turns blue)
   if (targetViewId === 'improvised-view') {
@@ -2775,6 +2782,15 @@ function switchToProduct(targetSectionId = null) {
   if (typeof initTerminalMissionControl === 'function') initTerminalMissionControl();
 }
 
+function switchToAcademic(targetSectionId = null) {
+  switchMasterView('academic-view', 'academic-weapon', null, targetSectionId || 'academic-view');
+  updateSEOViewMeta('academic');
+  if (typeof window.renderAcademicWeaponCockpit === 'function') {
+    window.renderAcademicWeaponCockpit();
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function switchToImprovised(targetSectionId = null) {
   switchMasterView('improvised-view', 'improvised', null, targetSectionId || 'improvised-innovations-section');
   updateSEOViewMeta('improvised');
@@ -2801,6 +2817,7 @@ function activatePathwayMode(mode, targetId = null) {
   window.CURRENT_PATHWAY = mode;
   const btnMidsem = document.getElementById('pathway-btn-midsem');
   const btnImprovised = document.getElementById('pathway-btn-improvised');
+  const btnAcademic = document.getElementById('pathway-btn-academic');
   const scopeEarlier = document.getElementById('scope-btn-earlier');
   const scopeNew = document.getElementById('scope-btn-new');
   const scopeAll = document.getElementById('scope-btn-all');
@@ -2809,6 +2826,7 @@ function activatePathwayMode(mode, targetId = null) {
 
   if (btnMidsem) btnMidsem.classList.toggle('active', mode === 'midsem');
   if (btnImprovised) btnImprovised.classList.toggle('active', mode === 'improvised');
+  if (btnAcademic) btnAcademic.classList.toggle('active', mode === 'academic');
 
   [scopeAll, scopeEarlier, scopeNew, scopeMatrix].forEach(btn => {
     if (btn) btn.classList.remove('active');
@@ -2822,6 +2840,10 @@ function activatePathwayMode(mode, targetId = null) {
     if (scopeEarlier) scopeEarlier.classList.add('active');
     switchToProduct(targetId);
     if (pill) pill.innerHTML = "<strong>Active Scope: Mid-Sem Foundation (v1.0 Baseline).</strong> Taskbar adapted to earlier architecture: 8-stage air-gapped deterministic pipeline, AST blast-radius analyzer, closed-loop ReAct reflexion, and CycloneDX SBOM generator.";
+  } else if (mode === 'academic') {
+    switchToAcademic(targetId);
+    if (pill) pill.innerHTML = "<strong>Active Scope: Academic Weapon & Research Rigor (10 Autonomous Guardrail Frontiers).</strong> Live interactive flow processors for (&epsilon;,&delta;)-Differential Privacy, Graph-of-Thoughts DAG, Kirchenbauer Watermarking, Denning Security Lattice, NIST Post-Quantum Dilithium, OWASP LLM04 Token-Bucket, NLI Cross-Entailment, SAGA Compensation, Pearl Counterfactual XAI, and Empirical Scientific Ablations.";
+    return;
   } else {
     if (scopeNew) scopeNew.classList.add('active');
     switchToImprovised(targetId);
@@ -2848,6 +2870,15 @@ window.renderDynamicNavbar = function(mode) {
       <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
       <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
       <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
+    `;
+  } else if (mode === 'academic') {
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('academic')">10 Frontiers</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-grounding-card', this)">KaTeX Math</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-flow-sim', this)">Flow Pipeline</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-telemetry-box', this)">Telemetry</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('midsem')">&larr; Earlier (v1.0)</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('improvised')">Improvised (v3.0) &rarr;</button>
     `;
   } else {
     container.innerHTML = `
@@ -2887,6 +2918,7 @@ window.switchMasterView = switchMasterView;
 window.switchToWorkspace = switchToWorkspace;
 window.switchToProduct = switchToProduct;
 window.switchToImprovised = switchToImprovised;
+window.switchToAcademic = switchToAcademic;
 window.switchToComparison = switchToComparison;
 window.switchToEval = switchToEval;
 window.activatePathwayMode = activatePathwayMode;
@@ -5368,6 +5400,8 @@ function handleAppHashRouting() {
   const hash = window.location.hash;
   if (hash === "#workspace") {
     switchToWorkspace();
+  } else if (hash === "#academic" || hash === "#academic-weapon" || hash === "#academic-view") {
+    switchToAcademic();
   } else if (hash === "#improvised") {
     switchToImprovised();
   } else if (
@@ -5832,4 +5866,32 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initInteractiveParticleWeb);
 } else {
   initInteractiveParticleWeb();
+}
+
+// Academic Weapon pathway button click safeguard
+function bindAcademicButtonsGlobally() {
+  const btnAcademic = document.getElementById('pathway-btn-academic');
+  if (btnAcademic && !btnAcademic._kavachAcademicBound) {
+    btnAcademic._kavachAcademicBound = true;
+    btnAcademic.addEventListener('click', function(e) {
+      if (typeof window.activatePathwayMode === 'function') {
+        window.activatePathwayMode('academic');
+      }
+    });
+  }
+  const headerAcademicBtn = document.getElementById('header-academic-btn');
+  if (headerAcademicBtn && !headerAcademicBtn._kavachAcademicBound) {
+    headerAcademicBtn._kavachAcademicBound = true;
+    headerAcademicBtn.addEventListener('click', function(e) {
+      if (typeof window.activatePathwayMode === 'function') {
+        window.activatePathwayMode('academic');
+      }
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindAcademicButtonsGlobally);
+} else {
+  bindAcademicButtonsGlobally();
 }
