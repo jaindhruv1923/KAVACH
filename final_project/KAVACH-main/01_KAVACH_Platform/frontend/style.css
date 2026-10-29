@@ -11194,3 +11194,19 @@ button:active:not(:disabled),
 .telemetry-veto { color: #F87171; font-weight: 700; }
 .telemetry-warn { color: #FBBF24; font-weight: 700; }
 .telemetry-info { color: #94A3B8; }
+
+/* Dedicated Active Purple Theme for Academic Weapon Pathway Tab */
+.pathway-tab#pathway-btn-academic.active {
+  background: #7C3AED !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35) !important;
+  border: 1px solid #6D28D9 !important;
+}
+.pathway-tab#pathway-btn-academic.active .pathway-chip {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+.pathway-tab#pathway-btn-academic.active .pulse-dot-green {
+  background: #C4B5FD !important;
+  box-shadow: 0 0 8px #DDD6FE !important;
+}

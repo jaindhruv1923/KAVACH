@@ -90,7 +90,7 @@
 window.CURRENT_PATHWAY = 'midsem';
 
 function switchToViewGlobal(targetId, navBtnId, hash) {
-  const views = ['product-view', 'improvised-view', 'workspace-view', 'usecases-view', 'research-view', 'defense-view', 'eval-view', 'professor-view'];
+  const views = ['product-view', 'improvised-view', 'academic-view', 'workspace-view', 'usecases-view', 'research-view', 'defense-view', 'eval-view', 'professor-view'];
   views.forEach(v => {
     const el = document.getElementById(v);
     if (el) el.style.display = (v === targetId) ? 'block' : 'none';
@@ -130,11 +130,15 @@ window.activatePathwayMode = function(mode, targetId) {
     switchToViewGlobal('product-view', null, 'earlier-midsem');
     if (pill) pill.innerHTML = "<strong>Active Scope: Mid-Sem Foundation (v1.0 Baseline).</strong> Taskbar adapted to earlier architecture: 8-stage air-gapped deterministic pipeline, AST blast-radius analyzer, closed-loop ReAct reflexion, and CycloneDX SBOM generator.";
   } else if (mode === 'academic') {
-    if (scopeNew) scopeNew.classList.add('active');
-    switchToViewGlobal('improvised-view', null, 'academic-weapon');
+    if (scopeEarlier) scopeEarlier.classList.remove('active');
+    if (scopeNew) scopeNew.classList.remove('active');
+    switchToViewGlobal('academic-view', null, 'academic-weapon');
     if (pill) pill.innerHTML = "<strong>Active Scope: Academic Weapon & Research Rigor (10 Autonomous Guardrail Frontiers).</strong> Live interactive flow processors for (&epsilon;,&delta;)-Differential Privacy, Graph-of-Thoughts DAG, Kirchenbauer Watermarking, Denning Security Lattice, NIST Post-Quantum Dilithium, OWASP LLM04 Token-Bucket, NLI Cross-Entailment, SAGA Compensation, Pearl Counterfactual XAI, and Empirical Scientific Ablations.";
-    if (typeof window.renderAcademicWeaponCockpit === 'function') window.renderAcademicWeaponCockpit();
-    targetId = targetId || 'academic-weapon-cockpit';
+    if (typeof window.renderAcademicWeaponCockpit === 'function') {
+      setTimeout(() => window.renderAcademicWeaponCockpit(), 10);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
   } else {
     if (scopeNew) scopeNew.classList.add('active');
     switchToViewGlobal('improvised-view', null, 'improvised');
@@ -171,12 +175,12 @@ window.renderDynamicNavbar = function(mode) {
     `;
   } else if (mode === 'academic') {
     container.innerHTML = `
-      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('academic-weapon-cockpit', this)">10 Frontiers</button>
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('academic')">10 Frontiers</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-grounding-card', this)">KaTeX Math</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-flow-sim', this)">Flow Pipeline</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-telemetry-box', this)">Telemetry</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('midsem')">&larr; Earlier (v1.0)</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('improvised')">Improvised (v3.0) &rarr;</button>
     `;
   } else {
     container.innerHTML = `
@@ -350,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="View Newly Added Post-Mid-Sem Innovations">
           <span class="pulse-dot-green"></span> Improvised <span class="pathway-chip">v3.0</span>
         </button>
-        <button type="button" id="pathway-btn-academic" class="pathway-tab" onclick="activatePathwayMode(\'academic\')" title="View 10 Academic Weapon Frontiers & Live Flow Processors">
+        <button type="button" id="pathway-btn-academic" class="pathway-tab" onclick="activatePathwayMode('academic')" title="View 10 Academic Weapon Frontiers & Live Flow Processors">
           <span class="pulse-dot-green" style="background:#8B5CF6;"></span> Academic Weapon <span class="pathway-chip" style="background:#EDE9FE;color:#7C3AED;font-weight:700;">10 Frontiers</span>
         </button>
       </div>
@@ -1896,30 +1900,20 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
 
-    <!-- ============================================================ -->
-    <!-- SECTION: ACADEMIC WEAPON 10-FEATURE INTERACTIVE COMMAND DECK -->
-    <!-- ============================================================ -->
-    <section id="academic-weapon-cockpit" class="product-section reveal-on-scroll" style="margin-top:28px;margin-bottom:32px;">
-      <div class="section-intro">
-        <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap;">
-          <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">CSE3101 ACADEMIC WEAPON</span>
-          <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">10 RESEARCH FRONTIERS</span>
-          <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">LIVE FLOW PROCESSORS</span>
+    <!-- Promotion Banner to Dedicated Academic Weapon View -->
+    <div class="card" style="background:linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 100%);border:1px solid #DDD6FE;border-radius:var(--radius-lg);padding:22px 26px;margin-top:28px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 2px 8px rgba(124,58,237,0.08);">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FINAL PROJECT HIGHLIGHT</span>
+          <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">10 ELITE RESEARCH FRONTIERS</span>
         </div>
-        <h2 style="font-size:1.6rem;font-weight:800;color:var(--text-primary);letter-spacing:-0.5px;">
-          10 Autonomous Guardrail Frontiers: Live Flow &amp; Mathematical Processors
-        </h2>
-        <p style="max-width:880px;margin:8px auto 0;font-size:0.86rem;color:var(--text-secondary);line-height:1.55;">
-          Directly execute, inspect, and verify all 10 academic innovations built into KAVACH. Select any frontier below to explore its theoretical equations, execute live security pipelines, trace animated micro-flow state transitions, and verify zero-day adversarial containment.
-        </p>
+        <h3 style="margin:4px 0 2px;font-size:1.20rem;font-weight:800;color:#581C87;">10 Academic Weapon Autonomous Frontiers &amp; Live Flow Processors</h3>
+        <p style="margin:0;font-size:0.83rem;color:#6B21A8;max-width:760px;">Directly execute Differential Privacy, Graph-of-Thoughts DAG, Kirchenbauer Watermarking, Post-Quantum Dilithium, and Denning Security Lattice in the dedicated command deck.</p>
       </div>
-
-      <!-- Frontier Pillar Navigation Bar (10 Clickable Tab Pills) -->
-      <div id="academic-pillars-strip" class="academic-pillars-strip" style="display:flex;gap:8px;overflow-x:auto;padding:12px 4px 14px;margin-top:14px;-webkit-overflow-scrolling:touch;"></div>
-
-      <!-- Dynamic Live Execution Deck -->
-      <div id="academic-pillar-workspace" class="card" style="background:#FFFFFF;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);margin-top:8px;"></div>
-    </section>
+      <button type="button" class="btn-serious" onclick="activatePathwayMode('academic')" style="background:#7C3AED;color:#FFF;padding:10px 22px;font-size:0.82rem;font-weight:700;border-radius:8px;box-shadow:0 2px 8px rgba(124,58,237,0.25);cursor:pointer;">
+        Open 10 Frontiers Cockpit &rarr;
+      </button>
+    </div>
 
     <!-- Section 2: Head-to-Head Comparative Tables -->
     <section id="comparison-matrix-section" class="product-section reveal-on-scroll">
@@ -2305,6 +2299,38 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
+
+  <!-- ============================================================ -->
+  <!-- 3. ACADEMIC WEAPON 10-FEATURE RESEARCH FRONTIERS VIEW        -->
+  <!-- ============================================================ -->
+  <div id="academic-view" style="display:none; padding-top:16px;">
+    <!-- Stage Navigation Banner -->
+    <div class="stage-nav-banner" style="background:#FFFFFF;border:1px solid #DDD6FE;border-radius:var(--radius-lg);padding:18px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 2px 8px rgba(124,58,237,0.08);">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;">
+          <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FINAL PROJECT &middot; CSE3101</span>
+          <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">10 ELITE RESEARCH FRONTIERS</span>
+          <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">171+ TESTS PASSED (100%)</span>
+        </div>
+        <h2 style="margin:4px 0 2px;font-size:1.35rem;font-weight:800;color:var(--text-primary);letter-spacing:-0.3px;">
+          10 Autonomous Guardrail Frontiers: Live Flow Processors &amp; KaTeX Mathematical Rigor
+        </h2>
+        <p style="margin:0;font-size:0.84rem;color:var(--text-secondary);max-width:850px;">
+          Explore and execute all 10 academic innovations built into KAVACH. Select any frontier below to inspect its theoretical LaTeX equations, execute live security pipelines, trace animated micro-flow state transitions, and verify zero-day adversarial containment.
+        </p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button type="button" class="btn-nav-secondary" onclick="activatePathwayMode('midsem')" style="padding:6px 12px;font-size:0.75rem;cursor:pointer;">&larr; Earlier (v1.0)</button>
+        <button type="button" class="btn-nav-secondary" onclick="activatePathwayMode('improvised')" style="padding:6px 12px;font-size:0.75rem;cursor:pointer;">Improvised (v3.0) &rarr;</button>
+      </div>
+    </div>
+
+    <!-- The 10 Frontier Selector Tabs Strip -->
+    <div id="academic-pillars-strip" class="academic-pillars-strip" style="display:flex;gap:8px;overflow-x:auto;padding:12px 4px 14px;margin-bottom:14px;-webkit-overflow-scrolling:touch;"></div>
+
+    <!-- Dynamic Live Execution Deck -->
+    <div id="academic-pillar-workspace" class="card" style="background:#FFFFFF;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:28px;"></div>
+  </div>
 
   <!-- ============================================================ -->
   <!-- 2. LIVE OBSERVABILITY & EXECUTION WORKSPACE VIEW              -->

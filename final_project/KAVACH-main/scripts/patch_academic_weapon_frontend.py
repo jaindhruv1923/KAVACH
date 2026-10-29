@@ -315,3 +315,4 @@ def patch_style_css():
 if __name__ == "__main__":
     patch_index_html()
     patch_style_css()
+
