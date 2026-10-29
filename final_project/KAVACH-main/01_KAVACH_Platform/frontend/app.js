@@ -11,16 +11,10 @@ function getApiBase() {
   const custom = localStorage.getItem("KAVACH_BACKEND_URL");
   if (custom && custom.trim()) return custom.trim().replace(/\/$/, "");
   const loc = window.location;
-  if (loc && (loc.port === "8000" || loc.origin.includes(":8000"))) {
-    return "";
-  }
-  if (loc && (loc.hostname === "localhost" || loc.hostname === "127.0.0.1")) {
-    return `${loc.protocol}//${loc.hostname}:8000`;
-  }
-  if (loc && loc.protocol && loc.protocol.startsWith("http") && !loc.hostname.includes("netlify.app")) {
+  if (loc && loc.origin && loc.protocol && loc.protocol.startsWith("http") && !loc.hostname.includes("netlify.app")) {
     return loc.origin;
   }
-  return "http://127.0.0.1:8000";
+  return "http://127.0.0.1:8001";
 }
 
 let API_BASE = getApiBase();
