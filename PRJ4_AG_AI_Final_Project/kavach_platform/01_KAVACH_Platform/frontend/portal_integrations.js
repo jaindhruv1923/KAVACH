@@ -97,6 +97,16 @@
     `;
   };
 
+    // --- BIDIRECTIONAL CROSS-TAB & IFRAME NAVIGATION LISTENER ---
+  window.addEventListener('message', function (event) {
+    if (event && event.data && event.data.type === 'KAVACH_NAVIGATE') {
+      const pathway = event.data.pathway || 'overview';
+      if (typeof window.activatePathwayMode === 'function') {
+        window.activatePathwayMode(pathway);
+      }
+    }
+  });
+
   // --- AUTO-INITIALIZE ON DOM LOAD ---
   function initPortals() {
     if (document.getElementById('swarm-view')) {

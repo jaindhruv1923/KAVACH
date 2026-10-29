@@ -750,22 +750,55 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
   // Global Cross-Navigation Utilities
   window.navigateToPlatform = function (e) {
     if (e) e.preventDefault();
+
+    // 1. If embedded inside iframe on KAVACH Platform
+    if (window.self !== window.top) {
+      try {
+        if (window.parent && typeof window.parent.activatePathwayMode === 'function') {
+          window.parent.activatePathwayMode('overview');
+          return;
+        }
+      } catch (err) {}
+      try {
+        window.parent.postMessage({ type: 'KAVACH_NAVIGATE', pathway: 'overview' }, '*');
+        return;
+      } catch (err) {}
+    }
+
+    // 2. If opened in a standalone tab/window by KAVACH
+    if (window.opener && !window.opener.closed) {
+      try {
+        window.opener.postMessage({ type: 'KAVACH_NAVIGATE', pathway: 'overview' }, '*');
+        window.opener.focus();
+        return;
+      } catch (err) {}
+    }
+
+    // 3. Fallback: navigate directly to KAVACH Platform on Port 5500 / 5502
     if (window.location.protocol === "file:") {
       window.location.href = "../kavach_platform/01_KAVACH_Platform/frontend/index.html";
     } else {
-      const host = window.location.hostname || "localhost";
-      window.location.href = `http://${host}:8001/`;
+      const host = window.location.hostname || "127.0.0.1";
+      window.location.href = `http://${host}:5500/kavach/index.html`;
     }
   };
 
   window.navigateToLiveSwarm = function (e) {
     if (e) e.preventDefault();
-    if (window.location.protocol === "file:") {
-      window.location.href = "../live_agent_dashboard/index.html";
-    } else {
-      const host = window.location.hostname || "localhost";
-      window.location.href = `http://${host}:8000/`;
+    if (window.self !== window.top) {
+      try {
+        if (window.parent && typeof window.parent.activatePathwayMode === 'function') {
+          window.parent.activatePathwayMode('swarm');
+          return;
+        }
+      } catch (err) {}
+      try {
+        window.parent.postMessage({ type: 'KAVACH_NAVIGATE', pathway: 'swarm' }, '*');
+        return;
+      } catch (err) {}
     }
+    const host = window.location.hostname || "127.0.0.1";
+    window.location.href = `http://${host}:8000/`;
   };
 
   // Initialization
