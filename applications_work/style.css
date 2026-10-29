@@ -1,0 +1,594 @@
+/* ==========================================================================
+   Bharat Core Bank - Autonomous AI Banking & Enterprise Security Portal
+   Theme: High-Tech FinTech & Comparative Agentic SecOps Console
+   ========================================================================== */
+
+:root {
+  --bg-dark: #080C14;
+  --bg-card: #0F172A;
+  --bg-card-elevated: #1E293B;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+
+  --fintech-gold: #F59E0B;
+  --fintech-gold-glow: rgba(245, 158, 11, 0.25);
+  --kavach-green: #10B981;
+  --kavach-green-glow: rgba(16, 185, 129, 0.25);
+  --breach-red: #EF4444;
+  --breach-red-glow: rgba(239, 68, 68, 0.25);
+  --quantum-cyan: #06B6D4;
+  --purple-agent: #8B5CF6;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   HEADER & MASTER DEFENSE SWITCH
+   ========================================================================== */
+.bank-header {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bank-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bank-logo-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #B45309 0%, #D97706 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 0 16px var(--fintech-gold-glow);
+}
+
+.bank-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bank-tagline {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* The Master Defense Switch */
+.master-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0B1120;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.mode-toggle-btn {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text-dim);
+}
+
+.mode-toggle-btn.active-without {
+  background: rgba(239, 68, 68, 0.18);
+  color: #F87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 12px var(--breach-red-glow);
+}
+
+.mode-toggle-btn.active-with {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #FFFFFF;
+  border: 1px solid #10B981;
+  box-shadow: 0 0 16px var(--kavach-green-glow);
+}
+
+/* ==========================================================================
+   3-PHASE PROGRESSION NARRATIVE BAR (EXPOSING THE NEED -> INTRODUCING KAVACH)
+   ========================================================================== */
+.progression-bar-section {
+  background: #0B1120;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 28px;
+}
+
+.progression-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.phase-step-pill {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phase-step-pill:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-strong);
+}
+
+.phase-step-pill.active {
+  border-color: var(--fintech-gold);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.phase-step-pill.active-kavach {
+  border-color: var(--kavach-green);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.step-num-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #1E293B;
+  color: #CBD5E1;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phase-step-pill.active .step-num-badge {
+  background: var(--fintech-gold);
+  color: #000;
+}
+
+.phase-step-pill.active-kavach .step-num-badge {
+  background: var(--kavach-green);
+  color: #FFF;
+}
+
+.step-text-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.step-text-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   BANK LEDGER OVERVIEW TILES
+   ========================================================================== */
+.ledger-strip {
+  max-width: 1600px;
+  margin: 20px auto 0;
+  padding: 0 28px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1100px) {
+  .ledger-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ledger-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.ledger-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--fintech-gold);
+}
+
+.ledger-tile.tile-threat::before { background: var(--breach-red); }
+.ledger-tile.tile-shield::before { background: var(--kavach-green); }
+
+.tile-label {
+  font-size: 0.70rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.tile-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tile-value.danger { color: #F87171; }
+.tile-value.success { color: #34D399; }
+
+.tile-sub {
+  font-size: 0.70rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   MAIN DASHBOARD GRID (SCENARIOS & EXECUTION LAB)
+   ========================================================================== */
+.main-content-grid {
+  max-width: 1600px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0 28px;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 20px;
+  flex: 1;
+}
+
+@media (max-width: 1100px) {
+  .main-content-grid { grid-template-columns: 1fr; }
+}
+
+.panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Scenario Selector List */
+.scenario-selector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.scenario-card-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scenario-card-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.scenario-card-btn.active {
+  border-color: var(--fintech-gold);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.scenario-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scenario-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge-pii { background: rgba(6, 182, 212, 0.2); color: #38BDF8; }
+.badge-attack { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+.badge-code { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
+.badge-loop { background: rgba(139, 92, 246, 0.2); color: #C4B5FD; }
+
+.scenario-desc-text {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.input-editor-area {
+  width: 100%;
+  height: 130px;
+  background: #090D16;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.80rem;
+  color: var(--text-main);
+  resize: vertical;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.input-editor-area:focus {
+  border-color: var(--fintech-gold);
+}
+
+.btn-dispatch-transaction {
+  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  color: #FFFFFF;
+  border: 1px solid #F59E0B;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px var(--fintech-gold-glow);
+  transition: all 0.16s ease;
+}
+
+.btn-dispatch-transaction:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--fintech-gold-glow);
+}
+
+.btn-dispatch-transaction.kavach-mode {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  border-color: #10B981;
+  box-shadow: 0 4px 14px var(--kavach-green-glow);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: DUAL-STATE IMPACT VISUALIZER & EXPLANATION
+   ========================================================================== */
+.impact-banner {
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.banner-breach {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.banner-shield {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.banner-title {
+  font-size: 0.90rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.banner-breach .banner-title { color: #F87171; }
+.banner-shield .banner-title { color: #34D399; }
+
+.banner-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+/* Output Comparison Tabs */
+.tabs-header-strip {
+  display: flex;
+  gap: 4px;
+  background: #090D16;
+  padding: 4px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.tab-nav-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+
+.tab-nav-btn.active {
+  background: var(--bg-card-elevated);
+  color: var(--text-main);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tab-content-display {
+  background: #090D16;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 14px;
+  min-height: 240px;
+  max-height: 340px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* Explanatory Cards */
+.explanation-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 14px;
+}
+
+.explanation-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--fintech-gold);
+  margin-bottom: 4px;
+}
+
+.explanation-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   BOTTOM: STREAMING BANK OPERATIONS CONSOLE
+   ========================================================================== */
+.console-section {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto 28px;
+  padding: 0 28px;
+}
+
+.console-card {
+  background: #050811;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.console-header {
+  background: #0C1222;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.console-body {
+  padding: 14px 18px;
+  height: 160px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.log-alert { color: #F87171; font-weight: 700; }
+.log-safe { color: #34D399; }
+.log-kavach { color: #38BDF8; font-weight: 700; }
+.log-ts { color: #64748B; }
+
+/* Footer */
+.bank-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 16px 28px;
+  text-align: center;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  background: rgba(8, 12, 20, 0.95);
+}

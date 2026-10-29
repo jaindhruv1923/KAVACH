@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bharat Core Bank - Autonomous AI Banking & Enterprise Security Portal</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       BANK HEADER & MASTER DEFENSE SWITCH
+       ========================================================================= -->
+  <header class="bank-header">
+    <div class="header-inner">
+      <div class="bank-brand">
+        <div class="bank-logo-badge">🏛️</div>
+        <div>
+          <div class="bank-name">Bharat Core Bank Ltd.</div>
+          <div class="bank-tagline">Autonomous Core Banking & Enterprise SecOps Portal &middot; Branch: MUM-CORP-01</div>
+        </div>
+      </div>
+
+      <!-- The Master Defense Switch -->
+      <div class="master-switch-container">
+        <button type="button" id="mode-btn-without" class="mode-toggle-btn active-without" onclick="toggleMode('without_kavach')">
+          <span>🔴</span> WITHOUT KAVACH (Vulnerable)
+        </button>
+        <button type="button" id="mode-btn-with" class="mode-toggle-btn" onclick="toggleMode('with_kavach')">
+          <span>🛡️</span> WITH KAVACH (Shielded)
+        </button>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button type="button" class="phase-step-pill" onclick="resetBankLedger()" title="Reset Bank Ledger">
+          <span>↺</span> Reset Ledger
+        </button>
+        <button type="button" class="phase-step-pill" onclick="downloadSlsaReceipt()" title="Download SLSA Evidence">
+          <span>📥</span> Audit Receipt
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       3-PHASE PROGRESSION NARRATIVE BAR
+       ========================================================================= -->
+  <section class="progression-bar-section">
+    <div class="progression-inner">
+      <!-- Step 1: Without KAVACH -->
+      <div id="phase-step-1" class="phase-step-pill active" onclick="setPhase(1)">
+        <div class="step-num-badge">1</div>
+        <div>
+          <div class="step-text-title">Phase 1: Without KAVACH</div>
+          <div class="step-text-sub">Exposing the Crisis of Raw Autonomous LLMs in FinTech</div>
+        </div>
+      </div>
+
+      <!-- Step 2: The Architectural Need -->
+      <div id="phase-step-2" class="phase-step-pill" onclick="setPhase(2)">
+        <div class="step-num-badge">2</div>
+        <div>
+          <div class="step-text-title">Phase 2: Why KAVACH?</div>
+          <div class="step-text-sub">The Architectural & Mathematical Need for Agentic SecOps</div>
+        </div>
+      </div>
+
+      <!-- Step 3: With KAVACH Active -->
+      <div id="phase-step-3" class="phase-step-pill" onclick="setPhase(3)">
+        <div class="step-num-badge">3</div>
+        <div>
+          <div class="step-text-title">Phase 3: With KAVACH</div>
+          <div class="step-text-sub">Zero-Trust Hardened Autonomous Banking Reality</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       BANK LEDGER OVERVIEW STRIP
+       ========================================================================= -->
+  <section class="ledger-strip">
+    <div class="ledger-tile">
+      <div class="tile-label">Bank Treasury Reserve</div>
+      <div id="val-treasury" class="tile-value success">₹1,00,00,000</div>
+      <div class="tile-sub">Real-Time Core Liquid Assets</div>
+    </div>
+
+    <div class="ledger-tile">
+      <div class="tile-label">RBI Statutory Status</div>
+      <div id="val-compliance" class="tile-value success">100% COMPLIANT</div>
+      <div class="tile-sub">Cyber Security Framework (CSF)</div>
+    </div>
+
+    <div class="ledger-tile tile-threat">
+      <div class="tile-label">Plaintext PII Leaked</div>
+      <div id="val-pii-leaked" class="tile-value danger">0</div>
+      <div class="tile-sub">DPDP Act 2023 Sec 8(3) Breaches</div>
+    </div>
+
+    <div class="ledger-tile tile-shield">
+      <div class="tile-label">Threats Intercepted</div>
+      <div id="val-threats-blocked" class="tile-value success">0</div>
+      <div class="tile-sub">Zero-Day Attacks Neutralized</div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       MAIN TWO-COLUMN INTERACTIVE LAB
+       ========================================================================= -->
+  <main class="main-content-grid">
+
+    <!-- LEFT COLUMN: SCENARIO SELECTOR & INPUT PROMPT STUDIO -->
+    <section class="panel-card">
+      <div class="panel-title-bar">
+        <div class="panel-title">
+          <span>📋</span> Autonomous Banking Scenarios
+        </div>
+        <span style="font-size:0.70rem; color:var(--text-dim); font-family:var(--font-mono);">5 REAL-WORLD ATTACKS</span>
+      </div>
+
+      <div class="scenario-selector-list">
+        <!-- Scenario 1 -->
+        <button type="button" id="sc-btn-pii_wire" class="scenario-card-btn active" onclick="selectScenario('pii_wire')">
+          <div class="scenario-header-row">
+            <span style="font-weight:700; font-size:0.80rem;">1. Wire Transfer with Aadhaar & PAN</span>
+            <span class="scenario-badge badge-pii">PII EXFIL</span>
+          </div>
+          <div class="scenario-desc-text">Plaintext Aadhaar & PAN verification for ₹15,00,000 corporate settlement.</div>
+        </button>
+
+        <!-- Scenario 2 -->
+        <button type="button" id="sc-btn-ceo_jailbreak" class="scenario-card-btn" onclick="selectScenario('ceo_jailbreak')">
+          <div class="scenario-header-row">
+            <span style="font-weight:700; font-size:0.80rem;">2. Fraudulent CEO Wire Jailbreak</span>
+            <span class="scenario-badge badge-attack">₹50L THEFT</span>
+          </div>
+          <div class="scenario-desc-text">Authority bias prompt injection bypassing statutory limits to Cayman account.</div>
+        </button>
+
+        <!-- Scenario 3 -->
+        <button type="button" id="sc-btn-batch_rce" class="scenario-card-btn" onclick="selectScenario('batch_rce')">
+          <div class="scenario-header-row">
+            <span style="font-weight:700; font-size:0.80rem;">3. Night-Batch Script & PyPI Slopsquatting</span>
+            <span class="scenario-badge badge-code">CWE-502 / RCE</span>
+          </div>
+          <div class="scenario-desc-text">AI package hallucination 'reqeusts' and unsafe PyYAML deserialization.</div>
+        </button>
+
+        <!-- Scenario 4 -->
+        <button type="button" id="sc-btn-denial_wallet" class="scenario-card-btn" onclick="selectScenario('denial_wallet')">
+          <div class="scenario-header-row">
+            <span style="font-weight:700; font-size:0.80rem;">4. Denial-of-Wallet Recursive Loop</span>
+            <span class="scenario-badge badge-loop">TOKEN DRAIN</span>
+          </div>
+          <div class="scenario-desc-text">Infinite recursive task graph exhausting cloud token billing (OWASP LLM04).</div>
+        </button>
+
+        <!-- Scenario 5 -->
+        <button type="button" id="sc-btn-sqli_bypass" class="scenario-card-btn" onclick="selectScenario('sqli_bypass')">
+          <div class="scenario-header-row">
+            <span style="font-weight:700; font-size:0.80rem;">5. SQL Injection Authentication Bypass</span>
+            <span class="scenario-badge badge-attack">CWE-89</span>
+          </div>
+          <div class="scenario-desc-text">Classic SQL tautology exfiltrating unredacted customer balance records.</div>
+        </button>
+      </div>
+
+      <!-- Editable Input Studio -->
+      <div style="font-size:0.72rem; color:var(--text-dim); margin-bottom:4px; font-weight:700;">// TRANSACTION PROMPT / CODE BUFFER:</div>
+      <textarea id="prompt-input" class="input-editor-area" placeholder="Transaction prompt loaded here..."></textarea>
+
+      <!-- Action Button -->
+      <button type="button" id="btn-dispatch-tx" class="btn-dispatch-transaction" onclick="dispatchTransaction()">
+        <span>🚨</span> Dispatch via Raw Autonomous Agent (Without KAVACH)
+      </button>
+    </section>
+
+    <!-- RIGHT COLUMN: DUAL-STATE IMPACT VISUALIZER & EXPLANATION -->
+    <section class="panel-card">
+      <div class="panel-title-bar">
+        <div class="panel-title">
+          <span>📊</span> Comparative State Impact & Root Cause Analysis
+        </div>
+        <span style="font-size:0.70rem; color:var(--text-dim); font-family:var(--font-mono);">A/B EMPIRICAL BENCHMARK</span>
+      </div>
+
+      <!-- Impact Status Banner -->
+      <div id="impact-banner" class="impact-banner banner-shield">
+        <div>
+          <div id="banner-title" class="banner-title">🏛️ Bharat Core Bank System Ready</div>
+          <div id="banner-sub" class="banner-sub">Select a scenario on the left and click dispatch to observe autonomous execution.</div>
+        </div>
+      </div>
+
+      <!-- Tabs Header -->
+      <div class="tabs-header-strip">
+        <button type="button" class="tab-nav-btn active" onclick="switchTab('output', this)">Live Execution Trace</button>
+        <button type="button" class="tab-nav-btn" onclick="switchTab('comparison', this)">Side-by-Side Matrix</button>
+        <button type="button" class="tab-nav-btn" onclick="switchTab('slsa', this)">SLSA Provenance</button>
+      </div>
+
+      <!-- Tab Content Display -->
+      <div id="tab-content-display" class="tab-content-display">
+        <span style="color:var(--text-dim);">// Transaction execution traces will render here in real time.</span>
+      </div>
+
+      <!-- 3 Explanatory Academic Cards (What happened, Why, and Regulatory Impact) -->
+      <div class="explanation-card">
+        <div class="explanation-title">🔍 What Happened in this Execution?</div>
+        <div id="exp-what-happened" class="explanation-text">Awaiting transaction dispatch...</div>
+      </div>
+
+      <div class="explanation-card">
+        <div class="explanation-title">💡 Why It Happened? (Root Cause Analysis)</div>
+        <div id="exp-why-happened" class="explanation-text">Awaiting transaction dispatch...</div>
+      </div>
+
+      <div class="explanation-card">
+        <div class="explanation-title">⚖️ Regulatory & Statutory Penalty Impact</div>
+        <div id="exp-regulatory" class="explanation-text">Awaiting transaction dispatch...</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       BOTTOM: STREAMING BANK OPERATIONS CONSOLE
+       ========================================================================= -->
+  <section class="console-section">
+    <div class="console-card">
+      <div class="console-header">
+        <span style="font-family:var(--font-mono); font-size:0.74rem; color:var(--text-dim);">bharat-bank-core@production-gw:~$ tail -f /var/log/bharat_bank/agentic_tx.log</span>
+        <button type="button" class="phase-step-pill" onclick="document.getElementById('console-body').innerHTML = '';" style="padding:4px 8px; font-size:0.68rem;">
+          ↺ Clear
+        </button>
+      </div>
+      <div id="console-body" class="console-body">
+        <div class="log-line"><span class="log-ts">[INIT]</span> Bharat Core Bank Gateway Initialized. Ready for comparative evaluation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bank Footer -->
+  <footer class="bank-footer">
+    Bharat Core Bank Ltd. &middot; Autonomous AI Banking Security Demonstration &middot; CSE3101 Agentic AI &middot; BML Munjal University
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
