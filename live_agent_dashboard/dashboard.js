@@ -70,7 +70,9 @@ Apply strict differential privacy noise perturbation before returning aggregated
   let isExecuting = false;
   let currentStepIndex = 0;
   let latestExecutionResult = null;
-  const API_ENDPOINT = "http://127.0.0.1:8000/api/orchestrate";
+  const API_ENDPOINT = (window.location.origin && window.location.origin.includes(":8000")) 
+    ? "/api/orchestrate" 
+    : "http://127.0.0.1:8000/api/orchestrate";
 
   // DOM Elements
   const elPromptInput = document.getElementById("prompt-input");
@@ -614,3 +616,4 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
   document.addEventListener("DOMContentLoaded", init);
 })();
+

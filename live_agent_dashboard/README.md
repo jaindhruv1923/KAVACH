@@ -98,3 +98,4 @@ To run with the real Python backend AST parser and REST API:
    Click **"SLSA JSON"** or **"📥 Audit JSON"** to view and download a verifiable SLSA Level 3 execution statement compliant with in-toto v1.0.
 4. **Live Streaming Terminal**:
    Monospace interactive terminal displays timestamped, color-coded agent logs in real time. Click **"📋 Copy Logs"** to copy the full telemetry trace.
+

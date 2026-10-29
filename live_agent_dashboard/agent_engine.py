@@ -23,7 +23,10 @@ import time
 from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, Response
 from pydantic import BaseModel
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = FastAPI(
     title="KAVACH Live Agentic AI Execution Engine",
@@ -521,6 +524,35 @@ def orchestrate_pipeline(req: OrchestrationRequest):
     )
 
 
+@app.get("/")
+def serve_root():
+    index_path = os.path.join(BASE_DIR, "index.html")
+    return FileResponse(index_path, media_type="text/html")
+
+
+@app.get("/index.html")
+def serve_index():
+    index_path = os.path.join(BASE_DIR, "index.html")
+    return FileResponse(index_path, media_type="text/html")
+
+
+@app.get("/dashboard.css")
+def serve_css():
+    css_path = os.path.join(BASE_DIR, "dashboard.css")
+    return FileResponse(css_path, media_type="text/css")
+
+
+@app.get("/dashboard.js")
+def serve_js():
+    js_path = os.path.join(BASE_DIR, "dashboard.js")
+    return FileResponse(js_path, media_type="application/javascript")
+
+
+@app.get("/favicon.ico")
+def serve_favicon():
+    return Response(status_code=204)
+
+
 @app.get("/health")
 def health():
     return {
@@ -543,3 +575,4 @@ if __name__ == "__main__":
     import uvicorn
     print("Starting KAVACH Live Agentic AI Command Center Engine on http://127.0.0.1:8000...")
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
