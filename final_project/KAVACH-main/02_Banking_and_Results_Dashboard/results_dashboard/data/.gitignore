@@ -1,0 +1,4 @@
+# Ignore runtime telemetry logs and generated mirrors
+*.db
+*.json
+*.csv

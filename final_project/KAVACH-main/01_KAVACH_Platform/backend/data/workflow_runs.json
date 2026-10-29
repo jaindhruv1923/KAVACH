@@ -1,0 +1,78 @@
+[
+  {
+    "id": "5526c00f-4e34-45da-bc18-a9f5da87b9ac",
+    "workflow_id": "5526c00f-4e34-45da-bc18-a9f5da87b9ac",
+    "timestamp": "2026-10-29 04:18:54 UTC",
+    "request_text": "Add authentication to login module",
+    "final_stage": "CONTEXT_RETRIEVAL",
+    "stage": "CONTEXT_RETRIEVAL",
+    "verdict": "ALLOWED",
+    "plan": [
+      "Understand the request and identify its scope",
+      "Retrieve relevant repository context for this request (general search)",
+      "Retrieve grounding evidence from the repository (RAG)",
+      "Run security/policy checks on the request and any retrieved context"
+    ],
+    "retrieved_context": [],
+    "security_findings": [],
+    "generation_result": {},
+    "validation_result": {},
+    "impact_report": [],
+    "policy_decision": {
+      "decision": "ALLOW",
+      "action": "ALLOW",
+      "verdict": "ALLOW",
+      "risk_score": 0.0,
+      "action_risk_classification": "low",
+      "data_findings_count": 0,
+      "highest_severity": "none",
+      "explanation": "No significant sensitive-data or high-risk-action signal detected.",
+      "steganography": {
+        "has_steganography": false,
+        "has_bidi_attack": false,
+        "cleaned_text": "Add authentication to login module",
+        "stripped_characters_count": 0,
+        "threats": [],
+        "threat_count": 0,
+        "risk_score": 0.0
+      },
+      "obfuscation": {
+        "original_text": "Add authentication to login module",
+        "is_obfuscated": false,
+        "detected_encodings": [],
+        "decloaked_texts": [],
+        "unified_normalized_text": "Add authentication to login module",
+        "obfuscation_risk_score": 0.0,
+        "details": []
+      },
+      "ssrf": {
+        "is_ssrf_threat": false,
+        "threat_count": 0,
+        "threats": [],
+        "risk_score": 0.0,
+        "explanation": "No SSRF or cloud metadata access detected."
+      },
+      "prompt_safety": {
+        "is_safe": true,
+        "threat_detected": false,
+        "risk_level": "NONE",
+        "threat_count": 0,
+        "threats": [],
+        "sanitized_prompt": "Add authentication to login module",
+        "verdict": "SAFE",
+        "explanation": "Prompt passed adversarial injection screening."
+      },
+      "merkle_root": "be09eca5d3e5afd21f7c2a603399c245fef311e2bbcbeb298eabf8f93b8e34493e82cbdaf8d6bc236482818f988cd63e165a120a0689465042b1273dd58c905b",
+      "mitre_atlas": [],
+      "owasp_llm": []
+    },
+    "redacted_request_text": "Add authentication to login module",
+    "history": [
+      "WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.PLANNING",
+      "WorkflowStage.PLANNING -> WorkflowStage.CONTEXT_RETRIEVAL"
+    ],
+    "duration_ms": 0.0,
+    "run_type": "workflow",
+    "metadata": {}
+  }
+]

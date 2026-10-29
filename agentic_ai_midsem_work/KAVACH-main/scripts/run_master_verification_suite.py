@@ -14,36 +14,40 @@ import os
 import time
 import subprocess
 
-TEST_TARGETS = [
-    ("Live Sentinel RPC & Microservices", "agentic_ai_midsem_work/KAVACH-main/01_KAVACH_Platform/tests/test_live_sentinel_rpc_and_cluster.py"),
-    ("Elite Academic Frontiers & DAG", "agentic_ai_midsem_work/KAVACH-main/01_KAVACH_Platform/tests/test_elite_academic_frontiers.py"),
-    ("LATS Planning & Reflexion Memory", "agentic_ai_midsem_work/KAVACH-main/01_KAVACH_Platform/tests/test_lats_and_reflexion.py"),
-    ("Academic Hardening & AST Honeytokens", "agentic_ai_midsem_work/KAVACH-main/01_KAVACH_Platform/tests/test_academic_weapon_hardening.py"),
-    ("Google ADK Lifecycle Hooks", "agentic_ai_midsem_work/KAVACH-main/01_KAVACH_Platform/tests/test_adk_callbacks_and_triage.py"),
-    ("Bharat Core Banking & SAGA (21 Tests)", "agentic_ai_midsem_work/KAVACH-main/02_Banking_and_Results_Dashboard/implementation_banks/test_banking_kavach.py"),
-    ("Unified Cockpit & Telemetry (100 Tests)", "agentic_ai_midsem_work/KAVACH-main/02_Banking_and_Results_Dashboard/tests_unified/test_unified_100_suite.py"),
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+KAVACH_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+
+REL_TARGETS = [
+    ("Live Sentinel RPC & Microservices", "01_KAVACH_Platform/tests/test_live_sentinel_rpc_and_cluster.py"),
+    ("Elite Academic Frontiers & DAG", "01_KAVACH_Platform/tests/test_elite_academic_frontiers.py"),
+    ("LATS Planning & Reflexion Memory", "01_KAVACH_Platform/tests/test_lats_and_reflexion.py"),
+    ("Academic Hardening & AST Honeytokens", "01_KAVACH_Platform/tests/test_academic_weapon_hardening.py"),
+    ("Google ADK Lifecycle Hooks", "01_KAVACH_Platform/tests/test_adk_callbacks_and_triage.py"),
+    ("Bharat Core Banking & SAGA (21 Tests)", "02_Banking_and_Results_Dashboard/implementation_banks/test_banking_kavach.py"),
+    ("Unified Cockpit & Telemetry (100 Tests)", "02_Banking_and_Results_Dashboard/tests_unified/test_unified_100_suite.py"),
 ]
 
 
 def run_suite():
     print("=" * 80)
     print("      KAVACH & BHARAT BANKING HIGHWAY: MASTER VERIFICATION HARNESS")
+    print(f"      Root Directory: {KAVACH_ROOT}")
     print("=" * 80)
     
     total_passed = 0
-    total_suites = len(TEST_TARGETS)
+    total_suites = len(REL_TARGETS)
     start_all = time.time()
     
-    for idx, (title, path) in enumerate(TEST_TARGETS, 1):
-        if not os.path.exists(path):
-            print(f"[{idx}/{total_suites}] ERROR: File not found: {path}")
+    for idx, (title, rel_path) in enumerate(REL_TARGETS, 1):
+        full_path = os.path.join(KAVACH_ROOT, rel_path)
+        if not os.path.exists(full_path):
+            print(f"[{idx}/{total_suites}] ERROR: File not found: {full_path}")
             continue
             
         t0 = time.time()
-        res = subprocess.run([sys.executable, "-m", "pytest", path, "-q"], capture_output=True, text=True)
+        res = subprocess.run([sys.executable, "-m", "pytest", full_path, "-q"], capture_output=True, text=True, cwd=KAVACH_ROOT)
         duration = round(time.time() - t0, 2)
         
-        # Parse passed count
         output = res.stdout.strip()
         if "passed" in output:
             passed_part = output.split("passed")[0].split()[-1]

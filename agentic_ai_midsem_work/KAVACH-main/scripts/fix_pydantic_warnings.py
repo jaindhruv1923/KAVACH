@@ -10,3 +10,4 @@ new_content = re.sub(r'example=("[^"]*"|\d+(?:\.\d+)?|None)', r'json_schema_extr
 with open(path, 'w', encoding='utf-8') as f:
     f.write(new_content)
 print('Successfully modernized Pydantic schemas in server.py')
+

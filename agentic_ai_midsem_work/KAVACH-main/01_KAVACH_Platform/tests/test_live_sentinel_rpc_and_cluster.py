@@ -82,3 +82,4 @@ def test_live_sentinel_rpc_clean_code_approved():
     assert res["secrets_count"] == 0
     assert len(res["ast_threats"]) == 0
     assert res["prompt_injection"] is False
+
