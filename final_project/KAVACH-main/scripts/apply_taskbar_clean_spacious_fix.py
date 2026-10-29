@@ -310,3 +310,4 @@ if __name__ == "__main__":
     update_css()
     neutralize_particle_canvas()
     print("Spacious taskbar and motion cleanup applied cleanly!")
+

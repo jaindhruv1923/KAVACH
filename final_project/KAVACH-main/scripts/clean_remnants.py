@@ -18,3 +18,4 @@ for name in ["app.js", "script.js"]:
 
     with open(fn, "w", encoding="utf-8") as f:
         f.write(c)
+
