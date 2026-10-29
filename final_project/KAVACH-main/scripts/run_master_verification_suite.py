@@ -25,6 +25,7 @@ REL_TARGETS = [
     ("Google ADK Lifecycle Hooks", "01_KAVACH_Platform/tests/test_adk_callbacks_and_triage.py"),
     ("Bharat Core Banking & SAGA (21 Tests)", "02_Banking_and_Results_Dashboard/implementation_banks/test_banking_kavach.py"),
     ("Unified Cockpit & Telemetry (100 Tests)", "02_Banking_and_Results_Dashboard/tests_unified/test_unified_100_suite.py"),
+    ("Frontier Ideations (RLAIF, BFT, ZK, DPDP)", "01_KAVACH_Platform/tests/test_elite_ideations.py"),
 ]
 
 

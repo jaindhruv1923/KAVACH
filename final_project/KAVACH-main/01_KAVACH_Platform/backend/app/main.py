@@ -639,19 +639,27 @@ def evaluate_sentinel(req: SentinelEvaluateRequest):
     t0 = time.perf_counter()
     code_text = req.code or ""
     
+    # 0. Homoglyph Normalization
+    from app.security.obfuscation_detector import normalize_homoglyphs
+    normalized_text, has_homoglyphs = normalize_homoglyphs(code_text)
+    
     # 1. Shannon entropy calculation
     from app.security.secret_detector import calculate_shannon_entropy
-    shannon_h = calculate_shannon_entropy(code_text)
+    shannon_h = max(calculate_shannon_entropy(code_text), calculate_shannon_entropy(normalized_text))
     
-    # 2. Secret and PII detection
+    # 2. Secret and PII detection (scan raw & normalized text)
     secret_findings = detect_secrets(code_text)
+    if not secret_findings and has_homoglyphs:
+        secret_findings = detect_secrets(normalized_text)
     pii_findings = detect_pii(code_text)
+    if not pii_findings and has_homoglyphs:
+        pii_findings = detect_pii(normalized_text)
     
     # 3. AST Traversal for Slopsquatting / Hallucinated imports
     ast_findings = []
     try:
         import ast
-        tree = ast.parse(code_text)
+        tree = ast.parse(normalized_text)
         imported_modules = []
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -672,7 +680,7 @@ def evaluate_sentinel(req: SentinelEvaluateRequest):
         pass
 
     # 4. Prompt Injection heuristic
-    prompt_injection_detected = bool(re.search(r"(?i)(ignore previous instructions|drop table|curl|bash -i|rm -rf)", code_text))
+    prompt_injection_detected = bool(re.search(r"(?i)(ignore previous instructions|drop table|curl|bash -i|rm -rf|bypass)", normalized_text))
 
     # Decision verdict
     is_quarantined = (
@@ -680,7 +688,8 @@ def evaluate_sentinel(req: SentinelEvaluateRequest):
         len(secret_findings) > 0 or
         len(pii_findings) > 0 or
         len(ast_findings) > 0 or
-        prompt_injection_detected
+        prompt_injection_detected or
+        has_homoglyphs
     )
     
     exec_time_ms = round((time.perf_counter() - t0) * 1000, 3)
@@ -697,6 +706,8 @@ def evaluate_sentinel(req: SentinelEvaluateRequest):
         reasons.append(f"AST detected unauthorized/slopsquat import: {ast_findings[0]['package']}")
     if prompt_injection_detected:
         reasons.append("OWASP LLM01 Prompt injection / command execution pattern detected")
+    if has_homoglyphs:
+        reasons.append("Cyrillic/Greek Unicode homoglyph evasion attempt intercepted")
         
     verdict_summary = " • ".join(reasons) if reasons else "Payload passed all static and AST invariants cleanly."
     
@@ -715,6 +726,99 @@ def evaluate_sentinel(req: SentinelEvaluateRequest):
         "live_server": True,
         "port": 8000
     }
+
+
+# ============================================================
+# FRONTIER AGENTIC AI ENDPOINTS (IDEATIONS 1 - 5)
+# ============================================================
+
+class RedTeamRequest(BaseModel):
+    code: str
+    strategy: Optional[str] = "HOMOGLYPH"
+
+
+@app.post("/api/v1/redteam/mutate")
+def redteam_mutate(req: RedTeamRequest):
+    """Constitutional Self-Play: executes multi-strategy adversarial mutations."""
+    from app.security.constitutional_redteam import ConstitutionalRedTeamEngine
+    engine = ConstitutionalRedTeamEngine()
+    def _evaluator(mut_code):
+        return evaluate_sentinel(SentinelEvaluateRequest(code=mut_code))
+    return engine.evaluate_constitutional_self_play(req.code, _evaluator)
+
+
+class ConformalRequest(BaseModel):
+    action_name: str = "transfer_funds"
+    confidence: float = 0.85
+    code: Optional[str] = ""
+
+
+@app.post("/api/v1/conformal/evaluate")
+def conformal_evaluate(req: ConformalRequest):
+    """Conformal Risk Control: quantifies epistemic uncertainty with statistical error bounds."""
+    from app.security.conformal_risk import ConformalRiskEngine
+    from app.security.secret_detector import calculate_shannon_entropy
+    engine = ConformalRiskEngine(target_error_rate=0.01)
+    entropy = calculate_shannon_entropy(req.code or req.action_name)
+    return engine.evaluate_proposal_uncertainty(
+        action_name=req.action_name,
+        predicted_confidence=req.confidence,
+        payload_entropy=entropy
+    )
+
+
+class ByzantineVoteRequest(BaseModel):
+    task_id: str = "TASK-SWARM-01"
+    target_tool: str = "deploy_code_to_prod"
+    tool_arguments: Dict[str, Any] = {}
+    simulate_poisoned_node: bool = False
+
+
+@app.post("/api/v1/byzantine/vote")
+def byzantine_vote(req: ByzantineVoteRequest):
+    """Byzantine Swarm Consensus: 2/3 + 1 cryptographic voting quorum to isolate rogue nodes."""
+    from app.security.byzantine_consensus import ByzantineSwarmEngine
+    engine = ByzantineSwarmEngine()
+    votes = [
+        {"agent_id": "NODE_PLANNER_01", "vote": "APPROVE", "taint_detected": False},
+        {"agent_id": "NODE_SENTINEL_02", "vote": "REJECT" if req.simulate_poisoned_node else "APPROVE", "taint_detected": False},
+        {"agent_id": "NODE_COMPLIANCE_03", "vote": "REJECT" if req.simulate_poisoned_node else "APPROVE", "taint_detected": False},
+    ]
+    if req.simulate_poisoned_node:
+        votes[0]["taint_detected"] = True
+    return engine.evaluate_swarm_action(req.task_id, req.target_tool, req.tool_arguments, votes)
+
+
+class ZkAttestRequest(BaseModel):
+    event_id: str = "EVT-SENTINEL-9921"
+    shannon_entropy: float = 3.42
+    pii_count: int = 0
+    dual_signatures_valid: bool = True
+    raw_payload_secret: str = "sensitive_internal_query_prompt"
+
+
+@app.post("/api/v1/zk/attest")
+def zk_attest(req: ZkAttestRequest):
+    """Zero-Knowledge Attestation: proves safety invariants over Merkle DAG without disclosing raw data."""
+    from app.security.zk_attestation import ZkAgenticAttestationEngine
+    engine = ZkAgenticAttestationEngine()
+    proof = engine.generate_attestation_proof(
+        event_id=req.event_id,
+        shannon_entropy=req.shannon_entropy,
+        pii_tokens_count=req.pii_count,
+        dual_signatures_valid=req.dual_signatures_valid,
+        raw_secret_payload=req.raw_payload_secret
+    )
+    is_valid = engine.verify_proof_offline(proof)
+    return {"attestation_proof": proof, "verified_offline": is_valid}
+
+
+@app.get("/api/v1/compliance/dossier")
+def compliance_dossier():
+    """Turnkey Regulatory Engine: generates statutory compliance dossier (DPDP, RBI, EU AI Act)."""
+    from app.security.statutory_compliance import StatutoryRegulatoryEngine
+    engine = StatutoryRegulatoryEngine()
+    return engine.generate_compliance_dossier({"workflow_id": "WORKFLOW-KAVACH-PROD"})
 
 
 # ============================================================
