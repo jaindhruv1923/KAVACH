@@ -20,7 +20,9 @@
   <header class="bank-header">
     <div class="header-inner">
       <div class="bank-brand">
-        <div class="bank-logo-badge">🏛️</div>
+        <div class="bank-logo-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2L2 7h20L12 2z"/></svg>
+        </div>
         <div>
           <div class="bank-name">Bharat Core Bank Ltd.</div>
           <div class="bank-tagline">Autonomous Core Banking & Enterprise SecOps Portal &middot; Branch: MUM-CORP-01</div>
@@ -30,20 +32,31 @@
       <!-- The Master Defense Switch -->
       <div class="master-switch-container">
         <button type="button" id="mode-btn-without" class="mode-toggle-btn active-without" onclick="toggleMode('without_kavach')">
-          <span>🔴</span> WITHOUT KAVACH (Vulnerable)
+          <span class="badge-dot-red"></span> WITHOUT KAVACH (Vulnerable)
         </button>
         <button type="button" id="mode-btn-with" class="mode-toggle-btn" onclick="toggleMode('with_kavach')">
-          <span>🛡️</span> WITH KAVACH (Shielded)
+          <span class="badge-dot-green"></span> WITH KAVACH (Shielded)
         </button>
       </div>
 
-      <!-- Quick Action Controls -->
+      <!-- Quick Action Controls & Cross-Navigation -->
       <div style="display:flex; align-items:center; gap:8px;">
-        <button type="button" class="phase-step-pill" onclick="resetBankLedger()" title="Reset Bank Ledger">
-          <span>↺</span> Reset Ledger
+        <a href="http://127.0.0.1:5500/KAVACH-main/01_KAVACH_Platform/frontend/index.html" onclick="if(window.location.port==='8002'||window.location.protocol==='file:'){window.open('../final_project/KAVACH-main/01_KAVACH_Platform/frontend/index.html','_blank');return false;}" target="_blank" class="header-shortcut-btn" title="Back to KAVACH Main Platform">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Kavach Platform</span>
+        </a>
+        <a href="http://127.0.0.1:8000/" onclick="if(window.location.protocol==='file:'){window.open('../live_agent_dashboard/index.html','_blank');return false;}" target="_blank" class="header-shortcut-btn" title="Open KAVACH Live Agent Swarm">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          <span>Live Swarm</span>
+        </a>
+
+        <button type="button" class="header-shortcut-btn" onclick="resetBankLedger()" title="Reset Bank Ledger">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          <span>Reset</span>
         </button>
-        <button type="button" class="phase-step-pill" onclick="downloadSlsaReceipt()" title="Download SLSA Evidence">
-          <span>📥</span> Audit Receipt
+        <button type="button" class="header-shortcut-btn" onclick="downloadSlsaReceipt()" title="Download SLSA Evidence">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Audit Receipt</span>
         </button>
       </div>
     </div>
@@ -121,7 +134,8 @@
     <section class="panel-card">
       <div class="panel-title-bar">
         <div class="panel-title">
-          <span>📋</span> Autonomous Banking Scenarios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Autonomous Banking Scenarios</span>
         </div>
         <span style="font-size:0.70rem; color:var(--text-dim); font-family:var(--font-mono);">5 REAL-WORLD ATTACKS</span>
       </div>
@@ -179,7 +193,8 @@
 
       <!-- Action Button -->
       <button type="button" id="btn-dispatch-tx" class="btn-dispatch-transaction" onclick="dispatchTransaction()">
-        <span>🚨</span> Dispatch via Raw Autonomous Agent (Without KAVACH)
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>Dispatch via Raw Autonomous Agent (Without KAVACH)</span>
       </button>
     </section>
 
@@ -187,7 +202,8 @@
     <section class="panel-card">
       <div class="panel-title-bar">
         <div class="panel-title">
-          <span>📊</span> Comparative State Impact & Root Cause Analysis
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Comparative State Impact & Root Cause Analysis</span>
         </div>
         <span style="font-size:0.70rem; color:var(--text-dim); font-family:var(--font-mono);">A/B EMPIRICAL BENCHMARK</span>
       </div>
@@ -195,7 +211,7 @@
       <!-- Impact Status Banner -->
       <div id="impact-banner" class="impact-banner banner-shield">
         <div>
-          <div id="banner-title" class="banner-title">🏛️ Bharat Core Bank System Ready</div>
+          <div id="banner-title" class="banner-title">Bharat Core Bank System Ready</div>
           <div id="banner-sub" class="banner-sub">Select a scenario on the left and click dispatch to observe autonomous execution.</div>
         </div>
       </div>
@@ -214,17 +230,26 @@
 
       <!-- 3 Explanatory Academic Cards (What happened, Why, and Regulatory Impact) -->
       <div class="explanation-card">
-        <div class="explanation-title">🔍 What Happened in this Execution?</div>
+        <div class="explanation-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>1. Execution Analysis: What Happened?</span>
+        </div>
         <div id="exp-what-happened" class="explanation-text">Awaiting transaction dispatch...</div>
       </div>
 
       <div class="explanation-card">
-        <div class="explanation-title">💡 Why It Happened? (Root Cause Analysis)</div>
+        <div class="explanation-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>2. Root Cause Analysis: Why It Happened?</span>
+        </div>
         <div id="exp-why-happened" class="explanation-text">Awaiting transaction dispatch...</div>
       </div>
 
       <div class="explanation-card">
-        <div class="explanation-title">⚖️ Regulatory & Statutory Penalty Impact</div>
+        <div class="explanation-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>3. Statutory & Regulatory Penalty Impact (RBI & DPDP)</span>
+        </div>
         <div id="exp-regulatory" class="explanation-text">Awaiting transaction dispatch...</div>
       </div>
     </section>
@@ -237,9 +262,10 @@
   <section class="console-section">
     <div class="console-card">
       <div class="console-header">
-        <span style="font-family:var(--font-mono); font-size:0.74rem; color:var(--text-dim);">bharat-bank-core@production-gw:~$ tail -f /var/log/bharat_bank/agentic_tx.log</span>
-        <button type="button" class="phase-step-pill" onclick="document.getElementById('console-body').innerHTML = '';" style="padding:4px 8px; font-size:0.68rem;">
-          ↺ Clear
+        <span style="font-family:var(--font-mono); font-size:0.74rem; color:#94A3B8;">bharat-bank-core@production-gw:~$ tail -f /var/log/bharat_bank/agentic_tx.log</span>
+        <button type="button" class="header-shortcut-btn" onclick="document.getElementById('console-body').innerHTML = '';" style="padding:3px 8px; font-size:0.68rem;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          <span>Clear</span>
         </button>
       </div>
       <div id="console-body" class="console-body">

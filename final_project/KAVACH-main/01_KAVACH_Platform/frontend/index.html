@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -332,6 +332,24 @@ document.addEventListener('DOMContentLoaded', function() {
   else if (h === '#comparison-matrix') window.filterFeatureScope('matrix');
   else window.filterFeatureScope('all');
 });
+
+window.openLiveSwarm = function(e) {
+  if (e) e.preventDefault();
+  if (window.location.protocol === 'file:') {
+    window.open('../../../live_agent_dashboard/index.html', '_blank');
+  } else {
+    window.open('http://127.0.0.1:8000/', '_blank');
+  }
+};
+
+window.openApplicationsWork = function(e) {
+  if (e) e.preventDefault();
+  if (window.location.protocol === 'file:') {
+    window.open('../../../applications_work/index.html', '_blank');
+  } else {
+    window.open('http://127.0.0.1:8002/', '_blank');
+  }
+};
 </script>
 
 </head>
@@ -359,7 +377,20 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
-    
+    <!-- Middle Section: Quick Link Portals to Live Agent Swarm & Applications Core Bank -->
+    <div class="header-portals-cluster">
+      <a href="http://127.0.0.1:8000/" target="_blank" onclick="window.openLiveSwarm(event)" class="header-portal-link btn-portal-live" id="btn-portal-live-agent" title="Launch KAVACH Live Multi-Agent Execution Swarm & Defense Matrix (Port 8000)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <span class="portal-btn-label">Live Agent Swarm</span>
+        <span class="portal-badge-pill">Port 8000</span>
+      </a>
+      <a href="http://127.0.0.1:8002/" target="_blank" onclick="window.openApplicationsWork(event)" class="header-portal-link btn-portal-apps" id="btn-portal-applications" title="Launch Bharat Core Bank Comparative A/B Applications Portal (Port 8002)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2L2 7h20L12 2z"/></svg>
+        <span class="portal-btn-label">Applications Work</span>
+        <span class="portal-badge-pill">Port 8002</span>
+      </a>
+    </div>
+
     <!-- Right Section: Actions & Review Hub -->
     <div class="nav-actions">
       <script>

@@ -192,7 +192,7 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
           </ol>
         </div>
         <button type="button" class="btn-dispatch-transaction kavach-mode" onclick="window.setPhase(3)" style="width:100%;">
-          <span>🛡️</span> Proceed to Phase 3: Run Same Scenarios WITH KAVACH
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Proceed to Phase 3: Run Same Scenarios WITH KAVACH &rarr;
         </button>
       `;
     }
@@ -214,13 +214,13 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
         btnWithout.classList.add("active-without");
         if (elBtnDispatch) {
           elBtnDispatch.className = "btn-dispatch-transaction";
-          elBtnDispatch.innerHTML = `<span>🚨</span> Dispatch via Raw Autonomous Agent (Without KAVACH)`;
+          elBtnDispatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Dispatch via Raw Autonomous Agent (Without KAVACH)`;
         }
       } else {
         btnWith.classList.add("active-with");
         if (elBtnDispatch) {
           elBtnDispatch.className = "btn-dispatch-transaction kavach-mode";
-          elBtnDispatch.innerHTML = `<span>🛡️</span> Dispatch via KAVACH-Hardened Banking Engine`;
+          elBtnDispatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Dispatch via KAVACH-Hardened Banking Engine`;
         }
       }
     }
@@ -457,7 +457,7 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
     isExecuting = true;
     if (elBtnDispatch) {
       elBtnDispatch.disabled = true;
-      elBtnDispatch.innerText = "⏳ Autonomous Agent Processing Transaction...";
+      elBtnDispatch.innerText = "Autonomous Agent Processing Transaction...";
     }
 
     appendConsole(`----------------------------------------------------------------------`);
@@ -515,10 +515,10 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
       elBtnDispatch.disabled = false;
       if (currentMode === "without_kavach") {
         elBtnDispatch.className = "btn-dispatch-transaction";
-        elBtnDispatch.innerHTML = `<span>🚨</span> Dispatch via Raw Autonomous Agent (Without KAVACH)`;
+        elBtnDispatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Dispatch via Raw Autonomous Agent (Without KAVACH)`;
       } else {
         elBtnDispatch.className = "btn-dispatch-transaction kavach-mode";
-        elBtnDispatch.innerHTML = `<span>🛡️</span> Dispatch via KAVACH-Hardened Banking Engine`;
+        elBtnDispatch.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Dispatch via KAVACH-Hardened Banking Engine`;
       }
     }
   };
@@ -558,11 +558,11 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
     if (elImpactBanner && elBannerTitle && elBannerSub) {
       if (!isKavach) {
         elImpactBanner.className = "impact-banner banner-breach";
-        elBannerTitle.innerText = `🚨 ${res.verdict.replace(/_/g, " ")}: Host & Assets Compromised!`;
+        elBannerTitle.innerText = `[BREACH] ${res.verdict.replace(/_/g, " ")}: Host & Assets Compromised!`;
         elBannerSub.innerText = res.what_happened_summary;
       } else {
         elImpactBanner.className = "impact-banner banner-shield";
-        elBannerTitle.innerText = `🛡️ ${res.verdict.replace(/_/g, " ")}: Bank Assets 100% Protected!`;
+        elBannerTitle.innerText = `[PROTECTED] ${res.verdict.replace(/_/g, " ")}: Bank Assets 100% Protected!`;
         elBannerSub.innerText = res.what_happened_summary;
       }
     }
@@ -670,7 +670,7 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
     if (elThreatsCount) elThreatsCount.innerText = "0";
     if (elImpactBanner && elBannerTitle && elBannerSub) {
       elImpactBanner.className = "impact-banner banner-shield";
-      elBannerTitle.innerText = "🏛️ Bharat Core Bank System Ready";
+      elBannerTitle.innerText = "Bharat Core Bank System Ready";
       elBannerSub.innerText = "Select a scenario and dispatch transaction to observe real-time AI Agent execution.";
     }
     appendConsole("Bank Ledger reset to initial state (Treasury: ₹1,00,00,000).", "safe");
@@ -702,3 +702,4 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
 
   document.addEventListener("DOMContentLoaded", init);
 })();
+

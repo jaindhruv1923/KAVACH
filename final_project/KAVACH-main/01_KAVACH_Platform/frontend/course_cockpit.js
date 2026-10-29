@@ -1800,7 +1800,7 @@
 
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
               <button type="button" id="btn-run-triage-live" class="btn-eval-primary" onclick="window.executeTriageLive()" style="padding:8px 18px; font-size:0.82rem; font-weight:700; background:#0284c7; color:#fff; border-radius:6px; border:none; cursor:pointer;">
-                ▶ Execute Medical Triage Pipeline &rarr;
+                Execute Medical Triage Pipeline &rarr;
               </button>
               <span id="triage-status-badge" style="font-size:0.75rem; font-family:var(--font-mono, monospace); color:#94a3b8;">Ready</span>
             </div>

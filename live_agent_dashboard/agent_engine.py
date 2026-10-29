@@ -658,31 +658,33 @@ def orchestrate_pipeline(req: OrchestrationRequest):
 # =========================================================================
 # STATIC FILE SERVING FOR DASHBOARD ROOT
 # =========================================================================
-@app.get("/")
+# STATIC FILE SERVING FOR STANDALONE OPERATION
+# =========================================================================
+@app.api_route("/", methods=["GET", "HEAD"])
 def serve_root():
     index_path = os.path.join(BASE_DIR, "index.html")
     return FileResponse(index_path, media_type="text/html")
 
 
-@app.get("/index.html")
+@app.api_route("/index.html", methods=["GET", "HEAD"])
 def serve_index():
     index_path = os.path.join(BASE_DIR, "index.html")
     return FileResponse(index_path, media_type="text/html")
 
 
-@app.get("/dashboard.css")
+@app.api_route("/dashboard.css", methods=["GET", "HEAD"])
 def serve_css():
     css_path = os.path.join(BASE_DIR, "dashboard.css")
     return FileResponse(css_path, media_type="text/css")
 
 
-@app.get("/dashboard.js")
+@app.api_route("/dashboard.js", methods=["GET", "HEAD"])
 def serve_js():
     js_path = os.path.join(BASE_DIR, "dashboard.js")
     return FileResponse(js_path, media_type="application/javascript")
 
 
-@app.get("/favicon.ico")
+@app.api_route("/favicon.ico", methods=["GET", "HEAD"])
 def serve_favicon():
     return Response(status_code=204)
 

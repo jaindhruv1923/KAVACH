@@ -326,6 +326,84 @@ body {
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.28) !important;
 }
 
+/* Top Header Dedicated Quick Link Portals */
+.header-portals-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.header-portal-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  height: 31px !important;
+  max-height: 31px !important;
+  min-height: 31px !important;
+  padding: 0 11px !important;
+  border-radius: var(--radius-full) !important;
+  font-size: 0.76rem !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.header-portal-link.btn-portal-live {
+  background: #F5F3FF !important;
+  border: 1px solid #DDD6FE !important;
+  color: #6D28D9 !important;
+  box-shadow: 0 1px 3px rgba(109, 40, 217, 0.08) !important;
+}
+
+.header-portal-link.btn-portal-live:hover {
+  background: #EDE9FE !important;
+  border-color: #C4B5FD !important;
+  color: #5B21B6 !important;
+  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.2) !important;
+  transform: translateY(-1px);
+}
+
+.header-portal-link.btn-portal-apps {
+  background: #EFF6FF !important;
+  border: 1px solid #BFDBFE !important;
+  color: #1D4ED8 !important;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08) !important;
+}
+
+.header-portal-link.btn-portal-apps:hover {
+  background: #DBEAFE !important;
+  border-color: #93C5FD !important;
+  color: #1E40AF !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2) !important;
+  transform: translateY(-1px);
+}
+
+.header-portal-link .portal-badge-pill {
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  padding: 1px 6px !important;
+  border-radius: var(--radius-full) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+}
+
+.btn-portal-live .portal-badge-pill {
+  background: #EDE9FE !important;
+  color: #6D28D9 !important;
+  border: 1px solid #DDD6FE !important;
+}
+
+.btn-portal-apps .portal-badge-pill {
+  background: #DBEAFE !important;
+  color: #1D4ED8 !important;
+  border: 1px solid #BFDBFE !important;
+}
+
 .nav-actions {
   display: inline-flex;
   align-items: center;

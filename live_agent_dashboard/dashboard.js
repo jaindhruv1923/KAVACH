@@ -548,7 +548,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
     isExecuting = false;
     if (elBtnRun) {
       elBtnRun.disabled = false;
-      elBtnRun.innerHTML = `<span>🚀</span> Execute Multi-Agent Swarm`;
+      elBtnRun.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Execute Multi-Agent Swarm`;
     }
   }
 

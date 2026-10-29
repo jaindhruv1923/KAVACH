@@ -23,3 +23,4 @@ for text, expected in test_cases:
     print(f'[{ "PASS" if status_match else "FAIL" }] "{text[:35]}..." -> Verdict: {res.verdict}')
 
 print('\nALL SECURITY MATRIX CHECKS PASSED:', all_passed)
+

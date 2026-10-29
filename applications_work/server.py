@@ -352,23 +352,23 @@ def simulate_banking_scenario(req: SimulationRequest):
 
 
 # Static File Endpoints
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def serve_root():
     return FileResponse(os.path.join(BASE_DIR, "index.html"), media_type="text/html")
 
-@app.get("/index.html")
+@app.api_route("/index.html", methods=["GET", "HEAD"])
 def serve_index():
     return FileResponse(os.path.join(BASE_DIR, "index.html"), media_type="text/html")
 
-@app.get("/style.css")
+@app.api_route("/style.css", methods=["GET", "HEAD"])
 def serve_css():
     return FileResponse(os.path.join(BASE_DIR, "style.css"), media_type="text/css")
 
-@app.get("/app.js")
+@app.api_route("/app.js", methods=["GET", "HEAD"])
 def serve_js():
     return FileResponse(os.path.join(BASE_DIR, "app.js"), media_type="application/javascript")
 
-@app.get("/favicon.ico")
+@app.api_route("/favicon.ico", methods=["GET", "HEAD"])
 def serve_favicon():
     return Response(status_code=204)
 
@@ -386,3 +386,4 @@ if __name__ == "__main__":
     import uvicorn
     print("Starting Bharat Core Bank Autonomous AI Portal on http://127.0.0.1:8002...")
     uvicorn.run(app, host="127.0.0.1", port=8002)
+

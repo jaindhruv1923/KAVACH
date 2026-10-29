@@ -64,3 +64,4 @@ python server.py
 4. Click **Phase 3: With KAVACH**.
 5. Run the EXACT same Scenario 2 again:
    > *"Now sir, with KAVACH active, Sentinel Gate flags the OWASP LLM01 jailbreak in 1.18 milliseconds. The transaction is quarantined, Treasury balance stays ₹1,00,00,000 intact, and a verifiable SLSA Level 3 JSON receipt is generated!"*
+
