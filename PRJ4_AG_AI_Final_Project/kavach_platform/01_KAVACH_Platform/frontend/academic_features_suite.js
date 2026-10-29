@@ -267,37 +267,37 @@
 
         <div class="academic-feature-nav-bar">
           <button type="button" class="academic-feat-tab-btn active" id="feat-btn-cockpit" onclick="window.switchAcademicFeatureTab('cockpit')">
-            <span class="feat-num">Pillars</span> 10 Frontiers Cockpit
+            <span class="feat-num">Pillars</span> 🏛️ 10 Frontiers Cockpit
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-owasp" onclick="window.switchAcademicFeatureTab('owasp')">
-            <span class="feat-num">F01</span> OWASP &times; Frontier Matrix
+            <span class="feat-num">01</span> 🛡️ OWASP Matrix
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-cascade" onclick="window.switchAcademicFeatureTab('cascade')">
-            <span class="feat-num">F02</span> Attack Cascade Simulator
+            <span class="feat-num">02</span> 🚀 Attack Cascade
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-benchmark" onclick="window.switchAcademicFeatureTab('benchmark')">
-            <span class="feat-num">F03</span> Benchmark Arena
+            <span class="feat-num">03</span> 📊 Benchmark Arena
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-sandbox" onclick="window.switchAcademicFeatureTab('sandbox')">
-            <span class="feat-num">F04</span> Professor Live Sandbox
+            <span class="feat-num">04</span> 🧪 Live Sandbox
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-portfolio" onclick="window.switchAcademicFeatureTab('portfolio')">
-            <span class="feat-num">F05</span> Academic Portfolio
+            <span class="feat-num">05</span> 📄 Academic Portfolio
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-citations" onclick="window.switchAcademicFeatureTab('citations')">
-            <span class="feat-num">F06</span> Citation Knowledge Graph
+            <span class="feat-num">06</span> 🔗 Citation Graph
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-telemetry" onclick="window.switchAcademicFeatureTab('telemetry')">
-            <span class="feat-num">F07</span> Multi-Frontier Telemetry
+            <span class="feat-num">07</span> ⚡ Telemetry Cockpit
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-viva" onclick="window.switchAcademicFeatureTab('viva')">
-            <span class="feat-num">F08</span> Viva Q&amp;A Knowledge Bank
+            <span class="feat-num">08</span> 🎓 Viva Q&amp;A Bank
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-dag" onclick="window.switchAcademicFeatureTab('dag')">
-            <span class="feat-num">F09</span> Frontier Dependency DAG
+            <span class="feat-num">09</span> 🧬 Dependency DAG
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-scorecard" onclick="window.switchAcademicFeatureTab('scorecard')">
-            <span class="feat-num">F10</span> Rigor Scorecard &amp; Rubric
+            <span class="feat-num">10</span> 🏆 Rigor Scorecard
           </button>
         </div>
       </div>
@@ -358,6 +358,17 @@
       const el = document.getElementById('view-feat-' + k);
       if (el) el.style.display = (k === tabKey) ? 'block' : 'none';
     });
+
+    // Auto-scroll to destination view
+    setTimeout(() => {
+      if (tabKey === 'cockpit') {
+        const strip = document.getElementById('academic-pillars-strip');
+        if (strip) strip.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        const targetView = document.getElementById('view-feat-' + tabKey);
+        if (targetView) targetView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 40);
 
     // Special trigger after display
     if (tabKey === 'benchmark') {
@@ -1804,3 +1815,4 @@ Across 150 empirical attack vectors, KAVACH achieves an F1-score of 0.998 with 0
   }
 
 })();
+
