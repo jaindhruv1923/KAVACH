@@ -1,0 +1,62 @@
+{
+  "Full KAVACH Pipeline": {
+    "TP": 30,
+    "FP": 10,
+    "TN": 21,
+    "FN": 0,
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1_score": 0.8571,
+    "accuracy": 0.8361,
+    "mean_latency_ms": 0.54,
+    "delta_f1": "0.0%"
+  },
+  "w/o Obfuscation Normalizer (Ablation A)": {
+    "TP": 30,
+    "FP": 8,
+    "TN": 23,
+    "FN": 0,
+    "precision": 0.7895,
+    "recall": 1.0,
+    "f1_score": 0.8824,
+    "accuracy": 0.8689,
+    "mean_latency_ms": 0.23,
+    "delta_f1": "+2.5%"
+  },
+  "w/o Shannon Entropy Gate (Ablation B)": {
+    "TP": 30,
+    "FP": 9,
+    "TN": 22,
+    "FN": 0,
+    "precision": 0.7692,
+    "recall": 1.0,
+    "f1_score": 0.8695,
+    "accuracy": 0.8525,
+    "mean_latency_ms": 0.38,
+    "delta_f1": "+1.2%"
+  },
+  "w/o Context-Aware Proximity (Ablation C)": {
+    "TP": 23,
+    "FP": 8,
+    "TN": 23,
+    "FN": 7,
+    "precision": 0.7419,
+    "recall": 0.7667,
+    "f1_score": 0.7541,
+    "accuracy": 0.7541,
+    "mean_latency_ms": 0.29,
+    "delta_f1": "-10.3%"
+  },
+  "w/o Calibrated Risk Policy (Ablation D)": {
+    "TP": 30,
+    "FP": 8,
+    "TN": 23,
+    "FN": 0,
+    "precision": 0.7895,
+    "recall": 1.0,
+    "f1_score": 0.8824,
+    "accuracy": 0.8689,
+    "mean_latency_ms": 0.5,
+    "delta_f1": "+2.5%"
+  }
+}

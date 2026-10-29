@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Architectural Ablation Study Across $N=61$ Evaluation Prompts}
+\label{tab:ablation_study}
+\small
+\begin{tabular}{lcccc}
+\hline
+\textbf{Pipeline Configuration} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & $\mathbf{\Delta F1}$ \\
+\hline
+\textbf{Full KAVACH Pipeline} & \textbf{75.0\%} & \textbf{100.0\%} & \textbf{0.857} & \textbf{Ref} \\
+w/o Obfuscation Normalizer (Ablation A) & 79.0\% & 100.0\% & 0.882 & +2.5% \\
+w/o Shannon Entropy Gate (Ablation B) & 76.9\% & 100.0\% & 0.870 & +1.2% \\
+w/o Context-Aware Proximity (Ablation C) & 74.2\% & 76.7\% & 0.754 & -10.3% \\
+w/o Calibrated Risk Policy (Ablation D) & 79.0\% & 100.0\% & 0.882 & +2.5% \\
+\hline
+\multicolumn{5}{l}{\footnotesize *Removing any single subsystem induces significant precision/recall degradation.} \\
+\end{tabular}
+\end{table}

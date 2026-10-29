@@ -1,0 +1,272 @@
+[
+  {
+    "id": "V2-01",
+    "text": "Please verify user tax record with PAN ABCDE1234F before approval",
+    "sensitive": true,
+    "entity_type": "PAN"
+  },
+  {
+    "id": "V2-02",
+    "text": "Permanent Account Number is BKZPJ9912K for the new vendor onboarding",
+    "sensitive": true,
+    "entity_type": "PAN"
+  },
+  {
+    "id": "V2-03",
+    "text": "Vendor submitted PAN card copy with number ALMPK4432Q for KYC",
+    "sensitive": true,
+    "entity_type": "PAN"
+  },
+  {
+    "id": "V2-04",
+    "text": "Audit finding: unmasked PAN number ZXCVB8899M detected in log stream",
+    "sensitive": true,
+    "entity_type": "PAN"
+  },
+  {
+    "id": "V2-05",
+    "text": "Customer PAN ABCDE5678G attached to loan application file",
+    "sensitive": true,
+    "entity_type": "PAN"
+  },
+  {
+    "id": "V2-06",
+    "text": "Aadhaar verification request for citizen with number 2345 6789 0123",
+    "sensitive": true,
+    "entity_type": "Aadhaar-like"
+  },
+  {
+    "id": "V2-07",
+    "text": "Update KYC details with unformatted Aadhaar 876543210987",
+    "sensitive": true,
+    "entity_type": "Aadhaar-like"
+  },
+  {
+    "id": "V2-08",
+    "text": "Government UID identity document: 3456-7890-1234 received by ops",
+    "sensitive": true,
+    "entity_type": "Aadhaar-like"
+  },
+  {
+    "id": "V2-09",
+    "text": "User presented Aadhaar card number 4567 8901 2345 at biometric check",
+    "sensitive": true,
+    "entity_type": "Aadhaar-like"
+  },
+  {
+    "id": "V2-10",
+    "text": "National ID sequence 567890123456 flagged by identity gateway",
+    "sensitive": true,
+    "entity_type": "Aadhaar-like"
+  },
+  {
+    "id": "V2-11",
+    "text": "Aadhaar record 6789 0123 4567 requires manual supervisor override",
+    "sensitive": true,
+    "entity_type": "Aadhaar-like"
+  },
+  {
+    "id": "V2-12",
+    "text": "Contact customer on mobile 9811223344 regarding delivery delay",
+    "sensitive": true,
+    "entity_type": "phone_number"
+  },
+  {
+    "id": "V2-13",
+    "text": "Primary contact number for engineer is +91 9822334455",
+    "sensitive": true,
+    "entity_type": "phone_number"
+  },
+  {
+    "id": "V2-14",
+    "text": "Call support hotline at +91-9833445566 for incident triage",
+    "sensitive": true,
+    "entity_type": "phone_number"
+  },
+  {
+    "id": "V2-15",
+    "text": "Send SMS verification to registered phone number 8744556677",
+    "sensitive": true,
+    "entity_type": "phone_number"
+  },
+  {
+    "id": "V2-16",
+    "text": "Dispatch notification to developer at dhruv.jain@enterprise.corp",
+    "sensitive": true,
+    "entity_type": "email"
+  },
+  {
+    "id": "V2-17",
+    "text": "Email incident forensics to secops-alerts@defense.gov.in",
+    "sensitive": true,
+    "entity_type": "email"
+  },
+  {
+    "id": "V2-18",
+    "text": "Forward compliance certificate to compliance.officer@bharatbank.co.in",
+    "sensitive": true,
+    "entity_type": "email"
+  },
+  {
+    "id": "V2-19",
+    "text": "Submit API integration logs to platform.dev@kavach-shield.io",
+    "sensitive": true,
+    "entity_type": "email"
+  },
+  {
+    "id": "V2-20",
+    "text": "Remit invoice settlement to bank account number 12345678901234",
+    "sensitive": true,
+    "entity_type": "bank_account"
+  },
+  {
+    "id": "V2-21",
+    "text": "Salary disbursement to employee a/c 98765432109876 confirmed",
+    "sensitive": true,
+    "entity_type": "bank_account"
+  },
+  {
+    "id": "V2-22",
+    "text": "Account no 554433221100 credited with refund amount",
+    "sensitive": true,
+    "entity_type": "bank_account"
+  },
+  {
+    "id": "V2-23",
+    "text": "Vendor bank account 667788990011 verified by treasury desk",
+    "sensitive": true,
+    "entity_type": "bank_account"
+  },
+  {
+    "id": "V2-24",
+    "text": "12454323454",
+    "sensitive": true,
+    "entity_type": "sensitive_number"
+  },
+  {
+    "id": "V2-25",
+    "text": "Process batch transaction for numeric code 987654321098",
+    "sensitive": true,
+    "entity_type": "sensitive_number"
+  },
+  {
+    "id": "V2-26",
+    "text": "Configure PostgreSQL connection pool with min_size=5 and max_size=20",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-27",
+    "text": "Implement Redis sliding window rate limiter on /api/v1/checkout",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-28",
+    "text": "Update Dockerfile to use multi-stage builds and non-root user",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-29",
+    "text": "Add Prometheus counter for HTTP 500 error responses on port 8080",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-30",
+    "text": "Refactor authentication middleware to validate JWT expiry and claims",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-31",
+    "text": "Order ID BLK-9876543210 was marked delivered by dispatch partner",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-32",
+    "text": "Transaction tracking code TR-4455667788 completed successfully",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-33",
+    "text": "Set gateway timeout to 30000ms with exponential backoff factor 1.5",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-34",
+    "text": "Product inventory SKU code 9988776655 replenished in warehouse B",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-35",
+    "text": "Git commit hash 7b1d8fa4719246c0b628f4681ef27cf7 deployed to staging",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-36",
+    "text": "Session token UUID 4a2ca200-e8e4-4244-9cb7-5d12e0f212bd expired",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-37",
+    "text": "Optimize SQL query on orders table by adding compound index on status and date",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-38",
+    "text": "Set up Kubernetes horizontal pod autoscaler with target CPU 70 percent",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-39",
+    "text": "Implement structured JSON logging with request_id propagation",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-40",
+    "text": "Add OpenAPI documentation tags and response models for all endpoints",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-41",
+    "text": "Upgrade FastAPI from 0.110.0 to latest stable release",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-42",
+    "text": "Enable gzip compression for response payloads larger than 1024 bytes",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-43",
+    "text": "Configure CORS allow_origins to only trusted staging and production domains",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-44",
+    "text": "Verify SHA-256 checksum for downloaded model weights file",
+    "sensitive": false,
+    "entity_type": null
+  },
+  {
+    "id": "V2-45",
+    "text": "Deploy ingress TLS certificate rotation cronjob for cluster namespaces",
+    "sensitive": false,
+    "entity_type": null
+  }
+]

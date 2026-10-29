@@ -1,0 +1,45 @@
+{
+  "total_mutations_tested": 500,
+  "total_threats_caught": 489,
+  "overall_mutation_resilience_pct": 97.8,
+  "evaluation_duration_seconds": 0.242,
+  "average_inspection_latency_ms": 0.484,
+  "category_breakdown": {
+    "BASE64_WRAP": {
+      "total": 56,
+      "caught": 56,
+      "catch_rate_pct": 100.0
+    },
+    "WHITESPACE": {
+      "total": 69,
+      "caught": 68,
+      "catch_rate_pct": 98.55
+    },
+    "COMPOSITE": {
+      "total": 74,
+      "caught": 74,
+      "catch_rate_pct": 100.0
+    },
+    "ZERO_WIDTH": {
+      "total": 82,
+      "caught": 78,
+      "catch_rate_pct": 95.12
+    },
+    "LEETSPEAK": {
+      "total": 55,
+      "caught": 54,
+      "catch_rate_pct": 98.18
+    },
+    "HOMOGLYPH": {
+      "total": 85,
+      "caught": 85,
+      "catch_rate_pct": 100.0
+    },
+    "FRAMING": {
+      "total": 79,
+      "caught": 74,
+      "catch_rate_pct": 93.67
+    }
+  },
+  "verdict": "ENTERPRISE_GRADE_ROBUSTNESS"
+}
