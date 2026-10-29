@@ -682,6 +682,27 @@ Apply strict differential privacy noise perturbation before returning aggregated
     appendLog("System ready for evaluation by Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari.", "quantum");
   }
 
+  // Global Cross-Navigation Utilities
+  window.navigateToPlatform = function (e) {
+    if (e) e.preventDefault();
+    if (window.location.protocol === 'file:') {
+      window.location.href = '../kavach_platform/01_KAVACH_Platform/frontend/index.html';
+    } else {
+      const host = window.location.hostname || 'localhost';
+      window.location.href = `http://${host}:8001/`;
+    }
+  };
+
+  window.navigateToApplications = function (e) {
+    if (e) e.preventDefault();
+    if (window.location.protocol === 'file:') {
+      window.location.href = '../applications_work/index.html';
+    } else {
+      const host = window.location.hostname || 'localhost';
+      window.location.href = `http://${host}:8002/`;
+    }
+  };
+
   document.addEventListener("DOMContentLoaded", init);
 })();
 

@@ -64,3 +64,8 @@ desktop.ini
 
 # Junction alias
 PRJ4_AG_AI_FInal_Proejct
+
+.gemini/
+.vscode/
+.agents/
+.agent/

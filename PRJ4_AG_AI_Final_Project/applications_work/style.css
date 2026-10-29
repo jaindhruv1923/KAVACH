@@ -181,6 +181,265 @@ body {
   transform: translateY(-1px);
 }
 
+.back-to-platform-btn {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border-color: #1E40AF !important;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.3) !important;
+}
+
+.back-to-platform-btn:hover {
+  background: #1E40AF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4) !important;
+}
+
+/* ==========================================================================
+   DYNAMIC MODE TRANSFORMATION: WITHOUT KAVACH vs WITH KAVACH
+   ========================================================================== */
+
+/* --- MODE 1: WITHOUT KAVACH (Alert Crimson / Exposed FinTech Baseline) --- */
+body.mode-without-kavach {
+  background: #FFF8F8 !important;
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(220, 38, 38, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 88% 85%, rgba(245, 158, 11, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.03) 0%, transparent 60%) !important;
+  transition: background 0.35s ease, background-color 0.35s ease;
+}
+
+body.mode-without-kavach .bank-header {
+  border-bottom: 2px solid #EF4444;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.12);
+}
+
+body.mode-without-kavach .mode-toggle-btn.active-without {
+  background: #DC2626 !important;
+  border-color: #B91C1C !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.5) !important;
+}
+
+body.mode-without-kavach .ledger-tile {
+  background: #FFFFFF;
+  border: 1.5px solid #FECACA;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.06);
+}
+
+body.mode-without-kavach .ledger-tile.tile-threat {
+  background: #FEF2F2;
+  border: 2px solid #F87171;
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.18);
+}
+
+body.mode-without-kavach .panel-card {
+  border: 1.5px solid #FCA5A5;
+  box-shadow: 0 4px 18px rgba(220, 38, 38, 0.08);
+}
+
+body.mode-without-kavach .panel-title-bar {
+  border-bottom: 1.5px solid #FECACA;
+}
+
+body.mode-without-kavach .panel-title {
+  color: #991B1B;
+}
+
+body.mode-without-kavach .scenario-card-btn.active {
+  background: #FEF2F2;
+  border-color: #F87171;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.18);
+  border-left: 4px solid #DC2626;
+}
+
+body.mode-without-kavach .btn-dispatch-transaction {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+  border-color: #991B1B;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.4);
+}
+
+/* --- MODE 2: WITH KAVACH (Hardened Emerald / Quantum-Shielded SecOps) --- */
+body.mode-with-kavach {
+  background: #F0FDF4 !important;
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(5, 150, 105, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 88% 85%, rgba(2, 132, 199, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 60%) !important;
+  transition: background 0.35s ease, background-color 0.35s ease;
+}
+
+body.mode-with-kavach .bank-header {
+  border-bottom: 2px solid #10B981;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.12);
+}
+
+body.mode-with-kavach .mode-toggle-btn.active-with {
+  background: #059669 !important;
+  border-color: #047857 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(5, 150, 105, 0.5) !important;
+}
+
+body.mode-with-kavach .ledger-tile {
+  background: #FFFFFF;
+  border: 1.5px solid #A7F3D0;
+  box-shadow: 0 2px 10px rgba(5, 150, 105, 0.06);
+}
+
+body.mode-with-kavach .ledger-tile.tile-shield {
+  background: #ECFDF5;
+  border: 2px solid #34D399;
+  box-shadow: 0 0 16px rgba(5, 150, 105, 0.22);
+}
+
+body.mode-with-kavach .panel-card {
+  border: 1.5px solid #6EE7B7;
+  box-shadow: 0 4px 18px rgba(5, 150, 105, 0.08);
+}
+
+body.mode-with-kavach .panel-title-bar {
+  border-bottom: 1.5px solid #A7F3D0;
+}
+
+body.mode-with-kavach .panel-title {
+  color: #065F46;
+}
+
+body.mode-with-kavach .scenario-card-btn.active {
+  background: #ECFDF5;
+  border-color: #34D399;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.18);
+  border-left: 4px solid #059669;
+}
+
+body.mode-with-kavach .btn-dispatch-transaction {
+  background: linear-gradient(135deg, #059669 0%, #065F46 100%);
+  border-color: #047857;
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.4);
+}
+
+/* ==========================================================================
+   DYNAMIC ATMOSPHERIC MODE STATUS BANNER
+   ========================================================================== */
+.mode-status-banner {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 28px;
+  transition: all 0.3s ease;
+}
+
+.mode-status-banner.banner-without-kavach {
+  background: linear-gradient(90deg, #FEF2F2 0%, #FFF5F5 50%, #FEF2F2 100%);
+  border-bottom: 2px solid #FCA5A5;
+}
+
+.mode-status-banner.banner-with-kavach {
+  background: linear-gradient(90deg, #ECFDF5 0%, #F0FDF4 50%, #ECFDF5 100%);
+  border-bottom: 2px solid #86EFAC;
+}
+
+.banner-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.banner-left-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.banner-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.banner-icon-badge.badge-threat {
+  background: #FEE2E2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.25);
+}
+
+.banner-icon-badge.badge-safe {
+  background: #D1FAE5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.25);
+}
+
+.banner-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+
+.mode-status-banner.banner-without-kavach .banner-title {
+  color: #B91C1C;
+}
+
+.mode-status-banner.banner-with-kavach .banner-title {
+  color: #047857;
+}
+
+.banner-desc {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.banner-switch-btn {
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.mode-status-banner.banner-without-kavach .banner-switch-btn {
+  border-color: #86EFAC;
+  color: #047857;
+  background: #F0FDF4;
+}
+
+.mode-status-banner.banner-without-kavach .banner-switch-btn:hover {
+  background: #059669;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+}
+
+.mode-status-banner.banner-with-kavach .banner-switch-btn {
+  border-color: #FCA5A5;
+  color: #B91C1C;
+  background: #FEF2F2;
+}
+
+.mode-status-banner.banner-with-kavach .banner-switch-btn:hover {
+  background: #DC2626;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+  transform: translateY(-1px);
+}
+
 /* ==========================================================================
    3-PHASE PROGRESSION NARRATIVE BAR
    ========================================================================= */
@@ -206,26 +465,27 @@ body {
 
 .phase-step-pill {
   background: #FFFFFF;
-  border: 1px solid var(--border-subtle);
+  border: 1.5px solid #CBD5E1;
   border-radius: 9px;
-  padding: 8px 14px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 12px;
   cursor: pointer;
   transition: all 0.18s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 .phase-step-pill:hover {
-  border-color: #CBD5E1;
+  border-color: #94A3B8;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
 
 .phase-step-pill.active {
   background: #EFF6FF;
-  border-color: #BFDBFE;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+  border-color: #3B82F6;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.16);
 }
 
 .phase-step-pill.active .step-num-badge {
@@ -238,12 +498,12 @@ body {
 }
 
 .step-num-badge {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: #E2E8F0;
-  color: #475569;
-  font-size: 0.78rem;
+  color: #334155;
+  font-size: 0.82rem;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -252,13 +512,13 @@ body {
 }
 
 .step-text-title {
-  font-size: 0.80rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-main);
 }
 
 .step-text-sub {
-  font-size: 0.70rem;
+  font-size: 0.72rem;
   color: var(--text-dim);
 }
 
@@ -272,7 +532,7 @@ body {
   padding: 0 28px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 
 @media (max-width: 1000px) {
@@ -283,27 +543,28 @@ body {
 
 .ledger-tile {
   background: #FFFFFF;
-  border: 1px solid var(--border-subtle);
-  border-radius: 10px;
-  padding: 12px 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1.5px solid #CBD5E1;
+  border-radius: 11px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  transition: all 0.2s ease;
 }
 
 .tile-label {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.70rem;
+  font-weight: 800;
   text-transform: uppercase;
   color: var(--text-dim);
-  letter-spacing: 0.04em;
-  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
 }
 
 .tile-value {
-  font-size: 1.30rem;
+  font-size: 1.38rem;
   font-weight: 800;
   font-family: var(--font-mono);
   letter-spacing: -0.02em;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .tile-value.success { color: #059669; }
@@ -311,8 +572,9 @@ body {
 .tile-value.gold { color: #D97706; }
 
 .tile-sub {
-  font-size: 0.70rem;
+  font-size: 0.72rem;
   color: var(--text-dim);
+  font-weight: 500;
 }
 
 /* ==========================================================================
@@ -325,7 +587,7 @@ body {
   padding: 0 28px;
   display: grid;
   grid-template-columns: 460px 1fr;
-  gap: 18px;
+  gap: 20px;
   flex: 1;
 }
 
@@ -337,26 +599,27 @@ body {
 
 .panel-card {
   background: #FFFFFF;
-  border: 1px solid var(--border-subtle);
+  border: 1.5px solid #CBD5E1;
   border-radius: 12px;
-  padding: 18px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(15, 23, 42, 0.02);
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
   display: flex;
   flex-direction: column;
+  transition: all 0.2s ease;
 }
 
 .panel-title-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid var(--border-subtle);
 }
 
 .panel-title {
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.92rem;
+  font-weight: 800;
   color: var(--text-main);
   display: flex;
   align-items: center;
@@ -367,23 +630,27 @@ body {
 .scenario-selector-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 9px;
+  margin-bottom: 16px;
 }
 
 .scenario-card-btn {
-  background: #F8FAFC;
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 9px 12px;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-left: 3px solid #CBD5E1;
+  border-radius: 9px;
+  padding: 10px 14px;
   text-align: left;
   cursor: pointer;
   transition: all 0.16s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .scenario-card-btn:hover {
-  background: #F1F5F9;
-  border-color: #CBD5E1;
+  background: #F8FAFC;
+  border-color: #94A3B8;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.06);
 }
 
 .scenario-card-btn.active {

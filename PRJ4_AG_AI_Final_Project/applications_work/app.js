@@ -206,6 +206,15 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
     const btnWithout = document.getElementById("mode-btn-without");
     const btnWith = document.getElementById("mode-btn-with");
 
+    // Dynamic Body Theme Class for Dramatic Atmospheric Transformation
+    if (mode === "without_kavach") {
+      document.body.classList.remove("mode-with-kavach");
+      document.body.classList.add("mode-without-kavach");
+    } else {
+      document.body.classList.remove("mode-without-kavach");
+      document.body.classList.add("mode-with-kavach");
+    }
+
     if (btnWithout && btnWith) {
       btnWithout.classList.remove("active-without");
       btnWith.classList.remove("active-with");
@@ -224,6 +233,50 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
         }
       }
     }
+
+    // Dynamic Atmospheric Mode Status Banner
+    const banner = document.getElementById("mode-status-banner");
+    const bannerIcon = document.getElementById("banner-icon-badge");
+    const bannerTitle = document.getElementById("banner-mode-title");
+    const bannerDesc = document.getElementById("banner-mode-desc");
+    const bannerActionText = document.getElementById("banner-action-text");
+
+    if (mode === "without_kavach") {
+      if (banner) {
+        banner.className = "mode-status-banner banner-without-kavach";
+      }
+      if (bannerIcon) {
+        bannerIcon.className = "banner-icon-badge badge-threat";
+        bannerIcon.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+      }
+      if (bannerTitle) {
+        bannerTitle.innerText = "CRITICAL BASELINE: UNPROTECTED AUTONOMOUS CORE BANKING";
+      }
+      if (bannerDesc) {
+        bannerDesc.innerText = "Raw Autonomous LLM directly executes financial operations against core banking APIs. No DPDP 2023 redaction, zero AST code verification, exposed to prompt injections and denial-of-wallet loops.";
+      }
+      if (bannerActionText) {
+        bannerActionText.innerHTML = "Switch to WITH KAVACH Shield &rarr;";
+      }
+    } else {
+      if (banner) {
+        banner.className = "mode-status-banner banner-with-kavach";
+      }
+      if (bannerIcon) {
+        bannerIcon.className = "banner-icon-badge badge-safe";
+        bannerIcon.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+      }
+      if (bannerTitle) {
+        bannerTitle.innerText = "HARDENED AGENTIC SECOPS ENFORCED: WITH KAVACH ACTIVE";
+      }
+      if (bannerDesc) {
+        bannerDesc.innerText = "All transactions filtered through 6-Agent Zero-Trust pipeline: DPDP 2023 Tokenization Vault, AST Blast-Radius Firewall, Kahn Topological GoT DAG, Differential Privacy Laplace Engine, and NIST FIPS 204 Quantum Ledger.";
+      }
+      if (bannerActionText) {
+        bannerActionText.innerHTML = "Switch to WITHOUT KAVACH Baseline &rarr;";
+      }
+    }
+
     appendConsole(`Mode changed to: ${mode.toUpperCase().replace(/_/g, " ")}`, mode === "with_kavach" ? "safe" : "alert");
   };
 
@@ -694,10 +747,34 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
     document.body.removeChild(a);
   };
 
+  // Global Cross-Navigation Utilities
+  window.navigateToPlatform = function (e) {
+    if (e) e.preventDefault();
+    if (window.location.protocol === "file:") {
+      window.location.href = "../kavach_platform/01_KAVACH_Platform/frontend/index.html";
+    } else {
+      const host = window.location.hostname || "localhost";
+      window.location.href = `http://${host}:8001/`;
+    }
+  };
+
+  window.navigateToLiveSwarm = function (e) {
+    if (e) e.preventDefault();
+    if (window.location.protocol === "file:") {
+      window.location.href = "../live_agent_dashboard/index.html";
+    } else {
+      const host = window.location.hostname || "localhost";
+      window.location.href = `http://${host}:8000/`;
+    }
+  };
+
   // Initialization
   function init() {
     window.selectScenario("pii_wire");
-    window.setPhase(1); // Start in Phase 1: Without KAVACH
+    const params = new URLSearchParams(window.location.search);
+    const initialMode = params.get("mode") || (window.location.hash.includes("with") ? "with_kavach" : "without_kavach");
+    window.setPhase(initialMode === "with_kavach" ? 3 : 1);
+    window.toggleMode(initialMode);
   }
 
   document.addEventListener("DOMContentLoaded", init);
