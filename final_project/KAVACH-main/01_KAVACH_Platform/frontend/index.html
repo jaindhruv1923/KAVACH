@@ -122,10 +122,19 @@ window.activatePathwayMode = function(mode, targetId) {
 
   renderDynamicNavbar(mode);
 
+  const btnAcademic = document.getElementById('pathway-btn-academic');
+  if (btnAcademic) btnAcademic.classList.toggle('active', mode === 'academic');
+
   if (mode === 'midsem') {
     if (scopeEarlier) scopeEarlier.classList.add('active');
     switchToViewGlobal('product-view', null, 'earlier-midsem');
     if (pill) pill.innerHTML = "<strong>Active Scope: Mid-Sem Foundation (v1.0 Baseline).</strong> Taskbar adapted to earlier architecture: 8-stage air-gapped deterministic pipeline, AST blast-radius analyzer, closed-loop ReAct reflexion, and CycloneDX SBOM generator.";
+  } else if (mode === 'academic') {
+    if (scopeNew) scopeNew.classList.add('active');
+    switchToViewGlobal('improvised-view', null, 'academic-weapon');
+    if (pill) pill.innerHTML = "<strong>Active Scope: Academic Weapon & Research Rigor (10 Autonomous Guardrail Frontiers).</strong> Live interactive flow processors for (&epsilon;,&delta;)-Differential Privacy, Graph-of-Thoughts DAG, Kirchenbauer Watermarking, Denning Security Lattice, NIST Post-Quantum Dilithium, OWASP LLM04 Token-Bucket, NLI Cross-Entailment, SAGA Compensation, Pearl Counterfactual XAI, and Empirical Scientific Ablations.";
+    if (typeof window.renderAcademicWeaponCockpit === 'function') window.renderAcademicWeaponCockpit();
+    targetId = targetId || 'academic-weapon-cockpit';
   } else {
     if (scopeNew) scopeNew.classList.add('active');
     switchToViewGlobal('improvised-view', null, 'improvised');
@@ -159,6 +168,15 @@ window.renderDynamicNavbar = function(mode) {
       <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
       <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
       <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
+    `;
+  } else if (mode === 'academic') {
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('academic-weapon-cockpit', this)">10 Frontiers</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-grounding-card', this)">KaTeX Math</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-flow-sim', this)">Flow Pipeline</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-telemetry-box', this)">Telemetry</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
     `;
   } else {
     container.innerHTML = `
@@ -302,6 +320,9 @@ document.addEventListener('DOMContentLoaded', function() {
   else if (h === '#improvised' || h === '#warroom-arena-card' || h === '#forensic-replay-card' || h === '#consensus-radar-card' || h === '#dossier-generator-card' || h === '#voice-cockpit-card' || h === '#showcase-innovations-section') {
     window.activatePathwayMode('improvised', h.startsWith('#') && h.length > 1 && h !== '#improvised' ? h.substring(1) : null);
   }
+  else if (h === '#academic' || h === '#academic-weapon' || h === '#academic-weapon-cockpit') {
+    window.activatePathwayMode('academic', 'academic-weapon-cockpit');
+  }
   else if (h === '#comparison-matrix') window.filterFeatureScope('matrix');
   else window.filterFeatureScope('all');
 });
@@ -328,6 +349,9 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
         <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="View Newly Added Post-Mid-Sem Innovations">
           <span class="pulse-dot-green"></span> Improvised <span class="pathway-chip">v3.0</span>
+        </button>
+        <button type="button" id="pathway-btn-academic" class="pathway-tab" onclick="activatePathwayMode(\'academic\')" title="View 10 Academic Weapon Frontiers & Live Flow Processors">
+          <span class="pulse-dot-green" style="background:#8B5CF6;"></span> Academic Weapon <span class="pathway-chip" style="background:#EDE9FE;color:#7C3AED;font-weight:700;">10 Frontiers</span>
         </button>
       </div>
     </div>
@@ -391,6 +415,10 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       </script>
+            <button type="button" id="header-academic-btn" class="header-tool-btn magnetic-btn" onclick="activatePathwayMode('academic')" title="10 Academic Weapon Frontiers & Live Flow Processors" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE;font-weight:700;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <span>10 Frontiers</span>
+      </button>
       <button type="button" id="header-prof-review-btn" class="btn-header-review magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Standardization (13/13 Verified Points &amp; 30/30 Defense Lab)">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         <span>30/30 Review</span>
@@ -1865,6 +1893,32 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
       </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: ACADEMIC WEAPON 10-FEATURE INTERACTIVE COMMAND DECK -->
+    <!-- ============================================================ -->
+    <section id="academic-weapon-cockpit" class="product-section reveal-on-scroll" style="margin-top:28px;margin-bottom:32px;">
+      <div class="section-intro">
+        <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap;">
+          <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">CSE3101 ACADEMIC WEAPON</span>
+          <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">10 RESEARCH FRONTIERS</span>
+          <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">LIVE FLOW PROCESSORS</span>
+        </div>
+        <h2 style="font-size:1.6rem;font-weight:800;color:var(--text-primary);letter-spacing:-0.5px;">
+          10 Autonomous Guardrail Frontiers: Live Flow &amp; Mathematical Processors
+        </h2>
+        <p style="max-width:880px;margin:8px auto 0;font-size:0.86rem;color:var(--text-secondary);line-height:1.55;">
+          Directly execute, inspect, and verify all 10 academic innovations built into KAVACH. Select any frontier below to explore its theoretical equations, execute live security pipelines, trace animated micro-flow state transitions, and verify zero-day adversarial containment.
+        </p>
+      </div>
+
+      <!-- Frontier Pillar Navigation Bar (10 Clickable Tab Pills) -->
+      <div id="academic-pillars-strip" class="academic-pillars-strip" style="display:flex;gap:8px;overflow-x:auto;padding:12px 4px 14px;margin-top:14px;-webkit-overflow-scrolling:touch;"></div>
+
+      <!-- Dynamic Live Execution Deck -->
+      <div id="academic-pillar-workspace" class="card" style="background:#FFFFFF;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);margin-top:8px;"></div>
     </section>
 
     <!-- Section 2: Head-to-Head Comparative Tables -->

@@ -75,3 +75,4 @@ class DenialOfWalletGuard:
             "circuit_breaker_status": "CLOSED_HEALTHY",
             "execution_time_ms": round((time.perf_counter() - t0) * 1000, 3)
         }
+

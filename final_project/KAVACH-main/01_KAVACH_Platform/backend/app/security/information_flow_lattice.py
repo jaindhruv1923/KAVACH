@@ -67,3 +67,4 @@ class InformationFlowLattice:
             "summary": summary,
             "execution_time_ms": elapsed_ms
         }
+

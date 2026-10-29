@@ -69,3 +69,4 @@ class CausalXaiExplainer:
             "transparency_article_aligned": "EU AI Act Article 13 (Transparency & Provision of Information)",
             "execution_time_ms": elapsed_ms
         }
+

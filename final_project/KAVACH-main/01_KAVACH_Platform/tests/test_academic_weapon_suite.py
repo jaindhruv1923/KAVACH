@@ -218,3 +218,4 @@ def test_scientific_ablation_study_matrix():
     api_res = client.get("/api/v1/ablation/matrix")
     assert api_res.status_code == 200
     assert api_res.json()["configurations_evaluated"] == 4
+

@@ -67,3 +67,4 @@ class AgentWatermarkingEngine:
             "attribution_seal": "AUTHENTIC_KAVACH_AGENT_OUTPUT" if is_authentic_kavach else "UNWATERMARKED_EXTERNAL",
             "execution_time_ms": elapsed_ms
         }
+

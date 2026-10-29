@@ -56,3 +56,4 @@ class PostQuantumShieldEngine:
             "harvest_now_decrypt_later_immune": True,
             "execution_time_ms": elapsed_ms
         }
+

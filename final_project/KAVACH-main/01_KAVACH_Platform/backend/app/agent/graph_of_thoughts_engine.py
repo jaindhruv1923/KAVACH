@@ -110,3 +110,4 @@ class GraphOfThoughtsEngine:
             "execution_time_ms": elapsed_ms,
             "status": "CONVERGED_OPTIMAL" if not is_cyclic else "CYCLIC_LOOP_ABORTED"
         }
+

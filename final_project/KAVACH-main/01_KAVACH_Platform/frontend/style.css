@@ -11019,3 +11019,178 @@ button:active:not(:disabled),
 
 
 
+
+/* ==========================================================================
+   ACADEMIC WEAPON 10-FEATURE INTERACTIVE COMMAND DECK STYLES
+   ========================================================================== */
+
+.academic-pillars-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 4px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  scrollbar-width: thin;
+}
+
+.academic-pillar-chip {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-medium);
+  background: #FFFFFF;
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.academic-pillar-chip:hover {
+  background: #F8FAFC;
+  border-color: #A855F7;
+  color: #6D28D9;
+}
+
+.academic-pillar-chip.active {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  color: #FFFFFF !important;
+  border-color: #6D28D9;
+  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.25);
+}
+
+.academic-pillar-chip.active .pillar-num-badge {
+  background: rgba(255,255,255,0.25);
+  color: #FFFFFF;
+}
+
+.pillar-num-badge {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #F1F5F9;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.academic-workspace-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 22px;
+}
+
+@media (max-width: 992px) {
+  .academic-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.academic-subcard {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  margin-bottom: 16px;
+}
+
+.academic-subcard-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.academic-math-box {
+  background: #FAF5FF;
+  border: 1px solid #E9D5FF;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.80rem;
+  color: #581C87;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+
+.academic-flow-diagram {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 8px;
+  background: #F8FAFC;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.academic-flow-step {
+  flex: 1;
+  min-width: 110px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 0.70rem;
+  transition: all 0.2s ease;
+}
+
+.academic-flow-step.pulse {
+  border-color: #7C3AED;
+  background: #F5F3FF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.18);
+}
+
+.academic-flow-step.verified {
+  border-color: #10B981;
+  background: #ECFDF5;
+  color: #065F46;
+}
+
+.academic-flow-step strong {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.academic-flow-arrow {
+  color: #94A3B8;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.academic-telemetry-screen {
+  background: #0F172A;
+  border-radius: 8px;
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #E2E8F0;
+  max-height: 240px;
+  overflow-y: auto;
+  line-height: 1.5;
+  border: 1px solid #1E293B;
+}
+
+.academic-telemetry-line {
+  margin-bottom: 3px;
+  word-break: break-all;
+}
+
+.telemetry-time { color: #64748B; margin-right: 6px; }
+.telemetry-tag { color: #38BDF8; font-weight: 600; margin-right: 6px; }
+.telemetry-pass { color: #34D399; font-weight: 700; }
+.telemetry-veto { color: #F87171; font-weight: 700; }
+.telemetry-warn { color: #FBBF24; font-weight: 700; }
+.telemetry-info { color: #94A3B8; }
