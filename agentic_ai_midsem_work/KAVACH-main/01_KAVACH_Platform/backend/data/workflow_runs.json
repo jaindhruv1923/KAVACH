@@ -74,5 +74,80 @@
     "duration_ms": 0.0,
     "run_type": "workflow",
     "metadata": {}
+  },
+  {
+    "id": "4d3419f0-0a65-4a65-9627-ca08229ac220",
+    "workflow_id": "4d3419f0-0a65-4a65-9627-ca08229ac220",
+    "timestamp": "2026-11-03 04:02:26 UTC",
+    "request_text": "Add a secure logging utility for user payments",
+    "final_stage": "PLANNING",
+    "stage": "PLANNING",
+    "verdict": "ALLOWED",
+    "plan": [
+      "Understand the request and identify its scope",
+      "Retrieve relevant repository context for this request (general search)",
+      "Retrieve grounding evidence from the repository (RAG)",
+      "Run security/policy checks on the request and any retrieved context"
+    ],
+    "retrieved_context": [],
+    "security_findings": [],
+    "generation_result": {},
+    "validation_result": {},
+    "impact_report": [],
+    "policy_decision": {
+      "decision": "ALLOW",
+      "action": "ALLOW",
+      "verdict": "ALLOW",
+      "risk_score": 0.0,
+      "action_risk_classification": "low",
+      "data_findings_count": 0,
+      "highest_severity": "none",
+      "explanation": "No significant sensitive-data or high-risk-action signal detected.",
+      "steganography": {
+        "has_steganography": false,
+        "has_bidi_attack": false,
+        "cleaned_text": "Add a secure logging utility for user payments",
+        "stripped_characters_count": 0,
+        "threats": [],
+        "threat_count": 0,
+        "risk_score": 0.0
+      },
+      "obfuscation": {
+        "original_text": "Add a secure logging utility for user payments",
+        "is_obfuscated": false,
+        "detected_encodings": [],
+        "decloaked_texts": [],
+        "unified_normalized_text": "Add a secure logging utility for user payments",
+        "obfuscation_risk_score": 0.0,
+        "details": []
+      },
+      "ssrf": {
+        "is_ssrf_threat": false,
+        "threat_count": 0,
+        "threats": [],
+        "risk_score": 0.0,
+        "explanation": "No SSRF or cloud metadata access detected."
+      },
+      "prompt_safety": {
+        "is_safe": true,
+        "threat_detected": false,
+        "risk_level": "NONE",
+        "threat_count": 0,
+        "threats": [],
+        "sanitized_prompt": "Add a secure logging utility for user payments",
+        "verdict": "SAFE",
+        "explanation": "Prompt passed adversarial injection screening."
+      },
+      "merkle_root": "b708a58d8cbb53aff7ed5880d1f86637585ab1c3b7b41ce9888f8e1150aec47e5245b5d4165e223395c6936ab9cd485bf8561ff908a5296ff0a22df1bd1aad9f",
+      "mitre_atlas": [],
+      "owasp_llm": []
+    },
+    "redacted_request_text": "Add a secure logging utility for user payments",
+    "history": [
+      "WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.PLANNING"
+    ],
+    "duration_ms": 0.0,
+    "run_type": "workflow",
+    "metadata": {}
   }
 ]
