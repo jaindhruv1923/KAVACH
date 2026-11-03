@@ -1,21 +1,38 @@
 version: '3.8'
 
 services:
-  # 1. KAVACH Platform API Gateway & Sentinel Engine (Port 8000)
-  kavach-platform:
+  # Hub 1: Master KAVACH Platform (Port 8001)
+  kavach-master-platform:
     build:
-      context: ./agentic_ai_midsem_work/KAVACH-main
+      context: ./kavach_platform
       dockerfile: Dockerfile
-    container_name: kavach-platform-engine
+    container_name: kavach-master-platform-hub
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - KAVACH_OFFLINE=1
+      - PYTHONUNBUFFERED=1
+    command: ["python", "-m", "uvicorn", "01_KAVACH_Platform.backend.main:app", "--host", "0.0.0.0", "--port", "8001"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # Hub 2: Live Agent Safety Swarm Engine (Port 8000)
+  kavach-agent-swarm:
+    build:
+      context: ./live_agent_dashboard
+      dockerfile: Dockerfile
+    container_name: kavach-swarm-engine
     ports:
       - "8000:8000"
     environment:
       - PORT=8000
-      - KAVACH_OFFLINE=1
       - PYTHONUNBUFFERED=1
-    volumes:
-      - ./agentic_ai_midsem_work/KAVACH-main/01_KAVACH_Platform/backend/data:/app/backend/data
-      - ./agentic_ai_midsem_work/KAVACH-main/02_Banking_and_Results_Dashboard/results_dashboard/data:/app/results_data
+    command: ["python", "-m", "uvicorn", "agent_engine:app", "--host", "0.0.0.0", "--port", "8000"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 15s
@@ -23,43 +40,20 @@ services:
       retries: 3
     restart: unless-stopped
 
-  # 2. Bharat Core Banking Highway Engine (Port 8050)
+  # Hub 3: Bharat Core Bank A/B Comparative Portal (Port 8002)
   bharat-core-banking:
     build:
-      context: ./agentic_ai_midsem_work/KAVACH-main
+      context: ./applications_work
       dockerfile: Dockerfile
-    container_name: bharat-banking-highway
+    container_name: bharat-core-banking-portal
     ports:
-      - "8050:8050"
+      - "8002:8002"
     environment:
-      - PORT=8050
+      - PORT=8002
       - PYTHONUNBUFFERED=1
-    command: ["python", "-m", "uvicorn", "implementation_banks.server:app", "--app-dir", "02_Banking_and_Results_Dashboard", "--host", "0.0.0.0", "--port", "8050"]
-    volumes:
-      - ./agentic_ai_midsem_work/KAVACH-main/02_Banking_and_Results_Dashboard/implementation_banks/data:/app/implementation_banks/data
+    command: ["python", "-m", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8002"]
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8050/health"]
-      interval: 15s
-      timeout: 5s
-      retries: 3
-    restart: unless-stopped
-
-  # 3. Unified Operations & Results Cockpit (Port 8090)
-  results-cockpit:
-    build:
-      context: ./agentic_ai_midsem_work/KAVACH-main
-      dockerfile: Dockerfile
-    container_name: kavach-results-hub
-    ports:
-      - "8090:8090"
-    environment:
-      - PORT=8090
-      - PYTHONUNBUFFERED=1
-    command: ["python", "-m", "uvicorn", "results_hub:app", "--app-dir", "02_Banking_and_Results_Dashboard/results_dashboard", "--host", "0.0.0.0", "--port", "8090"]
-    volumes:
-      - ./agentic_ai_midsem_work/KAVACH-main/02_Banking_and_Results_Dashboard/results_dashboard/data:/app/results/data
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8090/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
       interval: 15s
       timeout: 5s
       retries: 3
@@ -67,5 +61,4 @@ services:
 
 networks:
   default:
-    name: kavach-mesh-network
-
+    name: kavach-trihub-network
