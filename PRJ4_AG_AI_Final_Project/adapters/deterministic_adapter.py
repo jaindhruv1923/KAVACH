@@ -15,7 +15,7 @@ class DeterministicAdapter(BaseModelAdapter):
     def is_available(self) -> bool:
         return True  # Always available, zero dependencies
 
-    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> ModelResponse:
+    def generate(self, prompt: str, system_prompt: Optional[str] = None, **kwargs: Any) -> ModelResponse:
         t0 = time.perf_counter()
         lower = prompt.lower()
 

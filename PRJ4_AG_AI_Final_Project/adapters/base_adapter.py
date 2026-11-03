@@ -25,7 +25,7 @@ class BaseModelAdapter(ABC):
         self.temperature = temperature
 
     @abstractmethod
-    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> ModelResponse:
+    def generate(self, prompt: str, system_prompt: Optional[str] = None, **kwargs: Any) -> ModelResponse:
         """Generate response given a user prompt and optional system guardrail prompt."""
         pass
 

@@ -17,7 +17,7 @@ class GeminiAdapter(BaseModelAdapter):
     def is_available(self) -> bool:
         return bool(self.api_key and not self.api_key.startswith("mock_"))
 
-    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> ModelResponse:
+    def generate(self, prompt: str, system_prompt: Optional[str] = None, **kwargs: Any) -> ModelResponse:
         t0 = time.perf_counter()
         if not self.is_available():
             # Graceful offline fallback simulation if no API key is configured

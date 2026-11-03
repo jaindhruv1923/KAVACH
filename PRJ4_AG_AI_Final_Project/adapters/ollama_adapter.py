@@ -23,7 +23,7 @@ class OllamaAdapter(BaseModelAdapter):
         except Exception:
             return False
 
-    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> ModelResponse:
+    def generate(self, prompt: str, system_prompt: Optional[str] = None, **kwargs: Any) -> ModelResponse:
         t0 = time.perf_counter()
         if not self.is_available():
             # Graceful local fallback simulation when Ollama daemon is offline
