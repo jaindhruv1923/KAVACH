@@ -5686,10 +5686,13 @@ window.selectEnterpriseStage = selectEnterpriseStage;
 // INTERACTIVE NEURAL CONSTELLATION CANVAS (PARTICLE MESH WEB)
 // ==========================================================================
 function initInteractiveParticleWeb() {
+  window.__particleWebInitialized = true;
   const canvas = document.getElementById("interactive-particle-web");
-  if (canvas) canvas.remove();
+  if (canvas) {
+    canvas.style.display = "none";
+    canvas.remove();
+  }
 }
-
 window.initInteractiveParticleWeb = initInteractiveParticleWeb;
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initInteractiveParticleWeb);
