@@ -213,14 +213,14 @@ window.renderDynamicNavbar = function(mode) {
       <button type="button" class="nav-switch-btn" onclick="window.selectSwarmScenario('sqli')">SQLi Attack</button>
       <button type="button" class="nav-switch-btn" onclick="window.selectSwarmScenario('pii')">Aadhaar Exfil</button>
       <button type="button" class="nav-switch-btn" onclick="window.selectSwarmScenario('rce')">RCE Shell</button>
-      <button type="button" class="nav-switch-btn" onclick="window.executeSwarmSimulation()">🚀 Run Swarm</button>
+      <button type="button" class="nav-switch-btn" onclick="window.executeSwarmSimulation()"> Run Swarm</button>
     `;
   } else if (mode === 'apps') {
     container.innerHTML = `
       <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('apps')">Bharat Bank Core</button>
-      <button type="button" class="nav-switch-btn" onclick="window.setBankMode('without')">⚠️ Without KAVACH</button>
-      <button type="button" class="nav-switch-btn" onclick="window.setBankMode('with')">🛡️ With KAVACH</button>
-      <button type="button" class="nav-switch-btn" onclick="window.dispatchBankTransaction()">💳 Dispatch Tx</button>
+      <button type="button" class="nav-switch-btn" onclick="window.setBankMode('without')"> Without KAVACH</button>
+      <button type="button" class="nav-switch-btn" onclick="window.setBankMode('with')">With KAVACH</button>
+      <button type="button" class="nav-switch-btn" onclick="window.dispatchBankTransaction()"> Dispatch Tx</button>
     `;
   } else {
     container.innerHTML = `

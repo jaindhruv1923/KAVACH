@@ -2539,7 +2539,7 @@
       btn.disabled = true;
       btn.style.opacity = '0.9';
       btn.style.background = '#2563EB';
-      btn.innerHTML = `<span style="display:inline-block; animation:spin 1s linear infinite;">⚙️</span> Dispatching A2A Bridge...`;
+      btn.innerHTML = `<span style="display:inline-block; animation:spin 1s linear infinite;"></span> Dispatching A2A Bridge...`;
     });
 
     // 2. Gather inputs from whichever pane the user interacted with
@@ -2635,7 +2635,7 @@
       btn.disabled = false;
       btn.style.opacity = '1.0';
       btn.style.background = '#059669';
-      btn.innerHTML = `<span>⚡</span> Dispatch A2A Bridge &amp; Execute Live Flow`;
+      btn.innerHTML = `<span></span> Dispatch A2A Bridge &amp; Execute Live Flow`;
     });
 
     // 7. Render output across all panes
@@ -3688,16 +3688,16 @@ git push space main
               </div>
               <div style="display:flex; gap:8px; flex-wrap:wrap;">
                 <button type="button" class="interop-scenario-btn" data-scenario="dpdp" onclick="window.selectInteropScenario('dpdp')" style="background:#0F172A; color:#FFFFFF; border:1px solid #0F172A; padding:6px 12px; border-radius:6px; font-size:0.72rem; font-weight:700; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
-                  🛡️ 1. DPDP Act (Aadhaar &amp; PAN)
+                  1. DPDP Act (Aadhaar &amp; PAN)
                 </button>
                 <button type="button" class="interop-scenario-btn" data-scenario="aws" onclick="window.selectInteropScenario('aws')" style="background:#FFFFFF; color:#334155; border:1px solid #CBD5E1; padding:6px 12px; border-radius:6px; font-size:0.72rem; font-weight:500; cursor:pointer;">
-                  🔑 2. Cloud Secret (Entropy &gt; 4.5)
+                  2. Cloud Secret (Entropy &gt; 4.5)
                 </button>
                 <button type="button" class="interop-scenario-btn" data-scenario="pypi" onclick="window.selectInteropScenario('pypi')" style="background:#FFFFFF; color:#334155; border:1px solid #CBD5E1; padding:6px 12px; border-radius:6px; font-size:0.72rem; font-weight:500; cursor:pointer;">
-                  📦 3. PyPI Slopsquatting Defense
+                  3. PyPI Slopsquatting Defense
                 </button>
                 <button type="button" class="interop-scenario-btn" data-scenario="react" onclick="window.selectInteropScenario('react')" style="background:#FFFFFF; color:#334155; border:1px solid #CBD5E1; padding:6px 12px; border-radius:6px; font-size:0.72rem; font-weight:500; cursor:pointer;">
-                  🔄 4. ReAct Loop (RCE Patch)
+                  4. ReAct Loop (RCE Patch)
                 </button>
               </div>
             </div>
@@ -3725,25 +3725,25 @@ git push space main
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
                   <span style="font-size:0.7rem; font-weight:700; color:#475569;">Inspect View:</span>
                   <button type="button" class="interop-view-pill" data-view="stepper" onclick="window.switchInteropView('stepper')" style="background:#2563EB; color:#FFFFFF; border:1px solid #2563EB; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:700; cursor:pointer;">
-                    ⚡ Live Stepper
+                    Live Stepper
                   </button>
                   <button type="button" class="interop-view-pill" data-view="wire" onclick="window.switchInteropView('wire')" style="background:#FFFFFF; color:#475569; border:1px solid #CBD5E1; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:600; cursor:pointer;">
-                    📜 Signed A2A Wire
+                    Signed A2A Wire
                   </button>
                   <button type="button" class="interop-view-pill" data-view="math" onclick="window.switchInteropView('math')" style="background:#FFFFFF; color:#475569; border:1px solid #CBD5E1; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:600; cursor:pointer;">
-                    📐 Math &amp; Logic
+                    Math &amp; Logic
                   </button>
                   <button type="button" class="interop-view-pill" data-view="pydantic" onclick="window.switchInteropView('pydantic')" style="background:#FFFFFF; color:#475569; border:1px solid #CBD5E1; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:600; cursor:pointer;">
-                    🛡️ Pydantic Schema
+                    Pydantic Schema
                   </button>
                   <button type="button" class="interop-view-pill" data-view="topology" onclick="window.switchInteropView('topology')" style="background:#FFFFFF; color:#475569; border:1px solid #CBD5E1; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:600; cursor:pointer;">
-                    👥 Multi-Agent Topology
+                    Multi-Agent Topology
                   </button>
                 </div>
 
                 <!-- Primary Dispatch Button -->
                 <button type="button" class="interop-dispatch-btn" onclick="window.runInteropWorkflowLive()" style="background:#059669; color:#FFFFFF; border:none; padding:8px 20px; border-radius:6px; font-weight:700; font-size:0.8rem; cursor:pointer; box-shadow:0 2px 6px rgba(5,150,105,0.25); display:flex; align-items:center; gap:6px; transition:all 0.15s ease;">
-                  <span>⚡</span> Dispatch A2A Bridge &amp; Execute Live Flow
+                  <span></span> Dispatch A2A Bridge &amp; Execute Live Flow
                 </button>
               </div>
             </div>
