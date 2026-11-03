@@ -44,3 +44,4 @@ class DeterministicAdapter(BaseModelAdapter):
             "supports_structured_outputs": True,
             "license": "MIT Open Source (In-Repo Core Engine)"
         }
+

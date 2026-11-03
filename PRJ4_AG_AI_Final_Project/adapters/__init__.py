@@ -28,3 +28,4 @@ __all__ = [
     "DeterministicAdapter",
     "get_adapter",
 ]
+

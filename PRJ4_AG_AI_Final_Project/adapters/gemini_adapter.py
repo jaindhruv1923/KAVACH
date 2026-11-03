@@ -62,3 +62,4 @@ class GeminiAdapter(BaseModelAdapter):
             "supports_structured_outputs": True,
             "license": "Commercial Cloud API"
         }
+

@@ -78,3 +78,4 @@ class OllamaAdapter(BaseModelAdapter):
             "supports_structured_outputs": True,
             "license": "Open Source (Apache 2.0 / MIT / Llama)"
         }
+

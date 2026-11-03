@@ -38,3 +38,4 @@ class BaseModelAdapter(ABC):
     def get_capabilities(self) -> Dict[str, Any]:
         """Return context window size, streaming support, and license details."""
         pass
+
