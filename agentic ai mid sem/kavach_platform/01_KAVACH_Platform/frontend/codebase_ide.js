@@ -633,6 +633,59 @@
         color: #FFFFFF;
       }
 
+      
+      /* Live Editor Textarea & Save */
+      .ide-code-textarea {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        background: #0D1117;
+        color: #F0F6FC;
+        font-family: "JetBrains Mono", Consolas, "Fira Code", monospace;
+        font-size: 0.81rem;
+        line-height: 19.5px;
+        padding: 14px 18px;
+        border: none;
+        outline: none;
+        resize: none;
+        white-space: pre;
+        tab-size: 4;
+        box-sizing: border-box;
+      }
+      .ide-code-textarea.wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+      .ide-save-btn {
+        background: #059669 !important;
+        border-color: #10B981 !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+      }
+      .ide-save-btn:hover {
+        background: #047857 !important;
+        border-color: #34D399 !important;
+      }
+      .ide-dirty-badge {
+        font-size: 0.68rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: #78350F;
+        border: 1px solid #F59E0B;
+        color: #FDE68A;
+        font-weight: 700;
+        margin-left: 6px;
+      }
+      .file-real-badge {
+        font-size: 0.62rem;
+        padding: 1px 5px;
+        border-radius: 3px;
+        background: #21262D;
+        border: 1px solid #30363D;
+        color: #8B949E;
+        font-family: monospace;
+      }
+    
       /* Code Container */
       .ide-code-scroll {
         flex: 1;
@@ -1140,6 +1193,14 @@
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                   <span>Copy</span>
                 </button>
+                <button type="button" class="ide-editor-btn" id="ide-edit-btn" onclick="window.toggleIdeEditMode()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                  <span id="ide-edit-btn-text">Edit</span>
+                </button>
+                <button type="button" class="ide-editor-btn ide-save-btn" id="ide-save-btn" style="display:none;" onclick="window.saveCurrentIdeFile()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                  <span>Save (Ctrl+S)</span>
+                </button>
               </div>
             </div>
 
@@ -1147,6 +1208,7 @@
             <div class="ide-code-scroll" id="ide-code-scroll">
               <div class="ide-line-numbers" id="ide-line-numbers"></div>
               <div class="ide-code-content" id="ide-code-content"></div>
+              <textarea id="ide-code-textarea" class="ide-code-textarea" style="display:none;" spellcheck="false" oninput="window.handleCodeInput(this.value)" onkeydown="window.handleCodeTextareaKeyDown(event)"></textarea>
             </div>
           </div>
 
@@ -1302,7 +1364,13 @@
   function renderFileTree() {
     const container = document.getElementById('ide-tree-scroll');
     if (!container) return;
-    const html = PROJECT_TREE.map(rootNode => renderTreeFolder(rootNode, searchQuery)).join('');
+    
+    let html = '';
+    if (liveRealTree && liveRealTree.length > 0) {
+      html = liveRealTree.map(rootNode => renderRealTreeNode(rootNode, searchQuery)).join('');
+    } else {
+      html = PROJECT_TREE.map(rootNode => renderTreeFolder(rootNode, searchQuery)).join('');
+    }
     container.innerHTML = html || '<div style="padding:16px;color:#8B949E;font-size:0.78rem;">No matching files found.</div>';
   }
 
@@ -1584,6 +1652,290 @@
   }
 
   // Window APIs
+  
+  // =========================================================================
+  // REAL FILESYSTEM & LIVE DISK CODE ENGINE (VS CODE / ANTIGRAVITY IDE PARITY)
+  // =========================================================================
+  let liveRealTree = null;
+  let activeRealFilePath = "agentic ai mid sem/imp_files/02_CrewAI/flows.py";
+  let activeFileRealCode = "";
+  let isIdeEditMode = false;
+  let isIdeDirty = false;
+
+  async function fetchLiveWorkspaceTree() {
+    try {
+      const res = await fetch('/api/ide/tree');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data && data.success && Array.isArray(data.tree)) {
+        liveRealTree = data.tree;
+        const countSpan = document.getElementById('ide-file-count');
+        if (countSpan) countSpan.textContent = 'Live Workspace Disk Sync';
+        renderFileTree();
+      }
+    } catch (err) {
+      console.warn('Real tree fetch error:', err);
+    }
+  }
+
+  function renderRealTreeNode(node, query) {
+    if (node.type === 'folder') {
+      const q = (query || '').toLowerCase().trim();
+      const childrenHtml = (node.children || []).map(child => renderRealTreeNode(child, query)).join('');
+      if (q && !childrenHtml && !node.name.toLowerCase().includes(q)) return '';
+      
+      const folderId = 'folder-' + (node.path || node.name).replace(/[^a-zA-Z0-9]/g, '_');
+      const isCollapsed = node.open === false && !q;
+      return `
+        <div class="ide-tree-folder ${isCollapsed ? 'collapsed' : ''}" id="${folderId}">
+          <div class="ide-tree-folder-header" onclick="window.toggleRealFolder(this, '${escapeHtml(node.path || node.name)}')">
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span style="font-size:0.75rem;color:#F59E0B;font-weight:700;">📁</span>
+            <span>${escapeHtml(node.name)}</span>
+          </div>
+          <div class="ide-tree-folder-children">
+            ${childrenHtml}
+          </div>
+        </div>
+      `;
+    } else {
+      const q = (query || '').toLowerCase().trim();
+      if (q && !node.name.toLowerCase().includes(q) && !(node.path || '').toLowerCase().includes(q)) {
+        return '';
+      }
+      const isActive = node.path === activeRealFilePath;
+      const badge = node.badge || (node.name.endsWith('.py') ? 'PY' : 'FILE');
+      return `
+        <div class="ide-tree-file ${isActive ? 'active' : ''}" onclick="window.selectRealFile('${escapeHtml(node.path)}')">
+          <div style="display:flex;align-items:center;gap:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+            <span style="color:#58A6FF;font-weight:700;font-size:0.68rem;">[${escapeHtml(badge)}]</span>
+            <span>${escapeHtml(node.name)}</span>
+          </div>
+          <span class="file-real-badge">${node.size_kb ? node.size_kb + ' KB' : ''}</span>
+        </div>
+      `;
+    }
+  }
+
+  window.toggleRealFolder = function (headerEl, folderPath) {
+    const folderEl = headerEl.parentElement;
+    if (!folderEl) return;
+    folderEl.classList.toggle('collapsed');
+    
+    // Update liveRealTree open state recursively
+    function setOpen(nodes) {
+      for (const n of nodes) {
+        if ((n.path || n.name) === folderPath) {
+          n.open = !folderEl.classList.contains('collapsed');
+          return true;
+        }
+        if (n.children && setOpen(n.children)) return true;
+      }
+      return false;
+    }
+    if (liveRealTree) setOpen(liveRealTree);
+  };
+
+  window.selectRealFile = async function (relPath, suppressToast) {
+    if (!relPath) return;
+    activeRealFilePath = relPath;
+    
+    const tabName = document.getElementById('ide-tab-filename');
+    const tabBadge = document.getElementById('ide-tab-badge');
+    const tabStats = document.getElementById('ide-tab-stats');
+    const filename = relPath.split('/').pop().split('\\').pop();
+    
+    if (tabName) tabName.textContent = filename;
+    if (tabBadge) tabBadge.textContent = filename.endsWith('.py') ? 'PYTHON' : filename.split('.').pop().toUpperCase();
+    if (tabStats) tabStats.textContent = 'Loading from disk...';
+
+    // Highlight active in tree
+    document.querySelectorAll('.ide-tree-file').forEach(el => el.classList.remove('active'));
+    
+    try {
+      const res = await fetch('/api/ide/file?path=' + encodeURIComponent(relPath));
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      
+      activeFileRealCode = data.content;
+      isIdeDirty = false;
+
+      if (tabStats) {
+        tabStats.textContent = `${(data.size_bytes / 1024).toFixed(1)} KB · ${data.total_lines} lines · Disk Verified`;
+      }
+
+      // Render line numbers
+      const lineNumBox = document.getElementById('ide-line-numbers');
+      const codeBox = document.getElementById('ide-code-content');
+      const textarea = document.getElementById('ide-code-textarea');
+
+      let linesHtml = '';
+      for (let i = 1; i <= data.total_lines; i++) {
+        linesHtml += `<span class="ide-line-num" id="line-num-${i}" onclick="window.jumpToIdeLine(${i})">${i}</span>`;
+      }
+      if (lineNumBox) lineNumBox.innerHTML = linesHtml;
+
+      // Syntax highlight
+      if (codeBox) {
+        if (data.language === 'python') {
+          codeBox.innerHTML = highlightPython(data.content);
+        } else {
+          codeBox.textContent = data.content;
+        }
+      }
+      if (textarea) textarea.value = data.content;
+
+      const scrollBox = document.getElementById('ide-code-scroll');
+      if (scrollBox) scrollBox.scrollTop = 0;
+
+      // Check if file is in IDE_CATALOG to update Flowchart and AI Copilot
+      const matchedCatalog = IDE_CATALOG.find(f => f.filename === filename || relPath.includes(f.filename));
+      if (matchedCatalog) {
+        currentFileId = matchedCatalog.id;
+        const fTitle = document.getElementById('ide-flow-title');
+        if (fTitle) fTitle.textContent = matchedCatalog.title;
+        const fDesc = document.getElementById('ide-flow-desc');
+        if (fDesc) fDesc.textContent = matchedCatalog.summary;
+        const fDiag = document.getElementById('ide-flow-diagram');
+        if (fDiag) fDiag.textContent = matchedCatalog.flowchart || matchedCatalog.diagram;
+        const fWhy = document.getElementById('ide-flow-why');
+        if (fWhy) fWhy.textContent = matchedCatalog.why_chosen;
+        const fDomain = document.getElementById('ide-flow-domain');
+        if (fDomain) fDomain.textContent = matchedCatalog.domain_relevance;
+        const fQ = document.getElementById('ide-flow-q');
+        if (fQ && matchedCatalog.viva_qna) fQ.textContent = matchedCatalog.viva_qna.q;
+        const fA = document.getElementById('ide-flow-a');
+        if (fA && matchedCatalog.viva_qna) fA.textContent = matchedCatalog.viva_qna.a;
+        updateCopilotFile(matchedCatalog);
+      } else {
+        const fTitle = document.getElementById('ide-flow-title');
+        if (fTitle) fTitle.textContent = filename + ' (Workspace File)';
+        const fDesc = document.getElementById('ide-flow-desc');
+        if (fDesc) fDesc.textContent = `Actual physical repository file at ${relPath}. Fully editable and synchronized with disk.`;
+        const fDiag = document.getElementById('ide-flow-diagram');
+        if (fDiag) fDiag.textContent = `+-------------------------------------------------------------+\n| FILE: ${filename.padEnd(52, ' ')}|\n| Path: ${relPath.padEnd(52, ' ')}|\n| Size: ${String((data.size_bytes/1024).toFixed(1) + ' KB').padEnd(52, ' ')}|\n| Lines: ${String(data.total_lines).padEnd(51, ' ')}|\n+-------------------------------------------------------------+`;
+      }
+
+      if (!suppressToast) {
+        showFileSwitchToast({
+          filename: filename,
+          badge: data.language.toUpperCase(),
+          handout_module: 'Physical Disk File',
+          title: relPath
+        });
+      }
+    } catch (err) {
+      console.warn('Live file load failed, falling back to bundled catalog:', err);
+      const fallback = IDE_CATALOG.find(f => f.filename === filename);
+      if (fallback) selectFile(fallback.id, suppressToast);
+    }
+  };
+
+  window.toggleIdeEditMode = function () {
+    isIdeEditMode = !isIdeEditMode;
+    const codeBox = document.getElementById('ide-code-content');
+    const textarea = document.getElementById('ide-code-textarea');
+    const editBtnText = document.getElementById('ide-edit-btn-text');
+    const saveBtn = document.getElementById('ide-save-btn');
+
+    if (isIdeEditMode) {
+      if (codeBox) codeBox.style.display = 'none';
+      if (textarea) {
+        textarea.style.display = 'block';
+        textarea.value = activeFileRealCode;
+        textarea.focus();
+      }
+      if (editBtnText) editBtnText.textContent = 'View';
+      if (saveBtn) saveBtn.style.display = 'inline-flex';
+    } else {
+      if (textarea && codeBox) {
+        activeFileRealCode = textarea.value;
+        codeBox.innerHTML = highlightPython(activeFileRealCode);
+      }
+      if (codeBox) codeBox.style.display = 'block';
+      if (textarea) textarea.style.display = 'none';
+      if (editBtnText) editBtnText.textContent = 'Edit';
+      if (saveBtn) saveBtn.style.display = 'none';
+    }
+  };
+
+  window.handleCodeInput = function (val) {
+    activeFileRealCode = val;
+    isIdeDirty = true;
+    const lines = val.split('\n').length;
+    const lineNumBox = document.getElementById('ide-line-numbers');
+    if (lineNumBox) {
+      let linesHtml = '';
+      for (let i = 1; i <= lines; i++) {
+        linesHtml += `<span class="ide-line-num" id="line-num-${i}">${i}</span>`;
+      }
+      lineNumBox.innerHTML = linesHtml;
+    }
+    const tabStats = document.getElementById('ide-tab-stats');
+    if (tabStats) {
+      tabStats.innerHTML = `${(val.length / 1024).toFixed(1)} KB · ${lines} lines <span class="ide-dirty-badge">● MODIFIED (Unsaved)</span>`;
+    }
+  };
+
+  window.handleCodeTextareaKeyDown = function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+      e.preventDefault();
+      window.saveCurrentIdeFile();
+      return;
+    }
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const ta = e.target;
+      const start = ta.selectionStart;
+      const end = ta.selectionEnd;
+      ta.value = ta.value.substring(0, start) + '    ' + ta.value.substring(end);
+      ta.selectionStart = ta.selectionEnd = start + 4;
+      window.handleCodeInput(ta.value);
+    }
+  };
+
+  window.saveCurrentIdeFile = async function () {
+    const textarea = document.getElementById('ide-code-textarea');
+    const content = textarea ? textarea.value : activeFileRealCode;
+    const saveBtn = document.getElementById('ide-save-btn');
+    if (saveBtn) saveBtn.textContent = 'Saving...';
+
+    try {
+      const res = await fetch('/api/ide/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: activeRealFilePath, content: content })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.detail || 'Save failed');
+
+      isIdeDirty = false;
+      if (saveBtn) {
+        saveBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Saved!';
+        setTimeout(() => {
+          saveBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save (Ctrl+S)</span>';
+        }, 2000);
+      }
+
+      const tabStats = document.getElementById('ide-tab-stats');
+      if (tabStats) {
+        tabStats.textContent = `${(data.size_bytes / 1024).toFixed(1)} KB · ${data.total_lines} lines · Saved to Disk`;
+      }
+
+      // Show toast
+      showFileSwitchToast({
+        filename: data.filename || 'File',
+        badge: 'SAVED',
+        handout_module: 'Physical Disk Write',
+        title: 'Successfully written directly to disk!'
+      });
+    } catch (err) {
+      alert('Failed to save file: ' + err.message);
+      if (saveBtn) saveBtn.textContent = 'Save (Ctrl+S)';
+    }
+  };
+        
+
   window.openCodebaseIdeModal = function (presetQuery) {
     injectIdeStyles();
     injectIdeModalHtml();

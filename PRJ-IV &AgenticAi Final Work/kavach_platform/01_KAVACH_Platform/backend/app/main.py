@@ -56,6 +56,10 @@ app = FastAPI(
     version="0.0.1",
 )
 
+
+from app.ide_api import router as ide_router
+app.include_router(ide_router)
+
 # ============================================================
 # CORS
 # ============================================================
