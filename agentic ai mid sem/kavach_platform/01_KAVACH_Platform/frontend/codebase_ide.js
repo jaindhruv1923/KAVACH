@@ -1101,7 +1101,7 @@
           <!-- Quick Open / Search -->
           <div class="ide-quick-open-container">
             <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="ide-search-input" class="ide-quick-open-input" placeholder="Quick Open (Ctrl+P) - Type file name, concept, or topic..." oninput="window.handleIdeSearch(this.value)" onkeydown="window.handleSearchKeyDown(event)">
+            <input type="text" id="ide-search-input" class="ide-quick-open-input" style="background:#0D1117 !important; color:#F0F6FC !important; padding:0 76px 0 42px !important;" placeholder="Quick Open (Ctrl+P) - Type file name, concept, or topic..." oninput="window.handleIdeSearch(this.value)" onkeydown="window.handleSearchKeyDown(event)">
             <span class="quick-open-kbd">Ctrl+P</span>
           </div>
 
@@ -1345,8 +1345,8 @@
                .replace(/_/g, ' ')
                .trim();
     const words = s.split(/\s+/).filter(Boolean);
-    if (words.length > 3) {
-      s = words.slice(0, 3).join(' ');
+    if (words.length > 4) {
+      s = words.slice(0, 4).join(' ');
     }
     return s.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   }
