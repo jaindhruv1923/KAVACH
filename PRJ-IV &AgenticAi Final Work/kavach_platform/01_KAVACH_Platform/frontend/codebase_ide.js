@@ -2874,12 +2874,12 @@
     chipContainer.innerHTML = '<span style="font-size:0.68rem;color:#8B949E;font-weight:600;flex-shrink:0;text-transform:uppercase;letter-spacing:0.5px;">Concepts:</span>' + chips.join('');
   }
 
-  function selectFile(fileId, suppressToast) {
+  function selectFile(fileId, suppressToast, skipReal) {
     const file = IDE_CATALOG.find(f => f.id === fileId);
     if (!file) return;
     currentFileId = fileId;
 
-    if (file.real_path && typeof window.selectRealFile === 'function') {
+    if (!skipReal && file.real_path && typeof window.selectRealFile === 'function') {
       window.selectRealFile(file.real_path, suppressToast);
       return;
     }
@@ -3371,7 +3371,14 @@
     if (tabStats) tabStats.textContent = 'Loading from disk...';
 
     // Highlight active in tree
-    document.querySelectorAll('.ide-tree-file').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.ide-tree-file').forEach(el => {
+      const p = el.getAttribute('data-path') || '';
+      if (p === relPath || p.replace(/\\/g, '/') === relPath.replace(/\\/g, '/') || p.endsWith('/' + filename) || p === filename) {
+        el.classList.add('active');
+      } else {
+        el.classList.remove('active');
+      }
+    });
     
     try {
       const res = await fetch('/api/ide/file?path=' + encodeURIComponent(relPath));
@@ -3407,7 +3414,10 @@
       if (textarea) textarea.value = data.content;
 
       const scrollBox = document.getElementById('ide-code-scroll');
-      if (scrollBox) scrollBox.scrollTop = 0;
+      if (scrollBox && window._lastRenderedPath !== relPath) {
+        scrollBox.scrollTop = 0;
+        window._lastRenderedPath = relPath;
+      }
 
       // Check if file is in IDE_CATALOG to update Flowchart and AI Copilot
       const matchedCatalog = IDE_CATALOG.find(f => f.filename === filename || relPath.includes(f.filename));
@@ -3427,7 +3437,7 @@
         if (fQ && matchedCatalog.viva_qna) fQ.textContent = matchedCatalog.viva_qna.q;
         const fA = document.getElementById('ide-flow-a');
         if (fA && matchedCatalog.viva_qna) fA.textContent = matchedCatalog.viva_qna.a;
-        updateCopilotFile(matchedCatalog);
+        updateCopilotChipsForFile(matchedCatalog);
       } else {
         const fTitle = document.getElementById('ide-flow-title');
         if (fTitle) fTitle.textContent = filename + ' (Workspace File)';
@@ -3448,7 +3458,7 @@
     } catch (err) {
       console.warn('Live file load failed, falling back to bundled catalog:', err);
       const fallback = IDE_CATALOG.find(f => f.filename === filename);
-      if (fallback) selectFile(fallback.id, suppressToast);
+      if (fallback) selectFile(fallback.id, suppressToast, true);
     }
   };
 
@@ -3558,6 +3568,7 @@
         
 
   window.openCodebaseIdeModal = function (presetQuery) {
+    document.body.style.overflow = 'hidden';
     injectIdeStyles();
     injectIdeModalHtml();
     fetchLiveWorkspaceTree();
@@ -3581,6 +3592,7 @@
   };
 
   window.closeCodebaseIdeModal = function () {
+    document.body.style.overflow = '';
     const modal = document.getElementById('codebase-ide-modal');
     if (modal) {
       modal.classList.remove('open');
