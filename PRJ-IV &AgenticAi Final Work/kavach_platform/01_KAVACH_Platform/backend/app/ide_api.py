@@ -11,12 +11,45 @@ WORKSPACE_ROOT = Path(r"C:\Users\jaind\OneDrive\Desktop\uni\Ageentic&PRJ-IV").re
 MIDSEM_ROOT = (WORKSPACE_ROOT / "agentic ai mid sem").resolve()
 PRJ4_ROOT = (WORKSPACE_ROOT / "PRJ-IV &AgenticAi Final Work").resolve()
 
-ALLOWED_ROOTS = [WORKSPACE_ROOT, MIDSEM_ROOT, PRJ4_ROOT]
+ALLOWED_ROOTS = [WORKSPACE_ROOT, PRJ4_ROOT, MIDSEM_ROOT]
 IGNORED_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules", ".venv", "venv", ".idea", ".vscode", "temp"}
 ALLOWED_EXTS = {".py", ".js", ".html", ".css", ".json", ".md", ".bat", ".ps1", ".yml", ".yaml", ".txt", ".sh", ".sql"}
 
+# Priority mappings for common single-filename lookups
+COMMON_PRIORITIES = {
+    "index.html": [
+        PRJ4_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "index.html",
+        MIDSEM_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "index.html",
+    ],
+    "app.js": [
+        PRJ4_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "app.js",
+        MIDSEM_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "app.js",
+    ],
+    "console.html": [
+        PRJ4_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "console.html",
+        MIDSEM_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "console.html",
+    ],
+    "style.css": [
+        PRJ4_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "style.css",
+        MIDSEM_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "style.css",
+    ],
+    "midsem.html": [
+        PRJ4_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "midsem.html",
+        MIDSEM_ROOT / "kavach_platform" / "01_KAVACH_Platform" / "frontend" / "midsem.html",
+    ],
+    "viva_prep.md": [
+        WORKSPACE_ROOT / "viva_prep.md",
+        PRJ4_ROOT / "README.md",
+        MIDSEM_ROOT / "README.md",
+    ],
+    "readme.md": [
+        WORKSPACE_ROOT / "README.md",
+        PRJ4_ROOT / "README.md",
+    ]
+}
+
 def resolve_target_path(req_path: str) -> Optional[Path]:
-    """Safely resolves requested file path inside workspace boundaries."""
+    """Safely resolves requested file path inside workspace boundaries with strict priority."""
     if not req_path:
         return None
     
@@ -33,7 +66,14 @@ def resolve_target_path(req_path: str) -> Optional[Path]:
         except Exception:
             pass
 
-    # 2. Check candidate relative paths
+    # 2. Check prioritized common filenames if path is bare filename
+    basename = target.name.lower()
+    if "/" not in req_path and "\\" not in req_path and basename in COMMON_PRIORITIES:
+        for p in COMMON_PRIORITIES[basename]:
+            if p.exists() and p.is_file():
+                return p.resolve()
+
+    # 3. Check candidate relative paths
     candidates = [
         (WORKSPACE_ROOT / clean_path).resolve(),
         (PRJ4_ROOT / clean_path).resolve(),
@@ -51,16 +91,25 @@ def resolve_target_path(req_path: str) -> Optional[Path]:
         except Exception:
             continue
 
-    # 3. Fallback: Search by basename
-    filename = Path(clean_path).name
+    # 4. Fallback: Search by basename, preferring 01_KAVACH_Platform / imp_files over motion_graphics
+    filename = target.name
+    matches = []
     for root in [PRJ4_ROOT, MIDSEM_ROOT, WORKSPACE_ROOT]:
         if root.exists():
             for match in root.rglob(filename):
                 try:
                     if match.is_file() and not any(part in match.parts for part in IGNORED_DIRS):
-                        return match.resolve()
+                        resolved_m = match.resolve()
+                        matches.append(resolved_m)
                 except Exception:
                     continue
+
+    if matches:
+        for m in matches:
+            m_str = str(m).replace("\\", "/")
+            if "01_KAVACH_Platform" in m_str or "imp_files" in m_str or "bharat_core_banking" in m_str:
+                return m
+        return matches[0]
 
     return None
 
@@ -158,7 +207,7 @@ def save_live_file(req: SaveFileRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
 
-def scan_real_directory(dir_path: Path, max_depth: int = 4, current_depth: int = 0) -> List[Dict[str, Any]]:
+def scan_real_directory(dir_path: Path, max_depth: int = 6, current_depth: int = 0) -> List[Dict[str, Any]]:
     """Recursively scans the real directory tree for live interactive navigation."""
     if current_depth > max_depth or not dir_path.exists():
         return []
@@ -187,7 +236,11 @@ def scan_real_directory(dir_path: Path, max_depth: int = 4, current_depth: int =
                     "name": item.name,
                     "type": "folder",
                     "path": rel,
-                    "open": current_depth < 1 or item.name in {"imp_files", "01_Google_ADK", "02_CrewAI", "03_Guardrails_And_Security", "04_Agentic_Design_Patterns", "bharat_core_banking"},
+                    "open": current_depth < 2 or item.name in {
+                        "imp_files", "kavach_platform", "01_KAVACH_Platform", "frontend",
+                        "01_Google_ADK", "02_CrewAI", "03_Guardrails_And_Security",
+                        "04_Agentic_Design_Patterns", "bharat_core_banking", "live_agent_swarm"
+                    },
                     "children": sub
                 })
         elif item.is_file():
@@ -206,5 +259,5 @@ def scan_real_directory(dir_path: Path, max_depth: int = 4, current_depth: int =
 @router.get("/tree")
 def get_live_project_tree():
     """Return an active navigable tree of all real files across the entire workspace."""
-    tree = scan_real_directory(WORKSPACE_ROOT, max_depth=4)
+    tree = scan_real_directory(WORKSPACE_ROOT, max_depth=6)
     return {"success": True, "tree": tree}
