@@ -94,7 +94,7 @@ Rather than relying on fragile system prompt instructions (*"Please do not leak 
 |  6. Bounded ReAct Sandbox & Self-Healing Loop          |
 |     - Subprocess Pytest Watchdog (Max N=3 cycles)      |
 |                                                        |
-|  7. Mission-Critical Banking Shield (Bharat Bank)     |
+|  7. Mission-Critical Banking Shield (Bharat Bank)      |
 |     - RBI HITL Quarantine (> Rs 50,000) & SAGA ACID Roll|
 |                                                        |
 |  8. Tamper-Evident Cryptographic Merkle Ledger        |
