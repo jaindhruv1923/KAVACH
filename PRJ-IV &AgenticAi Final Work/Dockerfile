@@ -1,17 +1,15 @@
-# Multi-stage production container for KAVACH AI Platform on Railway / Cloud Run
+# Production container for KAVACH AI Platform on Railway / Cloud Run
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system utilities
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
     curl \
-    git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy backend requirements and install dependencies
-COPY kavach_platform/01_KAVACH_Platform/backend/requirements.txt /app/requirements.txt
+# Install lightweight dependencies in under 15 seconds
+COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r /app/requirements.txt
 

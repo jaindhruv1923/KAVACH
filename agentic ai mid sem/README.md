@@ -74,15 +74,15 @@ Rather than relying on fragile system prompt instructions (*"Please do not leak 
 |               KAVACH GOVERNANCE LAYER                  |
 |                                                        |
 |  1. Sentinel Pre-Execution Gatekeeper                  |
-|     - Shannon Entropy (H > 4.5) & Verhoeff Checksum   |
-|     - Zero-Knowledge Token Vault (UUID Masking)       |
+|     - Shannon Entropy (H > 4.5) & Verhoeff Checksum    |
+|     - Zero-Knowledge Token Vault (UUID Masking)        |
 |                                                        |
 |  2. Dual-Engine Privacy Routing                        |
 |     - Public/Clean: Cloud LLM (Gemini 2.5 / Groq)      |
-|     - Sensitive/Air-Gapped: Local Ollama (Qwen-Coder) |
+|     - Sensitive/Air-Gapped: Local Ollama (Qwen-Coder)  |
 |                                                        |
-|  3. Agentic Code RAG (Qdrant Vector DB)               |
-|     - 384-dim all-MiniLM-L6-v2 Embeddings (cos > 0.70)|
+|  3. Agentic Code RAG (Qdrant Vector DB)                |
+|     - 384-dim all-MiniLM-L6-v2 Embeddings (cos > 0.70) |
 |     - Two-Way Pre/Post Trojan Source Sanitizer         |
 |                                                        |
 |  4. AST Dependency Graph & Blast-Radius Engine         |
@@ -97,7 +97,7 @@ Rather than relying on fragile system prompt instructions (*"Please do not leak 
 |  7. Mission-Critical Banking Shield (Bharat Bank)      |
 |     - RBI HITL Quarantine (> Rs 50,000) & SAGA ACID Roll|
 |                                                        |
-|  8. Tamper-Evident Cryptographic Merkle Ledger        |
+|  8. Tamper-Evident Cryptographic Merkle Ledger         |
 |     - NIST FIPS 202 SHA3-512 Audit Chain               |
 +------------------------+-------------------------------+
                          |
