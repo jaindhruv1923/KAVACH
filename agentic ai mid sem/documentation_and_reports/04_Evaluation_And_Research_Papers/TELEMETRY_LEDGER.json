@@ -1,0 +1,30 @@
+{
+  "total_runs": 2,
+  "last_updated": "2026-10-26 06:44:15 UTC",
+  "runs": [
+    {
+      "run_id": 1,
+      "timestamp_utc": "2026-10-26 06:43:03 UTC",
+      "date": "2026-10-26",
+      "guardrail_status": "PASS",
+      "threat_detection_rate": "100.0%",
+      "median_latency_ms": 0.006,
+      "p95_latency_ms": 0.0098,
+      "fsm_pipeline_status": "OPTIMIZED",
+      "ledger_integrity": "MATCH",
+      "checksum_sig": "c465c2ced36c"
+    },
+    {
+      "run_id": 2,
+      "timestamp_utc": "2026-10-26 06:44:15 UTC",
+      "date": "2026-10-26",
+      "guardrail_status": "PASS",
+      "threat_detection_rate": "100.0%",
+      "median_latency_ms": 0.0062,
+      "p95_latency_ms": 0.0094,
+      "fsm_pipeline_status": "OPTIMIZED",
+      "ledger_integrity": "MATCH",
+      "checksum_sig": "c465c2ced36c"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Hub 1: Master KAVACH Platform (Port 8001)
+  kavach-master-platform:
+    build:
+      context: ./kavach_platform
+      dockerfile: Dockerfile
+    container_name: kavach-master-platform-hub
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - KAVACH_OFFLINE=1
+      - PYTHONUNBUFFERED=1
+    command: ["python", "-m", "uvicorn", "01_KAVACH_Platform.backend.main:app", "--host", "0.0.0.0", "--port", "8001"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # Hub 2: Live Agent Safety Swarm Engine (Port 8000)
+  kavach-agent-swarm:
+    build:
+      context: ./live_agent_dashboard
+      dockerfile: Dockerfile
+    container_name: kavach-swarm-engine
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - PYTHONUNBUFFERED=1
+    command: ["python", "-m", "uvicorn", "agent_engine:app", "--host", "0.0.0.0", "--port", "8000"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # Hub 3: Bharat Core Bank A/B Comparative Portal (Port 8002)
+  bharat-core-banking:
+    build:
+      context: ./applications_work
+      dockerfile: Dockerfile
+    container_name: bharat-core-banking-portal
+    ports:
+      - "8002:8002"
+    environment:
+      - PORT=8002
+      - PYTHONUNBUFFERED=1
+    command: ["python", "-m", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8002"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+networks:
+  default:
+    name: kavach-trihub-network

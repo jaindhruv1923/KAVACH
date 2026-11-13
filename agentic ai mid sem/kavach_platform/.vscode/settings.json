@@ -1,0 +1,14 @@
+{
+  "liveServer.settings.ignoreFiles": [
+    "**/*.json",
+    "**/*.py",
+    "**/*.pyc",
+    "**/*.log",
+    "**/*.md",
+    "**/data/**",
+    "**/.pytest_cache/**",
+    "**/__pycache__/**",
+    "**/.git/**"
+  ],
+  "liveServer.settings.donotShowInfoMsg": true
+}

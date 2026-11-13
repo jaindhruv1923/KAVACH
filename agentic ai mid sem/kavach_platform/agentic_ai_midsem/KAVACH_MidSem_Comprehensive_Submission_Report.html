@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KAVACH: Phase-2 Mid-Term Comprehensive Capstone Submission Bundle</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm 18mm 16mm;
+    @bottom-right {
+      content: "Page " counter(page);
+      font-size: 8pt;
+      color: #64748b;
+    }
+  }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    color: #0f172a;
+    line-height: 1.5;
+    font-size: 9.5pt;
+    margin: 0;
+    padding: 0;
+  }
+  .inst-header {
+    border-bottom: 2px solid #0284c7;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .inst-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #0369a1;
+    text-transform: uppercase;
+  }
+  .inst-meta {
+    font-size: 8.5pt;
+    color: #475569;
+  }
+  h1 {
+    font-size: 20pt;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+  }
+  .subtitle {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #0284c7;
+    margin: 0 0 12px 0;
+  }
+  .team-card {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    font-size: 8.5pt;
+  }
+  h2 {
+    font-size: 12.5pt;
+    font-weight: 700;
+    color: #0f172a;
+    border-left: 4px solid #0284c7;
+    padding-left: 8px;
+    margin: 22px 0 8px 0;
+    text-transform: uppercase;
+  }
+  h3 {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 12px 0 4px 0;
+  }
+  p {
+    margin: 0 0 8px 0;
+    text-align: justify;
+  }
+  ul {
+    margin: 0 0 8px 0;
+    padding-left: 18px;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px 0;
+    font-size: 8pt;
+  }
+  th {
+    background: #0f172a;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 6px 8px;
+    border: 1px solid #0f172a;
+  }
+  td {
+    padding: 5px 8px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  .badge-pass {
+    background: #dcfce7;
+    color: #166534;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+  }
+  .badge-co {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+  }
+  .callout {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin: 12px 0;
+  }
+  .callout-title {
+    font-weight: 700;
+    color: #1d4ed8;
+    font-size: 9pt;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Institution Header -->
+  <div class="inst-header">
+    <div>
+      <div class="inst-title">BML Munjal University &bull; School of Engineering & Technology</div>
+      <div class="inst-meta">Department of Computer Science & Engineering | AY 2026–27 (Batch 2023, 7th Semester)</div>
+      <div class="inst-meta">Course: <strong>CSE3101 — Agentic AI</strong> (3 Credits, LDP: 2-0-2)</div>
+    </div>
+    <div style="text-align: right;">
+      <div class="inst-meta">Course Faculty Mentors:</div>
+      <div style="font-weight: 700; color: #0f172a; font-size: 8.5pt;">Dr. Soharab Hossain Shaikh &bull; Mr. Pranshu Tiwari</div>
+      <div class="inst-meta">Phase-2 Mid-Term Evaluation &bull; October 2026</div>
+    </div>
+  </div>
+
+  <h1>KAVACH (कवच): Mid-Term Comprehensive Capstone Report</h1>
+  <div class="subtitle">Official Phase-2 Deliverables: Updated Problem Statement, Updated Plan, WIP Report, Code Guide & 1-Slider Coverage</div>
+
+  <div class="team-card">
+    <div><strong>Dhruv Jain (230532)</strong><br><span style="color:#64748b;">Lead Architect, FSM Orchestrator, MCP Server & Banking Highway</span></div>
+    <div><strong>Hemant Goyal</strong><br><span style="color:#64748b;">Pre-Exec Guardrails, Entropy Engine, PyPI Slopsquatting Firewall</span></div>
+    <div><strong>Rajat Yadav</strong><br><span style="color:#64748b;">Observability Telemetry, Groq Whisper Voice STT, Live QA & Demo</span></div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2>1. Updated Problem Statement (New Changes & Threat Expansion)</h2>
+  <p>
+    In Phase-1, we defined four critical failure modes: supply-chain slopsquatting, credential/PII leakage, unbounded AST blast radius, and prompt injection loops. During Phase-2, as KAVACH evolved into an enterprise multi-agent highway, <strong>four critical new threat vectors emerged</strong>:
+  </p>
+  <ul>
+    <li><strong>Financial Transaction Vulnerabilities (OWASP LLM01:2025):</strong> Extending agents into core banking introduces transaction memo prompt injection, balance desynchronization without ACID atomicity, and violations of statutory RBI directives mandating High-Value Escrow quarantine for transfers exceeding ₹50,000.</li>
+    <li><strong>Polyglot Supply-Chain Slopsquatting:</strong> Hallucinated dependencies extend beyond Python to npm (`package.json`) and Go (`go.mod`), requiring a multi-ecosystem AST package firewall.</li>
+    <li><strong>Statutory Indian DPDP Act 2023 Compliance:</strong> Mandates zero-knowledge tokenization so that raw Aadhaar or PAN identifiers are never written even to internal database logs.</li>
+    <li><strong>Cryptographic Tamper-Evidence:</strong> Replaces modifiable SQLite/JSON audit trails with append-only NIST SHA3-512 Merkle DAGs for forensic non-repudiation.</li>
+  </ul>
+
+  <!-- SECTION 2 -->
+  <h2>2. Updated Project Plan & Slip Analysis (Rubric C6)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th width="15%">Milestone</th>
+        <th width="30%">Scope & Deliverables</th>
+        <th width="15%">Planned Week</th>
+        <th width="15%">Actual Week</th>
+        <th width="25%">Audit Status & Slips</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Phase 1</strong></td>
+        <td>Problem Definition, Charter, PEAS Matrix, Regex Scanners</td>
+        <td>Weeks 1–3</td>
+        <td>Weeks 1–3</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (10/10 Score)</td>
+      </tr>
+      <tr>
+        <td><strong>Vector RAG</strong></td>
+        <td>Qdrant dense vector store + AST chunking</td>
+        <td>Weeks 4–5</td>
+        <td>Weeks 4–5</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (test_rag.py PASS)</td>
+      </tr>
+      <tr>
+        <td><strong>10-Stage FSM</strong></td>
+        <td>Finite State Machine Orchestrator (orchestrator.py)</td>
+        <td>Week 6</td>
+        <td>Week 6</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (10 Stages operational)</td>
+      </tr>
+      <tr>
+        <td><strong>AST Blast Radius</strong></td>
+        <td>Transitive reachability dependency closure B(v)</td>
+        <td>Week 7</td>
+        <td>Week 7</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (&lt; 12 ms latency)</td>
+      </tr>
+      <tr>
+        <td><strong>PyPI Firewall</strong></td>
+        <td>Slopsquatting interceptor with LRU cache</td>
+        <td>Week 8</td>
+        <td>Week 8</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (HTTP 404 interceptor)</td>
+      </tr>
+      <tr>
+        <td><strong>ReAct Sandbox</strong></td>
+        <td>Bounded subprocess reflection loop (N &le; 3)</td>
+        <td>Week 9</td>
+        <td>Week 9</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (5.0s watchdog timer)</td>
+      </tr>
+      <tr>
+        <td><strong>MCP & A2A</strong></td>
+        <td>JSON-RPC 2.0 server & Agent2Agent message bus</td>
+        <td>Week 10</td>
+        <td>Week 10</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (Cursor/Claude ready)</td>
+      </tr>
+      <tr>
+        <td><strong>Banking Highway</strong></td>
+        <td>Bharat Core Banking (/bank), SAGA & Time-Lock Escrow</td>
+        <td>Week 11</td>
+        <td>Week 11</td>
+        <td><span class="badge-pass">100% COMPLETED</span> (107/107 tests PASS)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-title">Documented Slip Mitigations (Rubric C6)</div>
+    <strong>1. GPU VRAM Sizing:</strong> Running an unquantized 7B local Ollama model required >8GB VRAM causing OOMs on student laptops. We architected a dual-engine router (live Gemini 2.5 Flash + simulated air-gapped local fallback).<br>
+    <strong>2. In-Repo Frameworks:</strong> Replaced bloated external pip packages (CrewAI, Google ADK) with native in-repo 8-hook callbacks and stateful Flows, cutting 1.8GB bloat and guaranteeing sub-millisecond execution.
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3 -->
+  <h2>3. Work In Progress (WIP) Report: Course Outcome Alignment</h2>
+  <table>
+    <thead>
+      <tr>
+        <th width="12%">Course Outcome</th>
+        <th width="28%">Curriculum Focus Statement</th>
+        <th width="35%">KAVACH Grounded Implementation</th>
+        <th width="25%">Verification Test Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge-co">CO1</span></td>
+        <td>Foundational principles of intelligent agents and LLMs for multi-agent applications</td>
+        <td>• 10-Stage FSM Orchestrator (orchestrator.py)<br>• In-repo Google ADK LlmAgent & CoordinatorAgent<br>• Stateful Crew Flows with @start and @listen<br>• Formal PEAS Modeling</td>
+        <td>test_kavach_100_suite.py (100/100 PASS)<br>test_adk_triage.py (17/17 PASS)<br><span class="badge-pass">100% VERIFIED</span></td>
+      </tr>
+      <tr>
+        <td><span class="badge-co">CO2</span></td>
+        <td>Agentic design patterns and local LLMs for secure, privacy-preserving AI</td>
+        <td>• Shannon Entropy Scanner (H > 4.5) & Regex Filters<br>• Zero-Knowledge DPDP Act Token Vault<br>• Ephemeral Pytest Bounded ReAct Sandbox (N &le; 3)<br>• Air-Gapped Local Model Privacy Switch</td>
+        <td>test_security_v2.py (28/28 PASS)<br>focused_check.py (5/5 PASS)<br>Held-Out V2 F1 = 0.943<br><span class="badge-pass">100% VERIFIED</span></td>
+      </tr>
+      <tr>
+        <td><span class="badge-co">CO3</span></td>
+        <td>Intelligent multi-agent, multimodal apps automating complex multi-step tasks</td>
+        <td>• Groq Whisper Multimodal Voice STT<br>• Model Context Protocol (MCP) JSON-RPC 2.0 Server<br>• AST Blast-Radius Reachability Graph B(v)<br>• Bharat Core Banking Highway (/bank) SAGA Escrow</td>
+        <td>test_banking_100_suite.py (107/107 PASS)<br>live_e2e_integration_test.py (11/11 PASS)<br>test_mcp_protocol.py (8/8 PASS)<br><span class="badge-pass">100% VERIFIED</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 4 -->
+  <h2>4. Code & Working Prototype Guide (One-Command Verification)</h2>
+  <p>To verify the platform independently during viva and presentation evaluation:</p>
+  <ul>
+    <li><strong>Launch Unified Platform:</strong> <code>.\run_kavach.ps1</code> or <code>python -m uvicorn 01_KAVACH_Platform.backend.app.main:app --host 127.0.0.1 --port 8000 --reload</code></li>
+    <li><strong>Master Live E2E Integration Suite (11/11 PASS in 4.0s):</strong> <code>python verification/live_e2e_integration_test.py</code></li>
+    <li><strong>Focused Security Sandbox & Traversal Guards (5/5 PASS in 4.1s):</strong> <code>python verification/focused_check.py</code></li>
+    <li><strong>KAVACH Deterministic 100 Suite (100/100 PASS in 0.38s):</strong> <code>pytest 01_KAVACH_Platform/tests/test_kavach_100_suite.py -q</code></li>
+    <li><strong>Bharat Banking 100 Suite (107/107 PASS in 1.62s):</strong> <code>pytest 02_Banking_and_Results_Dashboard/implementation_banks/test_banking_100_suite.py -q</code></li>
+    <li><strong>Mission Control Dashboard:</strong> <code>http://localhost:8000</code> | <strong>Bharat Banking Highway:</strong> <code>http://localhost:8000/bank</code></li>
+  </ul>
+
+  <!-- SECTION 5 -->
+  <h2>5. Master 1-Slider Coverage Matrix Summary (Rubrics C1–C10)</h2>
+  <div class="callout">
+    <div class="callout-title">Full Rubric Compliance Attestation (100% Met Across All 10 Criteria)</div>
+    <strong>C1 (Problem Definition):</strong> Formally expanded to banking prompt injections and DPDP Act compliance [MET].<br>
+    <strong>C2 (Objectives & Outcomes):</strong> 142 endpoints, 0.017ms guardrail latency, and 300 test cases aligned to CO1, CO2, CO3 [MET].<br>
+    <strong>C3 (Methodology):</strong> Multi-tier FSM pipeline with Qdrant vector retrieval, AST blast-radius, and slopsquatting firewall [MET].<br>
+    <strong>C4 (Feasibility & Stack):</strong> Zero-cost student hardware execution with free Gemini API and offline deterministic fallback [MET].<br>
+    <strong>C5 (Individual Understanding):</strong> Formal PEAS modeling and agent persona declarations across all team members [MET].<br>
+    <strong>C6 (Progress vs Plan):</strong> 100% Phase-2 milestones completed on schedule with documented slip mitigations [MET].<br>
+    <strong>C7 (Technical Understanding):</strong> Shannon entropy $H > 4.5$, AST reachability $B(v)$, Verhoeff checksums [MET].<br>
+    <strong>C8 (Problem Solving):</strong> Sub-millisecond deterministic filters (0.017 ms) chosen over slow LLM self-checks [MET].<br>
+    <strong>C9 (Working Documentation):</strong> Single source of truth (METRICS.json), OpenAPI docs at /docs, and 86KB synopsis [MET].<br>
+    <strong>C10 (Team Responsibility):</strong> Systematic role rotation across Phase-1, Phase-2, and Phase-3 complying with Handout Page 7 [MET].
+  </div>
+
+  <div style="margin-top: 24px; border-top: 1px solid #cbd5e1; padding-top: 10px; display: flex; justify-content: space-between; font-size: 8pt; color: #64748b;">
+    <div><strong>Project KAVACH (कवच)</strong> &bull; School of Engineering & Technology, BML Munjal University</div>
+    <div>Team: <strong>Dhruv Jain &bull; Hemant Goyal &bull; Rajat Yadav</strong> (AY 2026–27)</div>
+  </div>
+
+</body>
+</html>
