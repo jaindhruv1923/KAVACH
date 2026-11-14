@@ -181,3 +181,20 @@ colorma>=0.4.6
     assert "colorama" in spoofed
 
 
+def test_saga_tools():
+    """Verify SAGA transaction status and rollback tools."""
+    from kavach_agent_core.saga_engine import GLOBAL_SAGA_COORDINATOR
+    tx = GLOBAL_SAGA_COORDINATOR.begin_transaction(goal="Test tool-level SAGA dispatch")
+    
+    # Query status
+    res_status = execute_tool("tool_saga_status", {"transaction_id": tx.transaction_id})
+    assert res_status["success"] is True
+    assert res_status["transaction"]["state"] == "ACTIVE"
+
+    # Rollback tool
+    res_rb = execute_tool("tool_saga_rollback", {"transaction_id": tx.transaction_id, "reason": "Test unit rollback"})
+    assert res_rb["success"] is True
+    assert res_rb["state"] == "ROLLED_BACK"
+
+
+

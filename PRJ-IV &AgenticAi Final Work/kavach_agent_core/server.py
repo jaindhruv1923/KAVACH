@@ -332,6 +332,65 @@ def run_supply_chain_audit(req: SupplyChainAuditRequest):
     return tool_supply_chain_audit(req.requirements)
 
 
+# =========================================================================
+# AUTONOMOUS SAGA DISTRIBUTED ROLLBACK & ESCROW (STAGE 4 CAPSTONE)
+# =========================================================================
+
+class SagaRollbackRequest(BaseModel):
+    transaction_id: str
+    reason: Optional[str] = "Invariant failure or test rejection"
+
+
+@app.get("/api/saga/status")
+def get_saga_status(transaction_id: Optional[str] = None):
+    """Return status of active SAGA transactions and compensation records."""
+    from kavach_agent_core.saga_engine import GLOBAL_SAGA_COORDINATOR
+    if transaction_id:
+        tx = GLOBAL_SAGA_COORDINATOR.active_transactions.get(transaction_id)
+        if not tx:
+            hist = [t for t in GLOBAL_SAGA_COORDINATOR.transaction_history if t.transaction_id == transaction_id]
+            tx = hist[0] if hist else None
+        if not tx:
+            raise HTTPException(status_code=404, detail=f"Transaction '{transaction_id}' not found")
+        return tx.dict()
+
+    return {
+        "status": "ACTIVE",
+        "total_transactions_managed": GLOBAL_SAGA_COORDINATOR.total_transactions_managed,
+        "total_commits": GLOBAL_SAGA_COORDINATOR.total_commits_executed,
+        "total_rollbacks": GLOBAL_SAGA_COORDINATOR.total_rollbacks_executed,
+        "active_transactions_count": len(GLOBAL_SAGA_COORDINATOR.active_transactions),
+        "recent_history": [t.dict() for t in GLOBAL_SAGA_COORDINATOR.transaction_history[-5:]],
+        "mathematical_invariant": {
+            "formula": r"\mathcal{S} = (T_1, \dots, T_n; C_n, \dots, C_1), \quad T_k = \text{Fail} \implies \prod_{i=k-1}^{1} C_i",
+            "principle": "Garcia-Molina & Salem (1987) SAGA Distributed Compensation",
+        },
+    }
+
+
+@app.post("/api/saga/rollback")
+def execute_saga_rollback(req: SagaRollbackRequest):
+    """Execute reverse compensating transactions C_{k-1} ... C_1 to restore files."""
+    from kavach_agent_core.saga_engine import GLOBAL_SAGA_COORDINATOR
+    try:
+        tx = GLOBAL_SAGA_COORDINATOR.rollback(req.transaction_id, reason=req.reason or "Manual or Critic rejection")
+        return tx.dict()
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/saga/simulate")
+def simulate_saga_rollback():
+    """
+    Simulate deliberate workspace modification flaw -> VerifierCritic rejection ->
+    Autonomous SAGA reverse compensation sequence -> Bit-for-bit SHA-256 pre-state restoration.
+    """
+    from kavach_agent_core.saga_engine import GLOBAL_SAGA_COORDINATOR
+    return GLOBAL_SAGA_COORDINATOR.simulate_saga_failure_and_rollback()
+
+
 @app.get("/api/swarm/stream")
 def stream_swarm_execution(goal: str = Query(..., description="User goal or task for the agent swarm")):
     """

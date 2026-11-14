@@ -24,16 +24,16 @@ def test_server_status_endpoint(client):
     assert resp.status_code == 200
     data = resp.json()
     assert data["status"] == "ONLINE"
-    assert data["tools_count"] == 13
+    assert data["tools_count"] == 15
     assert data["agents_count"] == 5
 
 
 def test_server_tools_endpoint(client):
-    """Verify /api/tools endpoint returns all 13 MCP schemas."""
+    """Verify /api/tools endpoint returns all 15 MCP schemas."""
     resp = client.get("/api/tools")
     assert resp.status_code == 200
     data = resp.json()
-    assert len(data["tools"]) == 13
+    assert len(data["tools"]) == 15
 
 
 def test_server_swarm_execute_api(client):
@@ -114,4 +114,24 @@ def test_server_ast_and_supply_chain_endpoints(client):
     assert data_sc["success"] is True
     assert data_sc["is_safe"] is False
     assert data_sc["slopsquatting_anomalies_count"] == 1
+
+
+def test_server_saga_endpoints(client):
+    """Verify /api/saga/status and /api/saga/simulate endpoints."""
+    # Status
+    resp_status = client.get("/api/saga/status")
+    assert resp_status.status_code == 200
+    data_status = resp_status.json()
+    assert data_status["status"] == "ACTIVE"
+    assert "mathematical_invariant" in data_status
+
+    # Simulate
+    resp_sim = client.post("/api/saga/simulate")
+    assert resp_sim.status_code == 200
+    data_sim = resp_sim.json()
+    assert data_sim["success"] is True
+    assert data_sim["state"] == "ROLLED_BACK"
+    assert data_sim["is_clean_restored"] is True
+    assert data_sim["mathematical_invariant"]["satisfied"] is True
+
 

@@ -564,6 +564,50 @@ def tool_supply_chain_audit(requirements_or_code: str) -> Dict[str, Any]:
     }
 
 
+def tool_saga_rollback(transaction_id: str, reason: str = "Invariant violation or test failure") -> Dict[str, Any]:
+    """
+    Execute reverse compensating transactions C_{k-1} ... C_1 in SAGA protocol
+    to restore workspace files to pre-transaction SHA-256 state without corruption.
+    """
+    from kavach_agent_core.saga_engine import GLOBAL_SAGA_COORDINATOR
+    try:
+        tx = GLOBAL_SAGA_COORDINATOR.rollback(transaction_id, reason=reason)
+        return {
+            "success": True,
+            "transaction_id": tx.transaction_id,
+            "state": tx.state,
+            "rollback_reason": tx.rollback_reason,
+            "compensations_executed": len(tx.compensation_log),
+            "compensation_log": tx.compensation_log,
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+def tool_saga_status(transaction_id: Optional[str] = None) -> Dict[str, Any]:
+    """
+    Query active SAGA transaction status or list recent transaction compensation logs.
+    """
+    from kavach_agent_core.saga_engine import GLOBAL_SAGA_COORDINATOR
+    if transaction_id:
+        tx = GLOBAL_SAGA_COORDINATOR.active_transactions.get(transaction_id)
+        if not tx:
+            hist = [t for t in GLOBAL_SAGA_COORDINATOR.transaction_history if t.transaction_id == transaction_id]
+            tx = hist[0] if hist else None
+        if not tx:
+            return {"success": False, "error": f"Transaction '{transaction_id}' not found."}
+        return {"success": True, "transaction": tx.dict()}
+
+    return {
+        "success": True,
+        "total_managed": GLOBAL_SAGA_COORDINATOR.total_transactions_managed,
+        "total_commits": GLOBAL_SAGA_COORDINATOR.total_commits_executed,
+        "total_rollbacks": GLOBAL_SAGA_COORDINATOR.total_rollbacks_executed,
+        "active_transactions_count": len(GLOBAL_SAGA_COORDINATOR.active_transactions),
+        "recent_history": [t.dict() for t in GLOBAL_SAGA_COORDINATOR.transaction_history[-5:]],
+    }
+
+
 # =========================================================================
 # MCP TOOL REGISTRY & SCHEMAS
 # =========================================================================
@@ -582,6 +626,8 @@ TOOL_REGISTRY = {
     "tool_ast_security_scan": tool_ast_security_scan,
     "tool_ast_taint_graph_scan": tool_ast_taint_graph_scan,
     "tool_supply_chain_audit": tool_supply_chain_audit,
+    "tool_saga_rollback": tool_saga_rollback,
+    "tool_saga_status": tool_saga_status,
 }
 
 MCP_TOOL_SCHEMAS = [
@@ -733,6 +779,28 @@ MCP_TOOL_SCHEMAS = [
                 "requirements_or_code": {"type": "string", "description": "requirements.txt content or Python source code containing import statements"},
             },
             "required": ["requirements_or_code"],
+        },
+    },
+    {
+        "name": "tool_saga_rollback",
+        "description": "Execute reverse compensating transactions C_{k-1} ... C_1 in SAGA protocol to restore workspace files without corruption.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "transaction_id": {"type": "string", "description": "Saga transaction ID to rollback"},
+                "reason": {"type": "string", "description": "Failure reason triggering rollback"},
+            },
+            "required": ["transaction_id"],
+        },
+    },
+    {
+        "name": "tool_saga_status",
+        "description": "Query active SAGA distributed transaction status or list recent compensation logs.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "transaction_id": {"type": "string", "description": "Optional transaction ID to query specific state"},
+            },
         },
     },
 ]

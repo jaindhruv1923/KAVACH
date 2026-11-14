@@ -1476,7 +1476,7 @@
             </div>
             <div class="badge">
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                <span>13 MCP Tools</span>
+                <span>15 MCP Tools</span>
             </div>
         </div>
     </header>
@@ -1899,6 +1899,10 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                         AST Taint Reachability &amp; Slopsquat Audit
                     </button>
+                    <button class="quick-pill" style="border-color: rgba(16, 185, 129, 0.5); color: #6ee7b7;" onclick="loadScenario('saga-rollback')">
+                        <svg class="k-icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                        SAGA Distributed Rollback &amp; Escrow
+                    </button>
                 </div>
 
                 <!-- Goal Input & Action Bar -->
@@ -2078,6 +2082,97 @@
                 <!-- KaTeX Mathematical Invariant Bound Box -->
                 <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(56, 189, 248, 0.25);">
                     $$\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E}), \quad \forall v \in \text{Sinks}(\text{eval}, \text{exec}, \text{os.system}, \text{subprocess}, \text{pickle}): \text{Taint}(v) \implies \text{Quarantine}, \quad d_{DL}(a, b) \le 2 \implies \text{CWE-1395}$$
+                </div>
+            </section>
+
+            <!-- Autonomous SAGA Distributed Transaction Rollback & Escrow Protocol (Stage 4) -->
+            <section class="console-section" id="sagaPanel" style="border: 1px solid rgba(16, 185, 129, 0.35); background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+                <div class="ps-studio-header">
+                    <div class="ps-studio-title" style="color: var(--accent-green);">
+                        <svg class="k-icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                        Autonomous SAGA Distributed Transaction Rollback &amp; Escrow Protocol (Garcia-Molina &amp; Salem 1987)
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span class="ps-card-badge" id="sagaBadge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.35);">
+                            Escrow: \(\mathcal{S} = (T_1 \dots T_n; C_n \dots C_1)\)
+                        </span>
+                        <button class="quick-pill" onclick="simulateSagaLive()" style="background: rgba(16, 185, 129, 0.2); color: #fff; border-color: var(--accent-green);">
+                            <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            Simulate SAGA Rollback Live
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4-Quadrant SAGA Transaction Grid -->
+                <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
+                    <div class="crisis-card" id="sagaCardForward" style="border-color: rgba(56, 189, 248, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-blue);">
+                            <span class="stage-num-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">1. Forward Edits</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaForwardStatus">\(T_1 \dots T_n\)</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Speculative Code Edits</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaForwardDesc">
+                                DevOpsCoder stages file modifications inside an atomic SAGA transaction envelope with SHA-256 pre-state hashes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="sagaCardRejection" style="border-color: rgba(239, 68, 68, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-red);">
+                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">2. Invariant Breach</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaRejectionStatus">\(T_k = \text{Fail}\)</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Critic Interception</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaRejectionDesc">
+                                VerifierCritic detects an AST taint sink or unit test assertion failure, rejecting permanent commit.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="sagaCardCompensation" style="border-color: rgba(245, 158, 11, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-amber);">
+                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.4);">3. Compensation</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaCompStatus">\(\prod_{i=k-1}^{1} C_i\)</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Reverse Rollback</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaCompDesc">
+                                SAGA coordinator executes compensating actions in strict reverse order to roll back speculative file mutations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="sagaCardStateClean" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-green);">
+                            <span class="stage-num-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);">4. Clean State</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaStateStatus">100% Restored</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Bit-for-Bit Integrity</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaStateDesc">
+                                Post-rollback SHA-256 hash matches pre-transaction hash exactly. Zero corrupted or dangling dirty files remain.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive SAGA Live Output Box -->
+                <div id="sagaLiveResultsContainer" style="display:none; margin-top:12px; background:#030611; border:1px solid rgba(16, 185, 129, 0.25); border-radius:8px; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-size:12px; font-weight:700; color:var(--accent-green); display:flex; align-items:center; gap:6px;">
+                            <svg class="k-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                            SAGA Distributed Compensation &amp; Escrow Ledger
+                        </span>
+                        <span id="sagaReportBadge" style="font-size:11px; font-family:'Fira Code', monospace; padding:2px 8px; border-radius:4px;"></span>
+                    </div>
+                    <div id="sagaReportDetails" style="font-size:12px; color:#cbd5e1; font-family:'Fira Code', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.4); padding:8px; border-radius:4px;"></div>
+                </div>
+
+                <!-- KaTeX Mathematical Invariant Bound Box -->
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(16, 185, 129, 0.25);">
+                    $$\mathcal{S} = (T_1, \dots, T_n; C_n, \dots, C_1), \quad T_k = \text{Fail} \implies \prod_{i=k-1}^{1} C_i \implies \text{Hash}(f_{\text{restored}}) \equiv \text{Hash}(f_{\text{initial}})$$
                 </div>
             </section>
 
@@ -2588,7 +2683,7 @@
                         </tr>
                         <tr>
                             <td style="font-weight:700; color:var(--accent-amber);">Actuators</td>
-                            <td>13 MCP Tools: <code>tool_dpdp_tokenize</code>, <code>tool_validate_aadhaar_verhoeff</code>, <code>tool_ast_taint_graph_scan</code>, <code>tool_supply_chain_audit</code>, <code>tool_run_pytest</code>, <code>tool_edit_file</code>.</td>
+                            <td>15 MCP Tools: <code>tool_dpdp_tokenize</code>, <code>tool_validate_aadhaar_verhoeff</code>, <code>tool_ast_taint_graph_scan</code>, <code>tool_supply_chain_audit</code>, <code>tool_saga_rollback</code>, <code>tool_saga_status</code>, <code>tool_run_pytest</code>, <code>tool_edit_file</code>.</td>
                         </tr>
                         <tr>
                             <td style="font-weight:700; color:var(--accent-green);">Sensors</td>
@@ -3094,7 +3189,7 @@
             3: {
                 title: "Topic 3: Tool Use & Model Context Protocol (MCP) Standard",
                 desc: "Standardizes tool schemas with JSON Schema validation and least-privilege sandboxing. Downstream agents interact with the operating system exclusively through audited MCP tool calls.",
-                module: "kavach_agent_core/tools.py • 13 Registered MCP Tools"
+                module: "kavach_agent_core/tools.py • 15 Registered MCP Tools"
             },
             4: {
                 title: "Topic 4: Multi-Agent Swarm Blackboard • Distributed Problem Solving",
@@ -3110,6 +3205,11 @@
                 title: "Topic 6: Statutory Privacy & Dihedral Group D5 Verhoeff Permutations",
                 desc: "Implements J. Verhoeff's (1969) non-abelian dihedral group D5 check digit algorithm to detect 100% of single-digit and adjacent transposition errors, coupled with SHA-256 pseudonymization under DPDP Act 2023.",
                 module: "kavach_agent_core/tools.py • tool_validate_aadhaar_verhoeff & tool_dpdp_tokenize"
+            },
+            7: {
+                title: "Topic 7: SAGA Distributed Transactions & Rollback Escrow (Stage 4)",
+                desc: "Implements Garcia-Molina & Salem (1987) SAGA pattern. Speculative multi-agent modifications register compensating reverse transactions C_i. When VerifierCritic rejects an invariant, KAVACH executes C_{k-1}...C_1 restoring pre-state SHA-256 files bit-for-bit with zero corruption.",
+                module: "kavach_agent_core/saga_engine.py • SAGA Distributed Transaction Coordinator"
             }
         };
 
@@ -3217,6 +3317,9 @@
             } else if (scenarioKey === 'ast-taint-slopsquat') {
                 selectProblemStatement('PS-3');
                 document.getElementById('goalInput').value = 'Traverse AST Taint DAG G_AST=(V,E) for dangerous sinks (eval, exec, os.system) and audit supply chain for Damerau-Levenshtein slopsquatting (CWE-1395).';
+            } else if (scenarioKey === 'saga-rollback') {
+                selectProblemStatement('PS-4');
+                document.getElementById('goalInput').value = 'Autonomous SAGA Transaction: Stage speculative code edits in escrow, simulate invariant breach, and execute reverse compensating rollback.';
             } else if (scenarioKey === 'pytest-verify') {
                 selectProblemStatement('PS-4');
                 document.getElementById('goalInput').value = 'Execute pytest test verification suite on kavach_agent_core and confirm all invariants pass.';
@@ -3229,6 +3332,55 @@
         function simulateReflexionLive() {
             loadScenario('reflexion-repair');
             launchSwarm();
+        }
+
+        async function simulateSagaLive() {
+            const container = document.getElementById('sagaLiveResultsContainer');
+            const details = document.getElementById('sagaReportDetails');
+            const badge = document.getElementById('sagaReportBadge');
+            container.style.display = 'block';
+            details.innerText = "Initiating SAGA distributed transaction envelope, staging speculative file mutations, and preparing reverse compensating sequence...";
+            badge.style.background = 'rgba(16, 185, 129, 0.2)';
+            badge.style.color = 'var(--accent-green)';
+            badge.innerText = 'TRANSACTION IN PROGRESS';
+
+            try {
+                const res = await fetch('/api/saga/simulate', { method: 'POST' });
+                const data = await res.json();
+                if (data.success) {
+                    badge.style.background = data.is_clean_restored ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+                    badge.style.color = data.is_clean_restored ? 'var(--accent-green)' : 'var(--accent-red)';
+                    badge.innerText = data.is_clean_restored ? 'SAGA REVERSE ROLLBACK SUCCESSFUL' : 'ROLLBACK FAILED';
+
+                    document.getElementById('sagaForwardStatus').innerText = `${data.forward_steps_count} forward step(s)`;
+                    document.getElementById('sagaRejectionStatus').innerText = 'Critique Intercept';
+                    document.getElementById('sagaCompStatus').innerText = `${data.compensations_executed_count} reverse compensations`;
+                    document.getElementById('sagaStateStatus').innerText = data.is_clean_restored ? '100% Bit-for-Bit Clean' : 'Hash Mismatch';
+
+                    let report = `=== SAGA DISTRIBUTED TRANSACTION COMPENSATION LEDGER ===\n`;
+                    report += `• Transaction ID: ${data.transaction_id} | Final State: ${data.state}\n`;
+                    report += `• Rollback Trigger: ${data.rollback_reason}\n`;
+                    report += `• Pre-State SHA-256:  ${data.initial_sha256}\n`;
+                    report += `• Speculative SHA-256: ${data.dirty_sha256}\n`;
+                    report += `• Restored SHA-256:   ${data.final_sha256}\n`;
+                    report += `• Bit-for-Bit Hash Identity: ${data.is_clean_restored ? 'MATCH CONFIRMED (0% CORRUPTION)' : 'MISMATCH'}\n\n`;
+
+                    report += `=== FORWARD TRANSACTION STEPS (T_1 ... T_n) ===\n`;
+                    data.steps.forEach((s, idx) => {
+                        report += `[T_${idx+1}] ${s.name} (${s.action_type}) on '${s.target_path}' -> Status: ${s.status}\n`;
+                    });
+
+                    report += `\n=== REVERSE COMPENSATING SEQUENCE (C_n ... C_1) ===\n`;
+                    data.compensation_log.forEach((c, idx) => {
+                        report += `[C_${idx+1}] Compensated Step #${c.step_number} on '${c.target_path}' via ${c.compensation_type} -> Result: ${c.status}\n`;
+                    });
+
+                    report += `\n• Formal Mathematical Invariant: S = (T_1...T_n; C_n...C_1) satisfied = ${data.mathematical_invariant.satisfied}`;
+                    details.innerText = report;
+                }
+            } catch (err) {
+                details.innerText = "Error executing SAGA simulation: " + err.message;
+            }
         }
 
         async function runAstAuditLive() {
