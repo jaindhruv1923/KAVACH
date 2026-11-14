@@ -147,3 +147,37 @@ def test_universal_execute_tool_dispatcher():
     res_arg_err = execute_tool("tool_read_file", {})
     assert res_arg_err["success"] is False
 
+
+def test_ast_taint_graph_and_supply_chain_tools():
+    """Verify AST Taint Reachability DAG scan and Damerau-Levenshtein slopsquatting check."""
+    # 1. AST Taint Scan on vulnerable sink reachability
+    code_with_taint = """
+import colorma
+def handle_request(user_input):
+    sanitized = user_input
+    eval(sanitized)
+    os.system("echo " + user_input)
+"""
+    res_taint = execute_tool("tool_ast_taint_graph_scan", {"content_or_file_path": code_with_taint})
+    assert res_taint["success"] is True
+    assert res_taint["is_safe"] is False
+    assert res_taint["sinks_found_count"] >= 2
+    assert res_taint["slopsquats_found_count"] >= 1
+    assert "colorma" in [s["candidate_package"] for s in res_taint["slopsquatting_findings"]]
+
+    # 2. Supply Chain Audit on requirements with typosquatting
+    reqs_text = """
+fastapi==0.110.0
+numpy>=1.24.0
+reqeusts==2.31.0
+colorma>=0.4.6
+"""
+    res_sc = execute_tool("tool_supply_chain_audit", {"requirements_or_code": reqs_text})
+    assert res_sc["success"] is True
+    assert res_sc["is_safe"] is False
+    assert res_sc["slopsquatting_anomalies_count"] == 2
+    spoofed = {f["spoofed_target"] for f in res_sc["findings"]}
+    assert "requests" in spoofed
+    assert "colorama" in spoofed
+
+

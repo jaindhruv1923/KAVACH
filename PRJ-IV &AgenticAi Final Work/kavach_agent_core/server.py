@@ -10,8 +10,8 @@ import json
 import time
 import queue
 import threading
-from typing import Dict, Any, Generator
-from fastapi import FastAPI, Request, Query
+from typing import Dict, Any, Generator, Optional
+from fastapi import FastAPI, Request, Query, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -98,12 +98,12 @@ MATH_PILLARS = [
     },
     {
         "id": "pillar-4",
-        "title": "AST Taint Traversal & Blast-Radius Acyclic DAG",
-        "domain": "Static Syntax Analysis & Code Synthesis Security",
-        "formula": r"\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E}), \quad \forall v \in \text{Sinks}(\text{eval}, \text{exec}, \text{os.system}): \text{Taint}(v) \implies \text{Halt}",
-        "description": "Constructs abstract syntax trees to model data flow from untrusted inputs to dangerous sink nodes. Analyzes call graphs and halts dangerous dynamic evaluation before code execution.",
-        "invariant": "Zero unhandled dynamic evaluation (eval, exec, os.system) in autonomous generated code.",
-        "parameters": {"forbidden_nodes": ["eval", "exec", "os.system", "subprocess.shell"]}
+        "title": "AST Taint Traversal & Supply-Chain Slopsquatting DAG",
+        "domain": "Unit 6 Software Verification & Supply-Chain Defense",
+        "formula": r"\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E}), \quad \forall v \in \text{Sinks}: \text{Taint}(v) \implies \text{Quarantine}, \quad d_{DL}(a, b) \le 2 \implies \text{CWE-1395}",
+        "description": "Constructs abstract syntax trees to trace data-flow reachability from untrusted inputs to critical sinks (eval, exec, os.system, subprocess, pickle). Evaluates dependency packages against verified PyPI ecosystems using Damerau-Levenshtein metric space to flag hallucinated/typosquatted supply-chain packages.",
+        "invariant": "Zero exploit reachability to dangerous sinks and zero unverified hallucinated packages.",
+        "parameters": {"forbidden_sinks": ["eval", "exec", "os.system", "subprocess.shell", "pickle.loads"], "metric": "Damerau-Levenshtein d_DL <= 2"}
     },
     {
         "id": "pillar-5",
@@ -279,6 +279,57 @@ def simulate_reflexion_loop():
     goal = "Self-Correction & Reflexion: Trigger code flaw and execute automated repair loop."
     res = swarm_engine.execute_swarm(goal=goal)
     return res.dict()
+
+
+# =========================================================================
+# AST TAINT REACHABILITY & SUPPLY-CHAIN AUDIT (STAGE 3 CAPSTONE)
+# =========================================================================
+
+class ASTScanRequest(BaseModel):
+    code: Optional[str] = None
+    file_path: Optional[str] = None
+
+
+class SupplyChainAuditRequest(BaseModel):
+    requirements: str
+
+
+@app.get("/api/ast/rules")
+def get_ast_rules():
+    """Return configured AST taint sinks and verified PyPI registry."""
+    from kavach_agent_core.ast_analyzer import VERIFIED_PYPI_REGISTRY
+    return {
+        "status": "ACTIVE",
+        "forbidden_sinks": [
+            {"sink": "eval()", "cwe": "CWE-94 Arbitrary Code Execution", "severity": "CRITICAL"},
+            {"sink": "exec()", "cwe": "CWE-94 Arbitrary Code Execution", "severity": "CRITICAL"},
+            {"sink": "os.system()", "cwe": "CWE-78 Shell Command Injection", "severity": "CRITICAL"},
+            {"sink": "subprocess(shell=True)", "cwe": "CWE-78 Subprocess Shell Injection", "severity": "HIGH"},
+            {"sink": "pickle.loads()", "cwe": "CWE-502 Insecure Deserialization", "severity": "CRITICAL"},
+        ],
+        "verified_ecosystem_packages": sorted(list(VERIFIED_PYPI_REGISTRY)),
+        "distance_metric": "Damerau-Levenshtein Metric Space (Threshold d_DL <= 2)",
+    }
+
+
+@app.post("/api/ast/scan")
+def run_ast_scan(req: ASTScanRequest):
+    """
+    Execute AST Semantic Taint Reachability Scan & Slopsquatting Detection.
+    Constructs G_AST = (V, E) DAG and flags CWE-94, CWE-78, CWE-502, CWE-1395.
+    """
+    from kavach_agent_core.tools import tool_ast_taint_graph_scan
+    target = req.code if req.code else (req.file_path if req.file_path else "")
+    if not target:
+        raise HTTPException(status_code=400, detail="Must provide 'code' or 'file_path'")
+    return tool_ast_taint_graph_scan(target)
+
+
+@app.post("/api/supply-chain/audit")
+def run_supply_chain_audit(req: SupplyChainAuditRequest):
+    """Audit requirements against PyPI registry via Damerau-Levenshtein distance."""
+    from kavach_agent_core.tools import tool_supply_chain_audit
+    return tool_supply_chain_audit(req.requirements)
 
 
 @app.get("/api/swarm/stream")

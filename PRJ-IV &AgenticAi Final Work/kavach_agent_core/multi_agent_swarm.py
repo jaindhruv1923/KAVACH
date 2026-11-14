@@ -148,7 +148,15 @@ AGENT_ROSTER: Dict[str, AgentPersona] = {
         role="Static Code Analyzer & Statutory DPDP Auditor",
         goal="Identify insecure coding practices, AST vulnerabilities, and Indian DPDP 2023 compliance leaks.",
         backstory="Senior security auditor certified in AST tree analysis, Verhoeff D5 mathematics, and DPDP pseudonymization.",
-        allowed_tools=["tool_ast_security_scan", "tool_validate_aadhaar_verhoeff", "tool_dpdp_tokenize", "tool_entropy_secret_audit", "tool_read_file"],
+        allowed_tools=[
+            "tool_ast_security_scan",
+            "tool_ast_taint_graph_scan",
+            "tool_supply_chain_audit",
+            "tool_validate_aadhaar_verhoeff",
+            "tool_dpdp_tokenize",
+            "tool_entropy_secret_audit",
+            "tool_read_file"
+        ],
     ),
     "DevOpsCoder": AgentPersona(
         name="DevOps & Software Engineer",
@@ -319,7 +327,8 @@ class KavachMultiAgentSwarm:
 
         is_ast_task = any(w in goal_lower for w in [
             "ast", "eval", "os.system", "exec", "injection", "vulnerability", "cwe",
-            "secret", "entropy", "shannon", "key", "password", "audit", "security"
+            "secret", "entropy", "shannon", "key", "password", "audit", "security",
+            "taint", "slopsquat", "supply chain", "damerau", "levenshtein", "reachability", "lattice"
         ]) and not is_pii_identity_task
 
         is_test_task = any(w in goal_lower for w in ["pytest", "test suite", "run tests", "unit test", "regression", "assert"])
@@ -377,14 +386,6 @@ class KavachMultiAgentSwarm:
                     "VerifierCritic",
                     "Certify AST safety invariants: zero unhandled high-risk nodes and zero exposed credentials"
                 ))
-        elif is_self_correction_task:
-            verdict = "REFLEXION_SELF_CORRECTED"
-            verdict_title = "🔄 ADAPTIVE REFLEXION LOOP CONVERGED: SELF-CORRECTED WITH ZERO REGRESSIONS"
-            target_asset = "DevOps & Security Microservice Codebase"
-            threat_mandate = "Automated Recovery & Invariant Convergence (Shinn et al. NeurIPS 2023)"
-            math_concept = "Verbal Reinforcement Learning & Monotonic Loss Reduction"
-            math_formula = r"M_{t+1} = M_t \cup \{\text{Diagnose}(a_t, o_t)\}, \quad \mathcal{L}(a_{t+1}) < \mathcal{L}(a_t)"
-            math_explanation = "Agent encountered an invariant failure during trial execution. Autonomous Reflexion engine diagnosed root cause, formulated counterfactual repair heuristic, and iteratively patched workspace files until empirical loss reached zero."
         elif is_code_repair_task:
             tasks_to_execute.append((
                 "DevOpsCoder",
@@ -479,12 +480,12 @@ class KavachMultiAgentSwarm:
             math_explanation = "Candidate identity numbers evaluated using non-commutative Dihedral Group D5 permutation tables. Sensitive PII tokenized into non-reversible DPDP Vault tokens, guaranteeing zero plaintext egress across external boundaries."
         elif is_ast_task:
             verdict = "AST_SECURITY_VERIFIED"
-            verdict_title = "🔍 AST SYNTAX TREE VULNERABILITY SCAN CERTIFIED CLEAN"
-            target_asset = "KAVACH Agent Core & Repository Microservices"
-            threat_mandate = "CWE-94 Code Injection & CWE-798 Hardcoded Secrets"
-            math_concept = "AST NodeVisitor Traversal & Shannon Information Entropy"
-            math_formula = r"H(X) = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i), \quad \mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E})"
-            math_explanation = "Source code syntax tree parsed via Python AST NodeVisitor. High-risk invocations (eval, exec, os.system) and high-entropy secret tokens (H >= 3.8) isolated."
+            verdict_title = "🔍 AST TAINT REACHABILITY & SUPPLY-CHAIN SLOP-SQUATTING AUDIT PASSED"
+            target_asset = "KAVACH Agent Core & Microservice Codebase"
+            threat_mandate = "CWE-94 Dynamic Code Injection, CWE-78 Shell Injection & CWE-1395 Dependency Slopsquatting"
+            math_concept = "AST Data-Flow Taint Reachability DAG & Damerau-Levenshtein Metric Space"
+            math_formula = r"\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E}), \quad \forall v \in \text{Sinks}: \text{Taint}(v) \implies \text{Quarantine}, \quad d_{DL}(a, b) \le 2"
+            math_explanation = "Source code abstract syntax tree parsed into an explicit data-flow reachability DAG. Tainted sources are isolated from critical sinks (eval, exec, os.system, subprocess). Dependency manifests audited via Damerau-Levenshtein metric space to flag hallucinated slopsquatted packages."
         elif is_code_repair_task:
             verdict = "CODE_PATCHED_VERIFIED"
             verdict_title = "💻 AUTONOMOUS BUG PATCH APPLIED & VERIFIED VIA PYTEST"

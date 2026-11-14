@@ -24,16 +24,16 @@ def test_server_status_endpoint(client):
     assert resp.status_code == 200
     data = resp.json()
     assert data["status"] == "ONLINE"
-    assert data["tools_count"] == 11
+    assert data["tools_count"] == 13
     assert data["agents_count"] == 5
 
 
 def test_server_tools_endpoint(client):
-    """Verify /api/tools endpoint returns all 11 MCP schemas."""
+    """Verify /api/tools endpoint returns all 13 MCP schemas."""
     resp = client.get("/api/tools")
     assert resp.status_code == 200
     data = resp.json()
-    assert len(data["tools"]) == 11
+    assert len(data["tools"]) == 13
 
 
 def test_server_swarm_execute_api(client):
@@ -85,3 +85,33 @@ def test_server_reflexion_endpoints(client):
     assert sim_data["status"] == "COMPLETE"
     assert sim_data["verdict"] == "REFLEXION_SELF_CORRECTED"
     assert "reflexion_audit" in sim_data["audit_dossier"]
+
+
+def test_server_ast_and_supply_chain_endpoints(client):
+    """Verify /api/ast/rules, /api/ast/scan, and /api/supply-chain/audit endpoints."""
+    # 1. Rules endpoint
+    resp_rules = client.get("/api/ast/rules")
+    assert resp_rules.status_code == 200
+    data_rules = resp_rules.json()
+    assert data_rules["status"] == "ACTIVE"
+    assert len(data_rules["forbidden_sinks"]) == 5
+    assert "requests" in data_rules["verified_ecosystem_packages"]
+
+    # 2. AST scan endpoint with vulnerable payload
+    vulnerable_code = "import colorma\ndef run_job(user_input):\n    eval(user_input)\n"
+    resp_scan = client.post("/api/ast/scan", json={"code": vulnerable_code})
+    assert resp_scan.status_code == 200
+    data_scan = resp_scan.json()
+    assert data_scan["success"] is True
+    assert data_scan["is_safe"] is False
+    assert data_scan["sinks_found_count"] >= 1
+    assert data_scan["slopsquats_found_count"] >= 1
+
+    # 3. Supply chain audit endpoint with typosquatted dependency
+    resp_sc = client.post("/api/supply-chain/audit", json={"requirements": "reqeusts>=2.31.0\nnumpy==1.24.0"})
+    assert resp_sc.status_code == 200
+    data_sc = resp_sc.json()
+    assert data_sc["success"] is True
+    assert data_sc["is_safe"] is False
+    assert data_sc["slopsquatting_anomalies_count"] == 1
+

@@ -1476,7 +1476,7 @@
             </div>
             <div class="badge">
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                <span>11 MCP Tools</span>
+                <span>13 MCP Tools</span>
             </div>
         </div>
     </header>
@@ -1821,14 +1821,14 @@
 
                         <div class="ps-card" id="card-ps-3" onclick="selectProblemStatement('PS-3')">
                             <div class="ps-card-top">
-                                <span class="ps-card-badge badge-ps3">PS-3 &bull; Static Analysis</span>
-                                <svg class="k-icon" viewBox="0 0 24 24" style="color:var(--accent-amber);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <span class="ps-card-badge badge-ps3">PS-3 &bull; AST &amp; Supply Chain</span>
+                                <svg class="k-icon" viewBox="0 0 24 24" style="color:var(--accent-amber);"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                             </div>
-                            <div class="ps-card-title">Static AST Vulnerability &amp; Secret Entropy Scan</div>
-                            <div class="ps-card-desc">Inspect code via AST NodeVisitors for forbidden eval(), os.system() and detect hardcoded secrets via Shannon Entropy \(H(X) \ge 3.8\).</div>
+                            <div class="ps-card-title">AST Taint Graph &amp; Supply-Chain Slopsquatting</div>
+                            <div class="ps-card-desc">Traverse \(\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E})\) data-flow taint to trap eval/exec/os.system sinks and audit dependencies via Damerau-Levenshtein \(d_{DL} \le 2\).</div>
                             <div class="ps-card-meta">
-                                <span>Target: Codebase AST</span>
-                                <span style="color:var(--accent-amber);">Zero Injections</span>
+                                <span>Target: Codebase &amp; PyPI</span>
+                                <span style="color:var(--accent-amber);">Zero Exploit Sinks</span>
                             </div>
                         </div>
 
@@ -1894,6 +1894,10 @@
                     <button class="quick-pill" style="border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe;" onclick="loadScenario('reflexion-repair')">
                         <svg class="k-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                         Reflexion Self-Correction &amp; Auto-Repair
+                    </button>
+                    <button class="quick-pill" style="border-color: rgba(56, 189, 248, 0.5); color: #7dd3fc;" onclick="loadScenario('ast-taint-slopsquat')">
+                        <svg class="k-icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        AST Taint Reachability &amp; Slopsquat Audit
                     </button>
                 </div>
 
@@ -1983,6 +1987,97 @@
                 <!-- KaTeX Mathematical Invariant Bound Box -->
                 <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(168, 85, 247, 0.25);">
                     $$M_{t+1} = M_t \cup \{ \text{Diagnose}(a_t, o_t) \}, \quad a_{t+1} \sim \pi(a \mid s_t, M_{t+1}) \implies \mathcal{L}(a_{t+1}) < \mathcal{L}(a_t) \quad (\text{Bounded Budget } K \le 3)$$
+                </div>
+            </section>
+
+            <!-- AST Semantic Vulnerability & Supply-Chain Slopsquatting Graph Traversal (Stage 3) -->
+            <section class="console-section" id="astTaintPanel" style="border: 1px solid rgba(56, 189, 248, 0.35); background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+                <div class="ps-studio-header">
+                    <div class="ps-studio-title" style="color: var(--accent-cyan);">
+                        <svg class="k-icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        AST Taint Reachability Graph &amp; Supply-Chain Slopsquatting Traversal (Stage 3)
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span class="ps-card-badge" id="astLatticeBadge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.35);">
+                            Lattice: \(\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E})\)
+                        </span>
+                        <button class="quick-pill" onclick="runAstAuditLive()" style="background: rgba(56, 189, 248, 0.2); color: #fff; border-color: var(--accent-cyan);">
+                            <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            Run Live AST &amp; Slopsquat Audit
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4-Quadrant AST Analysis Grid -->
+                <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
+                    <div class="crisis-card" id="astCardSources" style="border-color: rgba(56, 189, 248, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-blue);">
+                            <span class="stage-num-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">1. Taint Sources</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountSources">\(v \in \mathcal{V}_{\text{src}}\)</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Ingress Data Inflow</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescSources">
+                                Tracks parameters like <code>user_input</code>, <code>query</code>, and direct <code>input()</code> calls as tainted root vertices.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="astCardPropagation" style="border-color: rgba(245, 158, 11, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-amber);">
+                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.4);">2. Inter-Procedural DAG</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountEdges">\(\mathcal{E}_{\text{taint}}\)</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Lattice Propagation</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescPropagation">
+                                Traverses variable assignments and argument passing in AST NodeVisitor to maintain taint reachability invariants.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="astCardSinks" style="border-color: rgba(239, 68, 68, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-red);">
+                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">3. Dangerous Sinks</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountSinks">Trapped</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Forbidden Invocations</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescSinks">
+                                Halts code execution at <code>eval()</code>, <code>exec()</code>, <code>os.system()</code>, <code>subprocess(shell=True)</code>, and <code>pickle.loads()</code>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="astCardSlopsquat" style="border-color: rgba(168, 85, 247, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-purple);">
+                            <span class="stage-num-badge" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.4);">4. Slopsquatting Check</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountSlopsquat">CWE-1395</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Damerau-Levenshtein Metric</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescSlopsquat">
+                                Audits dependency packages against verified PyPI registry. Distance \(1 \le d_{DL} \le 2\) flags hallucinated/rogue supply-chain packages.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive AST Live Output Box -->
+                <div id="astLiveResultsContainer" style="display:none; margin-top:12px; background:#030611; border:1px solid rgba(56, 189, 248, 0.25); border-radius:8px; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-size:12px; font-weight:700; color:var(--accent-cyan); display:flex; align-items:center; gap:6px;">
+                            <svg class="k-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                            AST &amp; Supply Chain Audit Execution Report
+                        </span>
+                        <span id="astReportBadge" style="font-size:11px; font-family:'Fira Code', monospace; padding:2px 8px; border-radius:4px;"></span>
+                    </div>
+                    <div id="astReportDetails" style="font-size:12px; color:#cbd5e1; font-family:'Fira Code', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.4); padding:8px; border-radius:4px;"></div>
+                </div>
+
+                <!-- KaTeX Mathematical Invariant Bound Box -->
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(56, 189, 248, 0.25);">
+                    $$\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E}), \quad \forall v \in \text{Sinks}(\text{eval}, \text{exec}, \text{os.system}, \text{subprocess}, \text{pickle}): \text{Taint}(v) \implies \text{Quarantine}, \quad d_{DL}(a, b) \le 2 \implies \text{CWE-1395}$$
                 </div>
             </section>
 
@@ -2493,7 +2588,7 @@
                         </tr>
                         <tr>
                             <td style="font-weight:700; color:var(--accent-amber);">Actuators</td>
-                            <td>11 MCP Tools: <code>tool_dpdp_tokenize</code>, <code>tool_validate_aadhaar_verhoeff</code>, <code>tool_scan_ast_vulnerabilities</code>, <code>tool_run_pytest</code>, <code>tool_edit_file</code>.</td>
+                            <td>13 MCP Tools: <code>tool_dpdp_tokenize</code>, <code>tool_validate_aadhaar_verhoeff</code>, <code>tool_ast_taint_graph_scan</code>, <code>tool_supply_chain_audit</code>, <code>tool_run_pytest</code>, <code>tool_edit_file</code>.</td>
                         </tr>
                         <tr>
                             <td style="font-weight:700; color:var(--accent-green);">Sensors</td>
@@ -2999,7 +3094,7 @@
             3: {
                 title: "Topic 3: Tool Use & Model Context Protocol (MCP) Standard",
                 desc: "Standardizes tool schemas with JSON Schema validation and least-privilege sandboxing. Downstream agents interact with the operating system exclusively through audited MCP tool calls.",
-                module: "kavach_agent_core/tools.py • 11 Registered MCP Tools"
+                module: "kavach_agent_core/tools.py • 13 Registered MCP Tools"
             },
             4: {
                 title: "Topic 4: Multi-Agent Swarm Blackboard • Distributed Problem Solving",
@@ -3007,9 +3102,9 @@
                 module: "kavach_agent_core/multi_agent_swarm.py • SwarmOrchestrator & Blackboard State"
             },
             5: {
-                title: "Topic 5: Static AST Analysis & Shannon Secret Entropy",
-                desc: "Analyzes Python Abstract Syntax Trees for dangerous dynamic evaluation sinks (eval, exec, os.system) and computes Shannon Entropy H(X) >= 3.8 to detect leaked secret keys without regex signature decay.",
-                module: "kavach_agent_core/tools.py • tool_scan_ast_vulnerabilities & tool_scan_secret_entropy"
+                title: "Topic 5: AST Taint Reachability & Supply-Chain Slopsquatting (Stage 3)",
+                desc: "Constructs explicit taint reachability DAGs G_AST = (V, E) tracing untrusted inputs to forbidden sinks (eval, exec, os.system, subprocess, pickle). Evaluates dependency manifests against verified PyPI ecosystems using Damerau-Levenshtein metric space (d_DL <= 2) to flag hallucinated slopsquatted packages.",
+                module: "kavach_agent_core/ast_analyzer.py • AST Taint Graph & Damerau-Levenshtein Metric"
             },
             6: {
                 title: "Topic 6: Statutory Privacy & Dihedral Group D5 Verhoeff Permutations",
@@ -3068,12 +3163,12 @@
             'PS-3': {
                 id: 'PS-3',
                 badgeClass: 'badge-ps3',
-                title: 'Static AST Syntax Vulnerability & Shannon Entropy Secrets Scan',
-                threat: 'Dangerous dynamic evaluation (eval, os.system) and hardcoded high-entropy cryptographic keys in banking backend',
-                target: 'KAVACH Core Codebase & Microservices',
-                invariant: 'Zero Forbidden AST Nodes & Zero Plain High-Entropy Keys (H >= 3.8)',
+                title: 'AST Taint Reachability & Supply-Chain Slopsquatting Traversal (Stage 3)',
+                threat: 'Inter-procedural data-flow taint reachability to eval/exec/os.system sinks and CWE-1395 dependency slopsquatting',
+                target: 'KAVACH Codebase & PyPI Supply-Chain Lattice',
+                invariant: 'Zero Exploit Sinks Trapped: AST Taint Reachability DAG & Damerau-Levenshtein Metric Space',
                 agents: 'DAG: Lead Orchestrator &rarr; SecurityAuditor &rarr; VerifierCritic',
-                defaultGoal: 'Scan workspace Python code via AST analysis to detect dangerous eval() and os.system() injection calls, and audit Shannon secret entropy.'
+                defaultGoal: 'Traverse AST Taint DAG G_AST=(V,E) for dangerous sinks (eval, exec, os.system) and audit supply chain for Damerau-Levenshtein slopsquatting (CWE-1395).'
             },
             'PS-4': {
                 id: 'PS-4',
@@ -3119,6 +3214,9 @@
             } else if (scenarioKey === 'ast-code-scan') {
                 selectProblemStatement('PS-3');
                 document.getElementById('goalInput').value = 'Scan workspace Python code via AST analysis to detect dangerous eval() and os.system() injection calls.';
+            } else if (scenarioKey === 'ast-taint-slopsquat') {
+                selectProblemStatement('PS-3');
+                document.getElementById('goalInput').value = 'Traverse AST Taint DAG G_AST=(V,E) for dangerous sinks (eval, exec, os.system) and audit supply chain for Damerau-Levenshtein slopsquatting (CWE-1395).';
             } else if (scenarioKey === 'pytest-verify') {
                 selectProblemStatement('PS-4');
                 document.getElementById('goalInput').value = 'Execute pytest test verification suite on kavach_agent_core and confirm all invariants pass.';
@@ -3131,6 +3229,54 @@
         function simulateReflexionLive() {
             loadScenario('reflexion-repair');
             launchSwarm();
+        }
+
+        async function runAstAuditLive() {
+            const container = document.getElementById('astLiveResultsContainer');
+            const details = document.getElementById('astReportDetails');
+            const badge = document.getElementById('astReportBadge');
+            container.style.display = 'block';
+            details.innerText = "Analyzing Python Abstract Syntax Tree, building Taint Reachability DAG G_AST = (V,E), and computing Damerau-Levenshtein metrics...";
+            badge.style.background = 'rgba(56, 189, 248, 0.2)';
+            badge.style.color = 'var(--accent-cyan)';
+            badge.innerText = 'AUDIT IN PROGRESS';
+
+            const sampleCode = `import colorma\nimport os\n\ndef execute_query(user_input):\n    # Ingress taint flow\n    q = user_input\n    eval(q)\n    os.system("echo " + q)\n`;
+            try {
+                const res = await fetch('/api/ast/scan', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ code: sampleCode })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    badge.style.background = data.is_safe ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+                    badge.style.color = data.is_safe ? 'var(--accent-green)' : 'var(--accent-red)';
+                    badge.innerText = data.is_safe ? 'AST INVARIANTS CERTIFIED' : `TRAPPED ${data.total_vulnerabilities_count} VIOLATIONS`;
+
+                    document.getElementById('astCountSources').innerText = `${data.tainted_symbols_tracked.length} tracked`;
+                    document.getElementById('astCountEdges').innerText = `${data.graph_lattice.edges_count} lattice edges`;
+                    document.getElementById('astCountSinks').innerText = `${data.sinks_found_count} sinks trapped`;
+                    document.getElementById('astCountSlopsquat').innerText = `${data.slopsquats_found_count} rogue pkgs`;
+
+                    let report = `=== AST DATA-FLOW TAINT REACHABILITY REPORT ===\n`;
+                    report += `• Status: ${data.is_safe ? 'SAFE' : 'QUARANTINE_HALT'}\n`;
+                    report += `• Lattice Nodes: ${data.graph_lattice.nodes_count} | Edges: ${data.graph_lattice.edges_count}\n`;
+                    report += `• Tainted Symbols Tracked: ${JSON.stringify(data.tainted_symbols_tracked)}\n\n`;
+                    report += `=== CRITICAL SINKS TRAPPED (${data.sinks.length}) ===\n`;
+                    data.sinks.forEach((s, idx) => {
+                        report += `[Sink #${idx+1}] Line ${s.line}: ${s.type} -> ${s.sink_function}\n   ${s.detail} (Remediation: ${s.remediation})\n`;
+                    });
+                    report += `\n=== SUPPLY-CHAIN SLOPSQUATTING ANOMALIES (${data.slopsquatting_findings.length}) ===\n`;
+                    data.slopsquatting_findings.forEach((sq, idx) => {
+                        report += `[Slopsquat #${idx+1}] Candidate '${sq.candidate_package}' spoofing '${sq.spoofed_target}' (Damerau-Levenshtein dist: ${sq.damerau_levenshtein_distance})\n   Remediation: ${sq.remediation}\n`;
+                    });
+                    report += `\n• Formal Mathematical Invariant: G_AST = (V, E) satisfied = ${data.mathematical_invariant.satisfied}`;
+                    details.innerText = report;
+                }
+            } catch (err) {
+                details.innerText = "Error executing AST scan: " + err.message;
+            }
         }
 
         // Init Status

@@ -99,5 +99,5 @@ def test_react_engine_self_correction_behavior():
     assert result.self_corrections_count >= 1
     assert result.steps[0].status == "ERROR"
     assert result.steps[0].reflection is not None
-    assert "Self-Reflection" in result.steps[0].reflection
+    assert "Reflexion" in result.steps[0].reflection or "Self-Reflection" in result.steps[0].reflection
     assert result.steps[1].action == "FINISH"

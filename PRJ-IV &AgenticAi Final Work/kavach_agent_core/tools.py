@@ -517,6 +517,53 @@ def tool_ast_security_scan(content_or_file_path: str) -> Dict[str, Any]:
     }
 
 
+def tool_ast_taint_graph_scan(content_or_file_path: str) -> Dict[str, Any]:
+    """
+    Constructs an explicit AST Taint Graph G_AST = (V, E) to trace data-flow reachability
+    from untrusted inputs to dangerous sinks (eval, exec, os.system, subprocess, pickle).
+    Also performs Damerau-Levenshtein slopsquatting dependency checks.
+    """
+    from kavach_agent_core.ast_analyzer import analyze_ast_and_supply_chain
+    code_str = content_or_file_path
+    if os.path.isfile(content_or_file_path):
+        target = verify_safe_path(content_or_file_path)
+        with open(target, "r", encoding="utf-8") as f:
+            code_str = f.read()
+
+    return analyze_ast_and_supply_chain(code_str)
+
+
+def tool_supply_chain_audit(requirements_or_code: str) -> Dict[str, Any]:
+    """
+    Audits dependency packages against the verified PyPI registry using
+    the Damerau-Levenshtein metric space to flag hallucinated/slopsquatted packages.
+    """
+    from kavach_agent_core.ast_analyzer import check_supply_chain_slopsquatting
+    lines = requirements_or_code.splitlines()
+    candidates = []
+    for line in lines:
+        cleaned = re.sub(r"[#=><~].*", "", line).strip()
+        import_match = re.search(r"(?:import|from)\s+([a-zA-Z0-9_\-]+)", cleaned)
+        if import_match:
+            cleaned = import_match.group(1).strip()
+        if cleaned and len(cleaned) >= 3:
+            candidates.append(cleaned)
+
+    findings = []
+    for c in set(candidates):
+        res = check_supply_chain_slopsquatting(c)
+        if res:
+            findings.append(res)
+
+    return {
+        "success": True,
+        "is_safe": len(findings) == 0,
+        "packages_audited_count": len(candidates),
+        "slopsquatting_anomalies_count": len(findings),
+        "findings": findings,
+    }
+
+
 # =========================================================================
 # MCP TOOL REGISTRY & SCHEMAS
 # =========================================================================
@@ -533,6 +580,8 @@ TOOL_REGISTRY = {
     "tool_dpdp_tokenize": tool_dpdp_tokenize,
     "tool_entropy_secret_audit": tool_entropy_secret_audit,
     "tool_ast_security_scan": tool_ast_security_scan,
+    "tool_ast_taint_graph_scan": tool_ast_taint_graph_scan,
+    "tool_supply_chain_audit": tool_supply_chain_audit,
 }
 
 MCP_TOOL_SCHEMAS = [
@@ -662,6 +711,28 @@ MCP_TOOL_SCHEMAS = [
                 "content_or_file_path": {"type": "string", "description": "Python source code string or file path"},
             },
             "required": ["content_or_file_path"],
+        },
+    },
+    {
+        "name": "tool_ast_taint_graph_scan",
+        "description": "Construct explicit AST Taint Reachability DAG G_AST = (V, E) tracing data flows from tainted sources to dangerous sinks (eval, exec, os.system, subprocess, pickle).",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "content_or_file_path": {"type": "string", "description": "Python source code string or file path to analyze for AST taint reachability"},
+            },
+            "required": ["content_or_file_path"],
+        },
+    },
+    {
+        "name": "tool_supply_chain_audit",
+        "description": "Audit dependency imports and requirements against verified PyPI registry using Damerau-Levenshtein metric space to flag hallucinated/slopsquatted packages (CWE-1395).",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "requirements_or_code": {"type": "string", "description": "requirements.txt content or Python source code containing import statements"},
+            },
+            "required": ["requirements_or_code"],
         },
     },
 ]
