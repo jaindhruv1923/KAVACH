@@ -171,6 +171,17 @@ try:
 except Exception as suite_err:
     print(f"[KAVACH Unified] Multi-service suite initialization skipped: {suite_err}")
 
+# Mount KAVACH Real Autonomous Multi-Agent Swarm Cockpit
+try:
+    _core_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
+    if _core_dir not in sys.path:
+        sys.path.insert(0, _core_dir)
+    from kavach_agent_core.server import app as cockpit_app
+    app.mount("/cockpit", cockpit_app)
+    print("[KAVACH Unified] Successfully mounted Real Autonomous Agent Cockpit at /cockpit")
+except Exception as cockpit_err:
+    print(f"[KAVACH Unified] Cockpit mount error: {cockpit_err}")
+
 
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_root():

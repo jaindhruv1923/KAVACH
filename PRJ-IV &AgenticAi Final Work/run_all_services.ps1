@@ -7,8 +7,8 @@ Write-Host "====================================================================
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
-Write-Host "[1/3] Launching Live Agent Swarm Engine on Port 8003..." -ForegroundColor Yellow
-Start-Process powershell -ArgumentList "-NoProfile -Command `"`$env:PORT='8003'; python live_agent_swarm/agent_engine.py`"" -WorkingDirectory $ScriptDir
+Write-Host "[1/3] Launching KAVACH Real Autonomous Multi-Agent Swarm on Port 8003..." -ForegroundColor Yellow
+Start-Process powershell -ArgumentList "-NoProfile -Command `"`$env:PORT='8003'; python -m uvicorn kavach_agent_core.server:app --host 127.0.0.1 --port 8003`"" -WorkingDirectory $ScriptDir
 
 Write-Host "[2/3] Launching Bharat Core Bank Portal on Port 8002..." -ForegroundColor Yellow
 Start-Process python -ArgumentList "bharat_core_banking/server.py" -WorkingDirectory $ScriptDir

@@ -6,8 +6,8 @@ echo   PRJ4 - Agentic AI Final Project: KAVACH Ecosystem Master Launcher
 echo   Developers: Dhruv Jain ^| Instructors: Dr. Soharab Hossain Shaikh ^& Mr. Pranshu Tiwari
 echo ===============================================================================
 echo.
-echo [1/3] Starting KAVACH Live Agent Swarm Engine on Port 8003...
-start "KAVACH Live Agent Swarm (Port 8003)" cmd /k "cd /d %~dp0live_agent_swarm && set PORT=8003 && python agent_engine.py"
+echo [1/3] Starting KAVACH Real Autonomous Multi-Agent Swarm on Port 8003...
+start "KAVACH Real Autonomous Swarm (Port 8003)" cmd /k "cd /d %~dp0 && set PORT=8003 && python -m uvicorn kavach_agent_core.server:app --host 127.0.0.1 --port 8003"
 
 echo [2/3] Starting Bharat Core Bank Web Portal on Port 8002...
 start "Bharat Core Bank Portal (Port 8002)" cmd /k "cd /d %~dp0bharat_core_banking && python server.py"

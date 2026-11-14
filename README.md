@@ -45,32 +45,35 @@ Ageentic&PRJ-IV/
 
 | Service / Component | Workspace Directory | Port | Key Capabilities |
 | :--- | :--- | :--- | :--- |
-| **MidSem KAVACH Platform** | `agentic ai mid sem/kavach_platform` | **8000** | Interactive Console, Inbuilt IDE, Academic Flowcharts, DPDP Token Vault |
-| **Final KAVACH Platform** | `PRJ-IV &AgenticAi Final Work/kavach_platform` | **8001** | Production Unified Security Gateway, FastMCP & A2A, Inbuilt IDE |
+| **Final KAVACH Platform** | `PRJ-IV &AgenticAi Final Work/kavach_platform` | **8001** | Production Unified Security Gateway, FastMCP & A2A, Cockpit (`/cockpit`) |
 | **Bharat Core Bank Portal** | `PRJ-IV &AgenticAi Final Work/bharat_core_banking` | **8002** | Real-time Banking Transactions, Statement Verification, SAGA Rollback |
-| **Live Agent Swarm Engine** | `PRJ-IV &AgenticAi Final Work/live_agent_swarm` | **8003** | 6-Agent Swarm Simulation, Sentinel Gate, Entropy Analyzer, GoT Reasoner |
+| **Live Agent Swarm Cockpit** | `PRJ-IV &AgenticAi Final Work/kavach_agent_core` | **8003** | 5-Agent Real Swarm, ReAct Loop, SSE Telemetry, 11 MCP Tools, A2A Protocol |
 
 ---
 
 ## Quick Launch Instructions
 
-### 1. Launch Mid-Semester Work
-Double click `run_midsem.bat` inside `agentic ai mid sem/` or run:
-```powershell
-cd "agentic ai mid sem"
-.\run_midsem.bat
-```
-Visit: **`http://localhost:8000/`**
-
-### 2. Launch Final Project Work (All 3 Services)
+### 1. Launch All Services (1-Click)
 Double click `run_all_services.bat` inside `PRJ-IV &AgenticAi Final Work/` or run:
 ```powershell
 cd "PRJ-IV &AgenticAi Final Work"
 .\run_all_services.bat
 ```
 - Master Security Platform: **`http://localhost:8001/`**
+- Live Multi-Agent Swarm Cockpit: **`http://localhost:8003/`** (or **`http://localhost:8001/cockpit`**)
 - Bharat Core Bank Portal: **`http://localhost:8002/`**
-- Live Multi-Agent Swarm Engine: **`http://localhost:8003/`**
+
+### 2. Run Autonomous Capstone Banking Defense Demonstration
+```powershell
+cd "PRJ-IV &AgenticAi Final Work"
+python demo_banking_defense.py
+```
+
+### 3. Run Automated Unit Test Verification (20 Tests Passing)
+```powershell
+cd "PRJ-IV &AgenticAi Final Work"
+python -m pytest kavach_agent_core -v
+```
 
 ---
 
