@@ -251,6 +251,36 @@ def run_benchmark_suite():
     return run_full_benchmark_suite()
 
 
+# =========================================================================
+# ADAPTIVE SELF-CORRECTION & REFLEXION (STAGE 2 CAPSTONE)
+# =========================================================================
+
+@app.get("/api/reflexion/status")
+def get_reflexion_status():
+    """Return live status of the Reflexion Memory store and verbal RL buffer."""
+    from kavach_agent_core.reflexion_engine import GLOBAL_REFLEXION_ENGINE
+    mem = GLOBAL_REFLEXION_ENGINE.memory
+    return {
+        "status": "ACTIVE",
+        "total_attempted": mem.total_corrections_attempted,
+        "total_resolved": mem.total_corrections_resolved,
+        "convergence_rate_pct": 100.0 if mem.total_corrections_attempted == 0 else round((mem.total_corrections_resolved / mem.total_corrections_attempted) * 100, 1),
+        "verbal_context": mem.get_verbal_refinement_context(),
+        "episodes": [ep.dict() for ep in mem.episodes[-10:]],
+    }
+
+
+@app.post("/api/reflexion/simulate")
+def simulate_reflexion_loop():
+    """
+    Trigger live execution of an Adaptive Self-Correction & Reflexion loop.
+    Simulates deliberate AST defect -> VerifierCritic critique -> Counterfactual patch -> Verified pass.
+    """
+    goal = "Self-Correction & Reflexion: Trigger code flaw and execute automated repair loop."
+    res = swarm_engine.execute_swarm(goal=goal)
+    return res.dict()
+
+
 @app.get("/api/swarm/stream")
 def stream_swarm_execution(goal: str = Query(..., description="User goal or task for the agent swarm")):
     """

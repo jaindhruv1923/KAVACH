@@ -21,6 +21,7 @@ from pydantic import BaseModel, Field
 
 from kavach_agent_core.tools import execute_tool, MCP_TOOL_SCHEMAS, TOOL_REGISTRY
 from kavach_agent_core.llm_client import LLMClient
+from kavach_agent_core.reflexion_engine import SelfCorrectionEngine, ReflexionEpisode, GLOBAL_REFLEXION_ENGINE
 
 
 class ReActStep(BaseModel):
@@ -31,6 +32,7 @@ class ReActStep(BaseModel):
     action_input: Dict[str, Any] = Field(default_factory=dict)
     observation: Dict[str, Any] = Field(default_factory=dict)
     reflection: Optional[str] = None
+    reflexion_episode: Optional[ReflexionEpisode] = None
     duration_ms: float = 0.0
     status: str = "SUCCESS"  # SUCCESS, ERROR, SELF_CORRECTED, FINISHED
 
@@ -59,11 +61,13 @@ class AutonomousReActEngine:
         max_iterations: int = 8,
         timeout_seconds: float = 60.0,
         agent_role: str = "Autonomous ReAct Agent",
+        reflexion_engine: Optional[SelfCorrectionEngine] = None,
     ):
         self.llm = llm_client or LLMClient()
         self.max_iterations = max_iterations
         self.timeout_seconds = timeout_seconds
         self.agent_role = agent_role
+        self.reflexion_engine = reflexion_engine or SelfCorrectionEngine(max_reflection_budget=3)
 
     def run(
         self,
@@ -147,8 +151,9 @@ class AutonomousReActEngine:
             obs = execute_tool(action, action_input)
             step_duration = round((time.time() - step_start) * 1000, 2)
 
-            # Check for errors and perform Reflection (Agentic Design Pattern)
+            # Check for errors and perform Reflection (Agentic Design Pattern - Shinn et al. 2023)
             reflection = None
+            reflexion_episode = None
             step_status = "SUCCESS"
             is_error = (
                 obs.get("success") is False
@@ -159,8 +164,19 @@ class AutonomousReActEngine:
             if is_error:
                 step_status = "ERROR"
                 result.self_corrections_count += 1
-                err_detail = obs.get("error") or obs.get("stderr") or obs.get("summary") or "Tool failure"
-                reflection = f"[Self-Reflection]: Action '{action}' returned an error: {err_detail}. I must analyze why this failed and adapt my next action."
+                reflexion_episode = self.reflexion_engine.diagnose_and_reflect(
+                    agent_name=self.agent_role,
+                    action=action,
+                    action_input=action_input,
+                    observation=obs,
+                    cycle_number=result.self_corrections_count,
+                )
+                reflection = (
+                    f"[Reflexion Episode #{reflexion_episode.cycle_number} | {reflexion_episode.trigger_event}]: "
+                    f"Diagnosis: {reflexion_episode.root_cause_diagnosis} | "
+                    f"Counterfactual: {reflexion_episode.counterfactual_heuristic} | "
+                    f"Corrective Strategy: {reflexion_episode.corrective_action}"
+                )
 
             react_step = ReActStep(
                 step_number=iteration,
@@ -170,6 +186,7 @@ class AutonomousReActEngine:
                 action_input=action_input,
                 observation=obs,
                 reflection=reflection,
+                reflexion_episode=reflexion_episode,
                 duration_ms=step_duration,
                 status=step_status,
             )
@@ -210,9 +227,13 @@ class AutonomousReActEngine:
         if not history_text:
             history_text = "(No actions executed yet)"
 
+        verbal_context = self.reflexion_engine.memory.get_verbal_refinement_context()
+        if verbal_context:
+            verbal_context = f"\n{verbal_context}\n"
+
         prompt = f"""You are KAVACH, an autonomous Agentic AI DevOps & Security Engineer.
 GOAL: {goal}
-
+{verbal_context}
 AVAILABLE MCP TOOLS:
 {tools_doc}
 

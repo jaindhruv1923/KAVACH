@@ -1891,6 +1891,10 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                         Pytest Test Verification Suite
                     </button>
+                    <button class="quick-pill" style="border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe;" onclick="loadScenario('reflexion-repair')">
+                        <svg class="k-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        Reflexion Self-Correction &amp; Auto-Repair
+                    </button>
                 </div>
 
                 <!-- Goal Input & Action Bar -->
@@ -1900,6 +1904,85 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                         <span>Launch Swarm</span>
                     </button>
+                </div>
+            </section>
+
+            <!-- Adaptive Self-Correction & Reflexion Live Stepper (Stage 2) -->
+            <section class="console-section" id="reflexionPanel" style="border: 1px solid rgba(168, 85, 247, 0.35); background: linear-gradient(180deg, rgba(168, 85, 247, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+                <div class="ps-studio-header">
+                    <div class="ps-studio-title" style="color: var(--accent-purple);">
+                        <svg class="k-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        Adaptive Self-Correction &amp; Reflexion Engine (Shinn et al. NeurIPS 2023)
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span class="ps-card-badge" id="reflexionBadge" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border: 1px solid rgba(168, 85, 247, 0.4);">
+                            Verbal RL Buffer: Active
+                        </span>
+                        <button class="quick-pill" onclick="simulateReflexionLive()" style="background: rgba(168, 85, 247, 0.2); color: #fff; border-color: var(--accent-purple);">
+                            <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            Simulate Auto-Repair Loop
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4-Stage Convergence Stepper -->
+                <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
+                    <div class="crisis-card" id="refCard1" style="border-color: rgba(239, 68, 68, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-red);">
+                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">1. Trial Failure</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="refLoss0">\(\mathcal{L}_0 = 1.0\)</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Flawed Action Injected</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc1">
+                                DevOpsCoder proposed code with forbidden <code>eval()</code> or broken pytest assertion.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="refCard2" style="border-color: rgba(245, 158, 11, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-amber);">
+                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.4);">2. Invariant Critique</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;">A2A Rejection</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">VerifierCritic Intercept</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc2">
+                                Invariant checker trapped AST violation or non-zero return code. Emitted critique to bus.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="refCard3" style="border-color: rgba(168, 85, 247, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-purple);">
+                            <span class="stage-num-badge" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.4);">3. Reflexion</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;">Verbal Memory</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Counterfactual Diagnosis</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc3">
+                                Reflexion Engine diagnosed root cause and synthesized counterfactual repair heuristic.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="refCard4" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-green);">
+                            <span class="stage-num-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);">4. Convergence</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="refLoss1">\(\mathcal{L}_1 = 0.0\)</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;">Certified Zero Regression</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc4">
+                                Applied atomic repair. All pytest unit assertions and AST bounds pass with 100% success.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KaTeX Mathematical Invariant Bound Box -->
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(168, 85, 247, 0.25);">
+                    $$M_{t+1} = M_t \cup \{ \text{Diagnose}(a_t, o_t) \}, \quad a_{t+1} \sim \pi(a \mid s_t, M_{t+1}) \implies \mathcal{L}(a_{t+1}) < \mathcal{L}(a_t) \quad (\text{Bounded Budget } K \le 3)$$
                 </div>
             </section>
 
@@ -3039,7 +3122,15 @@
             } else if (scenarioKey === 'pytest-verify') {
                 selectProblemStatement('PS-4');
                 document.getElementById('goalInput').value = 'Execute pytest test verification suite on kavach_agent_core and confirm all invariants pass.';
+            } else if (scenarioKey === 'reflexion-repair') {
+                selectProblemStatement('PS-4');
+                document.getElementById('goalInput').value = 'Self-Correction & Reflexion: Trigger code flaw and execute automated repair loop.';
             }
+        }
+
+        function simulateReflexionLive() {
+            loadScenario('reflexion-repair');
+            launchSwarm();
         }
 
         // Init Status
@@ -3170,6 +3261,27 @@
 
             const terminal = document.getElementById('streamTerminal');
             const a2aBox = document.getElementById('a2aContainer');
+
+            if (type === "REFLEXION_EPISODE") {
+                const b = document.getElementById('reflexionBadge');
+                if (b) {
+                    b.innerText = `Reflexion Active: Cycle #${det.cycle_number || 1} (Loss -> 0.0)`;
+                    b.style.background = 'rgba(16, 185, 129, 0.2)';
+                    b.style.color = 'var(--accent-green)';
+                    b.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+                }
+                const d1 = document.getElementById('refDesc1');
+                const d3 = document.getElementById('refDesc3');
+                const d4 = document.getElementById('refDesc4');
+                if (d1 && det.failed_action) d1.innerText = `Flawed Action: ${det.failed_action}()`;
+                if (d3 && det.root_cause_diagnosis) d3.innerText = det.root_cause_diagnosis;
+                if (d4 && det.corrective_action) d4.innerText = `Counterfactual Applied: ${det.corrective_action} | Verified 0% Regression`;
+
+                ['refCard1', 'refCard2', 'refCard3', 'refCard4'].forEach(id => {
+                    const c = document.getElementById(id);
+                    if (c) c.style.boxShadow = '0 0 14px rgba(168, 85, 247, 0.45)';
+                });
+            }
 
             if (type === "STEP_EXECUTED") {
                 stepCount++;

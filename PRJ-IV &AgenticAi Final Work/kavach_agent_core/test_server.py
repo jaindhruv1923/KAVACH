@@ -69,3 +69,19 @@ def test_server_benchmark_endpoints(client):
     assert resp_run.status_code == 200
     data_run = resp_run.json()
     assert data_run["tests_passed"] == 30
+
+
+def test_server_reflexion_endpoints(client):
+    """Verify /api/reflexion/status and /api/reflexion/simulate endpoints."""
+    resp = client.get("/api/reflexion/status")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["status"] == "ACTIVE"
+    assert "convergence_rate_pct" in data
+
+    resp_sim = client.post("/api/reflexion/simulate")
+    assert resp_sim.status_code == 200
+    sim_data = resp_sim.json()
+    assert sim_data["status"] == "COMPLETE"
+    assert sim_data["verdict"] == "REFLEXION_SELF_CORRECTED"
+    assert "reflexion_audit" in sim_data["audit_dossier"]
