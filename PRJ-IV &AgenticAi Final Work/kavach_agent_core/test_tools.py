@@ -215,5 +215,22 @@ def test_differential_privacy_tools():
     assert res_budget["remaining_budget"] <= 9.5
 
 
+def test_stackelberg_and_token_bucket_tools():
+    """Verify tool_stackelberg_defense_optimize and tool_token_bucket_ingress_check."""
+    # 1. Stackelberg Game Tool
+    res_game = execute_tool("tool_stackelberg_defense_optimize", {"attack_scenario": "Hostile API brute-force and prompt injection"})
+    assert res_game["status"] == "EQUILIBRIUM_SOLVED"
+    assert "defense_allocation_s_star" in res_game
+    assert res_game["analyzed_scenario"] == "Hostile API brute-force and prompt injection"
+
+    # 2. Token Bucket Tool
+    res_tb = execute_tool("tool_token_bucket_ingress_check", {"client_id": "test_client_01", "cost": 1.0})
+    assert res_tb["success"] is True
+    assert res_tb["admitted"] is True
+    assert res_tb["client_id"] == "test_client_01"
+    assert res_tb["remaining_tokens"] >= 0.0
+
+
+
 
 

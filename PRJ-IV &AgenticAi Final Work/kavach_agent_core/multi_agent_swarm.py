@@ -135,14 +135,14 @@ AGENT_ROSTER: Dict[str, AgentPersona] = {
         role="Pre-Execution Security & OWASP LLM01 Gatekeeper",
         goal="Protect the system against prompt injections, toxic instructions, and data exfiltration.",
         backstory="Expert cyber security firewall trained to inspect all ingress user prompts and block hostile payloads.",
-        allowed_tools=["tool_entropy_secret_audit", "tool_dpdp_tokenize"],
+        allowed_tools=["tool_entropy_secret_audit", "tool_dpdp_tokenize", "tool_token_bucket_ingress_check"],
     ),
     "Orchestrator": AgentPersona(
         name="Lead Orchestrator Agent",
         role="Multi-Agent Coordinator & Strategic Planner",
         goal="Decompose complex user goals into high-impact task sequences and delegate to specialized sub-agents.",
         backstory="Master software architect operating under Google ADK coordinator patterns and CrewAI Flow principles.",
-        allowed_tools=["tool_list_files", "tool_search_code", "tool_saga_status", "tool_saga_rollback"],
+        allowed_tools=["tool_list_files", "tool_search_code", "tool_saga_status", "tool_saga_rollback", "tool_stackelberg_defense_optimize"],
     ),
     "SecurityAuditor": AgentPersona(
         name="Security & Compliance Auditor",
@@ -158,6 +158,7 @@ AGENT_ROSTER: Dict[str, AgentPersona] = {
             "tool_entropy_secret_audit",
             "tool_differential_privacy_query",
             "tool_dp_budget_status",
+            "tool_stackelberg_defense_optimize",
             "tool_read_file"
         ],
     ),
@@ -346,10 +347,27 @@ class KavachMultiAgentSwarm:
             "differential privacy", "laplace", "privacy budget", "epsilon",
             "membership inference", "reconstruction attack", "anonymiz"
         ])
+        is_game_theory_task = any(w in goal_lower for w in [
+            "stackelberg", "game theory", "leader follower", "leader-follower", "minimax", "nash",
+            "token bucket", "rate limit", "velocity", "throttl", "dos defense", "resource exhaustion"
+        ])
 
         tasks_to_execute = []
 
-        if is_dp_task:
+        if is_game_theory_task:
+            tasks_to_execute.append((
+                "Orchestrator",
+                f"Solve Leader-Follower Stackelberg Security Game across attack vectors and compute optimal mixed defense strategy s* for: {goal}"
+            ))
+            tasks_to_execute.append((
+                "Sentinel",
+                "Enforce Dynamic Token Bucket ingress velocity gate with modulated replenishment rate"
+            ))
+            tasks_to_execute.append((
+                "VerifierCritic",
+                "Verify game-theoretic Minimax bounds and certify zero denial-of-service ingress leakage"
+            ))
+        elif is_dp_task:
             tasks_to_execute.append((
                 "SecurityAuditor",
                 f"Calibrate global sensitivity Delta f and evaluate aggregate query with Laplace noise under DPDP Act 2023 for: {goal}"
@@ -509,7 +527,15 @@ class KavachMultiAgentSwarm:
         # Determine Verdict & Mathematical Proof
         tokens_list = dpdp_obs.get("tokens_created", [])
 
-        if is_dp_task:
+        if is_game_theory_task:
+            verdict = "STACKELBERG_EQUILIBRIUM_CERTIFIED"
+            verdict_title = "🛡️ STACKELBERG SECURITY GAME EQUILIBRIUM & TOKEN BUCKET INGRESS VELOCITY CERTIFIED"
+            target_asset = "Sentinel Ingress Gateway & Multi-Vector Defense Perimeter"
+            threat_mandate = "Adversarial Strategy Optimization, Automated Fuzzing & API DoS Flood Attacks"
+            math_concept = "Strong Stackelberg Equilibrium (SSE) & Dynamic Token Bucket Differential Refill"
+            math_formula = r"s^* = \arg\max_{s \in \Delta(S)} U_D(s, a^*(s)), \quad T(t) = \min(C, T(t - \Delta t) + \rho_{\text{eff}} \Delta t)"
+            math_explanation = "Defender committed to an optimal mixed strategy s* across defense resources, minimizing maximum attacker expected utility. Dynamic token bucket throttles hostile ingress velocity bursts via adaptive rate modulation rho_eff = rho_0 * max(0.1, 1 - lambda * theta)."
+        elif is_dp_task:
             verdict = "DP_PRIVACY_CERTIFIED"
             verdict_title = "🔒 DIFFERENTIAL PRIVACY & LAPLACE EPSILON-DELTA NOISE INVARIANT CERTIFIED"
             target_asset = "Bharat Core Banking Platform & Financial Aggregates (Port 8002)"

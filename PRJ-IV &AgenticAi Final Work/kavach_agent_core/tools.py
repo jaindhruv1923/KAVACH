@@ -641,6 +641,30 @@ def tool_dp_budget_status() -> Dict[str, Any]:
     }
 
 
+def tool_stackelberg_defense_optimize(attack_scenario: Optional[str] = None) -> Dict[str, Any]:
+    """
+    Solve Leader-Follower Stackelberg Security Game to compute optimal mixed defense strategy
+    s* in Delta(S) that minimizes attacker payoff across ingress, PII, AST, and velocity vectors.
+    """
+    from kavach_agent_core.stackelberg_game import global_stackelberg_game
+    res = global_stackelberg_game.solve_stackelberg_equilibrium()
+    if attack_scenario:
+        res["analyzed_scenario"] = attack_scenario
+    return res
+
+
+def tool_token_bucket_ingress_check(client_id: str = "default_ingress", cost: float = 1.0) -> Dict[str, Any]:
+    """
+    Check and consume tokens from the dynamic token bucket rate limiter to prevent
+    burst resource exhaustion and DDoS flooding on platform endpoints.
+    """
+    from kavach_agent_core.stackelberg_game import global_token_bucket
+    admitted, meta = global_token_bucket.consume(tokens=cost)
+    meta["client_id"] = client_id
+    meta["success"] = True
+    return meta
+
+
 # =========================================================================
 # MCP TOOL REGISTRY & SCHEMAS
 # =========================================================================
@@ -663,6 +687,8 @@ TOOL_REGISTRY = {
     "tool_saga_status": tool_saga_status,
     "tool_differential_privacy_query": tool_differential_privacy_query,
     "tool_dp_budget_status": tool_dp_budget_status,
+    "tool_stackelberg_defense_optimize": tool_stackelberg_defense_optimize,
+    "tool_token_bucket_ingress_check": tool_token_bucket_ingress_check,
 }
 
 MCP_TOOL_SCHEMAS = [
@@ -857,6 +883,27 @@ MCP_TOOL_SCHEMAS = [
         "parameters": {
             "type": "object",
             "properties": {},
+        },
+    },
+    {
+        "name": "tool_stackelberg_defense_optimize",
+        "description": "Solve Leader-Follower Stackelberg Security Game to compute optimal mixed defense strategy s* across ingress, PII, AST, and velocity vectors.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "attack_scenario": {"type": "string", "description": "Optional threat description or targeted vulnerability vector"},
+            },
+        },
+    },
+    {
+        "name": "tool_token_bucket_ingress_check",
+        "description": "Check and consume tokens from the dynamic token bucket rate limiter to throttle hostile velocity bursts and prevent DoS attacks.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "client_id": {"type": "string", "description": "Client identifier or IP address (default 'default_ingress')"},
+                "cost": {"type": "number", "description": "Token cost to consume for this request (default 1.0)"},
+            },
         },
     },
 ]

@@ -1476,7 +1476,7 @@
             </div>
             <div class="badge">
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                <span>17 MCP Tools</span>
+                <span>19 MCP Tools</span>
             </div>
         </div>
     </header>
@@ -1907,6 +1907,10 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         Differential Privacy &amp; Laplace Noise
                     </button>
+                    <button class="quick-pill" style="border-color: rgba(245, 158, 11, 0.5); color: #fcd34d;" onclick="loadScenario('stackelberg-game')">
+                        <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        Stackelberg Game &amp; Rate Limiter
+                    </button>
                 </div>
 
                 <!-- Goal Input & Action Bar -->
@@ -2296,6 +2300,130 @@
                 <!-- KaTeX Mathematical Invariant Bound Box -->
                 <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(0, 242, 254, 0.25);">
                     $$\Pr[\mathcal{M}(x) \in \mathcal{S}] \le e^\epsilon \Pr[\mathcal{M}(y) \in \mathcal{S}] + \delta, \quad Y \sim \text{Lap}\left(0, \frac{\Delta f}{\epsilon}\right), \quad \Delta f = \max_{x, y: \|x-y\|_1 \le 1} \|f(x) - f(y)\|_1, \quad \sum_{i=1}^{k} \epsilon_i \le \epsilon_{\text{total}}$$
+                </div>
+            </section>
+
+            <!-- Stackelberg Security Game & Ingress Velocity Control (Stage 6) -->
+            <section class="console-section" id="stackelbergPanel" style="border: 1px solid rgba(245, 158, 11, 0.4); background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+                <div class="ps-studio-header">
+                    <div class="ps-studio-title" style="color: #f59e0b;">
+                        <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        Stage 6: Stackelberg Adversarial Security Game &amp; Dynamic Ingress Velocity Control
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span class="ps-card-badge" id="gameBadge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.4);">
+                            Minimax SSE Active &bull; CSE3101 Unit 5
+                        </span>
+                    </div>
+                </div>
+
+                <div style="font-size: 12px; color: var(--text-muted); margin: 6px 0 12px 0; line-height: 1.5;">
+                    Solves Leader-Follower Strong Stackelberg Equilibrium \(s^* = \arg\max_{s} U_D(s, a^*(s))\) over multi-vector defense assets. Enforces dynamic token bucket velocity gatekeeper \(T(t) = \min(C, T(t - \Delta t) + \rho_{\text{eff}} \cdot \Delta t)\) with adaptive rate modulation \(\rho_{\text{eff}} = \rho_0 \cdot \max(0.1, 1 - \lambda \theta)\) to throttle hostile API burst floods and fuzzing bots.
+                </div>
+
+                <!-- Interactive Control Strip -->
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-dim); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Threat Level \(\theta\):</label>
+                            <input type="range" id="gameThreatSlider" min="0.0" max="1.0" step="0.05" value="0.2" style="width: 110px;" oninput="updateGameThreatDisplay(this.value)">
+                            <span id="gameThreatVal" style="font-family: 'Fira Code', monospace; font-size: 12px; color: #f59e0b; font-weight: 700;">0.20</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Burst Cost:</label>
+                            <select id="gameCostSelect" style="background: #030611; color: #cbd5e1; border: 1px solid var(--border-dim); border-radius: 4px; padding: 3px 8px; font-size: 11px; font-family: 'Fira Code', monospace;">
+                                <option value="1.0">1.0 Token (Normal)</option>
+                                <option value="3.0">3.0 Tokens (Heavy)</option>
+                                <option value="6.0">6.0 Tokens (Burst Flood)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <button class="quick-pill" style="border-color: rgba(245, 158, 11, 0.5); color: #fcd34d; font-size: 11px; padding: 4px 10px;" onclick="consumeIngressLive()">
+                            <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Consume Ingress Tokens
+                        </button>
+                        <button class="quick-pill" style="border-color: rgba(0, 242, 254, 0.5); color: #67e8f9; font-size: 11px; padding: 4px 10px;" onclick="simulateStackelbergGameLive()">
+                            <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            Simulate Game Equilibrium
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4-Quadrant Visual Telemetry Cards -->
+                <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 10px;">
+                    <div class="crisis-card" id="cardGameStrategy" style="border-color: rgba(245, 158, 11, 0.3);">
+                        <div class="crisis-header" style="color: #f59e0b;">
+                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border-color: rgba(245, 158, 11, 0.4);">1. Defense Strategy \(s^*\)</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameStrategyProb">PII: 30% | AST: 26%</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;" id="gameStrategyTitle">Stackelberg Mixed Allocation</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameStrategyDesc">
+                                Optimal minimax coverage probabilities across Sentinel, DPDP Vault, AST, and Rate Limiter.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="cardGameAttacker" style="border-color: rgba(239, 68, 68, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-red);">
+                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">2. Attacker Best Response</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameBestResp">a*(s*) Bounded</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;" id="gameAttackerTitle">Worst-Case Utility Minimization</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameAttackerDesc">
+                                Attacker expected payout is bounded and reduced strictly below naive uniform defense levels.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="cardGameBucket" style="border-color: rgba(0, 242, 254, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-cyan);">
+                            <span class="stage-num-badge" style="background: rgba(0, 242, 254, 0.2); color: var(--accent-cyan); border-color: rgba(0, 242, 254, 0.4);">3. Token Bucket \(T(t)\)</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameBucketTokens">20.0 / 20.0 tok</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;" id="gameBucketTitle">Velocity Ingress Gauge</strong>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 6px; width: 100%; margin: 6px 0; overflow: hidden;">
+                                <div id="gameBucketBar" style="background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)); height: 100%; width: 100%; transition: width 0.3s ease;"></div>
+                            </div>
+                            <p style="margin: 2px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameBucketDesc">
+                                Differential refill \(T(t) = \min(C, T + \rho_{\text{eff}} \Delta t)\). Zero burst leakage.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="crisis-card" id="cardGameRate" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="crisis-header" style="color: var(--accent-green);">
+                            <span class="stage-num-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);">4. Modulated Rate \(\rho_{\text{eff}}\)</span>
+                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameEffectiveRate">4.25 tok/s</span>
+                        </div>
+                        <div class="crisis-body">
+                            <strong style="color:#fff;" id="gameRateTitle">Adaptive Throttling</strong>
+                            <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameRateDesc">
+                                Under elevated threat \(\theta\), ingress automatically constricts replenishment to starve DoS bots.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Game Live Output Box -->
+                <div id="gameLiveResultsContainer" style="display:none; margin-top:12px; background:#030611; border:1px solid rgba(245, 158, 11, 0.3); border-radius:8px; padding:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-size:12px; font-weight:700; color:#f59e0b; display:flex; align-items:center; gap:6px;">
+                            <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            Stackelberg Game &amp; Token Bucket Velocity Telemetry
+                        </span>
+                        <span id="gameReportBadge" style="font-size:11px; font-family:'Fira Code', monospace; padding:2px 8px; border-radius:4px;"></span>
+                    </div>
+                    <div id="gameReportDetails" style="font-size:12px; color:#cbd5e1; font-family:'Fira Code', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.4); padding:8px; border-radius:4px;"></div>
+                </div>
+
+                <!-- KaTeX Mathematical Invariant Bound Box -->
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(245, 158, 11, 0.3);">
+                    $$s^* = \arg\max_{s \in \Delta(S)} U_D(s, a^*(s)), \quad a^*(s) = \arg\max_{a \in A} U_A(s, a), \quad T(t) = \min(C, T(t - \Delta t) + \rho_{\text{eff}} \cdot \Delta t), \quad \rho_{\text{eff}} = \rho_0 \cdot \max(0.1, 1 - \lambda \theta)$$
                 </div>
             </section>
 
@@ -2806,7 +2934,7 @@
                         </tr>
                         <tr>
                             <td style="font-weight:700; color:var(--accent-amber);">Actuators</td>
-                            <td>17 MCP Tools: <code>tool_dpdp_tokenize</code>, <code>tool_validate_aadhaar_verhoeff</code>, <code>tool_differential_privacy_query</code>, <code>tool_dp_budget_status</code>, <code>tool_ast_taint_graph_scan</code>, <code>tool_supply_chain_audit</code>, <code>tool_saga_rollback</code>, <code>tool_saga_status</code>, <code>tool_run_pytest</code>, <code>tool_edit_file</code>.</td>
+                            <td>19 MCP Tools: <code>tool_dpdp_tokenize</code>, <code>tool_validate_aadhaar_verhoeff</code>, <code>tool_differential_privacy_query</code>, <code>tool_dp_budget_status</code>, <code>tool_stackelberg_defense_optimize</code>, <code>tool_token_bucket_ingress_check</code>, <code>tool_ast_taint_graph_scan</code>, <code>tool_supply_chain_audit</code>, <code>tool_saga_rollback</code>, <code>tool_saga_status</code>, <code>tool_run_pytest</code>, <code>tool_edit_file</code>.</td>
                         </tr>
                         <tr>
                             <td style="font-weight:700; color:var(--accent-green);">Sensors</td>
@@ -3338,6 +3466,11 @@
                 title: "Topic 8: Differential Privacy & Laplace Mechanism (Stage 5)",
                 desc: "Implements Dwork et al. (2006) calibrated Laplace noise Y ~ Lap(0, Delta f / epsilon) for core banking aggregate queries. Employs sequential composition to bound cumulative privacy loss, preventing reconstruction and membership inference attacks under Indian DPDP Act 2023.",
                 module: "kavach_agent_core/differential_privacy.py • Differential Privacy Engine & Budget Accountant"
+            },
+            9: {
+                title: "Topic 9: Stackelberg Adversarial Security Game & Dynamic Rate Limiting (Stage 6)",
+                desc: "Formulates Leader-Follower Stackelberg Game (von Stackelberg 1934; Tambe et al. 2011) computing optimal mixed strategy s* across defense resources. Couples dynamic token bucket velocity gatekeeper with threat modulation rho_eff = rho_0 * max(0.1, 1 - lambda * theta) to throttle API DoS floods and hostile fuzzing bots.",
+                module: "kavach_agent_core/stackelberg_game.py • Stackelberg Game Solver & Dynamic Token Bucket"
             }
         };
 
@@ -3451,6 +3584,9 @@
             } else if (scenarioKey === 'dp-laplace') {
                 selectProblemStatement('PS-1');
                 document.getElementById('goalInput').value = 'Evaluate Bharat Core Banking aggregate query with Differential Privacy and calibrated Laplace noise (epsilon=0.5, delta=1e-5) under DPDP Act 2023.';
+            } else if (scenarioKey === 'stackelberg-game') {
+                selectProblemStatement('PS-2');
+                document.getElementById('goalInput').value = 'Solve Stackelberg Security Game for optimal defense allocation s* and enforce dynamic token bucket rate limiting on ingress.';
             } else if (scenarioKey === 'pytest-verify') {
                 selectProblemStatement('PS-4');
                 document.getElementById('goalInput').value = 'Execute pytest test verification suite on kavach_agent_core and confirm all invariants pass.';
@@ -3599,6 +3735,109 @@
                 }
             } catch (err) {
                 details.innerText = "Error simulating DP resistance: " + err.message;
+            }
+        }
+
+        function updateGameThreatDisplay(val) {
+            document.getElementById('gameThreatVal').innerText = parseFloat(val).toFixed(2);
+        }
+
+        async function consumeIngressLive() {
+            const container = document.getElementById('gameLiveResultsContainer');
+            const details = document.getElementById('gameReportDetails');
+            const badge = document.getElementById('gameReportBadge');
+            const theta = parseFloat(document.getElementById('gameThreatSlider').value);
+            const cost = parseFloat(document.getElementById('gameCostSelect').value);
+
+            container.style.display = 'block';
+            details.innerText = `Testing ingress velocity gate with cost=${cost} tokens and threat level theta=${theta}...`;
+            badge.style.background = 'rgba(245, 158, 11, 0.2)';
+            badge.style.color = '#f59e0b';
+            badge.innerText = 'CHECKING VELOCITY';
+
+            try {
+                const res = await fetch('/api/ingress/consume', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ client_id: 'web_cockpit_tester', cost: cost, threat_level: theta })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    const tel = data.telemetry;
+                    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+                    badge.style.color = 'var(--accent-green)';
+                    badge.innerText = 'ADMITTED (VELOCITY OK)';
+
+                    document.getElementById('gameBucketTokens').innerText = `${tel.remaining_tokens} / ${tel.capacity} tok`;
+                    document.getElementById('gameEffectiveRate').innerText = `${tel.effective_rate_per_sec} tok/s`;
+                    const pct = Math.max(0, Math.min(100, (tel.remaining_tokens / tel.capacity) * 100));
+                    document.getElementById('gameBucketBar').style.width = pct + '%';
+
+                    let report = `=== DYNAMIC TOKEN BUCKET INGRESS VELOCITY ADMISSION ===\n`;
+                    report += `• Status: REQUEST ADMITTED\n`;
+                    report += `• Consumed Tokens: ${tel.cost} | Remaining Bucket Level: ${tel.remaining_tokens} / ${tel.capacity}\n`;
+                    report += `• Effective Replenishment Rate (rho_eff): ${tel.effective_rate_per_sec} tok/s (Base: ${tel.base_rate_per_sec} tok/s)\n`;
+                    report += `• Adversarial Threat Modulation (theta): ${tel.threat_level_theta}\n`;
+                    report += `• Total Requests Admitted: ${tel.total_admitted} | Total Throttled: ${tel.total_rejected}\n`;
+                    report += `• Differential Invariant: T(t) = min(C, T(t - Delta t) + rho_eff * Delta t) satisfied = true`;
+                    details.innerText = report;
+                } else {
+                    badge.style.background = 'rgba(239, 68, 68, 0.2)';
+                    badge.style.color = 'var(--accent-red)';
+                    badge.innerText = '429 THROTTLED (VELOCITY EXCEEDED)';
+                    details.innerText = `=== VELOCITY EXCEEDED / INGRESS THROTTLED ===\n• Status: 429 TOO MANY REQUESTS\n• Reason: Hostile burst velocity exceeded token capacity.\n• Detail: ${data.detail || 'Velocity quota depleted'}\n• Starvation Defense: Bot request quenched before hitting core services.`;
+                }
+            } catch (err) {
+                details.innerText = "Error testing token bucket: " + err.message;
+            }
+        }
+
+        async function simulateStackelbergGameLive() {
+            const container = document.getElementById('gameLiveResultsContainer');
+            const details = document.getElementById('gameReportDetails');
+            const badge = document.getElementById('gameReportBadge');
+
+            container.style.display = 'block';
+            details.innerText = "Solving Leader-Follower Stackelberg Game and simulating comparative utility against naive uniform defense...";
+            badge.style.background = 'rgba(245, 158, 11, 0.2)';
+            badge.style.color = '#f59e0b';
+            badge.innerText = 'SOLVING SSE EQUILIBRIUM';
+
+            try {
+                const res = await fetch('/api/game/simulate', { method: 'POST' });
+                const data = await res.json();
+                if (data.success) {
+                    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+                    badge.style.color = 'var(--accent-green)';
+                    badge.innerText = 'SSE EQUILIBRIUM VERIFIED';
+
+                    const comp = data.comparison;
+                    const sse = comp.stackelberg_optimal_defense;
+                    const uni = comp.naive_uniform_defense;
+
+                    document.getElementById('gameStrategyProb').innerText = `PII: ${(sse.strategy.PII_EXFILTRATION * 100).toFixed(0)}% | AST: ${(sse.strategy.AST_SUPPLY_CHAIN_SINK * 100).toFixed(0)}%`;
+                    document.getElementById('gameBestResp').innerText = `a* = ${sse.attacker_best_response}`;
+
+                    let report = `=== STACKELBERG SECURITY GAME EQUILIBRIUM COMPARISON ===\n`;
+                    report += `• Formulation: von Stackelberg (1934) Leader-Follower Security Game\n`;
+                    report += `• Defender Minimax Utility Gain: +${comp.defender_utility_gain}\n`;
+                    report += `• Attacker Expected Utility Reduction: -${comp.attacker_utility_reduction}\n\n`;
+                    report += `[1] NAIVE UNIFORM DEFENSE (p_i = 0.25):\n`;
+                    report += `    - Attacker Best Response: ${uni.attacker_best_response}\n`;
+                    report += `    - Attacker Expected Payout: ${uni.attacker_expected_utility}\n`;
+                    report += `    - Defender Expected Utility: ${uni.defender_expected_utility}\n\n`;
+                    report += `[2] OPTIMAL STACKELBERG DEFENSE ALLOCATION (s* in Delta(S)):\n`;
+                    for (const [target, prob] of Object.entries(sse.strategy)) {
+                        report += `    - Coverage P(${target}): ${(prob * 100).toFixed(1)}%\n`;
+                    }
+                    report += `    - Attacker Best Response: ${sse.attacker_best_response}\n`;
+                    report += `    - Attacker Expected Payout: ${sse.attacker_expected_utility} (Hardened Minimax Bound)\n`;
+                    report += `    - Defender Expected Utility: ${sse.defender_expected_utility}\n\n`;
+                    report += `• Mathematical Verdict: ${data.mathematical_verdict}`;
+                    details.innerText = report;
+                }
+            } catch (err) {
+                details.innerText = "Error simulating game equilibrium: " + err.message;
             }
         }
 

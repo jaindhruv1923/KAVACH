@@ -449,6 +449,69 @@ def simulate_dp_reconstruction_resistance():
     return GLOBAL_DP_ENGINE.simulate_reconstruction_resistance()
 
 
+# =========================================================================
+# STACKELBERG SECURITY GAME & TOKEN BUCKET INGRESS (STAGE 6 CAPSTONE)
+# =========================================================================
+
+class IngressConsumeRequest(BaseModel):
+    client_id: str = "web_ingress_client"
+    cost: float = 1.0
+    threat_level: Optional[float] = None
+
+
+@app.get("/api/game/status")
+def get_game_status():
+    """Return live Stackelberg Security Game equilibrium, payoffs, and token bucket telemetry."""
+    from kavach_agent_core.stackelberg_game import global_stackelberg_game, global_token_bucket
+    game_sol = global_stackelberg_game.solve_stackelberg_equilibrium()
+    tb_status = global_token_bucket.get_status()
+    return {
+        "status": "ACTIVE",
+        "stackelberg_game": game_sol,
+        "token_bucket": tb_status,
+        "academic_standard": "CSE3101 Unit 5 & von Stackelberg (1934) Security Games",
+    }
+
+
+@app.post("/api/game/optimize")
+def optimize_stackelberg_game():
+    """Solve Leader-Follower Stackelberg Security Game for optimal defense allocation s*."""
+    from kavach_agent_core.stackelberg_game import global_stackelberg_game
+    return global_stackelberg_game.solve_stackelberg_equilibrium()
+
+
+@app.post("/api/ingress/consume")
+def consume_ingress_tokens(req: IngressConsumeRequest):
+    """
+    Attempt to consume tokens from the dynamic token bucket rate limiter.
+    Throttles request velocity bursts and dynamically modulates rate under threat.
+    """
+    import math
+    from kavach_agent_core.stackelberg_game import global_token_bucket
+    if req.threat_level is not None:
+        global_token_bucket.set_threat_level(req.threat_level)
+    admitted, meta = global_token_bucket.consume(tokens=req.cost)
+    meta["client_id"] = req.client_id
+    if not admitted:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Rate limit velocity exceeded. Deficit tokens, retry after {meta['retry_after_sec']}s",
+            headers={"Retry-After": str(int(math.ceil(meta["retry_after_sec"])))}
+        )
+    return {"success": True, "admitted": True, "telemetry": meta}
+
+
+@app.post("/api/game/simulate")
+def simulate_stackelberg_game_comparison():
+    """
+    Simulate comparative utility analysis between naive uniform defense allocation
+    and optimal Stackelberg equilibrium allocation.
+    """
+    from kavach_agent_core.stackelberg_game import global_stackelberg_game
+    return global_stackelberg_game.simulate_game_comparison()
+
+
+
 @app.get("/api/swarm/stream")
 def stream_swarm_execution(goal: str = Query(..., description="User goal or task for the agent swarm")):
     """

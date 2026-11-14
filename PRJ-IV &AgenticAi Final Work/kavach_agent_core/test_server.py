@@ -24,16 +24,16 @@ def test_server_status_endpoint(client):
     assert resp.status_code == 200
     data = resp.json()
     assert data["status"] == "ONLINE"
-    assert data["tools_count"] == 17
+    assert data["tools_count"] == 19
     assert data["agents_count"] == 5
 
 
 def test_server_tools_endpoint(client):
-    """Verify /api/tools endpoint returns all 17 MCP schemas."""
+    """Verify /api/tools endpoint returns all 19 MCP schemas."""
     resp = client.get("/api/tools")
     assert resp.status_code == 200
     data = resp.json()
-    assert len(data["tools"]) == 17
+    assert len(data["tools"]) == 19
 
 
 def test_server_swarm_execute_api(client):
@@ -159,6 +159,40 @@ def test_server_differential_privacy_endpoints(client):
     data_sim = resp_sim.json()
     assert data_sim["success"] is True
     assert len(data_sim["trials"]) == 3
+
+
+def test_server_stackelberg_and_ingress_endpoints(client):
+    """Verify /api/game/status, /api/game/optimize, /api/ingress/consume, and /api/game/simulate."""
+    # 1. Status
+    resp_status = client.get("/api/game/status")
+    assert resp_status.status_code == 200
+    data_status = resp_status.json()
+    assert data_status["status"] == "ACTIVE"
+    assert "stackelberg_game" in data_status
+    assert "token_bucket" in data_status
+
+    # 2. Optimize
+    resp_opt = client.post("/api/game/optimize")
+    assert resp_opt.status_code == 200
+    data_opt = resp_opt.json()
+    assert data_opt["status"] == "EQUILIBRIUM_SOLVED"
+    assert "defense_allocation_s_star" in data_opt
+
+    # 3. Ingress Consume
+    resp_consume = client.post("/api/ingress/consume", json={"client_id": "test_client", "cost": 1.0, "threat_level": 0.2})
+    assert resp_consume.status_code == 200
+    data_c = resp_consume.json()
+    assert data_c["success"] is True
+    assert data_c["admitted"] is True
+    assert data_c["telemetry"]["client_id"] == "test_client"
+
+    # 4. Simulate Comparison
+    resp_sim = client.post("/api/game/simulate")
+    assert resp_sim.status_code == 200
+    data_sim = resp_sim.json()
+    assert data_sim["success"] is True
+    assert "comparison" in data_sim
+
 
 
 
