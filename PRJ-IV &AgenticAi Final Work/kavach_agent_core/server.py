@@ -165,7 +165,15 @@ MATH_PILLARS = [
 @app.get("/api/math/pillars")
 def get_math_pillars():
     """Return all 10 mathematical pillars and formal KaTeX invariants."""
-    return {"pillars": MATH_PILLARS, "count": len(MATH_PILLARS)}
+    enriched = []
+    for idx, p in enumerate(MATH_PILLARS, 1):
+        item = dict(p)
+        item["pillar_number"] = idx
+        item["academic_domain"] = p["domain"]
+        item["explanation"] = p["description"]
+        item["invariant_guarantee"] = p["invariant"]
+        enriched.append(item)
+    return {"pillars": enriched, "count": len(enriched)}
 
 
 @app.get("/api/repo/index")
