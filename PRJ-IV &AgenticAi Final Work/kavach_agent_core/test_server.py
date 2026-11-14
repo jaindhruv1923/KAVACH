@@ -52,3 +52,20 @@ def test_server_cockpit_html_endpoint(client):
     resp = client.get("/")
     assert resp.status_code == 200
     assert "KAVACH Multi-Agent AI Defense Platform" in resp.text
+
+
+def test_server_benchmark_endpoints(client):
+    """Verify /api/benchmark/summary and /api/benchmark/run endpoints."""
+    resp = client.get("/api/benchmark/summary")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["status"] == "EVALUATION_SUCCESS"
+    assert data["total_test_vectors"] == 30
+    assert data["accuracy_pct"] == 100.0
+    assert "confusion_matrix" in data
+    assert "domain_breakdown" in data
+
+    resp_run = client.post("/api/benchmark/run")
+    assert resp_run.status_code == 200
+    data_run = resp_run.json()
+    assert data_run["tests_passed"] == 30

@@ -65,6 +65,56 @@ class SharedBlackboard(BaseModel):
 
 
 # =========================================================================
+# 1.1 SENTINEL INGRESS GATEKEEPER & OWASP LLM01 DEFENSE
+# =========================================================================
+
+class SentinelDecision(BaseModel):
+    status: str  # "AUTHORIZED" or "BLOCKED"
+    reason: str
+    threat_pattern_matched: Optional[str] = None
+    confidence: float = 1.0
+
+
+class SentinelGate:
+    """
+    Autonomous Ingress Perimeter Gatekeeper (OWASP LLM01 Defense).
+    Inspects user goals, prompts, and tool arguments before execution DAG dispatch.
+    """
+
+    INJECTION_PATTERNS = [
+        r"ignore\s+(all\s+)?previous\s+instructions",
+        r"disregard\s+(any\s+prior\s+)?(safety\s+guidelines|system\s+prompt|dpdp)",
+        r"system_override",
+        r"sudo\s+rm\s+-rf",
+        r"format\s+c:",
+        r"admin_override_enabled",
+        r"you\s+are\s+dan",
+        r"aws_secret_access_key",
+        r"print\s+.*password",
+        r"repeat\s+the\s+confidential\s+system\s+instructions",
+        r"!gn0r3|pr3v!0u5|h4ck",
+        r"aWdub3Jl",  # Base64 encoded 'ignore'
+    ]
+
+    @classmethod
+    def inspect_ingress(cls, text: str) -> SentinelDecision:
+        for pat in cls.INJECTION_PATTERNS:
+            if re.search(pat, text, re.IGNORECASE):
+                return SentinelDecision(
+                    status="BLOCKED",
+                    reason=f"Adversarial Prompt Injection (OWASP LLM01) intercepted: threat signature '{pat}' matched.",
+                    threat_pattern_matched=pat,
+                    confidence=1.0,
+                )
+        return SentinelDecision(
+            status="AUTHORIZED",
+            reason="Clean ingress payload verified across all guardrail bounds.",
+            threat_pattern_matched=None,
+            confidence=1.0,
+        )
+
+
+# =========================================================================
 # 2. AGENT PERSONAS (Google ADK LlmAgent / CrewAI Agent specification)
 # =========================================================================
 
@@ -182,18 +232,11 @@ class KavachMultiAgentSwarm:
         blackboard.active_agent = "Sentinel"
         log_event("Sentinel", "INGRESS_SCAN_STARTED", {"message": "Inspecting user prompt for adversarial injection."})
 
-        # Check for obvious injection keywords
-        injection_patterns = [
-            r"ignore\s+(all\s+)?previous\s+instructions",
-            r"disregard\s+system\s+prompt",
-            r"system_override",
-            r"sudo\s+rm\s+-rf",
-            r"format\s+c:",
-        ]
-        is_injected = any(re.search(p, goal, re.IGNORECASE) for p in injection_patterns)
-        if is_injected:
+        # Sentinel Ingress Gate Inspection
+        sentinel_res = SentinelGate.inspect_ingress(goal)
+        if sentinel_res.status == "BLOCKED":
             blackboard.is_halted = True
-            blackboard.halt_reason = "Prompt Injection Attack (OWASP LLM01) intercepted by Sentinel Guardrail."
+            blackboard.halt_reason = sentinel_res.reason
             log_event("Sentinel", "SECURITY_ALERT_HALT", {"reason": blackboard.halt_reason})
             blackboard.post_message("Sentinel", "User", "SECURITY_ALERT", {"alert": blackboard.halt_reason})
             

@@ -424,10 +424,17 @@ def tool_entropy_secret_audit(content: str) -> Dict[str, Any]:
     Calculates Shannon Information Entropy H(X) = -sum(p * log2(p)) to detect
     high-entropy cryptographic secrets, API keys, and passwords.
     """
+    candidates = set()
+    # Find quoted string literals or alphanumeric/symbolic strings
+    for m in re.findall(r"['\"]([^'\"]{10,})['\"]", content):
+        candidates.add(m)
+    for m in re.findall(r"[A-Za-z0-9+/=_\-!@#$%^&*]{14,}", content):
+        candidates.add(m)
+
     findings = []
-    # Tokenize potential secret candidates
-    tokens = re.findall(r"[A-Za-z0-9+/=_\-]{16,}", content)
-    for tok in set(tokens):
+    for tok in candidates:
+        if len(tok) < 10:
+            continue
         prob = [tok.count(c) / len(tok) for c in set(tok)]
         h = -sum(p * math.log2(p) for p in prob)
         if h >= 3.8:
@@ -447,7 +454,7 @@ def tool_entropy_secret_audit(content: str) -> Dict[str, Any]:
 def tool_ast_security_scan(content_or_file_path: str) -> Dict[str, Any]:
     """
     Analyze Python code via Abstract Syntax Tree (AST) to detect dangerous calls:
-    eval, exec, os.system, subprocess with shell=True, and hardcoded secrets.
+    eval, exec, os.system, subprocess with shell=True, pickle, and hardcoded secrets.
     """
     code_str = content_or_file_path
     if os.path.isfile(content_or_file_path):
@@ -462,8 +469,8 @@ def tool_ast_security_scan(content_or_file_path: str) -> Dict[str, Any]:
 
     vulnerabilities = []
     for node in ast.walk(tree):
-        # Detect eval / exec
         if isinstance(node, ast.Call):
+            # eval(), exec()
             if isinstance(node.func, ast.Name) and node.func.id in ("eval", "exec"):
                 vulnerabilities.append({
                     "line": node.lineno,
@@ -471,20 +478,41 @@ def tool_ast_security_scan(content_or_file_path: str) -> Dict[str, Any]:
                     "severity": "CRITICAL",
                     "detail": f"Direct call to forbidden '{node.func.id}()'",
                 })
-            # Detect os.system / subprocess
-            elif isinstance(node.func, ast.Attribute):
-                if node.func.attr in ("system", "popen") and isinstance(node.func.value, ast.Name) and node.func.value.id == "os":
+            # os.system, os.popen
+            elif isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name) and node.func.value.id == "os":
+                if node.func.attr in ("system", "popen"):
                     vulnerabilities.append({
                         "line": node.lineno,
                         "type": "COMMAND_INJECTION_RISK",
                         "severity": "HIGH",
                         "detail": f"os.{node.func.attr}() call detected",
                     })
+            # subprocess.Popen / subprocess.run / subprocess.call
+            elif isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name) and node.func.value.id == "subprocess":
+                if node.func.attr in ("Popen", "run", "call", "check_output"):
+                    shell_kw = any(isinstance(k, ast.keyword) and k.arg == "shell" and getattr(k.value, "value", False) is True for k in node.keywords)
+                    if shell_kw or node.func.attr in ("Popen", "run"):
+                        vulnerabilities.append({
+                            "line": node.lineno,
+                            "type": "SUBPROCESS_INJECTION_RISK",
+                            "severity": "HIGH",
+                            "detail": f"subprocess.{node.func.attr}(shell=True) detected",
+                        })
+            # pickle.loads / pickle.load
+            elif isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name) and node.func.value.id == "pickle":
+                if node.func.attr in ("loads", "load"):
+                    vulnerabilities.append({
+                        "line": node.lineno,
+                        "type": "INSECURE_DESERIALIZATION",
+                        "severity": "CRITICAL",
+                        "detail": f"pickle.{node.func.attr}() deserialization sink detected",
+                    })
 
     return {
         "success": True,
         "is_safe": len(vulnerabilities) == 0,
         "vulnerabilities_found": len(vulnerabilities),
+        "vulnerabilities_found_count": len(vulnerabilities),
         "vulnerabilities": vulnerabilities,
     }
 

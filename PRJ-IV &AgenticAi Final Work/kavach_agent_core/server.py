@@ -227,6 +227,30 @@ def execute_swarm(req: GoalRequest):
     return res.dict()
 
 
+# =========================================================================
+# EMPIRICAL AGENT EVALUATION & BENCHMARKING (CSE3101 CAPSTONE)
+# =========================================================================
+
+@app.get("/api/benchmark/summary")
+def get_benchmark_summary(refresh: bool = False):
+    """
+    Return comprehensive empirical evaluation metrics across 30 test vectors:
+    Accuracy, Precision, Recall, FPR, Confusion Matrix, and Domain Breakdowns.
+    """
+    from kavach_agent_core.benchmark_eval import get_precomputed_benchmark_summary
+    return get_precomputed_benchmark_summary(force_refresh=refresh)
+
+
+@app.post("/api/benchmark/run")
+def run_benchmark_suite():
+    """
+    Trigger live execution of the full 30-vector empirical benchmark suite.
+    Measures real-time latency, decisions, and mathematical invariants.
+    """
+    from kavach_agent_core.benchmark_eval import run_full_benchmark_suite
+    return run_full_benchmark_suite()
+
+
 @app.get("/api/swarm/stream")
 def stream_swarm_execution(goal: str = Query(..., description="User goal or task for the agent swarm")):
     """
