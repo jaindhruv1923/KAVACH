@@ -64,66 +64,75 @@
         header {
             background: linear-gradient(180deg, rgba(12,19,36,0.95) 0%, rgba(6,9,19,0.85) 100%);
             border-bottom: 1px solid var(--border-dim);
-            padding: 14px 28px;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 50;
+            max-width: 100vw;
+            box-sizing: border-box;
         }
 
         .brand-cluster {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
+            flex-shrink: 0;
         }
 
         .brand-logo {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            border-radius: 10px;
+            border-radius: 9px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 20px;
+            font-size: 19px;
             color: #060913;
-            box-shadow: 0 0 24px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            flex-shrink: 0;
         }
 
         .brand-text h1 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             letter-spacing: -0.02em;
             background: linear-gradient(90deg, #fff, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
         .brand-text p {
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--text-muted);
+            line-height: 1.3;
         }
 
         .system-badges {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex-shrink: 0;
         }
 
         .badge {
             background: rgba(17, 28, 53, 0.7);
             border: 1px solid var(--border-dim);
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
 
         .badge-dot {
@@ -137,27 +146,46 @@
         /* Nav Tabs */
         .tab-bar {
             display: flex;
-            gap: 6px;
+            gap: 3px;
             background: var(--bg-surface);
-            padding: 5px;
+            padding: 4px;
             border-radius: 10px;
             border: 1px solid var(--border-dim);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 242, 254, 0.25) transparent;
+            -webkit-overflow-scrolling: touch;
+            align-items: center;
+            flex: 1 1 auto;
+            max-width: fit-content;
+        }
+
+        .tab-bar::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .tab-bar::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 254, 0.3);
+            border-radius: 3px;
         }
 
         .tab-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 6px 13px;
-            border-radius: 8px;
-            font-size: 12px;
+            padding: 5px 9px;
+            border-radius: 7px;
+            font-size: 11px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 5px;
             white-space: nowrap;
+            flex-shrink: 0;
+            text-decoration: none;
         }
 
         .tab-btn:hover {
@@ -169,6 +197,38 @@
             background: var(--bg-elevated);
             color: var(--accent-cyan);
             border: 1px solid var(--border-dim);
+        }
+
+        .tab-divider {
+            width: 1px;
+            height: 16px;
+            background: var(--border-dim);
+            margin: 0 3px;
+            flex-shrink: 0;
+        }
+
+        .tab-btn-port {
+            border: 1px solid var(--border-dim);
+            background: rgba(255, 255, 255, 0.03);
+            font-family: 'Fira Code', monospace;
+            font-size: 10.5px;
+        }
+        .tab-btn-port:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        @media (max-width: 1300px) {
+            header {
+                flex-wrap: wrap;
+                padding: 8px 14px;
+            }
+            .tab-bar {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+                justify-content: flex-start;
+            }
         }
 
         /* Main Container */
@@ -1455,17 +1515,18 @@
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 Benchmark &amp; Evals
             </button>
-            <a href="http://localhost:8001/" target="_blank" class="tab-btn" style="text-decoration:none;">
+            <div class="tab-divider"></div>
+            <a href="http://localhost:8001/" target="_blank" class="tab-btn tab-btn-port" title="KAVACH Master Platform (Port 8001)">
                 <svg class="k-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
-                Master (8001)
+                Master :8001
             </a>
-            <a href="http://localhost:8002/" target="_blank" class="tab-btn" style="text-decoration:none;">
+            <a href="http://localhost:8002/" target="_blank" class="tab-btn tab-btn-port" title="Bharat Core Banking (Port 8002)">
                 <svg class="k-icon" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line><polygon points="12 2 2 7 22 7 12 2"></polygon></svg>
-                Bank (8002)
+                Bank :8002
             </a>
-            <a href="http://localhost:8000/" target="_blank" class="tab-btn" style="text-decoration:none;">
+            <a href="http://localhost:8000/" target="_blank" class="tab-btn tab-btn-port" title="Live Agent Swarm Engine (Port 8000)">
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Swarm Engine (8000)
+                Swarm :8000
             </a>
         </div>
 

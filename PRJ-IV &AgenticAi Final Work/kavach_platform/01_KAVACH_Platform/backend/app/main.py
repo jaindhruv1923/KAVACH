@@ -375,6 +375,15 @@ def serve_root_academic_features_suite():
     )
 
 
+@app.get("/six_stages_defense.js", include_in_schema=False)
+def serve_root_six_stages_defense():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "six_stages_defense.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
 @app.get("/favicon.ico", include_in_schema=False)
 def serve_favicon():
     fav_path = os.path.join(FRONTEND_DIR, "favicon.ico")

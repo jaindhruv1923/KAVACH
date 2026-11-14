@@ -46,6 +46,7 @@
 <!-- KaTeX Academic Mathematical Typesetting -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
 
 <!-- Structured Data (Schema.org JSON-LD) -->
 <script type="application/ld+json">
@@ -192,6 +193,12 @@ window.renderDynamicNavbar = function(mode) {
 
   if (mode === 'midsem') {
     container.innerHTML = `
+      <a href="/cockpit" target="_blank" class="nav-switch-btn" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; font-weight: 800; text-decoration: none; box-shadow: 0 0 14px rgba(0, 242, 254, 0.5); display:inline-flex; align-items:center; gap:6px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        REAL AGENT COCKPIT (A2A)
+      </a>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)">6 Defense Stages (KaTeX)</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Agent Swarm</button>
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
@@ -509,6 +516,7 @@ window.openApplicationsWork = function(e) {
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
           REAL AGENT COCKPIT (A2A)
         </a>
+        <button type="button" class="nav-switch-btn" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)">6 Defense Stages (KaTeX)</button>
         <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Agent Swarm</button>
         <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
         <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
@@ -621,6 +629,410 @@ window.openApplicationsWork = function(e) {
           <span>Persona Telemetry</span>
         </div>
       </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6-STAGE AUTONOMOUS MULTI-AGENT AI DEFENSE ARCHITECTURE (CSE3101) -->
+    <!-- ============================================================ -->
+    <section id="six-stages-autonomous-defense-section" class="product-section reveal-on-scroll" style="margin-top: 24px; margin-bottom: 36px; padding: 32px; background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(11,17,32,0.98) 100%); border: 1px solid rgba(0,242,254,0.25); border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.4);">
+      
+      <!-- Section Header -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:20px;">
+        <div style="max-width: 900px;">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+            <span class="badge" style="background:rgba(0,242,254,0.12); color:#00f2fe; border:1px solid rgba(0,242,254,0.3); font-weight:700; font-size:0.75rem; display:inline-flex; align-items:center; gap:5px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              CSE3101: AGENTIC AI CAPSTONE
+            </span>
+            <span class="badge" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.3); font-weight:700; font-size:0.75rem;">
+              6 SEQUENTIAL DEFENSE STAGES
+            </span>
+            <span class="badge" style="background:rgba(16,185,129,0.12); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-weight:700; font-size:0.75rem;">
+              19 MODEL CONTEXT PROTOCOL (MCP) TOOLS
+            </span>
+            <span class="badge" style="background:rgba(56,189,248,0.12); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); font-weight:700; font-size:0.75rem;">
+              TCR = 100% &bull; FPR = 0.0%
+            </span>
+          </div>
+          <h2 style="font-size: 1.65rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em; margin: 0 0 8px 0; line-height: 1.25;">
+            6-Stage Autonomous AI Multi-Agent Defense Architecture &amp; Invariant Pillars
+          </h2>
+          <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.6; margin: 0;">
+            Bridging formal academic theory and autonomous execution: empirical 30-vector benchmarking, monotonic Reflexion self-correction, AST taint reachability DAGs, SAGA distributed transaction rollback, Laplace differential privacy, and Stackelberg game equilibria.
+          </p>
+        </div>
+
+        <!-- Cockpit Launcher Actions -->
+        <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
+          <a href="/cockpit" target="_blank" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; text-decoration: none; border-radius: 8px; padding: 10px 20px; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 20px rgba(0, 242, 254, 0.4); transition: transform 0.2s ease;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span>LAUNCH REAL AGENT COCKPIT (A2A)</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+          <span style="font-size: 0.72rem; color: #64748b; font-family: 'Fira Code', monospace;">
+            Direct Port 8003 &bull; Unified Mount at /cockpit
+          </span>
+        </div>
+      </div>
+
+      <!-- 6 Stages Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; margin-bottom: 24px;">
+
+        <!-- STAGE 1 CARD -->
+        <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(0,242,254,0.25); border-radius: 12px; padding: 18px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="badge" style="background:rgba(0,242,254,0.15); color:#00f2fe; border:1px solid rgba(0,242,254,0.4); font-size:0.7rem; font-weight:700;">
+                STAGE 1 &bull; BENCHMARKING
+              </span>
+              <span style="font-size:0.75rem; color:#10b981; font-weight:700;">TCR = 100.0%</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight:700; color:#fff; margin:0 0 6px 0;">
+              Empirical Evaluation &amp; 30-Vector Benchmark Harness
+            </h3>
+            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.45; margin:0 0 10px 0;">
+              Rigorous empirical evaluation covering 30 attack vectors across SQLi, RCE, Taint injection, Zero-Day, DPDP PII, and AST bypass.
+            </p>
+            <div style="background:#050914; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.82rem; color:#e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; font-weight:700; margin-bottom:4px;">Formal KaTeX Invariant:</div>
+              $$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} = \frac{24 + 6}{30} = 100\%$$
+              $$\text{TCR} = \frac{TP}{TP + FN} = 1.00, \quad \text{FPR} = \frac{FP}{FP + TN} = 0.0\%$$
+            </div>
+          </div>
+          <button type="button" class="btn-flow-primary magnetic-btn" onclick="window.runStage1Benchmark(this)" style="width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Run 30-Vector Benchmark Telemetry</span>
+          </button>
+        </div>
+
+        <!-- STAGE 2 CARD -->
+        <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(168,85,247,0.25); border-radius: 12px; padding: 18px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="badge" style="background:rgba(168,85,247,0.15); color:#c084fc; border:1px solid rgba(168,85,247,0.4); font-size:0.7rem; font-weight:700;">
+                STAGE 2 &bull; SELF-CORRECTION
+              </span>
+              <span style="font-size:0.75rem; color:#c084fc; font-weight:700;">Monotonic Convergence</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight:700; color:#fff; margin:0 0 6px 0;">
+              Adaptive Self-Correction &amp; Reflexion Engine
+            </h3>
+            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.45; margin:0 0 10px 0;">
+              Episodic verbal memory buffer retains VerifierCritic critiques to iteratively repair flawed code synthesis via counterfactual prompting.
+            </p>
+            <div style="background:#050914; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.82rem; color:#e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; font-weight:700; margin-bottom:4px;">Formal KaTeX Invariant:</div>
+              $$\mathcal{L}_{t+1} < \mathcal{L}_t \quad \forall t \in \{0, \dots, K-1\}, \quad \lim_{t \to \infty} \mathcal{L}_t = 0$$
+              $$c_{t+1} = \text{Refine}(c_t, \text{Critic}(c_t, \mathcal{R}_{\text{invariants}}))$$
+            </div>
+          </div>
+          <button type="button" class="btn-flow-primary magnetic-btn" onclick="window.runStage2Reflexion(this)" style="width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem; background:linear-gradient(135deg, #a855f7, #6366f1);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            <span>Simulate Reflexion Self-Repair</span>
+          </button>
+        </div>
+
+        <!-- STAGE 3 CARD -->
+        <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.25); border-radius: 12px; padding: 18px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="badge" style="background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); font-size:0.7rem; font-weight:700;">
+                STAGE 3 &bull; AST TAINT &amp; SUPPLY CHAIN
+              </span>
+              <span style="font-size:0.75rem; color:#38bdf8; font-weight:700;">CWE-1395 Defended</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight:700; color:#fff; margin:0 0 6px 0;">
+              AST Taint Reachability DAG &amp; Slopsquatting Traversal
+            </h3>
+            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.45; margin:0 0 10px 0;">
+              Traverses syntax trees from tainted sources to dangerous sinks and computes Damerau-Levenshtein distance to quarantine hallucinated packages.
+            </p>
+            <div style="background:#050914; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.82rem; color:#e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; font-weight:700; margin-bottom:4px;">Formal KaTeX Invariant:</div>
+              $$\mathcal{G}_{\text{AST}} = (V, E), \quad \text{Reach}(v_{\text{source}}, v_{\text{sink}}) = \emptyset$$
+              $$d_{DL}(p_i, p_{\text{canonical}}) \le 2 \implies \text{Quarantine}$$
+            </div>
+          </div>
+          <button type="button" class="btn-flow-primary magnetic-btn" onclick="window.runStage3AstTaint(this)" style="width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem; background:linear-gradient(135deg, #0284c7, #2563eb);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Scan AST &amp; PyPI Dependencies</span>
+          </button>
+        </div>
+
+        <!-- STAGE 4 CARD -->
+        <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(16,185,129,0.25); border-radius: 12px; padding: 18px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="badge" style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); font-size:0.7rem; font-weight:700;">
+                STAGE 4 &bull; SAGA ESCROW
+              </span>
+              <span style="font-size:0.75rem; color:#10b981; font-weight:700;">Bit-for-Bit Identity</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight:700; color:#fff; margin:0 0 6px 0;">
+              Autonomous SAGA Rollback &amp; Git Patch Escrow
+            </h3>
+            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.45; margin:0 0 10px 0;">
+              Guarantees eventual consistency across multi-agent modifications; on verifier failure, reverse compensating sequence restores pre-state SHA-256 hash.
+            </p>
+            <div style="background:#050914; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.82rem; color:#e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; font-weight:700; margin-bottom:4px;">Formal KaTeX Invariant:</div>
+              $$\mathcal{S} = (T_1, \dots, T_k; C_k, \dots, C_1), \quad T_k = \text{FAIL} \implies \prod_{i=k-1}^1 C_i$$
+              $$H(S_{\text{final}}) \equiv H(S_0) = \text{SHA-256}(\text{PreState})$$
+            </div>
+          </div>
+          <button type="button" class="btn-flow-primary magnetic-btn" onclick="window.runStage4Saga(this)" style="width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem; background:linear-gradient(135deg, #059669, #10b981);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            <span>Simulate SAGA Rollback Protocol</span>
+          </button>
+        </div>
+
+        <!-- STAGE 5 CARD -->
+        <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(0,242,254,0.25); border-radius: 12px; padding: 18px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="badge" style="background:rgba(0,242,254,0.15); color:#00f2fe; border:1px solid rgba(0,242,254,0.4); font-size:0.7rem; font-weight:700;">
+                STAGE 5 &bull; DIFFERENTIAL PRIVACY
+              </span>
+              <span style="font-size:0.75rem; color:#00f2fe; font-weight:700;">DPDP Act 2023 Safe</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight:700; color:#fff; margin:0 0 6px 0;">
+              Differential Privacy &amp; Laplace Noise Mechanism
+            </h3>
+            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.45; margin:0 0 10px 0;">
+              Protects sensitive banking records and balances with calibrated Laplace noise; sequential composition bounds cumulative privacy loss under budget epsilon.
+            </p>
+            <div style="background:#050914; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.82rem; color:#e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; font-weight:700; margin-bottom:4px;">Formal KaTeX Invariant:</div>
+              $$\Pr[\mathcal{M}(x) \in \mathcal{S}] \le e^\epsilon \Pr[\mathcal{M}(y) \in \mathcal{S}] + \delta$$
+              $$Y \sim \text{Lap}\left(0, \frac{\Delta f}{\epsilon}\right), \quad \sum_{i=1}^m \epsilon_i \le \epsilon_{\max} = 5.0$$
+            </div>
+          </div>
+          <button type="button" class="btn-flow-primary magnetic-btn" onclick="window.runStage5Dp(this)" style="width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Query DP Budget &amp; Laplace Noise</span>
+          </button>
+        </div>
+
+        <!-- STAGE 6 CARD -->
+        <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(245,158,11,0.25); border-radius: 12px; padding: 18px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="badge" style="background:rgba(245,158,11,0.15); color:#fcd34d; border:1px solid rgba(245,158,11,0.4); font-size:0.7rem; font-weight:700;">
+                STAGE 6 &bull; GAME THEORY &amp; VELOCITY
+              </span>
+              <span style="font-size:0.75rem; color:#f59e0b; font-weight:700;">Negative Payoff (U_A < 0)</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight:700; color:#fff; margin:0 0 6px 0;">
+              Stackelberg Adversarial Game &amp; Token Bucket
+            </h3>
+            <p style="font-size:0.8rem; color:#94a3b8; line-height:1.45; margin:0 0 10px 0;">
+              Bi-level game equilibrium guarantees negative attacker payoff; dynamic token bucket limits burst prompt injection velocity to prevent DoS.
+            </p>
+            <div style="background:#050914; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.82rem; color:#e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; text-transform:uppercase; font-weight:700; margin-bottom:4px;">Formal KaTeX Invariant:</div>
+              $$s^* = \arg\max_{s \in \mathcal{S}_D} U_D(s, a^*(s)) \quad \text{s.t.} \quad U_A(s, a^*(s)) < 0$$
+              $$T(t) = \min(C, T(t - \Delta t) + \rho_{\text{eff}} \Delta t) - \kappa$$
+            </div>
+          </div>
+          <button type="button" class="btn-flow-primary magnetic-btn" onclick="window.runStage6Stackelberg(this)" style="width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem; background:linear-gradient(135deg, #d97706, #b45309);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>Solve Stackelberg Defense Equilibrium</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Live Execution Telemetry Console Box -->
+      <div style="background: #050914; border: 1px solid rgba(0,242,254,0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981; display:inline-block;"></span>
+            <strong style="color:#fff; font-size:0.85rem; font-family:'Fira Code', monospace;">LIVE TELEMETRY STREAM &bull; KAVACH AUTONOMOUS CORE</strong>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span id="six-stages-console-status" class="badge" style="background:rgba(16,185,129,0.2); color:#10b981; border:1px solid rgba(16,185,129,0.4); font-size:0.7rem; font-weight:700;">
+              STANDBY
+            </span>
+            <span id="six-stages-console-invariant" style="font-size:0.78rem; color:#38bdf8; font-family:'Fira Code', monospace;">
+              Click any stage button above to execute live invariant verification
+            </span>
+          </div>
+        </div>
+        <pre id="six-stages-console-output" style="background:#020617; border:1px solid rgba(255,255,255,0.04); border-radius:8px; padding:12px; color:#cbd5e1; font-family:'Fira Code', monospace; font-size:0.78rem; max-height:200px; overflow-y:auto; margin:0; line-height:1.5;">[INIT] System ready. All 6 stages initialized with mathematical invariant verifiers.
+Select any Stage above (Benchmark, Reflexion, AST, SAGA, DP, Stackelberg) to execute real-time telemetry.</pre>
+      </div>
+
+      <!-- 19 MCP Standardized Tools Catalog -->
+      <div style="background: rgba(15,23,42,0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <h3 style="font-size:1.15rem; font-weight:800; color:#fff; margin:0;">
+                19 Model Context Protocol (MCP) Standardized Tools Catalog
+              </h3>
+              <span id="mcp-tools-match-count" class="badge" style="background:rgba(0,242,254,0.15); color:#00f2fe; border:1px solid rgba(0,242,254,0.3); font-size:0.72rem; font-weight:700;">
+                19 of 19 tools
+              </span>
+            </div>
+            <p style="font-size:0.78rem; color:#94a3b8; margin:3px 0 0 0;">
+              Production MCP tool registry schema conforming to Anthropic Model Context Protocol specification.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input type="text" placeholder="Search 19 tools (e.g. 'saga', 'ast', 'dp')..." oninput="window.filterMcpToolsTable(this.value)" style="background:#090d1a; border:1px solid rgba(255,255,255,0.12); color:#fff; padding:6px 12px; border-radius:6px; font-size:0.78rem; width:260px; outline:none;">
+          </div>
+        </div>
+
+        <div style="max-height: 380px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+          <table style="width:100%; border-collapse:collapse; font-size:0.78rem; text-align:left;">
+            <thead>
+              <tr style="background:#080d1e; border-bottom:1px solid rgba(255,255,255,0.1); color:#94a3b8;">
+                <th style="padding:10px 12px; font-weight:700;">#</th>
+                <th style="padding:10px 12px; font-weight:700;">MCP Tool Identifier</th>
+                <th style="padding:10px 12px; font-weight:700;">Primary Agent</th>
+                <th style="padding:10px 12px; font-weight:700;">Academic Stage</th>
+                <th style="padding:10px 12px; font-weight:700;">Mathematical Invariant Guarantee</th>
+              </tr>
+            </thead>
+            <tbody id="mcp-tools-table-body" style="color:#e2e8f0;">
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">1</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_list_files</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">LeadOrchestrator</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Workspace Ingestion</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Bounded path traversal under authorized sandbox root.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">2</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_read_file</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">RepoAuditor</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Context Gathering</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Line-bounded safe chunk extraction with UTF-8 verification.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">3</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_write_file</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">SoftwareArchitect</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Code Synthesis</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Automatic timestamped escrow backup before file mutation.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">4</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_edit_file</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">SoftwareArchitect</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Patch Application</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Atomic search-and-replace with pre-state verification.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">5</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_search_code</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">RepoAuditor</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Symbol Indexing</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Deterministic regex indexer across 389 workspace files.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">6</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_run_pytest</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">VerifierCritic</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Stage 1 &bull; Unit 5</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Captures test returncodes; 164/164 tests passing benchmark.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">7</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_run_python</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Subprocess Isolation</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Resource-bounded timeout execution (15s hard ceiling).</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">8</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_validate_aadhaar_verhoeff</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Dihedral D5 Group</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Catches 100% single substitutions and adjacent transpositions.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">9</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_dpdp_tokenize</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">PrivacyOfficer</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">DPDP Act 2023</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Reversible HMAC-SHA256 pseudonymization of PII identities.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">10</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_entropy_secret_audit</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">Shannon Entropy</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">H(X) >= 3.8 bits quarantined; zero plaintext token leakage.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#64748b;">11</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#38bdf8; font-weight:600;">tool_ast_security_scan</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:#0f172a; color:#cbd5e1;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#94a3b8;">AST Syntax Visitor</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#94a3b8;">Static visitor detection of eval(), exec(), and raw shell calls.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(0,242,254,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#00f2fe; font-weight:700;">12</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#00f2fe; font-weight:700;">tool_ast_taint_graph_scan</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(0,242,254,0.15); color:#00f2fe;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#38bdf8; font-weight:700;">Stage 3 &bull; Taint DAG</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">Reach(v_source, v_sink) = ∅ over G_AST = (V, E).</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(0,242,254,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#00f2fe; font-weight:700;">13</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#00f2fe; font-weight:700;">tool_supply_chain_audit</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(0,242,254,0.15); color:#00f2fe;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#38bdf8; font-weight:700;">Stage 3 &bull; Slopsquat</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">Damerau-Levenshtein d_DL(p_i, p_canonical) ≤ 2 quarantine.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(16,185,129,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#10b981; font-weight:700;">14</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#10b981; font-weight:700;">tool_saga_rollback</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(16,185,129,0.15); color:#34d399;">VerifierCritic</span></td>
+                <td style="padding:8px 12px; color:#34d399; font-weight:700;">Stage 4 &bull; SAGA Rollback</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">Reverse compensating actions C_{k-1}...C_1; H(S_final) == H(S_0).</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(16,185,129,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#10b981; font-weight:700;">15</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#10b981; font-weight:700;">tool_saga_status</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(16,185,129,0.15); color:#34d399;">LeadOrchestrator</span></td>
+                <td style="padding:8px 12px; color:#34d399; font-weight:700;">Stage 4 &bull; SAGA Ledger</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">Distributed transaction escrow and audit compensation status.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(168,85,247,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#c084fc; font-weight:700;">16</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#c084fc; font-weight:700;">tool_differential_privacy_query</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(168,85,247,0.15); color:#c084fc;">PrivacyOfficer</span></td>
+                <td style="padding:8px 12px; color:#c084fc; font-weight:700;">Stage 5 &bull; DP Query</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">Laplace noise Y ~ Lap(0, Δf/ε) with calibrated scale b.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(168,85,247,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#c084fc; font-weight:700;">17</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#c084fc; font-weight:700;">tool_dp_budget_status</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(168,85,247,0.15); color:#c084fc;">PrivacyOfficer</span></td>
+                <td style="padding:8px 12px; color:#c084fc; font-weight:700;">Stage 5 &bull; DP Budget</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">Sequential composition bound: Σ ε_i ≤ 5.0 privacy allocation.</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04); background:rgba(245,158,11,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#fcd34d; font-weight:700;">18</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#fcd34d; font-weight:700;">tool_stackelberg_defense_optimize</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(245,158,11,0.15); color:#fcd34d;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#fcd34d; font-weight:700;">Stage 6 &bull; Game Theory</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">s* = argmax U_D(s, a*(s)) with negative adversary payoff.</td>
+              </tr>
+              <tr style="background:rgba(245,158,11,0.04);">
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#fcd34d; font-weight:700;">19</td>
+                <td style="padding:8px 12px; font-family:'Fira Code', monospace; color:#fcd34d; font-weight:700;">tool_token_bucket_ingress_check</td>
+                <td style="padding:8px 12px;"><span class="badge" style="background:rgba(245,158,11,0.15); color:#fcd34d;">SecurityAuditor</span></td>
+                <td style="padding:8px 12px; color:#fcd34d; font-weight:700;">Stage 6 &bull; Rate Limiter</td>
+                <td style="padding:8px 12px; font-size:0.74rem; color:#cbd5e1;">Dynamic token refill T(t) = min(C, T + ρ_eff Δt) velocity bounds.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </section>
 
     <!-- Architecture & Execution Flowchart -->
@@ -5871,6 +6283,8 @@ def parse_deploy_spec(user_payload):
 <script src="codebase_ide.js?v=1.0.0"></script>
 <script src="academic_features_suite.js?v=4.5.0"></script>
 <script src="portal_integrations.js?v=4.5.0"></script>
+<script src="six_stages_defense.js?v=4.6.0"></script>
+
 <!-- Floating Interactive Pathway Telemetry Dock -->
 <div id="floating-pathway-dock" class="floating-pathway-dock" aria-live="polite">
   <div class="dock-status-label">
