@@ -391,6 +391,64 @@ def simulate_saga_rollback():
     return GLOBAL_SAGA_COORDINATOR.simulate_saga_failure_and_rollback()
 
 
+# =========================================================================
+# DIFFERENTIAL PRIVACY & LAPLACE MECHANISM (STAGE 5 CAPSTONE)
+# =========================================================================
+
+class DPQueryRequest(BaseModel):
+    query_type: str = "COUNT"  # COUNT, SUM, AVG
+    epsilon: float = 0.5
+    clipping_bound: float = 100000.0
+
+
+@app.get("/api/dp/budget")
+def get_dp_budget():
+    """Return current privacy budget status, consumption log, and composition metrics."""
+    from kavach_agent_core.differential_privacy import GLOBAL_DP_ENGINE
+    acct = GLOBAL_DP_ENGINE.accountant
+    return {
+        "status": "ACTIVE",
+        "total_budget": acct.total_budget,
+        "spent_budget": acct.spent_budget,
+        "remaining_budget": acct.remaining_budget,
+        "delta": acct.delta,
+        "query_count": acct.query_count,
+        "queries": acct.query_log[-10:],
+        "mathematical_invariant": {
+            "formula": r"\Pr[\mathcal{M}(x) \in \mathcal{S}] \le e^\epsilon \Pr[\mathcal{M}(y) \in \mathcal{S}] + \delta, \quad Y \sim \text{Lap}\left(0, \frac{\Delta f}{\epsilon}\right)",
+            "composition": r"\sum_{i=1}^{k} \epsilon_i \le \epsilon_{\text{total}}",
+            "statutory_mandate": "Indian DPDP Act 2023 Section 8 Anonymization & Purpose Limitation",
+        },
+    }
+
+
+@app.post("/api/dp/query")
+def execute_dp_query(req: DPQueryRequest):
+    """
+    Execute an epsilon-Differentially Private aggregate query (COUNT, SUM, AVG)
+    on Bharat Core Banking records with calibrated Laplace noise.
+    """
+    from kavach_agent_core.differential_privacy import GLOBAL_DP_ENGINE
+    res = GLOBAL_DP_ENGINE.query_dp_aggregate(
+        query_type=req.query_type,
+        epsilon=req.epsilon,
+        clipping_bound=req.clipping_bound,
+    )
+    if not res.get("success") and res.get("status") == "BUDGET_EXHAUSTED":
+        raise HTTPException(status_code=429, detail=res.get("error"))
+    return res
+
+
+@app.post("/api/dp/simulate")
+def simulate_dp_reconstruction_resistance():
+    """
+    Simulate comparative analysis of multiple noisy queries to demonstrate
+    membership inference and reconstruction attack resistance.
+    """
+    from kavach_agent_core.differential_privacy import GLOBAL_DP_ENGINE
+    return GLOBAL_DP_ENGINE.simulate_reconstruction_resistance()
+
+
 @app.get("/api/swarm/stream")
 def stream_swarm_execution(goal: str = Query(..., description="User goal or task for the agent swarm")):
     """

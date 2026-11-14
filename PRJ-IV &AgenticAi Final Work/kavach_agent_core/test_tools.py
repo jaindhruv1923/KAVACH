@@ -197,4 +197,23 @@ def test_saga_tools():
     assert res_rb["state"] == "ROLLED_BACK"
 
 
+def test_differential_privacy_tools():
+    """Verify tool_differential_privacy_query and tool_dp_budget_status."""
+    from kavach_agent_core.differential_privacy import GLOBAL_DP_ENGINE
+    GLOBAL_DP_ENGINE.accountant.reset(new_budget=10.0)
+
+    # 1. DP Query Tool
+    res_query = execute_tool("tool_differential_privacy_query", {"query_type": "COUNT", "epsilon": 0.5})
+    assert res_query["success"] is True
+    assert "privatized_value" in res_query
+    assert res_query["sensitivity"] == 1.0
+
+    # 2. Budget Status Tool
+    res_budget = execute_tool("tool_dp_budget_status", {})
+    assert res_budget["success"] is True
+    assert res_budget["spent_budget"] >= 0.5
+    assert res_budget["remaining_budget"] <= 9.5
+
+
+
 

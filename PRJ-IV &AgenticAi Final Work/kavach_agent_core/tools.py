@@ -608,6 +608,39 @@ def tool_saga_status(transaction_id: Optional[str] = None) -> Dict[str, Any]:
     }
 
 
+def tool_differential_privacy_query(
+    query_type: str = "COUNT",
+    epsilon: float = 0.5,
+    clipping_bound: float = 100000.0,
+) -> Dict[str, Any]:
+    """
+    Execute an epsilon-Differentially Private aggregate query (COUNT, SUM, AVG)
+    with calibrated Laplace noise to protect banking records against reconstruction attacks.
+    """
+    from kavach_agent_core.differential_privacy import GLOBAL_DP_ENGINE
+    return GLOBAL_DP_ENGINE.query_dp_aggregate(
+        query_type=query_type,
+        epsilon=epsilon,
+        clipping_bound=clipping_bound,
+    )
+
+
+def tool_dp_budget_status() -> Dict[str, Any]:
+    """
+    Query the Differential Privacy budget consumption and remaining allocation.
+    """
+    from kavach_agent_core.differential_privacy import GLOBAL_DP_ENGINE
+    acct = GLOBAL_DP_ENGINE.accountant
+    return {
+        "success": True,
+        "total_budget": acct.total_budget,
+        "spent_budget": acct.spent_budget,
+        "remaining_budget": acct.remaining_budget,
+        "query_count": acct.query_count,
+        "queries": acct.query_log[-10:],
+    }
+
+
 # =========================================================================
 # MCP TOOL REGISTRY & SCHEMAS
 # =========================================================================
@@ -628,6 +661,8 @@ TOOL_REGISTRY = {
     "tool_supply_chain_audit": tool_supply_chain_audit,
     "tool_saga_rollback": tool_saga_rollback,
     "tool_saga_status": tool_saga_status,
+    "tool_differential_privacy_query": tool_differential_privacy_query,
+    "tool_dp_budget_status": tool_dp_budget_status,
 }
 
 MCP_TOOL_SCHEMAS = [
@@ -801,6 +836,27 @@ MCP_TOOL_SCHEMAS = [
             "properties": {
                 "transaction_id": {"type": "string", "description": "Optional transaction ID to query specific state"},
             },
+        },
+    },
+    {
+        "name": "tool_differential_privacy_query",
+        "description": "Execute an epsilon-Differentially Private aggregate query (COUNT, SUM, AVG) with calibrated Laplace noise to protect banking records per Indian DPDP Act 2023.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query_type": {"type": "string", "description": "Aggregate function to evaluate: 'COUNT', 'SUM', or 'AVG'"},
+                "epsilon": {"type": "number", "description": "Privacy parameter epsilon > 0 (default 0.5)"},
+                "clipping_bound": {"type": "number", "description": "Upper clipping bound B for global sensitivity calibration (default 100000.0)"},
+            },
+            "required": ["query_type"],
+        },
+    },
+    {
+        "name": "tool_dp_budget_status",
+        "description": "Query cumulative Differential Privacy budget consumption and remaining allocation under sequential composition.",
+        "parameters": {
+            "type": "object",
+            "properties": {},
         },
     },
 ]

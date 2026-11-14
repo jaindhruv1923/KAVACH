@@ -24,16 +24,16 @@ def test_server_status_endpoint(client):
     assert resp.status_code == 200
     data = resp.json()
     assert data["status"] == "ONLINE"
-    assert data["tools_count"] == 15
+    assert data["tools_count"] == 17
     assert data["agents_count"] == 5
 
 
 def test_server_tools_endpoint(client):
-    """Verify /api/tools endpoint returns all 15 MCP schemas."""
+    """Verify /api/tools endpoint returns all 17 MCP schemas."""
     resp = client.get("/api/tools")
     assert resp.status_code == 200
     data = resp.json()
-    assert len(data["tools"]) == 15
+    assert len(data["tools"]) == 17
 
 
 def test_server_swarm_execute_api(client):
@@ -133,5 +133,32 @@ def test_server_saga_endpoints(client):
     assert data_sim["state"] == "ROLLED_BACK"
     assert data_sim["is_clean_restored"] is True
     assert data_sim["mathematical_invariant"]["satisfied"] is True
+
+
+def test_server_differential_privacy_endpoints(client):
+    """Verify /api/dp/budget, /api/dp/query, and /api/dp/simulate endpoints."""
+    # 1. Budget endpoint
+    resp_budget = client.get("/api/dp/budget")
+    assert resp_budget.status_code == 200
+    data_b = resp_budget.json()
+    assert data_b["status"] == "ACTIVE"
+    assert "mathematical_invariant" in data_b
+    assert data_b["total_budget"] >= 5.0
+
+    # 2. DP Query endpoint
+    resp_q = client.post("/api/dp/query", json={"query_type": "COUNT", "epsilon": 0.5})
+    assert resp_q.status_code == 200
+    data_q = resp_q.json()
+    assert data_q["success"] is True
+    assert "privatized_value" in data_q
+    assert data_q["sensitivity"] == 1.0
+
+    # 3. Simulate reconstruction resistance
+    resp_sim = client.post("/api/dp/simulate")
+    assert resp_sim.status_code == 200
+    data_sim = resp_sim.json()
+    assert data_sim["success"] is True
+    assert len(data_sim["trials"]) == 3
+
 
 

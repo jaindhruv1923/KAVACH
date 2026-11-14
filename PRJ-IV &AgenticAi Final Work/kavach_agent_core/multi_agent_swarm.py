@@ -156,6 +156,8 @@ AGENT_ROSTER: Dict[str, AgentPersona] = {
             "tool_validate_aadhaar_verhoeff",
             "tool_dpdp_tokenize",
             "tool_entropy_secret_audit",
+            "tool_differential_privacy_query",
+            "tool_dp_budget_status",
             "tool_read_file"
         ],
     ),
@@ -340,10 +342,23 @@ class KavachMultiAgentSwarm:
         is_saga_task = any(w in goal_lower for w in [
             "saga", "rollback", "compensat", "escrow", "transaction"
         ])
+        is_dp_task = any(w in goal_lower for w in [
+            "differential privacy", "laplace", "privacy budget", "epsilon",
+            "membership inference", "reconstruction attack", "anonymiz"
+        ])
 
         tasks_to_execute = []
 
-        if is_saga_task:
+        if is_dp_task:
+            tasks_to_execute.append((
+                "SecurityAuditor",
+                f"Calibrate global sensitivity Delta f and evaluate aggregate query with Laplace noise under DPDP Act 2023 for: {goal}"
+            ))
+            tasks_to_execute.append((
+                "VerifierCritic",
+                "Verify privacy budget consumption, sequential composition bound, and certify zero raw identity leakage"
+            ))
+        elif is_saga_task:
             tasks_to_execute.append((
                 "Orchestrator",
                 f"Initialize SAGA distributed transaction context with reverse compensation escrow bounds for: {goal}"
@@ -494,7 +509,15 @@ class KavachMultiAgentSwarm:
         # Determine Verdict & Mathematical Proof
         tokens_list = dpdp_obs.get("tokens_created", [])
 
-        if is_saga_task:
+        if is_dp_task:
+            verdict = "DP_PRIVACY_CERTIFIED"
+            verdict_title = "🔒 DIFFERENTIAL PRIVACY & LAPLACE EPSILON-DELTA NOISE INVARIANT CERTIFIED"
+            target_asset = "Bharat Core Banking Platform & Financial Aggregates (Port 8002)"
+            threat_mandate = "Reconstruction Attacks, Membership Inference & Section 8 Indian DPDP Act 2023"
+            math_concept = "Dwork et al. Laplace Mechanism & Sequential Composition Privacy Accounting"
+            math_formula = r"\Pr[\mathcal{M}(x) \in \mathcal{S}] \le e^\epsilon \Pr[\mathcal{M}(y) \in \mathcal{S}] + \delta, \quad Y \sim \text{Lap}\left(0, \frac{\Delta f}{\epsilon}\right)"
+            math_explanation = "Raw core banking aggregates perturbed via calibrated Laplace noise scaled to L1 global sensitivity Delta f. Cumulative privacy loss tracked under sequential composition to strictly prevent reconstruction and membership inference attacks."
+        elif is_saga_task:
             verdict = "SAGA_ROLLBACK_VERIFIED"
             verdict_title = "🔄 SAGA DISTRIBUTED TRANSACTION REVERSE COMPENSATION COMPLETED"
             target_asset = "Distributed Workspace File System & Git Escrow"
