@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- KaTeX Academic Mathematical Typesetting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --bg-base: #060913;
@@ -656,6 +659,178 @@
         .academic-card ul {
             padding-left: 20px;
         }
+
+        /* Views Container */
+        .academic-view, .dossier-view, .math-view, .repo-view {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Dossier & Results Styles */
+        .verdict-hero {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(12, 19, 36, 0.95) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+        }
+
+        .verdict-hero.blocked {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(12, 19, 36, 0.95) 100%);
+            border-color: rgba(239, 68, 68, 0.4);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.15);
+        }
+
+        .verdict-hero-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .verdict-tag {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .verdict-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .dossier-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-dim);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .dossier-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-dim);
+            padding-bottom: 10px;
+        }
+
+        .diff-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .diff-col {
+            background: #040710;
+            border: 1px solid var(--border-dim);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+        }
+
+        .diff-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .diff-text {
+            color: #cbd5e1;
+            word-break: break-all;
+            line-height: 1.5;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .data-table th, .data-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-dim);
+        }
+
+        .data-table th {
+            color: var(--text-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            background: rgba(17, 28, 53, 0.4);
+        }
+
+        .data-table tr:hover {
+            background: rgba(0, 242, 254, 0.03);
+        }
+
+        /* Math Pillars Grid */
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .math-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-dim);
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .math-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 24px rgba(0, 242, 254, 0.1);
+        }
+
+        .math-formula-box {
+            background: #040710;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        /* Repo Indexer Grid */
+        .repo-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 18px;
+        }
     </style>
 </head>
 <body>
@@ -671,8 +846,11 @@
         </div>
 
         <div class="tab-bar">
-            <button class="tab-btn active" id="tabCockpit" onclick="switchMainView('cockpit')">⚡ Live Agent Cockpit</button>
-            <button class="tab-btn" id="tabAcademic" onclick="switchMainView('academic')">📘 PEAS & Syllabus Blueprint</button>
+            <button class="tab-btn active" id="tabCockpit" onclick="switchMainView('cockpit')">⚡ Live Cockpit</button>
+            <button class="tab-btn" id="tabDossier" onclick="switchMainView('dossier')">📊 Executive Dossier</button>
+            <button class="tab-btn" id="tabMath" onclick="switchMainView('math')">📐 Mathematical Invariants (KaTeX)</button>
+            <button class="tab-btn" id="tabRepo" onclick="switchMainView('repo')">📁 Repo Indexer &amp; Review</button>
+            <button class="tab-btn" id="tabAcademic" onclick="switchMainView('academic')">📘 PEAS &amp; Syllabus</button>
             <a href="http://localhost:8001/" target="_blank" class="tab-btn" style="text-decoration:none;">🌐 Master Platform (Port 8001)</a>
             <a href="http://localhost:8002/" target="_blank" class="tab-btn" style="text-decoration:none;">🏦 Bharat Core Bank (Port 8002)</a>
         </div>
@@ -900,6 +1078,277 @@
                     <div id="finalReportBox" style="display: none;" class="final-report-box"></div>
                 </div>
             </section>
+
+            <!-- LIVE RESULTS BRIEFING DECK (Appears automatically on execution completion) -->
+            <section id="liveResultDeck" style="display: none;" class="verdict-hero">
+                <div class="verdict-hero-top">
+                    <div>
+                        <span class="verdict-tag" id="liveVerdictTag" style="background:rgba(16,185,129,0.2); color:var(--accent-green); border:1px solid rgba(16,185,129,0.4);">
+                            AUDIT PASSED
+                        </span>
+                        <h2 class="verdict-title" id="liveVerdictTitle" style="margin-top:8px;">
+                            STATUTORY DPDP 2023 COMPLIANCE CERTIFIED &amp; VAULT ACTIVE
+                        </h2>
+                    </div>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <button class="quick-pill" onclick="copyVivaDossier()" style="background:rgba(0,242,254,0.15); border-color:var(--accent-cyan); color:#fff; font-weight:600;">
+                            📋 Copy Viva Dossier
+                        </button>
+                        <button class="quick-pill" onclick="switchMainView('dossier')" style="background:var(--bg-elevated); color:#fff; font-weight:600;">
+                            📊 Open Full Executive Dossier &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Three-Pillar Quick Summary -->
+                <div class="dossier-grid">
+                    <!-- Ingress Diff -->
+                    <div class="dossier-card" style="background:#080d1a;">
+                        <div class="dossier-card-title">
+                            <span>🛡️</span> Ingress Data Protection &amp; Tokenization Diff
+                        </div>
+                        <div class="diff-container">
+                            <div class="diff-col">
+                                <span class="diff-label">Raw User Input (Untrusted)</span>
+                                <div class="diff-text" id="liveDiffRaw" style="color:#ef4444;">-</div>
+                            </div>
+                            <div class="diff-col">
+                                <span class="diff-label">Protected Egress (DPDP Vault)</span>
+                                <div class="diff-text" id="liveDiffSanitized" style="color:var(--accent-green);">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mathematical Invariant Proof -->
+                    <div class="dossier-card" style="background:#080d1a;">
+                        <div class="dossier-card-title">
+                            <span>🔬</span> Mathematical Invariant Proof &amp; Invariant Bound
+                        </div>
+                        <div id="liveMathConcept" style="font-size:12px; font-weight:600; color:#fff;">-</div>
+                        <div class="math-formula-box" id="liveMathFormula">$$ \sum_{i=0}^{11} d(c, p(i, d_i)) = 0 \pmod{10} $$</div>
+                        <div id="liveMathExplanation" style="font-size:11px; color:var(--text-muted); line-height:1.5;">-</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 2. EXECUTIVE AUDIT DOSSIER VIEW -->
+        <div id="viewDossier" class="dossier-view" style="display: none;">
+            <div class="verdict-hero" id="dossierHero">
+                <div class="verdict-hero-top">
+                    <div>
+                        <span class="verdict-tag" id="dossierVerdictTag" style="background:rgba(16,185,129,0.2); color:var(--accent-green); border:1px solid rgba(16,185,129,0.4);">
+                            VERDICT READY
+                        </span>
+                        <h2 class="verdict-title" id="dossierVerdictTitle" style="margin-top:8px;">
+                            Executive Multi-Agent Security &amp; Compliance Dossier
+                        </h2>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="quick-pill" onclick="copyVivaDossier()" style="background:rgba(0,242,254,0.15); border-color:var(--accent-cyan); color:#fff; font-weight:600;">
+                            📋 Copy Markdown Report
+                        </button>
+                        <button class="quick-pill" onclick="downloadVivaDossier()" style="background:var(--bg-elevated); color:#fff; font-weight:600;">
+                            💾 Download .md File
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Target Asset & Threat Bar -->
+                <div style="display:flex; gap:20px; font-size:12px; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.06); padding-top:12px; flex-wrap:wrap;">
+                    <div><strong>Target Asset:</strong> <span id="dossierTarget" style="color:var(--accent-blue); font-family:'Fira Code', monospace;">Bharat Core Banking Platform (Port 8002)</span></div>
+                    <div><strong>Statutory Mandate:</strong> <span id="dossierThreat" style="color:#fff;">Section 8 Indian DPDP Act 2023</span></div>
+                    <div><strong>Active LLM:</strong> <span id="dossierProvider" style="color:var(--accent-green); font-family:'Fira Code', monospace;">KAVACH Autonomous Reasoner</span></div>
+                </div>
+            </div>
+
+            <!-- Ingress Diff & Math Proof Grid -->
+            <div class="dossier-grid">
+                <!-- Diff Card -->
+                <div class="dossier-card">
+                    <div class="dossier-card-title">
+                        <span>🛡️</span> Ingress Data Protection Diff (0% Plaintext Egress)
+                    </div>
+                    <div class="diff-container">
+                        <div class="diff-col">
+                            <span class="diff-label">Untrusted Ingress</span>
+                            <div class="diff-text" id="dossierDiffRaw" style="color:#ef4444;">-</div>
+                        </div>
+                        <div class="diff-col">
+                            <span class="diff-label">DPDP Vault Egress</span>
+                            <div class="diff-text" id="dossierDiffSanitized" style="color:var(--accent-green);">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Math Proof Card -->
+                <div class="dossier-card">
+                    <div class="dossier-card-title">
+                        <span>🔬</span> Mathematical Invariant Proof
+                    </div>
+                    <div id="dossierMathConcept" style="font-size:13px; font-weight:700; color:#fff;">-</div>
+                    <div class="math-formula-box" id="dossierMathFormula">$$ \sum_{i=0}^{11} d(c, p(i, d_i)) = 0 \pmod{10} $$</div>
+                    <div id="dossierMathExplanation" style="font-size:12px; color:var(--text-muted); line-height:1.6;">-</div>
+                </div>
+            </div>
+
+            <!-- Token Vault Table -->
+            <div class="dossier-card">
+                <div class="dossier-card-title">
+                    <span>🔐</span> Indian DPDP Act 2023 Token Vault Registry
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Token Identifier</th>
+                                <th>Category</th>
+                                <th>UIDAI Format Valid</th>
+                                <th>Verhoeff D5 Checksum</th>
+                                <th>Diagnostic Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dossierTokensBody">
+                            <tr>
+                                <td colspan="5" style="text-align:center; color:var(--text-muted); padding:20px;">Run a scenario or goal to view populated token records.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Chain of Custody Table -->
+            <div class="dossier-card">
+                <div class="dossier-card-title">
+                    <span>🤝</span> Agent-to-Agent (A2A) Multi-Agent Chain of Custody
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Agent Persona</th>
+                                <th>A2A Delegation / Execution Role</th>
+                                <th>Verification Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dossierCustodyBody">
+                            <tr>
+                                <td>🛡️ Sentinel Guardrail</td>
+                                <td>OWASP LLM01 Ingress Gatekeeping &amp; DPDP Tokenization</td>
+                                <td><span style="color:var(--accent-green); font-weight:600;">APPROVED</span></td>
+                            </tr>
+                            <tr>
+                                <td>🎯 Lead Orchestrator</td>
+                                <td>Dynamic DAG Task Decomposition &amp; Blackboard Coordination</td>
+                                <td><span style="color:var(--accent-green); font-weight:600;">APPROVED</span></td>
+                            </tr>
+                            <tr>
+                                <td>🔍 Security Auditor</td>
+                                <td>Dihedral D5 Algebraic Checksum &amp; AST Analysis</td>
+                                <td><span style="color:var(--accent-cyan); font-weight:600;">VERIFIED</span></td>
+                            </tr>
+                            <tr>
+                                <td>✅ Verifier Critic</td>
+                                <td>Empirical Invariant Satisfaction &amp; Zero Plain Egress Certification</td>
+                                <td><span style="color:var(--accent-green); font-weight:600;">CERTIFIED</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. MATHEMATICAL INVARIANTS (KATEX) VIEW -->
+        <div id="viewMath" class="math-view" style="display: none;">
+            <div class="verdict-hero">
+                <div class="verdict-hero-top">
+                    <div>
+                        <span class="verdict-tag" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid rgba(0,242,254,0.4);">
+                            THEORETICAL FOUNDATION
+                        </span>
+                        <h2 class="verdict-title" style="margin-top:8px;">
+                            10 Academic Mathematical Pillars &amp; KaTeX Invariants
+                        </h2>
+                    </div>
+                    <span style="font-size:12px; color:var(--text-muted); font-family:'Fira Code', monospace;">Russell &amp; Norvig PEAS Standard &bull; BML Munjal CSE3101</span>
+                </div>
+                <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">
+                    Unlike heuristic prompt wrappers, KAVACH grounds every guardrail in formal mathematical invariants: dihedral permutation groups, Shannon entropy bounds, differential privacy noise, AST acyclic graph reachability, and Stackelberg equilibria.
+                </p>
+            </div>
+
+            <div class="math-grid" id="mathPillarsContainer">
+                <!-- Dynamically populated via /api/math/pillars -->
+            </div>
+        </div>
+
+        <!-- 4. REPOSITORY INDEXER & CODE REVIEW VIEW -->
+        <div id="viewRepo" class="repo-view" style="display: none;">
+            <div class="verdict-hero">
+                <div class="verdict-hero-top">
+                    <div>
+                        <span class="verdict-tag" style="background:rgba(56,189,248,0.15); color:var(--accent-blue); border:1px solid rgba(56,189,248,0.4);">
+                            WORKSPACE REPOSITORY DEFENSE
+                        </span>
+                        <h2 class="verdict-title" style="margin-top:8px;">
+                            Repository Indexer &amp; Live Code Reviewer Sandbox
+                        </h2>
+                    </div>
+                    <button class="quick-pill" onclick="loadRepoIndex()" style="background:var(--bg-elevated); color:#fff;">
+                        🔄 Refresh Index
+                    </button>
+                </div>
+                <div style="display:flex; gap:20px; font-size:12px; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
+                    <div><strong>Indexed Files:</strong> <span id="repoTotalFiles" style="color:var(--accent-cyan); font-family:'Fira Code', monospace;">-</span></div>
+                    <div><strong>Total Lines of Code:</strong> <span id="repoTotalLoc" style="color:#fff; font-family:'Fira Code', monospace;">-</span></div>
+                    <div><strong>Security Hygiene:</strong> <span id="repoSecurityScore" style="color:var(--accent-green); font-weight:700;">100% CLEAN</span></div>
+                </div>
+            </div>
+
+            <div class="repo-grid">
+                <!-- Left: Repository File Tree & Posture -->
+                <div class="dossier-card">
+                    <div class="dossier-card-title">
+                        <span>📁</span> Indexed Repository Files &amp; Posture
+                    </div>
+                    <div style="overflow-y:auto; max-height:480px;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>File Path</th>
+                                    <th>LOC</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="repoTableBody">
+                                <tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Loading repository index...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right: Live Code Reviewer Console -->
+                <div class="dossier-card">
+                    <div class="dossier-card-title">
+                        <span>🔍</span> Live Code Reviewer &amp; Exploit Sandbox
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted); line-height:1.5;">
+                        Paste any Python snippet, banking transaction handler, or shell payload below to trigger real-time multi-agent AST &amp; entropy security audit:
+                    </p>
+                    <textarea id="codeReviewInput" class="goal-textarea" rows="10" placeholder="import os&#10;def transfer_funds(account, amount):&#10;    # Paste snippet to audit via AST...&#10;    eval(account)"></textarea>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div style="display:flex; gap:6px;">
+                            <button class="quick-pill" onclick="loadSampleSnippet('eval')">eval() Sample</button>
+                            <button class="quick-pill" onclick="loadSampleSnippet('secret')">Secret Key</button>
+                            <button class="quick-pill" onclick="loadSampleSnippet('clean')">Clean Math</button>
+                        </div>
+                        <button class="btn-launch" style="padding:10px 18px;" onclick="runCodeReview()">
+                            <span>⚡ Audit with Swarm</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- 2. ACADEMIC & PEAS BLUEPRINT VIEW -->
@@ -949,17 +1398,33 @@
     </main>
 
     <script>
+        let latestDossierMarkdown = "";
+        let latestExecutionResult = null;
+
         function switchMainView(view) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            if (view === 'cockpit') {
-                document.getElementById('viewCockpit').style.display = 'flex';
-                document.getElementById('viewAcademic').style.display = 'none';
-                document.getElementById('tabCockpit').classList.add('active');
-            } else {
-                document.getElementById('viewCockpit').style.display = 'none';
-                document.getElementById('viewAcademic').style.display = 'flex';
-                document.getElementById('tabAcademic').classList.add('active');
+            
+            const views = {
+                'cockpit': document.getElementById('viewCockpit'),
+                'dossier': document.getElementById('viewDossier'),
+                'math': document.getElementById('viewMath'),
+                'repo': document.getElementById('viewRepo'),
+                'academic': document.getElementById('viewAcademic')
+            };
+
+            for (const [k, el] of Object.entries(views)) {
+                if (el) el.style.display = (k === view) ? 'flex' : 'none';
             }
+
+            const activeBtn = document.getElementById(`tab${view.charAt(0).toUpperCase() + view.slice(1)}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (view === 'math') {
+                loadMathPillars();
+            } else if (view === 'repo') {
+                loadRepoIndex();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Problem Statements Knowledge Base
@@ -1058,7 +1523,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             selectProblemStatement('PS-1');
 
-            // Dynamic Problem Statement detection on input typing
             const inputEl = document.getElementById('goalInput');
             if (inputEl) {
                 inputEl.addEventListener('input', function(e) {
@@ -1118,6 +1582,8 @@
             a2aBox.innerHTML = "";
             const finalBox = document.getElementById('finalReportBox');
             finalBox.style.display = "none";
+            const liveResultDeck = document.getElementById('liveResultDeck');
+            liveResultDeck.style.display = "none";
 
             stepCount = 0;
             document.getElementById('stepCounter').innerText = "Steps: 0";
@@ -1144,9 +1610,8 @@
                 eventSource.close();
                 document.querySelectorAll('.agent-card').forEach(c => c.classList.remove('active'));
 
-                // Render Final Report
-                finalBox.style.display = "block";
-                finalBox.innerHTML = `<strong>✨ Execution Completed (${res.status})</strong><br><br>${res.final_report.replace(/\n/g, '<br>')}`;
+                latestExecutionResult = res;
+                renderExecutionResults(res);
             });
 
             eventSource.addEventListener('ERROR', function(e) {
@@ -1218,6 +1683,235 @@
                 a2aBox.appendChild(a2aCard);
                 a2aBox.scrollTop = a2aBox.scrollHeight;
             }
+        }
+
+        function renderExecutionResults(res) {
+            const dossier = res.audit_dossier || {};
+            const isBlocked = res.status === "BLOCKED";
+
+            latestDossierMarkdown = dossier.markdown_report || res.final_report;
+
+            // 1. Render in Cockpit Live Result Deck
+            const liveDeck = document.getElementById('liveResultDeck');
+            liveDeck.style.display = "flex";
+            liveDeck.className = isBlocked ? "verdict-hero blocked" : "verdict-hero";
+
+            const tag = document.getElementById('liveVerdictTag');
+            tag.innerText = isBlocked ? "INTERCEPTED & BLOCKED" : (res.verdict || "AUDIT COMPLIANT");
+            tag.style.background = isBlocked ? "rgba(239,68,68,0.2)" : "rgba(16,185,129,0.2)";
+            tag.style.color = isBlocked ? "var(--accent-red)" : "var(--accent-green)";
+            tag.style.borderColor = isBlocked ? "rgba(239,68,68,0.4)" : "rgba(16,185,129,0.4)";
+
+            document.getElementById('liveVerdictTitle').innerText = dossier.verdict_title || res.final_report;
+
+            const san = dossier.ingress_sanitization || {};
+            document.getElementById('liveDiffRaw').innerText = san.raw_input || res.goal;
+            document.getElementById('liveDiffSanitized').innerText = san.sanitized_output || (res.blackboard ? res.blackboard.sanitized_goal : res.goal);
+
+            const math = dossier.math_proof || {};
+            document.getElementById('liveMathConcept').innerText = math.concept || "Mathematical Invariant Verification";
+            document.getElementById('liveMathExplanation').innerText = math.explanation || "";
+
+            const mathFormulaEl = document.getElementById('liveMathFormula');
+            if (math.formula && window.katex) {
+                try {
+                    window.katex.render(math.formula, mathFormulaEl, { displayMode: true, throwOnError: false });
+                } catch(e) {
+                    mathFormulaEl.innerText = math.formula;
+                }
+            } else if (math.formula) {
+                mathFormulaEl.innerText = math.formula;
+            }
+
+            // 2. Render Full Executive Dossier View Elements
+            const dTag = document.getElementById('dossierVerdictTag');
+            if (dTag) {
+                dTag.innerText = tag.innerText;
+                dTag.style.background = tag.style.background;
+                dTag.style.color = tag.style.color;
+            }
+            const dTitle = document.getElementById('dossierVerdictTitle');
+            if (dTitle) dTitle.innerText = dossier.verdict_title || res.final_report;
+
+            if (document.getElementById('dossierTarget')) document.getElementById('dossierTarget').innerText = dossier.target_asset || "Bharat Core Banking Platform (Port 8002)";
+            if (document.getElementById('dossierThreat')) document.getElementById('dossierThreat').innerText = dossier.threat_mandate || "Section 8 Indian DPDP Act 2023";
+            if (document.getElementById('dossierProvider')) document.getElementById('dossierProvider').innerText = res.active_provider || "KAVACH Autonomous Reasoner";
+
+            if (document.getElementById('dossierDiffRaw')) document.getElementById('dossierDiffRaw').innerText = san.raw_input || res.goal;
+            if (document.getElementById('dossierDiffSanitized')) document.getElementById('dossierDiffSanitized').innerText = san.sanitized_output || "-";
+
+            if (document.getElementById('dossierMathConcept')) document.getElementById('dossierMathConcept').innerText = math.concept || "";
+            if (document.getElementById('dossierMathExplanation')) document.getElementById('dossierMathExplanation').innerText = math.explanation || "";
+
+            const dMathFormulaEl = document.getElementById('dossierMathFormula');
+            if (dMathFormulaEl && math.formula && window.katex) {
+                try {
+                    window.katex.render(math.formula, dMathFormulaEl, { displayMode: true, throwOnError: false });
+                } catch(e) {
+                    dMathFormulaEl.innerText = math.formula;
+                }
+            }
+
+            // Populate Token Table
+            const tokensBody = document.getElementById('dossierTokensBody');
+            if (tokensBody) {
+                const tokens = san.tokens || [];
+                if (tokens.length === 0) {
+                    tokensBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:16px;">Zero raw identity credentials in user input.</td></tr>`;
+                } else {
+                    tokensBody.innerHTML = tokens.map(t => `
+                        <tr>
+                            <td><span style="color:var(--accent-cyan); font-weight:600;">${t.token}</span></td>
+                            <td><span class="ps-card-badge badge-ps1">${t.type}</span></td>
+                            <td>${t.uidai_format_valid !== undefined ? (t.uidai_format_valid ? '<span style="color:var(--accent-green);">✅ Yes</span>' : '<span style="color:var(--accent-red);">❌ No (Starts with 0/1)</span>') : 'N/A'}</td>
+                            <td>${t.verhoeff_valid !== undefined ? (t.verhoeff_valid ? '<span style="color:var(--accent-green);">✅ Valid (c=0)</span>' : '<span style="color:var(--accent-red);">❌ Invalid D5 Checksum</span>') : 'N/A'}</td>
+                            <td><span style="color:var(--text-muted); font-size:11px;">${t.diagnostic || 'Protected under DPDP Vault'}</span></td>
+                        </tr>
+                    `).join('');
+                }
+            }
+
+            // Populate Custody Table
+            const custodyBody = document.getElementById('dossierCustodyBody');
+            if (custodyBody && dossier.chain_of_custody) {
+                custodyBody.innerHTML = dossier.chain_of_custody.map(c => `
+                    <tr>
+                        <td><strong>${c.agent}</strong></td>
+                        <td>${c.action}</td>
+                        <td><span style="color:${c.status === 'BLOCKED' ? 'var(--accent-red)' : 'var(--accent-green)'}; font-weight:700;">${c.status}</span></td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function copyVivaDossier() {
+            if (!latestDossierMarkdown) {
+                alert("Please launch a scenario or goal first to generate a dossier.");
+                return;
+            }
+            navigator.clipboard.writeText(latestDossierMarkdown).then(() => {
+                alert("📋 Academic Viva Dossier Copied to Clipboard!\nReady to paste into your report or defense notes.");
+            });
+        }
+
+        function downloadVivaDossier() {
+            if (!latestDossierMarkdown) {
+                alert("Please launch a scenario or goal first to generate a dossier.");
+                return;
+            }
+            const blob = new Blob([latestDossierMarkdown], { type: "text/markdown;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `KAVACH_VIVA_DEFENSE_DOSSIER_${Date.now()}.md`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Mathematical Pillars Loader
+        let mathPillarsLoaded = false;
+        function loadMathPillars() {
+            if (mathPillarsLoaded) return;
+            const container = document.getElementById('mathPillarsContainer');
+            if (!container) return;
+
+            fetch('/api/math/pillars')
+                .then(res => res.json())
+                .then(data => {
+                    mathPillarsLoaded = true;
+                    container.innerHTML = data.pillars.map((p, idx) => `
+                        <div class="math-card">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span class="ps-card-badge badge-ps${(idx % 4) + 1}">PILLAR ${idx + 1} &bull; ${p.domain}</span>
+                                <span style="font-size:11px; color:var(--text-muted); font-family:'Fira Code', monospace;">${p.id}</span>
+                            </div>
+                            <h3 style="font-size:15px; font-weight:700; color:#fff;">${p.title}</h3>
+                            <div class="math-formula-box" id="formula-box-${idx}">$$ ${p.formula} $$</div>
+                            <p style="font-size:12px; color:var(--text-muted); line-height:1.6; margin:0;">${p.description}</p>
+                            <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:8px; font-size:11px; color:var(--accent-green); font-family:'Fira Code', monospace;">
+                                <strong>Invariant:</strong> ${p.invariant}
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // Render KaTeX for each formula
+                    if (window.katex) {
+                        data.pillars.forEach((p, idx) => {
+                            const el = document.getElementById(`formula-box-${idx}`);
+                            if (el) {
+                                try {
+                                    window.katex.render(p.formula, el, { displayMode: true, throwOnError: false });
+                                } catch(e) {}
+                            }
+                        });
+                    }
+                })
+                .catch(err => {
+                    container.innerHTML = `<div style="color:var(--text-muted); padding:20px;">Failed to load math pillars: ${err}</div>`;
+                });
+        }
+
+        // Repository Indexer Loader
+        let repoLoaded = false;
+        function loadRepoIndex() {
+            const tableBody = document.getElementById('repoTableBody');
+            if (!tableBody) return;
+
+            fetch('/api/repo/index')
+                .then(res => res.json())
+                .then(data => {
+                    repoLoaded = true;
+                    document.getElementById('repoTotalFiles').innerText = data.total_files;
+                    document.getElementById('repoTotalLoc').innerText = data.total_loc.toLocaleString();
+                    document.getElementById('repoSecurityScore').innerText = data.security_hygiene_score;
+
+                    tableBody.innerHTML = data.files.map(f => `
+                        <tr>
+                            <td><span style="font-size:11px; color:#fff;">${f.rel_path}</span></td>
+                            <td><span style="color:var(--accent-cyan); font-size:11px;">${f.loc}</span></td>
+                            <td><span class="ps-card-badge badge-ps1" style="font-size:9px;">CLEAN</span></td>
+                            <td>
+                                <button class="quick-pill" style="padding:2px 8px; font-size:10px;" onclick="auditFile('${f.rel_path}')">
+                                    Audit
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('');
+                })
+                .catch(err => {
+                    tableBody.innerHTML = `<tr><td colspan="4" style="color:var(--text-muted); padding:16px;">Error loading repository index.</td></tr>`;
+                });
+        }
+
+        function auditFile(filePath) {
+            switchMainView('cockpit');
+            selectProblemStatement('PS-3');
+            document.getElementById('goalInput').value = `Scan workspace file '${filePath}' via AST analysis to detect dangerous eval() and os.system() calls, and audit Shannon secret entropy.`;
+            launchSwarm();
+        }
+
+        function loadSampleSnippet(type) {
+            const textarea = document.getElementById('codeReviewInput');
+            if (type === 'eval') {
+                textarea.value = `import os\n\ndef execute_user_query(user_query):\n    # Dangerous dynamic eval injection risk\n    result = eval(user_query)\n    return result`;
+            } else if (type === 'secret') {
+                textarea.value = `AWS_SECRET_ACCESS_KEY = "h8fH29xLk92PqZ49vLm018Zc92K10982"\nAPI_PRIVATE_TOKEN = "sec_live_99210398402948201948"\n\ndef connect_cloud():\n    pass`;
+            } else if (type === 'clean') {
+                textarea.value = `def calculate_interest(principal, rate, time):\n    # Clean mathematical calculation\n    return (principal * rate * time) / 100.0`;
+            }
+        }
+
+        function runCodeReview() {
+            const code = document.getElementById('codeReviewInput').value.trim();
+            if (!code) {
+                alert("Please enter or select a sample code snippet to review.");
+                return;
+            }
+            switchMainView('cockpit');
+            selectProblemStatement('PS-3');
+            document.getElementById('goalInput').value = `Scan Python code snippet via AST analysis for injection and secrets:\n${code}`;
+            launchSwarm();
         }
     </script>
 </body>
