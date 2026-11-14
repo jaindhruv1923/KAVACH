@@ -337,7 +337,7 @@ def tool_validate_aadhaar_verhoeff(aadhaar_number: str) -> Dict[str, Any]:
     Validate 12-digit Indian Aadhaar number using Dihedral Group D5 algebraic checksum.
     Guarantees detection of 100% single-digit substitution and adjacent transposition errors.
     """
-    clean_digits = [int(c) for c in aadhaar_number if c.isdigit()]
+    clean_digits = [int(c) for c in str(aadhaar_number) if c.isdigit()]
     if len(clean_digits) != 12:
         return {
             "success": True,
@@ -349,40 +349,66 @@ def tool_validate_aadhaar_verhoeff(aadhaar_number: str) -> Dict[str, Any]:
     for i, d in enumerate(reversed(clean_digits)):
         c = _VERHOEFF_D[c][_VERHOEFF_P[i % 8][d]]
 
-    is_valid = (c == 0)
+    verhoeff_zero = (c == 0)
+    uidai_lead_valid = (clean_digits[0] not in (0, 1))
+    is_valid = verhoeff_zero and uidai_lead_valid
+
+    reasons = []
+    if not uidai_lead_valid:
+        reasons.append("UIDAI violation: Aadhaar cannot begin with digit 0 or 1")
+    if not verhoeff_zero:
+        reasons.append(f"Dihedral D5 checksum failure (c={c}, expected 0)")
+
     return {
         "success": True,
-        "aadhaar": f"{str(clean_digits[0])*4}-XXXX-XXXX",
+        "aadhaar": f"{clean_digits[0]}XXX-XXXX-XXXX",
         "is_valid": is_valid,
         "checksum_value": c,
+        "verhoeff_zero_checksum": verhoeff_zero,
+        "uidai_format_valid": uidai_lead_valid,
         "mathematical_group": "Dihedral Group D5",
+        "diagnostic": "Valid UIDAI Aadhaar Number" if is_valid else "; ".join(reasons),
     }
 
 
 def tool_dpdp_tokenize(text: str) -> Dict[str, Any]:
     """
-    Indian DPDP Act 2023 Tokenization Vault: Detects and pseudonyimizes Aadhaar, PAN,
-    credit cards, phone numbers, and emails into reversible secure tokens.
+    Indian DPDP Act 2023 Tokenization Vault: Detects and pseudonymizes Aadhaar, PAN,
+    credit/debit cards, phone numbers, and emails into reversible secure tokens.
     """
     import uuid
     token_vault = {}
     tokens_created = []
 
-    # Patterns
+    # Priority-ordered patterns (16-digit cards evaluated before 12-digit Aadhaar)
     patterns = [
-        (r"\b[2-9][0-9]{3}\s?[0-9]{4}\s?[0-9]{4}\b", "AADHAAR"),
-        (r"\b[A-Z]{5}[0-9]{4}[A-Z]\b", "PAN"),
-        (r"\b[6-9][0-9]{9}\b", "PHONE"),
-        (r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", "EMAIL"),
+        (r"\b(?:\d{4}[\s-]?){3}\d{4}\b|\b\d{16}\b", "PAYMENT_CARD"),
+        (r"\b(?:\d{4}[\s-]?){2}\d{4}\b|\b\d{12}\b", "AADHAAR"),
+        (r"\b[A-Za-z]{5}[0-9]{4}[A-Za-z]\b", "PAN"),
+        (r"\b(?:(?:\+91|0)?[6-9]\d{9})\b", "PHONE"),
+        (r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b", "EMAIL"),
     ]
 
     redacted_text = text
     for pat, label in patterns:
         matches = re.findall(pat, redacted_text)
         for m in matches:
+            clean_m = re.sub(r"[\s-]", "", m)
             tok = f"[[KAVACH_DPDP_{label}_{uuid.uuid4().hex[:8].upper()}]]"
             token_vault[tok] = m
-            tokens_created.append({"type": label, "token": tok, "original_length": len(m)})
+
+            meta = {
+                "type": label,
+                "token": tok,
+                "original_length": len(m),
+            }
+            if label == "AADHAAR":
+                v_res = tool_validate_aadhaar_verhoeff(clean_m)
+                meta["verhoeff_valid"] = v_res.get("is_valid", False)
+                meta["uidai_format_valid"] = v_res.get("uidai_format_valid", False)
+                meta["diagnostic"] = v_res.get("diagnostic", "")
+
+            tokens_created.append(meta)
             redacted_text = redacted_text.replace(m, tok)
 
     return {

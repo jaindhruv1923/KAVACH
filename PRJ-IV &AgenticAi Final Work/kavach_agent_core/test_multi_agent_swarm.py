@@ -94,3 +94,27 @@ def test_full_swarm_collaborative_workflow():
     assert "Sentinel" in agents_involved
     assert "Orchestrator" in agents_involved
     assert len(result.blackboard.messages) >= 3
+
+
+def test_swarm_user_typo_aadhaar_validation():
+    """
+    Verify robust NLP handling for user typos (e.g. 'myaadharc card number is 132132132132'):
+    - Evaluates 12-digit number via Verhoeff D5
+    - Tokenizes under DPDP Act 2023
+    - Never executes pytest on non-test tasks
+    """
+    swarm = KavachMultiAgentSwarm()
+    goal = "myaadharc card number is 132132132132"
+
+    events = []
+    result = swarm.execute_swarm(goal=goal, on_event_callback=lambda e: events.append(e))
+
+    assert result.status == "COMPLETE"
+    assert "[[KAVACH_DPDP_AADHAAR_" in result.blackboard.sanitized_goal
+    assert "132132132132" not in result.blackboard.sanitized_goal
+    # Confirm pytest was NEVER called
+    pytest_calls = [e for e in events if e.get("details", {}).get("action") == "tool_run_pytest"]
+    assert len(pytest_calls) == 0
+    # Confirm Verhoeff validation tool was executed
+    verhoeff_calls = [e for e in events if e.get("details", {}).get("action") == "tool_validate_aadhaar_verhoeff"]
+    assert len(verhoeff_calls) == 1

@@ -232,17 +232,75 @@ class KavachMultiAgentSwarm:
         log_event("Orchestrator", "PLANNING_STARTED", {"message": "Decomposing authorized goal into execution sub-tasks."})
 
         # Dynamically classify goal domain
-        is_security_task = any(w in goal.lower() for w in ["dpdp", "aadhaar", "pan", "ast", "vulnerability", "audit", "security", "leak"])
-        is_code_task = any(w in goal.lower() for w in ["fix", "patch", "write", "code", "implement", "create"])
-        is_test_task = any(w in goal.lower() for w in ["test", "verify", "pytest", "check"])
+        goal_lower = goal.lower()
+        has_12_digits = bool(re.search(r"\b(?:\d{4}[\s-]?){2}\d{4}\b|\b\d{12}\b", goal))
+        has_16_digits = bool(re.search(r"\b(?:\d{4}[\s-]?){3}\d{4}\b|\b\d{16}\b", goal))
+        has_pii_terms = any(w in goal_lower for w in [
+            "aadhaar", "aadhar", "adhar", "aadhrc", "aadharc", "myaadhar", "myaadharc",
+            "pan", "card", "pii", "token", "tokenize", "mask", "vault", "identity",
+            "dpdp", "verhoeff", "customer", "phone", "email", "leak", "redact"
+        ])
+        is_pii_identity_task = has_12_digits or has_16_digits or has_pii_terms
+
+        is_ast_task = any(w in goal_lower for w in [
+            "ast", "eval", "os.system", "exec", "injection", "vulnerability", "cwe",
+            "secret", "entropy", "shannon", "key", "password", "audit", "security"
+        ]) and not is_pii_identity_task
+
+        is_test_task = any(w in goal_lower for w in ["pytest", "test suite", "run tests", "unit test", "regression", "assert"])
+        is_code_repair_task = any(w in goal_lower for w in ["fix", "patch", "repair", "refactor", "bugfix", "modify code", "edit file"])
 
         tasks_to_execute = []
-        if is_security_task:
-            tasks_to_execute.append(("SecurityAuditor", "Audit codebase, verify DPDP tokenization & AST compliance"))
-        if is_code_task or not tasks_to_execute:
-            tasks_to_execute.append(("DevOpsCoder", "Implement changes or verify repository integrity"))
-        if is_test_task or True:
-            tasks_to_execute.append(("VerifierCritic", "Run pytest test suite and certify invariant satisfaction"))
+
+        if is_pii_identity_task:
+            tasks_to_execute.append((
+                "SecurityAuditor",
+                f"Validate identity numbers via Dihedral D5 Verhoeff checksum and protect sensitive PII under statutory DPDP Act 2023 token vault for: {goal}"
+            ))
+            if is_test_task:
+                tasks_to_execute.append((
+                    "VerifierCritic",
+                    "Run pytest test suite and certify invariant satisfaction"
+                ))
+            else:
+                tasks_to_execute.append((
+                    "VerifierCritic",
+                    "Certify DPDP statutory compliance invariant: verified 0% plain identity egress and cryptographic tokenization"
+                ))
+        elif is_ast_task:
+            tasks_to_execute.append((
+                "SecurityAuditor",
+                f"Perform AST static analysis for dangerous invocations and Shannon entropy secrets audit for: {goal}"
+            ))
+            if is_test_task:
+                tasks_to_execute.append((
+                    "VerifierCritic",
+                    "Run pytest test suite and certify invariant satisfaction"
+                ))
+            else:
+                tasks_to_execute.append((
+                    "VerifierCritic",
+                    "Certify AST safety invariants: zero unhandled high-risk nodes and zero exposed credentials"
+                ))
+        elif is_code_repair_task:
+            tasks_to_execute.append((
+                "DevOpsCoder",
+                f"Implement atomic code modifications and patch reported defects for: {goal}"
+            ))
+            tasks_to_execute.append((
+                "VerifierCritic",
+                "Run pytest test suite and certify invariant satisfaction"
+            ))
+        elif is_test_task:
+            tasks_to_execute.append((
+                "VerifierCritic",
+                "Run pytest test suite and certify invariant satisfaction"
+            ))
+        else:
+            tasks_to_execute.append((
+                "DevOpsCoder",
+                f"Inspect repository structure and verify workspace integrity for: {goal}"
+            ))
 
         plan_desc = [f"Step {i+1}: [{agent}] {desc}" for i, (agent, desc) in enumerate(tasks_to_execute)]
         log_event("Orchestrator", "PLAN_FORMULATED", {"plan": plan_desc})
