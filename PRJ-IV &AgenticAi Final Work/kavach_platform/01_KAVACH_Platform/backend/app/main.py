@@ -348,6 +348,33 @@ def serve_root_codebase_ide():
     )
 
 
+@app.get("/portal_integrations.js", include_in_schema=False)
+def serve_root_portal_integrations():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "portal_integrations.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
+@app.get("/academic_features.css", include_in_schema=False)
+def serve_root_academic_features_css():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "academic_features.css"),
+        media_type="text/css",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
+@app.get("/academic_features_suite.js", include_in_schema=False)
+def serve_root_academic_features_suite():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "academic_features_suite.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
 @app.get("/favicon.ico", include_in_schema=False)
 def serve_favicon():
     fav_path = os.path.join(FRONTEND_DIR, "favicon.ico")

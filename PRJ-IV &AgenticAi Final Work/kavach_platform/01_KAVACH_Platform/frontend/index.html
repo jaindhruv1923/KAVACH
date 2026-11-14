@@ -151,7 +151,7 @@ window.activatePathwayMode = function(mode, targetId) {
     return;
   } else if (mode === 'swarm') {
     switchToViewGlobal('swarm-view', null, 'live-swarm');
-    if (pill) pill.innerHTML = "<strong>Active Scope: Autonomous Multi-Agent Safety Swarm (Port 8000).</strong> Real-time FSM coordination across 6 autonomous AI sentinels, byzantine consensus, and AST guardrail containment.";
+    if (pill) pill.innerHTML = "<strong>Active Scope: Autonomous Multi-Agent Defense Swarm (Port 8003 / Cockpit).</strong> Live ReAct reasoner across 5 specialized agents, 19 MCP tools, and 6 formal mathematical invariant stages (Reflexion, AST Taint, SAGA Rollback, Differential Privacy, Stackelberg Security Game).";
     if (typeof window.renderLiveSwarmView === 'function') {
       setTimeout(() => window.renderLiveSwarmView(), 10);
     }
@@ -505,7 +505,11 @@ window.openApplicationsWork = function(e) {
   <div class="app-header-subnav" id="app-header-subnav">
     <div class="subnav-container">
       <nav class="nav-switcher" id="main-nav-switcher" role="tablist" aria-label="Context Navigation Tabs">
-        <a href="/cockpit" target="_blank" class="nav-switch-btn" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; font-weight: 800; text-decoration: none; box-shadow: 0 0 14px rgba(0, 242, 254, 0.5);">⚡ REAL AGENT COCKPIT (A2A)</a>
+        <a href="/cockpit" target="_blank" class="nav-switch-btn" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; font-weight: 800; text-decoration: none; box-shadow: 0 0 14px rgba(0, 242, 254, 0.5); display:inline-flex; align-items:center; gap:6px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          REAL AGENT COCKPIT (A2A)
+        </a>
+        <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Agent Swarm</button>
         <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
         <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
         <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
