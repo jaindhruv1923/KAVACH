@@ -815,6 +815,14 @@ def serve_css():
 def serve_js():
     return FileResponse(os.path.join(BASE_DIR, "dashboard.js"))
 
+@app.api_route("/universal_mesh.css", methods=["GET", "HEAD"])
+def serve_mesh_css():
+    return FileResponse(os.path.join(BASE_DIR, "universal_mesh.css"))
+
+@app.api_route("/universal_mesh.js", methods=["GET", "HEAD"])
+def serve_mesh_js():
+    return FileResponse(os.path.join(BASE_DIR, "universal_mesh.js"))
+
 @app.api_route("/favicon.ico", methods=["GET", "HEAD"])
 def serve_favicon():
     return JSONResponse({})

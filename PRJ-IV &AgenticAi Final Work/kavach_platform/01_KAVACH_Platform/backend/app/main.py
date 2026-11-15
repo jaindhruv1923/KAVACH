@@ -384,6 +384,24 @@ def serve_root_six_stages_defense():
     )
 
 
+@app.get("/universal_mesh.js", include_in_schema=False)
+def serve_root_universal_mesh_js():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "universal_mesh.js"),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
+@app.get("/universal_mesh.css", include_in_schema=False)
+def serve_root_universal_mesh_css():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "universal_mesh.css"),
+        media_type="text/css",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
 @app.get("/favicon.ico", include_in_schema=False)
 def serve_favicon():
     fav_path = os.path.join(FRONTEND_DIR, "favicon.ico")

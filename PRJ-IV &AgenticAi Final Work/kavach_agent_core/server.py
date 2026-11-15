@@ -12,7 +12,7 @@ import queue
 import threading
 from typing import Dict, Any, Generator, Optional
 from fastapi import FastAPI, Request, Query, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
+from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -553,6 +553,27 @@ def stream_swarm_execution(goal: str = Query(..., description="User goal or task
 # =========================================================================
 
 COCKPIT_HTML_PATH = os.path.join(os.path.dirname(__file__), "cockpit.html")
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "HEALTHY",
+        "service": "KAVACH Autonomous Agent Cockpit",
+        "version": "5.0.0",
+        "port": 8003,
+        "mcp_tools": 19,
+        "stages": 6
+    }
+
+@app.get("/universal_mesh.css")
+def serve_mesh_css():
+    mesh_css = os.path.join(os.path.dirname(__file__), "universal_mesh.css")
+    return FileResponse(mesh_css, media_type="text/css")
+
+@app.get("/universal_mesh.js")
+def serve_mesh_js():
+    mesh_js = os.path.join(os.path.dirname(__file__), "universal_mesh.js")
+    return FileResponse(mesh_js, media_type="application/javascript")
 
 @app.get("/", response_class=HTMLResponse)
 @app.get("/cockpit", response_class=HTMLResponse)
