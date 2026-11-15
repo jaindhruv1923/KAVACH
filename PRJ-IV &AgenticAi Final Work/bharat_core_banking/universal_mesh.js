@@ -86,7 +86,10 @@
   `;
 
   // Inject once DOM is available
+  // NOTE: On Port 8001 (Master Platform), the native Enterprise Clean Header is the sole authority.
+  // The black mesh bar is only injected on external microservice dashboards (:8000, :8002, :8003).
   function injectMesh() {
+    if (activeService === '8001' || document.querySelector('.app-header')) return;
     if (document.getElementById('kavach-universal-mesh-bar')) return;
     const placeholder = document.createElement('div');
     placeholder.innerHTML = meshHtml;
