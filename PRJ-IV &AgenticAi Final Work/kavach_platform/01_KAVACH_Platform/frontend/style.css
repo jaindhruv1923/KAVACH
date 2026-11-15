@@ -186,19 +186,25 @@ body {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 7px 28px !important;
-  gap: 16px !important;
+  padding: 6px 16px !important;
+  gap: 10px !important;
   width: 100% !important;
-  max-width: 1680px !important;
+  max-width: 100% !important;
   margin: 0 auto !important;
   box-sizing: border-box !important;
-  min-height: 48px !important;
+  min-height: 44px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+
+.app-header-main::-webkit-scrollbar {
+  display: none !important;
 }
 
 .header-left-cluster {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
@@ -330,20 +336,20 @@ body {
 .header-portals-cluster {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   flex-shrink: 0;
 }
 
 .header-portal-link {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  height: 31px !important;
-  max-height: 31px !important;
-  min-height: 31px !important;
-  padding: 0 11px !important;
+  gap: 5px !important;
+  height: 29px !important;
+  max-height: 29px !important;
+  min-height: 29px !important;
+  padding: 0 9px !important;
   border-radius: var(--radius-full) !important;
-  font-size: 0.76rem !important;
+  font-size: 0.74rem !important;
   font-family: var(--font-sans) !important;
   font-weight: 600 !important;
   text-decoration: none !important;
@@ -408,18 +414,18 @@ body {
 .health-status-badge {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 5px !important;
   background: #ECFDF5 !important;
   border: 1px solid #A7F3D0 !important;
-  padding: 0 11px !important;
+  padding: 0 8px !important;
   border-radius: var(--radius-full) !important;
-  font-size: 0.69rem !important;
+  font-size: 0.68rem !important;
   font-family: var(--font-mono) !important;
   font-weight: 700 !important;
   color: #059669 !important;
-  letter-spacing: 0.03em !important;
+  letter-spacing: 0.02em !important;
   white-space: nowrap !important;
-  height: 31px !important;
+  height: 29px !important;
   box-shadow: 0 1px 2px rgba(5, 150, 105, 0.06) !important;
 }
 
@@ -8645,12 +8651,12 @@ button:active:not(:disabled),
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 3px;
   background: #F8FAFC;
   border: 1px solid #E2E8F0;
   border-radius: var(--radius-full);
-  padding: 3px 5px;
-  height: 35px;
+  padding: 2px 4px;
+  height: 31px;
   box-sizing: border-box;
   flex-shrink: 0;
   margin: 0 !important;
@@ -8669,9 +8675,9 @@ button:active:not(:disabled),
   color: #475569;
   border: 1px solid transparent;
   border-radius: var(--radius-full);
-  padding: 0 13px;
-  height: 29px;
-  font-size: 0.78rem;
+  padding: 0 9px;
+  height: 26px;
+  font-size: 0.74rem;
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -8683,7 +8689,7 @@ button:active:not(:disabled),
   justify-content: center;
   line-height: 1;
   box-sizing: border-box;
-  gap: 6px;
+  gap: 4px;
   margin: 0 !important;
 }
 
@@ -11431,10 +11437,10 @@ button:active:not(:disabled),
   background: transparent;
   border: 1px solid transparent;
   border-radius: var(--radius-full);
-  padding: 0 14px;
-  height: 29px;
-  font-size: 0.78rem;
-  gap: 6px;
+  padding: 0 9px;
+  height: 26px;
+  font-size: 0.74rem;
+  gap: 4px;
   cursor: pointer;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -11464,4 +11470,123 @@ button:active:not(:disabled),
   white-space: nowrap !important;
   flex: 1 1 auto !important;
   text-align: left !important;
+}
+
+/* ==========================================================================
+   KEYBOARD SHORTCUT BADGES (<kbd>) & TACTILE PRESS ANIMATIONS
+   ========================================================================== */
+.key-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 15px !important;
+  height: 15px !important;
+  padding: 0 3px !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  font-size: 0.65rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  color: #475569 !important;
+  background: #F1F5F9 !important;
+  border: 1px solid #CBD5E1 !important;
+  border-bottom: 2px solid #94A3B8 !important;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) !important;
+  margin-right: 3px !important;
+  vertical-align: middle !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  transition: all 0.12s ease !important;
+}
+
+/* Contrast adjustment for dark buttons / active tabs */
+.pathway-tab.active .key-badge,
+.nav-switch-btn.active .key-badge,
+.active-master .key-badge,
+.btn-header-review .key-badge,
+.header-portal-link.active-portal .key-badge {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.7) !important;
+  color: #FFFFFF !important;
+}
+
+.key-badge-pressed {
+  transform: scale(0.93) translateY(1px) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35) !important;
+  transition: transform 0.08s ease, box-shadow 0.08s ease !important;
+}
+
+.key-badge-pressed .key-badge {
+  transform: translateY(1px) !important;
+  border-bottom-width: 1px !important;
+}
+
+/* Floating Hotkey HUD Toast */
+#kavach-hotkey-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(25px);
+  background: #0F172A;
+  color: #F8FAFC;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid #334155;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.35);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2147483640;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#kavach-hotkey-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+#kavach-hotkey-toast .toast-key-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: #2563EB;
+  color: #FFFFFF;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 800;
+  font-size: 0.74rem;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+  flex-shrink: 0;
+}
+
+.header-portal-link.active-portal {
+  box-shadow: 0 0 0 2px #2563EB, 0 2px 8px rgba(37, 99, 235, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Ensure compact button sizing so all 7 keys + 2 tool actions fit cleanly without clipping */
+.btn-header-review {
+  height: 29px !important;
+  min-height: 29px !important;
+  max-height: 29px !important;
+  padding: 0 9px !important;
+  font-size: 0.74rem !important;
+  gap: 5px !important;
+}
+
+.header-tool-btn {
+  height: 29px !important;
+  min-height: 29px !important;
+  max-height: 29px !important;
+  padding: 0 8px !important;
+  font-size: 0.74rem !important;
+  gap: 4px !important;
 }
