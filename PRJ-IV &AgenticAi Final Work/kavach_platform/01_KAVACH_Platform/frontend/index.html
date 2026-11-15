@@ -191,30 +191,53 @@ window.renderDynamicNavbar = function(mode) {
   const container = document.getElementById('main-nav-switcher');
   if (!container) return;
 
-  // Preserve all slider items - never wipe out the navigation slider!
-  container.querySelectorAll('.nav-switch-btn').forEach(btn => btn.classList.remove('active'));
-
-  let targetBtn = null;
   if (mode === 'midsem') {
-    targetBtn = document.getElementById('slider-btn-earlier') || document.getElementById('slider-btn-overview');
+    container.innerHTML = `
+      <a href="/cockpit" target="_blank" class="nav-switch-btn" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; font-weight: 800; text-decoration: none; box-shadow: 0 0 14px rgba(0, 242, 254, 0.5); display:inline-flex; align-items:center; gap:6px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        REAL AGENT COCKPIT (A2A)
+      </a>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)">6 Defense Stages (KaTeX)</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Agent Swarm</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('apps')">Bharat Bank</button>
+      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
+    `;
   } else if (mode === 'academic') {
-    targetBtn = document.getElementById('slider-btn-academic');
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('academic')">10 Frontiers</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-grounding-card', this)">KaTeX Math</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-features-hub-container', this)">10 Tools Hub</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Swarm &rarr;</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('apps')">Apps &rarr;</button>
+    `;
   } else if (mode === 'swarm') {
-    targetBtn = document.getElementById('slider-btn-swarm');
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('swarm')">Swarm Console</button>
+      <button type="button" class="nav-switch-btn" onclick="window.selectSwarmScenario('sqli')">SQLi Attack</button>
+      <button type="button" class="nav-switch-btn" onclick="window.selectSwarmScenario('pii')">Aadhaar Exfil</button>
+      <button type="button" class="nav-switch-btn" onclick="window.selectSwarmScenario('rce')">RCE Shell</button>
+      <button type="button" class="nav-switch-btn" onclick="window.executeSwarmSimulation()"> Run Swarm</button>
+    `;
   } else if (mode === 'apps') {
-    targetBtn = document.getElementById('slider-btn-bank');
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('apps')">Bharat Bank Core</button>
+      <button type="button" class="nav-switch-btn" onclick="window.setBankMode('without')"> Without KAVACH</button>
+      <button type="button" class="nav-switch-btn" onclick="window.setBankMode('with')">With KAVACH</button>
+      <button type="button" class="nav-switch-btn" onclick="window.dispatchBankTransaction()"> Dispatch Tx</button>
+    `;
   } else {
-    targetBtn = document.getElementById('slider-btn-improvised') || document.getElementById('slider-btn-innovations');
-  }
-
-  if (targetBtn) {
-    targetBtn.classList.add('active');
-    const targetLeft = targetBtn.offsetLeft - (container.clientWidth / 2) + (targetBtn.clientWidth / 2);
-    container.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
-  }
-
-  if (typeof window.updateNavScrubber === 'function') {
-    setTimeout(window.updateNavScrubber, 160);
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('improvised-innovations-section', this)">Innovations</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('warroom-arena-card', this)">War Room</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR Replay</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('consensus-radar-card', this)">Consensus</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Audit Matrix</button>
+    `;
   }
 };
 
@@ -391,16 +414,40 @@ window.openCockpit = function(e) {
       </div>
 
       <div class="header-pathway-selector" role="radiogroup" aria-label="Project Scope Pathway">
-        <button type="button" id="pathway-btn-midsem" class="pathway-tab active" onclick="activatePathwayMode('midsem')" title="Earlier v1.0 Mid-Sem Foundation Scope">
+        <button type="button" id="pathway-btn-midsem" class="pathway-tab active" onclick="activatePathwayMode('midsem')" title="View Mid-Sem Foundation scope & architecture">
           Earlier <span class="pathway-chip">v1.0</span>
         </button>
-        <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="Improvised v3.0 Post-Mid-Sem Innovations">
+        <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="View Newly Added Post-Mid-Sem Innovations">
           <span class="pulse-dot-green"></span> Improvised <span class="pathway-chip">v3.0</span>
         </button>
-        <button type="button" id="pathway-btn-academic" class="pathway-tab" onclick="activatePathwayMode('academic')" title="Academic 10 Frontiers &amp; Research Rigor">
-          <span class="pulse-dot-green" style="background:#8B5CF6;"></span> Academic <span class="pathway-chip" style="background:#EDE9FE;color:#7C3AED;font-weight:700;">10 Frontiers</span>
+        <button type="button" id="pathway-btn-academic" class="pathway-tab" onclick="activatePathwayMode('academic')" title="View 10 Academic Weapon Frontiers & Live Flow Processors">
+          <span class="pulse-dot-green" style="background:#8B5CF6;"></span> Academic Weapon <span class="pathway-chip" style="background:#EDE9FE;color:#7C3AED;font-weight:700;">10 Frontiers</span>
         </button>
       </div>
+    </div>
+
+    <!-- Middle Section: 4-Microservice Highway (Zero Duplicates, Crisp Port Pills) -->
+    <div class="header-portals-cluster">
+      <span class="header-portal-link active-master" title="KAVACH Master Unified Platform (Current Node)">
+        <span class="pulse-dot-green" style="background:#2563EB;"></span>
+        <span class="portal-btn-label">Master Platform</span>
+        <span class="portal-badge-pill" style="background:#EFF6FF; color:#1D4ED8; font-weight:700;">:8001</span>
+      </span>
+      <a href="http://127.0.0.1:8000/" target="_blank" onclick="window.openLiveSwarm(event)" class="header-portal-link btn-portal-live" id="btn-portal-live-agent" title="Launch KAVACH Live Multi-Agent Swarm (Port 8000)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <span class="portal-btn-label">Live Swarm</span>
+        <span class="portal-badge-pill">:8000</span>
+      </a>
+      <a href="http://127.0.0.1:8002/" target="_blank" onclick="window.openApplicationsWork(event)" class="header-portal-link btn-portal-apps" id="btn-portal-applications" title="Launch Bharat Core Bank Comparative A/B Portal (Port 8002)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2L2 7h20L12 2z"/></svg>
+        <span class="portal-btn-label">Bharat Bank</span>
+        <span class="portal-badge-pill">:8002</span>
+      </a>
+      <a href="http://127.0.0.1:8003/" target="_blank" onclick="window.openCockpit(event)" class="header-portal-link btn-portal-cockpit" id="btn-portal-cockpit" title="Launch Real Autonomous AI Defense Cockpit (Port 8003)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="portal-btn-label">Agent Cockpit</span>
+        <span class="portal-badge-pill" style="background:#EDE9FE; color:#7C3AED; font-weight:700;">:8003</span>
+      </a>
     </div>
 
     <!-- Right Section: Actions & Review Hub -->
@@ -458,159 +505,37 @@ window.openCockpit = function(e) {
         <span>4/4 NODES ONLINE</span>
       </div>
       <button type="button" id="header-prof-review-btn" class="btn-header-review magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Standardization (13/13 Verified Points &amp; 30/30 Defense Lab)">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         <span>30/30 Review</span>
         <span class="review-status-tag">13/13</span>
       </button>
       <span id="header-defense-tour-btn" style="display:none;" onclick="if(window.startDefenseTour)window.startDefenseTour()"></span>
       <button type="button" id="header-voice-btn" class="header-tool-btn voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
         <span>Voice</span>
       </button>
       <span id="btn-console-cta" style="display:none;" onclick="if(window.switchToWorkspace)window.switchToWorkspace()"></span>
 </div>
   </div>
 
-  <!-- Tier 2: Interactive Navigation Slider Bar (Scrollable Hub with Scrubber Rail & Chevrons) -->
-  <div class="app-header-subnav app-header-slider-bar" id="app-header-subnav">
-    <div class="slider-header-controls">
-      <button type="button" class="slider-arrow-btn slider-arrow-left" id="slider-arrow-left" onclick="window.slideHeaderNav(-1)" title="Scroll Navigation Left" aria-label="Scroll left in navigation slider">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-
-      <div class="slider-viewport-container" id="slider-viewport-container">
-        <div class="slider-fade-edge-left" aria-hidden="true"></div>
-
-        <nav class="slider-track-rail" id="main-nav-switcher" role="tablist" aria-label="Platform Navigation Slider">
-          <!-- 1. Real Agent Cockpit -->
-          <a href="/cockpit" target="_blank" class="nav-switch-btn pill-cockpit" id="slider-btn-cockpit" title="Launch Real Autonomous AI Agent Cockpit (Port 8003)">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <strong>Agent Cockpit</strong>
-            <span class="pill-port-badge">:8003</span>
-          </a>
-
-          <!-- 2. Live Agent Swarm -->
-          <button type="button" class="nav-switch-btn pill-swarm" id="slider-btn-swarm" onclick="window.openLiveSwarm(); window.setSliderActive(this);" title="Launch Live Multi-Agent Swarm (Port 8000)">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            <strong>Live Swarm</strong>
-            <span class="pill-port-badge">:8000</span>
-          </button>
-
-          <!-- 3. Bharat Core Banking -->
-          <button type="button" class="nav-switch-btn pill-bank" id="slider-btn-bank" onclick="window.openApplicationsWork(); window.setSliderActive(this);" title="Launch Bharat Core Banking Portal (Port 8002)">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2L2 7h20L12 2z"/></svg>
-            <strong>Bharat Bank</strong>
-            <span class="pill-port-badge">:8002</span>
-          </button>
-
-          <!-- 4. Master Platform Overview -->
-          <button type="button" class="nav-switch-btn active pill-master" id="slider-btn-overview" onclick="window.switchToProduct(); window.setSliderActive(this);" title="Master Platform Overview (Port 8001)">
-            <span class="pulse-dot-green" style="background:#2563EB;"></span>
-            <strong>Master Platform</strong>
-            <span class="pill-port-badge">:8001</span>
-          </button>
-
-          <span class="slider-divider" aria-hidden="true"></span>
-
-          <!-- 5. Earlier Scope (v1.0) -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-earlier" onclick="activatePathwayMode('midsem'); window.setSliderActive(this);" title="Switch to Earlier Mid-Sem Foundation Scope">
-            Earlier v1.0
-          </button>
-
-          <!-- 6. Improvised Innovations (v3.0) -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-improvised" onclick="activatePathwayMode('improvised'); window.setSliderActive(this);" title="Switch to Newly Added Improvised Innovations">
-            <span class="pulse-dot-green"></span>
-            Improvised v3.0
-          </button>
-
-          <!-- 7. Academic Weapon 10 Frontiers -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-academic" onclick="activatePathwayMode('academic'); window.setSliderActive(this);" title="10 Academic Research Defense Frontiers">
-            <span class="pulse-dot-green" style="background:#8B5CF6;"></span>
-            Academic 10 Frontiers
-          </button>
-
-          <span class="slider-divider" aria-hidden="true"></span>
-
-          <!-- 8. Innovations (10 Architectural Gaps) -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-innovations" onclick="scrollToTarget('improvised-innovations-section', this)" title="10 Architectural Innovations &amp; Solved Gaps">
-            Innovations (10 Gaps)
-          </button>
-
-          <!-- 9. War Room Arena -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-warroom" onclick="scrollToTarget('warroom-arena-card', this)" title="Live Cyber War Room Arena">
-            War Room Arena
-          </button>
-
-          <!-- 10. Forensic DVR Replay -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-dvr" onclick="scrollToTarget('forensic-replay-card', this)" title="Forensic Incident DVR Replay Engine">
-            DVR Replay
-          </button>
-
-          <!-- 11. Consensus Radar -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-consensus" onclick="scrollToTarget('consensus-radar-card', this)" title="Multi-Model Consensus Radar">
-            Consensus Radar
-          </button>
-
-          <!-- 12. 6 Defense Stages -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-stages" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)" title="6 Formal Mathematical Stages with KaTeX proofs">
-            6 Defense Stages (KaTeX)
-          </button>
-
-          <!-- 13. System Flowchart -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-flowchart" onclick="scrollToTarget('architecture-flowchart', this)" title="Full End-to-End System Architecture Flowchart">
-            Flowchart
-          </button>
-
-          <!-- 14. Terminal Checks -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-checks" onclick="scrollToTarget('terminal-results-section', this)" title="Self-Test Verification Terminal Results">
-            Checks
-          </button>
-
-          <!-- 15. Audit Matrix -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-matrix" onclick="switchToDefense()" title="MITRE ATLAS Zero-Trust Matrix">
-            Audit Matrix
-          </button>
-
-          <!-- 16. Eval Lab -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-eval" onclick="switchToEval()" title="Benchmark Metrics &amp; Scientific Evaluation">
-            Eval Lab
-          </button>
-
-          <!-- 17. Research Paper -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-paper" onclick="switchToResearch()" title="Academic Research Paper &amp; Theorems">
-            Research Paper
-          </button>
-
-          <!-- 18. 30/30 Review -->
-          <button type="button" class="nav-switch-btn pill-review" id="slider-btn-review" onclick="window.openProfessorReviewModal(); window.setSliderActive(this);" title="Professor Pranshu Tiwari Standardization (13/13 Rubric)">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            30/30 Review
-            <span class="pill-port-badge" style="background:#ECFDF5; color:#059669; font-weight:700;">13/13</span>
-          </button>
-
-          <!-- 19. Voice Cockpit -->
-          <button type="button" class="nav-switch-btn" id="slider-btn-voice" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper)">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-            Voice
-          </button>
-        </nav>
-
-        <div class="slider-fade-edge-right" aria-hidden="true"></div>
-      </div>
-
-      <button type="button" class="slider-arrow-btn slider-arrow-right" id="slider-arrow-right" onclick="window.slideHeaderNav(1)" title="Scroll Navigation Right" aria-label="Scroll right in navigation slider">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
-    </div>
-
-    <!-- Interactive Tactile Range Scrubber Rail (Prominent, High-Contrast, Draggable) -->
-    <div class="nav-slider-scrubber-container">
-      <div class="nav-slider-scrubber-rail" id="nav-slider-scrubber-rail" title="Slide or click anywhere on this track to scrub through navigation">
-        <div class="nav-slider-scrubber-fill" id="nav-slider-scrubber-fill"></div>
-        <div class="nav-slider-scrubber-thumb" id="nav-slider-scrubber-thumb" aria-label="Navigation Scrubber Handle">
-          <span class="thumb-grip-line"></span>
-        </div>
-      </div>
+  <!-- Tier 2: Dedicated Contextual Navigation Sub-Bar ("just usi ke niche" - full width, perfectly centered, never cropped!) -->
+  <div class="app-header-subnav" id="app-header-subnav">
+    <div class="subnav-container">
+      <nav class="nav-switcher" id="main-nav-switcher" role="tablist" aria-label="Context Navigation Tabs">
+        <a href="/cockpit" target="_blank" class="nav-switch-btn" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; font-weight: 800; text-decoration: none; box-shadow: 0 0 14px rgba(0, 242, 254, 0.5); display:inline-flex; align-items:center; gap:6px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          REAL AGENT COCKPIT (A2A)
+        </a>
+        <button type="button" class="nav-switch-btn" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)">6 Defense Stages (KaTeX)</button>
+        <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Agent Swarm</button>
+        <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('apps')">Bharat Bank</button>
+        <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
+        <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
+        <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
+        <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
+        <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
+        <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
+      </nav>
     </div>
   </div>
 
@@ -6422,104 +6347,6 @@ def parse_deploy_spec(user_payload):
     </div>
   </div>
 </div>
-
-<!-- Dedicated Navigation Slider & Scrubber Controller -->
-<script>
-  (function initHeaderNavSlider() {
-    var track = document.getElementById('main-nav-switcher');
-    var rail = document.getElementById('nav-slider-scrubber-rail');
-    var fill = document.getElementById('nav-slider-scrubber-fill');
-    var thumb = document.getElementById('nav-slider-scrubber-thumb');
-    var btnPrev = document.getElementById('slider-arrow-left');
-    var btnNext = document.getElementById('slider-arrow-right');
-
-    if (!track) return;
-
-    window.slideHeaderNav = function(direction) {
-      var step = 280;
-      track.scrollBy({ left: direction * step, behavior: 'smooth' });
-    };
-
-    function updateScrubber() {
-      var max = track.scrollWidth - track.clientWidth;
-      var ratio = max > 0 ? (track.scrollLeft / max) : 0;
-      ratio = Math.max(0, Math.min(1, ratio));
-      var pct = (ratio * 100).toFixed(2);
-      if (fill) fill.style.width = pct + '%';
-      if (thumb) thumb.style.left = pct + '%';
-
-      if (btnPrev) btnPrev.style.opacity = track.scrollLeft <= 5 ? '0.35' : '1';
-      if (btnNext) btnNext.style.opacity = track.scrollLeft >= max - 5 ? '0.35' : '1';
-    }
-
-    window.updateNavScrubber = updateScrubber;
-
-    track.addEventListener('scroll', updateScrubber, { passive: true });
-    window.addEventListener('resize', updateScrubber);
-    setTimeout(updateScrubber, 120);
-
-    // Mouse wheel horizontal scroll conversion
-    track.addEventListener('wheel', function(e) {
-      if (e.deltaY !== 0) {
-        e.preventDefault();
-        track.scrollLeft += e.deltaY * 0.9;
-      }
-    }, { passive: false });
-
-    // Drag-to-scroll on slider track
-    var isDown = false;
-    var startX, scrollLeft;
-    track.addEventListener('mousedown', function(e) {
-      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
-      isDown = true;
-      track.classList.add('dragging');
-      startX = e.pageX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
-    });
-    window.addEventListener('mouseup', function() {
-      if (isDown) {
-        isDown = false;
-        track.classList.remove('dragging');
-      }
-    });
-    track.addEventListener('mousemove', function(e) {
-      if (!isDown) return;
-      e.preventDefault();
-      var x = e.pageX - track.offsetLeft;
-      var walk = (x - startX) * 1.5;
-      track.scrollLeft = scrollLeft - walk;
-    });
-
-    // Scrubber rail click & drag scrubbing
-    if (rail && thumb) {
-      var isScrubbing = false;
-      function handleScrubberMove(e) {
-        var rect = rail.getBoundingClientRect();
-        var x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-        var ratio = x / rect.width;
-        var max = track.scrollWidth - track.clientWidth;
-        track.scrollLeft = ratio * max;
-      }
-
-      rail.addEventListener('mousedown', function(e) {
-        isScrubbing = true;
-        handleScrubberMove(e);
-      });
-      window.addEventListener('mousemove', function(e) {
-        if (isScrubbing) handleScrubberMove(e);
-      });
-      window.addEventListener('mouseup', function() {
-        if (isScrubbing) isScrubbing = false;
-      });
-    }
-
-    window.setSliderActive = function(el) {
-      var allPills = track.querySelectorAll('.nav-switch-btn');
-      allPills.forEach(function(p) { p.classList.remove('active'); });
-      if (el) el.classList.add('active');
-    };
-  })();
-</script>
 
 </body>
 </html>
