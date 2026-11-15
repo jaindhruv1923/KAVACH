@@ -414,40 +414,36 @@ window.openCockpit = function(e) {
       </div>
 
       <div class="header-pathway-selector" role="radiogroup" aria-label="Project Scope Pathway">
-        <button type="button" id="pathway-btn-midsem" class="pathway-tab active" onclick="activatePathwayMode('midsem')" title="[Press 1] Earlier v1.0 Mid-Sem Foundation Scope">
-          <kbd class="key-badge">1</kbd>Earlier <span class="pathway-chip">v1.0</span>
+        <button type="button" id="pathway-btn-midsem" class="pathway-tab active" onclick="activatePathwayMode('midsem')" title="Earlier v1.0 Mid-Sem Foundation Scope">
+          Earlier <span class="pathway-chip">v1.0</span>
         </button>
-        <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="[Press 2] Improvised v3.0 Post-Mid-Sem Innovations">
-          <kbd class="key-badge">2</kbd><span class="pulse-dot-green"></span> Improvised <span class="pathway-chip">v3.0</span>
+        <button type="button" id="pathway-btn-improvised" class="pathway-tab" onclick="activatePathwayMode('improvised')" title="Improvised v3.0 Post-Mid-Sem Innovations">
+          <span class="pulse-dot-green"></span> Improvised <span class="pathway-chip">v3.0</span>
         </button>
-        <button type="button" id="pathway-btn-academic" class="pathway-tab" onclick="activatePathwayMode('academic')" title="[Press 3] Academic 10 Frontiers &amp; Research Rigor">
-          <kbd class="key-badge">3</kbd><span class="pulse-dot-green" style="background:#8B5CF6;"></span> Academic <span class="pathway-chip" style="background:#EDE9FE;color:#7C3AED;font-weight:700;">10 Frontiers</span>
+        <button type="button" id="pathway-btn-academic" class="pathway-tab" onclick="activatePathwayMode('academic')" title="Academic 10 Frontiers &amp; Research Rigor">
+          <span class="pulse-dot-green" style="background:#8B5CF6;"></span> Academic <span class="pathway-chip" style="background:#EDE9FE;color:#7C3AED;font-weight:700;">10 Frontiers</span>
         </button>
       </div>
     </div>
 
-    <!-- Middle Section: 4-Microservice Highway (Keys 4-7, Zero Duplicates, Crisp Port Pills) -->
+    <!-- Middle Section: 4-Microservice Highway (Zero Duplicates, Crisp Port Pills) -->
     <div class="header-portals-cluster">
-      <button type="button" class="header-portal-link active-master" id="btn-portal-master" onclick="switchToProduct(); window.scrollTo({top:0,behavior:'smooth'});" title="[Press 4] KAVACH Master Platform (Port 8001)">
-        <kbd class="key-badge">4</kbd>
+      <button type="button" class="header-portal-link active-master" id="btn-portal-master" onclick="switchToProduct(); window.scrollTo({top:0,behavior:'smooth'});" title="KAVACH Master Platform (Port 8001)">
         <span class="pulse-dot-green" style="background:#2563EB;"></span>
         <span class="portal-btn-label">Master</span>
         <span class="portal-badge-pill" style="background:#EFF6FF; color:#1D4ED8; font-weight:700;">:8001</span>
       </button>
-      <a href="http://127.0.0.1:8000/" target="_blank" onclick="window.openLiveSwarm(event)" class="header-portal-link btn-portal-live" id="btn-portal-live-agent" title="[Press 5] Launch Live Multi-Agent Swarm (Port 8000)">
-        <kbd class="key-badge">5</kbd>
+      <a href="http://127.0.0.1:8000/" target="_blank" onclick="window.openLiveSwarm(event)" class="header-portal-link btn-portal-live" id="btn-portal-live-agent" title="Launch Live Multi-Agent Swarm (Port 8000)">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         <span class="portal-btn-label">Swarm</span>
         <span class="portal-badge-pill">:8000</span>
       </a>
-      <a href="http://127.0.0.1:8002/" target="_blank" onclick="window.openApplicationsWork(event)" class="header-portal-link btn-portal-apps" id="btn-portal-applications" title="[Press 6] Launch Bharat Core Bank Comparative A/B Portal (Port 8002)">
-        <kbd class="key-badge">6</kbd>
+      <a href="http://127.0.0.1:8002/" target="_blank" onclick="window.openApplicationsWork(event)" class="header-portal-link btn-portal-apps" id="btn-portal-applications" title="Launch Bharat Core Bank Comparative A/B Portal (Port 8002)">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2L2 7h20L12 2z"/></svg>
         <span class="portal-btn-label">Bank</span>
         <span class="portal-badge-pill">:8002</span>
       </a>
-      <a href="http://127.0.0.1:8003/" target="_blank" onclick="window.openCockpit(event)" class="header-portal-link btn-portal-cockpit" id="btn-portal-cockpit" title="[Press 7] Launch Real Autonomous AI Defense Cockpit (Port 8003)">
-        <kbd class="key-badge">7</kbd>
+      <a href="http://127.0.0.1:8003/" target="_blank" onclick="window.openCockpit(event)" class="header-portal-link btn-portal-cockpit" id="btn-portal-cockpit" title="Launch Real Autonomous AI Defense Cockpit (Port 8003)">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         <span class="portal-btn-label">Cockpit</span>
         <span class="portal-badge-pill" style="background:#EDE9FE; color:#7C3AED; font-weight:700;">:8003</span>
@@ -508,15 +504,13 @@ window.openCockpit = function(e) {
         <span class="pulse-dot-green"></span>
         <span>4/4 NODES ONLINE</span>
       </div>
-      <button type="button" id="header-prof-review-btn" class="btn-header-review magnetic-btn" onclick="window.switchToProfessorReview()" title="[Press 8] Professor Pranshu Tiwari Standardization (13/13 Verified Points &amp; 30/30 Defense Lab)">
-        <kbd class="key-badge">8</kbd>
+      <button type="button" id="header-prof-review-btn" class="btn-header-review magnetic-btn" onclick="window.switchToProfessorReview()" title="Professor Pranshu Tiwari Standardization (13/13 Verified Points &amp; 30/30 Defense Lab)">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         <span>30/30 Review</span>
         <span class="review-status-tag">13/13</span>
       </button>
       <span id="header-defense-tour-btn" style="display:none;" onclick="if(window.startDefenseTour)window.startDefenseTour()"></span>
-      <button type="button" id="header-voice-btn" class="header-tool-btn voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="[Press 9] Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
-        <kbd class="key-badge">9</kbd>
+      <button type="button" id="header-voice-btn" class="header-tool-btn voice-header-btn magnetic-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper Intent Dispatcher)">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
         <span>Voice</span>
       </button>
@@ -524,24 +518,118 @@ window.openCockpit = function(e) {
 </div>
   </div>
 
-  <!-- Tier 2: Dedicated Contextual Navigation Sub-Bar ("just usi ke niche" - full width, perfectly centered, never cropped!) -->
-  <div class="app-header-subnav" id="app-header-subnav">
-    <div class="subnav-container">
-      <nav class="nav-switcher" id="main-nav-switcher" role="tablist" aria-label="Context Navigation Tabs">
-        <a href="/cockpit" target="_blank" class="nav-switch-btn" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; font-weight: 800; text-decoration: none; box-shadow: 0 0 14px rgba(0, 242, 254, 0.5); display:inline-flex; align-items:center; gap:6px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          REAL AGENT COCKPIT (A2A)
-        </a>
-        <button type="button" class="nav-switch-btn" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)">6 Defense Stages (KaTeX)</button>
-        <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Agent Swarm</button>
-        <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('apps')">Bharat Bank</button>
-        <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
-        <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
-        <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
-        <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
-        <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
-        <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
-      </nav>
+  <!-- Tier 2: Interactive Navigation Slider Bar (Scrollable Hub with Scrubber Rail & Chevrons) -->
+  <div class="app-header-subnav app-header-slider-bar" id="app-header-subnav">
+    <div class="subnav-slider-wrapper">
+      <button type="button" class="slider-arrow-btn slider-arrow-left" id="slider-arrow-left" onclick="window.slideHeaderNav(-1)" title="Scroll Navigation Left" aria-label="Scroll left in navigation slider">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <div class="slider-viewport" id="slider-viewport">
+        <nav class="nav-switcher nav-switcher-slider" id="main-nav-switcher" role="tablist" aria-label="Platform Navigation Slider">
+          <!-- 1. Real Agent Cockpit -->
+          <a href="/cockpit" target="_blank" class="nav-switch-btn accent-cockpit" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #070b14; font-weight: 800; text-decoration: none; box-shadow: 0 0 14px rgba(0, 242, 254, 0.45); display:inline-flex; align-items:center; gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span>Real Agent Cockpit</span>
+            <span class="pill-badge" style="background:rgba(7,11,20,0.25); color:#070b14; font-size:0.65rem; padding:1px 5px; border-radius:9999px;">:8003</span>
+          </a>
+
+          <!-- 2. Live Agent Swarm -->
+          <button type="button" class="nav-switch-btn" onclick="window.openLiveSwarm(); window.setSliderActive(this);" title="Launch Live Multi-Agent Swarm (Port 8000)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <span>Agent Swarm</span>
+            <span class="pill-badge" style="background:#E0F2FE; color:#0284C7; font-size:0.65rem; padding:1px 5px; border-radius:9999px;">:8000</span>
+          </button>
+
+          <!-- 3. Bharat Core Banking -->
+          <button type="button" class="nav-switch-btn" onclick="window.openApplicationsWork(); window.setSliderActive(this);" title="Launch Bharat Core Banking Portal (Port 8002)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2L2 7h20L12 2z"/></svg>
+            <span>Bharat Bank</span>
+            <span class="pill-badge" style="background:#ECFDF5; color:#059669; font-size:0.65rem; padding:1px 5px; border-radius:9999px;">:8002</span>
+          </button>
+
+          <!-- 4. Master Platform Overview -->
+          <button type="button" class="nav-switch-btn active" id="slider-btn-overview" onclick="window.switchToProduct(); window.setSliderActive(this);" title="Master Platform Overview (Port 8001)">
+            <span class="pulse-dot-green" style="background:#2563EB;"></span>
+            <span>Master Overview</span>
+            <span class="pill-badge" style="background:#EFF6FF; color:#1D4ED8; font-size:0.65rem; padding:1px 5px; border-radius:9999px;">:8001</span>
+          </button>
+
+          <span class="slider-divider" aria-hidden="true"></span>
+
+          <!-- 5. Earlier Scope (v1.0) -->
+          <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('midsem'); window.setSliderActive(this);" title="Switch to Earlier Mid-Sem Foundation Scope">
+            <span>Earlier (v1.0)</span>
+          </button>
+
+          <!-- 6. Improvised Innovations (v3.0) -->
+          <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('improvised'); window.setSliderActive(this);" title="Switch to Newly Added Improvised Innovations">
+            <span class="pulse-dot-green"></span>
+            <span>Improvised (v3.0)</span>
+          </button>
+
+          <!-- 7. Academic Weapon 10 Frontiers -->
+          <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('academic'); window.setSliderActive(this);" title="10 Academic Research Defense Frontiers">
+            <span class="pulse-dot-green" style="background:#8B5CF6;"></span>
+            <span>Academic 10 Frontiers</span>
+          </button>
+
+          <!-- 8. 30/30 Professor Review Suite -->
+          <button type="button" class="nav-switch-btn" onclick="window.openProfessorReviewModal(); window.setSliderActive(this);" title="Professor Pranshu Tiwari Standardization (13/13 Rubric)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>30/30 Review</span>
+            <span class="pill-badge" style="background:#ECFDF5; color:#059669; font-weight:700; font-size:0.65rem; padding:1px 5px; border-radius:9999px;">13/13</span>
+          </button>
+
+          <span class="slider-divider" aria-hidden="true"></span>
+
+          <!-- 9. 6 Defense Stages (KaTeX) -->
+          <button type="button" class="nav-switch-btn" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)" title="6 Formal Mathematical Stages with KaTeX proofs">
+            <span>6 Defense Stages (KaTeX)</span>
+          </button>
+
+          <!-- 10. Flowchart -->
+          <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)" title="Full End-to-End System Flowchart">
+            <span>Flowchart</span>
+          </button>
+
+          <!-- 11. Terminal Checks -->
+          <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)" title="Self-Test Verification Terminal Results">
+            <span>Checks</span>
+          </button>
+
+          <!-- 12. Matrix -->
+          <button type="button" class="nav-switch-btn" onclick="switchToDefense()" title="MITRE ATLAS Zero-Trust Matrix">
+            <span>Matrix</span>
+          </button>
+
+          <!-- 13. Eval -->
+          <button type="button" class="nav-switch-btn" onclick="switchToEval()" title="Benchmark Metrics &amp; Scientific Evaluation">
+            <span>Eval</span>
+          </button>
+
+          <!-- 14. Paper -->
+          <button type="button" class="nav-switch-btn" onclick="switchToResearch()" title="Academic Research Paper &amp; Theorems">
+            <span>Paper</span>
+          </button>
+
+          <!-- 15. Voice Cockpit -->
+          <button type="button" class="nav-switch-btn" onclick="window.toggleVoiceCockpit()" title="Multi-Modal Voice Cockpit (Groq Whisper)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            <span>Voice</span>
+          </button>
+        </nav>
+      </div>
+
+      <button type="button" class="slider-arrow-btn slider-arrow-right" id="slider-arrow-right" onclick="window.slideHeaderNav(1)" title="Scroll Navigation Right" aria-label="Scroll right in navigation slider">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+
+    <!-- Scrubber Slider Bar at the very bottom edge of navigation bar -->
+    <div class="nav-slider-scrubber-rail" id="nav-slider-scrubber-rail" title="Drag or click anywhere on this slider track to scroll through navigation">
+      <div class="nav-slider-scrubber-fill" id="nav-slider-scrubber-fill"></div>
+      <div class="nav-slider-scrubber-thumb" id="nav-slider-scrubber-thumb" aria-label="Navigation Scrubber Handle"></div>
     </div>
   </div>
 
@@ -6354,160 +6442,99 @@ def parse_deploy_spec(user_payload):
   </div>
 </div>
 
-<!-- Floating Hotkey HUD Toast for tactile feedback on 1-9 keystrokes -->
-<div id="kavach-hotkey-toast" role="status" aria-live="polite">
-  <span class="toast-key-chip" id="kavach-toast-key">1</span>
-  <span id="kavach-toast-msg">Earlier v1.0 Scope Active</span>
-</div>
-
-<!-- Dedicated Hotkey Engine: 1-9 Sequential Switching with Fixed Order & Visual Shift -->
+<!-- Dedicated Navigation Slider & Scrubber Controller -->
 <script>
-  (function initKavachHotkeys() {
-    var toastTimeout = null;
+  (function initHeaderNavSlider() {
+    var track = document.getElementById('main-nav-switcher');
+    var rail = document.getElementById('nav-slider-scrubber-rail');
+    var fill = document.getElementById('nav-slider-scrubber-fill');
+    var thumb = document.getElementById('nav-slider-scrubber-thumb');
+    var btnPrev = document.getElementById('slider-arrow-left');
+    var btnNext = document.getElementById('slider-arrow-right');
 
-    function showHudToast(key, msg) {
-      var toast = document.getElementById('kavach-hotkey-toast');
-      var keyChip = document.getElementById('kavach-toast-key');
-      var msgEl = document.getElementById('kavach-toast-msg');
-      if (!toast || !keyChip || !msgEl) return;
-      keyChip.textContent = key;
-      msgEl.textContent = msg;
-      toast.classList.add('show');
-      if (toastTimeout) clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(function() {
-        toast.classList.remove('show');
-      }, 1900);
+    if (!track) return;
+
+    window.slideHeaderNav = function(direction) {
+      var step = 280;
+      track.scrollBy({ left: direction * step, behavior: 'smooth' });
+    };
+
+    function updateScrubber() {
+      var max = track.scrollWidth - track.clientWidth;
+      var ratio = max > 0 ? (track.scrollLeft / max) : 0;
+      ratio = Math.max(0, Math.min(1, ratio));
+      var pct = (ratio * 100).toFixed(2);
+      if (fill) fill.style.width = pct + '%';
+      if (thumb) thumb.style.left = pct + '%';
+
+      if (btnPrev) btnPrev.style.opacity = track.scrollLeft <= 5 ? '0.35' : '1';
+      if (btnNext) btnNext.style.opacity = track.scrollLeft >= max - 5 ? '0.35' : '1';
     }
 
-    function triggerTactileAnimation(elId) {
-      var el = document.getElementById(elId);
-      if (!el) return;
-      el.classList.add('key-badge-pressed');
-      setTimeout(function() {
-        el.classList.remove('key-badge-pressed');
-      }, 220);
-    }
+    track.addEventListener('scroll', updateScrubber, { passive: true });
+    window.addEventListener('resize', updateScrubber);
+    setTimeout(updateScrubber, 120);
 
-    function updatePortalActiveState(activeId) {
-      var portalIds = ['btn-portal-master', 'btn-portal-live-agent', 'btn-portal-applications', 'btn-portal-cockpit'];
-      portalIds.forEach(function(id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        if (id === activeId) {
-          el.classList.add('active-portal');
-        } else {
-          el.classList.remove('active-portal');
-        }
+    // Mouse wheel horizontal scroll conversion
+    track.addEventListener('wheel', function(e) {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        track.scrollLeft += e.deltaY * 0.9;
+      }
+    }, { passive: false });
+
+    // Drag-to-scroll on slider track
+    var isDown = false;
+    var startX, scrollLeft;
+    track.addEventListener('mousedown', function(e) {
+      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
+      isDown = true;
+      track.classList.add('dragging');
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    window.addEventListener('mouseup', function() {
+      if (isDown) {
+        isDown = false;
+        track.classList.remove('dragging');
+      }
+    });
+    track.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - track.offsetLeft;
+      var walk = (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - walk;
+    });
+
+    // Scrubber rail click & drag scrubbing
+    if (rail && thumb) {
+      var isScrubbing = false;
+      function handleScrubberMove(e) {
+        var rect = rail.getBoundingClientRect();
+        var x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+        var ratio = x / rect.width;
+        var max = track.scrollWidth - track.clientWidth;
+        track.scrollLeft = ratio * max;
+      }
+
+      rail.addEventListener('mousedown', function(e) {
+        isScrubbing = true;
+        handleScrubberMove(e);
+      });
+      window.addEventListener('mousemove', function(e) {
+        if (isScrubbing) handleScrubberMove(e);
+      });
+      window.addEventListener('mouseup', function() {
+        if (isScrubbing) isScrubbing = false;
       });
     }
 
-    function handleKey(key) {
-      switch (key) {
-        case '1':
-          triggerTactileAnimation('pathway-btn-midsem');
-          if (typeof window.activatePathwayMode === 'function') {
-            window.activatePathwayMode('midsem');
-          }
-          updatePortalActiveState('btn-portal-master');
-          showHudToast('1', 'Earlier Scope (v1.0 Baseline Architecture) Active');
-          break;
-        case '2':
-          triggerTactileAnimation('pathway-btn-improvised');
-          if (typeof window.activatePathwayMode === 'function') {
-            window.activatePathwayMode('improvised');
-          }
-          updatePortalActiveState('btn-portal-master');
-          showHudToast('2', 'Improvised Scope (v3.0 Innovations) Active');
-          break;
-        case '3':
-          triggerTactileAnimation('pathway-btn-academic');
-          if (typeof window.activatePathwayMode === 'function') {
-            window.activatePathwayMode('academic');
-          }
-          updatePortalActiveState('btn-portal-master');
-          showHudToast('3', 'Academic Weapon (10 Frontiers & Defense Lab) Active');
-          break;
-        case '4':
-          triggerTactileAnimation('btn-portal-master');
-          if (typeof window.switchToProduct === 'function') {
-            window.switchToProduct();
-          }
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          updatePortalActiveState('btn-portal-master');
-          showHudToast('4', 'Master Platform (:8001) Overview Focused');
-          break;
-        case '5':
-          triggerTactileAnimation('btn-portal-live-agent');
-          updatePortalActiveState('btn-portal-live-agent');
-          if (typeof window.openLiveSwarm === 'function') {
-            window.openLiveSwarm();
-          } else {
-            window.open('http://127.0.0.1:8000/', '_blank');
-          }
-          showHudToast('5', 'Live Multi-Agent Swarm (:8000) Launched');
-          break;
-        case '6':
-          triggerTactileAnimation('btn-portal-applications');
-          updatePortalActiveState('btn-portal-applications');
-          if (typeof window.openApplicationsWork === 'function') {
-            window.openApplicationsWork();
-          } else {
-            window.open('http://127.0.0.1:8002/', '_blank');
-          }
-          showHudToast('6', 'Bharat Core Banking Comparative Portal (:8002) Launched');
-          break;
-        case '7':
-          triggerTactileAnimation('btn-portal-cockpit');
-          updatePortalActiveState('btn-portal-cockpit');
-          if (typeof window.openCockpit === 'function') {
-            window.openCockpit();
-          } else {
-            window.open('http://127.0.0.1:8003/', '_blank');
-          }
-          showHudToast('7', 'Real Autonomous AI Defense Cockpit (:8003) Launched');
-          break;
-        case '8':
-          triggerTactileAnimation('header-prof-review-btn');
-          if (typeof window.openProfessorReviewModal === 'function') {
-            window.openProfessorReviewModal();
-          } else if (typeof window.switchToProfessorReview === 'function') {
-            window.switchToProfessorReview();
-          }
-          showHudToast('8', 'Professor Review (13/13 Rubric & 30/30 Lab) Opened');
-          break;
-        case '9':
-          triggerTactileAnimation('header-voice-btn');
-          if (typeof window.toggleVoiceCockpit === 'function') {
-            window.toggleVoiceCockpit();
-          }
-          showHudToast('9', 'Multi-Modal Voice Cockpit (Groq Whisper) Toggled');
-          break;
-      }
-    }
-
-    document.addEventListener('keydown', function(e) {
-      var activeEl = document.activeElement;
-      var isInput = activeEl && (
-        activeEl.tagName === 'INPUT' ||
-        activeEl.tagName === 'TEXTAREA' ||
-        activeEl.tagName === 'SELECT' ||
-        activeEl.isContentEditable
-      );
-      if (isInput) return;
-      if (e.ctrlKey || e.altKey || e.metaKey) return;
-
-      var key = e.key;
-      if (e.code && e.code.indexOf('Digit') === 0) {
-        key = e.code.replace('Digit', '');
-      } else if (e.code && e.code.indexOf('Numpad') === 0) {
-        key = e.code.replace('Numpad', '');
-      }
-
-      if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].indexOf(key) !== -1) {
-        e.preventDefault();
-        handleKey(key);
-      }
-    });
+    window.setSliderActive = function(el) {
+      var allPills = track.querySelectorAll('.nav-switch-btn');
+      allPills.forEach(function(p) { p.classList.remove('active'); });
+      if (el) el.classList.add('active');
+    };
   })();
 </script>
 
