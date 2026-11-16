@@ -124,6 +124,16 @@
         return svc.localBase + '/';
       }
 
+      // If running on GitHub Pages (*.github.io), resolve to GitHub Pages sub-dashboard directories
+      if (typeof window !== 'undefined' && window.location && window.location.hostname.includes('github.io')) {
+        const pathSegments = (window.location.pathname || '').split('/').filter(Boolean);
+        const repoBase = pathSegments.length > 0 && pathSegments[0] !== 'swarm' && pathSegments[0] !== 'bank' && pathSegments[0] !== 'cockpit'
+          ? '/' + pathSegments[0]
+          : '';
+        if (serviceId === 'master') return window.location.origin + repoBase + '/';
+        return window.location.origin + repoBase + svc.cloudPath + '/';
+      }
+
       // In production: route through Railway unified gateway
       const base = this.getBackendOrigin();
       return (base + svc.cloudPath + '/').replace(/([^:]\/)\/+/g, '$1');

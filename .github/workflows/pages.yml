@@ -27,10 +27,24 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
+      - name: Assemble Unified Multi-Dashboard Pages Bundle
+        run: |
+          mkdir -p _site
+          cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/01_KAVACH_Platform/frontend/"* _site/
+          mkdir -p _site/swarm
+          cp -r "PRJ-IV &AgenticAi Final Work/live_agent_swarm/"* _site/swarm/
+          mkdir -p _site/bank
+          cp -r "PRJ-IV &AgenticAi Final Work/bharat_core_banking/"* _site/bank/
+          mkdir -p _site/cockpit
+          cp -r "PRJ-IV &AgenticAi Final Work/kavach_agent_core/"* _site/cockpit/
+          if [ -f "_site/cockpit/cockpit.html" ]; then
+            cp _site/cockpit/cockpit.html _site/cockpit/index.html
+          fi
+
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'PRJ-IV &AgenticAi Final Work/kavach_platform/01_KAVACH_Platform/frontend'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
