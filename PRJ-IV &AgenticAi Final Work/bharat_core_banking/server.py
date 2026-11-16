@@ -581,6 +581,13 @@ def serve_mesh_css():
 def serve_mesh_js():
     return FileResponse(os.path.join(BASE_DIR, "universal_mesh.js"))
 
+@app.api_route("/kavach_config.js", methods=["GET", "HEAD"])
+def serve_config_js():
+    cfg_path = os.path.join(BASE_DIR, "kavach_config.js")
+    if os.path.exists(cfg_path):
+        return FileResponse(cfg_path, media_type="application/javascript")
+    return JSONResponse({"status": "not_found"}, status_code=404)
+
 @app.api_route("/favicon.ico", methods=["GET", "HEAD"])
 def serve_favicon():
     return JSONResponse({})
@@ -599,6 +606,7 @@ def health_check():
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8002))
-    print(f"[*] Starting Bharat Core Bank Simulation Server on http://127.0.0.1:{port} ...")
-    uvicorn.run(app, host="127.0.0.1", port=port)
+    host = os.environ.get("HOST", "0.0.0.0")
+    print(f"[*] Starting Bharat Core Bank Simulation Server on http://{host}:{port} ...")
+    uvicorn.run(app, host=host, port=port)
 

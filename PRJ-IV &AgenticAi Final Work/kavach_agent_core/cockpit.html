@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script src="kavach_config.js?v=5.1.0"></script>
     <link rel="stylesheet" href="universal_mesh.css?v=5.0.0">
     <script src="universal_mesh.js?v=5.0.0"></script>
     <style>
@@ -1518,17 +1519,17 @@
                 Benchmark &amp; Evals
             </button>
             <div class="tab-divider"></div>
-            <a href="http://localhost:8001/" target="_blank" class="tab-btn tab-btn-port" title="KAVACH Master Platform (Port 8001)">
+            <a id="cockpitNavMaster" href="http://localhost:8001/" target="_blank" class="tab-btn tab-btn-port" title="KAVACH Master Platform (Port 8001)">
                 <svg class="k-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
-                Master :8001
+                <span id="cockpitLabelMaster">Master :8001</span>
             </a>
-            <a href="http://localhost:8002/" target="_blank" class="tab-btn tab-btn-port" title="Bharat Core Banking (Port 8002)">
+            <a id="cockpitNavBank" href="http://localhost:8002/" target="_blank" class="tab-btn tab-btn-port" title="Bharat Core Banking (Port 8002)">
                 <svg class="k-icon" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line><polygon points="12 2 2 7 22 7 12 2"></polygon></svg>
-                Bank :8002
+                <span id="cockpitLabelBank">Bank :8002</span>
             </a>
-            <a href="http://localhost:8000/" target="_blank" class="tab-btn tab-btn-port" title="Live Agent Swarm Engine (Port 8000)">
+            <a id="cockpitNavSwarm" href="http://localhost:8000/" target="_blank" class="tab-btn tab-btn-port" title="Live Agent Swarm Engine (Port 8000)">
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Swarm :8000
+                <span id="cockpitLabelSwarm">Swarm :8000</span>
             </a>
         </div>
 
@@ -3968,6 +3969,34 @@
 
         // Set default on load
         window.addEventListener('DOMContentLoaded', () => {
+            // Dynamically resolve ecosystem navigation links via KAVACH_CONFIG
+            if (window.KAVACH_CONFIG) {
+                const navMaster = document.getElementById('cockpitNavMaster');
+                if (navMaster) {
+                    navMaster.href = window.KAVACH_CONFIG.getDashboardUrl('master');
+                    if (window.KAVACH_CONFIG.isProduction()) {
+                        const lbl = document.getElementById('cockpitLabelMaster');
+                        if (lbl) lbl.textContent = 'Master Portal';
+                    }
+                }
+                const navBank = document.getElementById('cockpitNavBank');
+                if (navBank) {
+                    navBank.href = window.KAVACH_CONFIG.getDashboardUrl('banking');
+                    if (window.KAVACH_CONFIG.isProduction()) {
+                        const lbl = document.getElementById('cockpitLabelBank');
+                        if (lbl) lbl.textContent = 'Bharat Bank';
+                    }
+                }
+                const navSwarm = document.getElementById('cockpitNavSwarm');
+                if (navSwarm) {
+                    navSwarm.href = window.KAVACH_CONFIG.getDashboardUrl('swarm');
+                    if (window.KAVACH_CONFIG.isProduction()) {
+                        const lbl = document.getElementById('cockpitLabelSwarm');
+                        if (lbl) lbl.textContent = 'Agent Swarm';
+                    }
+                }
+            }
+
             selectProblemStatement('PS-1');
 
             const inputEl = document.getElementById('goalInput');

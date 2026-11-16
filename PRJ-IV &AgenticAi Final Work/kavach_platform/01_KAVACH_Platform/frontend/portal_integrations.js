@@ -19,8 +19,12 @@
     const view = document.getElementById('swarm-view');
     if (!view) return;
 
-    const cockpitUrl = window.location.port === '8001' ? '/cockpit' : 'http://127.0.0.1:8003/';
-    const swarmUrl = 'http://127.0.0.1:8000/';
+    const cockpitUrl = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+      ? window.KAVACH_CONFIG.getDashboardUrl('cockpit')
+      : (window.location.port === '8001' ? '/cockpit/' : 'http://127.0.0.1:8003/');
+    const swarmUrl = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+      ? window.KAVACH_CONFIG.getDashboardUrl('swarm')
+      : (window.location.port === '8001' ? '/swarm/' : 'http://127.0.0.1:8000/');
     const currentFrameUrl = activeSwarmSubTab === 'cockpit' ? cockpitUrl : swarmUrl;
 
     view.innerHTML = `
@@ -82,7 +86,9 @@
     const view = document.getElementById('apps-view');
     if (!view) return;
 
-    const appsUrl = 'http://127.0.0.1:8002/';
+    const appsUrl = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+      ? window.KAVACH_CONFIG.getDashboardUrl('banking')
+      : (window.location.port === '8001' ? '/bank/' : 'http://127.0.0.1:8002/');
 
     view.innerHTML = `
       <div style="background:#0c1324;border:1px solid rgba(16,185,129,0.35);border-radius:14px;padding:20px;margin-bottom:24px;box-shadow:0 8px 32px rgba(0,0,0,0.45);">
@@ -102,7 +108,7 @@
           </div>
 
           <div style="display:flex;align-items:center;gap:10px;">
-            <button type="button" class="btn-nav-secondary" onclick="document.getElementById('apps-live-iframe').src='http://127.0.0.1:8002/?t=' + Date.now()" style="padding:7px 14px;font-size:0.75rem;cursor:pointer;background:#111c35;color:#cbd5e1;border:1px solid #1d2d4d;border-radius:7px;font-weight:600;display:inline-flex;align-items:center;gap:5px;">
+            <button type="button" class="btn-nav-secondary" onclick="document.getElementById('apps-live-iframe').src=('${appsUrl}?t=' + Date.now())" style="padding:7px 14px;font-size:0.75rem;cursor:pointer;background:#111c35;color:#cbd5e1;border:1px solid #1d2d4d;border-radius:7px;font-weight:600;display:inline-flex;align-items:center;gap:5px;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
               Reload Bank Frame
             </button>

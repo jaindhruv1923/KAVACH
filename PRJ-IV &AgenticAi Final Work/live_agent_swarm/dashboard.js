@@ -209,11 +209,14 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
   let latestExecutionResult = null;
 
-  const API_ENDPOINT = (window.location.origin && window.location.origin.includes(":8000")) 
-
-    ? "/api/orchestrate" 
-
-    : "http://127.0.0.1:8000/api/orchestrate";
+  const API_ENDPOINT = (function () {
+    if (typeof window.KAVACH_CONFIG !== 'undefined' && typeof window.KAVACH_CONFIG.getApiUrl === 'function') {
+      return window.KAVACH_CONFIG.getApiUrl('swarm', '/api/orchestrate');
+    }
+    return (window.location.origin && window.location.origin.includes(":8000"))
+      ? "/api/orchestrate"
+      : "http://127.0.0.1:8000/api/orchestrate";
+  })();
 
 
 
@@ -1399,11 +1402,11 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
     const host = window.location.hostname || "127.0.0.1";
 
-    const targetUrl = (window.location.protocol === "file:")
-
-      ? "../kavach_platform/01_KAVACH_Platform/frontend/index.html"
-
-      : `http://${host}:8001/`;
+    const targetUrl = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+      ? window.KAVACH_CONFIG.getDashboardUrl('master')
+      : ((window.location.protocol === "file:")
+        ? "../kavach_platform/01_KAVACH_Platform/frontend/index.html"
+        : `http://${host}:8001/`);
 
 
 
@@ -1469,11 +1472,11 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
     const host = window.location.hostname || "127.0.0.1";
 
-    const targetUrl = (window.location.protocol === "file:")
-
-      ? "../applications_work/index.html"
-
-      : `http://${host}:8002/`;
+    const targetUrl = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+      ? window.KAVACH_CONFIG.getDashboardUrl('banking')
+      : ((window.location.protocol === "file:")
+        ? "../applications_work/index.html"
+        : `http://${host}:8002/`);
 
 
 

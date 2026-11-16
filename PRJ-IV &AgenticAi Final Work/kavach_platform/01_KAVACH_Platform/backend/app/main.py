@@ -71,9 +71,23 @@ app.include_router(ide_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_origin_regex=r".*",
-    allow_credentials=False,
+    allow_origins=[
+        "https://jaindhruv1923.github.io",
+        "http://localhost:8000",
+        "http://localhost:8001",
+        "http://localhost:8002",
+        "http://localhost:8003",
+        "http://127.0.0.1:8000",
+        "http://127.0.0.1:8001",
+        "http://127.0.0.1:8002",
+        "http://127.0.0.1:8003",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
+    allow_origin_regex=r"^https://.*\.github\.io$|^https://.*\.railway\.app$|^https://.*\.up\.railway\.app$",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -145,42 +159,61 @@ app.mount(
 )
 
 # ============================================================
-# MOUNT MULTI-SERVICE SUITE (BHARAT BANK & RESULTS COCKPIT)
+# KAVACH UNIFIED PRODUCTION ECOSYSTEM GATEWAY
 # ============================================================
-try:
-    _candidate_dashboard_dirs = [
-        os.path.abspath(os.path.join(PROJECT_ROOT, "02_Banking_and_Results_Dashboard")),
-        os.path.abspath(os.path.join(PROJECT_ROOT, "..", "02_Banking_and_Results_Dashboard")),
-        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "02_Banking_and_Results_Dashboard")),
-        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "02_Banking_and_Results_Dashboard")),
-        "/app/02_Banking_and_Results_Dashboard",
-    ]
-    dash_dir = next((d for d in _candidate_dashboard_dirs if os.path.exists(d)), None)
-    if dash_dir:
-        bank_dir = os.path.join(dash_dir, "implementation_banks")
-        for p in [dash_dir, bank_dir]:
-            if p not in sys.path and os.path.exists(p):
-                sys.path.insert(0, p)
+# Dynamically resolves and mounts all 3 microservices:
+# 1. /bank -> Bharat Core Banking Comparative A/B Portal
+# 2. /swarm -> Live Multi-Agent Safety Swarm Engine
+# 3. /cockpit -> Autonomous Agent Defense Cockpit
 
-        try:
-            from implementation_banks.server import app as bank_app
-            app.mount("/bank", bank_app)
-            print("[KAVACH Unified] Mounted Bharat Core Banking Highway at /bank")
-        except Exception as bank_err:
-            print(f"[KAVACH Unified] Bank app mount skipped: {bank_err}")
-except Exception as suite_err:
-    print(f"[KAVACH Unified] Multi-service suite initialization skipped: {suite_err}")
+_ecosystem_roots = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "..")),
+    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "..")),
+    "/app/PRJ-IV &AgenticAi Final Work",
+    "/app/kavach_core",
+    "/app",
+]
+_eco_root = next((d for d in _ecosystem_roots if os.path.exists(os.path.join(d, "bharat_core_banking"))), None)
+if _eco_root and _eco_root not in sys.path:
+    sys.path.insert(0, _eco_root)
 
-# Mount KAVACH Real Autonomous Multi-Agent Swarm Cockpit
+# Mount 1: Bharat Core Banking A/B Portal
 try:
-    _core_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
-    if _core_dir not in sys.path:
-        sys.path.insert(0, _core_dir)
-    from kavach_agent_core.server import app as cockpit_app
-    app.mount("/cockpit", cockpit_app)
-    print("[KAVACH Unified] Successfully mounted Real Autonomous Agent Cockpit at /cockpit")
+    import bharat_core_banking.server as bank_srv
+    app.mount("/bank", bank_srv.app)
+    print("[KAVACH Unified] Mounted Bharat Core Banking at /bank")
+except Exception as bank_err:
+    print(f"[KAVACH Unified] Bharat Banking mount error: {bank_err}")
+
+# Mount 2: Live Multi-Agent Safety Swarm Engine
+try:
+    import live_agent_swarm.agent_engine as swarm_srv
+    app.mount("/swarm", swarm_srv.app)
+    print("[KAVACH Unified] Mounted Live Agent Swarm at /swarm")
+except Exception as swarm_err:
+    print(f"[KAVACH Unified] Swarm mount error: {swarm_err}")
+
+# Mount 3: Autonomous Agent Defense Cockpit
+try:
+    import kavach_agent_core.server as cockpit_srv
+    app.mount("/cockpit", cockpit_srv.app)
+    print("[KAVACH Unified] Mounted Autonomous Agent Cockpit at /cockpit")
 except Exception as cockpit_err:
     print(f"[KAVACH Unified] Cockpit mount error: {cockpit_err}")
+
+
+@app.api_route("/kavach_config.js", methods=["GET", "HEAD"], include_in_schema=False)
+def serve_kavach_config():
+    """Serve centralized production configuration dynamically."""
+    cfg_candidates = [
+        os.path.join(FRONTEND_DIR, "kavach_config.js"),
+        os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "kavach_config.js"),
+        os.path.join(_eco_root or "", "kavach_platform", "01_KAVACH_Platform", "frontend", "kavach_config.js"),
+    ]
+    cfg_file = next((f for f in cfg_candidates if os.path.exists(f)), None)
+    if cfg_file:
+        return FileResponse(cfg_file, media_type="application/javascript")
+    return JSONResponse({"status": "config_not_found"}, status_code=404)
 
 
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)

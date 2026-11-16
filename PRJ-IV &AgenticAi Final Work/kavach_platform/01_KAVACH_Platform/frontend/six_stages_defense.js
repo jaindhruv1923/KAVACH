@@ -17,6 +17,9 @@
   'use strict';
 
   function getBaseUrl() {
+    if (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getApiUrl === 'function') {
+      return window.KAVACH_CONFIG.getApiUrl('cockpit', '').replace(/\/$/, '');
+    }
     return window.location.port === '8001' ? '/cockpit' : 'http://127.0.0.1:8003';
   }
 

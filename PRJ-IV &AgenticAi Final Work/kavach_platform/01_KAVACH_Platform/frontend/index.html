@@ -47,6 +47,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<!-- KAVACH Unified Enterprise Production Configuration -->
+<script src="kavach_config.js?v=5.1.0"></script>
 
 <!-- Structured Data (Schema.org JSON-LD) -->
 <script type="application/ld+json">
@@ -381,7 +383,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.openLiveSwarm = function(e) {
   if (e) e.preventDefault();
-  window.open('http://127.0.0.1:8000/', '_blank');
+  const url = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+    ? window.KAVACH_CONFIG.getDashboardUrl('swarm')
+    : 'http://127.0.0.1:8000/';
+  window.open(url, '_blank');
   if (typeof window.activatePathwayMode === 'function') {
     window.activatePathwayMode('swarm');
   }
@@ -389,7 +394,10 @@ window.openLiveSwarm = function(e) {
 
 window.openApplicationsWork = function(e) {
   if (e) e.preventDefault();
-  window.open('http://127.0.0.1:8002/', '_blank');
+  const url = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+    ? window.KAVACH_CONFIG.getDashboardUrl('banking')
+    : 'http://127.0.0.1:8002/';
+  window.open(url, '_blank');
   if (typeof window.activatePathwayMode === 'function') {
     window.activatePathwayMode('apps');
   }
@@ -397,8 +405,34 @@ window.openApplicationsWork = function(e) {
 
 window.openCockpit = function(e) {
   if (e) e.preventDefault();
-  window.open('http://127.0.0.1:8003/', '_blank');
+  const url = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
+    ? window.KAVACH_CONFIG.getDashboardUrl('cockpit')
+    : 'http://127.0.0.1:8003/';
+  window.open(url, '_blank');
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.KAVACH_CONFIG && window.KAVACH_CONFIG.isProduction()) {
+    const btnSwarm = document.getElementById('btn-portal-live-agent');
+    if (btnSwarm) {
+      btnSwarm.href = window.KAVACH_CONFIG.getDashboardUrl('swarm');
+      const pill = btnSwarm.querySelector('.portal-badge-pill');
+      if (pill) pill.textContent = 'SWARM';
+    }
+    const btnBank = document.getElementById('btn-portal-applications');
+    if (btnBank) {
+      btnBank.href = window.KAVACH_CONFIG.getDashboardUrl('banking');
+      const pill = btnBank.querySelector('.portal-badge-pill');
+      if (pill) pill.textContent = 'BANK';
+    }
+    const btnCockpit = document.getElementById('btn-portal-cockpit');
+    if (btnCockpit) {
+      btnCockpit.href = window.KAVACH_CONFIG.getDashboardUrl('cockpit');
+      const pill = btnCockpit.querySelector('.portal-badge-pill');
+      if (pill) pill.textContent = 'AGENT';
+    }
+  }
+});
 </script>
 
 </head>

@@ -8,10 +8,14 @@
 // 2. If running directly on a cloud service (Render, Railway, VPS), use window.location.origin
 // 3. Fallback to local FastAPI development server (http://127.0.0.1:8000)
 function getApiBase() {
-  const custom = localStorage.getItem("KAVACH_BACKEND_URL");
+  if (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getBackendOrigin === 'function') {
+    const origin = window.KAVACH_CONFIG.getBackendOrigin();
+    if (origin) return origin;
+  }
+  const custom = localStorage.getItem("KAVACH_BACKEND_URL") || localStorage.getItem("kavach_backend_url");
   if (custom && custom.trim()) return custom.trim().replace(/\/$/, "");
   const loc = window.location;
-  if (loc && loc.origin && loc.protocol && loc.protocol.startsWith("http") && !loc.hostname.includes("netlify.app")) {
+  if (loc && loc.origin && loc.protocol && loc.protocol.startsWith("http") && !loc.hostname.includes("netlify.app") && !loc.hostname.includes("github.io")) {
     return loc.origin;
   }
   return "http://127.0.0.1:8001";

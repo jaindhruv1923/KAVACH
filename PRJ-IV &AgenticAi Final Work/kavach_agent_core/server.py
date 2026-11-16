@@ -575,6 +575,13 @@ def serve_mesh_js():
     mesh_js = os.path.join(os.path.dirname(__file__), "universal_mesh.js")
     return FileResponse(mesh_js, media_type="application/javascript")
 
+@app.get("/kavach_config.js")
+def serve_kavach_config():
+    cfg_path = os.path.join(os.path.dirname(__file__), "kavach_config.js")
+    if os.path.exists(cfg_path):
+        return FileResponse(cfg_path, media_type="application/javascript")
+    return Response(content="window.KAVACH_CONFIG = {};", media_type="application/javascript")
+
 @app.get("/", response_class=HTMLResponse)
 @app.get("/cockpit", response_class=HTMLResponse)
 def serve_cockpit():
@@ -586,6 +593,7 @@ def serve_cockpit():
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get("PORT", "8005"))
-    print(f"Starting KAVACH Real-Time Agent Cockpit on http://localhost:{port}/")
-    uvicorn.run("kavach_agent_core.server:app", host="127.0.0.1", port=port, reload=False)
+    port = int(os.environ.get("PORT", "8003"))
+    host = os.environ.get("HOST", "0.0.0.0")
+    print(f"Starting KAVACH Real-Time Agent Cockpit on http://{host}:{port}/")
+    uvicorn.run("kavach_agent_core.server:app", host=host, port=port, reload=False)
