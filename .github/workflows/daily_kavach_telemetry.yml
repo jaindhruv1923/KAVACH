@@ -1,0 +1,45 @@
+name: Daily KAVACH Security & Telemetry Audit
+
+on:
+  schedule:
+    # Runs everyday at 04:00 UTC (09:30 AM IST)
+    - cron: '0 4 * * *'
+  workflow_dispatch: # Allows manual trigger anytime from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  kavach-audit:
+    name: Execute Daily Security & FSM Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run KAVACH Security Audit
+        id: run_audit
+        run: |
+          COMMIT_MSG=$(python scripts/daily_kavach_audit.py)
+          echo "commit_msg=${COMMIT_MSG}" >> $GITHUB_OUTPUT
+
+      - name: Commit and Push Daily Audit Ledger
+        run: |
+          git config user.name "Dhruv Jain"
+          git config user.email "jaindhruv1923@gmail.com"
+          git add docs/DAILY_KAVACH_AUDIT.md docs/telemetry_ledger.json
+          if git diff --staged --quiet; then
+            echo "No telemetry changes to commit"
+          else
+            git commit -m "${{ steps.run_audit.outputs.commit_msg }}"
+            git push origin main
+          fi
