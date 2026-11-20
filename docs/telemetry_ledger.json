@@ -1,5 +1,13 @@
 [
   {
+    "timestamp": "2026-11-20T12:28:58Z",
+    "date": "2026-11-20",
+    "threats_blocked": "100.0%",
+    "fsm_stages": 10,
+    "latency_ms": 0.279,
+    "digest": "e3357cc31bc0c66e"
+  },
+  {
     "timestamp": "2026-11-19T06:29:01Z",
     "date": "2026-11-19",
     "threats_blocked": "100.0%",
