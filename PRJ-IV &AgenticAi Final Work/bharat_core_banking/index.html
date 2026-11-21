@@ -25,9 +25,27 @@
   <link rel="stylesheet" href="style.css">
 
 
-<!-- KAVACH suite: shared navigation + design tokens (shared_ui/) -->
-<link rel="stylesheet" href="/suite/kavach-suite.css">
-<script src="/suite/kavach-suite.js" data-page="bharat" data-placement="top" defer></script>
+<!-- KAVACH suite: dynamic loader for local server & GitHub Pages -->
+<script>
+  (function() {
+    var loc = window.location;
+    var isGh = loc.hostname.indexOf('github.io') !== -1;
+    var ghRepo = (isGh && loc.pathname.split('/')[1]) ? '/' + loc.pathname.split('/')[1] : '';
+    var suiteBase = isGh ? (ghRepo + '/suite/') : '/suite/';
+
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = suiteBase + 'kavach-suite.css?v=2.6';
+    document.head.appendChild(css);
+
+    var jsSuite = document.createElement('script');
+    jsSuite.src = suiteBase + 'kavach-suite.js?v=2.6';
+    jsSuite.setAttribute('data-page', 'bharat');
+    jsSuite.setAttribute('data-placement', 'top');
+    jsSuite.defer = true;
+    document.head.appendChild(jsSuite);
+  })();
+</script>
 </head>
 
 <body>

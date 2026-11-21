@@ -103,7 +103,6 @@
 
   /* Tools shown at the top-right when the current page provides them */
   var TOOLS = [
-    { id: 'story', label: 'Story Mode',         short: 'Story', icon: 'game',  fn: 'openKavachStoryMode' },
     { id: 'ide',   label: 'Inbuilt IDE',         short: 'IDE',   icon: 'code',  fn: 'openCodebaseIdeModal' },
     { id: 'flow',  label: 'Implementation Flow', short: 'Flow',  icon: 'flow',  fn: 'openImplementationModal', arg: 'journey' },
     { id: 'math',  label: 'Math Guide',          short: 'Math',  icon: 'sigma', fn: 'openEli5AcademicModal' },

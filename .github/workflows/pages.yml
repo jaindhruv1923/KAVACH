@@ -31,24 +31,97 @@ jobs:
         run: |
           mkdir -p _site
           cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/01_KAVACH_Platform/frontend/"* _site/
+
+          # 1. Swarm dashboard: accessible at /swarm/ and /swarm
           mkdir -p _site/swarm
           cp -r "PRJ-IV &AgenticAi Final Work/live_agent_swarm/"* _site/swarm/
+
+          # 2. Bharat Core Banking dashboard: accessible at /bharat/ and /bank/
+          mkdir -p _site/bharat
+          cp -r "PRJ-IV &AgenticAi Final Work/bharat_core_banking/"* _site/bharat/
           mkdir -p _site/bank
           cp -r "PRJ-IV &AgenticAi Final Work/bharat_core_banking/"* _site/bank/
+
+          # 3. Cockpit dashboard: accessible at /cockpit/
           mkdir -p _site/cockpit
           cp -r "PRJ-IV &AgenticAi Final Work/kavach_agent_core/"* _site/cockpit/
           if [ -f "_site/cockpit/cockpit.html" ]; then
             cp _site/cockpit/cockpit.html _site/cockpit/index.html
           fi
+
+          # 4. Console dashboard: accessible at /console/
+          mkdir -p _site/console
+          if [ -f "_site/console.html" ]; then
+            cp _site/console.html _site/console/index.html
+          fi
+
+          # 5. Midsem foundation: accessible at /midsem/
+          mkdir -p _site/midsem
+          if [ -f "_site/midsem.html" ]; then
+            cp _site/midsem.html _site/midsem/index.html
+          fi
+
+          # 6. Evolution dashboard: accessible at /evolution/
+          mkdir -p _site/evolution
+          if [ -f "_site/evolution.html" ]; then
+            cp _site/evolution.html _site/evolution/index.html
+          fi
+
+          # 7. Stakeholder guide: accessible at /guide/
+          mkdir -p _site/guide
+          cp "PRJ-IV &AgenticAi Final Work/kavach_platform/02_Banking_and_Results_Dashboard/implementation_banks/running_from_someone_else_pov/animated_guide.html" _site/guide/index.html
+
+          # 8. Motion Graphics Studio: accessible at /motion/
+          mkdir -p _site/motion
+          cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/motion_graphics/"* _site/motion/
+
+          # 9. Reports & Matrix: accessible at /reports/
+          mkdir -p _site/reports
+          cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/agentic_ai_midsem/"* _site/reports/
+
+          # 10. Shared Suite Design System & Story Mode
           mkdir -p _site/suite
           cp -r "PRJ-IV &AgenticAi Final Work/shared_ui/"* _site/suite/
           mkdir -p _site/shared_ui
           cp -r "PRJ-IV &AgenticAi Final Work/shared_ui/"* _site/shared_ui/
-          mkdir -p _site/reports
-          cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/agentic_ai_midsem/"* _site/reports/
-          mkdir -p _site/motion
-          cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/motion_graphics/"* _site/motion/
+
+          # 11. Disable Jekyll and create 404 smart router
           touch _site/.nojekyll
+
+          cat << 'EOF' > _site/404.html
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <title>KAVACH Routing...</title>
+            <script>
+              (function() {
+                var p = window.location.pathname;
+                var repo = '/KAVACH';
+                if (p.indexOf(repo) === 0) p = p.substring(repo.length);
+                var seg = p.replace(/^\/+|\/+$/g, '').toLowerCase().split('/')[0];
+                var map = {
+                  'bharat': repo + '/bharat/',
+                  'bank': repo + '/bank/',
+                  'cockpit': repo + '/cockpit/',
+                  'swarm': repo + '/swarm/',
+                  'console': repo + '/console/',
+                  'midsem': repo + '/midsem/',
+                  'evolution': repo + '/evolution/',
+                  'guide': repo + '/guide/',
+                  'motion': repo + '/motion/',
+                  'reports': repo + '/reports/'
+                };
+                var dest = map[seg] || (repo + '/');
+                window.location.replace(dest + window.location.search + window.location.hash);
+              })();
+            </script>
+          </head>
+          <body style="background:#0F172A;color:#E2E8F0;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
+            <p>Redirecting to requested KAVACH dashboard...</p>
+          </body>
+          </html>
+          EOF
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
