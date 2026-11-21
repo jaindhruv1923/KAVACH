@@ -55,7 +55,8 @@ async function testAadhaarBlock() {
 
   // Capture screenshot of blocked Aadhaar leak
   const s = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\dashboard_aadhaar_blocked.png', Buffer.from(s.data, 'base64'));
+  fs.mkdirSync(require('path').join(__dirname, 'screenshots'), { recursive: true });
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'dashboard_aadhaar_blocked.png'), Buffer.from(s.data, 'base64'));
   console.log('Saved dashboard_aadhaar_blocked.png!');
 
   // Check DOM values

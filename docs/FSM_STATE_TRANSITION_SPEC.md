@@ -1,4 +1,4 @@
-# KAVACH: 10-Stage Deterministic FSM State Transition Specification
+﻿# KAVACH: 10-Stage Deterministic FSM State Transition Specification
 
 ## 1. State Invariants
 - `INGESTION` -> `TRIAGE` -> `RAG_RETRIEVAL` -> `PLANNING` -> `POLICY_CHECK` -> `EXECUTION` -> `GUARDRAIL` -> `VERIFICATION` -> `AUDIT` -> `OUTPUT`

@@ -72,11 +72,11 @@
 
     hubContainer.innerHTML = `
       <!-- SUB-NAVIGATION TABS FOR 10 HYPER-NICHE RESEARCH FRONTIERS -->
-      <div style="background:#FFFFFF;border:1px solid #DDD6FE;border-radius:14px;padding:18px 22px;margin-bottom:22px;box-shadow:0 4px 16px rgba(124,58,237,0.06);">
+      <div style="background:#FFFFFF;border:1px solid #CCDCFF;border-radius:14px;padding:18px 22px;margin-bottom:22px;box-shadow:0 4px 16px rgba(61, 101, 214, 0.024);">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
           <div>
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
-              <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">10 NEXT-GEN RESEARCH FRONTIERS</span>
+              <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">10 NEXT-GEN RESEARCH FRONTIERS</span>
               <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">MATHEMATICAL RIGOR (FRONTIERS 11-20)</span>
             </div>
             <h3 style="margin:2px 0 0;font-size:1.2rem;font-weight:800;color:#0F172A;letter-spacing:-0.2px;">
@@ -84,8 +84,8 @@
             </h3>
           </div>
           <div style="display:flex;gap:8px;">
-            <button type="button" class="btn-nav-secondary" onclick="window.runNextGenSmokeTests()" style="padding:6px 14px;font-size:0.75rem;cursor:pointer;background:#F5F3FF;border-color:#DDD6FE;color:#6D28D9;font-weight:700;border-radius:6px;">
-              ⚡ Verify All 10 Next-Gen Frontiers
+            <button type="button" class="btn-nav-secondary" onclick="window.runNextGenSmokeTests()" style="padding:6px 14px;font-size:0.75rem;cursor:pointer;background:#F0F5FF;border-color:#CCDCFF;color:#3055C5;font-weight:700;border-radius:6px;">
+              Verify All 10 Next-Gen Frontiers
             </button>
           </div>
         </div>
@@ -93,37 +93,37 @@
         <!-- 2-ROW CLEAN-WRAPPING SEGMENTED BUTTON BAR -->
         <div class="academic-feature-nav-bar">
           <button type="button" class="academic-feat-tab-btn active" id="feat-btn-cockpit" onclick="window.switchAcademicFeatureTab('cockpit')">
-            <span class="feat-num">Pillars</span> 🏛️ 10 Core Cockpit
+            <span class="feat-num">Pillars</span> 10 Core Cockpit
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f11_lif" onclick="window.switchAcademicFeatureTab('f11_lif')">
-            <span class="feat-num">F11</span> ⚡ Neuromorphic LIF Spikes
+            <span class="feat-num">F11</span> Neuromorphic LIF Spikes
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f12_zksnark" onclick="window.switchAcademicFeatureTab('f12_zksnark')">
-            <span class="feat-num">F12</span> 🔐 zk-SNARK Groth16
+            <span class="feat-num">F12</span> zk-SNARK Groth16
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f13_ckks" onclick="window.switchAcademicFeatureTab('f13_ckks')">
-            <span class="feat-num">F13</span> 🛡️ Ring-LWE (CKKS FHE)
+            <span class="feat-num">F13</span> Ring-LWE (CKKS FHE)
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f14_poincare" onclick="window.switchAcademicFeatureTab('f14_poincare')">
-            <span class="feat-num">F14</span> 🌐 Poincaré Hyperbolic
+            <span class="feat-num">F14</span> Poincaré Hyperbolic
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f15_pbft" onclick="window.switchAcademicFeatureTab('f15_pbft')">
-            <span class="feat-num">F15</span> ⚔️ Byzantine pBFT Quorum
+            <span class="feat-num">F15</span> Byzantine pBFT Quorum
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f16_kolmogorov" onclick="window.switchAcademicFeatureTab('f16_kolmogorov')">
-            <span class="feat-num">F16</span> 📐 Kolmogorov Shield
+            <span class="feat-num">F16</span> Kolmogorov Shield
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f17_tda" onclick="window.switchAcademicFeatureTab('f17_tda')">
-            <span class="feat-num">F17</span> 🧬 Persistent Homology TDA
+            <span class="feat-num">F17</span> Persistent Homology TDA
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f18_monad" onclick="window.switchAcademicFeatureTab('f18_monad')">
-            <span class="feat-num">F18</span> 🔄 Category Monad State
+            <span class="feat-num">F18</span> Category Monad State
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f19_langevin" onclick="window.switchAcademicFeatureTab('f19_langevin')">
-            <span class="feat-num">F19</span> 🌊 Langevin SDE Diffusion
+            <span class="feat-num">F19</span> Langevin SDE Diffusion
           </button>
           <button type="button" class="academic-feat-tab-btn" id="feat-btn-f20_stackelberg" onclick="window.switchAcademicFeatureTab('f20_stackelberg')">
-            <span class="feat-num">F20</span> 🎯 Stackelberg Game Theory
+            <span class="feat-num">F20</span> Stackelberg Game Theory
           </button>
         </div>
       </div>
@@ -211,7 +211,7 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XI</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XI</span>
             <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">NEUROMORPHIC COMPUTING</span>
           </div>
           <h3>Neuromorphic Leaky Integrate-and-Fire (LIF) Spike Membrane Sentry</h3>
@@ -237,10 +237,10 @@
             <label style="font-size:0.75rem;color:#334155;display:flex;align-items:center;gap:6px;">
               Threshold ($V_{\\text{th}}$):
               <input type="range" id="lif-thresh-slider" min="0.5" max="2.5" step="0.1" value="1.2" style="width:90px;" oninput="document.getElementById('lif-thresh-val').textContent = this.value + ' mV'">
-              <strong id="lif-thresh-val" style="color:#7C3AED;">1.2 mV</strong>
+              <strong id="lif-thresh-val" style="color:#3D65D6;">1.2 mV</strong>
             </label>
-            <button type="button" class="btn-nav-secondary" onclick="window.injectLifAdversarialSpike()" style="padding:6px 14px;background:#FEF2F2;border-color:#FECACA;color:#DC2626;font-weight:700;cursor:pointer;">
-              ⚡ Inject GCG Jailbreak Current
+            <button type="button" class="btn-nav-secondary" onclick="window.injectLifAdversarialSpike()" style="padding:6px 14px;background:#FEF2F1;border-color:#FECAC7;color:#D23A34;font-weight:700;cursor:pointer;">
+              Inject GCG Jailbreak Current
             </button>
             <button type="button" class="btn-nav-secondary" onclick="window.resetLifNeuron()" style="padding:6px 12px;cursor:pointer;">
               Reset Membrane
@@ -256,7 +256,7 @@
           </div>
           <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
             <span>Refractory Period ($\\tau_{\\text{ref}}$):</span>
-            <strong style="font-family:var(--font-mono);color:#7C3AED;">2.5 ms</strong>
+            <strong style="font-family:var(--font-mono);color:#3D65D6;">2.5 ms</strong>
           </div>
           <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
             <span>Spike-Rate Divergence ($D_{\\text{KL}}$):</span>
@@ -283,7 +283,7 @@
     for (let y = 0; y < c.height; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(c.width, y); ctx.stroke(); }
 
     // Threshold line
-    ctx.strokeStyle = '#EF4444';
+    ctx.strokeStyle = '#E84F4B';
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
     ctx.moveTo(0, 50); ctx.lineTo(c.width, 50);
@@ -291,7 +291,7 @@
     ctx.setLineDash([]);
 
     // Voltage trace
-    ctx.strokeStyle = '#38BDF8';
+    ctx.strokeStyle = '#52B8FF';
     ctx.lineWidth = 2;
     ctx.beginPath();
     let v = 140;
@@ -313,7 +313,7 @@
     const ctx = c.getContext('2d');
 
     // Burst spike
-    ctx.strokeStyle = '#F59E0B';
+    ctx.strokeStyle = '#F0A132';
     ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.moveTo(120, 140);
@@ -322,13 +322,13 @@
     ctx.lineTo(240, 140);
     ctx.stroke();
 
-    if (lbl) { lbl.textContent = 'SPIKE FIRED: +35.2 mV'; lbl.style.color = '#EF4444'; }
-    if (dkl) { dkl.textContent = '2.841 nats (ANOMALOUS)'; dkl.style.color = '#DC2626'; }
+    if (lbl) { lbl.textContent = 'SPIKE FIRED: +35.2 mV'; lbl.style.color = '#E84F4B'; }
+    if (dkl) { dkl.textContent = '2.841 nats (ANOMALOUS)'; dkl.style.color = '#D23A34'; }
     if (box) {
-      box.textContent = '🛑 REFRACTORY SHUTDOWN ENGAGED: Adversarial GCG perturbation tripped LIF threshold!';
-      box.style.background = '#FEF2F2';
-      box.style.borderColor = '#FECACA';
-      box.style.color = '#DC2626';
+      box.textContent = 'REFRACTORY SHUTDOWN ENGAGED: Adversarial GCG perturbation tripped LIF threshold!';
+      box.style.background = '#FEF2F1';
+      box.style.borderColor = '#FECAC7';
+      box.style.color = '#D23A34';
     }
   };
 
@@ -357,8 +357,8 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XII</span>
-            <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">ZERO-KNOWLEDGE CRYPTOGRAPHY</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XII</span>
+            <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;font-weight:700;">ZERO-KNOWLEDGE CRYPTOGRAPHY</span>
           </div>
           <h3>Zero-Knowledge Succinct Proof of Confinement (zk-SNARK Groth16)</h3>
           <p>
@@ -380,7 +380,7 @@
           </div>
 
           <div style="display:flex;gap:10px;margin-bottom:14px;">
-            <button type="button" class="btn-nav-secondary" onclick="window.generateGroth16Witness()" style="background:#7C3AED;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
+            <button type="button" class="btn-nav-secondary" onclick="window.generateGroth16Witness()" style="background:#3D65D6;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
               1. Synthesize QAP Polynomials &rarr;
             </button>
             <button type="button" class="btn-nav-secondary" onclick="window.verifyGroth16Pairing()" style="padding:8px 16px;font-weight:700;cursor:pointer;">
@@ -397,17 +397,17 @@
           <h4 style="margin:0 0 10px;color:#0F172A;font-size:0.9rem;">Cryptographic Groth16 Proof Object</h4>
           <div style="margin-bottom:8px;">
             <strong>Group $\\mathbb{G}_1$ Element $A$:</strong><br>
-            <code id="zk-elem-a" style="color:#7C3AED;font-size:0.68rem;">0x1a8f9c...4820</code>
+            <code id="zk-elem-a" style="color:#3D65D6;font-size:0.68rem;">0x1a8f9c...4820</code>
           </div>
           <div style="margin-bottom:8px;">
             <strong>Group $\\mathbb{G}_2$ Element $B$:</strong><br>
-            <code id="zk-elem-b" style="color:#2563EB;font-size:0.68rem;">0x3d91ea...7821</code>
+            <code id="zk-elem-b" style="color:#2764E8;font-size:0.68rem;">0x3d91ea...7821</code>
           </div>
           <div style="margin-bottom:12px;">
             <strong>Group $\\mathbb{G}_1$ Element $C$:</strong><br>
             <code id="zk-elem-c" style="color:#059669;font-size:0.68rem;">0x0f2b8a...1192</code>
           </div>
-          <div id="zk-verification-banner" style="background:#F1F5F9;padding:10px;border-radius:6px;color:#475569;font-weight:700;">
+          <div id="zk-verification-banner" style="background:#F2F5F9;padding:10px;border-radius:6px;color:#475569;font-weight:700;">
             PROOF STATUS: Awaiting Witness Evaluation
           </div>
         </div>
@@ -426,18 +426,18 @@
     if (ban) {
       ban.textContent = 'PROOF GENERATED (128 bytes) • Ready for Bilinear Pairing';
       ban.style.background = '#EFF6FF';
-      ban.style.color = '#1D4ED8';
+      ban.style.color = '#1F50D4';
     }
   };
 
   window.verifyGroth16Pairing = function () {
     const log = document.getElementById('zk-pipeline-trace');
     if (log) {
-      log.innerHTML += `<div style="color:#10B981;">[+0.016ms] Optimal Ate Pairing verified: $e(A,B) == e(\\alpha,\\beta) \\cdot e(x,\\gamma) \\cdot e(C,\\delta)$.</div>`;
+      log.innerHTML += `<div style="color:#3CB685;">[+0.016ms] Optimal Ate Pairing verified: $e(A,B) == e(\\alpha,\\beta) \\cdot e(x,\\gamma) \\cdot e(C,\\delta)$.</div>`;
     }
     const ban = document.getElementById('zk-verification-banner');
     if (ban) {
-      ban.textContent = '✅ VERIFIED: Zero-Knowledge Proof Valid (Mathematical Zero-Leakage Confirmed)';
+      ban.textContent = 'VERIFIED: Zero-Knowledge Proof Valid (Mathematical Zero-Leakage Confirmed)';
       ban.style.background = '#ECFDF5';
       ban.style.color = '#047857';
     }
@@ -453,7 +453,7 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XIII</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XIII</span>
             <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">LATTICE HOMOMORPHIC ENCRYPTION</span>
           </div>
           <h3>Fully Homomorphic Ring-LWE Polynomial Inference Enclave (CKKS)</h3>
@@ -471,12 +471,12 @@
         <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:16px;font-size:0.75rem;">
           <h4 style="margin:0 0 10px;color:#0F172A;">Ciphertext Ring Arithmetic Controller</h4>
           <div style="margin-bottom:10px;">
-            <span>Ring Degree ($N$):</span> <strong style="color:#7C3AED;">8,192 (128-bit Post-Quantum Security)</strong>
+            <span>Ring Degree ($N$):</span> <strong style="color:#3D65D6;">8,192 (128-bit Post-Quantum Security)</strong>
           </div>
           <div style="margin-bottom:12px;">
             <span>Noise Budget Remaining:</span>
             <div style="width:100%;height:10px;background:#E2E8F0;border-radius:5px;overflow:hidden;margin-top:4px;">
-              <div id="ckks-noise-bar" style="width:72%;height:100%;background:#10B981;"></div>
+              <div id="ckks-noise-bar" style="width:72%;height:100%;background:#3CB685;"></div>
             </div>
             <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:#64748B;margin-top:2px;">
               <span id="ckks-noise-lbl">42.5 dB / 60.0 dB</span>
@@ -484,7 +484,7 @@
             </div>
           </div>
 
-          <button type="button" class="btn-nav-secondary" onclick="window.runHomomorphicMult()" style="background:#7C3AED;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
+          <button type="button" class="btn-nav-secondary" onclick="window.runHomomorphicMult()" style="background:#3D65D6;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
             Multiply Encrypted Ciphertexts $[c_1 \\otimes c_2]$ &rarr;
           </button>
         </div>
@@ -508,11 +508,11 @@
     const trace = document.getElementById('ckks-poly-trace');
     if (bar && lbl) {
       bar.style.width = '55%';
-      bar.style.background = '#F59E0B';
+      bar.style.background = '#F0A132';
       lbl.textContent = '33.2 dB / 60.0 dB (Rescaling Executed)';
     }
     if (trace) {
-      trace.innerHTML += `<br><span style="color:#38BDF8;">[MULT] Evaluated Rescale(c1 * c2). Output Enc(₹21,730,950). Zero plaintext exposure!</span>`;
+      trace.innerHTML += `<br><span style="color:#52B8FF;">[MULT] Evaluated Rescale(c1 * c2). Output Enc(₹21,730,950). Zero plaintext exposure!</span>`;
     }
   };
 
@@ -526,8 +526,8 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XIV</span>
-            <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">RIEMANNIAN GEOMETRY</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XIV</span>
+            <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;font-weight:700;">RIEMANNIAN GEOMETRY</span>
           </div>
           <h3>Non-Euclidean Poincaré Hyperbolic Embedding Manifold ($\mathbb{D}^n$)</h3>
           <p>
@@ -542,22 +542,22 @@
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
         <div style="text-align:center;">
-          <canvas id="poincare-disk-canvas" width="280" height="280" style="background:#0F172A;border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,0.2);"></canvas>
+          <canvas id="poincare-disk-canvas" width="280" height="280" style="background:#0F172A;border-radius:50%;box-shadow:0 4px 14px rgba(0, 0, 0, 0.2);"></canvas>
           <div style="font-size:0.72rem;color:#64748B;margin-top:8px;">Poincaré Ball Projection: Green (Benign Root) &bull; Red (Adversarial Horosphere)</div>
         </div>
 
         <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:16px;font-size:0.75rem;">
           <h4 style="margin:0 0 10px;color:#0F172A;">Hyperbolic Tree Confinement</h4>
           <div style="margin-bottom:8px;">
-            <span>Negative Curvature ($c$):</span> <strong style="color:#7C3AED;">-1.0 (Constant Gaussian Curvature)</strong>
+            <span>Negative Curvature ($c$):</span> <strong style="color:#3D65D6;">-1.0 (Constant Gaussian Curvature)</strong>
           </div>
           <div style="margin-bottom:8px;">
-            <span>Boundary Horosphere Distance:</span> <strong style="color:#EF4444;" id="poincare-dist-val">4.82 (Anomalous Depth)</strong>
+            <span>Boundary Horosphere Distance:</span> <strong style="color:#E84F4B;" id="poincare-dist-val">4.82 (Anomalous Depth)</strong>
           </div>
           <p style="color:#475569;margin-bottom:12px;">
             Hierarchical injection depth of 6 recursive roles detected. Exponential boundary volume confinement terminates execution before model weights unroll.
           </p>
-          <button type="button" class="btn-nav-secondary" onclick="window.projectPoincareInjection()" style="background:#7C3AED;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
+          <button type="button" class="btn-nav-secondary" onclick="window.projectPoincareInjection()" style="background:#3D65D6;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
             Simulate Hyperbolic Projection &rarr;
           </button>
         </div>
@@ -576,7 +576,7 @@
     ctx.clearRect(0, 0, c.width, c.height);
 
     // Boundary circle
-    ctx.strokeStyle = '#8B5CF6';
+    ctx.strokeStyle = '#4F79EC';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
@@ -592,13 +592,13 @@
     });
 
     // Center node (Benign root)
-    ctx.fillStyle = '#10B981';
+    ctx.fillStyle = '#3CB685';
     ctx.beginPath();
     ctx.arc(cx, cy, 6, 0, Math.PI * 2);
     ctx.fill();
 
     // Adversarial nodes near boundary
-    ctx.fillStyle = '#EF4444';
+    ctx.fillStyle = '#E84F4B';
     for (let i = 0; i < 5; i++) {
       const a = (Math.PI * 2 / 5) * i;
       const x = cx + r * 0.88 * Math.cos(a);
@@ -608,7 +608,7 @@
       ctx.fill();
 
       // Geodesic arc
-      ctx.strokeStyle = '#EF444455';
+      ctx.strokeStyle = '#E84F4B55';
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(x, y);
@@ -632,7 +632,7 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XV</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XV</span>
             <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">DISTRIBUTED CONSENSUS</span>
           </div>
           <h3>Byzantine Fault-Tolerant Proof-of-Execution (pBFT-PoEx) Quorum</h3>
@@ -698,20 +698,20 @@
       const y = cy + r * Math.sin(a);
 
       const isTraitor = i === 3;
-      ctx.strokeStyle = isTraitor ? '#DC2626' : '#10B981';
+      ctx.strokeStyle = isTraitor ? '#D23A34' : '#3CB685';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(x, y);
       ctx.stroke();
 
-      ctx.fillStyle = isTraitor ? '#FEF2F2' : '#ECFDF5';
+      ctx.fillStyle = isTraitor ? '#FEF2F1' : '#ECFDF5';
       ctx.beginPath();
       ctx.arc(x, y, 12, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
 
-      ctx.fillStyle = isTraitor ? '#DC2626' : '#047857';
+      ctx.fillStyle = isTraitor ? '#D23A34' : '#047857';
       ctx.fillText('A' + (i + 1), x, y + 3);
     }
   };
@@ -732,8 +732,8 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XVI</span>
-            <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">INFORMATION THEORY</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XVI</span>
+            <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;font-weight:700;">INFORMATION THEORY</span>
           </div>
           <h3>Quantum Algorithmic Information Distance &amp; Kolmogorov Complexity Shield</h3>
           <p>
@@ -755,12 +755,12 @@
         <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:16px;font-size:0.75rem;">
           <h4 style="margin:0 0 10px;color:#0F172A;">LZMA Algorithmic Entropy Meter</h4>
           <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-            <span>Normalized Distance (NCD):</span> <strong style="color:#DC2626;" id="ncd-val">0.892 (High Obfuscation)</strong>
+            <span>Normalized Distance (NCD):</span> <strong style="color:#D23A34;" id="ncd-val">0.892 (High Obfuscation)</strong>
           </div>
           <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
             <span>Entropy Density:</span> <strong>7.84 bits / byte</strong>
           </div>
-          <div style="background:#FEF2F2;border:1px solid #FECACA;padding:8px 12px;border-radius:6px;color:#991B1B;font-weight:700;margin-bottom:12px;">
+          <div style="background:#FEF2F1;border:1px solid #FECAC7;padding:8px 12px;border-radius:6px;color:#991B1B;font-weight:700;margin-bottom:12px;">
             ANOMALY: Polyglot Base64 / Zero-Width Space Ingress Intercepted!
           </div>
           <button type="button" class="btn-nav-secondary" onclick="window.drawKolmogorovWaveform()" style="padding:6px 12px;cursor:pointer;">
@@ -777,7 +777,7 @@
     const ctx = c.getContext('2d');
     ctx.clearRect(0, 0, c.width, c.height);
 
-    ctx.strokeStyle = '#38BDF8';
+    ctx.strokeStyle = '#52B8FF';
     ctx.lineWidth = 2;
     ctx.beginPath();
     for (let x = 0; x < c.width; x++) {
@@ -798,7 +798,7 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XVII</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XVII</span>
             <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">ALGEBRAIC TOPOLOGY</span>
           </div>
           <h3>Topological Data Analysis (TDA) Persistent Homology Betti Sentry</h3>
@@ -824,9 +824,9 @@
             <span>Betti 0 (Connected Components):</span> <strong style="color:#059669;">\\beta_0 = 1</strong>
           </div>
           <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-            <span>Betti 1 (Topological Cycles / Voids):</span> <strong style="color:#DC2626;" id="betti-1-val">\\beta_1 = 3 (Abnormal Cavity)</strong>
+            <span>Betti 1 (Topological Cycles / Voids):</span> <strong style="color:#D23A34;" id="betti-1-val">\\beta_1 = 3 (Abnormal Cavity)</strong>
           </div>
-          <div style="background:#FEF2F2;border:1px solid #FECACA;padding:8px 12px;border-radius:6px;color:#991B1B;font-weight:700;margin-bottom:12px;">
+          <div style="background:#FEF2F1;border:1px solid #FECAC7;padding:8px 12px;border-radius:6px;color:#991B1B;font-weight:700;margin-bottom:12px;">
             TOPOLOGICAL VOID DETECTED: Prompt structure bypasses attention manifold.
           </div>
           <button type="button" class="btn-nav-secondary" onclick="window.drawTdaComplex()" style="padding:6px 12px;cursor:pointer;">
@@ -849,19 +849,19 @@
     ];
 
     // Simplex faces
-    ctx.fillStyle = '#8B5CF622';
+    ctx.fillStyle = '#4F79EC22';
     ctx.beginPath();
     pts.forEach((p, i) => { if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
     ctx.closePath();
     ctx.fill();
 
     // 1-skeleton edges
-    ctx.strokeStyle = '#38BDF8';
+    ctx.strokeStyle = '#52B8FF';
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
     // Points
-    ctx.fillStyle = '#10B981';
+    ctx.fillStyle = '#3CB685';
     pts.forEach(p => {
       ctx.beginPath();
       ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
@@ -879,8 +879,8 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XVIII</span>
-            <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">ABSTRACT ALGEBRA</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XVIII</span>
+            <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;font-weight:700;">ABSTRACT ALGEBRA</span>
           </div>
           <h3>Category-Theoretic Monadic State Rollback &amp; Functorial Enclave</h3>
           <p>
@@ -896,13 +896,13 @@
       <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:16px;font-size:0.76rem;">
         <h4 style="margin:0 0 10px;color:#0F172A;">Kleisli Category Composition Pipeline</h4>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
-          <div style="padding:6px 12px;background:#EDE9FE;color:#6D28D9;border-radius:6px;font-weight:700;">State_0 (Clean Ledger)</div>
+          <div style="padding:6px 12px;background:#E4ECFF;color:#3055C5;border-radius:6px;font-weight:700;">State_0 (Clean Ledger)</div>
           <span>&rarr;</span>
-          <div style="padding:6px 12px;background:#EDE9FE;color:#6D28D9;border-radius:6px;font-weight:700;">Monad(Bind(WireTx))</div>
+          <div style="padding:6px 12px;background:#E4ECFF;color:#3055C5;border-radius:6px;font-weight:700;">Monad(Bind(WireTx))</div>
           <span>&rarr;</span>
-          <div id="monad-state-box" style="padding:6px 12px;background:#FEF2F2;color:#DC2626;border-radius:6px;font-weight:700;">Invariant Failed: Rolled Back via Pullback</div>
+          <div id="monad-state-box" style="padding:6px 12px;background:#FEF2F1;color:#D23A34;border-radius:6px;font-weight:700;">Invariant Failed: Rolled Back via Pullback</div>
         </div>
-        <button type="button" class="btn-nav-secondary" onclick="window.triggerMonadPullback()" style="background:#7C3AED;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
+        <button type="button" class="btn-nav-secondary" onclick="window.triggerMonadPullback()" style="background:#3D65D6;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
           Execute Functorial Zero-Residue Rollback &rarr;
         </button>
       </div>
@@ -912,7 +912,7 @@
   window.triggerMonadPullback = function () {
     const box = document.getElementById('monad-state-box');
     if (box) {
-      box.textContent = '✅ PULLBACK COMMITTED: State_0 Restored (Zero Residue)';
+      box.textContent = 'PULLBACK COMMITTED: State_0 Restored (Zero Residue)';
       box.style.background = '#ECFDF5';
       box.style.color = '#047857';
     }
@@ -928,7 +928,7 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XIX</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XIX</span>
             <span class="badge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">STATISTICAL MECHANICS</span>
           </div>
           <h3>Stochastic Differential Equation (SDE) Langevin Diffusion Drift Barrier</h3>
@@ -952,7 +952,7 @@
           <div style="margin-bottom:12px;">
             <span>Drift Velocity:</span> <strong style="color:#059669;" id="langevin-drift-val">0.012 m/s (Stable)</strong>
           </div>
-          <button type="button" class="btn-nav-secondary" onclick="window.injectLangevinFriction()" style="background:#7C3AED;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
+          <button type="button" class="btn-nav-secondary" onclick="window.injectLangevinFriction()" style="background:#3D65D6;color:#FFFFFF;border:none;padding:8px 16px;font-weight:700;border-radius:6px;cursor:pointer;">
             Inject Restorative Friction &rarr;
           </button>
         </div>
@@ -967,7 +967,7 @@
     ctx.clearRect(0, 0, c.width, c.height);
 
     // Potential well curve
-    ctx.strokeStyle = '#8B5CF6';
+    ctx.strokeStyle = '#4F79EC';
     ctx.lineWidth = 2;
     ctx.beginPath();
     for (let x = 0; x < c.width; x++) {
@@ -979,7 +979,7 @@
     ctx.stroke();
 
     // Particle
-    ctx.fillStyle = '#10B981';
+    ctx.fillStyle = '#3CB685';
     ctx.beginPath();
     ctx.arc(c.width / 2 + 10, c.height - 35, 7, 0, Math.PI * 2);
     ctx.fill();
@@ -1001,8 +1001,8 @@
       <div class="academic-section-header">
         <div class="academic-section-title-wrap">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:#EDE9FE;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">FRONTIER XX</span>
-            <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">GAME THEORY &amp; LINEAR PROGRAMMING</span>
+            <span class="badge" style="background:#E4ECFF;color:#3055C5;border-color:#CCDCFF;font-weight:700;">FRONTIER XX</span>
+            <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;font-weight:700;">GAME THEORY &amp; LINEAR PROGRAMMING</span>
           </div>
           <h3>Dynamic Stackelberg Game-Theoretic Bilevel Equilibrium Optimizer</h3>
           <p>
@@ -1045,10 +1045,10 @@
     ctx.fillText('Stackelberg Mixed Strategy Distribution', 20, 25);
 
     const bars = [
-      { label: 'AST', val: 0.35, color: '#7C3AED' },
-      { label: 'DP', val: 0.25, color: '#2563EB' },
+      { label: 'AST', val: 0.35, color: '#3D65D6' },
+      { label: 'DP', val: 0.25, color: '#2764E8' },
       { label: 'PQC', val: 0.20, color: '#059669' },
-      { label: 'NLI', val: 0.20, color: '#D97706' }
+      { label: 'NLI', val: 0.20, color: '#D6791C' }
     ];
 
     bars.forEach((b, i) => {
@@ -1067,7 +1067,7 @@
   // --- AUTOMATED SMOKE TEST FOR ALL 10 NEXT-GEN FRONTIERS ---
   window.runNextGenSmokeTests = function () {
     const notify = (typeof alert !== "undefined") ? alert : console.log;
-    notify('⚡ Auditing All 10 Next-Gen Research Frontiers (F11-F20)...\n\n✅ F11 Neuromorphic LIF: Spiking Anomaly Threshold Verified\n✅ F12 zk-SNARK Groth16: Bilinear Curve Pairing Verified\n✅ F13 Homomorphic CKKS: Ring-LWE Multiplication Verified\n✅ F14 Poincaré Manifold: Hyperbolic Geodesic Confined\n✅ F15 Byzantine pBFT: 2/3+1 Quorum Consensus Committed\n✅ F16 Kolmogorov Shield: Algorithmic Distance Calibrated\n✅ F17 Persistent Homology: Betti Void Cavities Isolated\n✅ F18 Category Monad: Functorial Zero-Residue Rollback\n✅ F19 Langevin Diffusion: SDE Safety Basin Restored\n✅ F20 Stackelberg Equilibrium: Attacker Utility Enforced Negative\n\nAudit Result: 10/10 Hyper-Niche Theoretical Frontiers Live & Operational!');
+    notify('Auditing All 10 Next-Gen Research Frontiers (F11-F20)...\n\nF11 Neuromorphic LIF: Spiking Anomaly Threshold Verified\nF12 zk-SNARK Groth16: Bilinear Curve Pairing Verified\nF13 Homomorphic CKKS: Ring-LWE Multiplication Verified\nF14 Poincaré Manifold: Hyperbolic Geodesic Confined\nF15 Byzantine pBFT: 2/3+1 Quorum Consensus Committed\nF16 Kolmogorov Shield: Algorithmic Distance Calibrated\nF17 Persistent Homology: Betti Void Cavities Isolated\nF18 Category Monad: Functorial Zero-Residue Rollback\nF19 Langevin Diffusion: SDE Safety Basin Restored\nF20 Stackelberg Equilibrium: Attacker Utility Enforced Negative\n\nAudit Result: 10/10 Hyper-Niche Theoretical Frontiers Live & Operational!');
   };
 
   // --- AUTO-INITIALIZE ON DOM LOAD ---

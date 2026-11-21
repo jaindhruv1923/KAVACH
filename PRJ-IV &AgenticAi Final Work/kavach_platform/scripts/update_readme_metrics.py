@@ -15,8 +15,8 @@ text = text.replace("badge/CSE3101%20Agentic%20AI-9.6%2F10-F59E0B", "badge/CSE31
 text = text.replace("* **Evaluation Score:** **9.6 / 10** across Rubric Criteria C1 to C5", "* **Verification Status:** **100% Deterministic Test Pass (300/300)** & **94.3% F1 on Held-Out V2 Corpus**")
 
 # 3. Add Single Source of Truth link to header nav
-old_nav = '<a href="01_KAVACH_Platform/RUNNING_KAVACH.md"><b>⚡ Running Kavach</b></a>'
-new_nav = '<a href="01_KAVACH_Platform/RUNNING_KAVACH.md"><b>⚡ Running Kavach</b></a> &nbsp;•&nbsp;\n  <a href="docs/METRICS.md"><b>📈 System Metrics (SSOT)</b></a>'
+old_nav = '<a href="01_KAVACH_Platform/RUNNING_KAVACH.md"><b>Running Kavach</b></a>'
+new_nav = '<a href="01_KAVACH_Platform/RUNNING_KAVACH.md"><b>Running Kavach</b></a> &nbsp;•&nbsp;\n  <a href="docs/METRICS.md"><b>System Metrics (SSOT)</b></a>'
 text = text.replace(old_nav, new_nav)
 
 # 4. TOC Endpoints count update

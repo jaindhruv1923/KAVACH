@@ -15,8 +15,13 @@ window.location.replace("index.html" + (window.location.hash || "#workspace"));
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z' fill='%2338BDF8'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3.1.0">
+
+<!-- KAVACH suite: shared navigation + design tokens (shared_ui/) -->
+<link rel="stylesheet" href="/suite/kavach-suite.css">
+<link rel="stylesheet" href="platform_theme.css?v=5.0.0">
+<script src="/suite/kavach-suite.js" data-page="console" data-placement="header" defer></script>
 </head>
 <body>
 <!-- Interactive Particle Mesh Web: Disabled per user preference -->
@@ -253,7 +258,7 @@ window.location.replace("index.html" + (window.location.hash || "#workspace"));
   <!-- Active Historical Run Inspection Banner -->
   <div id="historical-run-banner" class="historical-banner" style="display:none;">
     <div class="historical-banner-info">
-      <span class="badge" style="background:var(--accent);color:#fff;border:none;font-weight:700;">HISTORICAL RUN</span>
+      <span class="badge" style="background:var(--accent);color:#ffffff;border:none;font-weight:700;">HISTORICAL RUN</span>
       <strong id="historical-run-title" style="margin-left:8px;font-size:0.88rem;">Viewing Run</strong>
       <span id="historical-run-meta" style="color:var(--text-dim);font-size:0.8rem;margin-left:8px;"></span>
     </div>
@@ -547,10 +552,10 @@ from pydantic import BaseModel</textarea>
     <!-- Defense Hero Section -->
     <section class="defense-hero">
       <div class="defense-eyebrow">
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;border-color:#FECACA;font-size:0.75rem;padding:3px 10px;">
+        <span class="badge" style="background:#FEF2F1;color:#D23A34;border-color:#FECAC7;font-size:0.75rem;padding:3px 10px;">
           ADVANCED PERSISTENT THREAT (APT) SHIELD
         </span>
-        <span class="badge" style="background:#EFF6FF;color:#2563EB;border-color:#BFDBFE;font-size:0.75rem;padding:3px 10px;">
+        <span class="badge" style="background:#EFF6FF;color:#2764E8;border-color:#BFDBFE;font-size:0.75rem;padding:3px 10px;">
           MITRE ATLAS™ &bull; OWASP TOP 10 FOR LLMS (2025)
         </span>
         <span class="badge" style="background:#ECFDF5;color:#059669;border-color:#A7F3D0;font-size:0.75rem;padding:3px 10px;">
@@ -630,9 +635,9 @@ from pydantic import BaseModel</textarea>
       <div class="defense-section-header">
         <div>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span class="badge" style="background:#FEF2F2;color:#DC2626;border-color:#FECACA;font-weight:700;">LIVE ADVERSARIAL TESTBED</span>
+            <span class="badge" style="background:#FEF2F1;color:#D23A34;border-color:#FECAC7;font-weight:700;">LIVE ADVERSARIAL TESTBED</span>
             <h2 class="defense-section-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D23A34" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               Elite Hacker Attack &amp; Defense Simulator
             </h2>
           </div>
@@ -667,10 +672,10 @@ from pydantic import BaseModel</textarea>
         <div class="defense-sim-col">
           <div class="sim-pane-header">
             <div style="display:flex;align-items:center;gap:8px;">
-              <span class="badge" style="background:#FEF2F2;color:#DC2626;border-color:#FECACA;">HACKER THREAT PROFILE</span>
+              <span class="badge" style="background:#FEF2F1;color:#D23A34;border-color:#FECAC7;">HACKER THREAT PROFILE</span>
               <strong id="sim-threat-name" style="font-size:0.92rem;color:var(--text-primary);">APT-29 / CozyBear Pattern</strong>
             </div>
-            <span id="sim-mitre-tag" class="badge" style="font-family:var(--font-mono);font-size:0.72rem;background:#F1F5F9;color:var(--text-secondary);">
+            <span id="sim-mitre-tag" class="badge" style="font-family:var(--font-mono);font-size:0.72rem;background:#F2F5F9;color:var(--text-secondary);">
               MITRE AML.T0054
             </span>
           </div>
@@ -828,7 +833,7 @@ from pydantic import BaseModel</textarea>
         <div id="custom-exploit-result" class="custom-exploit-card">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;">
             <span style="font-size:0.75rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;">Real-Time Governance Output</span>
-            <span id="custom-verdict-tag" class="badge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;">STANDBY</span>
+            <span id="custom-verdict-tag" class="badge" style="background:#F2F5F9;color:#475569;border-color:#CBD5E1;">STANDBY</span>
           </div>
           <div class="custom-metrics-row">
             <div>
@@ -878,7 +883,7 @@ from pydantic import BaseModel</textarea>
       <div class="defense-canary-grid">
         <div class="canary-card" id="canary-card-1">
           <div class="canary-header">
-            <span class="badge" style="background:#EFF6FF;color:#2563EB;border-color:#BFDBFE;">CANARY 01 &bull; CLOUD IAM</span>
+            <span class="badge" style="background:#EFF6FF;color:#2764E8;border-color:#BFDBFE;">CANARY 01 &bull; CLOUD IAM</span>
             <span class="canary-status-pill armed">ARMED</span>
           </div>
           <strong class="canary-title">AWS Production Root Key</strong>
@@ -898,7 +903,7 @@ from pydantic import BaseModel</textarea>
 
         <div class="canary-card" id="canary-card-3">
           <div class="canary-header">
-            <span class="badge" style="background:#FAF5FF;color:#7C3AED;border-color:#DDD6FE;">CANARY 03 &bull; AUTH TOKEN</span>
+            <span class="badge" style="background:#F4F7FF;color:#3D65D6;border-color:#CCDCFF;">CANARY 03 &bull; AUTH TOKEN</span>
             <span class="canary-status-pill armed">ARMED</span>
           </div>
           <strong class="canary-title">JWT Root Signing Secret</strong>
@@ -908,7 +913,7 @@ from pydantic import BaseModel</textarea>
 
         <div class="canary-card" id="canary-card-4">
           <div class="canary-header">
-            <span class="badge" style="background:#FFFBEB;color:#D97706;border-color:#FDE68A;">CANARY 04 &bull; INFRASTRUCTURE</span>
+            <span class="badge" style="background:#FFFAF3;color:#D6791C;border-color:#FFE1B8;">CANARY 04 &bull; INFRASTRUCTURE</span>
             <span class="canary-status-pill armed">ARMED</span>
           </div>
           <strong class="canary-title">SSH Deployment Key</strong>
@@ -1257,7 +1262,7 @@ from pydantic import BaseModel</textarea>
     <div class="workspace-return-bar" style="margin-bottom:24px;">
       <button type="button" class="workspace-return-btn" onclick="switchToProduct()">&larr; Back to Product Overview</button>
       <div style="display:flex;align-items:center;gap:8px;">
-        <span class="badge" style="border-color:rgba(234,179,8,0.4);color:#b45309;background:rgba(234,179,8,0.12);font-weight:700;">
+        <span class="badge" style="border-color:rgba(244, 172, 55, 0.4);color:#ae5900;background:rgba(244, 172, 55, 0.12);font-weight:700;">
           BMU CSE3101 CAPSTONE DEFENSE &bull; 100/100 AUDIT
         </span>
         <span class="badge" style="border-color:var(--safe-border);color:var(--safe);background:var(--safe-bg);font-weight:700;">
@@ -1269,7 +1274,7 @@ from pydantic import BaseModel</textarea>
     <!-- Professor Evaluation Hero Section -->
     <section class="eval-hero">
       <div class="eval-eyebrow">
-        <span class="badge" style="background:rgba(234,179,8,0.15);color:#b45309;border-color:rgba(234,179,8,0.4);font-weight:700;">
+        <span class="badge" style="background:rgba(244, 172, 55, 0.15);color:#ae5900;border-color:rgba(244, 172, 55, 0.4);font-weight:700;">
           BMU CSE3101 AGENTIC AI CAPSTONE
         </span>
         <span class="badge" style="background:var(--accent-subtle);color:var(--accent);border-color:var(--border-subtle);font-weight:600;">
@@ -1586,8 +1591,8 @@ from pydantic import BaseModel</textarea>
         </div>
         <div class="eval-card-body">
           <div style="display:flex;gap:8px;margin-bottom:12px;">
-            <button type="button" class="pill-btn" onclick="runInteractiveArchScanner('vulnerable_legacy')" style="padding:6px 14px;font-size:0.78rem;border-color:rgba(239,68,68,0.4);color:#b91c1c;font-weight:600;">Legacy Blueprint</button>
-            <button type="button" class="pill-btn" onclick="runInteractiveArchScanner('kavach_zerotrust')" style="padding:6px 14px;font-size:0.78rem;border-color:rgba(16,185,129,0.4);color:#047857;font-weight:600;">KAVACH Zero-Trust</button>
+            <button type="button" class="pill-btn" onclick="runInteractiveArchScanner('vulnerable_legacy')" style="padding:6px 14px;font-size:0.78rem;border-color:rgba(232, 79, 75, 0.4);color:#b91d1c;font-weight:600;">Legacy Blueprint</button>
+            <button type="button" class="pill-btn" onclick="runInteractiveArchScanner('kavach_zerotrust')" style="padding:6px 14px;font-size:0.78rem;border-color:rgba(60, 182, 133, 0.4);color:#047857;font-weight:600;">KAVACH Zero-Trust</button>
           </div>
           <div id="arch-scanner-results-box"></div>
         </div>

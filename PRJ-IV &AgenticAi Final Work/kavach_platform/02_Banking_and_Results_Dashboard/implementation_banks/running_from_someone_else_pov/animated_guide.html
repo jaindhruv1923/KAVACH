@@ -7,24 +7,24 @@
   <meta name="description" content="Cinematic, animated interactive guide explaining how KAVACH AI Governance governs Enterprise Core Banking from 5 distinct perspectives: Customer, DevOps, Hacker, RBI Auditor, and CISO.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #07090e;
-      --bg-panel: rgba(13, 18, 30, 0.85);
-      --bg-card: rgba(20, 28, 48, 0.6);
-      --border: rgba(255, 255, 255, 0.1);
-      --accent-cyan: #00e5ff;
-      --accent-emerald: #10b981;
-      --accent-amber: #f59e0b;
-      --accent-rose: #ef4444;
-      --accent-purple: #a855f7;
-      --accent-blue: #3b82f6;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-head: 'Outfit', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg-dark: #f0f3f8;
+      --bg-panel: rgba(15, 23, 41, 0.06);
+      --bg-card: rgba(231, 235, 244, 0.6);
+      --border: rgba(15, 15, 15, 0.1);
+      --accent-cyan: #00659b;
+      --accent-emerald: #008359;
+      --accent-amber: #8f5a00;
+      --accent-rose: #cc3334;
+      --accent-purple: #436bdd;
+      --accent-blue: #286fe1;
+      --text: #121314;
+      --text-muted: #465366;
+      --font-head: 'IBM Plex Sans', sans-serif;
+      --font-body: 'IBM Plex Sans', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -67,7 +67,7 @@
       margin-bottom: 24px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 40px rgba(15, 23, 41, 0.225);
     }
     .hero::before {
       content: '';
@@ -86,8 +86,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(0, 229, 255, 0.1);
-      border: 1px solid rgba(0, 229, 255, 0.3);
+      background: rgba(0, 101, 155, 0.1);
+      border: 1px solid rgba(0, 101, 155, 0.3);
       color: var(--accent-cyan);
       font-size: 11px;
       font-weight: 800;
@@ -96,9 +96,9 @@
       border-radius: 20px;
     }
     .btn-mode-toggle {
-      background: rgba(168, 85, 247, 0.15);
+      background: rgba(67, 107, 221, 0.15);
       border: 1px solid var(--accent-purple);
-      color: #fff;
+      color: #0f0f0f;
       font-size: 11px;
       font-weight: 700;
       padding: 4px 12px;
@@ -108,7 +108,7 @@
     }
     .btn-mode-toggle:hover {
       background: var(--accent-purple);
-      color: #000;
+      color: #ffffff;
     }
     .hero-title {
       font-family: var(--font-head);
@@ -118,7 +118,7 @@
       margin-bottom: 8px;
     }
     .hero-title span {
-      background: linear-gradient(135deg, #00e5ff, #a855f7);
+      background: linear-gradient(135deg, #00659b, #436bdd);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -154,18 +154,18 @@
     }
     .role-tab:hover {
       transform: translateY(-3px);
-      border-color: rgba(255, 255, 255, 0.25);
+      border-color: rgba(15, 15, 15, 0.25);
     }
     .role-tab.active {
       border-color: var(--accent-cyan);
-      background: rgba(0, 229, 255, 0.1);
-      box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+      background: rgba(0, 101, 155, 0.1);
+      box-shadow: 0 0 25px rgba(0, 101, 155, 0.08);
     }
-    .role-tab.active.customer { border-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1); box-shadow: 0 0 25px rgba(16, 185, 129, 0.2); }
-    .role-tab.active.devops { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); }
-    .role-tab.active.hacker { border-color: var(--accent-rose); background: rgba(239, 68, 68, 0.1); box-shadow: 0 0 25px rgba(239, 68, 68, 0.2); }
-    .role-tab.active.auditor { border-color: var(--accent-purple); background: rgba(168, 85, 247, 0.1); box-shadow: 0 0 25px rgba(168, 85, 247, 0.2); }
-    .role-tab.active.ciso { border-color: var(--accent-amber); background: rgba(245, 158, 11, 0.1); box-shadow: 0 0 25px rgba(245, 158, 11, 0.2); }
+    .role-tab.active.customer { border-color: var(--accent-emerald); background: rgba(0, 131, 89, 0.1); box-shadow: 0 0 25px rgba(0, 131, 89, 0.08); }
+    .role-tab.active.devops { border-color: var(--accent-blue); background: rgba(40, 111, 225, 0.1); box-shadow: 0 0 25px rgba(40, 111, 225, 0.08); }
+    .role-tab.active.hacker { border-color: var(--accent-rose); background: rgba(204, 51, 52, 0.1); box-shadow: 0 0 25px rgba(204, 51, 52, 0.08); }
+    .role-tab.active.auditor { border-color: var(--accent-purple); background: rgba(67, 107, 221, 0.1); box-shadow: 0 0 25px rgba(67, 107, 221, 0.08); }
+    .role-tab.active.ciso { border-color: var(--accent-amber); background: rgba(143, 90, 0, 0.1); box-shadow: 0 0 25px rgba(143, 90, 0, 0.08); }
     
     .role-icon-wrap {
       width: 38px;
@@ -174,7 +174,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(15, 15, 15, 0.04);
       margin-bottom: 2px;
     }
     .svg-role { width: 20px; height: 20px; stroke: currentColor; }
@@ -189,7 +189,7 @@
       border-radius: 20px;
       padding: 28px;
       margin-bottom: 24px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 30px rgba(15, 23, 41, 0.18);
     }
     .stage-header {
       display: flex;
@@ -214,7 +214,7 @@
       font-weight: 700;
       padding: 6px 14px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(15, 15, 15, 0.05);
       border: 1px solid var(--border);
     }
 
@@ -234,17 +234,17 @@
       gap: 16px;
     }
     .quote-box {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(15, 15, 15, 0.03);
       border-left: 3px solid var(--accent-cyan);
       padding: 12px 16px;
       border-radius: 0 10px 10px 0;
       font-style: italic;
-      color: #e2e8f0;
+      color: #1a1f24;
       font-size: 13px;
     }
     .hinglish-box {
-      background: rgba(168, 85, 247, 0.08);
-      border: 1px solid rgba(168, 85, 247, 0.25);
+      background: rgba(67, 107, 221, 0.08);
+      border: 1px solid rgba(67, 107, 221, 0.25);
       border-radius: 12px;
       padding: 14px 16px;
     }
@@ -259,7 +259,7 @@
     }
     .hinglish-body {
       font-size: 12px;
-      color: #cbd5e1;
+      color: #252d36;
       line-height: 1.6;
     }
     .features-list {
@@ -273,10 +273,10 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 12px;
-      color: #cbd5e1;
+      color: #252d36;
     }
     .features-list li .bullet-badge {
-      background: rgba(0, 229, 255, 0.15);
+      background: rgba(0, 101, 155, 0.15);
       color: var(--accent-cyan);
       border-radius: 4px;
       padding: 2px 6px;
@@ -287,16 +287,16 @@
 
     /* Live Interactive Terminal Simulator */
     .terminal-card {
-      background: #04060a;
+      background: #f1f5fa;
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 10px 30px rgba(15, 23, 41, 0.27);
     }
     .terminal-header {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(15, 15, 15, 0.04);
       padding: 10px 14px;
       display: flex;
       justify-content: space-between;
@@ -305,9 +305,9 @@
     }
     .terminal-dots { display: flex; gap: 6px; }
     .dot { width: 9px; height: 9px; border-radius: 50%; }
-    .dot.red { background: #ef4444; }
-    .dot.yellow { background: #f59e0b; }
-    .dot.green { background: #10b981; }
+    .dot.red { background: #cc3334; }
+    .dot.yellow { background: #8f5a00; }
+    .dot.green { background: #008359; }
     .terminal-title {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -321,20 +321,20 @@
       min-height: 260px;
       max-height: 340px;
       overflow-y: auto;
-      color: #94a3b8;
+      color: #465366;
     }
     .terminal-controls {
       padding: 12px 14px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(15, 15, 15, 0.02);
       border-top: 1px solid var(--border);
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
     .btn-sim {
-      background: rgba(0, 229, 255, 0.1);
+      background: rgba(0, 101, 155, 0.1);
       color: var(--accent-cyan);
-      border: 1px solid rgba(0, 229, 255, 0.3);
+      border: 1px solid rgba(0, 101, 155, 0.3);
       border-radius: 6px;
       font-family: var(--font-head);
       font-size: 11px;
@@ -343,7 +343,7 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .btn-sim:hover { background: var(--accent-cyan); color: #000; }
+    .btn-sim:hover { background: var(--accent-cyan); color: #ffffff; }
 
     /* Interactive Pipeline Simulator Section */
     .flow-section {
@@ -391,9 +391,9 @@
       border-color: var(--accent-cyan);
     }
     .flow-node.active-step {
-      background: rgba(0, 229, 255, 0.15);
+      background: rgba(0, 101, 155, 0.15);
       border-color: var(--accent-cyan);
-      box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+      box-shadow: 0 0 25px rgba(0, 101, 155, 0.16);
     }
     .node-num {
       font-size: 9px;
@@ -412,7 +412,7 @@
       font-family: var(--font-head);
       font-size: 12px;
       font-weight: 700;
-      color: #fff;
+      color: #0f0f0f;
     }
     .node-detail { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
 
@@ -423,8 +423,8 @@
       gap: 12px;
     }
     .btn-play-flow {
-      background: linear-gradient(135deg, #00d2ff, #0077ff);
-      color: #030816;
+      background: linear-gradient(135deg, #006aa1, #0571f0);
+      color: #eff3fc;
       border: none;
       border-radius: 8px;
       padding: 10px 22px;
@@ -458,7 +458,7 @@
       .lab-grid { grid-template-columns: 1fr; }
     }
     .lab-box {
-      background: #04060a;
+      background: #f1f5fa;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px;
@@ -474,17 +474,17 @@
       justify-content: space-between;
     }
     .hash-display {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(15, 15, 15, 0.05);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 8px 10px;
-      color: #38bdf8;
+      color: #006fa8;
       word-break: break-all;
       margin-top: 8px;
     }
     .btn-tamper {
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      background: rgba(204, 51, 52, 0.15);
+      border: 1px solid rgba(204, 51, 52, 0.4);
       color: var(--accent-rose);
       border-radius: 6px;
       padding: 6px 12px;
@@ -495,10 +495,10 @@
       margin-top: 10px;
       transition: all 0.2s;
     }
-    .btn-tamper:hover { background: var(--accent-rose); color: #fff; }
+    .btn-tamper:hover { background: var(--accent-rose); color: #0f0f0f; }
     .btn-restore {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
+      background: rgba(0, 131, 89, 0.15);
+      border: 1px solid rgba(0, 131, 89, 0.4);
       color: var(--accent-emerald);
       border-radius: 6px;
       padding: 6px 12px;
@@ -509,7 +509,7 @@
       margin-top: 10px;
       transition: all 0.2s;
     }
-    .btn-restore:hover { background: var(--accent-emerald); color: #000; }
+    .btn-restore:hover { background: var(--accent-emerald); color: #ffffff; }
 
     /* Footer */
     footer {
@@ -520,6 +520,10 @@
       border-top: 1px solid var(--border);
     }
   </style>
+
+<!-- KAVACH suite: shared navigation + design tokens (shared_ui/) -->
+<link rel="stylesheet" href="/suite/kavach-suite.css">
+<script src="/suite/kavach-suite.js" data-page="guide" data-placement="top" defer></script>
 </head>
 <body>
   <div class="ambient-glow ambient-1"></div>
@@ -542,7 +546,7 @@
     <!-- Role Switcher Tabs -->
     <nav class="role-switcher" id="role-switcher">
       <div class="role-tab active customer" data-role="customer">
-        <div class="role-icon-wrap" style="color: #10b981;">
+        <div class="role-icon-wrap" style="color: #008359;">
           <svg class="svg-role" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
           </svg>
@@ -551,7 +555,7 @@
         <div class="role-desc">Zero friction &amp; PII Privacy</div>
       </div>
       <div class="role-tab devops" data-role="devops">
-        <div class="role-icon-wrap" style="color: #3b82f6;">
+        <div class="role-icon-wrap" style="color: #286fe1;">
           <svg class="svg-role" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
           </svg>
@@ -560,7 +564,7 @@
         <div class="role-desc">ADK Hooks &amp; Latency</div>
       </div>
       <div class="role-tab hacker" data-role="hacker">
-        <div class="role-icon-wrap" style="color: #ef4444;">
+        <div class="role-icon-wrap" style="color: #cc3334;">
           <svg class="svg-role" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/>
           </svg>
@@ -569,7 +573,7 @@
         <div class="role-desc">OWASP LLM01 Injections</div>
       </div>
       <div class="role-tab auditor" data-role="auditor">
-        <div class="role-icon-wrap" style="color: #a855f7;">
+        <div class="role-icon-wrap" style="color: #436bdd;">
           <svg class="svg-role" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 3l9 7H3l9-7z"/>
           </svg>
@@ -578,7 +582,7 @@
         <div class="role-desc">SHA3-512 Merkle Proofs</div>
       </div>
       <div class="role-tab ciso" data-role="ciso">
-        <div class="role-icon-wrap" style="color: #f59e0b;">
+        <div class="role-icon-wrap" style="color: #8f5a00;">
           <svg class="svg-role" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -692,15 +696,15 @@
         <div class="lab-box">
           <div class="lab-title">
             <span>ORIGINAL BANK TRANSACTION RECORD</span>
-            <span style="color: #10b981;">GENUINE</span>
+            <span style="color: #008359;">GENUINE</span>
           </div>
-          <p style="color: #94a3b8; font-size: 11px;">
+          <p style="color: #465366; font-size: 11px;">
             Txn #101: Dhruv Jain transfers ₹5,000 to Ananya Sharma.
           </p>
           <div class="hash-display" id="genuine-leaf-hash">
             Leaf Hash: c4a8...d9e1 (NIST SHA3-512 Keccak)
           </div>
-          <div class="hash-display" id="genuine-root-hash" style="margin-top: 6px; color: #a855f7;">
+          <div class="hash-display" id="genuine-root-hash" style="margin-top: 6px; color: #436bdd;">
             Merkle Root Seal: e7b2...3f8a
           </div>
         </div>
@@ -708,15 +712,15 @@
         <div class="lab-box">
           <div class="lab-title">
             <span>DATABASE RECORD AFTER ROGUE EDIT</span>
-            <span id="tamper-status-badge" style="color: #10b981;">NO TAMPERING</span>
+            <span id="tamper-status-badge" style="color: #008359;">NO TAMPERING</span>
           </div>
-          <p id="tampered-text-display" style="color: #94a3b8; font-size: 11px;">
+          <p id="tampered-text-display" style="color: #465366; font-size: 11px;">
             Txn #101: Dhruv Jain transfers ₹5,000 to Ananya Sharma.
           </p>
           <div class="hash-display" id="tampered-leaf-hash">
             Leaf Hash: c4a8...d9e1
           </div>
-          <div class="hash-display" id="tampered-root-hash" style="margin-top: 6px; color: #a855f7;">
+          <div class="hash-display" id="tampered-root-hash" style="margin-top: 6px; color: #436bdd;">
             Merkle Root Seal: e7b2...3f8a
           </div>
           <div style="display: flex; gap: 8px;">
@@ -1138,10 +1142,10 @@
     const tamperStatusBadge = document.getElementById('tamper-status-badge');
 
     btnSimulateTamper.addEventListener('click', () => {
-      tamperedTextDisplay.innerHTML = `<b style="color: #ef4444;">Txn #101: Dhruv Jain transfers ₹5,00,000 to Rogue Account (TAMPERED BY MALICIOUS ADMIN)</b>`;
-      tamperedLeafHash.innerHTML = `<span style="color: #ef4444;">Leaf Hash: 9d72...1a4c (CORRUPTED!)</span>`;
-      tamperedRootHash.innerHTML = `<span style="color: #ef4444;">Merkle Root Seal: b1e0...892f (MISMATCH!)</span>`;
-      tamperStatusBadge.innerHTML = `<span style="color: #ef4444;">TAMPER DETECTED: ROOT MISMATCH!</span>`;
+      tamperedTextDisplay.innerHTML = `<b style="color: #cc3334;">Txn #101: Dhruv Jain transfers ₹5,00,000 to Rogue Account (TAMPERED BY MALICIOUS ADMIN)</b>`;
+      tamperedLeafHash.innerHTML = `<span style="color: #cc3334;">Leaf Hash: 9d72...1a4c (CORRUPTED!)</span>`;
+      tamperedRootHash.innerHTML = `<span style="color: #cc3334;">Merkle Root Seal: b1e0...892f (MISMATCH!)</span>`;
+      tamperStatusBadge.innerHTML = `<span style="color: #cc3334;">TAMPER DETECTED: ROOT MISMATCH!</span>`;
       btnSimulateTamper.style.display = 'none';
       btnRestoreLedger.style.display = 'inline-block';
       appendLog(`[TAMPER_EXPERIMENT] Malicious admin altered database row!`);
@@ -1153,7 +1157,7 @@
       tamperedTextDisplay.innerText = `Txn #101: Dhruv Jain transfers ₹5,000 to Ananya Sharma.`;
       tamperedLeafHash.innerText = `Leaf Hash: c4a8...d9e1`;
       tamperedRootHash.innerText = `Merkle Root Seal: e7b2...3f8a`;
-      tamperStatusBadge.innerHTML = `<span style="color: #10b981;">NO TAMPERING</span>`;
+      tamperStatusBadge.innerHTML = `<span style="color: #008359;">NO TAMPERING</span>`;
       btnSimulateTamper.style.display = 'inline-block';
       btnRestoreLedger.style.display = 'none';
       appendLog(`[TAMPER_EXPERIMENT] Genuine database state restored. Root matches.`);

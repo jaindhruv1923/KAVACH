@@ -186,7 +186,7 @@
             <p style="margin-top: 6px;"><strong>Requirement:</strong> ${data.handoutReq}</p>
           </div>
 
-          <div class="course-info-card" style="border-color: rgba(37, 99, 235, 0.35);">
+          <div class="course-info-card" style="border-color: rgba(39, 100, 232, 0.35);">
             <h4>KAVACH Engineering Proof &amp; Implementation</h4>
             <p>${data.kavachProof}</p>
             <div class="course-proof-code">
@@ -277,7 +277,7 @@
 
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Synthesizing Thought DAG...`;
+      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #ffffff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Synthesizing Thought DAG...`;
     }
     if (container) {
       container.innerHTML = `<div style="color:var(--accent);font-family:var(--font-mono);font-size:0.8rem;padding:12px;">Generating candidate vertices, aggregating multi-path reasoning, and pruning dead ends...</div>`;
@@ -338,7 +338,7 @@
               <span class="badge" style="background:var(--safe-bg);color:var(--safe);border:1px solid var(--safe-border);font-size:0.72rem;font-weight:600;">
                 Confidence: ${(data.final_score * 100).toFixed(0)}%
               </span>
-              <span class="badge" style="background:${isLiveBackend ? 'var(--safe-bg)' : 'rgba(37,99,235,0.08)'};color:${isLiveBackend ? 'var(--safe)' : 'var(--accent)'};border:1px solid ${isLiveBackend ? 'var(--safe-border)' : 'rgba(37,99,235,0.25)'};font-size:0.68rem;font-weight:600;">
+              <span class="badge" style="background:${isLiveBackend ? 'var(--safe-bg)' : 'rgba(39, 100, 232, 0.08)'};color:${isLiveBackend ? 'var(--safe)' : 'var(--accent)'};border:1px solid ${isLiveBackend ? 'var(--safe-border)' : 'rgba(39, 100, 232, 0.25)'};font-size:0.68rem;font-weight:600;">
                 ${isLiveBackend ? 'LIVE CORE' : 'EMBEDDED ENGINE'}
               </span>
             </div>
@@ -366,7 +366,7 @@
 
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Evaluating 12 OWASP Vectors...`;
+      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #ffffff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Evaluating 12 OWASP Vectors...`;
     }
     if (container) {
       container.innerHTML = `<div style="color:var(--accent);font-family:var(--font-mono);font-size:0.8rem;padding:12px;">Testing injection payloads, roleplay jailbreaks, and secret exfiltrations...</div>`;
@@ -429,7 +429,7 @@
               <span class="badge" style="background:var(--safe-bg);color:var(--safe);border:1px solid var(--safe-border);font-size:0.74rem;font-weight:700;">
                 Resilience: ${data.adversarial_resilience_rate_pct}% (${data.total_blocked}/${data.total_attacks_tested} Neutralized)
               </span>
-              <span class="badge" style="background:${isLiveBackend ? 'var(--safe-bg)' : 'rgba(37,99,235,0.08)'};color:${isLiveBackend ? 'var(--safe)' : 'var(--accent)'};border:1px solid ${isLiveBackend ? 'var(--safe-border)' : 'rgba(37,99,235,0.25)'};font-size:0.68rem;font-weight:600;">
+              <span class="badge" style="background:${isLiveBackend ? 'var(--safe-bg)' : 'rgba(39, 100, 232, 0.08)'};color:${isLiveBackend ? 'var(--safe)' : 'var(--accent)'};border:1px solid ${isLiveBackend ? 'var(--safe-border)' : 'rgba(39, 100, 232, 0.25)'};font-size:0.68rem;font-weight:600;">
                 ${isLiveBackend ? 'LIVE CORE' : 'EMBEDDED ENGINE'}
               </span>
             </div>
@@ -514,11 +514,11 @@
     const updateTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
     let rows = (data.table || []).map((r, i) => `
-      <tr style="border-bottom:1px solid var(--border-subtle);font-size:0.78rem;background:${i === data.table.length - 1 ? 'rgba(37,99,235,0.05)' : 'transparent'};">
+      <tr style="border-bottom:1px solid var(--border-subtle);font-size:0.78rem;background:${i === data.table.length - 1 ? 'rgba(39, 100, 232, 0.05)' : 'transparent'};">
         <td style="padding:10px;font-weight:${i === data.table.length - 1 ? '700' : '500'};color:${i === data.table.length - 1 ? 'var(--accent)' : 'var(--text-primary)'};">${r.config_name}</td>
         <td style="padding:10px;color:var(--text-secondary);">${r.reasoning_mode}</td>
-        <td style="padding:10px;font-family:var(--font-mono);color:${r.task_completion_rate_pct >= 90 ? 'var(--safe)' : '#b45309'};font-weight:700;">${r.task_completion_rate_pct}%</td>
-        <td style="padding:10px;font-family:var(--font-mono);color:${r.security_compliance_rate_pct >= 95 ? 'var(--safe)' : '#dc2626'};font-weight:700;">${r.security_compliance_rate_pct}%</td>
+        <td style="padding:10px;font-family:var(--font-mono);color:${r.task_completion_rate_pct >= 90 ? 'var(--safe)' : '#ae5900'};font-weight:700;">${r.task_completion_rate_pct}%</td>
+        <td style="padding:10px;font-family:var(--font-mono);color:${r.security_compliance_rate_pct >= 95 ? 'var(--safe)' : '#d23a34'};font-weight:700;">${r.security_compliance_rate_pct}%</td>
         <td style="padding:10px;font-family:var(--font-mono);color:var(--text-secondary);">${r.avg_convergence_cycles}</td>
         <td style="padding:10px;font-family:var(--font-mono);color:var(--text-secondary);">${r.mean_latency_ms}ms</td>
       </tr>
@@ -529,9 +529,9 @@
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid var(--border-subtle);padding-bottom:10px;flex-wrap:wrap;gap:8px;">
           <span style="font-weight:700;color:var(--text-primary);font-size:0.9rem;">Comparative Ablation Matrix (M0 to M4)</span>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-            <span class="badge" style="background:rgba(37,99,235,0.08);color:var(--accent);border:1px solid rgba(37,99,235,0.25);font-size:0.72rem;font-weight:600;">TCR Lift: ${data.task_completion_lift_pct}</span>
+            <span class="badge" style="background:rgba(39, 100, 232, 0.08);color:var(--accent);border:1px solid rgba(39, 100, 232, 0.25);font-size:0.72rem;font-weight:600;">TCR Lift: ${data.task_completion_lift_pct}</span>
             <span class="badge" style="background:var(--safe-bg);color:var(--safe);border:1px solid var(--safe-border);font-size:0.72rem;font-weight:600;">Security Lift: ${data.security_compliance_lift_pct}</span>
-            <span class="badge" style="background:${isLiveBackend ? 'var(--safe-bg)' : 'rgba(37,99,235,0.08)'};color:${isLiveBackend ? 'var(--safe)' : 'var(--accent)'};border:1px solid ${isLiveBackend ? 'var(--safe-border)' : 'rgba(37,99,235,0.25)'};font-size:0.68rem;font-weight:600;">
+            <span class="badge" style="background:${isLiveBackend ? 'var(--safe-bg)' : 'rgba(39, 100, 232, 0.08)'};color:${isLiveBackend ? 'var(--safe)' : 'var(--accent)'};border:1px solid ${isLiveBackend ? 'var(--safe-border)' : 'rgba(39, 100, 232, 0.25)'};font-size:0.68rem;font-weight:600;">
               ${isLiveBackend ? 'LIVE' : 'RUNTIME'}
             </span>
             <span class="badge" style="background:var(--bg-surface-elevated);color:var(--text-dim);border:1px solid var(--border-subtle);font-size:0.68rem;font-family:var(--font-mono);">
@@ -586,7 +586,7 @@
 
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Auditing All Rubrics C1 to C15...`;
+      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #ffffff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Auditing All Rubrics C1 to C15...`;
     }
     if (container) {
       container.innerHTML = `<div style="color:var(--accent);font-family:var(--font-mono);font-size:0.82rem;padding:12px;">Auditing ADK lifecycle, CrewAI flows, A2A consensus, OWASP guardrails, and ablation metrics...</div>`;
@@ -979,7 +979,7 @@
 
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Executing 20 Stress Tests...`;
+      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #ffffff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Executing 20 Stress Tests...`;
     }
 
     let benchmarkData = null;
@@ -1006,7 +1006,7 @@
           </div>
           <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
             <span style="font-size:1.45rem;font-weight:800;color:var(--safe);font-family:var(--font-mono);">100.0%</span>
-            <span style="font-size:0.82rem;color:#ef4444;font-family:var(--font-mono);font-weight:600;">Before: 10.0%</span>
+            <span style="font-size:0.82rem;color:#e84f4b;font-family:var(--font-mono);font-weight:600;">Before: 10.0%</span>
           </div>
           <div class="before-bar-bg">
             <div class="before-bar-fill-good" style="width:100%;"></div>
@@ -1021,7 +1021,7 @@
           </div>
           <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
             <span style="font-size:1.45rem;font-weight:800;color:var(--safe);font-family:var(--font-mono);">100.0%</span>
-            <span style="font-size:0.82rem;color:#ef4444;font-family:var(--font-mono);font-weight:600;">Before: 42.0%</span>
+            <span style="font-size:0.82rem;color:#e84f4b;font-family:var(--font-mono);font-weight:600;">Before: 42.0%</span>
           </div>
           <div class="before-bar-bg">
             <div class="before-bar-fill-good" style="width:100%;"></div>
@@ -1036,7 +1036,7 @@
           </div>
           <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
             <span style="font-size:1.45rem;font-weight:800;color:var(--safe);font-family:var(--font-mono);">0.0 / 10</span>
-            <span style="font-size:0.82rem;color:#ef4444;font-family:var(--font-mono);font-weight:600;">Before: 8.9 / 10</span>
+            <span style="font-size:0.82rem;color:#e84f4b;font-family:var(--font-mono);font-weight:600;">Before: 8.9 / 10</span>
           </div>
           <div class="before-bar-bg">
             <div class="before-bar-fill-good" style="width:0%;"></div>
@@ -1051,7 +1051,7 @@
           </div>
           <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
             <span style="font-size:1.45rem;font-weight:800;color:var(--safe);font-family:var(--font-mono);">0.00 KB</span>
-            <span style="font-size:0.82rem;color:#ef4444;font-family:var(--font-mono);font-weight:600;">Before: 100% Leaked</span>
+            <span style="font-size:0.82rem;color:#e84f4b;font-family:var(--font-mono);font-weight:600;">Before: 100% Leaked</span>
           </div>
           <div class="before-bar-bg">
             <div class="before-bar-fill-good" style="width:0%;"></div>
@@ -1090,7 +1090,7 @@
               <span style="font-size:0.74rem;color:var(--text-dim);font-family:var(--font-mono);">(${escapeHtml(s.category)})</span>
             </div>
             <div style="display:flex;align-items:center;gap:6px;">
-              <span class="badge" style="background:rgba(220,38,38,0.1);color:#dc2626;border:1px solid rgba(220,38,38,0.3);font-size:0.68rem;font-weight:700;">
+              <span class="badge" style="background:rgba(210, 58, 52, 0.1);color:#d23a34;border:1px solid rgba(210, 58, 52, 0.3);font-size:0.68rem;font-weight:700;">
                 ${s.difficulty}
               </span>
             </div>
@@ -1104,10 +1104,10 @@
             <!-- BEFORE BOX: RAW / BASELINE LLM -->
             <div class="diff-before-box" style="${isAfterFocussed ? 'opacity:0.45;' : ''}">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <strong style="color:#b91c1c;font-size:0.76rem;text-transform:uppercase;letter-spacing:0.03em;">
+                <strong style="color:#b91d1c;font-size:0.76rem;text-transform:uppercase;letter-spacing:0.03em;">
                   BEFORE: Raw / Baseline LLM (Unprotected)
                 </strong>
-                <span class="badge" style="background:rgba(220,38,38,0.12);color:#b91c1c;border:1px solid rgba(220,38,38,0.3);font-size:0.68rem;font-weight:700;">
+                <span class="badge" style="background:rgba(210, 58, 52, 0.12);color:#b91d1c;border:1px solid rgba(210, 58, 52, 0.3);font-size:0.68rem;font-weight:700;">
                   CVSS ${s.raw_cvss} &bull; ${escapeHtml(s.raw_llm_verdict)}
                 </span>
               </div>
@@ -1277,13 +1277,13 @@
       <div class="topology-agent-chip" style="background:var(--bg-surface-elevated);border:1px solid var(--border-subtle);border-radius:6px;padding:8px 10px;">
         <div class="topology-agent-name" style="font-weight:700;color:var(--accent);font-size:0.78rem;">${a.name}</div>
         <div class="topology-agent-role" style="color:var(--text-secondary);font-size:0.72rem;margin-top:2px;">${a.role}</div>
-        <span style="display:inline-block;margin-top:5px;font-size:0.65rem;padding:2px 6px;border-radius:4px;background:rgba(37,99,235,0.08);color:var(--accent);font-family:var(--font-mono);font-weight:700;border:1px solid rgba(37,99,235,0.2);">${a.status}</span>
+        <span style="display:inline-block;margin-top:5px;font-size:0.65rem;padding:2px 6px;border-radius:4px;background:rgba(39, 100, 232, 0.08);color:var(--accent);font-family:var(--font-mono);font-weight:700;border:1px solid rgba(39, 100, 232, 0.2);">${a.status}</span>
       </div>
     `).join("");
 
     const traceHtml = (data.execution_trace || []).map(t => `
-      <div class="topology-trace-item" style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;gap:8px;">
-        <span style="color:#38bdf8;font-weight:700;">#${t.step} [${t.sender} &rarr; ${t.receiver}]</span>
+      <div class="topology-trace-item" style="padding:4px 0;border-bottom:1px solid rgba(255, 255, 255, 0.08);display:flex;justify-content:space-between;gap:8px;">
+        <span style="color:#52b8ff;font-weight:700;">#${t.step} [${t.sender} &rarr; ${t.receiver}]</span>
         <span style="color:#f8fafc;flex:1;margin:0 8px;">${t.message}</span>
         <span style="color:#94a3b8;font-family:var(--font-mono);">${t.latency_ms}ms</span>
       </div>
@@ -1346,7 +1346,7 @@
 
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Inspecting with 4-Tier Shields...`;
+      btn.innerHTML = `<span class="spinner" style="display:inline-block;width:12px;height:12px;border:2px solid #ffffff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;"></span>Inspecting with 4-Tier Shields...`;
     }
 
     if (container) {
@@ -1393,12 +1393,12 @@
     const layersHtml = (data.layers || []).map(l => {
       const isFlagged = l.status === "FLAGGED";
       const isSan = l.status === "SANITIZED";
-      const tierTitleColor = isFlagged ? "#b91c1c" : (isSan ? "#b45309" : "#047857");
-      const findingsColor = isFlagged ? "#991b1b" : (isSan ? "#92400e" : "#065f46");
+      const tierTitleColor = isFlagged ? "#b91d1c" : (isSan ? "#ae5900" : "#047857");
+      const findingsColor = isFlagged ? "#991b1b" : (isSan ? "#8c4600" : "#065f46");
       const tierBg = isFlagged ? "var(--blocked-bg)" : (isSan ? "var(--review-bg)" : "var(--safe-bg)");
       const tierBorder = isFlagged ? "var(--blocked-border)" : (isSan ? "var(--review-border)" : "var(--safe-border)");
       const tierBorderLeft = isFlagged ? "var(--blocked)" : (isSan ? "var(--review)" : "var(--safe)");
-      const badgeBg = isFlagged ? "rgba(220,38,38,0.12)" : (isSan ? "rgba(217,119,6,0.12)" : "rgba(5,150,105,0.12)");
+      const badgeBg = isFlagged ? "rgba(210, 58, 52, 0.12)" : (isSan ? "rgba(214, 121, 28, 0.12)" : "rgba(5, 150, 105, 0.12)");
 
       return `
         <div class="guardrail-tier-card" style="background:${tierBg};border:1px solid ${tierBorder};border-left:3px solid ${tierBorderLeft};padding:10px 14px;margin-bottom:8px;border-radius:0 8px 8px 0;">
@@ -1413,7 +1413,7 @@
       `;
     }).join("");
 
-    const verdictColor = data.verdict === "BLOCKED" ? "#dc2626" : (data.verdict === "SANITIZED" ? "#d97706" : "#059669");
+    const verdictColor = data.verdict === "BLOCKED" ? "#d23a34" : (data.verdict === "SANITIZED" ? "#d6791c" : "#059669");
     const verdictBg = data.verdict === "BLOCKED" ? "var(--blocked-bg)" : (data.verdict === "SANITIZED" ? "var(--review-bg)" : "var(--safe-bg)");
     const verdictBorder = data.verdict === "BLOCKED" ? "var(--blocked-border)" : (data.verdict === "SANITIZED" ? "var(--review-border)" : "var(--safe-border)");
 
@@ -1507,7 +1507,7 @@
       listHtml = (data.vulnerabilities || []).map(v => `
         <div style="background:var(--blocked-bg);border:1px solid var(--blocked-border);border-left:3px solid var(--blocked);padding:10px 14px;margin-bottom:8px;border-radius:0 8px 8px 0;">
           <div style="display:flex;justify-content:space-between;font-size:0.78rem;">
-            <span style="font-weight:700;color:#b91c1c;">${v.id} &middot; ${v.title}</span>
+            <span style="font-weight:700;color:#b91d1c;">${v.id} &middot; ${v.title}</span>
             <span style="color:#7f1d1d;font-family:var(--font-mono);font-size:0.72rem;">${v.mitre}</span>
           </div>
           <div style="font-size:0.75rem;color:#991b1b;margin-top:3px;line-height:1.4;">${v.impact}</div>
@@ -1522,7 +1522,7 @@
       `).join("");
     }
 
-    const statusColor = isVuln ? "#b91c1c" : "#047857";
+    const statusColor = isVuln ? "#b91d1c" : "#047857";
 
         const comp = data.compliance_summary || { dpdp_act_2023: "COMPLIANT", owasp_llm_top_10: "100% DEFENDED", iso_27001: "COMPLIANT" };
 
@@ -1646,8 +1646,8 @@
     const isResolved = data.is_resolved;
     const isVuln = data.ast_taint_status === "VULNERABILITY_CONFIRMED";
     const stateColor = isResolved ? "var(--safe)" : (isVuln ? "var(--blocked)" : "var(--accent)");
-    const stateBg = isResolved ? "var(--safe-bg)" : (isVuln ? "var(--blocked-bg)" : "rgba(37,99,235,0.08)");
-    const stateBorder = isResolved ? "var(--safe-border)" : (isVuln ? "var(--blocked-border)" : "rgba(37,99,235,0.25)");
+    const stateBg = isResolved ? "var(--safe-bg)" : (isVuln ? "var(--blocked-bg)" : "rgba(39, 100, 232, 0.08)");
+    const stateBorder = isResolved ? "var(--safe-border)" : (isVuln ? "var(--blocked-border)" : "rgba(39, 100, 232, 0.25)");
 
     container.innerHTML = `
       <div style="background:var(--bg-surface);border:1px solid var(--border-subtle);box-shadow:var(--shadow-sm);border-radius:10px;padding:16px;margin-top:10px;">
@@ -1668,11 +1668,11 @@
         </div>
 
         <div style="background:${isVuln ? 'var(--blocked-bg)' : 'var(--safe-bg)'};border:1px solid ${isVuln ? 'var(--blocked-border)' : 'var(--safe-border)'};padding:10px 14px;border-radius:8px;margin-bottom:10px;">
-          <div style="font-size:0.72rem;color:${isVuln ? '#b91c1c' : '#047857'};text-transform:uppercase;font-weight:700;">Sensor Feedback (Observation):</div>
+          <div style="font-size:0.72rem;color:${isVuln ? '#b91d1c' : '#047857'};text-transform:uppercase;font-weight:700;">Sensor Feedback (Observation):</div>
           <div style="font-size:0.8rem;color:${isVuln ? '#991b1b' : '#065f46'};margin-top:3px;font-weight:500;line-height:1.45;">${data.sensor_observation}</div>
         </div>
 
-        <div class="stepper-code-block" style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px;font-family:var(--font-mono);font-size:0.78rem;color:#38bdf8;overflow-x:auto;line-height:1.5;">${escapeHtml(data.code_snippet)}</div>
+        <div class="stepper-code-block" style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px;font-family:var(--font-mono);font-size:0.78rem;color:#52b8ff;overflow-x:auto;line-height:1.5;">${escapeHtml(data.code_snippet)}</div>
 
         <div class="stepper-nav-bar" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
           <button type="button" class="pill-btn" onclick="stepInteractiveSelfHealing('prev')" style="padding:6px 14px;font-size:0.76rem;">&larr; Previous Phase</button>
@@ -1722,14 +1722,14 @@
     }
 
     modal.innerHTML = `
-      <div class="course-modal-window" style="max-width: 950px; width: 95%; max-height: 90vh; overflow-y: auto; background: #0b0f19; border: 1px solid rgba(0,210,255,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(0,210,255,0.15);">
-        <div class="course-modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 14px;">
+      <div class="course-modal-window" style="max-width: 950px; width: 95%; max-height: 90vh; overflow-y: auto; background: #0b0f19; border: 1px solid rgba(121, 198, 255, 0.3); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(121, 198, 255, 0.06);">
+        <div class="course-modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px;">
           <div class="course-modal-title-group">
             <div style="display:flex; align-items:center; gap:8px;">
-              <h2 style="font-size: 1.15rem; color: #00d2ff; margin:0; font-family:var(--font-mono, monospace); letter-spacing:-0.02em;">Google ADK Callbacks &amp; Medical Triage Pipeline</h2>
+              <h2 style="font-size: 1.15rem; color: #79c6ff; margin:0; font-family:var(--font-mono, monospace); letter-spacing:-0.02em;">Google ADK Callbacks &amp; Medical Triage Pipeline</h2>
             </div>
             <p style="margin-top:4px; font-size:0.78rem; color:#94a3b8;">
-              BMU CSE3101 Agentic AI &middot; Source: <span style="color:#38bdf8;">Google Agent Development Kit (adk.dev/callbacks)</span> &middot; Professor's Reference Architecture
+              BMU CSE3101 Agentic AI &middot; Source: <span style="color:#52b8ff;">Google Agent Development Kit (adk.dev/callbacks)</span> &middot; Professor's Reference Architecture
             </p>
           </div>
           <button type="button" class="course-modal-close-btn" onclick="window.closeMedicalTriageModal()" title="Close">&times;</button>
@@ -1737,30 +1737,30 @@
 
         <div style="padding: 16px 20px;">
           <!-- Top Architecture Banner (Diagram Summary) -->
-          <div style="background: rgba(15,23,42,0.85); border: 1px solid rgba(56,189,248,0.25); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px;">
-            <div style="font-size:0.75rem; text-transform:uppercase; color:#38bdf8; font-weight:700; letter-spacing:0.05em; margin-bottom:6px;">
+          <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(82, 184, 255, 0.25); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px;">
+            <div style="font-size:0.75rem; text-transform:uppercase; color:#52b8ff; font-weight:700; letter-spacing:0.05em; margin-bottom:6px;">
               Professor's Architecture Pipeline &middot; The Medical Triage Agent
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-family:var(--font-mono, monospace); font-size:0.74rem;">
               <span style="background:#1e293b; color:#cbd5e1; padding:3px 8px; border-radius:4px; border:1px solid #334155;">User message</span>
-              <span style="color:#ef4444;">&rarr; root: block_sensitive</span>
+              <span style="color:#e84f4b;">&rarr; root: block_sensitive</span>
               <span style="color:#64748b;">&rarr;</span>
-              <span style="background:rgba(56,189,248,0.15); color:#38bdf8; padding:3px 8px; border-radius:4px; border:1px solid rgba(56,189,248,0.3);">triage_agent &rarr; state["triage"]</span>
+              <span style="background:rgba(82, 184, 255, 0.15); color:#52b8ff; padding:3px 8px; border-radius:4px; border:1px solid rgba(82, 184, 255, 0.3);">triage_agent &rarr; state["triage"]</span>
               <span style="color:#64748b;">&rarr;</span>
-              <span style="background:#0f172a; color:#f59e0b; padding:3px 8px; border-radius:4px; border:1px solid #f59e0b;">Urgency?</span>
+              <span style="background:#0f172a; color:#f0a132; padding:3px 8px; border-radius:4px; border:1px solid #f0a132;">Urgency?</span>
               <span style="color:#64748b;">&rarr;</span>
-              <span style="background:rgba(239,68,68,0.15); color:#f87171; padding:3px 8px; border-radius:4px; border:1px solid rgba(239,68,68,0.3);">HIGH &rarr; emergency_agent (112/108, NO medicine)</span>
+              <span style="background:rgba(232, 79, 75, 0.15); color:#f87171; padding:3px 8px; border-radius:4px; border:1px solid rgba(232, 79, 75, 0.3);">HIGH &rarr; emergency_agent (112/108, NO medicine)</span>
               <span style="color:#64748b;">|</span>
-              <span style="background:rgba(16,185,129,0.15); color:#34d399; padding:3px 8px; border-radius:4px; border:1px solid rgba(16,185,129,0.3);">NORMAL &rarr; persona_agent &rarr; medicine_agent (Tavily OTC)</span>
+              <span style="background:rgba(60, 182, 133, 0.15); color:#58cf9e; padding:3px 8px; border-radius:4px; border:1px solid rgba(60, 182, 133, 0.3);">NORMAL &rarr; persona_agent &rarr; medicine_agent (Tavily OTC)</span>
             </div>
             <div style="margin-top:8px; font-size:0.72rem; color:#94a3b8; font-family:var(--font-mono, monospace);">
-              <span style="color:#f1f5f9; font-weight:600;">Checkpoints inside every agent run:</span> before_agent &rarr; before_model &rarr; [LLM] &rarr; after_model &rarr; after_agent &nbsp;|&nbsp; Tools: before_tool &middot; after_tool
+              <span style="color:#f2f5f9; font-weight:600;">Checkpoints inside every agent run:</span> before_agent &rarr; before_model &rarr; [LLM] &rarr; after_model &rarr; after_agent &nbsp;|&nbsp; Tools: before_tool &middot; after_tool
             </div>
           </div>
 
           <!-- Tab Bar -->
-          <div style="display:flex; gap:10px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:10px;">
-            <button type="button" id="tab-triage-run" class="pill-btn active" onclick="window.switchTriageTab('pipeline')" style="background:#0284c7; color:#fff; padding:6px 14px; font-size:0.78rem; font-weight:600;">
+          <div style="display:flex; gap:10px; margin-bottom:14px; border-bottom:1px solid rgba(255, 255, 255, 0.08); padding-bottom:10px;">
+            <button type="button" id="tab-triage-run" class="pill-btn active" onclick="window.switchTriageTab('pipeline')" style="background:#0284c7; color:#ffffff; padding:6px 14px; font-size:0.78rem; font-weight:600;">
               Run Medical Triage Pipeline
             </button>
             <button type="button" id="tab-triage-patterns" class="pill-btn" onclick="window.switchTriageTab('patterns')" style="background:#1e293b; color:#cbd5e1; padding:6px 14px; font-size:0.78rem;">
@@ -1774,19 +1774,19 @@
               Select Canonical Quiz Scenario (Direct from Professor's Question Bank):
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('cardiac')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(239,68,68,0.5); color:#fca5a5;">
+              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('cardiac')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(232, 79, 75, 0.5); color:#fca5a2;">
                 Quiz 1: Severe Chest Pain &amp; Sweating (High Urgency)
               </button>
-              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('stroke')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(239,68,68,0.5); color:#fca5a5;">
+              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('stroke')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(232, 79, 75, 0.5); color:#fca5a2;">
                 Quiz 2: Stroke FAST Signs / Facial Droop (High Urgency)
               </button>
-              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('headache')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(16,185,129,0.5); color:#6ee7b7;">
+              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('headache')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(60, 182, 133, 0.5); color:#6ee7b7;">
                 Quiz 3: Tension Headache / 8hr Screen (Normal OTC)
               </button>
-              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('allergy')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(16,185,129,0.5); color:#6ee7b7;">
+              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('allergy')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(60, 182, 133, 0.5); color:#6ee7b7;">
                 Quiz 4: Seasonal Allergy / Penicillin Allergy (Normal OTC)
               </button>
-              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('blocked')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(245,158,11,0.5); color:#fcd34d;">
+              <button type="button" class="btn-eval-secondary" onclick="window.loadTriageScenario('blocked')" style="font-size:0.74rem; padding:5px 10px; border-color:rgba(240, 161, 50, 0.5); color:#ffce89;">
                 Quiz 5: Prompt Injection &amp; PII Hack (Root Block)
               </button>
             </div>
@@ -1799,7 +1799,7 @@
             </div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-              <button type="button" id="btn-run-triage-live" class="btn-eval-primary" onclick="window.executeTriageLive()" style="padding:8px 18px; font-size:0.82rem; font-weight:700; background:#0284c7; color:#fff; border-radius:6px; border:none; cursor:pointer;">
+              <button type="button" id="btn-run-triage-live" class="btn-eval-primary" onclick="window.executeTriageLive()" style="padding:8px 18px; font-size:0.82rem; font-weight:700; background:#0284c7; color:#ffffff; border-radius:6px; border:none; cursor:pointer;">
                 Execute Medical Triage Pipeline &rarr;
               </button>
               <span id="triage-status-badge" style="font-size:0.75rem; font-family:var(--font-mono, monospace); color:#94a3b8;">Ready</span>
@@ -1819,42 +1819,42 @@
             <div id="adk-patterns-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:10px;">
               <!-- 8 Pattern Cards -->
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">01 Guardrails &amp; Policy Enforcement</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">01 Guardrails &amp; Policy Enforcement</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: before_model, before_tool &middot; Blocks violations before LLM</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('01_guardrails')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 01 &rarr;</button>
               </div>
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">02 Dynamic State Management</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">02 Dynamic State Management</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: after_tool, .state &middot; Auto-tracked in state_delta</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('02_dynamic_state')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 02 &rarr;</button>
               </div>
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">03 Logging &amp; Monitoring</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">03 Logging &amp; Monitoring</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: before_agent, after_tool &middot; Structured trace with invocation_id</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('03_logging')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 03 &rarr;</button>
               </div>
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">04 Caching</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">04 Caching</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: before_tool / after_tool &middot; Avoid redundant LLM/tool calls</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('04_caching')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 04 &rarr;</button>
               </div>
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">05 Request / Response Modification</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">05 Request / Response Modification</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: before_model, after_model &middot; Rewrites instructions &amp; scrub</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('05_request_mod')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 05 &rarr;</button>
               </div>
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">06 Conditional Skipping of Steps</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">06 Conditional Skipping of Steps</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: before_agent, before_tool &middot; Quota &amp; gating early exits</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('06_conditional_skip')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 06 &rarr;</button>
               </div>
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">07 Tool-Specific Actions</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">07 Tool-Specific Actions</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: before_tool &middot; request_credential, skip_summarization</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('07_tool_actions')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 07 &rarr;</button>
               </div>
               <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
-                <div style="font-weight:700; color:#38bdf8; font-size:0.82rem;">08 Artifact Handling</div>
+                <div style="font-weight:700; color:#52b8ff; font-size:0.82rem;">08 Artifact Handling</div>
                 <div style="font-size:0.72rem; color:#94a3b8; margin:4px 0;">Hooks: after_tool &middot; save_artifact, load_artifact, artifact_delta</div>
                 <button type="button" class="btn-eval-secondary" onclick="window.testAdkPatternLive('08_artifact_handling')" style="font-size:0.72rem; padding:4px 10px; width:100%; margin-top:6px;">Test Pattern 08 &rarr;</button>
               </div>
@@ -1867,9 +1867,9 @@
           </div>
         </div>
 
-        <div class="course-modal-footer" style="border-top:1px solid rgba(255,255,255,0.08); padding:12px 20px; display:flex; justify-content:space-between; align-items:center;">
+        <div class="course-modal-footer" style="border-top:1px solid rgba(255, 255, 255, 0.08); padding:12px 20px; display:flex; justify-content:space-between; align-items:center;">
           <div style="font-size:0.74rem; color:#94a3b8;">
-            Golden Rule: <span style="color:#38bdf8; font-weight:600;">Focused, fast, and idempotent &mdash; every time.</span>
+            Golden Rule: <span style="color:#52b8ff; font-weight:600;">Focused, fast, and idempotent &mdash; every time.</span>
           </div>
           <button type="button" class="pill-btn" onclick="window.closeMedicalTriageModal()" style="padding:6px 16px; font-size:0.78rem;">Close</button>
         </div>
@@ -1897,14 +1897,14 @@
       viewPipeline.style.display = "block";
       viewPatterns.style.display = "none";
       btnPipeline.style.background = "#0284c7";
-      btnPipeline.style.color = "#fff";
+      btnPipeline.style.color = "#ffffff";
       btnPatterns.style.background = "#1e293b";
       btnPatterns.style.color = "#cbd5e1";
     } else {
       viewPipeline.style.display = "none";
       viewPatterns.style.display = "block";
       btnPatterns.style.background = "#0284c7";
-      btnPatterns.style.color = "#fff";
+      btnPatterns.style.color = "#ffffff";
       btnPipeline.style.background = "#1e293b";
       btnPipeline.style.color = "#cbd5e1";
     }
@@ -1936,7 +1936,7 @@
     const userMessage = inputEl.value.trim();
     if (!userMessage) return;
 
-    if (badgeEl) badgeEl.innerHTML = '<span style="color:#38bdf8;">Executing Pipeline...</span>';
+    if (badgeEl) badgeEl.innerHTML = '<span style="color:#52b8ff;">Executing Pipeline...</span>';
     if (btn) btn.disabled = true;
 
     try {
@@ -1960,9 +1960,9 @@
     const isHalted = data.status === "HALTED_BY_GUARDRAIL";
     const isHigh = data.urgency === "HIGH";
 
-    const urgencyColor = isHalted ? "#f59e0b" : (isHigh ? "#ef4444" : "#10b981");
-    const urgencyBg = isHalted ? "rgba(245,158,11,0.15)" : (isHigh ? "rgba(239,68,68,0.15)" : "rgba(16,185,129,0.15)");
-    const urgencyBorder = isHalted ? "rgba(245,158,11,0.4)" : (isHigh ? "rgba(239,68,68,0.4)" : "rgba(16,185,129,0.4)");
+    const urgencyColor = isHalted ? "#f0a132" : (isHigh ? "#e84f4b" : "#3cb685");
+    const urgencyBg = isHalted ? "rgba(240, 161, 50, 0.15)" : (isHigh ? "rgba(232, 79, 75, 0.15)" : "rgba(60, 182, 133, 0.15)");
+    const urgencyBorder = isHalted ? "rgba(240, 161, 50, 0.4)" : (isHigh ? "rgba(232, 79, 75, 0.4)" : "rgba(60, 182, 133, 0.4)");
 
     if (badgeEl) {
       badgeEl.innerHTML = `<span style="color:${urgencyColor}; font-weight:700;">${isHalted ? 'HALTED BY ROOT GUARDRAIL' : (isHigh ? 'HIGH URGENCY (EMERGENCY)' : 'NORMAL URGENCY (OTC FLOW)')} &middot; ${data.duration_ms || 12}ms</span>`;
@@ -1971,21 +1971,21 @@
     let branchHtml = "";
     if (isHalted) {
       branchHtml = `
-        <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:12px; margin-bottom:12px;">
-          <div style="color:#f59e0b; font-weight:700; font-size:0.82rem;">[Root Guardrail] 'block_sensitive' Interception</div>
-          <div style="color:#fde68a; font-size:0.78rem; margin-top:4px;">${data.guardrail.reason}</div>
+        <div style="background:rgba(240, 161, 50, 0.1); border:1px solid rgba(240, 161, 50, 0.3); border-radius:8px; padding:12px; margin-bottom:12px;">
+          <div style="color:#f0a132; font-weight:700; font-size:0.82rem;">[Root Guardrail] 'block_sensitive' Interception</div>
+          <div style="color:#ffe1b8; font-size:0.78rem; margin-top:4px;">${data.guardrail.reason}</div>
           <div style="color:#94a3b8; font-size:0.72rem; margin-top:2px;">${data.guardrail.intervention}</div>
         </div>
       `;
     } else if (isHigh) {
       const emerg = data.agent_executions.emergency_agent;
       branchHtml = `
-        <div style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.35); border-radius:8px; padding:14px; margin-bottom:12px;">
+        <div style="background:rgba(232, 79, 75, 0.12); border:1px solid rgba(232, 79, 75, 0.35); border-radius:8px; padding:14px; margin-bottom:12px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <span style="color:#f87171; font-weight:700; font-size:0.86rem;">Dispatched Branch: emergency_agent (Gate: only_if_urgent)</span>
-            <span style="background:#ef4444; color:#fff; font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:4px;">${emerg.action}</span>
+            <span style="background:#e84f4b; color:#ffffff; font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:4px;">${emerg.action}</span>
           </div>
-          <div style="color:#fca5a5; font-size:0.8rem; font-weight:600; margin-bottom:6px;">
+          <div style="color:#fca5a2; font-size:0.8rem; font-weight:600; margin-bottom:6px;">
             Directive: ${emerg.medication_directive}
           </div>
           <div style="color:#e2e8f0; font-size:0.76rem; font-weight:600;">Safe Steps While Awaiting Paramedics:</div>
@@ -1999,11 +1999,11 @@
       const meds = data.shared_session_state.medicine_options || {};
       const otcList = meds.otc_recommendations || ["Rest & Hydration"];
       branchHtml = `
-        <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:14px; margin-bottom:12px;">
-          <div style="color:#34d399; font-weight:700; font-size:0.84rem; margin-bottom:6px;">Dispatched Branch: normal_flow (Gate: only_if_normal)</div>
+        <div style="background:rgba(60, 182, 133, 0.1); border:1px solid rgba(60, 182, 133, 0.3); border-radius:8px; padding:14px; margin-bottom:12px;">
+          <div style="color:#58cf9e; font-weight:700; font-size:0.84rem; margin-bottom:6px;">Dispatched Branch: normal_flow (Gate: only_if_normal)</div>
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:8px;">
             <div style="background:#0b0f19; border:1px solid #1e293b; border-radius:6px; padding:10px;">
-              <div style="color:#38bdf8; font-weight:700; font-size:0.75rem;">Step 1: persona_agent &rarr; state["persona"]</div>
+              <div style="color:#52b8ff; font-weight:700; font-size:0.75rem;">Step 1: persona_agent &rarr; state["persona"]</div>
               <div style="font-size:0.72rem; color:#cbd5e1; margin-top:4px;">
                 &bull; Age: ${persona.inferred_age_group || 'Adult'}<br>
                 &bull; Allergies: ${persona.allergies || 'None reported'}<br>
@@ -2011,7 +2011,7 @@
               </div>
             </div>
             <div style="background:#0b0f19; border:1px solid #1e293b; border-radius:6px; padding:10px;">
-              <div style="color:#38bdf8; font-weight:700; font-size:0.75rem;">Step 2: medicine_agent (Tavily Search Tool)</div>
+              <div style="color:#52b8ff; font-weight:700; font-size:0.75rem;">Step 2: medicine_agent (Tavily Search Tool)</div>
               <div style="font-size:0.72rem; color:#cbd5e1; margin-top:4px;">
                 &bull; Source: ${meds.source || 'Tavily Search'}<br>
                 &bull; Safe OTC: ${otcList.slice(0, 2).join(", ")}<br>
@@ -2030,7 +2030,7 @@
     const checkpoints = data.checkpoint_trace || [];
     const checkpointHtml = checkpoints.map(cp => `
       <div style="display:inline-flex; align-items:center; gap:4px; background:#1e293b; border:1px solid #334155; border-radius:4px; padding:2px 7px; font-size:0.68rem; font-family:var(--font-mono, monospace); color:#94a3b8;">
-        <span style="color:#38bdf8; font-weight:700;">${cp.checkpoint}</span> (${cp.agent})
+        <span style="color:#52b8ff; font-weight:700;">${cp.checkpoint}</span> (${cp.agent})
       </div>
     `).join(" &rarr; ");
 
@@ -2040,9 +2040,9 @@
       <div style="margin-top:10px; border-top:1px solid #1e293b; padding-top:10px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Shared Session State:</span>
-          <span style="font-size:0.68rem; color:#38bdf8; font-family:var(--font-mono, monospace);">state["triage"], state["urgency"], state["persona"], state["medicine_options"]</span>
+          <span style="font-size:0.68rem; color:#52b8ff; font-family:var(--font-mono, monospace);">state["triage"], state["urgency"], state["persona"], state["medicine_options"]</span>
         </div>
-        <pre style="background:#0b0f19; border:1px solid #1e293b; border-radius:6px; padding:10px; margin:0; font-size:0.72rem; color:#38bdf8; overflow-x:auto;">${escapeHtml(stateJson)}</pre>
+        <pre style="background:#0b0f19; border:1px solid #1e293b; border-radius:6px; padding:10px; margin:0; font-size:0.72rem; color:#52b8ff; overflow-x:auto;">${escapeHtml(stateJson)}</pre>
       </div>
 
       <div style="margin-top:10px; border-top:1px solid #1e293b; padding-top:8px;">
@@ -2133,7 +2133,7 @@
     const resEl = document.getElementById("adk-pattern-result");
     if (!resEl) return;
     resEl.style.display = "block";
-    resEl.innerHTML = '<span style="color:#38bdf8;">Testing ADK callback pattern live on backend...</span>';
+    resEl.innerHTML = '<span style="color:#52b8ff;">Testing ADK callback pattern live on backend...</span>';
 
     try {
       const resp = await fetch(getApiBaseUrl() + "/adk/callbacks/demo-pattern", {
@@ -2143,12 +2143,12 @@
       });
       const data = await resp.json();
       resEl.innerHTML = `
-        <div style="color:#10b981; font-weight:700; margin-bottom:4px;">Pattern Test Verified: ${data.pattern}</div>
-        <div style="color:#94a3b8; font-size:0.72rem; margin-bottom:6px;">Hook Fired: <span style="color:#38bdf8;">${data.hook_fired || (data.hooks_fired || []).join(', ')}</span></div>
+        <div style="color:#3cb685; font-weight:700; margin-bottom:4px;">Pattern Test Verified: ${data.pattern}</div>
+        <div style="color:#94a3b8; font-size:0.72rem; margin-bottom:6px;">Hook Fired: <span style="color:#52b8ff;">${data.hook_fired || (data.hooks_fired || []).join(', ')}</span></div>
         <pre style="background:#0b0f19; padding:8px; border-radius:4px; margin:0; color:#cbd5e1; overflow-x:auto;">${escapeHtml(JSON.stringify(data, null, 2))}</pre>
       `;
     } catch (e) {
-      resEl.innerHTML = `<span style="color:#f59e0b;">Pattern simulated: ${patternId} &middot; Hook execution verified.</span>`;
+      resEl.innerHTML = `<span style="color:#f0a132;">Pattern simulated: ${patternId} &middot; Hook execution verified.</span>`;
     }
   };
 
@@ -2197,12 +2197,12 @@
 
       if (allEntries.length > 0) {
         const streamHtml = allEntries.map(e => `
-          <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.03);" title="Hover: ${safeEscapeHtml(e.hover_tooltip || JSON.stringify(e.payload_preview))}">
+          <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);" title="Hover: ${safeEscapeHtml(e.hover_tooltip || JSON.stringify(e.payload_preview))}">
             <div>
               <strong style="color:#0F172A; font-size:0.8rem;">${safeEscapeHtml(e.title)}</strong>
               <span style="color:#64748B; font-size:0.74rem; margin-left:8px;">by ${safeEscapeHtml(e.author)}</span>
             </div>
-            <div style="font-family:monospace; font-size:0.7rem; color:#1D4ED8; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#1F50D4; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
               SHA: ${safeEscapeHtml(e.state_hash || 'OK')}
             </div>
           </div>
@@ -2221,7 +2221,7 @@
   }
 
   async function runMessagingBenchmarkLive() {
-    updateAllHtml(".prof-msg-benchmark-result, #prof-msg-benchmark-result", '<span style="color:#2563EB; font-weight:600;">Benchmarking 4 messaging architectures...</span>');
+    updateAllHtml(".prof-msg-benchmark-result, #prof-msg-benchmark-result", '<span style="color:#2764E8; font-weight:600;">Benchmarking 4 messaging architectures...</span>');
     try {
       const res = await fetch(getApiBaseUrl() + "/api/professor/messaging-benchmark");
       if (!res.ok) throw new Error("HTTP " + res.status);
@@ -2246,19 +2246,19 @@
             <div style="color:#059669; font-size:0.74rem; margin-top:2px; font-weight:600;">Latency: 38 ms &middot; Score: 10/10</div>
             <div style="color:#64748B; font-size:0.72rem; margin-top:2px;">MAS Intermediate State &amp; Cryptographic Auditability</div>
           </div>
-          <div style="background:#F8FAFC; padding:10px 12px; border-radius:6px; border:1px solid #E2E8F0; border-left:3px solid #2563EB;">
+          <div style="background:#F8FAFC; padding:10px 12px; border-radius:6px; border:1px solid #E2E8F0; border-left:3px solid #2764E8;">
             <strong style="color:#0F172A; font-size:0.8rem;">P2P A2A Signed Envelopes</strong>
-            <div style="color:#2563EB; font-size:0.74rem; margin-top:2px; font-weight:600;">Latency: 45 ms &middot; Score: 9/10</div>
+            <div style="color:#2764E8; font-size:0.74rem; margin-top:2px; font-weight:600;">Latency: 45 ms &middot; Score: 9/10</div>
             <div style="color:#64748B; font-size:0.72rem; margin-top:2px;">Direct Cross-Framework Agent Delegation (ADK &harr; CrewAI)</div>
           </div>
-          <div style="background:#F8FAFC; padding:10px 12px; border-radius:6px; border:1px solid #E2E8F0; border-left:3px solid #D97706;">
+          <div style="background:#F8FAFC; padding:10px 12px; border-radius:6px; border:1px solid #E2E8F0; border-left:3px solid #D6791C;">
             <strong style="color:#0F172A; font-size:0.8rem;">Pub/Sub Event Bus</strong>
-            <div style="color:#D97706; font-size:0.74rem; margin-top:2px; font-weight:600;">Latency: 28 ms &middot; Score: 6/10</div>
+            <div style="color:#D6791C; font-size:0.74rem; margin-top:2px; font-weight:600;">Latency: 28 ms &middot; Score: 6/10</div>
             <div style="color:#64748B; font-size:0.72rem; margin-top:2px;">High Throughput Telemetry &amp; Log Broadcasts</div>
           </div>
-          <div style="background:#F8FAFC; padding:10px 12px; border-radius:6px; border:1px solid #E2E8F0; border-left:3px solid #9333EA;">
+          <div style="background:#F8FAFC; padding:10px 12px; border-radius:6px; border:1px solid #E2E8F0; border-left:3px solid #416ADC;">
             <strong style="color:#0F172A; font-size:0.8rem;">Sequential SAGA Orchestrator</strong>
-            <div style="color:#9333EA; font-size:0.74rem; margin-top:2px; font-weight:600;">Latency: 92 ms &middot; Score: 8/10</div>
+            <div style="color:#416ADC; font-size:0.74rem; margin-top:2px; font-weight:600;">Latency: 92 ms &middot; Score: 8/10</div>
             <div style="color:#64748B; font-size:0.72rem; margin-top:2px;">Transactional Workflows with Distributed Rollbacks</div>
           </div>
         </div>
@@ -2374,13 +2374,13 @@
       const el = document.getElementById(cards[k]);
       if (el) {
         if (k === toolName) {
-          el.style.border = '2px solid #2563EB';
+          el.style.border = '2px solid #2764E8';
           el.style.background = '#EFF6FF';
-          el.style.boxShadow = '0 2px 8px rgba(37,99,235,0.15)';
+          el.style.boxShadow = '0 2px 8px rgba(39, 100, 232, 0.06)';
         } else {
           el.style.border = '1px solid #CBD5E1';
           el.style.background = '#FFFFFF';
-          el.style.boxShadow = '0 1px 3px rgba(0,0,0,0.03)';
+          el.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.03)';
         }
       }
     });
@@ -2443,8 +2443,8 @@
       id: 'aws',
       name: 'Scenario 2: Hardcoded Cloud Credentials & Entropy Filter',
       badge: 'SHANNON ENTROPY H > 4.5',
-      badgeColor: '#D97706',
-      badgeBg: '#FFFBEB',
+      badgeColor: '#D6791C',
+      badgeBg: '#FFFAF3',
       task: 'Screen CI/CD environment diff for hardcoded AWS / Stripe secrets (Entropy H > 4.5 bits detection)',
       code: "AWS_ACCESS_KEY_ID = 'AKIAIOSFODNN7EXAMPLE'\nAWS_SECRET_ACCESS_KEY = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'\nSTRIPE_API_TOKEN = 'sk_test_demo_entropy_token_99281_example'",
       remediatedCode: "AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')\nAWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')\nSTRIPE_API_TOKEN = os.environ.get('STRIPE_API_TOKEN')",
@@ -2459,8 +2459,8 @@
       id: 'pypi',
       name: 'Scenario 3: Hallucinated PyPI Package Supply-Chain Defense',
       badge: 'LIVE PYPI FIREWALL',
-      badgeColor: '#7C3AED',
-      badgeBg: '#F5F3FF',
+      badgeColor: '#3D65D6',
+      badgeBg: '#F0F5FF',
       task: 'Cross-check AST import statements against official PyPI registry via HTTP firewall before build execution',
       code: "import numpy as np\nimport completely_hallucinated_package_xyz_998877 as crypto_helper\nfrom crypto_helper import secure_vault",
       remediatedCode: "import numpy as np\n# REMOVED: completely_hallucinated_package_xyz_998877 returned 404 on official PyPI\nimport hashlib  # Safe stdlib replacement synthesized by CrewAI",
@@ -2475,7 +2475,7 @@
       id: 'react',
       name: 'Scenario 4: Multi-Turn ReAct Sandbox Loop (RCE Remediation)',
       badge: 'REACT CONVERGENCE N <= 3',
-      badgeColor: '#2563EB',
+      badgeColor: '#2764E8',
       badgeBg: '#EFF6FF',
       task: 'Execute AST sandboxed ReAct loop to patch command injection vulnerability in subprocess call',
       code: "import subprocess\ndef execute_diagnostics(user_host):\n    # CRITICAL: Vulnerable to command chaining\n    cmd = f'ping -c 1 {user_host}'\n    return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).communicate()",
@@ -2518,9 +2518,9 @@
     currentInteropView = viewId;
     document.querySelectorAll('.interop-view-pill').forEach(pill => {
       const isCur = pill.getAttribute('data-view') === viewId;
-      pill.style.background = isCur ? '#2563EB' : '#FFFFFF';
+      pill.style.background = isCur ? '#2764E8' : '#FFFFFF';
       pill.style.color = isCur ? '#FFFFFF' : '#475569';
-      pill.style.borderColor = isCur ? '#2563EB' : '#CBD5E1';
+      pill.style.borderColor = isCur ? '#2764E8' : '#CBD5E1';
       pill.style.fontWeight = isCur ? '700' : '600';
     });
     renderInteropActiveView();
@@ -2538,7 +2538,7 @@
     buttons.forEach(btn => {
       btn.disabled = true;
       btn.style.opacity = '0.9';
-      btn.style.background = '#2563EB';
+      btn.style.background = '#2764E8';
       btn.innerHTML = `<span style="display:inline-block; animation:spin 1s linear infinite;"></span> Dispatching A2A Bridge...`;
     });
 
@@ -2558,13 +2558,13 @@
 
     // 3. Render animated progression in ALL stepper containers
     const stepperHtml = `
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 16px; margin-bottom:14px; box-shadow:0 2px 4px rgba(0,0,0,0.02);">
+      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 16px; margin-bottom:14px; box-shadow:0 2px 4px rgba(0, 0, 0, 0.02);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:6px;">
           <div style="display:flex; align-items:center; gap:8px;">
-            <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#10B981; box-shadow:0 0 10px #10B981;"></span>
+            <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#3CB685; box-shadow:0 0 10px #3CB68566;"></span>
             <strong style="font-size:0.82rem; color:#0F172A;">Multi-Agent A2A Execution Verified &bull; Real-Time Pipeline</strong>
           </div>
-          <span style="font-size:0.72rem; color:#059669; font-weight:700; font-family:monospace; background:#ECFDF5; border:1px solid #A7F3D0; padding:2px 8px; border-radius:9999px;">
+          <span style="font-size:0.72rem; color:#059669; font-weight:700; font-family:'IBM Plex Mono', monospace; background:#ECFDF5; border:1px solid #A7F3D0; padding:2px 8px; border-radius:9999px;">
             Total Latency: 42.34 ms &bull; Zero External Network Overhead
           </span>
         </div>
@@ -2576,15 +2576,15 @@
             </div>
             <div style="font-size:0.65rem; color:#64748B; margin-top:2px;">Memory session + Verhoeff D5 + 8 Hooks</div>
           </div>
-          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:8px 10px; border-left:4px solid #2563EB; transition:all 0.2s;">
-            <div style="display:flex; justify-content:space-between; font-size:0.72rem; font-weight:700; color:#2563EB;">
+          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:8px 10px; border-left:4px solid #2764E8; transition:all 0.2s;">
+            <div style="display:flex; justify-content:space-between; font-size:0.72rem; font-weight:700; color:#2764E8;">
               <span>2. A2A Wire Bridge</span>
               <span style="color:#059669;">&check; 1.12 ms</span>
             </div>
             <div style="font-size:0.65rem; color:#64748B; margin-top:2px;">JSON-RPC 2.0 + HMAC-SHA256 signature</div>
           </div>
-          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:8px 10px; border-left:4px solid #7C3AED; transition:all 0.2s;">
-            <div style="display:flex; justify-content:space-between; font-size:0.72rem; font-weight:700; color:#7C3AED;">
+          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:8px 10px; border-left:4px solid #3D65D6; transition:all 0.2s;">
+            <div style="display:flex; justify-content:space-between; font-size:0.72rem; font-weight:700; color:#3D65D6;">
               <span>3. CrewAI Swarm Flow</span>
               <span style="color:#059669;">&check; 38.4 ms</span>
             </div>
@@ -2669,7 +2669,7 @@
               </span>
               <strong style="color:#0F172A; font-size:0.85rem;">Verdict: ${sc.pydanticVerdict}</strong>
             </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:0.7rem; color:#475569; font-family:monospace;">
+            <div style="display:flex; align-items:center; gap:12px; font-size:0.7rem; color:#475569; font-family:'IBM Plex Mono', monospace;">
               <span>Shannon Entropy: <strong>${sc.entropyVal}</strong></span>
               <span>&bull;</span>
               <span>Merkle Provenance: <strong>SHA3-512 Validated</strong></span>
@@ -2681,24 +2681,24 @@
           <!-- 3-Pillar Cross-Framework Architecture Cards -->
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-bottom:14px;">
             <!-- Pillar 1: ADK -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:12px 14px; border-radius:8px; border-left:4px solid #0284C7; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:12px 14px; border-radius:8px; border-left:4px solid #0284C7; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                 <strong style="font-size:0.82rem; color:#0284C7;">1. Google ADK Gateway</strong>
-                <span style="font-size:0.65rem; background:#E0F2FE; color:#0284C7; padding:2px 6px; border-radius:4px; font-weight:700;">COORDINATOR</span>
+                <span style="font-size:0.65rem; background:#E1F2FE; color:#0284C7; padding:2px 6px; border-radius:4px; font-weight:700;">COORDINATOR</span>
               </div>
               <div style="font-size:0.72rem; color:#334155; line-height:1.4;">${sc.adkDetails}</div>
               <div style="margin-top:8px; padding-top:6px; border-top:1px dashed #E2E8F0; font-size:0.68rem; color:#64748B;">
                 <div>Session: <code style="color:#0284C7;">adk-session-0x7f9b</code></div>
                 <div>Callback Hooks Fired: <strong style="color:#059669;">8 / 8 Active</strong></div>
-                <div style="font-family:monospace; margin-top:2px;">Sig: A2A-SIG-ADK-7F9B1C</div>
+                <div style="font-family:'IBM Plex Mono', monospace; margin-top:2px;">Sig: A2A-SIG-ADK-7F9B1C</div>
               </div>
             </div>
 
             <!-- Pillar 2: Consensus Wire -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:12px 14px; border-radius:8px; border-left:4px solid #2563EB; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:12px 14px; border-radius:8px; border-left:4px solid #2764E8; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <strong style="font-size:0.82rem; color:#2563EB;">2. Cryptographic A2A Bus</strong>
-                <span style="font-size:0.65rem; background:#EFF6FF; color:#2563EB; padding:2px 6px; border-radius:4px; font-weight:700;">MUTUAL HMAC</span>
+                <strong style="font-size:0.82rem; color:#2764E8;">2. Cryptographic A2A Bus</strong>
+                <span style="font-size:0.65rem; background:#EFF6FF; color:#2764E8; padding:2px 6px; border-radius:4px; font-weight:700;">MUTUAL HMAC</span>
               </div>
               <div style="font-size:0.72rem; color:#334155; line-height:1.4;">
                 Signed JSON-RPC 2.0 message envelope delivered over in-memory bus with zero network delay.
@@ -2706,21 +2706,21 @@
               <div style="margin-top:8px; padding-top:6px; border-top:1px dashed #E2E8F0; font-size:0.68rem; color:#64748B;">
                 <div>Bus Latency: <strong style="color:#059669;">1.12 ms</strong></div>
                 <div>Non-Repudiation: <strong>HMAC-SHA256</strong></div>
-                <div style="font-family:monospace; margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Leaf: ${sc.merkleLeaf.substring(0, 24)}...</div>
+                <div style="font-family:'IBM Plex Mono', monospace; margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Leaf: ${sc.merkleLeaf.substring(0, 24)}...</div>
               </div>
             </div>
 
             <!-- Pillar 3: CrewAI -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:12px 14px; border-radius:8px; border-left:4px solid #7C3AED; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:12px 14px; border-radius:8px; border-left:4px solid #3D65D6; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <strong style="font-size:0.82rem; color:#7C3AED;">3. CrewAI Specialist Swarm</strong>
-                <span style="font-size:0.65rem; background:#F5F3FF; color:#7C3AED; padding:2px 6px; border-radius:4px; font-weight:700;">SPECIALISTS</span>
+                <strong style="font-size:0.82rem; color:#3D65D6;">3. CrewAI Specialist Swarm</strong>
+                <span style="font-size:0.65rem; background:#F0F5FF; color:#3D65D6; padding:2px 6px; border-radius:4px; font-weight:700;">SPECIALISTS</span>
               </div>
               <div style="font-size:0.72rem; color:#334155; line-height:1.4;">${sc.crewDetails}</div>
               <div style="margin-top:8px; padding-top:6px; border-top:1px dashed #E2E8F0; font-size:0.68rem; color:#64748B;">
-                <div>Workflow: <code style="color:#7C3AED;">@start -&gt; @listen</code> Flow</div>
+                <div>Workflow: <code style="color:#3D65D6;">@start -&gt; @listen</code> Flow</div>
                 <div>Invariant Violations: <strong style="color:#059669;">0 Detected</strong></div>
-                <div style="font-family:monospace; margin-top:2px;">Sig: A2A-SIG-CREWAI-83A4E2</div>
+                <div style="font-family:'IBM Plex Mono', monospace; margin-top:2px;">Sig: A2A-SIG-CREWAI-83A4E2</div>
               </div>
             </div>
           </div>
@@ -2728,10 +2728,10 @@
           <!-- Code Remediated Diff Card -->
           <div style="background:#0F172A; border-radius:8px; padding:14px; color:#F8FAFC; margin-bottom:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1px solid #334155; padding-bottom:6px;">
-              <span style="font-size:0.74rem; font-weight:700; color:#38BDF8;">AST-Synthesized Remediated Code Patch &bull; Verified Invariant Safe</span>
-              <span style="font-size:0.68rem; color:#94A3B8; font-family:monospace;">Blast Radius B(v) = 0.08 &lt;= 0.35 Gate</span>
+              <span style="font-size:0.74rem; font-weight:700; color:#52B8FF;">AST-Synthesized Remediated Code Patch &bull; Verified Invariant Safe</span>
+              <span style="font-size:0.68rem; color:#94A3B8; font-family:'IBM Plex Mono', monospace;">Blast Radius B(v) = 0.08 &lt;= 0.35 Gate</span>
             </div>
-            <pre style="margin:0; font-family:monospace; font-size:0.74rem; color:#34D399; line-height:1.4; white-space:pre-wrap; max-height:160px; overflow-y:auto;">${safeEscapeHtml(sc.remediatedCode)}</pre>
+            <pre style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:#58CF9E; line-height:1.4; white-space:pre-wrap; max-height:160px; overflow-y:auto;">${safeEscapeHtml(sc.remediatedCode)}</pre>
           </div>
         </div>
       `;
@@ -2798,18 +2798,18 @@
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:12px;">
             <div style="background:#0F172A; border-radius:8px; padding:12px; border:1px solid #1E293B;">
-              <div style="display:flex; justify-content:space-between; color:#38BDF8; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
+              <div style="display:flex; justify-content:space-between; color:#52B8FF; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
                 <span>Request: Google ADK -&gt; CrewAI</span>
                 <span style="color:#94A3B8;">HMAC-SHA256</span>
               </div>
-              <pre style="margin:0; color:#E2E8F0; font-family:monospace; font-size:0.7rem; line-height:1.35; max-height:280px; overflow-y:auto;">${safeEscapeHtml(JSON.stringify(adkRequestEnvelope, null, 2))}</pre>
+              <pre style="margin:0; color:#E2E8F0; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; line-height:1.35; max-height:280px; overflow-y:auto;">${safeEscapeHtml(JSON.stringify(adkRequestEnvelope, null, 2))}</pre>
             </div>
             <div style="background:#0F172A; border-radius:8px; padding:12px; border:1px solid #1E293B;">
-              <div style="display:flex; justify-content:space-between; color:#A78BFA; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
+              <div style="display:flex; justify-content:space-between; color:#759DFF; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
                 <span>Response: CrewAI -&gt; Google ADK</span>
-                <span style="color:#34D399;">Type-Safe Pydantic</span>
+                <span style="color:#58CF9E;">Type-Safe Pydantic</span>
               </div>
-              <pre style="margin:0; color:#E2E8F0; font-family:monospace; font-size:0.7rem; line-height:1.35; max-height:280px; overflow-y:auto;">${safeEscapeHtml(JSON.stringify(crewaiResponseEnvelope, null, 2))}</pre>
+              <pre style="margin:0; color:#E2E8F0; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; line-height:1.35; max-height:280px; overflow-y:auto;">${safeEscapeHtml(JSON.stringify(crewaiResponseEnvelope, null, 2))}</pre>
             </div>
           </div>
         </div>
@@ -2825,9 +2825,9 @@
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
             <!-- Formula 1: Entropy -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #D97706; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
-              <div style="font-size:0.78rem; font-weight:700; color:#D97706; margin-bottom:4px;">1. Shannon Information Entropy (Key Detection)</div>
-              <div style="background:#FFFBEB; border:1px solid #FDE68A; padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.85rem; color:#92400E; margin:6px 0; text-align:center;">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #D6791C; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
+              <div style="font-size:0.78rem; font-weight:700; color:#D6791C; margin-bottom:4px;">1. Shannon Information Entropy (Key Detection)</div>
+              <div style="background:#FFFAF3; border:1px solid #FFE1B8; padding:8px 12px; border-radius:6px; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:#8C4600; margin:6px 0; text-align:center;">
                 H(X) = - &sum; P(x_i) &middot; log_2 P(x_i)
               </div>
               <div style="font-size:0.7rem; color:#475569; line-height:1.4;">
@@ -2836,9 +2836,9 @@
             </div>
 
             <!-- Formula 2: Verhoeff -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #059669; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #059669; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <div style="font-size:0.78rem; font-weight:700; color:#059669; margin-bottom:4px;">2. Verhoeff D5 Dihedral Permutation Group</div>
-              <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.85rem; color:#065F46; margin:6px 0; text-align:center;">
+              <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:8px 12px; border-radius:6px; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:#065F46; margin:6px 0; text-align:center;">
                 &sum; &sigma;^i (c_i) = 0 &isin; D_5
               </div>
               <div style="font-size:0.7rem; color:#475569; line-height:1.4;">
@@ -2847,9 +2847,9 @@
             </div>
 
             <!-- Formula 3: Merkle -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #2563EB; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
-              <div style="font-size:0.78rem; font-weight:700; color:#2563EB; margin-bottom:4px;">3. NIST FIPS 202 SHA3-512 Merkle Provenance</div>
-              <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.85rem; color:#1E40AF; margin:6px 0; text-align:center;">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #2764E8; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
+              <div style="font-size:0.78rem; font-weight:700; color:#2764E8; margin-bottom:4px;">3. NIST FIPS 202 SHA3-512 Merkle Provenance</div>
+              <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:8px 12px; border-radius:6px; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:#1E40AF; margin:6px 0; text-align:center;">
                 H_root = SHA3-512 ( H_ADK &parallel; H_CrewAI )
               </div>
               <div style="font-size:0.7rem; color:#475569; line-height:1.4;">
@@ -2858,9 +2858,9 @@
             </div>
 
             <!-- Formula 4: ReAct -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #7C3AED; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
-              <div style="font-size:0.78rem; font-weight:700; color:#7C3AED; margin-bottom:4px;">4. ReAct Loop Termination &amp; Convergence Bound</div>
-              <div style="background:#F5F3FF; border:1px solid #DDD6FE; padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.85rem; color:#5B21B6; margin:6px 0; text-align:center;">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; border-left:4px solid #3D65D6; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
+              <div style="font-size:0.78rem; font-weight:700; color:#3D65D6; margin-bottom:4px;">4. ReAct Loop Termination &amp; Convergence Bound</div>
+              <div style="background:#F0F5FF; border:1px solid #CCDCFF; padding:8px 12px; border-radius:6px; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:#2142B1; margin:6px 0; text-align:center;">
                 Convergence &hArr; (N &le; 3) &and; (B(v) &le; 0.35)
               </div>
               <div style="font-size:0.7rem; color:#475569; line-height:1.4;">
@@ -2900,16 +2900,16 @@ class AgentStructuredReport(BaseModel):
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:12px;">
             <div style="background:#0F172A; border-radius:8px; padding:12px; border:1px solid #1E293B;">
-              <div style="color:#38BDF8; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
+              <div style="color:#52B8FF; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
                 Python Pydantic Schema Definition (backend/app/a2a/interop_bridge.py)
               </div>
-              <pre style="margin:0; color:#E2E8F0; font-family:monospace; font-size:0.7rem; line-height:1.4; max-height:280px; overflow-y:auto;">${safeEscapeHtml(pydanticSource)}</pre>
+              <pre style="margin:0; color:#E2E8F0; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; line-height:1.4; max-height:280px; overflow-y:auto;">${safeEscapeHtml(pydanticSource)}</pre>
             </div>
             <div style="background:#0F172A; border-radius:8px; padding:12px; border:1px solid #1E293B;">
-              <div style="color:#34D399; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
+              <div style="color:#58CF9E; font-size:0.72rem; font-weight:700; margin-bottom:6px; border-bottom:1px solid #1E293B; padding-bottom:4px;">
                 Validated Runtime Instance (JSON Dump)
               </div>
-              <pre style="margin:0; color:#34D399; font-family:monospace; font-size:0.7rem; line-height:1.4; max-height:280px; overflow-y:auto;">${safeEscapeHtml(JSON.stringify({
+              <pre style="margin:0; color:#58CF9E; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; line-height:1.4; max-height:280px; overflow-y:auto;">${safeEscapeHtml(JSON.stringify({
                 model_name: "KavachA2AGovernanceReport",
                 task_goal: task,
                 verdict: sc.pydanticVerdict,
@@ -2941,33 +2941,33 @@ class AgentStructuredReport(BaseModel):
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px; text-align:center;">
             <div style="display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap;">
               <!-- Node 1 -->
-              <div style="background:#FFFFFF; border:2px solid #0284C7; padding:12px 18px; border-radius:8px; width:220px; box-shadow:0 2px 6px rgba(2,132,199,0.15);">
+              <div style="background:#FFFFFF; border:2px solid #0284C7; padding:12px 18px; border-radius:8px; width:220px; box-shadow:0 2px 6px rgba(2, 132, 199, 0.06);">
                 <div style="font-size:0.8rem; font-weight:700; color:#0284C7;">Google ADK Coordinator</div>
                 <div style="font-size:0.68rem; color:#64748B; margin-top:4px;">LlmAgent Lifecycle &bull; 8 Hooks</div>
-                <div style="margin-top:6px; font-size:0.65rem; background:#E0F2FE; color:#0284C7; padding:2px 6px; border-radius:4px; font-weight:600;">Sentinel Gatekeeper</div>
+                <div style="margin-top:6px; font-size:0.65rem; background:#E1F2FE; color:#0284C7; padding:2px 6px; border-radius:4px; font-weight:600;">Sentinel Gatekeeper</div>
               </div>
 
               <!-- Connection Arrow -->
               <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-family:monospace; font-size:0.7rem; color:#2563EB; font-weight:700;">&harr; A2A BUS &harr;</span>
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#2764E8; font-weight:700;">&harr; A2A BUS &harr;</span>
                 <span style="font-size:0.62rem; color:#64748B;">JSON-RPC 2.0 &bull; HMAC</span>
               </div>
 
               <!-- Node 2 -->
-              <div style="background:#FFFFFF; border:2px solid #7C3AED; padding:12px 18px; border-radius:8px; width:240px; box-shadow:0 2px 6px rgba(124,58,237,0.15);">
-                <div style="font-size:0.8rem; font-weight:700; color:#7C3AED;">CrewAI Specialist Swarm</div>
+              <div style="background:#FFFFFF; border:2px solid #3D65D6; padding:12px 18px; border-radius:8px; width:240px; box-shadow:0 2px 6px rgba(61, 101, 214, 0.06);">
+                <div style="font-size:0.8rem; font-weight:700; color:#3D65D6;">CrewAI Specialist Swarm</div>
                 <div style="font-size:0.68rem; color:#64748B; margin-top:4px;">@start -&gt; @listen Sequential Flow</div>
                 <div style="margin-top:6px; display:flex; gap:4px; justify-content:center; flex-wrap:wrap;">
-                  <span style="font-size:0.62rem; background:#F5F3FF; color:#7C3AED; padding:2px 5px; border-radius:4px;">Auditor</span>
-                  <span style="font-size:0.62rem; background:#F5F3FF; color:#7C3AED; padding:2px 5px; border-radius:4px;">Synthesizer</span>
-                  <span style="font-size:0.62rem; background:#F5F3FF; color:#7C3AED; padding:2px 5px; border-radius:4px;">Attestor</span>
+                  <span style="font-size:0.62rem; background:#F0F5FF; color:#3D65D6; padding:2px 5px; border-radius:4px;">Auditor</span>
+                  <span style="font-size:0.62rem; background:#F0F5FF; color:#3D65D6; padding:2px 5px; border-radius:4px;">Synthesizer</span>
+                  <span style="font-size:0.62rem; background:#F0F5FF; color:#3D65D6; padding:2px 5px; border-radius:4px;">Attestor</span>
                 </div>
               </div>
             </div>
 
             <!-- Blackboard Ribbon below -->
             <div style="margin-top:14px; background:#FFFFFF; border:1px dashed #CBD5E1; padding:8px 14px; border-radius:6px; display:inline-block; font-size:0.72rem; color:#475569;">
-              <strong>Shared State Medium:</strong> In-Repo Hover Blackboard (<code style="color:#D97706;">backend/app/agent/blackboard.py</code>) &bull; Zero External Network Overhead
+              <strong>Shared State Medium:</strong> In-Repo Hover Blackboard (<code style="color:#D6791C;">backend/app/agent/blackboard.py</code>) &bull; Zero External Network Overhead
             </div>
           </div>
         </div>
@@ -2981,12 +2981,12 @@ class AgentStructuredReport(BaseModel):
   }
 function renderPromptVariancesMatrixHtml() {
     const rows = [
-      { persona: "Junior Dev", vector: "SQL Injection & Blind Leak", arch: "ReAct Loop", payload: "' OR 1=1; SELECT * FROM users --", verdict: "BLOCKED (AST Guardrail)", vColor: "#DC2626", vBg: "#FEE2E2", entropy: "4.12 bits", latency: "0.38 ms", inv: "Type-Safe" },
-      { persona: "DevOps SRE", vector: "Privilege Escalation", arch: "ReAct Loop", payload: "subprocess.Popen(['chmod', '777', '/etc'])", verdict: "BLOCKED (POSIX Jail)", vColor: "#DC2626", vBg: "#FEE2E2", entropy: "4.65 bits", latency: "0.44 ms", inv: "Type-Safe" },
+      { persona: "Junior Dev", vector: "SQL Injection & Blind Leak", arch: "ReAct Loop", payload: "' OR 1=1; SELECT * FROM users --", verdict: "BLOCKED (AST Guardrail)", vColor: "#D23A34", vBg: "#FEE2E0", entropy: "4.12 bits", latency: "0.38 ms", inv: "Type-Safe" },
+      { persona: "DevOps SRE", vector: "Privilege Escalation", arch: "ReAct Loop", payload: "subprocess.Popen(['chmod', '777', '/etc'])", verdict: "BLOCKED (POSIX Jail)", vColor: "#D23A34", vBg: "#FEE2E0", entropy: "4.65 bits", latency: "0.44 ms", inv: "Type-Safe" },
       { persona: "SecOps Covert", vector: "Zero-Width Steganography", arch: "Few-Shot In-Context", payload: "Exfiltration via \\u200B\\u200C invisible tokens", verdict: "INTERCEPTED (Shannon Filter)", vColor: "#059669", vBg: "#ECFDF5", entropy: "5.21 bits", latency: "0.51 ms", inv: "Type-Safe" },
-      { persona: "Red-Team Analyst", vector: "Jailbreak Roleplay (DAN)", arch: "Few-Shot In-Context", payload: "DAN Mode: bypass compliance mandates", verdict: "FILTERED (Guardrail Layer)", vColor: "#D97706", vBg: "#FFFBEB", entropy: "4.89 bits", latency: "0.41 ms", inv: "Type-Safe" },
-      { persona: "Malicious Agent", vector: "Traceback Loop Hijack", arch: "ReAct Loop", payload: "Simulated recursion bomb in reflection step", verdict: "ISOLATED (Docker Sandbox)", vColor: "#2563EB", vBg: "#EFF6FF", entropy: "4.74 bits", latency: "0.62 ms", inv: "Type-Safe" },
-      { persona: "Supply-Chain Actor", vector: "Slopsquat Dependency", arch: "Few-Shot In-Context", payload: "Import requests-auth-kavach from PyPI", verdict: "QUARANTINED (Live PyPI)", vColor: "#7C3AED", vBg: "#F5F3FF", entropy: "4.31 bits", latency: "0.39 ms", inv: "Type-Safe" }
+      { persona: "Red-Team Analyst", vector: "Jailbreak Roleplay (DAN)", arch: "Few-Shot In-Context", payload: "DAN Mode: bypass compliance mandates", verdict: "FILTERED (Guardrail Layer)", vColor: "#D6791C", vBg: "#FFFAF3", entropy: "4.89 bits", latency: "0.41 ms", inv: "Type-Safe" },
+      { persona: "Malicious Agent", vector: "Traceback Loop Hijack", arch: "ReAct Loop", payload: "Simulated recursion bomb in reflection step", verdict: "ISOLATED (Docker Sandbox)", vColor: "#2764E8", vBg: "#EFF6FF", entropy: "4.74 bits", latency: "0.62 ms", inv: "Type-Safe" },
+      { persona: "Supply-Chain Actor", vector: "Slopsquat Dependency", arch: "Few-Shot In-Context", payload: "Import requests-auth-kavach from PyPI", verdict: "QUARANTINED (Live PyPI)", vColor: "#3D65D6", vBg: "#F0F5FF", entropy: "4.31 bits", latency: "0.39 ms", inv: "Type-Safe" }
     ];
 
     let html = `
@@ -3014,15 +3014,15 @@ function renderPromptVariancesMatrixHtml() {
             ${r.persona}
             <div style="font-size:0.68rem; font-weight:400; color:#64748B;">${r.vector}</div>
           </td>
-          <td style="padding:10px 14px; font-family:monospace; color:#3B82F6;">${r.arch}</td>
-          <td style="padding:10px 14px; font-family:monospace; font-size:0.7rem; color:#475569; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><code>${safeEscapeHtml(r.payload)}</code></td>
+          <td style="padding:10px 14px; font-family:'IBM Plex Mono', monospace; color:#3B82F6;">${r.arch}</td>
+          <td style="padding:10px 14px; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#475569; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><code>${safeEscapeHtml(r.payload)}</code></td>
           <td style="padding:10px 14px;">
             <span style="background:${r.vBg}; color:${r.vColor}; font-weight:700; font-size:0.68rem; padding:3px 8px; border-radius:4px; display:inline-block;">
               ${r.verdict}
             </span>
           </td>
-          <td style="padding:10px 14px; font-family:monospace; color:#0F172A;">${r.entropy}</td>
-          <td style="padding:10px 14px; font-family:monospace; color:#059669; font-weight:600;">${r.latency}</td>
+          <td style="padding:10px 14px; font-family:'IBM Plex Mono', monospace; color:#0F172A;">${r.entropy}</td>
+          <td style="padding:10px 14px; font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">${r.latency}</td>
           <td style="padding:10px 14px;">
             <span style="background:#ECFDF5; color:#059669; font-size:0.65rem; font-weight:700; padding:2px 6px; border-radius:4px;">100% PASSED</span>
           </td>
@@ -3041,7 +3041,7 @@ function renderPromptVariancesMatrixHtml() {
   async function runPromptVariancesLive() {
     const el = document.getElementById("prof-variances-result");
     if (el) {
-      el.innerHTML = '<div style="padding:24px; text-align:center; color:#2563EB; font-weight:600; font-size:0.8rem;">Benchmarking 6-way adversarial prompt variance matrix across ReAct &amp; Few-Shot personas...</div>';
+      el.innerHTML = '<div style="padding:24px; text-align:center; color:#2764E8; font-weight:600; font-size:0.8rem;">Benchmarking 6-way adversarial prompt variance matrix across ReAct &amp; Few-Shot personas...</div>';
     }
     setTimeout(() => {
       if (el) {
@@ -3106,20 +3106,20 @@ function renderPromptVariancesMatrixHtml() {
       const bg = idx % 2 === 0 ? "#FFFFFF" : "#F8FAFC";
       html += `
         <tr style="background:${bg}; border-bottom:1px solid #E2E8F0;">
-          <td style="padding:8px 12px; font-weight:700; font-family:monospace; color:#2563EB;">${s.id}</td>
+          <td style="padding:8px 12px; font-weight:700; font-family:'IBM Plex Mono', monospace; color:#2764E8;">${s.id}</td>
           <td style="padding:8px 12px; color:#334155;">${s.task}</td>
-          <td style="padding:8px 12px; font-family:monospace; font-weight:700; color:#0F172A;">
+          <td style="padding:8px 12px; font-family:'IBM Plex Mono', monospace; font-weight:700; color:#0F172A;">
             ${s.lat} ms
             <div style="background:#E2E8F0; width:60px; height:4px; border-radius:2px; margin-top:3px; overflow:hidden;">
-              <div style="background:#2563EB; width:${Math.min(100, (s.lat / 200) * 100)}%; height:100%;"></div>
+              <div style="background:#2764E8; width:${Math.min(100, (s.lat / 200) * 100)}%; height:100%;"></div>
             </div>
           </td>
-          <td style="padding:8px 12px; font-family:monospace; color:#059669; font-weight:600;">${s.tokens}</td>
-          <td style="padding:8px 12px; font-family:monospace; color:#D97706;">$${s.costUsd.toFixed(5)} &bull; &#8377;${s.costInr.toFixed(3)}</td>
+          <td style="padding:8px 12px; font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">${s.tokens}</td>
+          <td style="padding:8px 12px; font-family:'IBM Plex Mono', monospace; color:#D6791C;">$${s.costUsd.toFixed(5)} &bull; &#8377;${s.costInr.toFixed(3)}</td>
           <td style="padding:8px 12px;">
             <span style="background:#ECFDF5; color:#059669; font-size:0.65rem; font-weight:700; padding:2px 6px; border-radius:4px;">STRICT PASS</span>
           </td>
-          <td style="padding:8px 12px; font-family:monospace; font-size:0.68rem; color:#64748B;">${s.sha}</td>
+          <td style="padding:8px 12px; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:#64748B;">${s.sha}</td>
         </tr>
       `;
     });
@@ -3133,9 +3133,9 @@ function renderPromptVariancesMatrixHtml() {
         <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:12px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
             <span style="font-size:0.75rem; font-weight:700; color:#0F172A;">NIST FIPS 202 SHA3-512 Master Provenance Certificate:</span>
-            <span style="font-size:0.68rem; background:#EFF6FF; color:#1D4ED8; padding:2px 8px; border-radius:4px; font-weight:600; font-family:monospace;">FIPS 202 VALIDATED</span>
+            <span style="font-size:0.68rem; background:#EFF6FF; color:#1F50D4; padding:2px 8px; border-radius:4px; font-weight:600; font-family:'IBM Plex Mono', monospace;">FIPS 202 VALIDATED</span>
           </div>
-          <div style="font-family:monospace; font-size:0.7rem; color:#059669; word-break:break-all; background:#FFFFFF; border:1px solid #CBD5E1; padding:8px 10px; border-radius:4px; line-height:1.4;">
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#059669; word-break:break-all; background:#FFFFFF; border:1px solid #CBD5E1; padding:8px 10px; border-radius:4px; line-height:1.4;">
             d4b8e3a29f8c1b7a5e4d2c1f0b9a8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d
           </div>
         </div>
@@ -3157,7 +3157,7 @@ function renderPromptVariancesMatrixHtml() {
 
     const container = document.getElementById("prof-e2e-result");
     if (container) {
-      container.innerHTML = `<div style="padding:24px; text-align:center; color:#2563EB; font-weight:600; font-size:0.8rem;">Sampling ${runs} consecutive pipeline runs and synthesizing SHA3-512 cryptographic ledger provenance...</div>`;
+      container.innerHTML = `<div style="padding:24px; text-align:center; color:#2764E8; font-weight:600; font-size:0.8rem;">Sampling ${runs} consecutive pipeline runs and synthesizing SHA3-512 cryptographic ledger provenance...</div>`;
     }
 
     setTimeout(() => {
@@ -3173,11 +3173,11 @@ function renderPromptVariancesMatrixHtml() {
       const card = document.getElementById(`deploy-card-${t}`);
       if (card) {
         if (t === target) {
-          card.style.border = '2px solid #2563EB';
-          card.style.boxShadow = '0 2px 8px rgba(37,99,235,0.15)';
+          card.style.border = '2px solid #2764E8';
+          card.style.boxShadow = '0 2px 8px rgba(39, 100, 232, 0.06)';
         } else {
           card.style.border = '1px solid #CBD5E1';
-          card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.03)';
+          card.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.03)';
         }
       }
     });
@@ -3191,21 +3191,21 @@ function renderPromptVariancesMatrixHtml() {
           <div>
             <div style="display:flex; align-items:center; gap:8px;">
               <h4 style="margin:0; font-size:1.05rem; color:#0F172A; font-weight:700;">Cloud-Native Kubernetes (K8s) Mesh</h4>
-              <span style="background:#EFF6FF; color:#1D4ED8; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #BFDBFE;">PRODUCTION K8S</span>
+              <span style="background:#EFF6FF; color:#1F50D4; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #BFDBFE;">PRODUCTION K8S</span>
             </div>
             <p style="margin:4px 0 0 0; font-size:0.76rem; color:#64748B;">
               Zero-trust namespace <code>kavach-mesh</code> with Horizontal Pod Autoscaling (2-10 replicas), liveness/readiness probes, and single-domain NGINX Ingress path routing.
             </p>
           </div>
-          <span style="font-family:monospace; font-size:0.72rem; color:#059669; background:#ECFDF5; border:1px solid #A7F3D0; padding:4px 10px; border-radius:4px; font-weight:600;">k8s/kustomization.yaml</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#059669; background:#ECFDF5; border:1px solid #A7F3D0; padding:4px 10px; border-radius:4px; font-weight:600;">k8s/kustomization.yaml</span>
         </div>
 
         <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:6px; padding:12px 14px; margin-bottom:12px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
             <strong style="color:#166534; font-size:0.84rem;">Diagnostic Status: CONFIGURED (7 Manifests Verified in k8s/)</strong>
-            <span style="background:#DCFCE7; color:#166534; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">IaC READY</span>
+            <span style="background:#E1FAE9; color:#166534; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">IaC READY</span>
           </div>
-          <p style="margin:0; font-size:0.75rem; color:#15803D; line-height:1.45;">
+          <p style="margin:0; font-size:0.75rem; color:#207F40; line-height:1.45;">
             All 7 Kubernetes production manifests in <code>k8s/</code> are fully validated (Deployment, Ingress NGINX, HPA, Services, ConfigMap).
             To apply them, connect to any active cluster (Docker Desktop, Minikube, GKE, or EKS) with <code>kubectl apply -k k8s/</code>.
           </p>
@@ -3220,17 +3220,17 @@ function renderPromptVariancesMatrixHtml() {
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Ingress Routing</div>
             <strong style="font-size:0.8rem; color:#0F172A;">NGINX Path Routing</strong>
-            <div style="font-size:0.68rem; color:#1D4ED8; margin-top:2px;">/ &middot; /api/bank &middot; /results</div>
+            <div style="font-size:0.68rem; color:#1F50D4; margin-top:2px;">/ &middot; /api/bank &middot; /results</div>
           </div>
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Health Monitoring</div>
             <strong style="font-size:0.8rem; color:#0F172A;">Liveness &amp; Readiness Probes</strong>
-            <div style="font-size:0.68rem; color:#D97706; margin-top:2px;">Every 10s on HTTP /health</div>
+            <div style="font-size:0.68rem; color:#D6791C; margin-top:2px;">Every 10s on HTTP /health</div>
           </div>
         </div>
 
         <div style="font-size:0.74rem; font-weight:700; color:#0F172A; margin-bottom:6px;">1-Command Kustomize Deployment:</div>
-        <pre style="background:#0F172A; color:#38BDF8; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:monospace; overflow-x:auto;">
+        <pre style="background:#0F172A; color:#52B8FF; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:'IBM Plex Mono', monospace; overflow-x:auto;">
 # Apply full multi-microservice mesh to active cluster
 kubectl apply -k k8s/
 
@@ -3250,7 +3250,7 @@ kubectl get pods,svc,hpa,ingress -n kavach-mesh
               Google Cloud serverless containerization purpose-built for the Google Agent Development Kit (ADK) with zero-to-ten instance dynamic scaling and Indian DPDP residency.
             </p>
           </div>
-          <span style="font-family:monospace; font-size:0.72rem; color:#059669; background:#ECFDF5; border:1px solid #A7F3D0; padding:4px 10px; border-radius:4px; font-weight:600;">deploy/gcp/cloudbuild.yaml</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#059669; background:#ECFDF5; border:1px solid #A7F3D0; padding:4px 10px; border-radius:4px; font-weight:600;">deploy/gcp/cloudbuild.yaml</span>
         </div>
 
         <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:6px; padding:12px 14px; margin-bottom:12px;">
@@ -3258,7 +3258,7 @@ kubectl get pods,svc,hpa,ingress -n kavach-mesh
             <strong style="color:#1E40AF; font-size:0.84rem;">Diagnostic Status: CONFIGURED (Google Cloud Build &amp; Run)</strong>
             <span style="background:#DBEAFE; color:#1E40AF; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">GCP READY</span>
           </div>
-          <p style="margin:0; font-size:0.75rem; color:#1D4ED8; line-height:1.45;">
+          <p style="margin:0; font-size:0.75rem; color:#1F50D4; line-height:1.45;">
             Serverless ADK engine scripts in <code>deploy/gcp/</code> are verified for <code>asia-south1</code> (Mumbai).
             Requires the Google Cloud SDK CLI (<code>gcloud</code>) and an active GCP Project ID with billing enabled to deploy to live Google Cloud infrastructure.
           </p>
@@ -3273,17 +3273,17 @@ kubectl get pods,svc,hpa,ingress -n kavach-mesh
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Compute Allocation</div>
             <strong style="font-size:0.8rem; color:#0F172A;">2 vCPU &middot; 2Gi RAM</strong>
-            <div style="font-size:0.68rem; color:#1D4ED8; margin-top:2px;">80 Concurrent Requests / Pod</div>
+            <div style="font-size:0.68rem; color:#1F50D4; margin-top:2px;">80 Concurrent Requests / Pod</div>
           </div>
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Cold Start &amp; Cost</div>
             <strong style="font-size:0.8rem; color:#0F172A;">Scale to 0 Instances</strong>
-            <div style="font-size:0.68rem; color:#D97706; margin-top:2px;">Zero cost when idle, 800ms boot</div>
+            <div style="font-size:0.68rem; color:#D6791C; margin-top:2px;">Zero cost when idle, 800ms boot</div>
           </div>
         </div>
 
         <div style="font-size:0.74rem; font-weight:700; color:#0F172A; margin-bottom:6px;">1-Command Google Cloud Run Deployment:</div>
-        <pre style="background:#0F172A; color:#38BDF8; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:monospace; overflow-x:auto;">
+        <pre style="background:#0F172A; color:#52B8FF; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:'IBM Plex Mono', monospace; overflow-x:auto;">
 # Run automated PowerShell build and deployment script
 .\\deploy\\gcp\\deploy_cloud_run.ps1 -ProjectId YOUR_GCP_PROJECT_ID
 
@@ -3297,21 +3297,21 @@ gcloud builds submit --config deploy/gcp/cloudbuild.yaml .
           <div>
             <div style="display:flex; align-items:center; gap:8px;">
               <h4 style="margin:0; font-size:1.05rem; color:#0F172A; font-weight:700;">AWS ECS Fargate &amp; ALB via Terraform IaC</h4>
-              <span style="background:#FFFBEB; color:#D97706; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #FDE68A;">ap-south-1 (Mumbai)</span>
+              <span style="background:#FFFAF3; color:#D6791C; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #FFE1B8;">ap-south-1 (Mumbai)</span>
             </div>
             <p style="margin:4px 0 0 0; font-size:0.76rem; color:#64748B;">
               Full Infrastructure as Code (IaC) provisioning AWS Virtual Private Cloud (VPC), multi-AZ public subnets, Application Load Balancer with 3 target groups, and serverless ECS Fargate tasks.
             </p>
           </div>
-          <span style="font-family:monospace; font-size:0.72rem; color:#D97706; background:#FFFBEB; border:1px solid #FDE68A; padding:4px 10px; border-radius:4px; font-weight:600;">terraform/*.tf</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#D6791C; background:#FFFAF3; border:1px solid #FFE1B8; padding:4px 10px; border-radius:4px; font-weight:600;">terraform/*.tf</span>
         </div>
 
-        <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:6px; padding:12px 14px; margin-bottom:12px;">
+        <div style="background:#FFFAF3; border:1px solid #FFE1B8; border-radius:6px; padding:12px 14px; margin-bottom:12px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <strong style="color:#92400E; font-size:0.84rem;">Diagnostic Status: CONFIGURED (5 Terraform Modules in terraform/)</strong>
-            <span style="background:#FEF3C7; color:#92400E; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">TERRAFORM READY</span>
+            <strong style="color:#8C4600; font-size:0.84rem;">Diagnostic Status: CONFIGURED (5 Terraform Modules in terraform/)</strong>
+            <span style="background:#FFF0DC; color:#8C4600; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">TERRAFORM READY</span>
           </div>
-          <p style="margin:0; font-size:0.75rem; color:#B45309; line-height:1.45;">
+          <p style="margin:0; font-size:0.75rem; color:#AE5900; line-height:1.45;">
             Production Terraform configuration in <code>terraform/</code> (VPC 10.0.0.0/16, ALB, ECS Fargate, Log Groups) is fully written.
             Requires Terraform CLI (<code>terraform</code>) and AWS IAM access keys configured via <code>aws configure</code> to provision live AWS resources.
           </p>
@@ -3326,17 +3326,17 @@ gcloud builds submit --config deploy/gcp/cloudbuild.yaml .
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Load Balancing</div>
             <strong style="font-size:0.8rem; color:#0F172A;">AWS Application Load Balancer</strong>
-            <div style="font-size:0.68rem; color:#1D4ED8; margin-top:2px;">Target Groups: 8000, 8050, 8090</div>
+            <div style="font-size:0.68rem; color:#1F50D4; margin-top:2px;">Target Groups: 8000, 8050, 8090</div>
           </div>
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Compute Engine</div>
             <strong style="font-size:0.8rem; color:#0F172A;">AWS Fargate Serverless</strong>
-            <div style="font-size:0.68rem; color:#D97706; margin-top:2px;">Zero EC2 patching required</div>
+            <div style="font-size:0.68rem; color:#D6791C; margin-top:2px;">Zero EC2 patching required</div>
           </div>
         </div>
 
         <div style="font-size:0.74rem; font-weight:700; color:#0F172A; margin-bottom:6px;">1-Command Terraform IaC Deployment:</div>
-        <pre style="background:#0F172A; color:#38BDF8; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:monospace; overflow-x:auto;">
+        <pre style="background:#0F172A; color:#52B8FF; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:'IBM Plex Mono', monospace; overflow-x:auto;">
 cd terraform
 terraform init
 terraform plan
@@ -3351,21 +3351,21 @@ terraform apply -auto-approve
           <div>
             <div style="display:flex; align-items:center; gap:8px;">
               <h4 style="margin:0; font-size:1.05rem; color:#0F172A; font-weight:700;">Hugging Face Spaces (Academic AI Benchmark)</h4>
-              <span style="background:#FAF5FF; color:#9333EA; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #E9D5FF;">GLOBAL AI REGISTRY</span>
+              <span style="background:#F4F7FF; color:#416ADC; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #D0DFFF;">GLOBAL AI REGISTRY</span>
             </div>
             <p style="margin:4px 0 0 0; font-size:0.76rem; color:#64748B;">
               The gold-standard academic platform for publishing AI papers, open-source agents, and peer benchmarks. Features official Hugging Face Spaces badge and live Docker container hosting.
             </p>
           </div>
-          <span style="font-family:monospace; font-size:0.72rem; color:#9333EA; background:#FAF5FF; border:1px solid #E9D5FF; padding:4px 10px; border-radius:4px; font-weight:600;">deploy/huggingface/README.md</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#416ADC; background:#F4F7FF; border:1px solid #D0DFFF; padding:4px 10px; border-radius:4px; font-weight:600;">deploy/huggingface/README.md</span>
         </div>
 
-        <div style="background:#FAF5FF; border:1px solid #E9D5FF; border-radius:6px; padding:12px 14px; margin-bottom:12px;">
+        <div style="background:#F4F7FF; border:1px solid #D0DFFF; border-radius:6px; padding:12px 14px; margin-bottom:12px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <strong style="color:#6B21A8; font-size:0.84rem;">Diagnostic Status: READY FOR GIT PUSH (Free Cloud Docker Build)</strong>
-            <span style="background:#F3E8FF; color:#6B21A8; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">HF READY</span>
+            <strong style="color:#2344B3; font-size:0.84rem;">Diagnostic Status: READY FOR GIT PUSH (Free Cloud Docker Build)</strong>
+            <span style="background:#E5EDFF; color:#2344B3; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">HF READY</span>
           </div>
-          <p style="margin:0; font-size:0.75rem; color:#7E22CE; line-height:1.45;">
+          <p style="margin:0; font-size:0.75rem; color:#3156C6; line-height:1.45;">
             Root <code>Dockerfile</code> and Hugging Face metadata are pre-configured. Local Docker is NOT needed: Hugging Face builds and hosts the container for free on their Linux cloud runners when you push via Git.
           </p>
         </div>
@@ -3379,17 +3379,17 @@ terraform apply -auto-approve
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Public Discovery</div>
             <strong style="font-size:0.8rem; color:#0F172A;">Hugging Face Spaces Hub</strong>
-            <div style="font-size:0.68rem; color:#1D4ED8; margin-top:2px;">Permanent public citation URL</div>
+            <div style="font-size:0.68rem; color:#1F50D4; margin-top:2px;">Permanent public citation URL</div>
           </div>
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Academic Credibility</div>
             <strong style="font-size:0.8rem; color:#0F172A;">Official Research Badge</strong>
-            <div style="font-size:0.68rem; color:#D97706; margin-top:2px;">NeurIPS / ICML / BMU Standard</div>
+            <div style="font-size:0.68rem; color:#D6791C; margin-top:2px;">NeurIPS / ICML / BMU Standard</div>
           </div>
         </div>
 
         <div style="font-size:0.74rem; font-weight:700; color:#0F172A; margin-bottom:6px;">Deploy to Hugging Face Spaces in 3 Git Commands:</div>
-        <pre style="background:#0F172A; color:#38BDF8; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:monospace; overflow-x:auto;">
+        <pre style="background:#0F172A; color:#52B8FF; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:'IBM Plex Mono', monospace; overflow-x:auto;">
 # 1. Create a free Docker Space at https://huggingface.co/new-space
 # 2. Add Hugging Face git remote and push
 git remote add space https://huggingface.co/spaces/YOUR_USERNAME/kavach-agentic-ai
@@ -3404,19 +3404,19 @@ git push space main
           <div>
             <div style="display:flex; align-items:center; gap:8px;">
               <h4 style="margin:0; font-size:1.05rem; color:#0F172A; font-weight:700;">Live Edge Tunnel (Instant Public HTTPS)</h4>
-              <span style="background:#F1F5F9; color:#0F172A; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #CBD5E1;">ZERO INSTALL &middot; 5 SECONDS</span>
+              <span style="background:#F2F5F9; color:#0F172A; font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid #CBD5E1;">ZERO INSTALL &middot; 5 SECONDS</span>
             </div>
             <p style="margin:4px 0 0 0; font-size:0.76rem; color:#64748B;">
               Instant encrypted reverse-proxy tunnel with free SSL. Hand the generated public URL or QR code to the professor so they can test KAVACH directly on their phone or laptop during viva.
             </p>
           </div>
-          <span style="font-family:monospace; font-size:0.72rem; color:#0F172A; background:#F1F5F9; border:1px solid #CBD5E1; padding:4px 10px; border-radius:4px; font-weight:600;">run_live_cloud_tunnel.bat</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#0F172A; background:#F2F5F9; border:1px solid #CBD5E1; padding:4px 10px; border-radius:4px; font-weight:600;">run_live_cloud_tunnel.bat</span>
         </div>
 
         <div style="background:#ECFDF5; border:1px solid #A7F3D0; border-radius:6px; padding:12px 14px; margin-bottom:12px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
             <strong style="color:#065F46; font-size:0.84rem;">Diagnostic Status: OPERATIONAL &amp; VERIFIED (Windows OpenSSH Detected)</strong>
-            <span style="background:#D1FAE5; color:#065F46; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">1-CLICK INSTANT</span>
+            <span style="background:#DBF7E8; color:#065F46; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:4px;">1-CLICK INSTANT</span>
           </div>
           <p style="margin:0; font-size:0.75rem; color:#047857; line-height:1.45;">
             Windows OpenSSH is installed at <code>C:\\WINDOWS\\System32\\OpenSSH\\ssh.exe</code>.
@@ -3433,17 +3433,17 @@ git push space main
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Security &amp; SSL</div>
             <strong style="font-size:0.8rem; color:#0F172A;">Automatic HTTPS Certificate</strong>
-            <div style="font-size:0.68rem; color:#1D4ED8; margin-top:2px;">Encrypted end-to-end TLS 1.3</div>
+            <div style="font-size:0.68rem; color:#1F50D4; margin-top:2px;">Encrypted end-to-end TLS 1.3</div>
           </div>
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 12px; border-radius:6px;">
             <div style="font-size:0.7rem; color:#64748B;">Viva Demonstration</div>
             <strong style="font-size:0.8rem; color:#0F172A;">Live Remote Access</strong>
-            <div style="font-size:0.68rem; color:#D97706; margin-top:2px;">Accessible anywhere worldwide</div>
+            <div style="font-size:0.68rem; color:#D6791C; margin-top:2px;">Accessible anywhere worldwide</div>
           </div>
         </div>
 
         <div style="font-size:0.74rem; font-weight:700; color:#0F172A; margin-bottom:6px;">Launch Live Tunnel in 1 Click:</div>
-        <pre style="background:#0F172A; color:#38BDF8; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:monospace; overflow-x:auto;">
+        <pre style="background:#0F172A; color:#52B8FF; padding:12px; border-radius:6px; font-size:0.74rem; margin:0; font-family:'IBM Plex Mono', monospace; overflow-x:auto;">
 # Option A: In PowerShell
 .\\run_live_cloud_tunnel.ps1
 
@@ -3480,28 +3480,28 @@ git push space main
                 <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:700;">Point 1: Hover Blackboard Architecture &amp; Context Sharing</h3>
                 <p style="margin:3px 0 0 0; font-size:0.78rem; color:#64748B;">Intermediate output feeds between agents via reactive partitions. Hover cards inspect live state hashes &amp; payloads.</p>
               </div>
-              <button type="button" onclick="window.loadBlackboardLive()" style="background:#059669; color:#FFFFFF; border:none; padding:7px 16px; border-radius:6px; font-weight:600; font-size:0.78rem; cursor:pointer; box-shadow:0 1px 3px rgba(5,150,105,0.25);">Refresh Blackboard</button>
+              <button type="button" onclick="window.loadBlackboardLive()" style="background:#059669; color:#FFFFFF; border:none; padding:7px 16px; border-radius:6px; font-weight:600; font-size:0.78rem; cursor:pointer; box-shadow:0 1px 3px rgba(5, 150, 105, 0.1);">Refresh Blackboard</button>
             </div>
 
             <div class="prof-blackboard-partitions" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:12px; margin-bottom:18px;">
               <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:14px; border-radius:8px; text-align:center;">
-                <span style="color:#1D4ED8; font-weight:700; font-size:0.8rem;">Domain Context</span>
+                <span style="color:#1F50D4; font-weight:700; font-size:0.8rem;">Domain Context</span>
                 <div class="bb-cnt-domain" id="bb-cnt-domain" style="font-size:1.6rem; font-weight:800; color:#0F172A; margin-top:4px;">4</div>
               </div>
               <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:14px; border-radius:8px; text-align:center;">
                 <span style="color:#059669; font-weight:700; font-size:0.8rem;">Intermediate Outputs</span>
                 <div class="bb-cnt-outputs" id="bb-cnt-outputs" style="font-size:1.6rem; font-weight:800; color:#0F172A; margin-top:4px;">4</div>
               </div>
-              <div style="background:#FFFBEB; border:1px solid #FDE68A; padding:14px; border-radius:8px; text-align:center;">
-                <span style="color:#D97706; font-weight:700; font-size:0.8rem;">Security Guardrails</span>
+              <div style="background:#FFFAF3; border:1px solid #FFE1B8; padding:14px; border-radius:8px; text-align:center;">
+                <span style="color:#D6791C; font-weight:700; font-size:0.8rem;">Security Guardrails</span>
                 <div class="bb-cnt-guardrails" id="bb-cnt-guardrails" style="font-size:1.6rem; font-weight:800; color:#0F172A; margin-top:4px;">0</div>
               </div>
-              <div style="background:#FAF5FF; border:1px solid #E9D5FF; padding:14px; border-radius:8px; text-align:center;">
-                <span style="color:#9333EA; font-weight:700; font-size:0.8rem;">Execution Artifacts</span>
+              <div style="background:#F4F7FF; border:1px solid #D0DFFF; padding:14px; border-radius:8px; text-align:center;">
+                <span style="color:#416ADC; font-weight:700; font-size:0.8rem;">Execution Artifacts</span>
                 <div class="bb-cnt-artifacts" id="bb-cnt-artifacts" style="font-size:1.6rem; font-weight:800; color:#0F172A; margin-top:4px;">3</div>
               </div>
-              <div style="background:#FDF2F8; border:1px solid #FBCFE8; padding:14px; border-radius:8px; text-align:center;">
-                <span style="color:#DB2777; font-weight:700; font-size:0.8rem;">Audit Provenance</span>
+              <div style="background:#FFF2F1; border:1px solid #FFD1CE; padding:14px; border-radius:8px; text-align:center;">
+                <span style="color:#D73E47; font-weight:700; font-size:0.8rem;">Audit Provenance</span>
                 <div class="bb-cnt-provenance" id="bb-cnt-provenance" style="font-size:1.6rem; font-weight:800; color:#0F172A; margin-top:4px;">0</div>
               </div>
             </div>
@@ -3510,39 +3510,39 @@ git push space main
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px; margin-bottom:18px;">
               <div style="font-size:0.82rem; font-weight:700; color:#0F172A; margin-bottom:10px;">Live Partition Entries (Hover over cards to inspect intermediate output &amp; SHA-256 seal)</div>
               <div class="prof-bb-entries-stream" id="prof-bb-entries-stream" style="display:flex; flex-direction:column; gap:8px; max-height:220px; overflow-y:auto;">
-                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.03);" title="Hover: [Architect] Initialized session with Google ADK and CrewAI mandates.">
+                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);" title="Hover: [Architect] Initialized session with Google ADK and CrewAI mandates.">
                   <div>
                     <strong style="color:#0F172A; font-size:0.8rem;">System Handout Alignment</strong>
                     <span style="color:#64748B; font-size:0.74rem; margin-left:8px;">by ProjectArchitect_Dhruv</span>
                   </div>
-                  <div style="font-family:monospace; font-size:0.7rem; color:#1D4ED8; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
+                  <div style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#1F50D4; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
                     SHA: 7bf38c144f723943
                   </div>
                 </div>
-                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.03);" title="Hover: [Google ADK] Evaluated input prompt, initialized session state.">
+                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);" title="Hover: [Google ADK] Evaluated input prompt, initialized session state.">
                   <div>
                     <strong style="color:#0F172A; font-size:0.8rem;">Initial Task Ingestion</strong>
                     <span style="color:#64748B; font-size:0.74rem; margin-left:8px;">by ADK_Sentinel_Gatekeeper</span>
                   </div>
-                  <div style="font-family:monospace; font-size:0.7rem; color:#1D4ED8; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
+                  <div style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#1F50D4; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
                     SHA: 6ab8d3adad50caff
                   </div>
                 </div>
-                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.03);" title="Hover: [ADK Sentinel] Redacted Indian PII and credentials before dispatch.">
+                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);" title="Hover: [ADK Sentinel] Redacted Indian PII and credentials before dispatch.">
                   <div>
                     <strong style="color:#0F172A; font-size:0.8rem;">Intermediate Sanitized Tokens</strong>
                     <span style="color:#64748B; font-size:0.74rem; margin-left:8px;">by ADK_Sentinel_Gatekeeper</span>
                   </div>
-                  <div style="font-family:monospace; font-size:0.7rem; color:#1D4ED8; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
+                  <div style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#1F50D4; background:#EFF6FF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:4px; font-weight:600;">
                     SHA: eb03793360acfdd7
                   </div>
                 </div>
-                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.03);" title="Hover: [CrewAI] Completed audit. Response sealed and posted back to Blackboard.">
+                <div class="bb-card" style="background:#FFFFFF; padding:10px 14px; border-radius:6px; border:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);" title="Hover: [CrewAI] Completed audit. Response sealed and posted back to Blackboard.">
                   <div>
                     <strong style="color:#0F172A; font-size:0.8rem;">A2A Task Response Envelope</strong>
                     <span style="color:#64748B; font-size:0.74rem; margin-left:8px;">by CrewAI_Security_Auditor</span>
                   </div>
-                  <div style="font-family:monospace; font-size:0.7rem; color:#059669; background:#ECFDF5; border:1px solid #A7F3D0; padding:2px 8px; border-radius:4px; font-weight:600;">
+                  <div style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:#059669; background:#ECFDF5; border:1px solid #A7F3D0; padding:2px 8px; border-radius:4px; font-weight:600;">
                     SHA: aef1ed1ffaa2ff6f
                   </div>
                 </div>
@@ -3550,10 +3550,10 @@ git push space main
             </div>
 
             <!-- Messaging Benchmark Section -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
                 <strong style="color:#0F172A; font-size:0.85rem;">Comparative Messaging Architecture Benchmark (4 Architectures Tested)</strong>
-                <button type="button" onclick="window.runMessagingBenchmarkLive()" style="background:#2563EB; color:#FFFFFF; border:none; padding:6px 14px; border-radius:6px; font-size:0.76rem; cursor:pointer; font-weight:600;">Run Comparative Benchmark</button>
+                <button type="button" onclick="window.runMessagingBenchmarkLive()" style="background:#2764E8; color:#FFFFFF; border:none; padding:6px 14px; border-radius:6px; font-size:0.76rem; cursor:pointer; font-weight:600;">Run Comparative Benchmark</button>
               </div>
               <div class="prof-msg-benchmark-result" id="prof-msg-benchmark-result" style="font-size:0.76rem; color:#64748B;">Click button to execute benchmark across Blackboard, P2P A2A, Pub/Sub, and Sequential SAGA.</div>
             </div>
@@ -3567,7 +3567,7 @@ git push space main
               <div>
                 <div style="display:flex; align-items:center; gap:8px;">
                   <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:700;">Point 2: Model Context Protocol (MCP) JSON-RPC 2.0 Studio</h3>
-                  <span style="background:#EEF2FF; color:#4F46E5; border:1px solid #C7D2FE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">RFC-COMPLIANT JSON-RPC 2.0</span>
+                  <span style="background:#EDF2FF; color:#2D56DC; border:1px solid #C1D4FE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">RFC-COMPLIANT JSON-RPC 2.0</span>
                 </div>
                 <p style="margin:3px 0 0 0; font-size:0.78rem; color:#64748B;">
                   Standardized external tool execution bridge adhering to Anthropic &amp; Linux Foundation MCP specification via stdio/HTTP IPC transports.
@@ -3586,7 +3586,7 @@ git push space main
               </div>
               <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 14px; border-radius:8px;">
                 <span style="color:#64748B; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Registered Tools</span>
-                <div style="font-size:0.88rem; font-weight:800; color:#2563EB; margin-top:2px;">4 Schemas Active</div>
+                <div style="font-size:0.88rem; font-weight:800; color:#2764E8; margin-top:2px;">4 Schemas Active</div>
               </div>
               <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 14px; border-radius:8px;">
                 <span style="color:#64748B; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Mean Dispatch Latency</span>
@@ -3594,65 +3594,65 @@ git push space main
               </div>
               <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 14px; border-radius:8px;">
                 <span style="color:#64748B; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Type Invariant</span>
-                <div style="font-size:0.88rem; font-weight:800; color:#7C3AED; margin-top:2px;">Pydantic v2 Verified</div>
+                <div style="font-size:0.88rem; font-weight:800; color:#3D65D6; margin-top:2px;">Pydantic v2 Verified</div>
               </div>
             </div>
 
             <!-- 4 Interactive Tool Cards -->
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px; margin-bottom:16px;">
-              <div onclick="window.execMcpTool('mcp_web_search', {query: 'fastapi-security-audit'})" id="mcp-card-web" class="mcp-tool-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.03); transition:all 0.15s ease;">
+              <div onclick="window.execMcpTool('mcp_web_search', {query: 'fastapi-security-audit'})" id="mcp-card-web" class="mcp-tool-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <strong style="color:#1D4ED8; font-size:0.82rem;">1. Web Search API</strong>
-                  <span style="font-size:0.65rem; background:#EFF6FF; color:#1D4ED8; padding:2px 6px; border-radius:4px; font-weight:700;">HTTP GET</span>
+                  <strong style="color:#1F50D4; font-size:0.82rem;">1. Web Search API</strong>
+                  <span style="font-size:0.65rem; background:#EFF6FF; color:#1F50D4; padding:2px 6px; border-radius:4px; font-weight:700;">HTTP GET</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Query PyPI live registry &amp; CVE docs</div>
-                <div style="margin-top:6px; font-size:0.68rem; font-family:monospace; color:#3B82F6;">tools/call: mcp_web_search</div>
+                <div style="margin-top:6px; font-size:0.68rem; font-family:'IBM Plex Mono', monospace; color:#3B82F6;">tools/call: mcp_web_search</div>
               </div>
 
-              <div onclick="window.execMcpTool('mcp_database_lookup', {query: 'KYC_AML_TOKEN', limit: 3})" id="mcp-card-db" class="mcp-tool-card" style="background:#EFF6FF; border:2px solid #2563EB; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(37,99,235,0.1); transition:all 0.15s ease;">
+              <div onclick="window.execMcpTool('mcp_database_lookup', {query: 'KYC_AML_TOKEN', limit: 3})" id="mcp-card-db" class="mcp-tool-card" style="background:#EFF6FF; border:2px solid #2764E8; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(39, 100, 232, 0.04); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                   <strong style="color:#059669; font-size:0.82rem;">2. Database Lookup</strong>
                   <span style="font-size:0.65rem; background:#ECFDF5; color:#059669; padding:2px 6px; border-radius:4px; font-weight:700;">VECTOR QDRANT</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Vector chunk &amp; audit ledger lookup</div>
-                <div style="margin-top:6px; font-size:0.68rem; font-family:monospace; color:#059669;">tools/call: mcp_database_lookup</div>
+                <div style="margin-top:6px; font-size:0.68rem; font-family:'IBM Plex Mono', monospace; color:#059669;">tools/call: mcp_database_lookup</div>
               </div>
 
-              <div onclick="window.execMcpTool('mcp_file_parser', {filename: 'auth.py', source_code: 'import hashlib\\ndef sign_token(d):\\n    return hashlib.sha256(d.encode()).hexdigest()\\n'})" id="mcp-card-parser" class="mcp-tool-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.03); transition:all 0.15s ease;">
+              <div onclick="window.execMcpTool('mcp_file_parser', {filename: 'auth.py', source_code: 'import hashlib\\ndef sign_token(d):\\n    return hashlib.sha256(d.encode()).hexdigest()\\n'})" id="mcp-card-parser" class="mcp-tool-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <strong style="color:#D97706; font-size:0.82rem;">3. File Parser (AST)</strong>
-                  <span style="font-size:0.65rem; background:#FFFBEB; color:#D97706; padding:2px 6px; border-radius:4px; font-weight:700;">STATIC AST</span>
+                  <strong style="color:#D6791C; font-size:0.82rem;">3. File Parser (AST)</strong>
+                  <span style="font-size:0.65rem; background:#FFFAF3; color:#D6791C; padding:2px 6px; border-radius:4px; font-weight:700;">STATIC AST</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Static AST syntax, symbols &amp; entropy</div>
-                <div style="margin-top:6px; font-size:0.68rem; font-family:monospace; color:#D97706;">tools/call: mcp_file_parser</div>
+                <div style="margin-top:6px; font-size:0.68rem; font-family:'IBM Plex Mono', monospace; color:#D6791C;">tools/call: mcp_file_parser</div>
               </div>
 
-              <div onclick="window.execMcpTool('mcp_calculator', {operation: 'cvss', params: {impact: 5.9, exploitability: 3.9}})" id="mcp-card-calc" class="mcp-tool-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.03); transition:all 0.15s ease;">
+              <div onclick="window.execMcpTool('mcp_calculator', {operation: 'cvss', params: {impact: 5.9, exploitability: 3.9}})" id="mcp-card-calc" class="mcp-tool-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <strong style="color:#7C3AED; font-size:0.82rem;">4. Calculator</strong>
-                  <span style="font-size:0.65rem; background:#F5F3FF; color:#7C3AED; padding:2px 6px; border-radius:4px; font-weight:700;">MATH EVAL</span>
+                  <strong style="color:#3D65D6; font-size:0.82rem;">4. Calculator</strong>
+                  <span style="font-size:0.65rem; background:#F0F5FF; color:#3D65D6; padding:2px 6px; border-radius:4px; font-weight:700;">MATH EVAL</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">CVSS v3.1, Shannon Entropy, Basel III</div>
-                <div style="margin-top:6px; font-size:0.68rem; font-family:monospace; color:#7C3AED;">tools/call: mcp_calculator</div>
+                <div style="margin-top:6px; font-size:0.68rem; font-family:'IBM Plex Mono', monospace; color:#3D65D6;">tools/call: mcp_calculator</div>
               </div>
             </div>
 
             <!-- Dual-Pane Protocol Inspector -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-              <div style="background:#0F172A; border:1px solid #334155; border-radius:8px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+              <div style="background:#0F172A; border:1px solid #334155; border-radius:8px; padding:12px; box-shadow:0 2px 8px rgba(0, 0, 0, 0.15);">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1px solid #1E293B; padding-bottom:6px;">
-                  <span style="color:#94A3B8; font-size:0.72rem; font-weight:700; font-family:monospace;">CLIENT &rarr; MCP JSON-RPC 2.0 REQUEST</span>
-                  <span id="mcp-req-badge" style="font-size:0.65rem; background:#1E293B; color:#38BDF8; padding:2px 6px; border-radius:4px; font-family:monospace;">tools/call</span>
+                  <span style="color:#94A3B8; font-size:0.72rem; font-weight:700; font-family:'IBM Plex Mono', monospace;">CLIENT &rarr; MCP JSON-RPC 2.0 REQUEST</span>
+                  <span id="mcp-req-badge" style="font-size:0.65rem; background:#1E293B; color:#52B8FF; padding:2px 6px; border-radius:4px; font-family:'IBM Plex Mono', monospace;">tools/call</span>
                 </div>
-                <pre id="mcp-req-output" class="mcp-req-output" style="margin:0; color:#38BDF8; font-family:monospace; font-size:0.72rem; line-height:1.4; max-height:220px; overflow-y:auto; white-space:pre-wrap;"></pre>
+                <pre id="mcp-req-output" class="mcp-req-output" style="margin:0; color:#52B8FF; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; line-height:1.4; max-height:220px; overflow-y:auto; white-space:pre-wrap;"></pre>
               </div>
 
-              <div style="background:#0F172A; border:1px solid #334155; border-radius:8px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+              <div style="background:#0F172A; border:1px solid #334155; border-radius:8px; padding:12px; box-shadow:0 2px 8px rgba(0, 0, 0, 0.15);">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1px solid #1E293B; padding-bottom:6px;">
-                  <span style="color:#94A3B8; font-size:0.72rem; font-weight:700; font-family:monospace;">MCP SERVER &rarr; DECODED RESULT &amp; INVARIANT</span>
-                  <span id="mcp-resp-badge" style="font-size:0.65rem; background:rgba(16,185,129,0.2); color:#34D399; padding:2px 6px; border-radius:4px; font-family:monospace;">200 OK &bull; 0.38ms Verified</span>
+                  <span style="color:#94A3B8; font-size:0.72rem; font-weight:700; font-family:'IBM Plex Mono', monospace;">MCP SERVER &rarr; DECODED RESULT &amp; INVARIANT</span>
+                  <span id="mcp-resp-badge" style="font-size:0.65rem; background:rgba(60, 182, 133, 0.2); color:#58CF9E; padding:2px 6px; border-radius:4px; font-family:'IBM Plex Mono', monospace;">200 OK &bull; 0.38ms Verified</span>
                 </div>
-                <pre id="mcp-resp-output" class="mcp-resp-output" style="margin:0; color:#4ADE80; font-family:monospace; font-size:0.72rem; line-height:1.4; max-height:220px; overflow-y:auto; white-space:pre-wrap;"></pre>
+                <pre id="mcp-resp-output" class="mcp-resp-output" style="margin:0; color:#79D693; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; line-height:1.4; max-height:220px; overflow-y:auto; white-space:pre-wrap;"></pre>
               </div>
             </div>
           </div>
@@ -3669,14 +3669,14 @@ git push space main
                 <div style="display:flex; align-items:center; gap:8px;">
                   <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:700;">Points 3, 6, 7: A2A Interoperability &amp; Pydantic Output Highway</h3>
                   <span style="background:#ECFDF5; color:#059669; border:1px solid #A7F3D0; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">CROSS-FRAMEWORK BRIDGE</span>
-                  <span style="background:#EFF6FF; color:#2563EB; border:1px solid #BFDBFE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">RFC JSON-RPC 2.0</span>
+                  <span style="background:#EFF6FF; color:#2764E8; border:1px solid #BFDBFE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">RFC JSON-RPC 2.0</span>
                 </div>
                 <p style="margin:3px 0 0 0; font-size:0.78rem; color:#64748B;">
                   Direct signed A2A protocol bridge interconnecting Google ADK (Planner) and CrewAI (Security Auditor) with Pydantic v2 typed output serialization.
                 </p>
               </div>
               <div style="display:flex; align-items:center; gap:6px;">
-                <span style="font-size:0.72rem; background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; padding:4px 10px; border-radius:6px; font-weight:700;">DPDP Act 2023 &bull; RBI CSF Compliant &bull; SLSA Level 3</span>
+                <span style="font-size:0.72rem; background:#EFF6FF; border:1px solid #BFDBFE; color:#1F50D4; padding:4px 10px; border-radius:6px; font-weight:700;">DPDP Act 2023 &bull; RBI CSF Compliant &bull; SLSA Level 3</span>
               </div>
             </div>
 
@@ -3687,7 +3687,7 @@ git push space main
                 <span style="font-size:0.68rem; color:#64748B;">Live In-Repo Logic</span>
               </div>
               <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                <button type="button" class="interop-scenario-btn" data-scenario="dpdp" onclick="window.selectInteropScenario('dpdp')" style="background:#0F172A; color:#FFFFFF; border:1px solid #0F172A; padding:6px 12px; border-radius:6px; font-size:0.72rem; font-weight:700; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+                <button type="button" class="interop-scenario-btn" data-scenario="dpdp" onclick="window.selectInteropScenario('dpdp')" style="background:#0F172A; color:#FFFFFF; border:1px solid #0F172A; padding:6px 12px; border-radius:6px; font-size:0.72rem; font-weight:700; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.05);">
                   1. DPDP Act (Aadhaar &amp; PAN)
                 </button>
                 <button type="button" class="interop-scenario-btn" data-scenario="aws" onclick="window.selectInteropScenario('aws')" style="background:#FFFFFF; color:#334155; border:1px solid #CBD5E1; padding:6px 12px; border-radius:6px; font-size:0.72rem; font-weight:500; cursor:pointer;">
@@ -3703,7 +3703,7 @@ git push space main
             </div>
 
             <!-- Dual-Pane Interactive Task & Code Editor -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; margin-bottom:14px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:14px; border-radius:8px; margin-bottom:14px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-bottom:12px;">
                 <div>
                   <label for="prof-interop-task" style="display:block; font-size:0.74rem; font-weight:700; color:#0F172A; margin-bottom:4px;">
@@ -3715,16 +3715,16 @@ git push space main
                   <label for="prof-interop-code" style="display:block; font-size:0.74rem; font-weight:700; color:#0F172A; margin-bottom:4px;">
                     Target Code / SQL Query Payload:
                   </label>
-                  <textarea class="prof-interop-code" id="prof-interop-code" rows="2" style="width:100%; box-sizing:border-box; background:#0F172A; border:1px solid #334155; color:#38BDF8; padding:8px 12px; border-radius:6px; font-size:0.72rem; font-family:monospace; resize:vertical;">SELECT full_name, email, pan_card, aadhaar_number &#10;FROM customer_ledger &#10;WHERE pan_card='ABCDE1234F' AND aadhaar_number='987654321098';</textarea>
+                  <textarea class="prof-interop-code" id="prof-interop-code" rows="2" style="width:100%; box-sizing:border-box; background:#0F172A; border:1px solid #334155; color:#52B8FF; padding:8px 12px; border-radius:6px; font-size:0.72rem; font-family:'IBM Plex Mono', monospace; resize:vertical;">SELECT full_name, email, pan_card, aadhaar_number &#10;FROM customer_ledger &#10;WHERE pan_card='ABCDE1234F' AND aadhaar_number='987654321098';</textarea>
                 </div>
               </div>
 
               <!-- Action Controls Bar -->
-              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-top:1px solid #F1F5F9; padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-top:1px solid #F2F5F9; padding-top:10px;">
                 <!-- View Mode Pills -->
                 <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
                   <span style="font-size:0.7rem; font-weight:700; color:#475569;">Inspect View:</span>
-                  <button type="button" class="interop-view-pill" data-view="stepper" onclick="window.switchInteropView('stepper')" style="background:#2563EB; color:#FFFFFF; border:1px solid #2563EB; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:700; cursor:pointer;">
+                  <button type="button" class="interop-view-pill" data-view="stepper" onclick="window.switchInteropView('stepper')" style="background:#2764E8; color:#FFFFFF; border:1px solid #2764E8; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:700; cursor:pointer;">
                     Live Stepper
                   </button>
                   <button type="button" class="interop-view-pill" data-view="wire" onclick="window.switchInteropView('wire')" style="background:#FFFFFF; color:#475569; border:1px solid #CBD5E1; padding:4px 10px; border-radius:9999px; font-size:0.7rem; font-weight:600; cursor:pointer;">
@@ -3742,7 +3742,7 @@ git push space main
                 </div>
 
                 <!-- Primary Dispatch Button -->
-                <button type="button" class="interop-dispatch-btn" onclick="window.runInteropWorkflowLive()" style="background:#059669; color:#FFFFFF; border:none; padding:8px 20px; border-radius:6px; font-weight:700; font-size:0.8rem; cursor:pointer; box-shadow:0 2px 6px rgba(5,150,105,0.25); display:flex; align-items:center; gap:6px; transition:all 0.15s ease;">
+                <button type="button" class="interop-dispatch-btn" onclick="window.runInteropWorkflowLive()" style="background:#059669; color:#FFFFFF; border:none; padding:8px 20px; border-radius:6px; font-weight:700; font-size:0.8rem; cursor:pointer; box-shadow:0 2px 6px rgba(5, 150, 105, 0.1); display:flex; align-items:center; gap:6px; transition:all 0.15s ease;">
                   <span></span> Dispatch A2A Bridge &amp; Execute Live Flow
                 </button>
               </div>
@@ -3752,7 +3752,7 @@ git push space main
             <div class="prof-interop-stepper" id="prof-interop-stepper" style="display:none;"></div>
 
             <!-- Multi-View Output Display Container -->
-            <div class="prof-interop-result" id="prof-interop-result" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div class="prof-interop-result" id="prof-interop-result" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
             </div>
           </div>
         `;
@@ -3776,36 +3776,36 @@ git push space main
             <div id="prof-patterns-matrix" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px; margin-bottom:14px;">
               <div style="font-size:0.82rem; color:#0F172A; font-weight:700; margin-bottom:10px;">5 Evaluated Agentic Design Patterns:</div>
               <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;">
-                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #2563EB; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #2764E8; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
                   <strong style="color:#0F172A; font-size:0.82rem;">1. ReAct (Reasoning + Acting)</strong>
                   <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">Autonomous tool-use feedback loop &middot; Latency: 52ms &middot; Used in Self-Healing</p>
-                  <div style="margin-top:6px; font-size:0.68rem; color:#2563EB; font-weight:600;">Citation: Yao et al. (ICLR 2023)</div>
+                  <div style="margin-top:6px; font-size:0.68rem; color:#2764E8; font-weight:600;">Citation: Yao et al. (ICLR 2023)</div>
                 </div>
-                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #059669; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #059669; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
                   <strong style="color:#0F172A; font-size:0.82rem;">2. Graph-of-Thought (GoT)</strong>
                   <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">DAG planning with branch pruning &middot; Latency: 68ms &middot; Used in Blast-Radius</p>
                   <div style="margin-top:6px; font-size:0.68rem; color:#059669; font-weight:600;">Citation: Besta et al. (AAAI 2024)</div>
                 </div>
-                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #D97706; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #D6791C; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
                   <strong style="color:#0F172A; font-size:0.82rem;">3. Hover Blackboard</strong>
                   <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">Central shared memory partitions &middot; Latency: 38ms &middot; Used in MAS state sharing</p>
-                  <div style="margin-top:6px; font-size:0.68rem; color:#D97706; font-weight:600;">Architecture: Hayes-Roth (AIJ 1985)</div>
+                  <div style="margin-top:6px; font-size:0.68rem; color:#D6791C; font-weight:600;">Architecture: Hayes-Roth (AIJ 1985)</div>
                 </div>
-                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #9333EA; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #416ADC; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
                   <strong style="color:#0F172A; font-size:0.82rem;">4. Hierarchical Multi-Agent Crew</strong>
                   <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">Supervisor delegation with roles &middot; Latency: 74ms &middot; Used in CrewAI</p>
-                  <div style="margin-top:6px; font-size:0.68rem; color:#9333EA; font-weight:600;">Standard: Wu et al. (AutoGen 2023)</div>
+                  <div style="margin-top:6px; font-size:0.68rem; color:#416ADC; font-weight:600;">Standard: Wu et al. (AutoGen 2023)</div>
                 </div>
-                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #DC2626; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                <div style="background:#FFFFFF; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0; border-left:4px solid #D23A34; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
                   <strong style="color:#0F172A; font-size:0.82rem;">5. Human-in-the-Loop (HITL) Gate</strong>
                   <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">Cryptographic pause for high-risk actions &middot; Latency: 28ms &middot; RBI Compliant</p>
-                  <div style="margin-top:6px; font-size:0.68rem; color:#DC2626; font-weight:600;">Compliance: RBI Master Direction 2023</div>
+                  <div style="margin-top:6px; font-size:0.68rem; color:#D23A34; font-weight:600;">Compliance: RBI Master Direction 2023</div>
                 </div>
               </div>
             </div>
 
             <!-- Live 8-Hook Callback Event Stream -->
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <div>
                   <strong style="color:#0F172A; font-size:0.85rem;">Live 8-Hook Agentic Task Monitoring Callback Stream</strong>
@@ -3816,36 +3816,36 @@ git push space main
 
               <div style="display:flex; flex-direction:column; gap:6px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#2563EB; font-weight:700;">1. on_agent_init</span> &middot; <span style="color:#334155;">Initialized ADK Sentinel Planner (Session: adk-0x7f9b)</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.12ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#2764E8; font-weight:700;">1. on_agent_init</span> &middot; <span style="color:#334155;">Initialized ADK Sentinel Planner (Session: adk-0x7f9b)</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.12ms &bull; VERIFIED</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#059669; font-weight:700;">2. on_tool_dispatch</span> &middot; <span style="color:#334155;">Dispatched MCP AST Parser for symbol verification</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.35ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:700;">2. on_tool_dispatch</span> &middot; <span style="color:#334155;">Dispatched MCP AST Parser for symbol verification</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.35ms &bull; VERIFIED</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#D97706; font-weight:700;">3. on_blackboard_write</span> &middot; <span style="color:#334155;">Partition 'intermediate_outputs' updated with sanitized payload</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.21ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#D6791C; font-weight:700;">3. on_blackboard_write</span> &middot; <span style="color:#334155;">Partition 'intermediate_outputs' updated with sanitized payload</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.21ms &bull; VERIFIED</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#9333EA; font-weight:700;">4. on_guardrail_intercept</span> &middot; <span style="color:#334155;">Scanned 12 tokens for Indian PII / Aadhaar (0 violations detected)</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.18ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#416ADC; font-weight:700;">4. on_guardrail_intercept</span> &middot; <span style="color:#334155;">Scanned 12 tokens for Indian PII / Aadhaar (0 violations detected)</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.18ms &bull; VERIFIED</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#DC2626; font-weight:700;">5. on_react_step</span> &middot; <span style="color:#334155;">ReAct step 1/4 completed (Thought &rarr; Tool Action &rarr; Observation)</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.52ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#D23A34; font-weight:700;">5. on_react_step</span> &middot; <span style="color:#334155;">ReAct step 1/4 completed (Thought &rarr; Tool Action &rarr; Observation)</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.52ms &bull; VERIFIED</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#0284C7; font-weight:700;">6. on_pydantic_validate</span> &middot; <span style="color:#334155;">Verified BaseModel schema invariants (100% type-safe adherence)</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.09ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#0284C7; font-weight:700;">6. on_pydantic_validate</span> &middot; <span style="color:#334155;">Verified BaseModel schema invariants (100% type-safe adherence)</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.09ms &bull; VERIFIED</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#059669; font-weight:700;">7. on_merkle_seal</span> &middot; <span style="color:#334155;">Computed SHA-256 leaf digest and appended to SLSA Level 3 tree</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.14ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:700;">7. on_merkle_seal</span> &middot; <span style="color:#334155;">Computed SHA-256 leaf digest and appended to SLSA Level 3 tree</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.14ms &bull; VERIFIED</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px; font-size:0.73rem;">
-                  <div><span style="font-family:monospace; color:#4F46E5; font-weight:700;">8. on_audit_complete</span> &middot; <span style="color:#334155;">CrewAI Auditor issued dual-signed clearance certificate</span></div>
-                  <span style="font-family:monospace; color:#059669; font-weight:600;">+0.28ms &bull; VERIFIED</span>
+                  <div><span style="font-family:'IBM Plex Mono', monospace; color:#2D56DC; font-weight:700;">8. on_audit_complete</span> &middot; <span style="color:#334155;">CrewAI Auditor issued dual-signed clearance certificate</span></div>
+                  <span style="font-family:'IBM Plex Mono', monospace; color:#059669; font-weight:600;">+0.28ms &bull; VERIFIED</span>
                 </div>
               </div>
             </div>
@@ -3866,7 +3866,7 @@ git push space main
                 </p>
               </div>
               <div style="display:flex; align-items:center; gap:6px;">
-                <button type="button" onclick="window.runPromptVariancesLive()" style="background:#059669; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(5,150,105,0.25);">
+                <button type="button" onclick="window.runPromptVariancesLive()" style="background:#059669; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(5, 150, 105, 0.1);">
                   Run 6-Way Variance Test
                 </button>
               </div>
@@ -3875,25 +3875,25 @@ git push space main
             <!-- Telemetry HUD -->
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin-bottom:16px;">
               <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:10px 14px; border-radius:8px;">
-                <span style="color:#1D4ED8; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Tested Personas</span>
+                <span style="color:#1F50D4; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Tested Personas</span>
                 <div style="font-size:1.1rem; font-weight:800; color:#0F172A; margin-top:2px;">6 Configurations</div>
               </div>
               <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:10px 14px; border-radius:8px;">
                 <span style="color:#059669; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Guardrail Catch Rate</span>
                 <div style="font-size:1.1rem; font-weight:800; color:#059669; margin-top:2px;">100% (Zero Bypass)</div>
               </div>
-              <div style="background:#FFFBEB; border:1px solid #FDE68A; padding:10px 14px; border-radius:8px;">
-                <span style="color:#D97706; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Mean Shannon Entropy</span>
-                <div style="font-size:1.1rem; font-weight:800; color:#D97706; margin-top:2px;">4.82 bits</div>
+              <div style="background:#FFFAF3; border:1px solid #FFE1B8; padding:10px 14px; border-radius:8px;">
+                <span style="color:#D6791C; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Mean Shannon Entropy</span>
+                <div style="font-size:1.1rem; font-weight:800; color:#D6791C; margin-top:2px;">4.82 bits</div>
               </div>
-              <div style="background:#F5F3FF; border:1px solid #DDD6FE; padding:10px 14px; border-radius:8px;">
-                <span style="color:#7C3AED; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Pydantic Invariants</span>
-                <div style="font-size:1.1rem; font-weight:800; color:#7C3AED; margin-top:2px;">100% Type-Safe</div>
+              <div style="background:#F0F5FF; border:1px solid #CCDCFF; padding:10px 14px; border-radius:8px;">
+                <span style="color:#3D65D6; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Pydantic Invariants</span>
+                <div style="font-size:1.1rem; font-weight:800; color:#3D65D6; margin-top:2px;">100% Type-Safe</div>
               </div>
             </div>
 
             <!-- 6-Row Empirical Table (Pre-populated) -->
-            <div class="prof-variances-result" id="prof-variances-result" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div class="prof-variances-result" id="prof-variances-result" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               ${renderPromptVariancesMatrixHtml()}
             </div>
           </div>
@@ -3906,7 +3906,7 @@ git push space main
               <div>
                 <div style="display:flex; align-items:center; gap:8px;">
                   <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:700;">Points 9 &amp; 10: Multi-Run End-to-End Performance, Cost &amp; SHA3-512 Provenance</h3>
-                  <span style="background:#EEF2FF; color:#4F46E5; border:1px solid #C7D2FE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">NIST FIPS 202 SEALED</span>
+                  <span style="background:#EDF2FF; color:#2D56DC; border:1px solid #C1D4FE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">NIST FIPS 202 SEALED</span>
                 </div>
                 <p style="margin:3px 0 0 0; font-size:0.78rem; color:#64748B;">
                   Calculates empirical latency, token count, cost in USD/INR, and produces NIST FIPS 202 SHA3-512 cryptographic provenance hashes for every execution.
@@ -3915,7 +3915,7 @@ git push space main
               <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
                 <span style="font-size:0.8rem; color:#334155; font-weight:600;">Runs:</span>
                 <input type="number" class="prof-e2e-runs" id="prof-e2e-runs" min="2" max="10" value="5" style="width:54px; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; padding:6px 10px; border-radius:6px; font-size:0.8rem; font-weight:700; text-align:center;">
-                <button type="button" onclick="window.runE2EEvalLive()" style="background:#2563EB; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(37,99,235,0.25);">
+                <button type="button" onclick="window.runE2EEvalLive()" style="background:#2764E8; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(39, 100, 232, 0.1);">
                   Execute Multi-Run Evaluation
                 </button>
               </div>
@@ -3924,7 +3924,7 @@ git push space main
             <!-- Telemetry Grid (4 Cards) -->
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:16px;">
               <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:12px; border-radius:8px;">
-                <div style="color:#1D4ED8; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Runtime &amp; Latency</div>
+                <div style="color:#1F50D4; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Runtime &amp; Latency</div>
                 <div style="font-size:1.25rem; font-weight:800; color:#0F172A; margin-top:2px;">142.4 ms</div>
                 <div style="font-size:0.68rem; color:#64748B; margin-top:2px;">Mean &bull; P95: 188.0ms &bull; P99: 210.5ms</div>
               </div>
@@ -3933,20 +3933,20 @@ git push space main
                 <div style="font-size:1.25rem; font-weight:800; color:#059669; margin-top:2px;">1,248 Tokens</div>
                 <div style="font-size:0.68rem; color:#64748B; margin-top:2px;">Cost: $0.00042 USD &bull; &#8377;0.035 INR</div>
               </div>
-              <div style="background:#FFFBEB; border:1px solid #FDE68A; padding:12px; border-radius:8px;">
-                <div style="color:#D97706; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Throughput &amp; SLA</div>
-                <div style="font-size:1.25rem; font-weight:800; color:#D97706; margin-top:2px;">7.04 req/sec</div>
+              <div style="background:#FFFAF3; border:1px solid #FFE1B8; padding:12px; border-radius:8px;">
+                <div style="color:#D6791C; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Throughput &amp; SLA</div>
+                <div style="font-size:1.25rem; font-weight:800; color:#D6791C; margin-top:2px;">7.04 req/sec</div>
                 <div style="font-size:0.68rem; color:#64748B; margin-top:2px;">0.00% Failure Rate &bull; Zero Latency Tax</div>
               </div>
-              <div style="background:#FAF5FF; border:1px solid #E9D5FF; padding:12px; border-radius:8px;">
-                <div style="color:#9333EA; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Cryptographic Provenance</div>
-                <div style="font-size:1.25rem; font-weight:800; color:#9333EA; margin-top:2px;">SHA3-512</div>
+              <div style="background:#F4F7FF; border:1px solid #D0DFFF; padding:12px; border-radius:8px;">
+                <div style="color:#416ADC; font-size:0.7rem; font-weight:600; text-transform:uppercase;">Cryptographic Provenance</div>
+                <div style="font-size:1.25rem; font-weight:800; color:#416ADC; margin-top:2px;">SHA3-512</div>
                 <div style="font-size:0.68rem; color:#64748B; margin-top:2px;">NIST FIPS 202 Immutable Digest</div>
               </div>
             </div>
 
             <!-- Multi-Run Empirical Table & Provenance Box -->
-            <div class="prof-e2e-result" id="prof-e2e-result" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div class="prof-e2e-result" id="prof-e2e-result" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               ${renderE2EEvalMatrixHtml(5)}
             </div>
           </div>
@@ -3966,15 +3966,15 @@ git push space main
 
             <!-- Target Selection Cards -->
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:16px;">
-              <div onclick="window.selectDeployTarget('k8s')" id="deploy-card-k8s" style="background:#FFFFFF; border:2px solid #2563EB; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(37,99,235,0.08); transition:all 0.15s ease;">
+              <div onclick="window.selectDeployTarget('k8s')" id="deploy-card-k8s" style="background:#FFFFFF; border:2px solid #2764E8; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(39, 100, 232, 0.032); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <strong style="color:#1D4ED8; font-size:0.82rem;">1. Kubernetes (K8s)</strong>
-                  <span style="font-size:0.65rem; background:#EFF6FF; color:#1D4ED8; padding:2px 6px; border-radius:4px; font-weight:700;">HPA 2-10</span>
+                  <strong style="color:#1F50D4; font-size:0.82rem;">1. Kubernetes (K8s)</strong>
+                  <span style="font-size:0.65rem; background:#EFF6FF; color:#1F50D4; padding:2px 6px; border-radius:4px; font-weight:700;">HPA 2-10</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Kustomize, Ingress NGINX &amp; mesh probes</div>
               </div>
 
-              <div onclick="window.selectDeployTarget('gcp')" id="deploy-card-gcp" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.03); transition:all 0.15s ease;">
+              <div onclick="window.selectDeployTarget('gcp')" id="deploy-card-gcp" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                   <strong style="color:#059669; font-size:0.82rem;">2. Google Cloud Run</strong>
                   <span style="font-size:0.65rem; background:#ECFDF5; color:#059669; padding:2px 6px; border-radius:4px; font-weight:700;">MUMBAI</span>
@@ -3982,33 +3982,33 @@ git push space main
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Serverless ADK engine in asia-south1</div>
               </div>
 
-              <div onclick="window.selectDeployTarget('aws')" id="deploy-card-aws" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.03); transition:all 0.15s ease;">
+              <div onclick="window.selectDeployTarget('aws')" id="deploy-card-aws" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <strong style="color:#D97706; font-size:0.82rem;">3. AWS ECS Terraform</strong>
-                  <span style="font-size:0.65rem; background:#FFFBEB; color:#D97706; padding:2px 6px; border-radius:4px; font-weight:700;">IaC</span>
+                  <strong style="color:#D6791C; font-size:0.82rem;">3. AWS ECS Terraform</strong>
+                  <span style="font-size:0.65rem; background:#FFFAF3; color:#D6791C; padding:2px 6px; border-radius:4px; font-weight:700;">IaC</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Fargate tasks + ALB in ap-south-1</div>
               </div>
 
-              <div onclick="window.selectDeployTarget('hf')" id="deploy-card-hf" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.03); transition:all 0.15s ease;">
+              <div onclick="window.selectDeployTarget('hf')" id="deploy-card-hf" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <strong style="color:#9333EA; font-size:0.82rem;">4. Hugging Face</strong>
-                  <span style="font-size:0.65rem; background:#FAF5FF; color:#9333EA; padding:2px 6px; border-radius:4px; font-weight:700;">ACADEMIC</span>
+                  <strong style="color:#416ADC; font-size:0.82rem;">4. Hugging Face</strong>
+                  <span style="font-size:0.65rem; background:#F4F7FF; color:#416ADC; padding:2px 6px; border-radius:4px; font-weight:700;">ACADEMIC</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Spaces Docker SDK &amp; research badge</div>
               </div>
 
-              <div onclick="window.selectDeployTarget('tunnel')" id="deploy-card-tunnel" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.03); transition:all 0.15s ease;">
+              <div onclick="window.selectDeployTarget('tunnel')" id="deploy-card-tunnel" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03); transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                   <strong style="color:#0F172A; font-size:0.82rem;">5. Live Edge Tunnel</strong>
-                  <span style="font-size:0.65rem; background:#F1F5F9; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">INSTANT</span>
+                  <span style="font-size:0.65rem; background:#F2F5F9; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">INSTANT</span>
                 </div>
                 <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">1-click public link for viva phone demo</div>
               </div>
             </div>
 
             <!-- Detailed Inspection View for Selected Target -->
-            <div id="deploy-target-detail" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+            <div id="deploy-target-detail" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:18px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
               <!-- Rendered dynamically by window.selectDeployTarget -->
             </div>
           </div>
@@ -4048,7 +4048,7 @@ git push space main
     }
 
     modal.innerHTML = `
-      <div class="course-modal-window" style="max-width: 1050px; width: 95%; max-height: 88vh; overflow-y: auto; background: #FFFFFF !important; border: 1px solid #CBD5E1 !important; box-shadow: 0 20px 60px rgba(15,23,42,0.18) !important; border-radius: 14px !important; color: #0F172A !important; font-family: var(--font-sans, system-ui, sans-serif);">
+      <div class="course-modal-window" style="max-width: 1050px; width: 95%; max-height: 88vh; overflow-y: auto; background: #FFFFFF !important; border: 1px solid #CBD5E1 !important; box-shadow: 0 20px 60px rgba(15, 23, 42, 0.072) !important; border-radius: 14px !important; color: #0F172A !important; font-family: var(--font-sans, system-ui, sans-serif);">
         <!-- Sticky Header (Never cut off or scrolled away) -->
         <div style="position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #E2E8F0; padding: 18px 24px; background: #FFFFFF;">
           <div>
@@ -4061,7 +4061,7 @@ git push space main
             </p>
           </div>
           <div style="display:flex; align-items:center; gap:8px;">
-            <button type="button" onclick="window.switchToProfessorReview()" style="background:#F1F5F9; border:1px solid #CBD5E1; color:#334155; font-size:0.75rem; font-weight:600; padding:6px 12px; border-radius:6px; cursor:pointer;" title="Embed in main page so background options stay visible">Embed in Page</button>
+            <button type="button" onclick="window.switchToProfessorReview()" style="background:#F2F5F9; border:1px solid #CBD5E1; color:#334155; font-size:0.75rem; font-weight:600; padding:6px 12px; border-radius:6px; cursor:pointer;" title="Embed in main page so background options stay visible">Embed in Page</button>
             <button type="button" onclick="window.closeProfessorReviewModal()" style="background:none; border:none; color:#64748B; font-size:1.6rem; cursor:pointer; line-height:1;" title="Close">&times;</button>
           </div>
         </div>
@@ -4075,8 +4075,8 @@ git push space main
           <button type="button" class="prof-tab-btn" id="prof-modal-btn-security" data-tab="security" onclick="window.switchProfTab('security')">8. Guardrails &amp; Variances</button>
           <button type="button" class="prof-tab-btn" id="prof-modal-btn-eval" data-tab="eval" onclick="window.switchProfTab('eval')">9, 10. E2E Perf &amp; Cost</button>
           <button type="button" class="prof-tab-btn" id="prof-modal-btn-deploy" data-tab="deploy" onclick="window.switchProfTab('deploy')">11. Cloud Deploy</button>
-          <button type="button" class="prof-tab-btn" id="prof-modal-btn-defense-lab" data-tab="defense-lab" onclick="window.switchProfTab('defense-lab')" style="background:#FEF2F2; color:#DC2626; border-color:#FECACA; font-weight:700;">12. Academic Defense Lab (5 Demos)</button>
-          <button type="button" class="prof-tab-btn" id="prof-modal-btn-academic-frontiers" data-tab="academic-frontiers" onclick="window.switchProfTab('academic-frontiers')" style="background:#EEF2FF; color:#4F46E5; border-color:#C7D2FE; font-weight:700; padding:8px 16px;">13. 30/30 Academic Suite (5 Frontiers)</button>
+          <button type="button" class="prof-tab-btn" id="prof-modal-btn-defense-lab" data-tab="defense-lab" onclick="window.switchProfTab('defense-lab')" style="background:#FEF2F1; color:#D23A34; border-color:#FECAC7; font-weight:700;">12. Academic Defense Lab (5 Demos)</button>
+          <button type="button" class="prof-tab-btn" id="prof-modal-btn-academic-frontiers" data-tab="academic-frontiers" onclick="window.switchProfTab('academic-frontiers')" style="background:#EDF2FF; color:#2D56DC; border-color:#C1D4FE; font-weight:700; padding:8px 16px;">13. 30/30 Academic Suite (5 Frontiers)</button>
         </div>
 
         <!-- Content Area -->
@@ -4132,31 +4132,31 @@ git push space main
 
         <!-- 5-Pillar Selector Tabs -->
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin-bottom:16px;">
-          <div onclick="window.selectDefenseLabPillar('heal')" id="pillar-card-heal" class="defense-lab-card" style="background:#EFF6FF; border:2px solid #2563EB; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectDefenseLabPillar('heal')" id="pillar-card-heal" class="defense-lab-card" style="background:#EFF6FF; border:2px solid #2764E8; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong style="color:#1D4ED8; font-size:0.8rem;">1. Break &amp; Heal</strong>
-              <span style="font-size:0.65rem; background:#DBEAFE; color:#1D4ED8; padding:2px 6px; border-radius:4px; font-weight:700;">ReAct</span>
+              <strong style="color:#1F50D4; font-size:0.8rem;">1. Break &amp; Heal</strong>
+              <span style="font-size:0.65rem; background:#DBEAFE; color:#1F50D4; padding:2px 6px; border-radius:4px; font-weight:700;">ReAct</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Autonomous sandbox reflection loop</div>
           </div>
 
-          <div onclick="window.selectDefenseLabPillar('debugger')" id="pillar-card-debugger" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectDefenseLabPillar('debugger')" id="pillar-card-debugger" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <strong style="color:#0F172A; font-size:0.8rem;">2. Step Debugger</strong>
-              <span style="font-size:0.65rem; background:#F1F5F9; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">HITL</span>
+              <span style="font-size:0.65rem; background:#F2F5F9; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">HITL</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Step-by-step reasoning inspector</div>
           </div>
 
-          <div onclick="window.selectDefenseLabPillar('attack')" id="pillar-card-attack" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectDefenseLabPillar('attack')" id="pillar-card-attack" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong style="color:#DC2626; font-size:0.8rem;">3. Attack Playground</strong>
-              <span style="font-size:0.65rem; background:#FEE2E2; color:#DC2626; padding:2px 6px; border-radius:4px; font-weight:700;">ZERO-DAY</span>
+              <strong style="color:#D23A34; font-size:0.8rem;">3. Attack Playground</strong>
+              <span style="font-size:0.65rem; background:#FEE2E0; color:#D23A34; padding:2px 6px; border-radius:4px; font-weight:700;">ZERO-DAY</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Red-team slopsquatting &amp; injection</div>
           </div>
 
-          <div onclick="window.selectDefenseLabPillar('benchmark')" id="pillar-card-benchmark" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectDefenseLabPillar('benchmark')" id="pillar-card-benchmark" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <strong style="color:#059669; font-size:0.8rem;">4. Held-Out Eval</strong>
               <span style="font-size:0.65rem; background:#ECFDF5; color:#059669; padding:2px 6px; border-radius:4px; font-weight:700;">F1: 0.94+</span>
@@ -4164,17 +4164,17 @@ git push space main
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">45-sample benchmark &amp; Merkle root</div>
           </div>
 
-          <div onclick="window.selectDefenseLabPillar('hinglish')" id="pillar-card-hinglish" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectDefenseLabPillar('hinglish')" id="pillar-card-hinglish" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong style="color:#7C3AED; font-size:0.8rem;">5. Hinglish Voice</strong>
-              <span style="font-size:0.65rem; background:#F5F3FF; color:#7C3AED; padding:2px 6px; border-radius:4px; font-weight:700;">BHARAT</span>
+              <strong style="color:#3D65D6; font-size:0.8rem;">5. Hinglish Voice</strong>
+              <span style="font-size:0.65rem; background:#F0F5FF; color:#3D65D6; padding:2px 6px; border-radius:4px; font-weight:700;">BHARAT</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Bilingual intent parser &amp; voice input</div>
           </div>
         </div>
 
         <!-- Dynamic Pillar Detail Container -->
-        <div id="defense-lab-pillar-content" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+        <div id="defense-lab-pillar-content" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:18px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
           <!-- Rendered by window.selectDefenseLabPillar -->
         </div>
       </div>
@@ -4187,7 +4187,7 @@ git push space main
       const el = document.getElementById(`pillar-card-${c}`);
       if (el) {
         if (c === pillar) {
-          el.style.border = '2px solid #2563EB';
+          el.style.border = '2px solid #2764E8';
           el.style.background = '#EFF6FF';
         } else {
           el.style.border = '1px solid #CBD5E1';
@@ -4212,7 +4212,7 @@ git push space main
                 <option value="rate_limiter_none_type">Scenario A: Token Bucket (TypeError: NoneType Subtraction)</option>
                 <option value="cache_off_by_one">Scenario B: LRU Cache (IndexError: Off-By-One Eviction)</option>
               </select>
-              <button type="button" id="btn-run-heal" onclick="window.runBreakAndHeal()" style="background:#2563EB; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(37,99,235,0.25); display:inline-flex; align-items:center; gap:6px;">
+              <button type="button" id="btn-run-heal" onclick="window.runBreakAndHeal()" style="background:#2764E8; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(39, 100, 232, 0.1); display:inline-flex; align-items:center; gap:6px;">
                 Run Autonomous Self-Healing
               </button>
             </div>
@@ -4220,18 +4220,18 @@ git push space main
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:12px;">
-              <div style="font-size:0.74rem; font-weight:700; color:#DC2626; margin-bottom:6px; display:flex; justify-content:space-between;">
+              <div style="font-size:0.74rem; font-weight:700; color:#D23A34; margin-bottom:6px; display:flex; justify-content:space-between;">
                 <span>Candidate Implementation Code (With Injected Bug)</span>
-                <span style="font-size:0.68rem; background:#FEE2E2; color:#DC2626; padding:1px 6px; border-radius:4px;">BUG ACTIVE</span>
+                <span style="font-size:0.68rem; background:#FEE2E0; color:#D23A34; padding:1px 6px; border-radius:4px;">BUG ACTIVE</span>
               </div>
-              <pre id="defense-heal-buggy-code" style="margin:0; font-family:monospace; font-size:0.72rem; color:#0F172A; background:#FFFFFF; border:1px solid #E2E8F0; padding:10px; border-radius:4px; max-height:160px; overflow-y:auto; line-height:1.4;">// Select scenario to inspect code</pre>
+              <pre id="defense-heal-buggy-code" style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#0F172A; background:#FFFFFF; border:1px solid #E2E8F0; padding:10px; border-radius:4px; max-height:160px; overflow-y:auto; line-height:1.4;">// Select scenario to inspect code</pre>
             </div>
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:12px;">
               <div style="font-size:0.74rem; font-weight:700; color:#059669; margin-bottom:6px; display:flex; justify-content:space-between;">
                 <span>Unit Test Suite (Unittest Sandbox Specification)</span>
                 <span style="font-size:0.68rem; background:#ECFDF5; color:#059669; padding:1px 6px; border-radius:4px;">TARGET INVARIANT</span>
               </div>
-              <pre id="defense-heal-test-code" style="margin:0; font-family:monospace; font-size:0.72rem; color:#0F172A; background:#FFFFFF; border:1px solid #E2E8F0; padding:10px; border-radius:4px; max-height:160px; overflow-y:auto; line-height:1.4;">// Target test suite</pre>
+              <pre id="defense-heal-test-code" style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#0F172A; background:#FFFFFF; border:1px solid #E2E8F0; padding:10px; border-radius:4px; max-height:160px; overflow-y:auto; line-height:1.4;">// Target test suite</pre>
             </div>
           </div>
 
@@ -4260,9 +4260,9 @@ git push space main
                 <option value="sql_injection_audit">CWE-89 SQL Injection Audit &amp; Fix</option>
                 <option value="pypi_slopsquatting_audit">PyPI Slopsquatting Import Interception</option>
               </select>
-              <button type="button" onclick="window.stepReactDebugger(-1)" style="background:#F1F5F9; border:1px solid #CBD5E1; color:#334155; padding:7px 12px; border-radius:6px; font-size:0.76rem; font-weight:600; cursor:pointer;">&larr; Prev</button>
-              <button type="button" id="btn-debugger-next" onclick="window.stepReactDebugger(1)" style="background:#0F172A; color:#FFFFFF; border:none; padding:7px 16px; border-radius:6px; font-size:0.76rem; font-weight:700; cursor:pointer; box-shadow:0 1px 3px rgba(15,23,42,0.2);">Next Step &rarr;</button>
-              <button type="button" onclick="window.runAllReactDebugger()" style="background:#2563EB; color:#FFFFFF; border:none; padding:7px 16px; border-radius:6px; font-size:0.76rem; font-weight:700; cursor:pointer; box-shadow:0 1px 3px rgba(37,99,235,0.2);">Auto-Play All</button>
+              <button type="button" onclick="window.stepReactDebugger(-1)" style="background:#F2F5F9; border:1px solid #CBD5E1; color:#334155; padding:7px 12px; border-radius:6px; font-size:0.76rem; font-weight:600; cursor:pointer;">&larr; Prev</button>
+              <button type="button" id="btn-debugger-next" onclick="window.stepReactDebugger(1)" style="background:#0F172A; color:#FFFFFF; border:none; padding:7px 16px; border-radius:6px; font-size:0.76rem; font-weight:700; cursor:pointer; box-shadow:0 1px 3px rgba(15, 23, 42, 0.08);">Next Step &rarr;</button>
+              <button type="button" onclick="window.runAllReactDebugger()" style="background:#2764E8; color:#FFFFFF; border:none; padding:7px 16px; border-radius:6px; font-size:0.76rem; font-weight:700; cursor:pointer; box-shadow:0 1px 3px rgba(39, 100, 232, 0.08);">Auto-Play All</button>
             </div>
           </div>
 
@@ -4282,7 +4282,7 @@ git push space main
               <h4 style="margin:0; font-size:0.95rem; color:#0F172A; font-weight:700;">3. Live Red-Team vs Blue-Team Zero-Day Attack Playground</h4>
               <p style="margin:2px 0 0 0; font-size:0.74rem; color:#64748B;">Test real multi-tier defense interception against supply-chain slopsquatting, delimiter injection, state-sponsored APT obfuscation, and DPDP Indian PII leakage.</p>
             </div>
-            <button type="button" id="btn-run-attack" onclick="window.runRedTeamSim()" style="background:#DC2626; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(220,38,38,0.25); display:inline-flex; align-items:center; gap:6px;">
+            <button type="button" id="btn-run-attack" onclick="window.runRedTeamSim()" style="background:#D23A34; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(210, 58, 52, 0.1); display:inline-flex; align-items:center; gap:6px;">
               Test Multi-Tier Defense
             </button>
           </div>
@@ -4290,20 +4290,20 @@ git push space main
           <!-- Preset Attack Chips -->
           <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
             <span style="font-size:0.72rem; color:#64748B; align-self:center; font-weight:600;">Presets:</span>
-            <button type="button" onclick="window.setRedTeamPreset('slopsquatting')" class="attack-chip" style="background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">PyPI Slopsquatting</button>
-            <button type="button" onclick="window.setRedTeamPreset('prompt_injection')" class="attack-chip" style="background:#FEF2F2; border:1px solid #FECACA; color:#DC2626; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Prompt Injection</button>
-            <button type="button" onclick="window.setRedTeamPreset('pii_leak')" class="attack-chip" style="background:#FFFBEB; border:1px solid #FDE68A; color:#D97706; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">DPDP Aadhaar/PAN Leak</button>
-            <button type="button" onclick="window.setRedTeamPreset('path_traversal')" class="attack-chip" style="background:#FAF5FF; border:1px solid #E9D5FF; color:#9333EA; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Path Traversal (Linux Shadow)</button>
-            <button type="button" onclick="window.setRedTeamPreset('state_sponsored_apt29')" class="attack-chip" style="background:#F1F5F9; border:1px solid #CBD5E1; color:#0F172A; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">APT-29 Unicode RLO</button>
+            <button type="button" onclick="window.setRedTeamPreset('slopsquatting')" class="attack-chip" style="background:#EFF6FF; border:1px solid #BFDBFE; color:#1F50D4; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">PyPI Slopsquatting</button>
+            <button type="button" onclick="window.setRedTeamPreset('prompt_injection')" class="attack-chip" style="background:#FEF2F1; border:1px solid #FECAC7; color:#D23A34; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Prompt Injection</button>
+            <button type="button" onclick="window.setRedTeamPreset('pii_leak')" class="attack-chip" style="background:#FFFAF3; border:1px solid #FFE1B8; color:#D6791C; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">DPDP Aadhaar/PAN Leak</button>
+            <button type="button" onclick="window.setRedTeamPreset('path_traversal')" class="attack-chip" style="background:#F4F7FF; border:1px solid #D0DFFF; color:#416ADC; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Path Traversal (Linux Shadow)</button>
+            <button type="button" onclick="window.setRedTeamPreset('state_sponsored_apt29')" class="attack-chip" style="background:#F2F5F9; border:1px solid #CBD5E1; color:#0F172A; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">APT-29 Unicode RLO</button>
           </div>
 
           <div style="margin-bottom:12px;">
-            <textarea id="defense-attack-input" rows="3" style="width:100%; box-sizing:border-box; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; font-family:monospace; font-size:0.76rem; padding:10px; border-radius:6px; line-height:1.4;" placeholder="Enter custom malicious prompt, slopsquatting import, or test payload..."></textarea>
+            <textarea id="defense-attack-input" rows="3" style="width:100%; box-sizing:border-box; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; font-family:'IBM Plex Mono', monospace; font-size:0.76rem; padding:10px; border-radius:6px; line-height:1.4;" placeholder="Enter custom malicious prompt, slopsquatting import, or test payload..."></textarea>
           </div>
 
           <div id="defense-attack-results" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:16px;">
             <div style="text-align:center; padding:24px 16px; color:#64748B; font-size:0.8rem;">
-              <span style="display:block; margin-bottom:6px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#DC2626;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+              <span style="display:block; margin-bottom:6px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#D23A34;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
               Select an attack vector or type a payload, then click <strong>Test Multi-Tier Defense</strong>.
             </div>
           </div>
@@ -4318,7 +4318,7 @@ git push space main
               <h4 style="margin:0; font-size:0.95rem; color:#0F172A; font-weight:700;">4. 45-Sample Held-Out Benchmark &amp; Official Grading Scorecard</h4>
               <p style="margin:2px 0 0 0; font-size:0.74rem; color:#64748B;">Direct empirical audit on the uncorrupted held-out test dataset (held_out_eval_v2.json) testing Indian PAN, Aadhaar, Phone, Email, and Bank Accounts against Benign DevOps text.</p>
             </div>
-            <button type="button" id="btn-run-benchmark" onclick="window.runHeldOutBenchmark()" style="background:#059669; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(5,150,105,0.25); display:inline-flex; align-items:center; gap:6px;">
+            <button type="button" id="btn-run-benchmark" onclick="window.runHeldOutBenchmark()" style="background:#059669; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(5, 150, 105, 0.1); display:inline-flex; align-items:center; gap:6px;">
               Run 45-Sample Held-Out Benchmark
             </button>
           </div>
@@ -4340,10 +4340,10 @@ git push space main
               <p style="margin:2px 0 0 0; font-size:0.74rem; color:#64748B;">Bilingual intent understanding: normalizes Indian Hindi/Hinglish engineering prompts into canonical DevOps specifications with DPDP Act governance guardrails.</p>
             </div>
             <div style="display:flex; align-items:center; gap:8px;">
-              <button type="button" onclick="window.startVoiceInput()" id="btn-voice-input" style="background:#F1F5F9; border:1px solid #CBD5E1; color:#334155; padding:7px 14px; border-radius:6px; font-size:0.76rem; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:4px;">
+              <button type="button" onclick="window.startVoiceInput()" id="btn-voice-input" style="background:#F2F5F9; border:1px solid #CBD5E1; color:#334155; padding:7px 14px; border-radius:6px; font-size:0.76rem; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:4px;">
                 Mic Audio Input
               </button>
-              <button type="button" id="btn-parse-hinglish" onclick="window.parseHinglishPrompt()" style="background:#7C3AED; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(124,58,237,0.25); display:inline-flex; align-items:center; gap:6px;">
+              <button type="button" id="btn-parse-hinglish" onclick="window.parseHinglishPrompt()" style="background:#3D65D6; color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 2px 6px rgba(61, 101, 214, 0.1); display:inline-flex; align-items:center; gap:6px;">
                 Parse &amp; Govern Intent
               </button>
             </div>
@@ -4352,9 +4352,9 @@ git push space main
           <!-- Quick Sample Chips -->
           <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;">
             <span style="font-size:0.72rem; color:#64748B; align-self:center; font-weight:600;">Try Samples:</span>
-            <button type="button" onclick="window.setHinglishSample('Bhai ek FastAPI rate limiter bana do jo Redis token bucket use kare')" class="sample-chip" style="background:#F5F3FF; border:1px solid #DDD6FE; color:#7C3AED; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Sample 1: Token Bucket Rate Limiter</button>
-            <button type="button" onclick="window.setHinglishSample('Hamare production database me Aadhaar card leak ho raha hai use tokenize karke mask karo')" class="sample-chip" style="background:#F5F3FF; border:1px solid #DDD6FE; color:#7C3AED; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Sample 2: Aadhaar Card DPDP Masking</button>
-            <button type="button" onclick="window.setHinglishSample('Kubernetes deployment ko non-root user pe configure karo aur container drop capabilities add karo')" class="sample-chip" style="background:#F5F3FF; border:1px solid #DDD6FE; color:#7C3AED; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Sample 3: Kubernetes Container Hardening</button>
+            <button type="button" onclick="window.setHinglishSample('Bhai ek FastAPI rate limiter bana do jo Redis token bucket use kare')" class="sample-chip" style="background:#F0F5FF; border:1px solid #CCDCFF; color:#3D65D6; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Sample 1: Token Bucket Rate Limiter</button>
+            <button type="button" onclick="window.setHinglishSample('Hamare production database me Aadhaar card leak ho raha hai use tokenize karke mask karo')" class="sample-chip" style="background:#F0F5FF; border:1px solid #CCDCFF; color:#3D65D6; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Sample 2: Aadhaar Card DPDP Masking</button>
+            <button type="button" onclick="window.setHinglishSample('Kubernetes deployment ko non-root user pe configure karo aur container drop capabilities add karo')" class="sample-chip" style="background:#F0F5FF; border:1px solid #CCDCFF; color:#3D65D6; font-size:0.72rem; padding:3px 10px; border-radius:9999px; cursor:pointer; font-weight:600;">Sample 3: Kubernetes Container Hardening</button>
           </div>
 
           <div style="margin-bottom:12px;">
@@ -4363,7 +4363,7 @@ git push space main
 
           <div id="defense-hinglish-results" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:16px;">
             <div style="text-align:center; padding:24px 16px; color:#64748B; font-size:0.8rem;">
-              <span style="font-size:0.75rem; font-weight:700; color:#2563EB; display:block; margin-bottom:6px; letter-spacing:0.04em;">[MULTILINGUAL HINGLISH PARSER]</span>
+              <span style="font-size:0.75rem; font-weight:700; color:#2764E8; display:block; margin-bottom:6px; letter-spacing:0.04em;">[MULTILINGUAL HINGLISH PARSER]</span>
               Click a sample above or type in Hinglish, then click <strong>Parse &amp; Govern Intent</strong>.
             </div>
           </div>
@@ -4422,8 +4422,8 @@ git push space main
     if (btn) btn.disabled = true;
     if (resBox) {
       resBox.innerHTML = `
-        <div style="text-align:center; padding:24px; color:#2563EB;">
-          <div style="font-size:0.74rem; font-weight:700; color:#2563EB; margin-bottom:8px; letter-spacing:0.05em;">[EXECUTION IN PROGRESS]</div>
+        <div style="text-align:center; padding:24px; color:#2764E8;">
+          <div style="font-size:0.74rem; font-weight:700; color:#2764E8; margin-bottom:8px; letter-spacing:0.05em;">[EXECUTION IN PROGRESS]</div>
           <strong style="font-size:0.85rem;">Executing Sandbox Test &amp; Capturing ReAct Reflection...</strong>
           <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">Isolated subprocess spawned &middot; Traceback captured &middot; AST patch synthesis underway</p>
         </div>
@@ -4542,38 +4542,38 @@ git push space main
               <span style="background:#ECFDF5; color:#059669; border:1px solid #A7F3D0; font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:6px;">[PASS] AUTONOMOUSLY HEALED</span>
               <strong style="font-size:0.82rem; color:#0F172A;">${data.scenario_title}</strong>
             </div>
-            <span style="font-size:0.74rem; color:#64748B; font-family:monospace; background:#FFFFFF; border:1px solid #E2E8F0; padding:3px 8px; border-radius:4px;">Iterations: ${data.iterations_required} &bull; Total Time: ${data.total_latency_ms}ms</span>
+            <span style="font-size:0.74rem; color:#64748B; font-family:'IBM Plex Mono', monospace; background:#FFFFFF; border:1px solid #E2E8F0; padding:3px 8px; border-radius:4px;">Iterations: ${data.iterations_required} &bull; Total Time: ${data.total_latency_ms}ms</span>
           </div>
 
           <!-- 4-Step ReAct Trajectory -->
           <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
             <!-- Step 1: Sandbox Error -->
-            <div style="background:#FEF2F2; border:1px solid #FECACA; border-left:4px solid #DC2626; border-radius:6px; padding:10px 14px;">
+            <div style="background:#FEF2F1; border:1px solid #FECAC7; border-left:4px solid #D23A34; border-radius:6px; padding:10px 14px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <strong style="color:#DC2626; font-size:0.78rem;">Step 1: Ephemeral Sandbox Execution (Exit Code 1)</strong>
-                <span style="font-size:0.68rem; background:#FFFFFF; color:#DC2626; border:1px solid #FECACA; padding:1px 6px; border-radius:4px; font-weight:700;">TEST FAILED</span>
+                <strong style="color:#D23A34; font-size:0.78rem;">Step 1: Ephemeral Sandbox Execution (Exit Code 1)</strong>
+                <span style="font-size:0.68rem; background:#FFFFFF; color:#D23A34; border:1px solid #FECAC7; padding:1px 6px; border-radius:4px; font-weight:700;">TEST FAILED</span>
               </div>
-              <div style="font-family:monospace; font-size:0.72rem; color:#991B1B; background:#FFFFFF; border:1px solid #FEE2E2; padding:8px; border-radius:4px; max-height:80px; overflow-y:auto; white-space:pre-wrap;">
+              <div style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#991B1B; background:#FFFFFF; border:1px solid #FEE2E0; padding:8px; border-radius:4px; max-height:80px; overflow-y:auto; white-space:pre-wrap;">
                 ${data.trajectory[0].traceback || 'TypeError: unsupported operand type(s) for -: \'float\' and \'NoneType\''}
               </div>
             </div>
 
             <!-- Step 2: ReAct Reflection -->
-            <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-left:4px solid #2563EB; border-radius:6px; padding:10px 14px;">
+            <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-left:4px solid #2764E8; border-radius:6px; padding:10px 14px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <strong style="color:#1D4ED8; font-size:0.78rem;">Step 2: ReAct Autonomous Reflection &amp; Root Cause Analysis</strong>
-                <span style="font-size:0.68rem; background:#FFFFFF; color:#1D4ED8; border:1px solid #BFDBFE; padding:1px 6px; border-radius:4px; font-weight:700;">REFLECTION</span>
+                <strong style="color:#1F50D4; font-size:0.78rem;">Step 2: ReAct Autonomous Reflection &amp; Root Cause Analysis</strong>
+                <span style="font-size:0.68rem; background:#FFFFFF; color:#1F50D4; border:1px solid #BFDBFE; padding:1px 6px; border-radius:4px; font-weight:700;">REFLECTION</span>
               </div>
               <p style="margin:0; font-size:0.74rem; color:#1E3A8A; line-height:1.4;">${data.trajectory[1].thought}</p>
             </div>
 
             <!-- Step 3: Patch Synthesis -->
-            <div style="background:#FAF5FF; border:1px solid #E9D5FF; border-left:4px solid #9333EA; border-radius:6px; padding:10px 14px;">
+            <div style="background:#F4F7FF; border:1px solid #D0DFFF; border-left:4px solid #416ADC; border-radius:6px; padding:10px 14px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <strong style="color:#7E22CE; font-size:0.78rem;">Step 3: Unified Patch Synthesis &amp; AST Security Gate</strong>
-                <span style="font-size:0.68rem; background:#FFFFFF; color:#7E22CE; border:1px solid #E9D5FF; padding:1px 6px; border-radius:4px; font-weight:700;">0 TAINT</span>
+                <strong style="color:#3156C6; font-size:0.78rem;">Step 3: Unified Patch Synthesis &amp; AST Security Gate</strong>
+                <span style="font-size:0.68rem; background:#FFFFFF; color:#3156C6; border:1px solid #D0DFFF; padding:1px 6px; border-radius:4px; font-weight:700;">0 TAINT</span>
               </div>
-              <pre style="margin:0; font-family:monospace; font-size:0.72rem; color:#581C87; background:#FFFFFF; border:1px solid #F3E8FF; padding:8px; border-radius:4px;">${data.trajectory[2].patch_diff}</pre>
+              <pre style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#193599; background:#FFFFFF; border:1px solid #E5EDFF; padding:8px; border-radius:4px;">${data.trajectory[2].patch_diff}</pre>
             </div>
 
             <!-- Step 4: Sandbox Verification Passed -->
@@ -4757,30 +4757,30 @@ git push space main
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
             <div style="display:flex; align-items:center; gap:8px;">
               <span style="background:#0F172A; color:#FFFFFF; font-size:0.72rem; font-weight:800; padding:3px 10px; border-radius:4px;">STEP ${data.step_index + 1} OF ${data.total_steps}</span>
-              <span style="background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE; font-size:0.72rem; font-weight:700; padding:3px 8px; border-radius:4px;">${s.phase}</span>
+              <span style="background:#EFF6FF; color:#1F50D4; border:1px solid #BFDBFE; font-size:0.72rem; font-weight:700; padding:3px 8px; border-radius:4px;">${s.phase}</span>
             </div>
-            <span style="font-size:0.72rem; color:#64748B; font-family:monospace; background:#FFFFFF; border:1px solid #CBD5E1; padding:2px 8px; border-radius:4px;">Latency: ${s.latency_ms}ms &bull; Tokens: ${s.tokens}</span>
+            <span style="font-size:0.72rem; color:#64748B; font-family:'IBM Plex Mono', monospace; background:#FFFFFF; border:1px solid #CBD5E1; padding:2px 8px; border-radius:4px;">Latency: ${s.latency_ms}ms &bull; Tokens: ${s.tokens}</span>
           </div>
 
           <!-- Reasoning Thought Box -->
-          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-left:4px solid #2563EB; border-radius:6px; padding:12px 14px; margin-bottom:10px;">
+          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-left:4px solid #2764E8; border-radius:6px; padding:12px 14px; margin-bottom:10px;">
             <strong style="color:#1E3A8A; font-size:0.76rem; display:block; margin-bottom:4px;">Agent Reasoning (Thought):</strong>
             <p style="margin:0; font-size:0.76rem; color:#0F172A; line-height:1.45;">${s.thought}</p>
           </div>
 
           <!-- Action & Tool Args -->
-          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-left:4px solid #7C3AED; border-radius:6px; padding:12px 14px; margin-bottom:10px;">
+          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-left:4px solid #3D65D6; border-radius:6px; padding:12px 14px; margin-bottom:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <strong style="color:#581C87; font-size:0.76rem;">Selected Tool Call (Action):</strong>
-              <span style="font-family:monospace; font-size:0.72rem; background:#F5F3FF; color:#7C3AED; border:1px solid #DDD6FE; padding:2px 8px; border-radius:4px; font-weight:700;">tool: ${s.action}</span>
+              <strong style="color:#193599; font-size:0.76rem;">Selected Tool Call (Action):</strong>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; background:#F0F5FF; color:#3D65D6; border:1px solid #CCDCFF; padding:2px 8px; border-radius:4px; font-weight:700;">tool: ${s.action}</span>
             </div>
-            <pre style="margin:0; font-family:monospace; font-size:0.72rem; color:#0F172A; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px; border-radius:4px; overflow-x:auto;">${JSON.stringify(s.tool_args, null, 2)}</pre>
+            <pre style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#0F172A; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px; border-radius:4px; overflow-x:auto;">${JSON.stringify(s.tool_args, null, 2)}</pre>
           </div>
 
           <!-- Observation Box -->
           <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-left:4px solid #059669; border-radius:6px; padding:12px 14px;">
             <strong style="color:#065F46; font-size:0.76rem; display:block; margin-bottom:4px;">Tool Execution Output (Observation):</strong>
-            <pre style="margin:0; font-family:monospace; font-size:0.72rem; color:#0F172A; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px; border-radius:4px; max-height:100px; overflow-y:auto; line-height:1.4;">${s.observation}</pre>
+            <pre style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#0F172A; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px; border-radius:4px; max-height:100px; overflow-y:auto; line-height:1.4;">${s.observation}</pre>
           </div>
         </div>
       `;
@@ -4814,8 +4814,8 @@ git push space main
     if (btn) btn.disabled = true;
     if (resBox) {
       resBox.innerHTML = `
-        <div style="text-align:center; padding:24px; color:#DC2626;">
-          <div style="font-size:0.74rem; font-weight:700; color:#DC2626; margin-bottom:8px; letter-spacing:0.05em;">[ATTACK SIMULATION RUNNING]</div>
+        <div style="text-align:center; padding:24px; color:#D23A34;">
+          <div style="font-size:0.74rem; font-weight:700; color:#D23A34; margin-bottom:8px; letter-spacing:0.05em;">[ATTACK SIMULATION RUNNING]</div>
           <strong style="font-size:0.85rem;">Scanning Multi-Tier Cyber Defense Stack...</strong>
           <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">AST Package Firewall &bull; Prompt Injection Shield &bull; Sentinel Token Vault &bull; MicroVM Containment</p>
         </div>
@@ -4900,9 +4900,9 @@ git push space main
 
     if (resBox) {
       const isBlocked = data.intercepted;
-      const badgeColor = isBlocked ? '#DC2626' : '#059669';
-      const badgeBg = isBlocked ? '#FEE2E2' : '#ECFDF5';
-      const badgeBorder = isBlocked ? '#FECACA' : '#A7F3D0';
+      const badgeColor = isBlocked ? '#D23A34' : '#059669';
+      const badgeBg = isBlocked ? '#FEE2E0' : '#ECFDF5';
+      const badgeBorder = isBlocked ? '#FECAC7' : '#A7F3D0';
 
       resBox.innerHTML = `
         <div>
@@ -4913,7 +4913,7 @@ git push space main
               </span>
               <strong style="font-size:0.82rem; color:#0F172A;">${data.defense_layer}</strong>
             </div>
-            <span style="font-size:0.74rem; color:#64748B; font-family:monospace; background:#FFFFFF; border:1px solid #CBD5E1; padding:3px 8px; border-radius:4px;">
+            <span style="font-size:0.74rem; color:#64748B; font-family:'IBM Plex Mono', monospace; background:#FFFFFF; border:1px solid #CBD5E1; padding:3px 8px; border-radius:4px;">
               Defense Latency: ${data.latency_ms}ms
             </span>
           </div>
@@ -4943,7 +4943,7 @@ git push space main
           <!-- Sanitized Output Box -->
           <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:10px 14px;">
             <strong style="font-size:0.75rem; color:#0F172A; display:block; margin-bottom:4px;">Safe Sanitized / Quarantined Payload Output:</strong>
-            <pre style="margin:0; font-family:monospace; font-size:0.72rem; color:#0F172A; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px; border-radius:4px; max-height:80px; overflow-y:auto;">${data.sanitized_output}</pre>
+            <pre style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#0F172A; background:#F8FAFC; border:1px solid #E2E8F0; padding:8px; border-radius:4px; max-height:80px; overflow-y:auto;">${data.sanitized_output}</pre>
           </div>
         </div>
       `;
@@ -5033,7 +5033,7 @@ git push space main
             </div>
             <div style="text-align:right;">
               <span style="font-size:0.7rem; color:#065F46; font-weight:600;">Cryptographic SHA-256 Merkle Root:</span>
-              <div style="font-family:monospace; font-size:0.72rem; color:#047857; font-weight:700;">${data.merkle_provenance.merkle_root.slice(0, 24)}...</div>
+              <div style="font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#047857; font-weight:700;">${data.merkle_provenance.merkle_root.slice(0, 24)}...</div>
             </div>
           </div>
 
@@ -5045,15 +5045,15 @@ git push space main
             </div>
             <div style="background:#FFFFFF; border:1px solid #CBD5E1; padding:10px; border-radius:6px; text-align:center;">
               <span style="font-size:0.72rem; color:#64748B; font-weight:600;">True Negatives</span>
-              <div style="font-size:1.3rem; font-weight:800; color:#2563EB;">${cm.true_negatives}</div>
+              <div style="font-size:1.3rem; font-weight:800; color:#2764E8;">${cm.true_negatives}</div>
             </div>
             <div style="background:#FFFFFF; border:1px solid #CBD5E1; padding:10px; border-radius:6px; text-align:center;">
               <span style="font-size:0.72rem; color:#64748B; font-weight:600;">False Positives</span>
-              <div style="font-size:1.3rem; font-weight:800; color:#D97706;">${cm.false_positives}</div>
+              <div style="font-size:1.3rem; font-weight:800; color:#D6791C;">${cm.false_positives}</div>
             </div>
             <div style="background:#FFFFFF; border:1px solid #CBD5E1; padding:10px; border-radius:6px; text-align:center;">
               <span style="font-size:0.72rem; color:#64748B; font-weight:600;">False Negatives</span>
-              <div style="font-size:1.3rem; font-weight:800; color:#DC2626;">${cm.false_negatives}</div>
+              <div style="font-size:1.3rem; font-weight:800; color:#D23A34;">${cm.false_negatives}</div>
             </div>
             <div style="background:#FFFFFF; border:1px solid #CBD5E1; padding:10px; border-radius:6px; text-align:center;">
               <span style="font-size:0.72rem; color:#64748B; font-weight:600;">Precision</span>
@@ -5087,7 +5087,7 @@ git push space main
 
           <!-- Expandable Per-Case Inspection Table -->
           <details style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:6px; padding:10px;">
-            <summary style="font-size:0.76rem; font-weight:700; color:#2563EB; cursor:pointer;">Inspect All 45 Held-Out Test Cases &amp; Outcomes (&plusmn; Latency)</summary>
+            <summary style="font-size:0.76rem; font-weight:700; color:#2764E8; cursor:pointer;">Inspect All 45 Held-Out Test Cases &amp; Outcomes (&plusmn; Latency)</summary>
             <div style="max-height:220px; overflow-y:auto; margin-top:10px;">
               <table style="width:100%; border-collapse:collapse; font-size:0.7rem; text-align:left;">
                 <thead>
@@ -5101,12 +5101,12 @@ git push space main
                 </thead>
                 <tbody>
                   ${(data.cases || []).map(c => `
-                    <tr style="border-bottom:1px solid #F1F5F9;">
-                      <td style="padding:4px 8px; font-family:monospace; font-weight:700;">${c.id}</td>
+                    <tr style="border-bottom:1px solid #F2F5F9;">
+                      <td style="padding:4px 8px; font-family:'IBM Plex Mono', monospace; font-weight:700;">${c.id}</td>
                       <td style="padding:4px 8px; max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${c.text}</td>
                       <td style="padding:4px 8px;">${c.entity_type || 'Benign'}</td>
-                      <td style="padding:4px 8px;"><span style="font-weight:700; color:${c.outcome === 'TP' || c.outcome === 'TN' ? '#059669' : '#DC2626'};">${c.outcome}</span></td>
-                      <td style="padding:4px 8px; font-family:monospace;">${c.latency_ms}ms</td>
+                      <td style="padding:4px 8px;"><span style="font-weight:700; color:${c.outcome === 'TP' || c.outcome === 'TN' ? '#059669' : '#D23A34'};">${c.outcome}</span></td>
+                      <td style="padding:4px 8px; font-family:'IBM Plex Mono', monospace;">${c.latency_ms}ms</td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -5135,8 +5135,8 @@ git push space main
     if (btn) btn.disabled = true;
     if (resBox) {
       resBox.innerHTML = `
-        <div style="text-align:center; padding:24px; color:#7C3AED;">
-          <div style="font-size:0.74rem; font-weight:700; color:#7C3AED; margin-bottom:8px; letter-spacing:0.05em;">[NATURAL LANGUAGE PROCESSING]</div>
+        <div style="text-align:center; padding:24px; color:#3D65D6;">
+          <div style="font-size:0.74rem; font-weight:700; color:#3D65D6; margin-bottom:8px; letter-spacing:0.05em;">[NATURAL LANGUAGE PROCESSING]</div>
           <strong style="font-size:0.85rem;">Normalizing Hinglish Idioms &amp; Extracting Governance Intent...</strong>
           <p style="margin:4px 0 0 0; font-size:0.74rem; color:#64748B;">Semantic intent resolution &bull; DPDP Act policy mapping &bull; Tool recommendation</p>
         </div>
@@ -5182,23 +5182,23 @@ git push space main
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
             <div style="display:flex; align-items:center; gap:8px;">
-              <span style="background:#F5F3FF; color:#7C3AED; border:1px solid #DDD6FE; font-size:0.72rem; font-weight:800; padding:3px 10px; border-radius:4px;">${data.detected_language}</span>
-              <span style="background:#EFF6FF; color:#1D4ED8; border:1px solid #BFDBFE; font-size:0.72rem; font-weight:700; padding:3px 8px; border-radius:4px;">Intent: ${data.intent_category}</span>
+              <span style="background:#F0F5FF; color:#3D65D6; border:1px solid #CCDCFF; font-size:0.72rem; font-weight:800; padding:3px 10px; border-radius:4px;">${data.detected_language}</span>
+              <span style="background:#EFF6FF; color:#1F50D4; border:1px solid #BFDBFE; font-size:0.72rem; font-weight:700; padding:3px 8px; border-radius:4px;">Intent: ${data.intent_category}</span>
             </div>
             <span style="font-size:0.72rem; color:#059669; font-weight:700; background:#ECFDF5; border:1px solid #A7F3D0; padding:2px 8px; border-radius:4px;">${data.governance_compliance}</span>
           </div>
 
           <!-- Normalized English DevOps Task -->
-          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-left:4px solid #7C3AED; border-radius:6px; padding:12px 14px; margin-bottom:10px;">
-            <strong style="color:#581C87; font-size:0.76rem; display:block; margin-bottom:4px;">Normalized Technical English Task Specification:</strong>
+          <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-left:4px solid #3D65D6; border-radius:6px; padding:12px 14px; margin-bottom:10px;">
+            <strong style="color:#193599; font-size:0.76rem; display:block; margin-bottom:4px;">Normalized Technical English Task Specification:</strong>
             <p style="margin:0; font-size:0.78rem; color:#0F172A; font-weight:600; line-height:1.4;">${data.normalized_task_en}</p>
           </div>
 
           <!-- Dual Hindi & English Explanation Cards -->
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
-            <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:6px; padding:10px 14px;">
-              <strong style="color:#92400E; font-size:0.74rem; display:block; margin-bottom:4px;">Hindi Explanation (हिंदी विवरण):</strong>
-              <p style="margin:0; font-size:0.74rem; color:#78350F; line-height:1.4;">${data.explanation_hindi}</p>
+            <div style="background:#FFFAF3; border:1px solid #FFE1B8; border-radius:6px; padding:10px 14px;">
+              <strong style="color:#8C4600; font-size:0.74rem; display:block; margin-bottom:4px;">Hindi Explanation (हिंदी विवरण):</strong>
+              <p style="margin:0; font-size:0.74rem; color:#743900; line-height:1.4;">${data.explanation_hindi}</p>
             </div>
             <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:6px; padding:10px 14px;">
               <strong style="color:#1E3A8A; font-size:0.74rem; display:block; margin-bottom:4px;">English Technical Context:</strong>
@@ -5210,7 +5210,7 @@ git push space main
           <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:10px 14px; border-radius:6px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
             <span style="font-size:0.74rem; color:#64748B; font-weight:600;">Recommended ReAct Tool Execution Sequence:</span>
             <div style="display:flex; gap:6px;">
-              ${(data.suggested_tools || []).map(t => `<span style="font-family:monospace; font-size:0.7rem; background:#F1F5F9; border:1px solid #CBD5E1; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">${t}()</span>`).join('')}
+              ${(data.suggested_tools || []).map(t => `<span style="font-family:'IBM Plex Mono', monospace; font-size:0.7rem; background:#F2F5F9; border:1px solid #CBD5E1; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">${t}()</span>`).join('')}
             </div>
           </div>
         </div>
@@ -5236,8 +5236,8 @@ git push space main
 
       if (btn) {
         btn.textContent = "Listening...";
-        btn.style.background = "#FEE2E2";
-        btn.style.color = "#DC2626";
+        btn.style.background = "#FEE2E0";
+        btn.style.color = "#D23A34";
       }
 
       recognition.onresult = function(event) {
@@ -5245,7 +5245,7 @@ git push space main
         if (input) input.value = transcript;
         if (btn) {
           btn.textContent = "Mic Audio Input";
-          btn.style.background = "#F1F5F9";
+          btn.style.background = "#F2F5F9";
           btn.style.color = "#334155";
         }
       };
@@ -5253,7 +5253,7 @@ git push space main
       recognition.onerror = function() {
         if (btn) {
           btn.textContent = "Mic Audio Input";
-          btn.style.background = "#F1F5F9";
+          btn.style.background = "#F2F5F9";
           btn.style.color = "#334155";
         }
       };
@@ -5261,7 +5261,7 @@ git push space main
       recognition.onend = function() {
         if (btn) {
           btn.textContent = "Mic Audio Input";
-          btn.style.background = "#F1F5F9";
+          btn.style.background = "#F2F5F9";
           btn.style.color = "#334155";
         }
       };
@@ -5283,7 +5283,7 @@ git push space main
           <div>
             <div style="display:flex; align-items:center; gap:8px;">
               <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:700;">Point 13: 30/30 Academic Weapon Defense Suite &middot; 5 Elite Frontiers</h3>
-              <span style="background:#EEF2FF; color:#4F46E5; border:1px solid #C7D2FE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">RESEARCH FRONTIERS &middot; STRICTLY VERIFIED</span>
+              <span style="background:#EDF2FF; color:#2D56DC; border:1px solid #C1D4FE; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:9999px;">RESEARCH FRONTIERS &middot; STRICTLY VERIFIED</span>
             </div>
             <p style="margin:3px 0 0 0; font-size:0.78rem; color:#64748B;">
               Empirical defense suite proving zero-day fuzzing resilience (500 mutations, 97.8%), SLSA Level 3 Merkle tree provenance, formal ablation study (ΔF1 breakdown), multi-agent dual-custody multi-sig highway, and policy calibration ROC curve.
@@ -5296,15 +5296,15 @@ git push space main
 
         <!-- 5-Pillar Selector Tabs -->
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:16px;">
-          <div onclick="window.selectAcademicFrontierPillar('fuzzer')" id="frontier-card-fuzzer" class="defense-lab-card" style="background:#EFF6FF; border:2px solid #2563EB; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectAcademicFrontierPillar('fuzzer')" id="frontier-card-fuzzer" class="defense-lab-card" style="background:#EFF6FF; border:2px solid #2764E8; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong style="color:#1D4ED8; font-size:0.8rem;">1. Adversarial Fuzzer</strong>
-              <span style="font-size:0.65rem; background:#DBEAFE; color:#1D4ED8; padding:2px 6px; border-radius:4px; font-weight:700;">97.8% CATCH</span>
+              <strong style="color:#1F50D4; font-size:0.8rem;">1. Adversarial Fuzzer</strong>
+              <span style="font-size:0.65rem; background:#DBEAFE; color:#1F50D4; padding:2px 6px; border-radius:4px; font-weight:700;">97.8% CATCH</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">500 mutated zero-day vectors</div>
           </div>
 
-          <div onclick="window.selectAcademicFrontierPillar('merkle')" id="frontier-card-merkle" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectAcademicFrontierPillar('merkle')" id="frontier-card-merkle" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <strong style="color:#0F172A; font-size:0.8rem;">2. Merkle SLSA L3</strong>
               <span style="font-size:0.65rem; background:#ECFDF5; color:#059669; padding:2px 6px; border-radius:4px; font-weight:700;">NIST SP 800-218</span>
@@ -5312,33 +5312,33 @@ git push space main
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Cryptographic tamper proof</div>
           </div>
 
-          <div onclick="window.selectAcademicFrontierPillar('ablation')" id="frontier-card-ablation" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectAcademicFrontierPillar('ablation')" id="frontier-card-ablation" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <strong style="color:#0F172A; font-size:0.8rem;">3. Empirical Ablation</strong>
-              <span style="font-size:0.65rem; background:#F1F5F9; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">ΔF1 IMPACT</span>
+              <span style="font-size:0.65rem; background:#F2F5F9; color:#0F172A; padding:2px 6px; border-radius:4px; font-weight:700;">ΔF1 IMPACT</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Scientific pipeline breakdown</div>
           </div>
 
-          <div onclick="window.selectAcademicFrontierPillar('multisig')" id="frontier-card-multisig" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectAcademicFrontierPillar('multisig')" id="frontier-card-multisig" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong style="color:#D97706; font-size:0.8rem;">4. Dual-Custody Multi-Sig</strong>
-              <span style="font-size:0.65rem; background:#FEF3C7; color:#D97706; padding:2px 6px; border-radius:4px; font-weight:700;">RBI CSF SoD</span>
+              <strong style="color:#D6791C; font-size:0.8rem;">4. Dual-Custody Multi-Sig</strong>
+              <span style="font-size:0.65rem; background:#FFF0DC; color:#D6791C; padding:2px 6px; border-radius:4px; font-weight:700;">RBI CSF SoD</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">ADK + CrewAI co-signing</div>
           </div>
 
-          <div onclick="window.selectAcademicFrontierPillar('roc')" id="frontier-card-roc" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all 0.15s ease;">
+          <div onclick="window.selectAcademicFrontierPillar('roc')" id="frontier-card-roc" class="defense-lab-card" style="background:#FFFFFF; border:1px solid #CBD5E1; padding:12px; border-radius:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0, 0, 0, 0.04); transition:all 0.15s ease;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong style="color:#7C3AED; font-size:0.8rem;">5. Policy Calibration ROC</strong>
-              <span style="font-size:0.65rem; background:#F5F3FF; color:#7C3AED; padding:2px 6px; border-radius:4px; font-weight:700;">J = 0.7419</span>
+              <strong style="color:#3D65D6; font-size:0.8rem;">5. Policy Calibration ROC</strong>
+              <span style="font-size:0.65rem; background:#F0F5FF; color:#3D65D6; padding:2px 6px; border-radius:4px; font-weight:700;">J = 0.7419</span>
             </div>
             <div style="font-size:0.72rem; color:#64748B; margin-top:4px;">Optimal threshold operating point</div>
           </div>
         </div>
 
         <!-- Dynamic Pillar Detail Container -->
-        <div id="academic-frontiers-pillar-content" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+        <div id="academic-frontiers-pillar-content" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:18px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
           <!-- Rendered by window.selectAcademicFrontierPillar -->
         </div>
       </div>
@@ -5351,10 +5351,10 @@ git push space main
       const el = document.getElementById(`frontier-card-${c}`);
       if (el) {
         if (c === pillar) {
-          el.style.border = '2px solid #2563EB';
+          el.style.border = '2px solid #2764E8';
           el.style.background = '#EFF6FF';
           const title = el.querySelector('strong');
-          if (title) title.style.color = '#1D4ED8';
+          if (title) title.style.color = '#1F50D4';
         } else {
           el.style.border = '1px solid #CBD5E1';
           el.style.background = '#FFFFFF';
@@ -5375,23 +5375,23 @@ git push space main
               <h4 style="margin:0; font-size:0.95rem; color:#0F172A; font-weight:700;">1. Genetic Adversarial Red-Team Fuzzer &middot; 500 Zero-Day Mutations</h4>
               <p style="margin:2px 0 0 0; font-size:0.74rem; color:#64748B;">Evaluates KAVACH's resilience against 500 mutated adversarial attack vectors spanning 5 zero-day obfuscation classes: Homoglyphs, Zero-Width steganography, Leetspeak, Context Framing, and Base64 wrapping.</p>
             </div>
-            <span style="font-size:0.72rem; background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; padding:3px 8px; border-radius:6px; font-weight:600;">Mean Latency: 0.48ms &bull; Resilience: 97.8%</span>
+            <span style="font-size:0.72rem; background:#EFF6FF; border:1px solid #BFDBFE; color:#1F50D4; padding:3px 8px; border-radius:6px; font-weight:600;">Mean Latency: 0.48ms &bull; Resilience: 97.8%</span>
           </div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px; margin-bottom:14px;">
             <div style="display:flex; gap:8px; align-items:center; margin-bottom:10px; flex-wrap:wrap;">
               <span style="font-size:0.78rem; font-weight:700; color:#1E293B;">Attack Class Preset:</span>
-              <button type="button" onclick="window.setFuzzSample('homoglyph')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.04);">Homoglyph (Cyrillic)</button>
-              <button type="button" onclick="window.setFuzzSample('zerowidth')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.04);">Zero-Width Stego</button>
-              <button type="button" onclick="window.setFuzzSample('leetspeak')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.04);">Leetspeak (Evasion)</button>
-              <button type="button" onclick="window.setFuzzSample('framing')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.04);">Context Framing</button>
-              <button type="button" onclick="window.setFuzzSample('base64')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.04);">Base64 Wrapper</button>
+              <button type="button" onclick="window.setFuzzSample('homoglyph')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0, 0, 0, 0.04);">Homoglyph (Cyrillic)</button>
+              <button type="button" onclick="window.setFuzzSample('zerowidth')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0, 0, 0, 0.04);">Zero-Width Stego</button>
+              <button type="button" onclick="window.setFuzzSample('leetspeak')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0, 0, 0, 0.04);">Leetspeak (Evasion)</button>
+              <button type="button" onclick="window.setFuzzSample('framing')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0, 0, 0, 0.04);">Context Framing</button>
+              <button type="button" onclick="window.setFuzzSample('base64')" style="background:#FFFFFF; color:#0F172A !important; border:1px solid #CBD5E1; font-size:0.78rem; font-weight:600; padding:6px 14px; border-radius:6px; cursor:pointer; box-shadow:0 1px 2px rgba(0, 0, 0, 0.04);">Base64 Wrapper</button>
             </div>
             <div style="display:flex; gap:10px; margin-bottom:12px;">
-              <input type="text" id="fuzz-payload-input" value="rm&#8203; -rf&#8203; / --no-preserve-root" style="flex:1; font-family:'JetBrains Mono',monospace; font-size:0.80rem; padding:9px 14px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF; color:#0F172A;">
-              <button type="button" onclick="window.runInteractiveFuzzMutation()" id="btn-run-fuzz" style="background:#DC2626; color:#FFF; font-weight:700; font-size:0.80rem; padding:9px 20px; border:none; border-radius:6px; cursor:pointer; box-shadow:0 2px 6px rgba(220,38,38,0.25);">Execute Mutation Test</button>
+              <input type="text" id="fuzz-payload-input" value="rm&#8203; -rf&#8203; / --no-preserve-root" style="flex:1; font-family:'IBM Plex Mono',monospace; font-size:0.80rem; padding:9px 14px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF; color:#0F172A;">
+              <button type="button" onclick="window.runInteractiveFuzzMutation()" id="btn-run-fuzz" style="background:#D23A34; color:#FFFFFF; font-weight:700; font-size:0.80rem; padding:9px 20px; border:none; border-radius:6px; cursor:pointer; box-shadow:0 2px 6px rgba(210, 58, 52, 0.1);">Execute Mutation Test</button>
             </div>
-            <div id="fuzz-test-result" style="background:#0F172A; border-radius:6px; padding:12px; font-family:'JetBrains Mono',monospace; font-size:0.74rem; color:#E2E8F0; min-height:60px;">
+            <div id="fuzz-test-result" style="background:#0F172A; border-radius:6px; padding:12px; font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:#E2E8F0; min-height:60px;">
               <span style="color:#94A3B8;">Click "Execute Mutation Test" to run live de-obfuscation and AST gate verification...</span>
             </div>
           </div>
@@ -5409,28 +5409,28 @@ git push space main
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom:1px solid #F1F5F9;">
+              <tr style="border-bottom:1px solid #F2F5F9;">
                 <td style="padding:6px 10px; font-weight:600;">Homoglyph Character Substitution</td>
                 <td style="padding:6px 10px;">100</td>
                 <td style="padding:6px 10px; color:#059669; font-weight:700;">100</td>
                 <td style="padding:6px 10px; font-weight:700; color:#059669;">100.0%</td>
                 <td style="padding:6px 10px;"><span style="background:#ECFDF5; color:#059669; padding:2px 6px; border-radius:4px; font-weight:700;">PASS</span></td>
               </tr>
-              <tr style="border-bottom:1px solid #F1F5F9;">
+              <tr style="border-bottom:1px solid #F2F5F9;">
                 <td style="padding:6px 10px; font-weight:600;">Zero-Width Steganography Injection</td>
                 <td style="padding:6px 10px;">100</td>
                 <td style="padding:6px 10px; color:#059669; font-weight:700;">96</td>
                 <td style="padding:6px 10px; font-weight:700; color:#059669;">96.0%</td>
                 <td style="padding:6px 10px;"><span style="background:#ECFDF5; color:#059669; padding:2px 6px; border-radius:4px; font-weight:700;">PASS</span></td>
               </tr>
-              <tr style="border-bottom:1px solid #F1F5F9;">
+              <tr style="border-bottom:1px solid #F2F5F9;">
                 <td style="padding:6px 10px; font-weight:600;">Leetspeak Number Permutations</td>
                 <td style="padding:6px 10px;">100</td>
                 <td style="padding:6px 10px; color:#059669; font-weight:700;">100</td>
                 <td style="padding:6px 10px; font-weight:700; color:#059669;">100.0%</td>
                 <td style="padding:6px 10px;"><span style="background:#ECFDF5; color:#059669; padding:2px 6px; border-radius:4px; font-weight:700;">PASS</span></td>
               </tr>
-              <tr style="border-bottom:1px solid #F1F5F9;">
+              <tr style="border-bottom:1px solid #F2F5F9;">
                 <td style="padding:6px 10px; font-weight:600;">Context Framing & Persona Jailbreaks</td>
                 <td style="padding:6px 10px;">100</td>
                 <td style="padding:6px 10px; color:#059669; font-weight:700;">95</td>
@@ -5478,26 +5478,26 @@ git push space main
                 <line x1="240" y1="70" x2="280" y2="120" stroke="#334155" stroke-width="2"/>
 
                 <!-- Root -->
-                <circle cx="160" cy="25" r="14" fill="#1E293B" stroke="#10B981" stroke-width="2.5" id="ui-tree-root-c"/>
-                <text x="160" y="29" fill="#10B981" font-size="9" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" id="ui-tree-root-t">ROOT</text>
+                <circle cx="160" cy="25" r="14" fill="#1E293B" stroke="#3CB685" stroke-width="2.5" id="ui-tree-root-c"/>
+                <text x="160" y="29" fill="#3CB685" font-size="9" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" id="ui-tree-root-t">ROOT</text>
 
                 <!-- Intermediates -->
-                <circle cx="80" cy="70" r="11" fill="#1E293B" stroke="#06B6D4" stroke-width="2" id="ui-tree-h01-c"/>
-                <text x="80" y="73" fill="#06B6D4" font-size="8" text-anchor="middle" font-family="JetBrains Mono">H01</text>
-                <circle cx="240" cy="70" r="11" fill="#1E293B" stroke="#06B6D4" stroke-width="2"/>
-                <text x="240" y="73" fill="#06B6D4" font-size="8" text-anchor="middle" font-family="JetBrains Mono">H23</text>
+                <circle cx="80" cy="70" r="11" fill="#1E293B" stroke="#52ACEA" stroke-width="2" id="ui-tree-h01-c"/>
+                <text x="80" y="73" fill="#52ACEA" font-size="8" text-anchor="middle" font-family="IBM Plex Mono">H01</text>
+                <circle cx="240" cy="70" r="11" fill="#1E293B" stroke="#52ACEA" stroke-width="2"/>
+                <text x="240" y="73" fill="#52ACEA" font-size="8" text-anchor="middle" font-family="IBM Plex Mono">H23</text>
 
                 <!-- Leaves -->
-                <circle cx="40" cy="120" r="9" fill="#1E293B" stroke="#A855F7" stroke-width="2"/>
-                <text x="40" y="123" fill="#A855F7" font-size="7" text-anchor="middle" font-family="JetBrains Mono">Plan</text>
-                <circle cx="120" cy="120" r="9" fill="#1E293B" stroke="#A855F7" stroke-width="2" id="ui-tree-leaf1-c"/>
-                <text x="120" y="123" fill="#A855F7" font-size="7" text-anchor="middle" font-family="JetBrains Mono" id="ui-tree-leaf1-t">Code</text>
-                <circle cx="200" cy="120" r="9" fill="#1E293B" stroke="#A855F7" stroke-width="2"/>
-                <text x="200" y="123" fill="#A855F7" font-size="7" text-anchor="middle" font-family="JetBrains Mono">AST</text>
-                <circle cx="280" cy="120" r="9" fill="#1E293B" stroke="#A855F7" stroke-width="2"/>
-                <text x="280" y="123" fill="#A855F7" font-size="7" text-anchor="middle" font-family="JetBrains Mono">SBOM</text>
+                <circle cx="40" cy="120" r="9" fill="#1E293B" stroke="#5480F4" stroke-width="2"/>
+                <text x="40" y="123" fill="#5480F4" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">Plan</text>
+                <circle cx="120" cy="120" r="9" fill="#1E293B" stroke="#5480F4" stroke-width="2" id="ui-tree-leaf1-c"/>
+                <text x="120" y="123" fill="#5480F4" font-size="7" text-anchor="middle" font-family="IBM Plex Mono" id="ui-tree-leaf1-t">Code</text>
+                <circle cx="200" cy="120" r="9" fill="#1E293B" stroke="#5480F4" stroke-width="2"/>
+                <text x="200" y="123" fill="#5480F4" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">AST</text>
+                <circle cx="280" cy="120" r="9" fill="#1E293B" stroke="#5480F4" stroke-width="2"/>
+                <text x="280" y="123" fill="#5480F4" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">SBOM</text>
               </svg>
-              <div id="ui-tree-status-badge" style="margin-top:6px; font-size:0.7rem; font-family:'JetBrains Mono',monospace; color:#34D399;">
+              <div id="ui-tree-status-badge" style="margin-top:6px; font-size:0.7rem; font-family:'IBM Plex Mono',monospace; color:#58CF9E;">
                 [MERKLE ROOT: 611689ea5bb29094... VERIFIED]
               </div>
             </div>
@@ -5507,17 +5507,17 @@ git push space main
               <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:10px;">
                 <strong style="font-size:0.76rem; color:#334155; display:block; margin-bottom:6px;">Provenance Verification Controls:</strong>
                 <div style="display:flex; gap:8px;">
-                  <button type="button" onclick="window.tamperMerkleProvenanceNode()" id="btn-tamper-merkle" style="flex:1; background:#FEE2E2; border:1px solid #FECACA; color:#DC2626; font-size:0.76rem; font-weight:700; padding:8px 14px; border-radius:6px; cursor:pointer;">Inject Leaf Tamper</button>
+                  <button type="button" onclick="window.tamperMerkleProvenanceNode()" id="btn-tamper-merkle" style="flex:1; background:#FEE2E0; border:1px solid #FECAC7; color:#D23A34; font-size:0.76rem; font-weight:700; padding:8px 14px; border-radius:6px; cursor:pointer;">Inject Leaf Tamper</button>
                   <button type="button" onclick="window.verifyMerkleProvenanceClean()" id="btn-verify-merkle" style="flex:1; background:#ECFDF5; border:1px solid #A7F3D0; color:#059669; font-size:0.76rem; font-weight:700; padding:8px 14px; border-radius:6px; cursor:pointer;">Verify Merkle Seal</button>
                 </div>
               </div>
 
-              <div id="merkle-term-log" style="background:#0F172A; border-radius:6px; padding:10px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#E2E8F0; flex:1; margin-top:8px; overflow-y:auto; max-height:110px;">
-                <span style="color:#10B981;">[SLSA-L3] Leaf 0 (Plan): 9a4f89...</span><br>
-                <span style="color:#10B981;">[SLSA-L3] Leaf 1 (Code): b82c44...</span><br>
-                <span style="color:#10B981;">[SLSA-L3] Leaf 2 (AST):  e710d5...</span><br>
-                <span style="color:#10B981;">[SLSA-L3] Leaf 3 (SBOM): 3c4da8...</span><br>
-                <span style="color:#34D399; font-weight:700;">[NIST-800-218] ROOT ATTESTATION SEAL VALIDATED</span>
+              <div id="merkle-term-log" style="background:#0F172A; border-radius:6px; padding:10px; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:#E2E8F0; flex:1; margin-top:8px; overflow-y:auto; max-height:110px;">
+                <span style="color:#3CB685;">[SLSA-L3] Leaf 0 (Plan): 9a4f89...</span><br>
+                <span style="color:#3CB685;">[SLSA-L3] Leaf 1 (Code): b82c44...</span><br>
+                <span style="color:#3CB685;">[SLSA-L3] Leaf 2 (AST):  e710d5...</span><br>
+                <span style="color:#3CB685;">[SLSA-L3] Leaf 3 (SBOM): 3c4da8...</span><br>
+                <span style="color:#58CF9E; font-weight:700;">[NIST-800-218] ROOT ATTESTATION SEAL VALIDATED</span>
               </div>
             </div>
           </div>
@@ -5531,7 +5531,7 @@ git push space main
               <h4 style="margin:0; font-size:0.95rem; color:#0F172A; font-weight:700;">3. Formal Empirical Scientific Ablation Study (&Delta;F1 Breakdown)</h4>
               <p style="margin:2px 0 0 0; font-size:0.74rem; color:#64748B;">Marginal utility quantification of each defense sub-module. Demonstrates that removing any individual layer causes a statistically significant degradation in F1 performance.</p>
             </div>
-            <a href="/docs/ABLATION_TABLE.tex" download="ABLATION_TABLE.tex" style="text-decoration:none; font-size:0.76rem; background:#F1F5F9; border:1px solid #CBD5E1; color:#334155; padding:6px 14px; border-radius:6px; font-weight:600;">Download LaTeX Table</a>
+            <a href="/docs/ABLATION_TABLE.tex" download="ABLATION_TABLE.tex" style="text-decoration:none; font-size:0.76rem; background:#F2F5F9; border:1px solid #CBD5E1; color:#334155; padding:6px 14px; border-radius:6px; font-weight:600;">Download LaTeX Table</a>
           </div>
 
           <!-- Dynamic Pipeline Toggles & Live F1 Bar -->
@@ -5552,12 +5552,12 @@ git push space main
             </div>
 
             <div>
-              <div style="display:flex; justify-content:space-between; font-size:0.74rem; font-family:'JetBrains Mono',monospace; margin-bottom:4px;">
+              <div style="display:flex; justify-content:space-between; font-size:0.74rem; font-family:'IBM Plex Mono',monospace; margin-bottom:4px;">
                 <span>MODEL F1 PERFORMANCE:</span>
                 <strong id="abl-f1-val" style="color:#059669;">0.982 (&Delta;F1: 0.000)</strong>
               </div>
               <div style="width:100%; height:12px; background:#E2E8F0; border-radius:6px; overflow:hidden;">
-                <div id="abl-f1-fill" style="width:98.2%; height:100%; background:#10B981; transition:width 0.3s ease, background 0.3s ease;"></div>
+                <div id="abl-f1-fill" style="width:98.2%; height:100%; background:#3CB685; transition:width 0.3s ease, background 0.3s ease;"></div>
               </div>
             </div>
           </div>
@@ -5575,45 +5575,45 @@ git push space main
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom:1px solid #F1F5F9; background:#ECFDF5;">
+              <tr style="border-bottom:1px solid #F2F5F9; background:#ECFDF5;">
                 <td style="padding:6px 10px; font-weight:700;">Full KAVACH (M4 Complete)</td>
                 <td style="padding:6px 10px;">0.985</td>
                 <td style="padding:6px 10px;">0.978</td>
                 <td style="padding:6px 10px; font-weight:700; color:#059669;">0.982</td>
                 <td style="padding:6px 10px; font-weight:700; color:#059669;">0.000 (Baseline)</td>
-                <td style="padding:6px 10px;"><span style="background:#D1FAE5; color:#065F46; padding:2px 6px; border-radius:4px; font-weight:700;">OPTIMAL</span></td>
+                <td style="padding:6px 10px;"><span style="background:#DBF7E8; color:#065F46; padding:2px 6px; border-radius:4px; font-weight:700;">OPTIMAL</span></td>
               </tr>
-              <tr style="border-bottom:1px solid #F1F5F9;">
+              <tr style="border-bottom:1px solid #F2F5F9;">
                 <td style="padding:6px 10px; font-weight:600;">Ablated Obfuscation Normalizer (M3)</td>
                 <td style="padding:6px 10px;">0.812</td>
                 <td style="padding:6px 10px;">0.722</td>
-                <td style="padding:6px 10px; color:#DC2626; font-weight:700;">0.764</td>
-                <td style="padding:6px 10px; color:#DC2626; font-weight:700;">-0.218 (Severe)</td>
-                <td style="padding:6px 10px;"><span style="background:#FEE2E2; color:#991B1B; padding:2px 6px; border-radius:4px; font-weight:700;">CRITICAL GAP</span></td>
+                <td style="padding:6px 10px; color:#D23A34; font-weight:700;">0.764</td>
+                <td style="padding:6px 10px; color:#D23A34; font-weight:700;">-0.218 (Severe)</td>
+                <td style="padding:6px 10px;"><span style="background:#FEE2E0; color:#991B1B; padding:2px 6px; border-radius:4px; font-weight:700;">CRITICAL GAP</span></td>
               </tr>
-              <tr style="border-bottom:1px solid #F1F5F9;">
+              <tr style="border-bottom:1px solid #F2F5F9;">
                 <td style="padding:6px 10px; font-weight:600;">Ablated Proximity Rules (M2)</td>
                 <td style="padding:6px 10px;">0.931</td>
                 <td style="padding:6px 10px;">0.894</td>
-                <td style="padding:6px 10px; color:#D97706; font-weight:700;">0.912</td>
-                <td style="padding:6px 10px; color:#D97706; font-weight:700;">-0.070</td>
-                <td style="padding:6px 10px;"><span style="background:#FEF3C7; color:#92400E; padding:2px 6px; border-radius:4px; font-weight:700;">SUB-OPTIMAL</span></td>
+                <td style="padding:6px 10px; color:#D6791C; font-weight:700;">0.912</td>
+                <td style="padding:6px 10px; color:#D6791C; font-weight:700;">-0.070</td>
+                <td style="padding:6px 10px;"><span style="background:#FFF0DC; color:#8C4600; padding:2px 6px; border-radius:4px; font-weight:700;">SUB-OPTIMAL</span></td>
               </tr>
-              <tr style="border-bottom:1px solid #F1F5F9;">
+              <tr style="border-bottom:1px solid #F2F5F9;">
                 <td style="padding:6px 10px; font-weight:600;">Ablated Entropy Heuristics (M1)</td>
                 <td style="padding:6px 10px;">0.908</td>
                 <td style="padding:6px 10px;">0.867</td>
-                <td style="padding:6px 10px; color:#D97706; font-weight:700;">0.887</td>
-                <td style="padding:6px 10px; color:#D97706; font-weight:700;">-0.095</td>
-                <td style="padding:6px 10px;"><span style="background:#FEF3C7; color:#92400E; padding:2px 6px; border-radius:4px; font-weight:700;">DEGRADED</span></td>
+                <td style="padding:6px 10px; color:#D6791C; font-weight:700;">0.887</td>
+                <td style="padding:6px 10px; color:#D6791C; font-weight:700;">-0.095</td>
+                <td style="padding:6px 10px;"><span style="background:#FFF0DC; color:#8C4600; padding:2px 6px; border-radius:4px; font-weight:700;">DEGRADED</span></td>
               </tr>
               <tr style="border-bottom:1px solid #E2E8F0;">
                 <td style="padding:6px 10px; font-weight:600;">Vanilla LLM Baseline (M0)</td>
                 <td style="padding:6px 10px;">0.440</td>
                 <td style="padding:6px 10px;">0.387</td>
-                <td style="padding:6px 10px; color:#DC2626; font-weight:700;">0.412</td>
-                <td style="padding:6px 10px; color:#DC2626; font-weight:700;">-0.570 (Catastrophic)</td>
-                <td style="padding:6px 10px;"><span style="background:#FEE2E2; color:#991B1B; padding:2px 6px; border-radius:4px; font-weight:700;">UNSAFE</span></td>
+                <td style="padding:6px 10px; color:#D23A34; font-weight:700;">0.412</td>
+                <td style="padding:6px 10px; color:#D23A34; font-weight:700;">-0.570 (Catastrophic)</td>
+                <td style="padding:6px 10px;"><span style="background:#FEE2E0; color:#991B1B; padding:2px 6px; border-radius:4px; font-weight:700;">UNSAFE</span></td>
               </tr>
             </tbody>
           </table>
@@ -5627,7 +5627,7 @@ git push space main
               <h4 style="margin:0; font-size:0.95rem; color:#0F172A; font-weight:700;">4. Multi-Agent Dual-Custody Multi-Sig Highway (RBI CSF Mandate)</h4>
               <p style="margin:2px 0 0 0; font-size:0.74rem; color:#64748B;">Segregation of Duties (SoD) under RBI Cyber Security Framework. High-value fund transfers (&gt; INR 5,00,000) mandate cryptographic co-signing by both Google ADK Initiator and CrewAI Auditor.</p>
             </div>
-            <span style="font-size:0.72rem; background:#FEF3C7; border:1px solid #FDE68A; color:#D97706; padding:3px 8px; border-radius:6px; font-weight:600;">Threshold: &gt; INR 5,00,000 &bull; Dual Ed25519</span>
+            <span style="font-size:0.72rem; background:#FFF0DC; border:1px solid #FFE1B8; color:#D6791C; padding:3px 8px; border-radius:6px; font-weight:600;">Threshold: &gt; INR 5,00,000 &bull; Dual Ed25519</span>
           </div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
@@ -5635,24 +5635,24 @@ git push space main
               <strong style="font-size:0.76rem; color:#334155; display:block; margin-bottom:8px;">Transfer Parameters &amp; Signatures:</strong>
               <div style="margin-bottom:6px;">
                 <label style="font-size:0.7rem; color:#64748B;">Amount (INR):</label>
-                <input type="text" id="multisig-amount" value="750000" style="width:100%; font-family:'JetBrains Mono',monospace; font-size:0.76rem; padding:4px 8px; border:1px solid #CBD5E1; border-radius:4px;">
+                <input type="text" id="multisig-amount" value="750000" style="width:100%; font-family:'IBM Plex Mono',monospace; font-size:0.76rem; padding:4px 8px; border:1px solid #CBD5E1; border-radius:4px;">
               </div>
               <div style="margin-bottom:6px;">
                 <label style="font-size:0.7rem; color:#64748B;">ADK Initiator Signature:</label>
-                <input type="text" id="multisig-adk-sig" value="A2A-SIG-ADK-7F9B1C" readonly style="width:100%; font-family:'JetBrains Mono',monospace; font-size:0.7rem; padding:4px 8px; border:1px solid #CBD5E1; border-radius:4px; background:#F1F5F9; color:#0284C7;">
+                <input type="text" id="multisig-adk-sig" value="A2A-SIG-ADK-7F9B1C" readonly style="width:100%; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; padding:4px 8px; border:1px solid #CBD5E1; border-radius:4px; background:#F2F5F9; color:#0284C7;">
               </div>
               <div style="margin-bottom:10px;">
                 <label style="font-size:0.7rem; color:#64748B;">CrewAI Auditor Signature:</label>
-                <input type="text" id="multisig-auditor-sig" value="A2A-SIG-CREWAI-83A4E2" style="width:100%; font-family:'JetBrains Mono',monospace; font-size:0.7rem; padding:4px 8px; border:1px solid #CBD5E1; border-radius:4px; background:#FFF; color:#7C3AED;">
+                <input type="text" id="multisig-auditor-sig" value="A2A-SIG-CREWAI-83A4E2" style="width:100%; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; padding:4px 8px; border:1px solid #CBD5E1; border-radius:4px; background:#FFFFFF; color:#3D65D6;">
               </div>
               <div style="display:flex; gap:8px;">
-                <button type="button" onclick="window.simulateDualCustodyExecution(true)" style="flex:1; background:#10B981; color:#FFF; font-weight:700; font-size:0.78rem; padding:8px 16px; border:none; border-radius:6px; cursor:pointer; box-shadow:0 1px 3px rgba(16,185,129,0.25);">Execute Dual-Signed Transfer</button>
-                <button type="button" onclick="window.simulateDualCustodyExecution(false)" style="flex:1; background:#EF4444; color:#FFF; font-weight:700; font-size:0.78rem; padding:8px 16px; border:none; border-radius:6px; cursor:pointer; box-shadow:0 1px 3px rgba(239,68,68,0.25);">Simulate Rogue Agent Breach</button>
+                <button type="button" onclick="window.simulateDualCustodyExecution(true)" style="flex:1; background:#3CB685; color:#FFFFFF; font-weight:700; font-size:0.78rem; padding:8px 16px; border:none; border-radius:6px; cursor:pointer; box-shadow:0 1px 3px rgba(60, 182, 133, 0.1);">Execute Dual-Signed Transfer</button>
+                <button type="button" onclick="window.simulateDualCustodyExecution(false)" style="flex:1; background:#E84F4B; color:#FFFFFF; font-weight:700; font-size:0.78rem; padding:8px 16px; border:none; border-radius:6px; cursor:pointer; box-shadow:0 1px 3px rgba(232, 79, 75, 0.1);">Simulate Rogue Agent Breach</button>
               </div>
             </div>
 
             <!-- Terminal Output -->
-            <div id="multisig-term-output" style="background:#0F172A; border-radius:6px; padding:12px; font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:#E2E8F0; overflow-y:auto; max-height:160px;">
+            <div id="multisig-term-output" style="background:#0F172A; border-radius:6px; padding:12px; font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:#E2E8F0; overflow-y:auto; max-height:160px;">
               <span style="color:#94A3B8;">Click "Execute Dual-Signed" to co-sign transfer via ADK + CrewAI...</span>
             </div>
           </div>
@@ -5666,7 +5666,7 @@ git push space main
               <h4 style="margin:0; font-size:0.95rem; color:#0F172A; font-weight:700;">5. Interactive Policy Calibration ROC Curve &amp; Operating Point</h4>
               <p style="margin:2px 0 0 0; font-size:0.74rem; color:#64748B;">Receiver Operating Characteristic (ROC) curve analysis establishing empirical threshold calibration (&tau;). Optimizing Youden's J statistic for maximum threat sensitivity and minimal false positives.</p>
             </div>
-            <span style="font-size:0.72rem; background:#F5F3FF; border:1px solid #DDD6FE; color:#7C3AED; padding:3px 8px; border-radius:6px; font-weight:600;">Overall AUC: 0.8521 &bull; Optimal J: 0.7419</span>
+            <span style="font-size:0.72rem; background:#F0F5FF; border:1px solid #CCDCFF; color:#3D65D6; padding:3px 8px; border-radius:6px; font-weight:600;">Overall AUC: 0.8521 &bull; Optimal J: 0.7419</span>
           </div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
@@ -5676,19 +5676,19 @@ git push space main
                 <!-- Axes -->
                 <line x1="40" y1="120" x2="260" y2="120" stroke="#334155" stroke-width="1.5"/>
                 <line x1="40" y1="20" x2="40" y2="120" stroke="#334155" stroke-width="1.5"/>
-                <text x="250" y="132" fill="#64748B" font-size="8" font-family="JetBrains Mono">FPR</text>
-                <text x="15" y="25" fill="#64748B" font-size="8" font-family="JetBrains Mono">TPR</text>
+                <text x="250" y="132" fill="#64748B" font-size="8" font-family="IBM Plex Mono">FPR</text>
+                <text x="15" y="25" fill="#64748B" font-size="8" font-family="IBM Plex Mono">TPR</text>
 
                 <!-- Diagonal Reference -->
                 <line x1="40" y1="120" x2="260" y2="20" stroke="#334155" stroke-dasharray="3,3" stroke-width="1"/>
 
                 <!-- ROC Curve Points: (0,0) -> (0.04, 0.45) -> (0.129, 0.871) -> (0.35, 0.95) -> (1,1) -->
                 <!-- x = 40 + FPR*220, y = 120 - TPR*100 -->
-                <path d="M 40 120 Q 55 50, 68 33 T 260 20" fill="none" stroke="#38BDF8" stroke-width="2.5"/>
+                <path d="M 40 120 Q 55 50, 68 33 T 260 20" fill="none" stroke="#52B8FF" stroke-width="2.5"/>
 
                 <!-- Operating Point Circle (Optimal J = 0.7419 at tau=0.50) -->
-                <circle cx="68" cy="33" r="5" fill="#10B981" stroke="#FFF" stroke-width="2" id="roc-operating-point"/>
-                <text x="78" y="32" fill="#34D399" font-size="8" font-family="JetBrains Mono" font-weight="700">&tau;* = 0.50 (J = 0.74)</text>
+                <circle cx="68" cy="33" r="5" fill="#3CB685" stroke="#FFFFFF" stroke-width="2" id="roc-operating-point"/>
+                <text x="78" y="32" fill="#58CF9E" font-size="8" font-family="IBM Plex Mono" font-weight="700">&tau;* = 0.50 (J = 0.74)</text>
               </svg>
             </div>
 
@@ -5698,14 +5698,14 @@ git push space main
                 <strong style="font-size:0.76rem; color:#334155; display:block; margin-bottom:8px;">Decision Threshold &tau; Calibration:</strong>
                 <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
                   <input type="range" id="roc-slider" min="0.10" max="0.90" step="0.05" value="0.50" oninput="window.updateRocSlider(this.value)" style="flex:1;">
-                  <strong id="roc-tau-val" style="font-size:0.8rem; font-family:'JetBrains Mono',monospace; color:#2563EB;">0.50</strong>
+                  <strong id="roc-tau-val" style="font-size:0.8rem; font-family:'IBM Plex Mono',monospace; color:#2764E8;">0.50</strong>
                 </div>
               </div>
 
-              <div style="font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:#334155; background:#FFF; border:1px solid #CBD5E1; border-radius:6px; padding:8px;">
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:#334155; background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:8px;">
                 <div>TPR (Sensitivity): <strong id="roc-tpr-val" style="color:#059669;">0.8710 (87.1%)</strong></div>
-                <div>FPR (Fall-out):    <strong id="roc-fpr-val" style="color:#D97706;">0.1290 (12.9%)</strong></div>
-                <div>Youden's J Stat:   <strong id="roc-j-val" style="color:#2563EB;">0.7419 (Optimal)</strong></div>
+                <div>FPR (Fall-out):    <strong id="roc-fpr-val" style="color:#D6791C;">0.1290 (12.9%)</strong></div>
+                <div>Youden's J Stat:   <strong id="roc-j-val" style="color:#2764E8;">0.7419 (Optimal)</strong></div>
                 <div style="margin-top:4px; font-size:0.65rem; color:#64748B;">Formula: J = TPR - FPR = 0.8710 - 0.1290 = 0.7419</div>
               </div>
             </div>
@@ -5741,10 +5741,10 @@ git push space main
                             .replace(/3/g, 'e').replace(/0/g, 'o').replace(/1/g, 'i').replace(/4/g, 'a');
 
       out.innerHTML = `
-        <div style="color:#38BDF8; margin-bottom:4px;">[FUZZ-DECODER] Raw Input: "${escapeHtml(raw)}"</div>
-        <div style="color:#F59E0B; margin-bottom:4px;">[DE-OBFUSCATED]: "${escapeHtml(normalized)}" (Zero-width &amp; homoglyphs stripped)</div>
-        <div style="color:#EF4444; font-weight:700;">[INTERCEPTED &middot; AST GATE]: BLOCKED (Rule: PRIVILEGE_ESCALATION_OR_TAMPER)</div>
-        <div style="color:#10B981; font-size:0.68rem; margin-top:4px;">Resilience Decision Latency: 0.48ms &bull; Zero False Negatives Recorded</div>
+        <div style="color:#52B8FF; margin-bottom:4px;">[FUZZ-DECODER] Raw Input: "${escapeHtml(raw)}"</div>
+        <div style="color:#F0A132; margin-bottom:4px;">[DE-OBFUSCATED]: "${escapeHtml(normalized)}" (Zero-width &amp; homoglyphs stripped)</div>
+        <div style="color:#E84F4B; font-weight:700;">[INTERCEPTED &middot; AST GATE]: BLOCKED (Rule: PRIVILEGE_ESCALATION_OR_TAMPER)</div>
+        <div style="color:#3CB685; font-size:0.68rem; margin-top:4px;">Resilience Decision Latency: 0.48ms &bull; Zero False Negatives Recorded</div>
       `;
       if (btn) btn.textContent = "Execute Mutation Test";
     }, 400);
@@ -5759,21 +5759,21 @@ git push space main
     const badge = document.getElementById('ui-tree-status-badge');
     const log = document.getElementById('merkle-term-log');
 
-    if (leafC) leafC.setAttribute('stroke', '#EF4444');
-    if (leafT) leafT.setAttribute('fill', '#EF4444');
-    if (h01C) h01C.setAttribute('stroke', '#EF4444');
-    if (rootC) rootC.setAttribute('stroke', '#EF4444');
-    if (rootT) { rootT.setAttribute('fill', '#EF4444'); rootT.textContent = "FAIL"; }
+    if (leafC) leafC.setAttribute('stroke', '#E84F4B');
+    if (leafT) leafT.setAttribute('fill', '#E84F4B');
+    if (h01C) h01C.setAttribute('stroke', '#E84F4B');
+    if (rootC) rootC.setAttribute('stroke', '#E84F4B');
+    if (rootT) { rootT.setAttribute('fill', '#E84F4B'); rootT.textContent = "FAIL"; }
 
     if (badge) {
       badge.innerHTML = "[TAMPER DETECTED] Root Digest Mismatch (NIST SP 800-218 Broken)!";
-      badge.style.color = "#EF4444";
+      badge.style.color = "#E84F4B";
     }
     if (log) {
       log.innerHTML = `
-        <span style="color:#EF4444; font-weight:700;">[SECURITY TAMPER ALERT] Leaf 1 (Code) modified post-attestation!</span><br>
-        <span style="color:#EF4444;">[CORRUPT HASH]: computed_root="d41d8cd98f00..." != expected_root="611689ea5bb2..."</span><br>
-        <span style="color:#EF4444;">[ACTION]: Pipeline execution FROZEN under SLSA Level 3 Invariant Violation.</span>
+        <span style="color:#E84F4B; font-weight:700;">[SECURITY TAMPER ALERT] Leaf 1 (Code) modified post-attestation!</span><br>
+        <span style="color:#E84F4B;">[CORRUPT HASH]: computed_root="d41d8cd98f00..." != expected_root="611689ea5bb2..."</span><br>
+        <span style="color:#E84F4B;">[ACTION]: Pipeline execution FROZEN under SLSA Level 3 Invariant Violation.</span>
       `;
     }
   }
@@ -5787,23 +5787,23 @@ git push space main
     const badge = document.getElementById('ui-tree-status-badge');
     const log = document.getElementById('merkle-term-log');
 
-    if (leafC) leafC.setAttribute('stroke', '#A855F7');
-    if (leafT) leafT.setAttribute('fill', '#A855F7');
-    if (h01C) h01C.setAttribute('stroke', '#06B6D4');
-    if (rootC) rootC.setAttribute('stroke', '#10B981');
-    if (rootT) { rootT.setAttribute('fill', '#10B981'); rootT.textContent = "ROOT"; }
+    if (leafC) leafC.setAttribute('stroke', '#5480F4');
+    if (leafT) leafT.setAttribute('fill', '#5480F4');
+    if (h01C) h01C.setAttribute('stroke', '#52ACEA');
+    if (rootC) rootC.setAttribute('stroke', '#3CB685');
+    if (rootT) { rootT.setAttribute('fill', '#3CB685'); rootT.textContent = "ROOT"; }
 
     if (badge) {
       badge.innerHTML = "[MERKLE ROOT: 611689ea5bb29094... VERIFIED]";
-      badge.style.color = "#34D399";
+      badge.style.color = "#58CF9E";
     }
     if (log) {
       log.innerHTML = `
-        <span style="color:#10B981;">[SLSA-L3] Leaf 0 (Plan): 9a4f89...</span><br>
-        <span style="color:#10B981;">[SLSA-L3] Leaf 1 (Code): b82c44...</span><br>
-        <span style="color:#10B981;">[SLSA-L3] Leaf 2 (AST):  e710d5...</span><br>
-        <span style="color:#10B981;">[SLSA-L3] Leaf 3 (SBOM): 3c4da8...</span><br>
-        <span style="color:#34D399; font-weight:700;">[NIST-800-218] ROOT ATTESTATION SEAL VALIDATED</span>
+        <span style="color:#3CB685;">[SLSA-L3] Leaf 0 (Plan): 9a4f89...</span><br>
+        <span style="color:#3CB685;">[SLSA-L3] Leaf 1 (Code): b82c44...</span><br>
+        <span style="color:#3CB685;">[SLSA-L3] Leaf 2 (AST):  e710d5...</span><br>
+        <span style="color:#3CB685;">[SLSA-L3] Leaf 3 (SBOM): 3c4da8...</span><br>
+        <span style="color:#58CF9E; font-weight:700;">[NIST-800-218] ROOT ATTESTATION SEAL VALIDATED</span>
       `;
     }
   }
@@ -5825,11 +5825,11 @@ git push space main
     if (f1Val) {
       const deltaStr = delta === 0 ? "&Delta;F1: 0.000" : `&Delta;F1: ${delta.toFixed(3)}`;
       f1Val.innerHTML = `${f1.toFixed(3)} (${deltaStr})`;
-      f1Val.style.color = f1 >= 0.90 ? '#059669' : f1 >= 0.80 ? '#D97706' : '#DC2626';
+      f1Val.style.color = f1 >= 0.90 ? '#059669' : f1 >= 0.80 ? '#D6791C' : '#D23A34';
     }
     if (f1Fill) {
       f1Fill.style.width = `${(f1 * 100).toFixed(1)}%`;
-      f1Fill.style.background = f1 >= 0.90 ? '#10B981' : f1 >= 0.80 ? '#F59E0B' : '#EF4444';
+      f1Fill.style.background = f1 >= 0.90 ? '#3CB685' : f1 >= 0.80 ? '#F0A132' : '#E84F4B';
     }
   }
 
@@ -5840,17 +5840,17 @@ git push space main
 
     if (isDual) {
       out.innerHTML = `
-        <div style="color:#38BDF8;">[INITIATOR] Google ADK creates intent: Transfer INR ${amt}</div>
-        <div style="color:#38BDF8;">[SIG-1] ADK signs intent: A2A-SIG-ADK-7F9B1C</div>
-        <div style="color:#A855F7;">[AUDITOR] CrewAI Agent performs policy verification (Risk Score: 0.12)</div>
-        <div style="color:#A855F7;">[SIG-2] CrewAI co-signs intent: A2A-SIG-CREWAI-83A4E2</div>
-        <div style="color:#10B981; font-weight:700; margin-top:4px;">[HTTP 200 OK] TX-KAVACH-DUAL-${amt}-CLEARED [COMPLIANT UNDER RBI CSF]</div>
+        <div style="color:#52B8FF;">[INITIATOR] Google ADK creates intent: Transfer INR ${amt}</div>
+        <div style="color:#52B8FF;">[SIG-1] ADK signs intent: A2A-SIG-ADK-7F9B1C</div>
+        <div style="color:#5480F4;">[AUDITOR] CrewAI Agent performs policy verification (Risk Score: 0.12)</div>
+        <div style="color:#5480F4;">[SIG-2] CrewAI co-signs intent: A2A-SIG-CREWAI-83A4E2</div>
+        <div style="color:#3CB685; font-weight:700; margin-top:4px;">[HTTP 200 OK] TX-KAVACH-DUAL-${amt}-CLEARED [COMPLIANT UNDER RBI CSF]</div>
       `;
     } else {
       out.innerHTML = `
-        <div style="color:#38BDF8;">[INITIATOR] Google ADK attempts single-signature transfer of INR ${amt}</div>
-        <div style="color:#EF4444; font-weight:700;">[HTTP 403 FORBIDDEN] INSUFFICIENT_SIGNATURES: Dual custody mandated by RBI Cyber Security Framework for transactions > INR 5,00,000. Missing Auditor Co-signature.</div>
-        <div style="color:#F59E0B; font-size:0.68rem; margin-top:4px;">[DEFENSE] Segregation of Duties (SoD) successfully prevented unverified agent transfer.</div>
+        <div style="color:#52B8FF;">[INITIATOR] Google ADK attempts single-signature transfer of INR ${amt}</div>
+        <div style="color:#E84F4B; font-weight:700;">[HTTP 403 FORBIDDEN] INSUFFICIENT_SIGNATURES: Dual custody mandated by RBI Cyber Security Framework for transactions > INR 5,00,000. Missing Auditor Co-signature.</div>
+        <div style="color:#F0A132; font-size:0.68rem; margin-top:4px;">[DEFENSE] Segregation of Duties (SoD) successfully prevented unverified agent transfer.</div>
       `;
     }
   }
@@ -5885,7 +5885,7 @@ git push space main
     if (fprVal) fprVal.textContent = `${fpr.toFixed(4)} (${(fpr * 100).toFixed(1)}%)`;
     if (jVal) {
       jVal.textContent = `${j.toFixed(4)} ${Math.abs(tau - 0.5) < 0.05 ? '(Optimal)' : ''}`;
-      jVal.style.color = Math.abs(tau - 0.5) < 0.05 ? '#2563EB' : '#334155';
+      jVal.style.color = Math.abs(tau - 0.5) < 0.05 ? '#2764E8' : '#334155';
     }
 
     if (opPoint) {

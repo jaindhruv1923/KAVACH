@@ -1,19 +1,19 @@
-version: '3.8'
-
+# KAVACH - one container serves the main website and every dashboard on port 8001.
+#   docker compose up --build            -> http://localhost:8001/
+#   docker compose --profile standalone up --build
+#                                        -> also runs each dashboard on its own port
 services:
-  # Hub 1: Master KAVACH Platform (Port 8001)
-  kavach-master-platform:
+  kavach-platform:
     build:
-      context: ./kavach_platform
+      context: .
       dockerfile: Dockerfile
-    container_name: kavach-master-platform-hub
+    container_name: kavach-platform
     ports:
       - "8001:8001"
     environment:
       - PORT=8001
       - KAVACH_OFFLINE=1
       - PYTHONUNBUFFERED=1
-    command: ["python", "-m", "uvicorn", "01_KAVACH_Platform.backend.main:app", "--host", "0.0.0.0", "--port", "8001"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
       interval: 15s
@@ -21,44 +21,29 @@ services:
       retries: 3
     restart: unless-stopped
 
-  # Hub 2: Live Agent Safety Swarm Engine (Port 8000)
-  kavach-agent-swarm:
-    build:
-      context: ./live_agent_dashboard
-      dockerfile: Dockerfile
-    container_name: kavach-swarm-engine
-    ports:
-      - "8000:8000"
-    environment:
-      - PORT=8000
-      - PYTHONUNBUFFERED=1
+  live-agent-swarm:
+    profiles: ["standalone"]
+    build: { context: ., dockerfile: Dockerfile }
+    working_dir: /app/live_agent_swarm
     command: ["python", "-m", "uvicorn", "agent_engine:app", "--host", "0.0.0.0", "--port", "8000"]
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 15s
-      timeout: 5s
-      retries: 3
-    restart: unless-stopped
+    ports: ["8000:8000"]
+    environment: [PYTHONUNBUFFERED=1]
 
-  # Hub 3: Bharat Core Bank A/B Comparative Portal (Port 8002)
-  bharat-core-banking:
-    build:
-      context: ./applications_work
-      dockerfile: Dockerfile
-    container_name: bharat-core-banking-portal
-    ports:
-      - "8002:8002"
-    environment:
-      - PORT=8002
-      - PYTHONUNBUFFERED=1
+  bharat-core-bank:
+    profiles: ["standalone"]
+    build: { context: ., dockerfile: Dockerfile }
+    working_dir: /app/bharat_core_banking
     command: ["python", "-m", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8002"]
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
-      interval: 15s
-      timeout: 5s
-      retries: 3
-    restart: unless-stopped
+    ports: ["8002:8002"]
+    environment: [PYTHONUNBUFFERED=1]
+
+  real-ai-agents:
+    profiles: ["standalone"]
+    build: { context: ., dockerfile: Dockerfile }
+    command: ["python", "-m", "uvicorn", "kavach_agent_core.server:app", "--host", "0.0.0.0", "--port", "8003"]
+    ports: ["8003:8003"]
+    environment: [PYTHONUNBUFFERED=1]
 
 networks:
   default:
-    name: kavach-trihub-network
+    name: kavach-network

@@ -259,7 +259,7 @@ class KavachMultiAgentSwarm:
             
             dossier = {
                 "verdict": "HOSTILE_INJECTION_BLOCKED",
-                "verdict_title": "🚨 OWASP LLM01 INGRESS PROMPT INJECTION INTERCEPTED",
+                "verdict_title": "OWASP LLM01 INGRESS PROMPT INJECTION INTERCEPTED",
                 "target_asset": "Sentinel Ingress Boundary & Autonomous Agent Runtime",
                 "threat_mandate": "OWASP Top 10 for LLM Applications (LLM01: Prompt Injection / System Override)",
                 "ingress_sanitization": {
@@ -277,7 +277,7 @@ class KavachMultiAgentSwarm:
                     {"agent": "Sentinel Guardrail", "action": "Interception & Hostile Threat Quarantine", "status": "BLOCKED"},
                     {"agent": "Lead Orchestrator", "action": "Swarm Execution Preempted", "status": "HALTED"},
                 ],
-                "markdown_report": f"# 🚨 KAVACH Security Incident Report: OWASP LLM01 Blocked\n\n- **Target:** Sentinel Gateway\n- **Payload:** `{goal}`\n- **Interception:** Threat signature detected\n- **Result:** Execution safely halted in sub-second time.",
+                "markdown_report": f"# KAVACH Security Incident Report: OWASP LLM01 Blocked\n\n- **Target:** Sentinel Gateway\n- **Payload:** `{goal}`\n- **Interception:** Threat signature detected\n- **Result:** Execution safely halted in sub-second time.",
             }
 
             return SwarmExecutionResult(
@@ -486,7 +486,8 @@ class KavachMultiAgentSwarm:
                     "reflection": s.reflection,
                 })
                 if getattr(s, "reflexion_episode", None):
-                    ep_dict = s.reflexion_episode.dict()
+                    dump_m = getattr(s.reflexion_episode, "model_dump", None) or getattr(s.reflexion_episode, "dict")
+                    ep_dict = dump_m()
                     blackboard.reflexion_episodes.append(ep_dict)
                     log_event(agent_name, "REFLEXION_EPISODE", ep_dict)
 
@@ -516,8 +517,9 @@ class KavachMultiAgentSwarm:
                 observation={"vulnerabilities_found": 1, "detail": "Direct call to forbidden 'eval()'"},
                 cycle_number=1,
             )
-            blackboard.reflexion_episodes.append(ep.dict())
-            log_event("DevOpsCoder", "REFLEXION_EPISODE", ep.dict())
+            dump_ep = getattr(ep, "model_dump", None) or getattr(ep, "dict")
+            blackboard.reflexion_episodes.append(dump_ep())
+            log_event("DevOpsCoder", "REFLEXION_EPISODE", dump_ep())
 
         # =====================================================================
         # PHASE 4: FINAL SWARM SYNTHESIS & SIGN-OFF
@@ -529,7 +531,7 @@ class KavachMultiAgentSwarm:
 
         if is_game_theory_task:
             verdict = "STACKELBERG_EQUILIBRIUM_CERTIFIED"
-            verdict_title = "🛡️ STACKELBERG SECURITY GAME EQUILIBRIUM & TOKEN BUCKET INGRESS VELOCITY CERTIFIED"
+            verdict_title = "STACKELBERG SECURITY GAME EQUILIBRIUM & TOKEN BUCKET INGRESS VELOCITY CERTIFIED"
             target_asset = "Sentinel Ingress Gateway & Multi-Vector Defense Perimeter"
             threat_mandate = "Adversarial Strategy Optimization, Automated Fuzzing & API DoS Flood Attacks"
             math_concept = "Strong Stackelberg Equilibrium (SSE) & Dynamic Token Bucket Differential Refill"
@@ -537,7 +539,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "Defender committed to an optimal mixed strategy s* across defense resources, minimizing maximum attacker expected utility. Dynamic token bucket throttles hostile ingress velocity bursts via adaptive rate modulation rho_eff = rho_0 * max(0.1, 1 - lambda * theta)."
         elif is_dp_task:
             verdict = "DP_PRIVACY_CERTIFIED"
-            verdict_title = "🔒 DIFFERENTIAL PRIVACY & LAPLACE EPSILON-DELTA NOISE INVARIANT CERTIFIED"
+            verdict_title = "DIFFERENTIAL PRIVACY & LAPLACE EPSILON-DELTA NOISE INVARIANT CERTIFIED"
             target_asset = "Bharat Core Banking Platform & Financial Aggregates (Port 8002)"
             threat_mandate = "Reconstruction Attacks, Membership Inference & Section 8 Indian DPDP Act 2023"
             math_concept = "Dwork et al. Laplace Mechanism & Sequential Composition Privacy Accounting"
@@ -545,7 +547,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "Raw core banking aggregates perturbed via calibrated Laplace noise scaled to L1 global sensitivity Delta f. Cumulative privacy loss tracked under sequential composition to strictly prevent reconstruction and membership inference attacks."
         elif is_saga_task:
             verdict = "SAGA_ROLLBACK_VERIFIED"
-            verdict_title = "🔄 SAGA DISTRIBUTED TRANSACTION REVERSE COMPENSATION COMPLETED"
+            verdict_title = "SAGA DISTRIBUTED TRANSACTION REVERSE COMPENSATION COMPLETED"
             target_asset = "Distributed Workspace File System & Git Escrow"
             threat_mandate = "Atomic Multi-Agent Consistency & Zero Dangling Workspace Corruption (Garcia-Molina & Salem 1987)"
             math_concept = "SAGA Reverse Compensating Transaction Sequence & SHA-256 Pre-State Identity"
@@ -553,7 +555,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "Speculative workspace modifications were staged within a SAGA transaction envelope. When VerifierCritic detected an invariant breach or test regression, the SAGA coordinator executed reverse compensating transactions in exact reverse order (C_{k-1} ... C_1), restoring pre-state files bit-for-bit with verified SHA-256 checksums."
         elif is_self_correction_task:
             verdict = "REFLEXION_SELF_CORRECTED"
-            verdict_title = "🔄 ADAPTIVE REFLEXION LOOP CONVERGED: SELF-CORRECTED WITH ZERO REGRESSIONS"
+            verdict_title = "ADAPTIVE REFLEXION LOOP CONVERGED: SELF-CORRECTED WITH ZERO REGRESSIONS"
             target_asset = "DevOps & Security Microservice Codebase"
             threat_mandate = "Automated Recovery & Invariant Convergence (Shinn et al. NeurIPS 2023)"
             math_concept = "Verbal Reinforcement Learning & Monotonic Loss Reduction"
@@ -561,7 +563,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "Agent encountered an invariant failure during trial execution. Autonomous Reflexion engine diagnosed root cause, formulated counterfactual repair heuristic, and iteratively patched workspace files until empirical loss reached zero."
         elif is_pii_identity_task:
             verdict = "DPDP_COMPLIANT_SECURED"
-            verdict_title = "✅ STATUTORY DPDP 2023 COMPLIANCE CERTIFIED & VAULT ACTIVE"
+            verdict_title = "STATUTORY DPDP 2023 COMPLIANCE CERTIFIED & VAULT ACTIVE"
             target_asset = "Bharat Core Banking Platform (Port 8002)"
             threat_mandate = "Section 8 Indian DPDP Act 2023 (₹250 Crore statutory fine for raw PII/Aadhaar leak in logs)"
             math_concept = "Dihedral Group D5 Verhoeff Algebraic Checksum & Laplace Differential Privacy"
@@ -569,7 +571,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "Candidate identity numbers evaluated using non-commutative Dihedral Group D5 permutation tables. Sensitive PII tokenized into non-reversible DPDP Vault tokens, guaranteeing zero plaintext egress across external boundaries."
         elif is_ast_task:
             verdict = "AST_SECURITY_VERIFIED"
-            verdict_title = "🔍 AST TAINT REACHABILITY & SUPPLY-CHAIN SLOP-SQUATTING AUDIT PASSED"
+            verdict_title = "AST TAINT REACHABILITY & SUPPLY-CHAIN SLOP-SQUATTING AUDIT PASSED"
             target_asset = "KAVACH Agent Core & Microservice Codebase"
             threat_mandate = "CWE-94 Dynamic Code Injection, CWE-78 Shell Injection & CWE-1395 Dependency Slopsquatting"
             math_concept = "AST Data-Flow Taint Reachability DAG & Damerau-Levenshtein Metric Space"
@@ -577,7 +579,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "Source code abstract syntax tree parsed into an explicit data-flow reachability DAG. Tainted sources are isolated from critical sinks (eval, exec, os.system, subprocess). Dependency manifests audited via Damerau-Levenshtein metric space to flag hallucinated slopsquatted packages."
         elif is_code_repair_task:
             verdict = "CODE_PATCHED_VERIFIED"
-            verdict_title = "💻 AUTONOMOUS BUG PATCH APPLIED & VERIFIED VIA PYTEST"
+            verdict_title = "AUTONOMOUS BUG PATCH APPLIED & VERIFIED VIA PYTEST"
             target_asset = "KAVACH Source Repository & Test Suite"
             threat_mandate = "Software Quality & Zero Regression Invariants"
             math_concept = "SAGA Distributed Compensation & Empirical Pytest Verification"
@@ -585,7 +587,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "DevOpsCoder performed atomic search-and-replace edits. VerifierCritic executed bounded pytest subprocess to empirically verify that all unit assertions pass."
         elif is_test_task:
             verdict = "PYTEST_INVARIANTS_PASSED"
-            verdict_title = "🧪 PYTEST TEST SUITE VERIFIED WITH ZERO REGRESSIONS"
+            verdict_title = "PYTEST TEST SUITE VERIFIED WITH ZERO REGRESSIONS"
             target_asset = "KAVACH Unit Test Suite"
             threat_mandate = "Continuous Integration & Test Invariant Enforcement"
             math_concept = "Empirical Regression Verification"
@@ -593,7 +595,7 @@ class KavachMultiAgentSwarm:
             math_explanation = "All 21 automated unit tests executed in subprocess with exit code 0 and zero assertion failures."
         else:
             verdict = "WORKSPACE_INTEGRITY_AUDITED"
-            verdict_title = "🛡️ WORKSPACE ARCHITECTURE & INTEGRITY AUDITED"
+            verdict_title = "WORKSPACE ARCHITECTURE & INTEGRITY AUDITED"
             target_asset = "KAVACH Agentic Workspace"
             threat_mandate = "Repository Architecture & Least-Privilege Bounds"
             math_concept = "Topological Code Graph Analysis"
@@ -604,22 +606,22 @@ class KavachMultiAgentSwarm:
 
         # Build Rich Markdown Dossier
         md_lines = [
-            f"# 🛡️ KAVACH Multi-Agent Autonomous Security Dossier",
+            f"# KAVACH Multi-Agent Autonomous Security Dossier",
             f"**Course:** CSE3101 Agentic AI &bull; BML Munjal University &bull; Dhruv Jain (230532)",
             f"",
-            f"### 📋 Executive Summary",
+            f"### Executive Summary",
             f"- **Verdict:** `{verdict}` ({verdict_title})",
             f"- **Target Asset:** {target_asset}",
             f"- **Regulatory / Threat Mandate:** {threat_mandate}",
             f"- **Active LLM Provider:** `{provider_name}`",
             f"- **Execution Latency:** {duration_ms} ms",
             f"",
-            f"### 🔬 Mathematical Invariant Proof",
+            f"### Mathematical Invariant Proof",
             f"- **Mathematical Concept:** {math_concept}",
             f"- **LaTeX Formulation:** $${math_formula}$$",
             f"- **Verification Analysis:** {math_explanation}",
             f"",
-            f"### 🛡️ Ingress Data Sanitization (DPDP Act 2023)",
+            f"### Ingress Data Sanitization (DPDP Act 2023)",
             f"- **Raw User Goal:** `{goal}`",
             f"- **Sanitized Safe Ingress:** `{blackboard.sanitized_goal}`",
             f"- **Identity Tokens Vaulted:** {len(tokens_list)} token(s)",
@@ -629,11 +631,11 @@ class KavachMultiAgentSwarm:
             md_lines.append("| Token ID | Identifier Type | UIDAI Valid | Verhoeff D5 Checksum | Diagnostic |")
             md_lines.append("| :--- | :--- | :--- | :--- | :--- |")
             for t in tokens_list:
-                md_lines.append(f"| `{t.get('token')}` | {t.get('type')} | {'✅ Yes' if t.get('uidai_format_valid') else '❌ No'} | {'✅ Valid' if t.get('verhoeff_valid') else '❌ Invalid'} | {t.get('diagnostic', 'Protected')} |")
+                md_lines.append(f"| `{t.get('token')}` | {t.get('type')} | {'Yes' if t.get('uidai_format_valid') else 'No'} | {'Valid' if t.get('verhoeff_valid') else 'Invalid'} | {t.get('diagnostic', 'Protected')} |")
             md_lines.append("")
 
         md_lines.extend([
-            f"### 🤝 Agent-to-Agent (A2A) Chain of Custody",
+            f"### Agent-to-Agent (A2A) Chain of Custody",
             f"1. **Sentinel Guardrail**: Ingress inspection & DPDP vault tokenization &rarr; *AUTHORIZED*",
             f"2. **Lead Orchestrator**: Dynamic DAG decomposition into {len(tasks_to_execute)} sub-tasks &rarr; *DELEGATED*",
             f"3. **Specialized Specialist**: Mathematical validation and code audit &rarr; *EXECUTED*",

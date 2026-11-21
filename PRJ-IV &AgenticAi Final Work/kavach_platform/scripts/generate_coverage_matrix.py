@@ -182,7 +182,7 @@ def generate():
     ]
 
     for r in ROWS:
-        badge = "✅ **MET**" if r["status"] == "MET" else ("⚠️ **PARTIAL**" if r["status"] == "PARTIAL" else "❌ **NOT MET**")
+        badge = "**MET**" if r["status"] == "MET" else ("**PARTIAL**" if r["status"] == "PARTIAL" else "**NOT MET**")
         md_lines.append(f"| **{r['id']}** | {r['category']} | {r['topic']} | {badge} | {r['evidence']} |")
 
     md_lines.extend([

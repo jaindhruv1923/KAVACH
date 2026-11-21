@@ -1698,10 +1698,10 @@
         gap: 8px;
         padding: 9px 18px;
         border-radius: 9999px;
-        background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+        background: linear-gradient(135deg, #2D56DC 0%, #1A38A5 100%);
         color: #FFFFFF;
         border: none;
-        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.40);
+        box-shadow: 0 4px 14px rgba(45, 86, 220, 0.16);
         font-family: var(--font-sans, system-ui, sans-serif);
         font-size: 0.84rem;
         font-weight: 700;
@@ -1714,9 +1714,9 @@
         z-index: 9998;
       }
       .floating-code-ide-btn:hover {
-        background: linear-gradient(135deg, #4338CA 0%, #312E81 100%);
+        background: linear-gradient(135deg, #2044C9 0%, #1B3482 100%);
         transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.55);
+        box-shadow: 0 6px 20px rgba(45, 86, 220, 0.22);
       }
 
       .ide-modal-backdrop {
@@ -1726,7 +1726,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(10, 15, 29, 0.88);
+        background: rgba(9, 15, 29, 0.88);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         z-index: 2147483647;
@@ -1774,7 +1774,7 @@
         min-width: 260px;
       }
       .ide-brand-pill {
-        background: linear-gradient(135deg, #4F46E5, #3730A3);
+        background: linear-gradient(135deg, #2D56DC, #1A38A5);
         color: #FFFFFF;
         font-weight: 800;
         font-size: 0.75rem;
@@ -1785,7 +1785,7 @@
       .ide-brand-title {
         font-size: 0.88rem;
         font-weight: 600;
-        color: #F0F6FC;
+        color: #F2F6FB;
       }
 
       /* VS Code Style Quick Open / Search */
@@ -1814,7 +1814,7 @@
         border: 1px solid #30363D !important;
         border-radius: 8px !important;
         padding: 0 70px 0 42px !important;
-        color: #F0F6FC !important;
+        color: #F2F6FB !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
         font-size: 0.82rem !important;
         line-height: normal !important;
@@ -1826,7 +1826,7 @@
         border-color: #58A6FF !important;
         background: #0D1117 !important;
         background-color: #0D1117 !important;
-        box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.25) !important;
+        box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.1) !important;
         color: #FFFFFF !important;
       }
       #codebase-ide-modal input.ide-quick-open-input::placeholder {
@@ -1842,7 +1842,7 @@
         border: 1px solid #30363D;
         color: #8B949E;
         font-size: 0.68rem;
-        font-family: monospace;
+        font-family:'IBM Plex Mono', monospace;
         padding: 2px 6px;
         border-radius: 4px;
         pointer-events: none;
@@ -1855,7 +1855,7 @@
         gap: 10px;
       }
       .ide-close-btn {
-        background: #DC2626;
+        background: #D23A34;
         color: #FFFFFF;
         border: none;
         padding: 6px 14px;
@@ -1866,7 +1866,7 @@
         transition: all 0.15s ease;
       }
       .ide-close-btn:hover {
-        background: #B91C1C;
+        background: #B91D1C;
         transform: translateY(-1px);
       }
 
@@ -1894,7 +1894,7 @@
       }
       .ide-cat-pill:hover {
         border-color: #8B949E;
-        color: #F0F6FC;
+        color: #F2F6FB;
       }
       .ide-cat-pill.active {
         background: #1F2937;
@@ -1981,7 +1981,7 @@
       }
       .ide-tree-file:hover {
         background: #21262D;
-        color: #F0F6FC;
+        color: #F2F6FB;
       }
       .ide-tree-file.active {
         background: #1F2937;
@@ -1995,7 +1995,7 @@
         background: #21262D;
         border: 1px solid #30363D;
         border-radius: 4px;
-        color: #A5B4FC;
+        color: #9AB8FD;
       }
 
       /* Center Editor Pane */
@@ -2027,14 +2027,14 @@
         border-right: 1px solid #30363D;
         border-left: 1px solid #30363D;
         font-size: 0.8rem;
-        color: #F0F6FC;
+        color: #F2F6FB;
         font-weight: 600;
         margin-bottom: -1px;
       }
       .ide-tab-stats {
         font-size: 0.72rem;
         color: #8B949E;
-        font-family: monospace;
+        font-family:'IBM Plex Mono', monospace;
       }
       .ide-tab-actions {
         display: flex;
@@ -2066,8 +2066,8 @@
         width: 100%;
         height: 100%;
         background: #0D1117;
-        color: #F0F6FC;
-        font-family: "JetBrains Mono", Consolas, "Fira Code", monospace;
+        color: #F2F6FB;
+        font-family: "IBM Plex Mono", Consolas, "IBM Plex Mono", monospace;
         font-size: 0.81rem;
         line-height: 19.5px;
         padding: 14px 18px;
@@ -2084,21 +2084,21 @@
       }
       .ide-save-btn {
         background: #059669 !important;
-        border-color: #10B981 !important;
+        border-color: #3CB685 !important;
         color: #FFFFFF !important;
         font-weight: 700 !important;
       }
       .ide-save-btn:hover {
         background: #047857 !important;
-        border-color: #34D399 !important;
+        border-color: #58CF9E !important;
       }
       .ide-dirty-badge {
         font-size: 0.68rem;
         padding: 2px 6px;
         border-radius: 4px;
-        background: #78350F;
-        border: 1px solid #F59E0B;
-        color: #FDE68A;
+        background: #743900;
+        border: 1px solid #F0A132;
+        color: #FFE1B8;
         font-weight: 700;
         margin-left: 6px;
       }
@@ -2109,7 +2109,7 @@
         background: #21262D;
         border: 1px solid #30363D;
         color: #8B949E;
-        font-family: monospace;
+        font-family:'IBM Plex Mono', monospace;
       }
     
       /* Code Container */
@@ -2118,7 +2118,7 @@
         overflow: auto;
         display: flex;
         background: #0D1117;
-        font-family: "JetBrains Mono", Consolas, "Fira Code", monospace;
+        font-family: "IBM Plex Mono", Consolas, "IBM Plex Mono", monospace;
         font-size: 0.81rem;
         line-height: 1.5;
         position: relative;
@@ -2159,27 +2159,27 @@
       .ide-tok-builtin { color: #FFA657; font-weight: 500; }
       .ide-tok-string { color: #A5D6FF; }
       .ide-tok-comment { color: #8B949E; font-style: italic; }
-      .ide-tok-decorator { color: #D2A8FF; font-weight: 600; }
+      .ide-tok-decorator { color: #A0BDFF; font-weight: 600; }
       .ide-tok-number { color: #79C0FF; }
 
       /* Target Line Range Pulse & Highlighting */
       .ide-code-highlight-pulse {
-        background: rgba(245, 158, 11, 0.18) !important;
-        border-left: 4px solid #F59E0B !important;
-        box-shadow: inset 0 0 12px rgba(245, 158, 11, 0.15);
+        background: rgba(240, 161, 50, 0.18) !important;
+        border-left: 4px solid #F0A132 !important;
+        box-shadow: inset 0 0 12px rgba(240, 161, 50, 0.06);
         transition: all 0.3s ease;
       }
       .ide-floating-target-badge {
         position: absolute;
         top: 48px;
         left: 60px;
-        background: #F59E0B;
+        background: #F0A132;
         color: #000000;
         font-weight: 800;
         font-size: 0.72rem;
         padding: 4px 10px;
         border-radius: 4px;
-        box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+        box-shadow: 0 4px 14px rgba(240, 161, 50, 0.16);
         z-index: 10;
         display: flex;
         align-items: center;
@@ -2199,7 +2199,7 @@
         display: none;
         align-items: flex-start;
         gap: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(88, 166, 255, 0.25);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(88, 166, 255, 0.1);
         z-index: 10000;
         max-width: 380px;
         animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2218,7 +2218,7 @@
       }
       .toast-title {
         font-size: 0.82rem;
-        color: #F0F6FC;
+        color: #F2F6FB;
         margin-bottom: 3px;
       }
       .toast-meta {
@@ -2254,7 +2254,7 @@
         padding: 0;
       }
       .toast-close:hover {
-        color: #F0F6FC;
+        color: #F2F6FB;
       }
 
       /* Right Sidebar: Architecture Flowchart & Antigravity AI Copilot */
@@ -2288,7 +2288,7 @@
         transition: all 0.15s ease;
       }
       .ide-ai-tab:hover {
-        color: #F0F6FC;
+        color: #F2F6FB;
       }
       .ide-ai-tab.active {
         color: #58A6FF;
@@ -2312,7 +2312,7 @@
       .ide-flow-title {
         font-size: 0.98rem;
         font-weight: 700;
-        color: #F0F6FC;
+        color: #F2F6FB;
         margin-bottom: 4px;
       }
       .ide-flow-desc {
@@ -2336,7 +2336,7 @@
         border: 1px solid #30363D;
         border-radius: 6px;
         padding: 12px;
-        font-family: monospace;
+        font-family:'IBM Plex Mono', monospace;
         font-size: 0.71rem;
         color: #79C0FF;
         overflow-x: auto;
@@ -2367,8 +2367,8 @@
         line-height: 1.45;
       }
       .ide-box-domain {
-        background: rgba(46, 160, 67, 0.08);
-        border: 1px solid #238636;
+        background: rgba(67, 156, 91, 0.08);
+        border: 1px solid #288545;
         border-radius: 6px;
         padding: 10px 12px;
         font-size: 0.76rem;
@@ -2459,7 +2459,7 @@
       }
       .ide-msg.user {
         align-self: flex-end;
-        background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+        background: linear-gradient(135deg, #2D56DC 0%, #1A38A5 100%);
         color: #FFFFFF;
       }
       .ide-msg.assistant {
@@ -2516,7 +2516,7 @@
         border: 1px solid #30363D !important;
         border-radius: 6px !important;
         padding: 0 14px !important;
-        color: #F0F6FC !important;
+        color: #F2F6FB !important;
         font-size: 0.8rem !important;
         outline: none !important;
         box-shadow: none !important;
@@ -2533,7 +2533,7 @@
         border-color: #58A6FF;
       }
       .ide-ai-send-btn {
-        background: #238636;
+        background: #288545;
         border: none;
         color: #FFFFFF;
         width: 36px;
@@ -2546,7 +2546,7 @@
         transition: all 0.15s ease;
       }
       .ide-ai-send-btn:hover {
-        background: #2EA043;
+        background: #439C5B;
       }
 
       @keyframes slideUp {
@@ -2580,7 +2580,7 @@
           <!-- Quick Open / Search -->
           <div class="ide-quick-open-container">
             <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="ide-search-input" class="ide-quick-open-input" style="background:#0D1117 !important; color:#F0F6FC !important; padding:0 76px 0 42px !important;" placeholder="Quick Open (Ctrl+P) - Type file name, concept, or topic..." oninput="window.handleIdeSearch(this.value)" onkeydown="window.handleSearchKeyDown(event)">
+            <input type="text" id="ide-search-input" class="ide-quick-open-input" style="background:#0D1117 !important; color:#F2F6FB !important; padding:0 76px 0 42px !important;" placeholder="Quick Open (Ctrl+P) - Type file name, concept, or topic..." oninput="window.handleIdeSearch(this.value)" onkeydown="window.handleSearchKeyDown(event)">
             <span class="quick-open-kbd">Ctrl+P</span>
           </div>
 
@@ -2754,7 +2754,7 @@
         <div class="ide-tree-folder ${isCollapsed ? 'collapsed' : ''}" id="folder-${escapeHtml(node.name).replace(/[^a-zA-Z0-9]/g, '_')}">
           <div class="ide-tree-folder-header" onclick="window.toggleFolder(this.parentElement)">
             <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            <span style="font-size:0.75rem;color:#F59E0B;font-weight:700;">[DIR]</span>
+            <span style="font-size:0.75rem;color:#F0A132;font-weight:700;">[DIR]</span>
             <span>${escapeHtml(node.name)}</span>
           </div>
           <div class="ide-tree-folder-children">
@@ -3311,7 +3311,7 @@
         <div class="ide-tree-folder ${isCollapsed ? 'collapsed' : ''}" id="${folderId}">
           <div class="ide-tree-folder-header" data-folder="${escapeHtml(node.path || node.name)}" onclick="window.toggleRealFolder(this, this.getAttribute('data-folder'))">
             <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            <span style="font-size:0.75rem;color:#F59E0B;font-weight:700;">📁</span>
+            <span style="font-size:0.75rem;color:#F0A132;font-weight:700;"></span>
             <span>${escapeHtml(node.name)}</span>
           </div>
           <div class="ide-tree-folder-children">

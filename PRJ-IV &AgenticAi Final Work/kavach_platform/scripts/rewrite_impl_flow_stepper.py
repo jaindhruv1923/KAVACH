@@ -638,7 +638,7 @@ code = r'''/**
         <textarea id="step1-payload-editor" style="width:100%;height:100px;padding:12px;border:1px solid #CBD5E1;border-radius:8px;font-family:monospace;font-size:0.8rem;box-sizing:border-box;margin-bottom:12px;" oninput="pipelineState.inputPayload=this.value">${pipelineState.inputPayload}</textarea>
 
         <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
-          <button type="button" class="btn-nav-primary" onclick="evaluateStep1Live()">⚡ Run Step 1: Pre-Execution Inspection</button>
+          <button type="button" class="btn-nav-primary" onclick="evaluateStep1Live()">Run Step 1: Pre-Execution Inspection</button>
           <span style="font-size:0.75rem;color:#64748B;">Algorithm: Shannon Entropy H &ge; 4.5 &bull; Dihedral D5 Verhoeff &bull; OWASP Sanitizer</span>
         </div>
 

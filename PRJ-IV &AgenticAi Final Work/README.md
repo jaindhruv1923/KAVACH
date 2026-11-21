@@ -14,6 +14,18 @@
 **Faculty Evaluators & Course Instructors:** Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari  
 **Faculty Capstone Coordinator:** Prof. Anusha Chhabra  
 
+## Quick Start: One Website, Every Dashboard
+
+```
+run_all_services.bat            # Windows (or .\run_all_services.ps1, or docker compose up --build)
+```
+
+Open **http://localhost:8001/**. The single platform server hosts the main website and every dashboard:
+Real AI Agents (`/cockpit/`), Live Agent Swarm (`/swarm/`), Bharat Core Bank (`/bharat/`), Banking Highway (`/bank/`),
+Live Console (`/console`), Motion Graphics (`/motion/`), Stakeholder Guide (`/guide`) and Mid-Sem Reports (`/reports/`).
+The top-right buttons on every page open the Inbuilt IDE, Implementation Flow, Math Guide and Ask AI.
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for the folder map and design system.
+
 ---
 
 ## Table of Contents

@@ -48,7 +48,7 @@ def print_agent_step(agent: str, event_type: str, details: dict):
         "SwarmCoordinator": "34",  # Blue
     }
     color = agent_colors.get(agent, "37")
-    print(f"\n\033[1;{color}m[{agent}] ➔ {event_type}\033[0m")
+    print(f"\n\033[1;{color}m[{agent}] → {event_type}\033[0m")
     for k, v in details.items():
         v_str = str(v)
         if len(v_str) > 120:
@@ -99,7 +99,8 @@ def run_full_capstone_demonstration():
     report_path = os.path.join(reports_dir, "KAVACH_AGENTIC_SECURITY_AUDIT_REPORT.json")
 
     with open(report_path, "w", encoding="utf-8") as f:
-        json.dump(result.dict(), f, indent=2)
+        dump_fn = getattr(result, "model_dump", None) or getattr(result, "dict")
+        json.dump(dump_fn(), f, indent=2)
 
     print(f"\n\033[1;32m[+] Audit artifact saved to:\033[0m {report_path}")
     print("================================================================================")

@@ -22,8 +22,8 @@ RUN mkdir -p /app/kavach_platform/01_KAVACH_Platform/backend/data /app/kavach_pl
 # Environment variables ($PORT injected dynamically by Railway)
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH="/app:/app/kavach_platform/01_KAVACH_Platform/backend:/app/kavach_platform/02_Bharat_Core_Banking:/app/kavach_platform/02_Banking_and_Results_Dashboard/implementation_banks"
-ENV PORT=8000
-EXPOSE 8000
+ENV PORT=8001
+EXPOSE 8001
 
 # Container liveness check
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \

@@ -8,14 +8,10 @@
 // 2. If running directly on a cloud service (Render, Railway, VPS), use window.location.origin
 // 3. Fallback to local FastAPI development server (http://127.0.0.1:8000)
 function getApiBase() {
-  if (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getBackendOrigin === 'function') {
-    const origin = window.KAVACH_CONFIG.getBackendOrigin();
-    if (origin) return origin;
-  }
-  const custom = localStorage.getItem("KAVACH_BACKEND_URL") || localStorage.getItem("kavach_backend_url");
+  const custom = localStorage.getItem("KAVACH_BACKEND_URL");
   if (custom && custom.trim()) return custom.trim().replace(/\/$/, "");
   const loc = window.location;
-  if (loc && loc.origin && loc.protocol && loc.protocol.startsWith("http") && !loc.hostname.includes("netlify.app") && !loc.hostname.includes("github.io")) {
+  if (loc && loc.origin && loc.protocol && loc.protocol.startsWith("http") && !loc.hostname.includes("netlify.app")) {
     return loc.origin;
   }
   return "http://127.0.0.1:8001";
@@ -748,7 +744,7 @@ function renderWorkflowGateBanner(data) {
           Downstream code synthesis and quality gate stages are paused pending supervisor override.
         </div>
         <div class="gate-actions">
-          <button type="button" class="pill-btn" style="background:var(--safe);color:#fff;font-weight:700;border:none;" onclick="openHitlModal('${runId}')">Supervisor Override: Approve & Run Execution Graph (HITL)</button>
+          <button type="button" class="pill-btn" style="background:var(--safe);color:#ffffff;font-weight:700;border:none;" onclick="openHitlModal('${runId}')">Supervisor Override: Approve & Run Execution Graph (HITL)</button>
           <button type="button" class="pill-btn active" onclick="runSafeDevOpsDemo()">Run Safe DevOps Request (Full 4-Stage Live Demo)</button>
         </div>
       </div>
@@ -845,7 +841,7 @@ function renderAgenticTrace(data) {
             <span style="font-size:0.82rem;color:var(--text-secondary);">Bounded workspace modification</span>
           </div>
           ${requiresApproval ? `
-            <button type="button" class="pill-btn active" style="background:var(--safe);color:#fff;font-weight:700;" onclick="approveAgentPatch('${runId}', '${approvalToken}')">
+            <button type="button" class="pill-btn active" style="background:var(--safe);color:#ffffff;font-weight:700;" onclick="approveAgentPatch('${runId}', '${approvalToken}')">
               Authorize Patch Application &rarr;
             </button>
           ` : ""}
@@ -978,7 +974,7 @@ function renderPolicyDecision(data) {
     hitlHtml = `
       <div style="margin-top:14px;padding:12px 14px;background:var(--safe-bg);border:1px solid var(--safe-border);border-radius:var(--radius-md);">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
-          <span class="badge" style="background:var(--safe);color:#fff;border:none;font-weight:700;">SUPERVISOR ATTESTED</span>
+          <span class="badge" style="background:var(--safe);color:#ffffff;border:none;font-weight:700;">SUPERVISOR ATTESTED</span>
           <strong style="font-size:0.85rem;color:var(--text-primary);">${escapeHtml(approval.supervisor_id || 'Security Auditor')}</strong>
           <span style="font-size:0.75rem;color:var(--text-dim);font-family:var(--font-mono);">${escapeHtml(approval.timestamp || '')}</span>
         </div>
@@ -991,7 +987,7 @@ function renderPolicyDecision(data) {
       <div style="margin-top:14px;padding:12px 14px;background:var(--review-bg);border:1px solid var(--review-border);border-radius:var(--radius-md);">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
           <div style="display:flex;align-items:center;gap:8px;">
-            <span class="badge" style="background:var(--review);color:#fff;border:none;font-weight:700;">HITL ACTION REQUIRED</span>
+            <span class="badge" style="background:var(--review);color:#ffffff;border:none;font-weight:700;">HITL ACTION REQUIRED</span>
             <strong style="font-size:0.85rem;color:var(--text-primary);">Policy Oversight Gate</strong>
           </div>
           <button type="button" class="btn-primary" style="padding:5px 14px;font-size:0.8rem;background:var(--safe);border-color:var(--safe);cursor:pointer;" onclick="openHitlModal('${runId}')">
@@ -2566,7 +2562,7 @@ function renderFlowchartInspector() {
         <label style="margin:0;">Live Technical Contract &amp; Schema Payload</label>
         <span class="badge" style="font-size:0.7rem;font-family:var(--font-mono);">JSON SCHEMA SPEC</span>
       </div>
-      <pre style="margin:0;padding:14px;background:#090D16;color:#38BDF8;border:1px solid #1E293B;border-radius:var(--radius-md);font-family:var(--font-mono);font-size:0.78rem;overflow-x:auto;line-height:1.45;"><code>${escapeHtml(stage.contract)}</code></pre>
+      <pre style="margin:0;padding:14px;background:#090D16;color:#52B8FF;border:1px solid #1E293B;border-radius:var(--radius-md);font-family:var(--font-mono);font-size:0.78rem;overflow-x:auto;line-height:1.45;"><code>${escapeHtml(stage.contract)}</code></pre>
     </div>
   `;
 }
@@ -2646,12 +2642,38 @@ const ALL_APP_VIEWS = [
   'defense-view',
   'eval-view',
   'usecases-view',
-  'research-view'
+  'research-view',
+  'swarm-view',
+  'apps-view',
+  'agents-view',
+  'dashboards-view',
+  'professor-view'
 ];
+
+/* Embedded dashboard pathways: mode -> [view id, render function, url hash] */
+const EMBEDDED_PATHWAYS = {
+  agents: ['agents-view', 'renderRealAgentsView', 'real-ai-agents'],
+  swarm: ['swarm-view', 'renderLiveSwarmView', 'live-swarm'],
+  apps: ['apps-view', 'renderApplicationsWorkView', 'applications-work'],
+  dashboards: ['dashboards-view', 'renderDashboardsHub', 'dashboards']
+};
+
+/* Exactly one header pathway tab is active at a time */
+function syncPathwayTabs(mode) {
+  ['midsem', 'improvised', 'academic', 'agents', 'swarm', 'apps', 'dashboards'].forEach(function (m) {
+    const btn = document.getElementById('pathway-btn-' + m);
+    if (btn) {
+      btn.classList.toggle('active', m === mode);
+      btn.setAttribute('aria-selected', m === mode ? 'true' : 'false');
+    }
+  });
+}
+window.syncPathwayTabs = syncPathwayTabs;
 
 window.CURRENT_PATHWAY = 'midsem';
 
 function switchMasterView(targetViewId, hash = null, navBtnId = null, scrollTargetId = null) {
+  document.documentElement.setAttribute('data-kv-view', targetViewId);
   // 1. Strictly toggle all 7 views: show target, hide all others
   ALL_APP_VIEWS.forEach(vId => {
     const el = document.getElementById(vId);
@@ -2685,9 +2707,7 @@ function switchMasterView(targetViewId, hash = null, navBtnId = null, scrollTarg
 
   const scopeMatrix = document.getElementById('scope-btn-matrix');
 
-  if (btnMidsem) btnMidsem.classList.toggle('active', mode === 'midsem');
-  if (btnImprovised) btnImprovised.classList.toggle('active', mode === 'improvised');
-  if (btnAcademic) btnAcademic.classList.toggle('active', mode === 'academic');
+  syncPathwayTabs(mode);
   const headerAcademicBtn = document.getElementById('header-academic-btn');
   if (headerAcademicBtn) headerAcademicBtn.classList.toggle('active', mode === 'academic');
 
@@ -2822,13 +2842,22 @@ function activatePathwayMode(mode, targetId = null) {
   const scopeMatrix = document.getElementById('scope-btn-matrix');
   const pill = document.getElementById('scope-context-pill');
 
-  if (btnMidsem) btnMidsem.classList.toggle('active', mode === 'midsem');
-  if (btnImprovised) btnImprovised.classList.toggle('active', mode === 'improvised');
-  if (btnAcademic) btnAcademic.classList.toggle('active', mode === 'academic');
+  syncPathwayTabs(mode);
 
   [scopeAll, scopeEarlier, scopeNew, scopeMatrix].forEach(btn => {
     if (btn) btn.classList.remove('active');
   });
+
+  if (EMBEDDED_PATHWAYS[mode]) {
+    const cfg = EMBEDDED_PATHWAYS[mode];
+    switchMasterView(cfg[0], cfg[2]);
+    if (typeof window[cfg[1]] === 'function') window[cfg[1]]();
+    window.CURRENT_PATHWAY = mode;
+    syncPathwayTabs(mode);
+    if (typeof window.renderDynamicNavbar === 'function') window.renderDynamicNavbar(mode);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
 
   if (typeof window.renderDynamicNavbar === 'function') {
     window.renderDynamicNavbar(mode);
@@ -2859,31 +2888,60 @@ function activatePathwayMode(mode, targetId = null) {
 window.renderDynamicNavbar = function(mode) {
   const container = document.getElementById('main-nav-switcher');
   if (!container) return;
+  const open = (key) => (window.KavachSuite ? window.KavachSuite.url(key) : '/');
 
   if (mode === 'midsem') {
     container.innerHTML = `
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('product-view', this)">Overview</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Flowchart</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Checks</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Matrix</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Eval</button>
-      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Paper</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('six-stages-autonomous-defense-section', this)">Six Defense Stages</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('architecture-flowchart', this)">Architecture Flowchart</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('terminal-results-section', this)">Verification Checks</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToDefense()">Defense Matrix</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToEval()">Evaluation</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToResearch()">Research Paper</button>
+      <button type="button" class="nav-switch-btn" onclick="switchToWorkspace()">Live Console</button>
     `;
   } else if (mode === 'academic') {
     container.innerHTML = `
-      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('academic')">10 Frontiers</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-grounding-card', this)">KaTeX Math</button>
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('academic')">Ten Frontiers</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-grounding-card', this)">Mathematical Grounding</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-flow-sim', this)">Flow Pipeline</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-telemetry-box', this)">Telemetry</button>
-      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('midsem')">&larr; Earlier (v1.0)</button>
-      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('improvised')">Improvised (v3.0) &rarr;</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('academic-features-hub-container', this)">Interactive Tools</button>
+    `;
+  } else if (mode === 'agents') {
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('agents')">Agent Cockpit</button>
+      <a class="nav-switch-btn" href="${open('cockpit')}" target="_blank" rel="noopener">Open full screen</a>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('swarm')">Agent Swarm</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('dashboards')">All Dashboards</button>
+    `;
+  } else if (mode === 'swarm') {
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('swarm')">Swarm Command Center</button>
+      <a class="nav-switch-btn" href="${open('swarm')}" target="_blank" rel="noopener">Open full screen</a>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('agents')">Real AI Agents</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('apps')">Banking Apps</button>
+    `;
+  } else if (mode === 'apps') {
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('apps')">Bharat Core Bank</button>
+      <a class="nav-switch-btn" href="${open('bharat')}" target="_blank" rel="noopener">Open full screen</a>
+      <a class="nav-switch-btn" href="${open('bank')}" target="_blank" rel="noopener">Banking Highway</a>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('dashboards')">All Dashboards</button>
+    `;
+  } else if (mode === 'dashboards') {
+    container.innerHTML = `
+      <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('dashboards-view', this)">Dashboard Directory</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('kv-hub-viewer', this)">Embedded Viewer</button>
+      <button type="button" class="nav-switch-btn" onclick="activatePathwayMode('agents')">Real AI Agents</button>
     `;
   } else {
     container.innerHTML = `
       <button type="button" class="nav-switch-btn active" onclick="scrollToTarget('improvised-innovations-section', this)">Innovations</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('warroom-arena-card', this)">War Room</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">DVR Replay</button>
-      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('consensus-radar-card', this)">Consensus</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('forensic-replay-card', this)">Incident Replay</button>
+      <button type="button" class="nav-switch-btn" onclick="scrollToTarget('consensus-radar-card', this)">Consensus Radar</button>
       <button type="button" class="nav-switch-btn" onclick="scrollToTarget('comparison-matrix-section', this)">Audit Matrix</button>
     `;
   }
@@ -3446,7 +3504,7 @@ function runLiveResearchBenchmark() {
       <span style="font-weight:600;font-size:0.86rem;color:var(--text-primary);">Evaluating Experiment 1: AST Package Hallucination Firewall against 100 PyPI packages...</span>
     </div>
     <div style="background:var(--bg-surface-elevated);height:8px;border-radius:4px;overflow:hidden;margin-bottom:12px;">
-      <div id="bench-progress-bar" style="background:linear-gradient(90deg,#2563EB,#059669);height:100%;width:35%;transition:width 0.4s ease;"></div>
+      <div id="bench-progress-bar" style="background:linear-gradient(90deg,#2764E8,#059669);height:100%;width:35%;transition:width 0.4s ease;"></div>
     </div>
   `;
 
@@ -3659,7 +3717,7 @@ function runAttackSimulation() {
   if (btn) {
     btn.disabled = true;
     btn.innerHTML = `
-      <span class="live-pulse" style="background:#FFF;"></span>
+      <span class="live-pulse" style="background:#FFFFFF;"></span>
       <span>Simulating 4-Tier Defense Pipeline...</span>
     `;
   }
@@ -3668,7 +3726,7 @@ function runAttackSimulation() {
   const statusPill = document.getElementById('sim-overall-status');
   if (statusPill) {
     statusPill.innerHTML = `
-      <span class="live-pulse" style="background:#DC2626;"></span>
+      <span class="live-pulse" style="background:#D23A34;"></span>
       <strong>INCOMING ADVERSARIAL ATTACK &bull; ENGAGING DEFENSES</strong>
     `;
   }
@@ -3796,7 +3854,7 @@ function resetCustomExploitOutput(isStaged = false) {
       verdictTag.innerText = "STAGED • READY FOR ANALYSIS";
       verdictTag.className = "badge";
       verdictTag.style.background = "#EFF6FF";
-      verdictTag.style.color = "#2563EB";
+      verdictTag.style.color = "#2764E8";
       verdictTag.style.borderColor = "#BFDBFE";
     }
     if (summaryEl) {
@@ -3806,7 +3864,7 @@ function resetCustomExploitOutput(isStaged = false) {
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             <span>Payload Staged in Buffer</span>
           </div>
-          <p style="margin:4px 0 0;font-size:0.78rem;color:#15803D;">Click the red <strong>"Analyze Against KAVACH Cyber-Armor"</strong> button below to execute live multi-engine inspection.</p>
+          <p style="margin:4px 0 0;font-size:0.78rem;color:#207F40;">Click the red <strong>"Analyze Against KAVACH Cyber-Armor"</strong> button below to execute live multi-engine inspection.</p>
         </div>
       `;
     }
@@ -3814,7 +3872,7 @@ function resetCustomExploitOutput(isStaged = false) {
     if (verdictTag) {
       verdictTag.innerText = "STANDBY";
       verdictTag.className = "badge";
-      verdictTag.style.background = "#F1F5F9";
+      verdictTag.style.background = "#F2F5F9";
       verdictTag.style.color = "#475569";
       verdictTag.style.borderColor = "#CBD5E1";
     }
@@ -3989,7 +4047,7 @@ function analyzeCustomExploitLive() {
       }
       if (summaryEl) {
         summaryEl.innerHTML = `
-          <div style="background:var(--review-bg);border:1px solid var(--review-border);padding:10px 12px;border-radius:6px;color:#92400E;animation:viewFadeIn 0.25s ease;">
+          <div style="background:var(--review-bg);border:1px solid var(--review-border);padding:10px 12px;border-radius:6px;color:#8C4600;animation:viewFadeIn 0.25s ease;">
             <strong>ELEVATED RISK &bull; HUMAN-IN-THE-LOOP REQUIRED</strong>
             <p style="margin:4px 0 0;font-size:0.75rem;">Elevated entropy or sensitive patterns detected. Routed to Supervisor Authorization Gate.</p>
           </div>
@@ -4054,9 +4112,9 @@ function simulateHoneytokenTripLive() {
     const timeStr = new Date().toLocaleTimeString();
     banner.style.display = "block";
     banner.innerHTML = `
-      <div style="background:#FEF2F2;border:1.5px solid #DC2626;border-radius:var(--radius-md);padding:14px 18px;color:#991B1B;">
+      <div style="background:#FEF2F1;border:1.5px solid #D23A34;border-radius:var(--radius-md);padding:14px 18px;color:#991B1B;">
         <div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:0.92rem;margin-bottom:6px;">
-          <span class="live-pulse" style="background:#DC2626;"></span>
+          <span class="live-pulse" style="background:#D23A34;"></span>
           CRITICAL HONEYTOKEN TRIPWIRE ACTIVATED &bull; INTRUSION INTERCEPTED
         </div>
         <p style="margin:0 0 8px;font-size:0.82rem;line-height:1.45;">
@@ -4087,7 +4145,7 @@ function runAutomatedPenTest() {
   if (!btn || !statusBox) return;
 
   btn.disabled = true;
-  btn.innerHTML = `<span class="live-pulse" style="background:#FFF;"></span> Penetration Suite Running (0/150)...`;
+  btn.innerHTML = `<span class="live-pulse" style="background:#FFFFFF;"></span> Penetration Suite Running (0/150)...`;
   statusBox.style.display = "block";
 
   let progress = 0;
@@ -4101,7 +4159,7 @@ function runAutomatedPenTest() {
           <span style="font-family:var(--font-mono);">${progress} / 150 Completed</span>
         </div>
         <div style="width:100%;height:8px;background:var(--border-subtle);border-radius:4px;overflow:hidden;">
-          <div style="width:${(progress/150)*100}%;height:100%;background:linear-gradient(90deg,#DC2626,#2563EB,#059669);transition:width 0.2s ease;"></div>
+          <div style="width:${(progress/150)*100}%;height:100%;background:linear-gradient(90deg,#D23A34,#2764E8,#059669);transition:width 0.2s ease;"></div>
         </div>
       </div>
     `;
@@ -4816,7 +4874,7 @@ function renderTerminalScreen() {
     if (filtered.length === 0) {
       html = `<div style="text-align:center; padding:40px 10px; color:#64748B;">No checks match your filter criteria.</div>`;
     } else {
-      html += `<div style="padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:8px; display:flex; justify-content:space-between; color:#64748B; font-size:0.7rem;">
+      html += `<div style="padding-bottom:8px; border-bottom:1px solid rgba(255, 255, 255, 0.06); margin-bottom:8px; display:flex; justify-content:space-between; color:#64748B; font-size:0.7rem;">
         <span>$ python verify_all.py --rubrics all &bull; 20/20 CHECKS OPERATIONAL</span>
         <span>DURATION: 452.8 ms</span>
       </div>`;
@@ -4845,10 +4903,10 @@ function renderTerminalScreen() {
   } else if (tab === "pytest") {
     // Pytest Master Suite (164 Tests)
     html += `
-      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:10px;">
+      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255, 255, 255, 0.08); margin-bottom:10px;">
         <div style="color:#60A5FA; font-weight:700; margin-bottom:4px;">$ pytest tests -q --tb=short</div>
-        <div style="color:#94A3B8; font-size:0.72rem;">Root Directory: c:\\Users\\jaind\\Videos\\PRJ-IV Work\\kavach &bull; Platform: win32 &bull; Python 3.11.8</div>
-        <div style="color:#34D399; font-weight:700; margin-top:6px;">============================= 164 passed in 99.70s =============================</div>
+        <div style="color:#94A3B8; font-size:0.72rem;">Root Directory: ~/KAVACH &bull; Platform: win32 &bull; Python 3.11.8</div>
+        <div style="color:#58CF9E; font-weight:700; margin-top:6px;">============================= 164 passed in 99.70s =============================</div>
       </div>
     `;
 
@@ -4858,10 +4916,10 @@ function renderTerminalScreen() {
           <span class="term-line-num">${idx + 1}</span>
           <span class="term-status-badge badge-pass">PASSED</span>
           <div class="term-row-text">
-            <div class="check-title" style="color:#38BDF8;">${escapeHtml(m.file)}</div>
+            <div class="check-title" style="color:#52B8FF;">${escapeHtml(m.file)}</div>
             <div class="check-detail">${escapeHtml(m.scope)} &bull; ${m.passed}/${m.total} assertions passed</div>
           </div>
-          <span class="term-dur" style="color:#34D399; font-weight:600;">${m.duration}</span>
+          <span class="term-dur" style="color:#58CF9E; font-weight:600;">${m.duration}</span>
         </div>
       `;
     });
@@ -4869,29 +4927,29 @@ function renderTerminalScreen() {
   } else if (tab === "cigate") {
     // CI/CD Security Gate
     html += `
-      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:10px;">
+      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255, 255, 255, 0.08); margin-bottom:10px;">
         <div style="color:#60A5FA; font-weight:700;">$ python ci_security_gate.py --report security_gate_report.json</div>
-        <div style="color:#34D399; font-weight:700; margin-top:4px;">[CI GATE VERDICT] OVERALL PASSED: TRUE &bull; BUILD GREEN (Exit Code 0)</div>
+        <div style="color:#58CF9E; font-weight:700; margin-top:4px;">[CI GATE VERDICT] OVERALL PASSED: TRUE &bull; BUILD GREEN (Exit Code 0)</div>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
-        <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); border-radius:6px; padding:12px;">
-          <div style="color:#34D399; font-weight:700; font-size:0.8rem; margin-bottom:6px;">Gate 1: Security Engine Evaluator</div>
+        <div style="background:rgba(60, 182, 133, 0.08); border:1px solid rgba(60, 182, 133, 0.25); border-radius:6px; padding:12px;">
+          <div style="color:#58CF9E; font-weight:700; font-size:0.8rem; margin-bottom:6px;">Gate 1: Security Engine Evaluator</div>
           <div style="font-size:0.74rem; color:#CBD5E1; line-height:1.6;">
-            &bull; Precision: <strong style="color:#34D399;">1.00</strong> (Threshold: min 0.90) [PASS]<br>
-            &bull; Recall: <strong style="color:#34D399;">1.00</strong> (Threshold: min 0.85) [PASS]<br>
-            &bull; F1-Score: <strong style="color:#34D399;">1.00</strong> (100% Precision &amp; Recall)<br>
-            &bull; Status: <strong style="color:#34D399;">PASSED</strong> &bull; Zero False Negatives on credentials
+            &bull; Precision: <strong style="color:#58CF9E;">1.00</strong> (Threshold: min 0.90) [PASS]<br>
+            &bull; Recall: <strong style="color:#58CF9E;">1.00</strong> (Threshold: min 0.85) [PASS]<br>
+            &bull; F1-Score: <strong style="color:#58CF9E;">1.00</strong> (100% Precision &amp; Recall)<br>
+            &bull; Status: <strong style="color:#58CF9E;">PASSED</strong> &bull; Zero False Negatives on credentials
           </div>
         </div>
 
-        <div style="background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.25); border-radius:6px; padding:12px;">
+        <div style="background:rgba(39, 100, 232, 0.08); border:1px solid rgba(39, 100, 232, 0.25); border-radius:6px; padding:12px;">
           <div style="color:#60A5FA; font-weight:700; font-size:0.8rem; margin-bottom:6px;">Gate 2: Impact Analyzer Evaluator</div>
           <div style="font-size:0.74rem; color:#CBD5E1; line-height:1.6;">
             &bull; Avg Precision: <strong style="color:#60A5FA;">0.480</strong> (Threshold: min 0.40) [PASS]<br>
             &bull; Avg Recall: <strong style="color:#60A5FA;">0.767</strong> (Threshold: min 0.50) [PASS]<br>
             &bull; Avg F1-Score: <strong style="color:#60A5FA;">0.571</strong> (Transitive Reachability)<br>
-            &bull; Status: <strong style="color:#34D399;">PASSED</strong> &bull; Caller-callee graph verified
+            &bull; Status: <strong style="color:#58CF9E;">PASSED</strong> &bull; Caller-callee graph verified
           </div>
         </div>
       </div>
@@ -4910,9 +4968,9 @@ function renderTerminalScreen() {
   } else if (tab === "cyber") {
     // 10 E2E Cyber Defense Checks
     html += `
-      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:10px; display:flex; justify-content:space-between;">
+      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255, 255, 255, 0.08); margin-bottom:10px; display:flex; justify-content:space-between;">
         <span style="color:#60A5FA; font-weight:700;">$ python verify_project.py &bull; E2E CYBER DEFENSE VERIFICATIONS</span>
-        <span style="color:#34D399; font-weight:700;">100% SUCCESS (10/10 PASSED)</span>
+        <span style="color:#58CF9E; font-weight:700;">100% SUCCESS (10/10 PASSED)</span>
       </div>
     `;
 
@@ -4938,7 +4996,7 @@ function renderTerminalScreen() {
   } else if (tab === "runs") {
     // 42 Evaluation Runs
     html += `
-      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:10px; display:flex; justify-content:space-between;">
+      <div style="padding-bottom:10px; border-bottom:1px solid rgba(255, 255, 255, 0.08); margin-bottom:10px; display:flex; justify-content:space-between;">
         <span style="color:#60A5FA; font-weight:700;">$ curl http://localhost:8000/agent/runs &bull; PERSISTED RUNS DATASET</span>
         <span style="color:#94A3B8;">42 Executed Runs Across 4 Personas &bull; Avg Latency: 1,370ms</span>
       </div>
@@ -4965,7 +5023,7 @@ function renderTerminalScreen() {
 
       html += `
         <tr>
-          <td style="color:#38BDF8; font-weight:600;">${r.id}</td>
+          <td style="color:#52B8FF; font-weight:600;">${r.id}</td>
           <td><span class="persona-badge">${r.persona}</span></td>
           <td style="color:#CBD5E1;">${r.archetype}</td>
           <td style="color:#94A3B8; max-width:240px; overflow:hidden; text-overflow:ellipsis;">"${escapeHtml(r.prompt)}"</td>
@@ -5195,15 +5253,15 @@ function renderCliScannerOutput(screen, activePreset, customPrompt) {
       <div style="color:#94A3B8; margin-top:2px;">======================================================================</div>
       <div style="color:#FFFFFF; font-weight:700;">[PIPELINE] KAVACH 5-PHASE GOVERNED DEVOPS &amp; CODE GENERATION PIPELINE</div>
       <div style="color:#94A3B8;">======================================================================</div>
-      <div style="color:#38BDF8;">[*] Ingesting Codebase: c:\\Users\\jaind\\Videos\\PRJ-IV Work\\kavach\\demo_repo</div>
-      <div style="color:#34D399;">[+] Ingested 5 files (842 lines, 14 syntactic AST chunks)</div>
+      <div style="color:#52B8FF;">[*] Ingesting Codebase: ~/KAVACH\\demo_repo</div>
+      <div style="color:#58CF9E;">[+] Ingested 5 files (842 lines, 14 syntactic AST chunks)</div>
       <div style="margin-top:6px; color:#F8FAFC; font-weight:700;">[*] REQUEST: "${escapeHtml(query)}"</div>
       <div style="color:#64748B;">----------------------------------------------------------------------</div>
-      <div style="color:#FBBF24; font-weight:700; margin:6px 0;">[PHASES] EXECUTION PIPELINE PHASES:</div>
+      <div style="color:#FFBB53; font-weight:700; margin:6px 0;">[PHASES] EXECUTION PIPELINE PHASES:</div>
   `;
 
   p.phases.forEach(ph => {
-    let bCol = "#34D399";
+    let bCol = "#58CF9E";
     if (ph.status === "BLOCKED") bCol = "#F87171";
     else if (ph.status === "SKIPPED") bCol = "#64748B";
 
@@ -5215,7 +5273,7 @@ function renderCliScannerOutput(screen, activePreset, customPrompt) {
     `;
   });
 
-  let vCol = p.verdict === "ALLOWED" ? "#34D399" : "#F87171";
+  let vCol = p.verdict === "ALLOWED" ? "#58CF9E" : "#F87171";
   outHtml += `
       <div style="color:#64748B; margin-top:6px;">----------------------------------------------------------------------</div>
       <div style="font-weight:700; color:#FFFFFF; font-size:0.8rem;">
@@ -5224,7 +5282,7 @@ function renderCliScannerOutput(screen, activePreset, customPrompt) {
       <div style="color:#94A3B8;">Duration: ${p.total_duration_ms} ms &bull; Security Guard Overhead: 18.4 ms (&lt;2%)</div>
       <div style="color:#64748B;">======================================================================</div>
       <div style="color:#60A5FA; font-weight:700; margin-top:8px;">[OUTPUT] GENERATED RESULT:</div>
-      <pre style="background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:10px; margin-top:4px; color:${p.verdict === 'ALLOWED' ? '#6EE7B7' : '#FCA5A5'}; font-size:0.73rem; overflow-x:auto;">${escapeHtml(p.output)}</pre>
+      <pre style="background:rgba(0, 0, 0, 0.5); border:1px solid rgba(255, 255, 255, 0.08); border-radius:6px; padding:10px; margin-top:4px; color:${p.verdict === 'ALLOWED' ? '#6EE7B7' : '#FCA5A2'}; font-size:0.73rem; overflow-x:auto;">${escapeHtml(p.output)}</pre>
     </div>
   `;
 
@@ -5254,7 +5312,7 @@ function runLiveTerminalVerification() {
 
   screen.innerHTML = `
     <div style="padding:16px; font-family:var(--font-mono); font-size:0.76rem; color:#60A5FA;">
-      <span class="flow-pulse-dot" style="display:inline-block; width:8px; height:8px; background:#38BDF8; margin-right:8px;"></span>
+      <span class="flow-pulse-dot" style="display:inline-block; width:8px; height:8px; background:#52B8FF; margin-right:8px;"></span>
       Starting automated execution of 20 Master Academic Verification Checks...
     </div>
   `;
@@ -5396,7 +5454,11 @@ window.updateSEOViewMeta = updateSEOViewMeta;
 // Initial View State on Page Load (Handles direct links and section hashes)
 function handleAppHashRouting() {
   const hash = window.location.hash;
-  if (hash === "#workspace") {
+  const embeddedHashes = { "#real-ai-agents": "agents", "#agents": "agents", "#live-swarm": "swarm", "#swarm": "swarm",
+    "#applications-work": "apps", "#apps": "apps", "#dashboards": "dashboards" };
+  if (embeddedHashes[hash]) {
+    activatePathwayMode(embeddedHashes[hash]);
+  } else if (hash === "#workspace") {
     switchToWorkspace();
   } else if (hash === "#academic" || hash === "#academic-weapon" || hash === "#academic-view") {
     switchToAcademic();

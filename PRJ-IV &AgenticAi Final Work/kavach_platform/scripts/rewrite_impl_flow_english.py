@@ -560,25 +560,25 @@ code = r'''/**
         <!-- Sticky Tab Bar -->
         <div class="impl-tab-bar">
           <button type="button" class="impl-tab-btn active" id="tab-btn-journey" onclick="switchImplTab('journey')">
-            🚀 1. Autonomous Execution Pipeline
+            1. Autonomous Execution Pipeline
           </button>
           <button type="button" class="impl-tab-btn" id="tab-btn-security" onclick="switchImplTab('security')">
-            🛡️ 2. Pre-Execution Security &amp; PII Vault
+            2. Pre-Execution Security &amp; PII Vault
           </button>
           <button type="button" class="impl-tab-btn" id="tab-btn-orchestration" onclick="switchImplTab('orchestration')">
-            🧠 3. Multi-Agent FSM &amp; ADK 8-Hooks
+            3. Multi-Agent FSM &amp; ADK 8-Hooks
           </button>
           <button type="button" class="impl-tab-btn" id="tab-btn-react" onclick="switchImplTab('react')">
-            🔄 4. ReAct Self-Healing &amp; PyPI Firewall
+            4. ReAct Self-Healing &amp; PyPI Firewall
           </button>
           <button type="button" class="impl-tab-btn" id="tab-btn-banking" onclick="switchImplTab('banking')">
-            🏦 5. Bharat Core Banking &amp; SAGA Escrow
+            5. Bharat Core Banking &amp; SAGA Escrow
           </button>
           <button type="button" class="impl-tab-btn" id="tab-btn-protocols" onclick="switchImplTab('protocols')">
-            🌐 6. MCP Protocols, A2A &amp; Merkle Audit
+            6. MCP Protocols, A2A &amp; Merkle Audit
           </button>
           <button type="button" class="impl-tab-btn" id="tab-btn-handout" onclick="switchImplTab('handout')">
-            🎓 7. Course Syllabus &amp; Rubrics Matrix (C1&ndash;C15)
+            7. Course Syllabus &amp; Rubrics Matrix (C1&ndash;C15)
           </button>
         </div>
 
@@ -813,7 +813,7 @@ code = r'''/**
           <textarea id="sec-test-input" style="width:100%;height:90px;padding:12px;border:1px solid #CBD5E1;border-radius:8px;font-family:monospace;font-size:0.84rem;box-sizing:border-box;margin-bottom:12px;" placeholder="Type or paste payload here..."></textarea>
 
           <div style="display:flex;gap:10px;align-items:center;">
-            <button type="button" class="btn-run-sim" onclick="executeSecurityInspectLive()">⚡ Execute Live Pre-Execution Inspection</button>
+            <button type="button" class="btn-run-sim" onclick="executeSecurityInspectLive()">Execute Live Pre-Execution Inspection</button>
             <span style="font-size:0.75rem;color:#64748B;">Algorithm: Shannon Entropy H &ge; 4.5 &bull; Verhoeff Permutation Check &bull; OWASP Injection Shield</span>
           </div>
 
@@ -955,7 +955,7 @@ code = r'''/**
 
           <div style="display:flex;gap:10px;margin-bottom:12px;">
             <input type="text" id="pypi-test-pkg" value="fastapi_jwt_vault_security" style="flex:1;padding:10px;border:1px solid #CBD5E1;border-radius:8px;font-family:monospace;font-size:0.84rem;" placeholder="Enter Python package name (e.g. pydantic, fast_auth_vault)...">
-            <button type="button" class="btn-run-sim" onclick="executePyPILiveCheck()">🔍 Query PyPI Registry</button>
+            <button type="button" class="btn-run-sim" onclick="executePyPILiveCheck()">Query PyPI Registry</button>
           </div>
 
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
@@ -1018,7 +1018,7 @@ code = r'''/**
             </div>
           </div>
 
-          <button type="button" class="btn-run-sim" style="padding:10px 18px;font-size:0.85rem;" onclick="executeBankingSagaSim()">⚡ Execute Distributed SAGA Transfer</button>
+          <button type="button" class="btn-run-sim" style="padding:10px 18px;font-size:0.85rem;" onclick="executeBankingSagaSim()">Execute Distributed SAGA Transfer</button>
 
           <div id="bank-sim-results" style="margin-top:16px;display:none;"></div>
         </div>
@@ -1078,7 +1078,7 @@ code = r'''/**
             Every prompt ingress, AST diff, test report, and escrow transaction is hashed into an immutable append-only Merkle tree.
           </p>
           <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
-            <button type="button" class="btn-run-sim" onclick="generateLiveMerkleSeal()">⚡ Compute Live Cryptographic Merkle Root</button>
+            <button type="button" class="btn-run-sim" onclick="generateLiveMerkleSeal()">Compute Live Cryptographic Merkle Root</button>
             <span style="font-size:0.76rem;color:#64748B;">Sponge function: Keccak-512 with 576-bit capacity</span>
           </div>
           <div id="merkle-live-output" style="display:none;background:#0F172A;color:#F8FAFC;padding:14px;border-radius:8px;font-family:monospace;font-size:0.78rem;border:1px solid #334155;"></div>

@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="motion.css">
   <!-- Lottie Player via CDN for native Lottie integration -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<!-- KAVACH suite: shared navigation + design tokens (shared_ui/) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/suite/kavach-suite.css">
+<script src="/suite/kavach-suite.js" data-page="motion" data-placement="top" defer></script>
 </head>
 <body>
 
@@ -21,7 +28,7 @@
     <header class="studio-header">
       <div class="brand-badge">
         <div class="brand-icon-anim">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#006fa8" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             <path d="M9 12l2 2 4-4"/>
           </svg>
@@ -63,7 +70,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#006fa8" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
               </svg>
               Cyber Sentinel Shield Radar
@@ -83,7 +90,7 @@
             <div class="radar-blip blip-2"></div>
             <div class="radar-blip blip-3"></div>
             <div class="radar-shield-center">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#006fa8" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
             </div>
@@ -101,7 +108,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008359" stroke-width="2">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
               </svg>
               Bharat Core Bank Highway
@@ -129,7 +136,7 @@
               <div class="highway-node-gate gate-dpdp">DPDP</div>
               <div class="highway-node-gate gate-core">CORE</div>
               <div class="packet-stream stream-2">
-                <span class="packet-pill" style="background: linear-gradient(90deg, #10b981, #06b6d4);">UPI: 9811@okicici [SAFE]</span>
+                <span class="packet-pill" style="background: linear-gradient(90deg, #008359, #0273ae);">UPI: 9811@okicici [SAFE]</span>
               </div>
             </div>
 
@@ -139,7 +146,7 @@
               <div class="highway-node-gate gate-dpdp">DPDP</div>
               <div class="highway-node-gate gate-core">CORE</div>
               <div class="packet-stream stream-3">
-                <span class="packet-pill" style="background: linear-gradient(90deg, #8b5cf6, #ec4899);">NEFT: BATCH-89 [VERIFIED]</span>
+                <span class="packet-pill" style="background: linear-gradient(90deg, #456ee0, #c92f3c);">NEFT: BATCH-89 [VERIFIED]</span>
               </div>
             </div>
           </div>
@@ -156,7 +163,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cc3334" stroke-width="2">
                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
               </svg>
               Threat Interceptor Matrix
@@ -194,7 +201,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#436bdd" stroke-width="2">
                 <circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><circle cx="5" cy="19" r="2"/>
               </svg>
               Multi-Agent FSM Mesh
@@ -214,21 +221,21 @@
 
             <!-- Center Coordinator -->
             <div class="agent-node node-center" title="Coordinator FSM">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3b61d0" stroke-width="2">
                 <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
               </svg>
             </div>
 
             <!-- Top Specialist: Guardrail -->
             <div class="agent-node node-top" title="Guardrail Specialist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#006fa8" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
             </div>
 
             <!-- Left Specialist: RAG Vector -->
             <div class="agent-node node-left" title="RAG Retriever">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#007a54" stroke-width="2">
                 <ellipse cx="12" cy="5" rx="9" ry="3"/>
                 <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
                 <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
@@ -237,7 +244,7 @@
 
             <!-- Right Specialist: Auditor -->
             <div class="agent-node node-right" title="HITL Auditor">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#8f5a00" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                 <polyline points="14 2 14 8 20 8"/>
                 <line x1="16" y1="13" x2="8" y2="13"/>
@@ -258,7 +265,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008359" stroke-width="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
@@ -294,7 +301,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#006fa8" stroke-width="2">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
               </svg>
               0.006ms Latency Waveform
@@ -325,7 +332,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cc3334" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
               </svg>
@@ -333,7 +340,7 @@
             </h3>
             <p>500-mutation stream: Homoglyph, Zero-Width, Leetspeak, Framing, Base64</p>
           </div>
-          <span class="tag-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4);">97.8% Resilience</span>
+          <span class="tag-badge" style="background: rgba(204, 51, 52, 0.2); color: #ba373e; border: 1px solid rgba(204, 51, 52, 0.4);">97.8% Resilience</span>
         </div>
 
         <div class="motion-viewport">
@@ -341,7 +348,7 @@
             <div class="fuzzer-chamber">
               <div class="fuzzer-emitter">
                 <div class="emitter-core emitter-red" id="fuzzerEmitter">500</div>
-                <span style="font-size:0.62rem; color:#94a3b8; font-family:'JetBrains Mono';">MUTATION</span>
+                <span style="font-size:0.62rem; color:#465366; font-family:'IBM Plex Mono';">MUTATION</span>
               </div>
               <div class="fuzzer-particle-stream">
                 <div class="fuzzer-burst-p"></div>
@@ -352,13 +359,13 @@
               <div class="fuzzer-barrier"></div>
               <div class="fuzzer-emitter">
                 <div class="emitter-core emitter-green">0.48ms</div>
-                <span style="font-size:0.62rem; color:#94a3b8; font-family:'JetBrains Mono';">INTERCEPT</span>
+                <span style="font-size:0.62rem; color:#465366; font-family:'IBM Plex Mono';">INTERCEPT</span>
               </div>
             </div>
 
             <div class="fuzzer-hud-stats">
               <div class="fuzzer-stat-badge">TESTED<strong>500</strong></div>
-              <div class="fuzzer-stat-badge">INTERCEPTED<strong style="color:#10b981;">489 (97.8%)</strong></div>
+              <div class="fuzzer-stat-badge">INTERCEPTED<strong style="color:#008359;">489 (97.8%)</strong></div>
               <div class="fuzzer-stat-badge">MEAN LATENCY<strong>0.48ms</strong></div>
             </div>
 
@@ -368,7 +375,7 @@
               <button class="fuzzer-cat-btn" data-cat="leetspeak">Leetspeak</button>
               <button class="fuzzer-cat-btn" data-cat="framing">Context Framing</button>
               <button class="fuzzer-cat-btn" data-cat="base64">Base64</button>
-              <button class="action-btn" id="fuzzerBurstBtn" style="padding: 6px 14px; font-size: 0.75rem; font-weight: 700; background: #ef4444; border:none; color:white; border-radius:6px; cursor:pointer;">Execute Mutation Burst</button>
+              <button class="action-btn" id="fuzzerBurstBtn" style="padding: 6px 14px; font-size: 0.75rem; font-weight: 700; background: #cc3334; border:none; color:white; border-radius:6px; cursor:pointer;">Execute Mutation Burst</button>
             </div>
           </div>
         </div>
@@ -384,7 +391,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008359" stroke-width="2">
                 <polygon points="12 2 2 7 12 12 22 7 12 2"/>
                 <polyline points="2 17 12 22 22 17"/>
                 <polyline points="2 12 12 17 22 12"/>
@@ -393,47 +400,47 @@
             </h3>
             <p>NIST SP 800-218 tamper-evident binary parent verification tree</p>
           </div>
-          <span class="tag-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">NIST SP 800-218</span>
+          <span class="tag-badge" style="background: rgba(0, 131, 89, 0.2); color: #007a54; border: 1px solid rgba(0, 131, 89, 0.4);">NIST SP 800-218</span>
         </div>
 
         <div class="motion-viewport">
           <div class="merkle-box">
             <svg class="merkle-svg-wrap" viewBox="0 0 320 150">
               <!-- Tree Lines -->
-              <line x1="160" y1="25" x2="80" y2="70" stroke="#334155" stroke-width="2" id="line-r-left"/>
-              <line x1="160" y1="25" x2="240" y2="70" stroke="#334155" stroke-width="2" id="line-r-right"/>
-              <line x1="80" y1="70" x2="40" y2="120" stroke="#334155" stroke-width="2" id="line-l-0"/>
-              <line x1="80" y1="70" x2="120" y2="120" stroke="#334155" stroke-width="2" id="line-l-1"/>
-              <line x1="240" y1="70" x2="200" y2="120" stroke="#334155" stroke-width="2" id="line-l-2"/>
-              <line x1="240" y1="70" x2="280" y2="120" stroke="#334155" stroke-width="2" id="line-l-3"/>
+              <line x1="160" y1="25" x2="80" y2="70" stroke="#a0b1c9" stroke-width="2" id="line-r-left"/>
+              <line x1="160" y1="25" x2="240" y2="70" stroke="#a0b1c9" stroke-width="2" id="line-r-right"/>
+              <line x1="80" y1="70" x2="40" y2="120" stroke="#a0b1c9" stroke-width="2" id="line-l-0"/>
+              <line x1="80" y1="70" x2="120" y2="120" stroke="#a0b1c9" stroke-width="2" id="line-l-1"/>
+              <line x1="240" y1="70" x2="200" y2="120" stroke="#a0b1c9" stroke-width="2" id="line-l-2"/>
+              <line x1="240" y1="70" x2="280" y2="120" stroke="#a0b1c9" stroke-width="2" id="line-l-3"/>
 
               <!-- Root Node -->
-              <circle cx="160" cy="25" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2.5" id="merkleRootCircle" class="merkle-node-circle"/>
-              <text x="160" y="29" fill="#10b981" font-size="9" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" id="merkleRootText">ROOT</text>
+              <circle cx="160" cy="25" r="14" fill="#e9edf6" stroke="#008359" stroke-width="2.5" id="merkleRootCircle" class="merkle-node-circle"/>
+              <text x="160" y="29" fill="#008359" font-size="9" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" id="merkleRootText">ROOT</text>
 
               <!-- Intermediate Hashes -->
-              <circle cx="80" cy="70" r="11" fill="#0f172a" stroke="#06b6d4" stroke-width="2" id="merkleH01Circle" class="merkle-node-circle"/>
-              <text x="80" y="73" fill="#06b6d4" font-size="8" text-anchor="middle" font-family="JetBrains Mono">H01</text>
+              <circle cx="80" cy="70" r="11" fill="#e9edf6" stroke="#0273ae" stroke-width="2" id="merkleH01Circle" class="merkle-node-circle"/>
+              <text x="80" y="73" fill="#0273ae" font-size="8" text-anchor="middle" font-family="IBM Plex Mono">H01</text>
 
-              <circle cx="240" cy="70" r="11" fill="#0f172a" stroke="#06b6d4" stroke-width="2" id="merkleH23Circle" class="merkle-node-circle"/>
-              <text x="240" y="73" fill="#06b6d4" font-size="8" text-anchor="middle" font-family="JetBrains Mono">H23</text>
+              <circle cx="240" cy="70" r="11" fill="#e9edf6" stroke="#0273ae" stroke-width="2" id="merkleH23Circle" class="merkle-node-circle"/>
+              <text x="240" y="73" fill="#0273ae" font-size="8" text-anchor="middle" font-family="IBM Plex Mono">H23</text>
 
               <!-- Leaves -->
-              <circle cx="40" cy="120" r="9" fill="#0f172a" stroke="#a855f7" stroke-width="2" class="merkle-node-circle"/>
-              <text x="40" y="123" fill="#a855f7" font-size="7" text-anchor="middle" font-family="JetBrains Mono">L0</text>
+              <circle cx="40" cy="120" r="9" fill="#e9edf6" stroke="#436bdd" stroke-width="2" class="merkle-node-circle"/>
+              <text x="40" y="123" fill="#436bdd" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">L0</text>
 
-              <circle cx="120" cy="120" r="9" fill="#0f172a" stroke="#a855f7" stroke-width="2" class="merkle-node-circle"/>
-              <text x="120" y="123" fill="#a855f7" font-size="7" text-anchor="middle" font-family="JetBrains Mono">L1</text>
+              <circle cx="120" cy="120" r="9" fill="#e9edf6" stroke="#436bdd" stroke-width="2" class="merkle-node-circle"/>
+              <text x="120" y="123" fill="#436bdd" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">L1</text>
 
-              <circle cx="200" cy="120" r="9" fill="#0f172a" stroke="#a855f7" stroke-width="2" id="merkleLeaf2" class="merkle-node-circle"/>
-              <text x="200" y="123" fill="#a855f7" font-size="7" text-anchor="middle" font-family="JetBrains Mono" id="merkleLeaf2Text">L2</text>
+              <circle cx="200" cy="120" r="9" fill="#e9edf6" stroke="#436bdd" stroke-width="2" id="merkleLeaf2" class="merkle-node-circle"/>
+              <text x="200" y="123" fill="#436bdd" font-size="7" text-anchor="middle" font-family="IBM Plex Mono" id="merkleLeaf2Text">L2</text>
 
-              <circle cx="280" cy="120" r="9" fill="#0f172a" stroke="#a855f7" stroke-width="2" class="merkle-node-circle"/>
-              <text x="280" y="123" fill="#a855f7" font-size="7" text-anchor="middle" font-family="JetBrains Mono">L3</text>
+              <circle cx="280" cy="120" r="9" fill="#e9edf6" stroke="#436bdd" stroke-width="2" class="merkle-node-circle"/>
+              <text x="280" y="123" fill="#436bdd" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">L3</text>
             </svg>
 
             <div class="merkle-hud-bar" id="merkleHud">
-              <span id="merkleStatusText" style="color:#10b981;">● MERKLE ROOT: 611689ea... [VERIFIED]</span>
+              <span id="merkleStatusText" style="color:#008359;">● MERKLE ROOT: 611689ea... [VERIFIED]</span>
               <button class="merkle-tamper-state-btn" id="tamperSimBtn" style="padding:6px 14px; font-size:0.75rem; border-radius:6px;">Simulate Tamper</button>
             </div>
           </div>
@@ -450,7 +457,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#006fa8" stroke-width="2">
                 <line x1="18" y1="20" x2="18" y2="10"/>
                 <line x1="12" y1="20" x2="12" y2="4"/>
                 <line x1="6" y1="20" x2="6" y2="14"/>
@@ -459,7 +466,7 @@
             </h3>
             <p>Dynamic pipeline ablation: measure ΔF1 penalty when toggling components</p>
           </div>
-          <span class="tag-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">ΔF1 Benchmark</span>
+          <span class="tag-badge" style="background: rgba(0, 111, 168, 0.2); color: #006fa8; border: 1px solid rgba(0, 111, 168, 0.4);">ΔF1 Benchmark</span>
         </div>
 
         <div class="motion-viewport">
@@ -493,7 +500,7 @@
             <div class="ablation-meter-wrap">
               <div class="ablation-meter-header">
                 <span>SYSTEM F1 SCORE</span>
-                <span id="ablationF1Score" style="color:#10b981; font-weight:700;">0.982 (ΔF1: 0.000)</span>
+                <span id="ablationF1Score" style="color:#008359; font-weight:700;">0.982 (ΔF1: 0.000)</span>
               </div>
               <div class="ablation-bar-track">
                 <div class="ablation-bar-fill" id="ablationBarFill"></div>
@@ -513,7 +520,7 @@
         <div class="card-header">
           <div class="card-title-group">
             <h3>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8f5a00" stroke-width="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
@@ -521,7 +528,7 @@
             </h3>
             <p>ADK Initiator + CrewAI Auditor twin-signature consensus clearance</p>
           </div>
-          <span class="tag-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);">RBI CSF SoD</span>
+          <span class="tag-badge" style="background: rgba(143, 90, 0, 0.2); color: #825600; border: 1px solid rgba(143, 90, 0, 0.4);">RBI CSF SoD</span>
         </div>
 
         <div class="motion-viewport">
@@ -529,7 +536,7 @@
             <div class="multisig-highway-track" id="multisigHighwayTrack">
               <div class="multisig-agent-badge">
                 <div class="agent-circle-icon agent-adk">ADK</div>
-                <span style="color:#06b6d4;">INITIATOR</span>
+                <span style="color:#0273ae;">INITIATOR</span>
               </div>
 
               <div class="multisig-beam-left" id="multisigBeamLeft"></div>
@@ -541,14 +548,14 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                   </svg>
                 </div>
-                <span id="hsmStatusBadge" style="font-size:0.65rem; color:#fbbf24; font-family:'JetBrains Mono'; font-weight:700;">2-of-2 SIGNED</span>
+                <span id="hsmStatusBadge" style="font-size:0.65rem; color:#825600; font-family:'IBM Plex Mono'; font-weight:700;">2-of-2 SIGNED</span>
               </div>
 
               <div class="multisig-beam-right" id="multisigBeamRight"></div>
 
               <div class="multisig-agent-badge">
                 <div class="agent-circle-icon agent-crew">CREW</div>
-                <span style="color:#a855f7;">AUDITOR</span>
+                <span style="color:#436bdd;">AUDITOR</span>
               </div>
             </div>
 

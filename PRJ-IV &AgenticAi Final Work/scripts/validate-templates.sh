@@ -18,26 +18,26 @@ for file in .gsd/templates/*.md; do
     
     # Check for title (# heading)
     if ! head -1 "$file" | grep -q "^# "; then
-        echo "❌ $filename: Missing title (# heading)"
+        echo "$filename: Missing title (# heading)"
         ((error_count++))
         has_errors=true
     fi
     
     # Check for Last updated marker
     if ! grep -q "Last updated" "$file"; then
-        echo "⚠️  $filename: Missing 'Last updated' marker"
+        echo "$filename: Missing 'Last updated' marker"
         ((warning_count++))
     fi
     
     # Check minimum length
     file_size=$(wc -c < "$file")
     if [ "$file_size" -lt 200 ]; then
-        echo "⚠️  $filename: Very short template (<200 chars)"
+        echo "$filename: Very short template (<200 chars)"
         ((warning_count++))
     fi
     
     if [ "$has_errors" = false ]; then
-        echo "✅ $filename"
+        echo "$filename"
     fi
 done
 
@@ -50,9 +50,9 @@ echo "Warnings: $warning_count"
 echo ""
 
 if [ $error_count -eq 0 ]; then
-    echo "✅ All templates valid!"
+    echo "All templates valid!"
     exit 0
 else
-    echo "❌ Validation failed"
+    echo "Validation failed"
     exit 1
 fi

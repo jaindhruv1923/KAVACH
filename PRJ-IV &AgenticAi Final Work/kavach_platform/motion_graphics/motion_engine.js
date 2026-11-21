@@ -79,20 +79,20 @@ function initWaveOscillator() {
     // Gradient line
     const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
     if (isAttack) {
-      grad.addColorStop(0, "#ef4444");
-      grad.addColorStop(0.5, "#f59e0b");
-      grad.addColorStop(1, "#ef4444");
+      grad.addColorStop(0, "#cc3334");
+      grad.addColorStop(0.5, "#8f5a00");
+      grad.addColorStop(1, "#cc3334");
     } else {
-      grad.addColorStop(0, "#06b6d4");
-      grad.addColorStop(0.5, "#3b82f6");
-      grad.addColorStop(1, "#10b981");
+      grad.addColorStop(0, "#0273ae");
+      grad.addColorStop(0.5, "#286fe1");
+      grad.addColorStop(1, "#008359");
     }
 
     ctx.beginPath();
     ctx.lineWidth = 3;
     ctx.strokeStyle = grad;
     ctx.shadowBlur = 12;
-    ctx.shadowColor = isAttack ? "rgba(239, 68, 68, 0.6)" : "rgba(6, 182, 212, 0.6)";
+    ctx.shadowColor = isAttack ? "rgba(204, 51, 52, 0.24)" : "rgba(2, 115, 174, 0.24)";
 
     const amplitude = isAttack ? 25 : 12;
     const frequency = isAttack ? 0.04 : 0.02;
@@ -132,7 +132,7 @@ function triggerAttackSoundFx() {
   const flash = document.createElement("div");
   flash.style.position = "fixed";
   flash.style.inset = "0";
-  flash.style.backgroundColor = "rgba(239, 68, 68, 0.15)";
+  flash.style.backgroundColor = "rgba(204, 51, 52, 0.15)";
   flash.style.pointerEvents = "none";
   flash.style.zIndex = "999";
   flash.style.transition = "opacity 0.4s ease";
@@ -152,7 +152,7 @@ const EMBED_SNIPPETS = {
     <div class="radar-ring ring-3"></div>
     <div class="radar-sweep"></div>
     <div class="radar-shield-center">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#006fa8" stroke-width="2">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
     </div>
@@ -192,8 +192,8 @@ const EMBED_SNIPPETS = {
 
   "merkle": `<div class="merkle-box">
   <svg class="merkle-svg-wrap" viewBox="0 0 320 150">
-    <circle cx="160" cy="25" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2.5"/>
-    <text x="160" y="29" fill="#10b981" font-size="9" text-anchor="middle">ROOT</text>
+    <circle cx="160" cy="25" r="14" fill="#e9edf6" stroke="#008359" stroke-width="2.5"/>
+    <text x="160" y="29" fill="#008359" font-size="9" text-anchor="middle">ROOT</text>
   </svg>
 </div>`,
 
@@ -235,7 +235,7 @@ function initModal() {
       navigator.clipboard.writeText(codeBox.textContent).then(() => {
         const original = copyBtn.textContent;
         copyBtn.textContent = "Copied to Clipboard! ✓";
-        copyBtn.style.background = "#10b981";
+        copyBtn.style.background = "#008359";
         setTimeout(() => {
           copyBtn.textContent = original;
           copyBtn.style.background = "";
@@ -269,7 +269,7 @@ function initFuzzerInteractivity() {
 
   burstBtn.addEventListener("click", () => {
     burstBtn.textContent = "Mutating...";
-    burstBtn.style.background = "#f59e0b";
+    burstBtn.style.background = "#8f5a00";
     
     // Animate particles
     document.querySelectorAll(".fuzzer-burst-p").forEach(p => {
@@ -280,10 +280,10 @@ function initFuzzerInteractivity() {
 
     setTimeout(() => {
       burstBtn.textContent = "489/500 Intercepted";
-      burstBtn.style.background = "#10b981";
+      burstBtn.style.background = "#008359";
       setTimeout(() => {
         burstBtn.textContent = "Execute Mutation Burst";
-        burstBtn.style.background = "#ef4444";
+        burstBtn.style.background = "#cc3334";
       }, 2500);
     }, 1200);
   });
@@ -307,35 +307,35 @@ function initMerkleTreeInteractivity() {
   tamperBtn.addEventListener("click", () => {
     isTampered = !isTampered;
     if (isTampered) {
-      if (leaf2) { leaf2.setAttribute("stroke", "#ef4444"); leaf2.setAttribute("fill", "rgba(239, 68, 68, 0.3)"); }
-      if (leaf2Text) { leaf2Text.setAttribute("fill", "#ef4444"); }
-      if (rootCircle) { rootCircle.setAttribute("stroke", "#ef4444"); rootCircle.setAttribute("fill", "rgba(239, 68, 68, 0.4)"); }
-      if (rootText) { rootText.setAttribute("fill", "#ef4444"); rootText.textContent = "FAIL"; }
-      if (lineRRight) { lineRRight.setAttribute("stroke", "#ef4444"); }
-      if (lineL2) { lineL2.setAttribute("stroke", "#ef4444"); }
+      if (leaf2) { leaf2.setAttribute("stroke", "#cc3334"); leaf2.setAttribute("fill", "rgba(204, 51, 52, 0.3)"); }
+      if (leaf2Text) { leaf2Text.setAttribute("fill", "#cc3334"); }
+      if (rootCircle) { rootCircle.setAttribute("stroke", "#cc3334"); rootCircle.setAttribute("fill", "rgba(204, 51, 52, 0.4)"); }
+      if (rootText) { rootText.setAttribute("fill", "#cc3334"); rootText.textContent = "FAIL"; }
+      if (lineRRight) { lineRRight.setAttribute("stroke", "#cc3334"); }
+      if (lineL2) { lineL2.setAttribute("stroke", "#cc3334"); }
       if (hudText) {
         hudText.innerHTML = "[TAMPER DETECTED] Root Digest Mismatch (NIST SP 800-218 Broken)!";
-        hudText.style.color = "#ef4444";
+        hudText.style.color = "#cc3334";
       }
       tamperBtn.textContent = "Re-Attest Seal";
-      tamperBtn.style.background = "rgba(16, 185, 129, 0.2)";
-      tamperBtn.style.borderColor = "#10b981";
-      tamperBtn.style.color = "#34d399";
+      tamperBtn.style.background = "rgba(0, 131, 89, 0.2)";
+      tamperBtn.style.borderColor = "#008359";
+      tamperBtn.style.color = "#007a54";
     } else {
-      if (leaf2) { leaf2.setAttribute("stroke", "#a855f7"); leaf2.setAttribute("fill", "#0f172a"); }
-      if (leaf2Text) { leaf2Text.setAttribute("fill", "#a855f7"); }
-      if (rootCircle) { rootCircle.setAttribute("stroke", "#10b981"); rootCircle.setAttribute("fill", "#0f172a"); }
-      if (rootText) { rootText.setAttribute("fill", "#10b981"); rootText.textContent = "ROOT"; }
-      if (lineRRight) { lineRRight.setAttribute("stroke", "#334155"); }
-      if (lineL2) { lineL2.setAttribute("stroke", "#334155"); }
+      if (leaf2) { leaf2.setAttribute("stroke", "#436bdd"); leaf2.setAttribute("fill", "#e9edf6"); }
+      if (leaf2Text) { leaf2Text.setAttribute("fill", "#436bdd"); }
+      if (rootCircle) { rootCircle.setAttribute("stroke", "#008359"); rootCircle.setAttribute("fill", "#e9edf6"); }
+      if (rootText) { rootText.setAttribute("fill", "#008359"); rootText.textContent = "ROOT"; }
+      if (lineRRight) { lineRRight.setAttribute("stroke", "#a0b1c9"); }
+      if (lineL2) { lineL2.setAttribute("stroke", "#a0b1c9"); }
       if (hudText) {
         hudText.innerHTML = "● MERKLE ROOT: 611689ea... [SLSA L3 VERIFIED]";
-        hudText.style.color = "#10b981";
+        hudText.style.color = "#008359";
       }
       tamperBtn.textContent = "Simulate Tamper";
-      tamperBtn.style.background = "rgba(239, 68, 68, 0.15)";
-      tamperBtn.style.borderColor = "#ef4444";
-      tamperBtn.style.color = "#f87171";
+      tamperBtn.style.background = "rgba(204, 51, 52, 0.15)";
+      tamperBtn.style.borderColor = "#cc3334";
+      tamperBtn.style.color = "#ba373e";
     }
   });
 }
@@ -367,18 +367,18 @@ function initAblationInteractivity() {
     if (f1Text) {
       const deltaStr = delta === 0 ? "ΔF1: 0.000" : `ΔF1: ${delta.toFixed(3)}`;
       f1Text.textContent = `${f1.toFixed(3)} (${deltaStr})`;
-      f1Text.style.color = f1 >= 0.90 ? "#10b981" : f1 >= 0.80 ? "#f59e0b" : "#ef4444";
+      f1Text.style.color = f1 >= 0.90 ? "#008359" : f1 >= 0.80 ? "#8f5a00" : "#cc3334";
     }
 
     if (barFill) {
       const pct = (f1 * 100).toFixed(1);
       barFill.style.width = `${pct}%`;
       if (f1 >= 0.90) {
-        barFill.style.background = "linear-gradient(90deg, #10b981, #06b6d4)";
+        barFill.style.background = "linear-gradient(90deg, #008359, #0273ae)";
       } else if (f1 >= 0.80) {
-        barFill.style.background = "linear-gradient(90deg, #f59e0b, #fbbf24)";
+        barFill.style.background = "linear-gradient(90deg, #8f5a00, #825600)";
       } else {
-        barFill.style.background = "linear-gradient(90deg, #ef4444, #f87171)";
+        barFill.style.background = "linear-gradient(90deg, #cc3334, #ba373e)";
       }
     }
   }
@@ -406,13 +406,13 @@ function initMultisigInteractivity() {
     btnRogue.classList.remove("active");
     if (beamRight) beamRight.style.display = "block";
     if (lock) {
-      lock.style.borderColor = "#10b981";
-      lock.style.background = "linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.3))";
-      lock.style.color = "#34d399";
+      lock.style.borderColor = "#008359";
+      lock.style.background = "linear-gradient(135deg, rgba(0, 131, 89, 0.2), rgba(2, 115, 174, 0.3))";
+      lock.style.color = "#007a54";
     }
     if (statusBadge) {
       statusBadge.textContent = "2-of-2 SIGNED: CLEARED (₹7,50,000)";
-      statusBadge.style.color = "#34d399";
+      statusBadge.style.color = "#007a54";
     }
   });
 
@@ -421,13 +421,13 @@ function initMultisigInteractivity() {
     btnDual.classList.remove("active");
     if (beamRight) beamRight.style.display = "none";
     if (lock) {
-      lock.style.borderColor = "#ef4444";
-      lock.style.background = "linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.3))";
-      lock.style.color = "#f87171";
+      lock.style.borderColor = "#cc3334";
+      lock.style.background = "linear-gradient(135deg, rgba(204, 51, 52, 0.2), rgba(220, 68, 60, 0.3))";
+      lock.style.color = "#ba373e";
     }
     if (statusBadge) {
       statusBadge.textContent = "BLOCKED: RBI CSF (Missing Auditor Sig)";
-      statusBadge.style.color = "#f87171";
+      statusBadge.style.color = "#ba373e";
     }
   });
 }

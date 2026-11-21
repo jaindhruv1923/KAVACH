@@ -19,25 +19,25 @@ foreach ($file in $templates) {
     
     # Check for title (# heading)
     if ($content -notmatch "^# ") {
-        Write-Host "❌ $($file.Name): Missing title (# heading)" -ForegroundColor Red
+        Write-Host "$($file.Name): Missing title (# heading)" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
     
     # Check for Last updated marker
     if ($content -notmatch "Last updated") {
-        Write-Host "⚠️  $($file.Name): Missing 'Last updated' marker" -ForegroundColor Yellow
+        Write-Host "$($file.Name): Missing 'Last updated' marker" -ForegroundColor Yellow
         $WarningCount++
     }
     
     # Check minimum length (templates should have substance)
     if ($content.Length -lt 200) {
-        Write-Host "⚠️  $($file.Name): Very short template (<200 chars)" -ForegroundColor Yellow
+        Write-Host "$($file.Name): Very short template (<200 chars)" -ForegroundColor Yellow
         $WarningCount++
     }
     
     if (-not $hasErrors) {
-        Write-Host "✅ $($file.Name)" -ForegroundColor Green
+        Write-Host "$($file.Name)" -ForegroundColor Green
     }
 }
 
@@ -50,9 +50,9 @@ Write-Host "Warnings: $WarningCount" -ForegroundColor $(if ($WarningCount -gt 0)
 Write-Host ""
 
 if ($ErrorCount -eq 0) {
-    Write-Host "✅ All templates valid!" -ForegroundColor Green
+    Write-Host "All templates valid!" -ForegroundColor Green
     exit 0
 } else {
-    Write-Host "❌ Validation failed" -ForegroundColor Red
+    Write-Host "Validation failed" -ForegroundColor Red
     exit 1
 }

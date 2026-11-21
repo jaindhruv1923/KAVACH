@@ -1,11 +1,11 @@
 [
   {
-    "id": "5526c00f-4e34-45da-bc18-a9f5da87b9ac",
-    "workflow_id": "5526c00f-4e34-45da-bc18-a9f5da87b9ac",
-    "timestamp": "2026-10-29 04:18:54 UTC",
-    "request_text": "Add authentication to login module",
-    "final_stage": "CONTEXT_RETRIEVAL",
-    "stage": "CONTEXT_RETRIEVAL",
+    "id": "0594501c-0fb8-47bc-ae05-316a2525696d",
+    "workflow_id": "0594501c-0fb8-47bc-ae05-316a2525696d",
+    "timestamp": "2026-11-21 06:45:08 UTC",
+    "request_text": "Improve user authentication system",
+    "final_stage": "COMPLETE",
+    "stage": "COMPLETE",
     "verdict": "ALLOWED",
     "plan": [
       "Understand the request and identify its scope",
@@ -15,9 +15,104 @@
     ],
     "retrieved_context": [],
     "security_findings": [],
-    "generation_result": {},
-    "validation_result": {},
-    "impact_report": [],
+    "generation_result": {
+      "llm_configured": false,
+      "evidence_chunks_used": 0,
+      "prompt": "You are a careful software engineer working inside an existing project.\nUse ONLY the repository evidence below to inform your answer \u2014 do not invent\nlibraries, APIs, or file structures that aren't shown here. If the evidence\nis insufficient to safely implement the request, say so explicitly instead\nof guessing.\n\nREPOSITORY EVIDENCE:\n(No repository evidence was retrieved for this request.)\n\nDEVELOPER REQUEST:\nImprove user authentication system\n\nProvide the code change needed to satisfy this request, consistent with the\nevidence above. Keep the response focused and include a one-line comment\nexplaining any assumption you had to make.\n",
+      "generated_output": "[STUB RESPONSE \u2014 placeholder test mode]\n\nKavach is an enterprise-grade AI DevOps security governance platform built by Dhruv Jain.\n\n```python\ndef authenticated_handler():\n    # Secure handler implementation\n    return True\n```"
+    },
+    "validation_result": {
+      "valid_syntax": true,
+      "error": null,
+      "extracted_code": "def authenticated_handler():\n    # Secure handler implementation\n    return True"
+    },
+    "impact_report": [
+      {
+        "file_path": "a2a/interop_bridge.py",
+        "relevance_score": 0.195,
+        "score_percentage": 20,
+        "reason": "imports/references the most-related file; semantically related to the change description",
+        "impact_tier": "CRITICAL",
+        "significance": "Highest Impact \u2014 Primary Target Component",
+        "score_justification": "Score 0.195 was assigned because this file combines semantic alignment (+0.075) with an explicit AST import link (+0.400 bonus) to the target module.",
+        "breakdown": [
+          "AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports.",
+          "Semantic Alignment (+0.075): Vector embedding similarity (0.10 cosine score) with requested change intent."
+        ],
+        "action_hint": "Review logic for consistency with shared domain assumptions.",
+        "semantic_score": 0.1,
+        "dependency_hit": true,
+        "is_highest_impact": true
+      },
+      {
+        "file_path": "adk/agent.py",
+        "relevance_score": 0.195,
+        "score_percentage": 20,
+        "reason": "imports/references the most-related file; semantically related to the change description",
+        "impact_tier": "MODERATE",
+        "significance": "Moderate Impact \u2014 Shared Business Domain / Semantic Overlap",
+        "score_justification": "Score 0.195 was assigned because this file combines semantic alignment (+0.075) with an explicit AST import link (+0.400 bonus) to the target module.",
+        "breakdown": [
+          "AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports.",
+          "Semantic Alignment (+0.075): Vector embedding similarity (0.10 cosine score) with requested change intent."
+        ],
+        "action_hint": "Review logic for consistency with shared domain assumptions.",
+        "semantic_score": 0.1,
+        "dependency_hit": true,
+        "is_highest_impact": false
+      },
+      {
+        "file_path": "adk/__init__.py",
+        "relevance_score": 0.195,
+        "score_percentage": 20,
+        "reason": "imports/references the most-related file; semantically related to the change description",
+        "impact_tier": "MODERATE",
+        "significance": "Moderate Impact \u2014 Shared Business Domain / Semantic Overlap",
+        "score_justification": "Score 0.195 was assigned because this file combines semantic alignment (+0.075) with an explicit AST import link (+0.400 bonus) to the target module.",
+        "breakdown": [
+          "AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports.",
+          "Semantic Alignment (+0.075): Vector embedding similarity (0.10 cosine score) with requested change intent."
+        ],
+        "action_hint": "Review logic for consistency with shared domain assumptions.",
+        "semantic_score": 0.1,
+        "dependency_hit": true,
+        "is_highest_impact": false
+      },
+      {
+        "file_path": "crew/agents.py",
+        "relevance_score": 0.195,
+        "score_percentage": 20,
+        "reason": "imports/references the most-related file; semantically related to the change description",
+        "impact_tier": "MODERATE",
+        "significance": "Moderate Impact \u2014 Shared Business Domain / Semantic Overlap",
+        "score_justification": "Score 0.195 was assigned because this file combines semantic alignment (+0.075) with an explicit AST import link (+0.400 bonus) to the target module.",
+        "breakdown": [
+          "AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports.",
+          "Semantic Alignment (+0.075): Vector embedding similarity (0.10 cosine score) with requested change intent."
+        ],
+        "action_hint": "Review logic for consistency with shared domain assumptions.",
+        "semantic_score": 0.1,
+        "dependency_hit": true,
+        "is_highest_impact": false
+      },
+      {
+        "file_path": "main.py",
+        "relevance_score": 0.185,
+        "score_percentage": 18,
+        "reason": "imports/references the most-related file; semantically related to the change description",
+        "impact_tier": "MODERATE",
+        "significance": "Moderate Impact \u2014 Shared Business Domain / Semantic Overlap",
+        "score_justification": "Score 0.185 was assigned because this file combines semantic alignment (+0.065) with an explicit AST import link (+0.400 bonus) to the target module.",
+        "breakdown": [
+          "AST Dependency Link (+0.40): Directly imports or references the modified target module. Breaking changes to exported symbols or signatures will fail runtime imports.",
+          "Semantic Alignment (+0.065): Vector embedding similarity (0.09 cosine score) with requested change intent."
+        ],
+        "action_hint": "Review logic for consistency with shared domain assumptions.",
+        "semantic_score": 0.087,
+        "dependency_hit": true,
+        "is_highest_impact": false
+      }
+    ],
     "policy_decision": {
       "decision": "ALLOW",
       "action": "ALLOW",
@@ -30,18 +125,18 @@
       "steganography": {
         "has_steganography": false,
         "has_bidi_attack": false,
-        "cleaned_text": "Add authentication to login module",
+        "cleaned_text": "Improve user authentication system",
         "stripped_characters_count": 0,
         "threats": [],
         "threat_count": 0,
         "risk_score": 0.0
       },
       "obfuscation": {
-        "original_text": "Add authentication to login module",
+        "original_text": "Improve user authentication system",
         "is_obfuscated": false,
         "detected_encodings": [],
         "decloaked_texts": [],
-        "unified_normalized_text": "Add authentication to login module",
+        "unified_normalized_text": "Improve user authentication system",
         "obfuscation_risk_score": 0.0,
         "details": []
       },
@@ -58,106 +153,25 @@
         "risk_level": "NONE",
         "threat_count": 0,
         "threats": [],
-        "sanitized_prompt": "Add authentication to login module",
+        "sanitized_prompt": "Improve user authentication system",
         "verdict": "SAFE",
         "explanation": "Prompt passed adversarial injection screening."
       },
-      "merkle_root": "be09eca5d3e5afd21f7c2a603399c245fef311e2bbcbeb298eabf8f93b8e34493e82cbdaf8d6bc236482818f988cd63e165a120a0689465042b1273dd58c905b",
+      "merkle_root": "1ebec52a1e9843595bd854f217f43bcc3c4966f834d1ed172fd0f41de965ed744c3e4b5d0351f50fd21b3f6e2c44b63bc7b78f47ce947343b8ae4435859cbb23",
       "mitre_atlas": [],
       "owasp_llm": []
     },
-    "redacted_request_text": "Add authentication to login module",
+    "redacted_request_text": "Improve user authentication system",
     "history": [
       "WorkflowStage.REQUEST_RECEIVED -> WorkflowStage.PLANNING",
-      "WorkflowStage.PLANNING -> WorkflowStage.CONTEXT_RETRIEVAL"
+      "WorkflowStage.PLANNING -> WorkflowStage.CONTEXT_RETRIEVAL",
+      "WorkflowStage.CONTEXT_RETRIEVAL -> WorkflowStage.SECURITY_CHECK",
+      "WorkflowStage.SECURITY_CHECK -> WorkflowStage.IMPACT_ANALYSIS",
+      "WorkflowStage.IMPACT_ANALYSIS -> WorkflowStage.GENERATION",
+      "WorkflowStage.GENERATION -> WorkflowStage.COMPLETE (workflow completed: planning + RAG + impact analysis + generation + security + validation)"
     ],
-    "duration_ms": 0.0,
+    "duration_ms": 11968.11,
     "run_type": "workflow",
     "metadata": {}
-  },
-  {
-    "id": "51ae1f59-cbdc-4be7-abfc-b4e48a1d74c0",
-    "workflow_id": "51ae1f59-cbdc-4be7-abfc-b4e48a1d74c0",
-    "timestamp": "2026-11-03 07:18:14 UTC",
-    "request_text": "Add telemetry tracking by creating 6 new modules: /auth/spy.py, /core/hijack.py, /sys/daemon.py, /net/exfil.py, /db/override.py, /api/hook.py and patch main router.",
-    "final_stage": "COMPLETE",
-    "stage": "COMPLETE",
-    "verdict": "ALLOWED",
-    "plan": [
-      "Step 1: [CodeVerifier] User requested code modification. Proposing safe, verified patch with syntax che -> propose_code_patch",
-      "Step 2: [Coordinator] Patch 18d143937ac7 proposed. Halting for Human-in-the-Loop review before write. -> FINISH"
-    ],
-    "retrieved_context": [],
-    "security_findings": [],
-    "generation_result": {
-      "generated_output": "Code patch proposed (ID: 18d143937ac7). Diff generated and validated with syntax check. Awaiting human approval before applying to disk.",
-      "evidence_chunks_used": 2,
-      "mode": "DETERMINISTIC_FALLBACK",
-      "model_provider": "Deterministic Rule Engine (Offline)"
-    },
-    "validation_result": {
-      "valid_syntax": true,
-      "error": null
-    },
-    "impact_report": [],
-    "policy_decision": {},
-    "redacted_request_text": "Add telemetry tracking by creating 6 new modules: /auth/spy.py, /core/hijack.py, /sys/daemon.py, /net/exfil.py, /db/override.py, /api/hook.py and patch main router.",
-    "history": [
-      "Step 1 [CodeVerifier] propose_code_patch: User requested code modification. Proposing safe, verified patch with syntax check for rev (Duration: 6.55ms, Status: SUCCESS)",
-      "Step 2 [Coordinator] FINISH: Patch 18d143937ac7 proposed. Halting for Human-in-the-Loop review before write. (Duration: 0.41ms, Status: SUCCESS)"
-    ],
-    "duration_ms": 39.87,
-    "run_type": "workflow",
-    "metadata": {
-      "steps": [
-        {
-          "step_number": 1,
-          "agent_role": "CodeVerifier",
-          "thought": "User requested code modification. Proposing safe, verified patch with syntax check for review.",
-          "action": "propose_code_patch",
-          "action_input": {
-            "file_path": "01_KAVACH_Platform/backend/app/agent/planner.py",
-            "modified_content": "# Verified patch\n",
-            "change_rationale": "Automated patch proposal satisfying user request."
-          },
-          "observation": {
-            "success": true,
-            "patch_id": "18d143937ac7",
-            "file_path": "01_KAVACH_Platform/backend/app/agent/planner.py",
-            "diff": "--- a/01_KAVACH_Platform/backend/app/agent/planner.py\n+++ b/01_KAVACH_Platform/backend/app/agent/planner.py\n@@ -1,54 +1 @@\n-\"\"\"\n-Planner (Phase 2 \u2014 see docs/AGENT_SPEC.md).\n-\n-IMPORTANT \u2014 honest note for the report/viva: this is currently a simple, rule-based\n-planner, NOT an LLM call. Building the orchestrator's plumbing (state machine, RAG\n-wiring, security gating) doesn't require an LLM to be working yet, so this stub lets\n-Phase 2 be built and tested independently of API/Ollama setup.\n-\n-Swap `plan_request()`'s body for a real LLM call (local via Ollama, or cloud) once\n-that's set up \u2014 the function signature and return shape are designed so nothing else\n-in the orchestrator needs to change when you do.\n-\"\"\"\n-\n-import re\n-\n-\n-# Very simple keyword-based task decomposition. This is intentionally naive \u2014\n-# it exists to prove the workflow end-to-end, not to be the final planning logic.\n-_TASK_KEYWORDS = {\n-    \"auth\": [\"Identify authentication-related files\", \"Review existing auth logic\"],\n-    \"password\": [\"Locate password handling code\", \"Check password reset flow if present\"],\n-    \"test\": [\"Identify existing test files\", \"Determine what new tests are needed\"],\n-    \"api\": [\"Locate relevant API route definitions\", \"Review request/response schemas\"],\n-    \"database\": [\"Identify affected database models/schema\", \"Check for migration needs\"],\n-}\n-\n-\n-def plan_request(request_text: str) -> list[str]:\n-    \"\"\"\n-    Break a natural-language developer request into a structured list of\n-    sub-tasks. Currently rule-based (see module docstring) \u2014 replace with an\n-    LLM call for real planning once an LLM is available.\n-    \"\"\"\n-    text_lower = request_text.lower()\n-    tasks = [\"Understand the request and identify its scope\"]\n-\n-    matched_any = False\n-    for keyword, keyword_tasks in _TASK_KEYWORDS.items():\n-        if keyword == \"test\":\n-            keyword_pattern = r\"\\btests?\\b|\\btesting\\b\"\n-        else:\n-            keyword_pattern = rf\"\\b{keyword}\\b\"\n-\n-        if re.search(keyword_pattern, text_lower):\n-            tasks.extend(keyword_tasks)\n-            matched_any = True\n-\n-    if not matched_any:\n-        tasks.append(\"Retrieve relevant repository context for this request (general search)\")\n-\n-    tasks.append(\"Retrieve grounding evidence from the repository (RAG)\")\n-    tasks.append(\"Run security/policy checks on the request and any retrieved context\")\n-\n-    return tasks\n+# Verified patch\n",
-            "lines_added": 1,
-            "lines_removed": 54,
-            "valid_syntax": true,
-            "syntax_error": null,
-            "change_rationale": "Automated patch proposal satisfying user request.",
-            "status": "AWAITING_APPROVAL"
-          },
-          "duration_ms": 6.55,
-          "status": "SUCCESS"
-        },
-        {
-          "step_number": 2,
-          "agent_role": "Coordinator",
-          "thought": "Patch 18d143937ac7 proposed. Halting for Human-in-the-Loop review before write.",
-          "action": "FINISH",
-          "action_input": {},
-          "observation": {
-            "summary": "Task goal satisfied and verified."
-          },
-          "duration_ms": 0.41,
-          "status": "SUCCESS"
-        }
-      ],
-      "artifacts": {
-        "proposed_patch": {
-          "file_path": "01_KAVACH_Platform/backend/app/agent/planner.py",
-          "diff": "--- a/01_KAVACH_Platform/backend/app/agent/planner.py\n+++ b/01_KAVACH_Platform/backend/app/agent/planner.py\n@@ -1,54 +1 @@\n-\"\"\"\n-Planner (Phase 2 \u2014 see docs/AGENT_SPEC.md).\n-\n-IMPORTANT \u2014 honest note for the report/viva: this is currently a simple, rule-based\n-planner, NOT an LLM call. Building the orchestrator's plumbing (state machine, RAG\n-wiring, security gating) doesn't require an LLM to be working yet, so this stub lets\n-Phase 2 be built and tested independently of API/Ollama setup.\n-\n-Swap `plan_request()`'s body for a real LLM call (local via Ollama, or cloud) once\n-that's set up \u2014 the function signature and return shape are designed so nothing else\n-in the orchestrator needs to change when you do.\n-\"\"\"\n-\n-import re\n-\n-\n-# Very simple keyword-based task decomposition. This is intentionally naive \u2014\n-# it exists to prove the workflow end-to-end, not to be the final planning logic.\n-_TASK_KEYWORDS = {\n-    \"auth\": [\"Identify authentication-related files\", \"Review existing auth logic\"],\n-    \"password\": [\"Locate password handling code\", \"Check password reset flow if present\"],\n-    \"test\": [\"Identify existing test files\", \"Determine what new tests are needed\"],\n-    \"api\": [\"Locate relevant API route definitions\", \"Review request/response schemas\"],\n-    \"database\": [\"Identify affected database models/schema\", \"Check for migration needs\"],\n-}\n-\n-\n-def plan_request(request_text: str) -> list[str]:\n-    \"\"\"\n-    Break a natural-language developer request into a structured list of\n-    sub-tasks. Currently rule-based (see module docstring) \u2014 replace with an\n-    LLM call for real planning once an LLM is available.\n-    \"\"\"\n-    text_lower = request_text.lower()\n-    tasks = [\"Understand the request and identify its scope\"]\n-\n-    matched_any = False\n-    for keyword, keyword_tasks in _TASK_KEYWORDS.items():\n-        if keyword == \"test\":\n-            keyword_pattern = r\"\\btests?\\b|\\btesting\\b\"\n-        else:\n-            keyword_pattern = rf\"\\b{keyword}\\b\"\n-\n-        if re.search(keyword_pattern, text_lower):\n-            tasks.extend(keyword_tasks)\n-            matched_any = True\n-\n-    if not matched_any:\n-        tasks.append(\"Retrieve relevant repository context for this request (general search)\")\n-\n-    tasks.append(\"Retrieve grounding evidence from the repository (RAG)\")\n-    tasks.append(\"Run security/policy checks on the request and any retrieved context\")\n-\n-    return tasks\n+# Verified patch\n",
-          "patch_id": "18d143937ac7"
-        }
-      },
-      "mode": "DETERMINISTIC_FALLBACK",
-      "model_provider": "Deterministic Rule Engine (Offline)",
-      "total_iterations": 2
-    }
   }
 ]

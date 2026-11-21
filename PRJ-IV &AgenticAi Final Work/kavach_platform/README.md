@@ -876,7 +876,7 @@ Kavach exposes a clean, documented RESTful API conforming to OpenAPI 3.0:
 | **Privacy-Preserving Local LLMs** | **CO2** | Air-gapped local Ollama routing (`qwen2.5-coder`, `deepseek-r1`) ensuring zero cloud data egress. |
 | **Multimodal Agent Design** | **CO3** | Dual-engine voice processing with Groq Whisper API (`whisper-large-v3-turbo`). |
 
-### ️ Top 5 Viva Defense Questions & Answers
+###  Top 5 Viva Defense Questions & Answers
 
 #### Q1: "Why not simply use an LLM system prompt like 'Do not leak sensitive data' instead of your deterministic detector?"
 > **Defense Answer:** *"System prompts provide stochastic, probabilistic safety — they are vulnerable to jailbreaks, indirect prompt injection, and stochastic drift. In enterprise production, security must be deterministic. Kavach uses pre-execution deterministic filters (Shannon entropy, compiled regex, and AST inspection) that intercept data before tokenization. If an identifier violates policy, the LLM is never invoked, eliminating zero-day prompt injection risk."*

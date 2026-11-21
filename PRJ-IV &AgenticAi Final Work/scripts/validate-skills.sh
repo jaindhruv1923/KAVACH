@@ -18,34 +18,34 @@ for skill_dir in .agents/skills/*/; do
     
     # Check SKILL.md exists
     if [ ! -f "$skill_file" ]; then
-        echo "❌ $skill_name: Missing SKILL.md"
+        echo "$skill_name: Missing SKILL.md"
         ((error_count++))
         continue
     fi
     
     # Check for frontmatter
     if ! head -1 "$skill_file" | grep -q "^---"; then
-        echo "❌ $skill_name: Missing frontmatter"
+        echo "$skill_name: Missing frontmatter"
         ((error_count++))
         has_errors=true
     fi
     
     # Check for name field
     if ! grep -q "name:" "$skill_file"; then
-        echo "❌ $skill_name: Missing name in frontmatter"
+        echo "$skill_name: Missing name in frontmatter"
         ((error_count++))
         has_errors=true
     fi
     
     # Check for description field
     if ! grep -q "description:" "$skill_file"; then
-        echo "❌ $skill_name: Missing description in frontmatter"
+        echo "$skill_name: Missing description in frontmatter"
         ((error_count++))
         has_errors=true
     fi
     
     if [ "$has_errors" = false ]; then
-        echo "✅ $skill_name"
+        echo "$skill_name"
     fi
 done
 
@@ -57,9 +57,9 @@ echo "Errors: $error_count"
 echo ""
 
 if [ $error_count -eq 0 ]; then
-    echo "✅ All skills valid!"
+    echo "All skills valid!"
     exit 0
 else
-    echo "❌ Validation failed"
+    echo "Validation failed"
     exit 1
 fi

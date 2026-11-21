@@ -724,16 +724,18 @@ function setupEventListeners() {
 // Data Loading & Refresh Orchestrator
 // =============================================================================
 async function refreshAllData() {
-  await loadAccounts();
-  await loadTransactionHistory();
-  await loadVirtualCards();
-  await loadFixedDeposits();
-  await loadBeneficiaries();
-  await loadStandingInstructions();
-  await refreshPendingHitl();
-  await loadMerkleFeed();
-  await loadStats();
-  await loadKillswitchStatus();
+  // Each module refreshes independently: a panel that is not on the page
+  // (or a slow endpoint) must never stop the others from loading.
+  const loaders = [loadAccounts, loadTransactionHistory, loadVirtualCards, loadFixedDeposits,
+    loadBeneficiaries, loadStandingInstructions, refreshPendingHitl, loadMerkleFeed,
+    loadStats, loadKillswitchStatus];
+  for (const load of loaders) {
+    try {
+      await load();
+    } catch (err) {
+      console.warn('[Bank] ' + load.name + ' skipped:', err && err.message);
+    }
+  }
 }
 
 async function loadAccounts() {
@@ -1212,6 +1214,7 @@ function downloadFile(content, fileName, mimeType) {
 let isCvvRevealed = false;
 
 async function loadVirtualCards() {
+  if (!cardSelect) return;   // card module is not rendered on this page
   let cards = [];
   if (isBackendLive) {
     try {
@@ -1628,7 +1631,7 @@ function updateForexCalculator() {
   if (inr > 700000) {
     const tcs = (inr - 700000) * 0.20;
     forexTcsNote.innerText = `RBI LRS 20% TCS Tax Payable: ₹${tcs.toLocaleString('en-IN', { minimumFractionDigits: 2 })} (Above ₹7 Lakh Threshold)`;
-    forexTcsNote.style.color = "#dc2626";
+    forexTcsNote.style.color = "#d23a34";
   } else {
     forexTcsNote.innerText = "RBI LRS TCS Tax: ₹0.00 (Exempt under ₹7,00,000 threshold)";
     forexTcsNote.style.color = "#059669";
@@ -1757,7 +1760,7 @@ async function handleTransferSubmit(e) {
     setGateState(2, 'failed', 'BLOCKED');
     showTrace(`BLOCKED: Adversarial injection attack intercepted at Gate 02.`);
     renderResultCard('blocked', 'ADVERSARIAL ATTACK INTERCEPTED', `
-      <div style="color: #dc2626; font-weight: 800; margin-bottom: 6px;">OWASP LLM01 Threat Neutralized by Gate 02</div>
+      <div style="color: #d23a34; font-weight: 800; margin-bottom: 6px;">OWASP LLM01 Threat Neutralized by Gate 02</div>
       <div style="font-size: 12px; color: #334155; margin-bottom: 6px;">${result.explanation}</div>
       <div style="font-size: 11px; color: #64748b;">Risk Level: <b>${result.risk_level}</b> &bull; Category: <code>${result.threat_category}</code></div>
     `);
@@ -1772,7 +1775,7 @@ async function handleTransferSubmit(e) {
     setGateState(3, 'held', 'HOLD_ESCROW');
     showTrace(`GATE 03 [ADK Escrow]: ₹${amount.toLocaleString()} exceeds statutory threshold (₹50,000.00). Routed to Compliance Desk.`);
     renderResultCard('hitl', 'STATUTORY HITL ESCROW REQUIRED', `
-      <div style="color: #b45309; font-weight: 800; margin-bottom: 6px;">High-Value Transaction Held Under RBI Governance</div>
+      <div style="color: #ae5900; font-weight: 800; margin-bottom: 6px;">High-Value Transaction Held Under RBI Governance</div>
       <div style="font-size: 12px; color: #334155; margin-bottom: 6px;">${result.message}</div>
       <div style="font-size: 11px; color: #64748b;">Pending ID: <code>${result.pending_id}</code> &bull; Action: Open Tab 8 (Compliance Desk) to authorize.</div>
     `);
@@ -1787,7 +1790,7 @@ async function handleTransferSubmit(e) {
     setGateState(4, 'failed', 'REJECTED');
     showTrace(`GATE 04 REJECTED: ${result.error}`);
     renderResultCard('blocked', 'CORE BANKING REJECTION', `
-      <div style="color: #dc2626; font-weight: 800; margin-bottom: 6px;">Ledger Transaction Failed</div>
+      <div style="color: #d23a34; font-weight: 800; margin-bottom: 6px;">Ledger Transaction Failed</div>
       <div style="font-size: 12px; color: #334155;">${result.error}</div>
     `);
     await refreshAllData();
@@ -1803,9 +1806,9 @@ async function handleTransferSubmit(e) {
     <div style="font-size: 12px; color: #334155; margin-bottom: 8px;">
       Sender Balance: <b>₹${Number(result.sender_new_balance).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</b> &bull; Beneficiary Balance: <b>₹${Number(result.receiver_new_balance).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</b>
     </div>
-    <div style="font-size: 10px; color: #64748b; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-family: monospace;">
+    <div style="font-size: 10px; color: #64748b; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-family:'IBM Plex Mono', monospace;">
       <div>TXN ID: <span style="color: #0f172a; font-weight: 700;">${result.transaction_id}</span></div>
-      <div>Latency: <span style="color: #2563eb; font-weight: 700;">${result.duration_ms || 1.8} ms</span></div>
+      <div>Latency: <span style="color: #2764e8; font-weight: 700;">${result.duration_ms || 1.8} ms</span></div>
       <div>Merkle Index: <span style="color: #0f172a; font-weight: 700;">#${result.merkle_index || clientMerkleEntries.length + 1}</span></div>
       <div>Crypto Suite: <span style="color: #059669; font-weight: 700;">SHA3-512 KECCAK</span></div>
     </div>
@@ -2195,11 +2198,11 @@ window.openProofModal = async function(index) {
       <div style="background: var(--bg-subtle); padding: 12px; border-radius: 6px; font-size: 11px;">
         <div style="font-weight: 800; color: #0f172a; margin-bottom: 4px;">Record Leaf Index: #${index}</div>
         <div style="font-size: 10px; color: #64748b;">Leaf Preimage Hash (SHA3-512):</div>
-        <code style="word-break: break-all; color: #2563eb;">${leafHash}</code>
+        <code style="word-break: break-all; color: #2764e8;">${leafHash}</code>
       </div>
       <div style="background: var(--bg-subtle); padding: 12px; border-radius: 6px; font-size: 11px;">
         <div style="font-weight: 800; color: #0f172a; margin-bottom: 4px;">Merkle Root Hash (NIST FIPS 202 Keccak):</div>
-        <code style="word-break: break-all; color: #2563eb;">${rootHash}</code>
+        <code style="word-break: break-all; color: #2764e8;">${rootHash}</code>
       </div>
       <div style="background: var(--bg-subtle); padding: 12px; border-radius: 6px; font-size: 11px;">
         <div style="font-weight: 800; color: #0f172a; margin-bottom: 4px;">Hardware Security Module (HSM) Enclave Seal:</div>
@@ -2209,7 +2212,7 @@ window.openProofModal = async function(index) {
       </div>
       <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0;">
         <span style="font-size: 12px; font-weight: 700; color: #334155;">Cryptographic Inclusion Verification:</span>
-        <span style="background: ${isVerified ? '#ecfdf5' : '#fef2f2'}; color: ${isVerified ? '#059669' : '#dc2626'}; border: 1px solid ${isVerified ? '#a7f3d0' : '#fecaca'}; padding: 3px 10px; border-radius: 4px; font-weight: 800; font-size: 11px;">
+        <span style="background: ${isVerified ? '#ecfdf5' : '#fef2f1'}; color: ${isVerified ? '#059669' : '#d23a34'}; border: 1px solid ${isVerified ? '#a7f3d0' : '#fecac7'}; padding: 3px 10px; border-radius: 4px; font-weight: 800; font-size: 11px;">
           ${isVerified ? 'MATHEMATICALLY VERIFIED' : 'INTEGRITY MISMATCH'}
         </span>
       </div>
@@ -2430,9 +2433,9 @@ function updateHitlIndicator() {
   const amt = parseFloat(amountInput.value) || 0;
   const notice = document.getElementById('hitl-threshold-notice');
   if (amt > 50000) {
-    notice.style.background = "#fffbeb";
-    notice.style.color = "#b45309";
-    notice.style.borderColor = "#fde68a";
+    notice.style.background = "#fffaf3";
+    notice.style.color = "#ae5900";
+    notice.style.borderColor = "#ffe1b8";
     notice.innerText = `[STATUTORY HOLD] Transfer of ₹${amt.toLocaleString()} exceeds statutory threshold (₹50,000.00). Requires Senior Officer sign-off.`;
   } else {
     notice.style.background = "#eff6ff";
@@ -2818,10 +2821,10 @@ function setupMcpSandbox() {
       if (traceTerminal) {
         const timeStr = new Date().toLocaleTimeString();
         const isErr = !!responsePayload.error;
-        const color = isErr ? "#f87171" : "#4ade80";
+        const color = isErr ? "#f87171" : "#79d693";
 
         traceTerminal.innerHTML = `
-          <div class="terminal-line" style="color: #38bdf8;">[${timeStr}] MCP INCOMING JSON-RPC REQUEST:</div>
+          <div class="terminal-line" style="color: #52b8ff;">[${timeStr}] MCP INCOMING JSON-RPC REQUEST:</div>
           <pre style="margin: 4px 0 8px 0; color: #94a3b8; font-size: 10px;">${JSON.stringify(requestPayload, null, 2)}</pre>
           <div class="terminal-line" style="color: ${color};">[${timeStr}] KAVACH MCP GATEWAY RESPONSE (${isErr ? 'BLOCKED' : 'COMMITTED'}):</div>
           <pre style="margin: 4px 0 0 0; color: ${color}; font-size: 10px;">${JSON.stringify(responsePayload, null, 2)}</pre>
@@ -2983,7 +2986,7 @@ async function refreshMakerCheckerQueue() {
         ${r.status === 'PENDING_CHECKER_APPROVAL' ? `
           <div style="display: flex; gap: 8px; margin-top: 6px;">
             <button class="btn-primary btn-sm" onclick="approveMakerRequest('${r.request_id}')" style="flex: 1; font-size: 10px;">Authorize (Checker Seal)</button>
-            <button class="btn-secondary btn-sm" onclick="rejectMakerRequest('${r.request_id}')" style="flex: 1; font-size: 10px; color: #ef4444;">Decline</button>
+            <button class="btn-secondary btn-sm" onclick="rejectMakerRequest('${r.request_id}')" style="flex: 1; font-size: 10px; color: #e84f4b;">Decline</button>
           </div>
         ` : ''}
       </div>
@@ -3351,10 +3354,10 @@ function setupDualCustodyTerminal() {
 
     if (consoleLog) {
       consoleLog.innerHTML = `
-        <div style="color: #38bdf8;">[INITIATOR &middot; ADK] Initiating transfer: ₹${amount.toLocaleString()} from ${sender} &rarr; ${receiver}</div>
-        <div style="color: #38bdf8;">[SIGNATURE 1/2] ADK Signed: ${adkSig}</div>
-        ${isDual ? `<div style="color: #c084fc;">[SIGNATURE 2/2] CrewAI Auditor Co-Signed: ${auditorSig}</div>` : `<div style="color: #ef4444; font-weight:700;">[ROGUE MODE] Missing Auditor Co-Signature (Stripped)</div>`}
-        <div style="color: #fbbf24; margin-top: 4px;">[HSM GATEWAY] Submitting to Core Banking Dual-Custody HSM...</div>
+        <div style="color: #52b8ff;">[INITIATOR &middot; ADK] Initiating transfer: ₹${amount.toLocaleString()} from ${sender} &rarr; ${receiver}</div>
+        <div style="color: #52b8ff;">[SIGNATURE 1/2] ADK Signed: ${adkSig}</div>
+        ${isDual ? `<div style="color: #7aa1ff;">[SIGNATURE 2/2] CrewAI Auditor Co-Signed: ${auditorSig}</div>` : `<div style="color: #e84f4b; font-weight:700;">[ROGUE MODE] Missing Auditor Co-Signature (Stripped)</div>`}
+        <div style="color: #ffbb53; margin-top: 4px;">[HSM GATEWAY] Submitting to Core Banking Dual-Custody HSM...</div>
       `;
     }
 
@@ -3378,46 +3381,46 @@ function setupDualCustodyTerminal() {
       if (resp.ok && resData.status === "CLEARED") {
         if (consoleLog) {
           consoleLog.innerHTML += `
-            <div style="color: #10b981; font-weight: 700; margin-top: 6px;">[CLEARED 200 OK] TX: ${resData.tx_id} [${resData.transfer_type}]</div>
-            <div style="color: #34d399; font-size: 10px;">New Sender Balance: ₹${resData.sender_balance_after.toLocaleString()} | Merkle Chained: ${resData.hash.slice(0, 24)}...</div>
+            <div style="color: #3cb685; font-weight: 700; margin-top: 6px;">[CLEARED 200 OK] TX: ${resData.tx_id} [${resData.transfer_type}]</div>
+            <div style="color: #58cf9e; font-size: 10px;">New Sender Balance: ₹${resData.sender_balance_after.toLocaleString()} | Merkle Chained: ${resData.hash.slice(0, 24)}...</div>
             <div style="color: #a7f3d0; font-size: 10px;">Signatures Verified: ${resData.signatures_verified.join(' + ')}</div>
           `;
         }
         if (consoleStatus) {
-          consoleStatus.innerHTML = `<span style="color:#10b981;">SUCCESS</span><span style="color:#10b981;">STATUS: 2-OF-2 CONSENSUS ATTESTED</span>`;
+          consoleStatus.innerHTML = `<span style="color:#3cb685;">SUCCESS</span><span style="color:#3cb685;">STATUS: 2-OF-2 CONSENSUS ATTESTED</span>`;
         }
         await refreshAllData();
       } else {
         const errMsg = resData.detail || resData.error || "Failed dual-custody invariant check";
         if (consoleLog) {
           consoleLog.innerHTML += `
-            <div style="color: #ef4444; font-weight: 700; margin-top: 6px;">[BLOCKED ${resp.status}] ${errMsg}</div>
+            <div style="color: #e84f4b; font-weight: 700; margin-top: 6px;">[BLOCKED ${resp.status}] ${errMsg}</div>
             <div style="color: #f87171; font-size: 10px;">RBI CSF Enforcement: Segregation of Duties (SoD) prevented unverified agent transfer.</div>
           `;
         }
         if (consoleStatus) {
-          consoleStatus.innerHTML = `<span style="color:#ef4444;">BLOCKED</span><span style="color:#ef4444;">STATUS: INSUFFICIENT SIGNATURES</span>`;
+          consoleStatus.innerHTML = `<span style="color:#e84f4b;">BLOCKED</span><span style="color:#e84f4b;">STATUS: INSUFFICIENT SIGNATURES</span>`;
         }
       }
     } catch (err) {
       if (isDual) {
         if (consoleLog) {
           consoleLog.innerHTML += `
-            <div style="color: #10b981; font-weight: 700; margin-top: 6px;">[CLIENT SIMULATION] TX-DUAL-MOCK-750000-CLEARED [COMPLIANT]</div>
-            <div style="color: #34d399; font-size: 10px;">Signatures Verified: A2A-SIG-ADK + A2A-SIG-CREWAI</div>
+            <div style="color: #3cb685; font-weight: 700; margin-top: 6px;">[CLIENT SIMULATION] TX-DUAL-MOCK-750000-CLEARED [COMPLIANT]</div>
+            <div style="color: #58cf9e; font-size: 10px;">Signatures Verified: A2A-SIG-ADK + A2A-SIG-CREWAI</div>
           `;
         }
         if (consoleStatus) {
-          consoleStatus.innerHTML = `<span style="color:#10b981;">SUCCESS</span><span>STATUS: CLEARED</span>`;
+          consoleStatus.innerHTML = `<span style="color:#3cb685;">SUCCESS</span><span>STATUS: CLEARED</span>`;
         }
       } else {
         if (consoleLog) {
           consoleLog.innerHTML += `
-            <div style="color: #ef4444; font-weight: 700; margin-top: 6px;">[BLOCKED 403] INSUFFICIENT_SIGNATURES: Dual custody mandated by RBI CSF for transfers > ₹5,00,000.</div>
+            <div style="color: #e84f4b; font-weight: 700; margin-top: 6px;">[BLOCKED 403] INSUFFICIENT_SIGNATURES: Dual custody mandated by RBI CSF for transfers > ₹5,00,000.</div>
           `;
         }
         if (consoleStatus) {
-          consoleStatus.innerHTML = `<span style="color:#ef4444;">BLOCKED</span><span>STATUS: MISSING AUDITOR SIG</span>`;
+          consoleStatus.innerHTML = `<span style="color:#e84f4b;">BLOCKED</span><span>STATUS: MISSING AUDITOR SIG</span>`;
         }
       }
     }

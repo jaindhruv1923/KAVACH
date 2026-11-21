@@ -11,7 +11,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo ""
 
 if [ ! -d ".agents/agents" ]; then
-    echo "❌ Missing .agents/agents/ directory"
+    echo "Missing .agents/agents/ directory"
     exit 1
 fi
 
@@ -23,7 +23,7 @@ for agent_file in .agents/agents/*.md; do
 
     # Check for frontmatter
     if ! head -1 "$agent_file" | grep -q "^---"; then
-        echo "❌ $agent_name: Missing frontmatter"
+        echo "$agent_name: Missing frontmatter"
         ((error_count++))
         has_errors=true
     fi
@@ -31,7 +31,7 @@ for agent_file in .agents/agents/*.md; do
     # Check required fields
     for field in "name" "description" "subagent"; do
         if ! grep -q "^$field:" "$agent_file"; then
-            echo "❌ $agent_name: Missing $field in frontmatter"
+            echo "$agent_name: Missing $field in frontmatter"
             ((error_count++))
             has_errors=true
         fi
@@ -40,14 +40,14 @@ for agent_file in .agents/agents/*.md; do
     # name must match filename (invoke_subagent targets the name field)
     declared_name=$(grep "^name:" "$agent_file" | head -1 | sed 's/^name:[[:space:]]*//')
     if [ -n "$declared_name" ] && [ "$declared_name" != "$agent_name" ]; then
-        echo "❌ $agent_name: name '$declared_name' does not match filename"
+        echo "$agent_name: name '$declared_name' does not match filename"
         ((error_count++))
         has_errors=true
     fi
 
     # subagent must be true
     if ! grep -q "^subagent:[[:space:]]*true" "$agent_file"; then
-        echo "❌ $agent_name: subagent must be true"
+        echo "$agent_name: subagent must be true"
         ((error_count++))
         has_errors=true
     fi
@@ -60,7 +60,7 @@ for agent_file in .agents/agents/*.md; do
     tool_list=$(awk '/^tools:/{flag=1;next} /^[a-zA-Z]/{flag=0} flag && /^[[:space:]]*-/{gsub(/^[[:space:]]*-[[:space:]]*/,"");print}' "$agent_file")
 
     if [ -z "$tool_list" ]; then
-        echo "❌ $agent_name: No tools declared (tools: defaults to empty, it does not inherit)"
+        echo "$agent_name: No tools declared (tools: defaults to empty, it does not inherit)"
         ((error_count++))
         has_errors=true
     else
@@ -70,7 +70,7 @@ for agent_file in .agents/agents/*.md; do
                 browser_*|*" browser_"*) ;;
                 *)
                     if [ "${tool#browser_}" = "$tool" ]; then
-                        echo "❌ $agent_name: Unknown tool '$tool' (typos make subagents hang)"
+                        echo "$agent_name: Unknown tool '$tool' (typos make subagents hang)"
                         ((error_count++))
                         has_errors=true
                     fi
@@ -83,7 +83,7 @@ for agent_file in .agents/agents/*.md; do
     while read -r skill_ref; do
         [ -n "$skill_ref" ] || continue
         if [ ! -f ".agents/$skill_ref/SKILL.md" ]; then
-            echo "❌ $agent_name: References missing skill '$skill_ref'"
+            echo "$agent_name: References missing skill '$skill_ref'"
             ((error_count++))
             has_errors=true
         fi
@@ -91,11 +91,11 @@ for agent_file in .agents/agents/*.md; do
 
     # Return Contract keeps orchestrator context lean
     if ! grep -q "Return Contract" "$agent_file"; then
-        echo "⚠️  $agent_name: Missing Return Contract section"
+        echo "$agent_name: Missing Return Contract section"
     fi
 
     if [ "$has_errors" = false ]; then
-        echo "✅ $agent_name"
+        echo "$agent_name"
     fi
 done
 
@@ -107,9 +107,9 @@ echo "Errors: $error_count"
 echo ""
 
 if [ $error_count -eq 0 ]; then
-    echo "✅ All subagents valid!"
+    echo "All subagents valid!"
     exit 0
 else
-    echo "❌ Validation failed"
+    echo "Validation failed"
     exit 1
 fi

@@ -1296,6 +1296,18 @@ def serve_gov_rules_js():
 def serve_eli5_hub_js():
     return FileResponse(os.path.join(CURRENT_DIR, "eli5_hub.js"))
 
+@app.get("/codebase_ide.js")
+def serve_codebase_ide_js():
+    return FileResponse(os.path.join(CURRENT_DIR, "codebase_ide.js"), media_type="application/javascript")
+
+
+
+# Shared KAVACH suite navigation bar + design tokens (served from ../shared_ui)
+from fastapi.staticfiles import StaticFiles as _SuiteStaticFiles
+_SHARED_UI_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "shared_ui"))
+if os.path.isdir(_SHARED_UI_DIR):
+    app.mount("/suite", _SuiteStaticFiles(directory=_SHARED_UI_DIR), name="suite")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8050)

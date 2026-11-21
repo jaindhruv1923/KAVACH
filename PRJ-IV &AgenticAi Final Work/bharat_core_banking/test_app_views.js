@@ -52,7 +52,8 @@ async function testAppViews() {
   await new Promise(r => setTimeout(r, 2000));
 
   const s1 = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\app_phase1_without_kavach.png', Buffer.from(s1.data, 'base64'));
+  fs.mkdirSync(require('path').join(__dirname, 'screenshots'), { recursive: true });
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'app_phase1_without_kavach.png'), Buffer.from(s1.data, 'base64'));
   console.log('Saved app_phase1_without_kavach.png');
 
   // 2. Switch to Phase 3 (With KAVACH) and dispatch Scenario 2 again
@@ -62,7 +63,7 @@ async function testAppViews() {
   await new Promise(r => setTimeout(r, 2000));
 
   const s2 = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\app_phase3_with_kavach.png', Buffer.from(s2.data, 'base64'));
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'app_phase3_with_kavach.png'), Buffer.from(s2.data, 'base64'));
   console.log('Saved app_phase3_with_kavach.png');
 
   ws.close();

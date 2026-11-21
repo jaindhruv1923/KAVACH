@@ -3,34 +3,34 @@
    Design System: Cyber Ops Glassmorphism + Jitter/Lottie Vector Aesthetics
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
   /* Color Palette - Dark Cyber Ops Default */
-  --bg-deep: #070B14;
-  --bg-card: rgba(15, 23, 42, 0.75);
-  --bg-card-hover: rgba(30, 41, 59, 0.85);
-  --border-subtle: rgba(148, 163, 184, 0.15);
-  --border-glow: rgba(56, 189, 248, 0.4);
+  --bg-deep: #EEF2FB;
+  --bg-card: rgba(233, 237, 246, 0.75);
+  --bg-card-hover: rgba(226, 231, 239, 0.85);
+  --border-subtle: rgba(70, 83, 102, 0.15);
+  --border-glow: rgba(0, 111, 168, 0.4);
   
   /* Brand & Core Accents */
-  --cyan-glow: #06b6d4;
-  --blue-quantum: #3b82f6;
-  --indigo-core: #6366f1;
-  --emerald-safe: #10b981;
-  --amber-warn: #f59e0b;
-  --crimson-threat: #ef4444;
-  --purple-agent: #a855f7;
+  --cyan-glow: #0273ae;
+  --blue-quantum: #286fe1;
+  --indigo-core: #406cf0;
+  --emerald-safe: #008359;
+  --amber-warn: #8f5a00;
+  --crimson-threat: #cc3334;
+  --purple-agent: #436bdd;
   
   /* Text */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-dim: #64748b;
+  --text-primary: #121314;
+  --text-secondary: #465366;
+  --text-dim: #6d7d94;
   
   /* Gradients */
-  --grad-shield: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(99, 102, 241, 0.25) 100%);
-  --grad-threat: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(245, 158, 11, 0.3) 100%);
-  --grad-safe: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%);
+  --grad-shield: linear-gradient(135deg, rgba(2, 115, 174, 0.25) 0%, rgba(64, 108, 240, 0.25) 100%);
+  --grad-threat: linear-gradient(135deg, rgba(204, 51, 52, 0.3) 0%, rgba(143, 90, 0, 0.3) 100%);
+  --grad-safe: linear-gradient(135deg, rgba(0, 131, 89, 0.3) 0%, rgba(2, 115, 174, 0.3) 100%);
   
   /* Animation Timing */
   --anim-speed-factor: 1;
@@ -38,15 +38,15 @@
 
 /* Light Theme Variables */
 body.theme-light {
-  --bg-deep: #f1f5f9;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-card-hover: rgba(255, 255, 255, 0.95);
-  --border-subtle: rgba(203, 213, 225, 0.8);
-  --border-glow: rgba(37, 99, 235, 0.3);
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-dim: #94a3b8;
-  --grad-shield: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  --bg-deep: #141619;
+  --bg-card: rgba(15, 15, 15, 0.85);
+  --bg-card-hover: rgba(15, 15, 15, 0.95);
+  --border-subtle: rgba(37, 45, 54, 0.8);
+  --border-glow: rgba(52, 114, 248, 0.3);
+  --text-primary: #e9edf6;
+  --text-secondary: #8c9bb2;
+  --text-dim: #465366;
+  --grad-shield: linear-gradient(135deg, rgba(52, 114, 248, 0.1) 0%, rgba(2, 115, 174, 0.1) 100%);
 }
 
 * {
@@ -56,7 +56,7 @@ body.theme-light {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   background-color: var(--bg-deep);
   color: var(--text-primary);
   min-height: 100vh;
@@ -70,8 +70,8 @@ body {
   position: fixed;
   inset: 0;
   background-image: 
-    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 111, 168, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 111, 168, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -137,11 +137,11 @@ body {
 }
 
 .brand-text h1 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  background: linear-gradient(135deg, #006fa8 0%, #4468cb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -162,7 +162,7 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
   padding: 0.6rem 1.1rem;
@@ -179,24 +179,24 @@ body {
   border-color: var(--border-glow);
   background: var(--bg-card-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.15);
+  box-shadow: 0 4px 16px rgba(2, 115, 174, 0.06);
 }
 
 .ctrl-btn.active {
-  background: rgba(6, 182, 212, 0.18);
+  background: rgba(2, 115, 174, 0.18);
   border-color: var(--cyan-glow);
-  color: #38bdf8;
-  box-shadow: 0 0 16px rgba(6, 182, 212, 0.25);
+  color: #006fa8;
+  box-shadow: 0 0 16px rgba(2, 115, 174, 0.1);
 }
 
 .ctrl-btn.threat-btn {
-  border-color: rgba(239, 68, 68, 0.3);
+  border-color: rgba(204, 51, 52, 0.3);
 }
 .ctrl-btn.threat-btn:hover, .ctrl-btn.threat-btn.active {
-  background: rgba(239, 68, 68, 0.2);
+  background: rgba(204, 51, 52, 0.2);
   border-color: var(--crimson-threat);
-  color: #fca5a5;
-  box-shadow: 0 0 16px rgba(239, 68, 68, 0.3);
+  color: #954848;
+  box-shadow: 0 0 16px rgba(204, 51, 52, 0.12);
 }
 
 /* Master Grid of Motion Graphics */
@@ -229,7 +229,7 @@ body {
 .motion-card:hover {
   border-color: var(--border-glow);
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 20px rgba(56, 189, 248, 0.12);
+  box-shadow: 0 12px 32px rgba(15, 23, 41, 0.158), 0 0 20px rgba(0, 111, 168, 0.048);
 }
 
 .card-header {
@@ -241,7 +241,7 @@ body {
 }
 
 .card-title-group h3 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
   display: flex;
@@ -256,14 +256,14 @@ body {
 }
 
 .tag-badge {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.72rem;
   font-weight: 600;
   padding: 0.25rem 0.6rem;
   border-radius: 20px;
-  background: rgba(56, 189, 248, 0.12);
-  color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(0, 111, 168, 0.12);
+  color: #006fa8;
+  border: 1px solid rgba(0, 111, 168, 0.25);
 }
 
 /* Canvas Viewport */
@@ -273,14 +273,14 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: radial-gradient(circle at center, rgba(30, 41, 59, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(226, 231, 239, 0.4) 0%, transparent 70%);
   overflow: hidden;
 }
 
 .card-footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--border-subtle);
-  background: rgba(15, 23, 42, 0.3);
+  background: rgba(233, 237, 246, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -288,7 +288,7 @@ body {
 }
 
 .card-footer-info {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.75rem;
   color: var(--text-dim);
 }
@@ -305,7 +305,7 @@ body {
 }
 
 .action-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 15, 15, 0.08);
   color: var(--text-primary);
   border-color: var(--text-secondary);
 }
@@ -325,19 +325,19 @@ body {
 .radar-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px dashed rgba(56, 189, 248, 0.3);
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.08);
+  border: 1px dashed rgba(0, 111, 168, 0.3);
+  box-shadow: 0 0 10px rgba(2, 115, 174, 0.032);
 }
 .ring-1 { width: 80px; height: 80px; }
-.ring-2 { width: 150px; height: 150px; border-style: solid; border-color: rgba(56, 189, 248, 0.2); }
-.ring-3 { width: 230px; height: 230px; border: 1px dashed rgba(99, 102, 241, 0.3); }
+.ring-2 { width: 150px; height: 150px; border-style: solid; border-color: rgba(0, 111, 168, 0.2); }
+.ring-3 { width: 230px; height: 230px; border: 1px dashed rgba(64, 108, 240, 0.3); }
 
 .radar-sweep {
   position: absolute;
   width: 230px;
   height: 230px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg at 50% 50%, rgba(6, 182, 212, 0.4) 0deg, rgba(6, 182, 212, 0.05) 60deg, transparent 90deg);
+  background: conic-gradient(from 0deg at 50% 50%, rgba(2, 115, 174, 0.4) 0deg, rgba(2, 115, 174, 0.05) 60deg, transparent 90deg);
   animation: sweepAnim calc(4s / var(--anim-speed-factor)) linear infinite;
   pointer-events: none;
 }
@@ -366,7 +366,7 @@ body {
 
 @keyframes pulseShield {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px var(--cyan-glow)); }
-  50% { transform: scale(1.08); filter: drop-shadow(0 0 24px #38bdf8); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 24px #006fa866); }
 }
 
 .radar-blip {
@@ -389,7 +389,7 @@ body {
 
 /* Under Attack state modifications */
 body.state-attack .radar-sweep {
-  background: conic-gradient(from 0deg at 50% 50%, rgba(239, 68, 68, 0.6) 0deg, rgba(239, 68, 68, 0.1) 60deg, transparent 90deg);
+  background: conic-gradient(from 0deg at 50% 50%, rgba(204, 51, 52, 0.6) 0deg, rgba(204, 51, 52, 0.1) 60deg, transparent 90deg);
   animation-duration: calc(1.5s / var(--anim-speed-factor));
 }
 body.state-attack .radar-shield-center svg {
@@ -413,7 +413,7 @@ body.state-attack .radar-shield-center svg {
 .highway-lane {
   position: relative;
   height: 48px;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(233, 237, 246, 0.6);
   border: 1px solid var(--border-subtle);
   border-radius: 24px;
   overflow: hidden;
@@ -427,7 +427,7 @@ body.state-attack .radar-shield-center svg {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 111, 168, 0.5), transparent);
 }
 
 .highway-node-gate {
@@ -435,21 +435,21 @@ body.state-attack .radar-shield-center svg {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(30, 41, 59, 0.9);
+  background: rgba(226, 231, 239, 0.9);
   border: 1px solid var(--cyan-glow);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
   font-weight: 700;
-  color: #38bdf8;
-  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+  color: #006fa8;
+  box-shadow: 0 0 12px rgba(2, 115, 174, 0.12);
   z-index: 2;
 }
 .gate-ast { left: 25%; }
-.gate-dpdp { left: 55%; border-color: var(--indigo-core); color: #a5b4fc; }
-.gate-core { left: 85%; border-color: var(--emerald-safe); color: #6ee7b7; }
+.gate-dpdp { left: 55%; border-color: var(--indigo-core); color: #4962a1; }
+.gate-core { left: 85%; border-color: var(--emerald-safe); color: #007151; }
 
 .packet-stream {
   position: absolute;
@@ -469,12 +469,12 @@ body.state-attack .radar-shield-center svg {
 .packet-pill {
   padding: 0.2rem 0.65rem;
   border-radius: 12px;
-  background: linear-gradient(90deg, #06b6d4, #3b82f6);
-  font-family: 'JetBrains Mono', monospace;
+  background: linear-gradient(90deg, #0273ae, #286fe1);
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
   font-weight: 600;
   color: white;
-  box-shadow: 0 0 14px rgba(6, 182, 212, 0.5);
+  box-shadow: 0 0 14px rgba(2, 115, 174, 0.2);
   white-space: nowrap;
 }
 
@@ -510,7 +510,7 @@ body.state-attack .radar-shield-center svg {
   border-radius: 20px;
   transform: rotate(45deg);
   animation: rotateBarrier calc(12s / var(--anim-speed-factor)) linear infinite;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+  box-shadow: 0 0 20px rgba(2, 115, 174, 0.1);
   transition: all 0.4s ease;
 }
 
@@ -522,7 +522,7 @@ body.state-attack .radar-shield-center svg {
 .interceptor-icon svg {
   width: 44px;
   height: 44px;
-  color: #38bdf8;
+  color: #006fa8;
   filter: drop-shadow(0 0 14px var(--cyan-glow));
 }
 
@@ -561,7 +561,7 @@ body.state-attack .radar-shield-center svg {
 
 body.state-attack .hexagon-barrier {
   border-color: var(--crimson-threat);
-  box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 30px rgba(204, 51, 52, 0.2);
   animation-duration: calc(3s / var(--anim-speed-factor));
 }
 
@@ -585,7 +585,7 @@ body.state-attack .hexagon-barrier {
 }
 
 .mesh-line {
-  stroke: rgba(99, 102, 241, 0.4);
+  stroke: rgba(64, 108, 240, 0.4);
   stroke-width: 1.5;
   stroke-dasharray: 4 4;
   animation: dashStream calc(2s / var(--anim-speed-factor)) linear infinite;
@@ -600,12 +600,12 @@ body.state-attack .hexagon-barrier {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(233, 237, 246, 0.85);
   border: 1px solid var(--border-glow);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 14px rgba(0, 111, 168, 0.1);
   transition: all 0.3s ease;
   z-index: 2;
 }
@@ -613,7 +613,7 @@ body.state-attack .hexagon-barrier {
 .agent-node svg {
   width: 22px;
   height: 22px;
-  color: #38bdf8;
+  color: #006fa8;
 }
 
 .node-center { top: 50%; left: 50%; transform: translate(-50%, -50%); border-color: var(--purple-agent); }
@@ -643,7 +643,7 @@ body.state-attack .hexagon-barrier {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 2px dashed rgba(16, 185, 129, 0.4);
+  border: 2px dashed rgba(0, 131, 89, 0.4);
   animation: rotateRing calc(16s / var(--anim-speed-factor)) linear infinite;
 }
 
@@ -652,7 +652,7 @@ body.state-attack .hexagon-barrier {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 2px solid rgba(16, 185, 129, 0.3);
+  border: 2px solid rgba(0, 131, 89, 0.3);
   border-top-color: var(--emerald-safe);
   border-bottom-color: var(--emerald-safe);
   animation: rotateRing calc(8s / var(--anim-speed-factor)) linear infinite reverse;
@@ -669,31 +669,31 @@ body.state-attack .hexagon-barrier {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(0, 131, 89, 0.15);
   border: 1px solid var(--emerald-safe);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 20px rgba(0, 131, 89, 0.12);
 }
 
 .vault-lock-center svg {
   width: 28px;
   height: 28px;
-  color: #6ee7b7;
+  color: #007151;
   filter: drop-shadow(0 0 10px var(--emerald-safe));
 }
 
 .hash-ticker {
   position: absolute;
   bottom: 12px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.72rem;
-  color: #34d399;
-  background: rgba(15, 23, 42, 0.8);
+  color: #007a54;
+  background: rgba(233, 237, 246, 0.8);
   padding: 0.2rem 0.6rem;
   border-radius: 6px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(0, 131, 89, 0.2);
 }
 
 /* ==========================================================================
@@ -724,16 +724,16 @@ body.state-attack .hexagon-barrier {
 }
 
 .latency-value {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 2.2rem;
   font-weight: 800;
-  color: #38bdf8;
-  text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+  color: #006fa8;
+  text-shadow: 0 0 20px rgba(0, 111, 168, 0.2);
   line-height: 1;
 }
 
 .latency-sub {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.75rem;
   color: var(--text-dim);
   margin-top: 0.3rem;
@@ -743,7 +743,7 @@ body.state-attack .hexagon-barrier {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(15, 23, 41, 0.06);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -760,13 +760,13 @@ body.state-attack .hexagon-barrier {
 }
 
 .modal-content {
-  background: #0f172a;
+  background: #e9edf6;
   border: 1px solid var(--border-glow);
   border-radius: 16px;
   max-width: 650px;
   width: 90%;
   padding: 2rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 20px 50px rgba(15, 23, 41, 0.225), 0 0 30px rgba(0, 111, 168, 0.08);
   transform: translateY(20px);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -783,10 +783,10 @@ body.state-attack .hexagon-barrier {
 }
 
 .modal-header h3 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #38bdf8;
+  color: #006fa8;
 }
 
 .modal-close-btn {
@@ -799,13 +799,13 @@ body.state-attack .hexagon-barrier {
 }
 
 .code-box {
-  background: #020617;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #f0f4fc;
+  border: 1px solid rgba(15, 15, 15, 0.1);
   border-radius: 8px;
   padding: 1.2rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.8rem;
-  color: #e2e8f0;
+  color: #1a1f24;
   overflow-x: auto;
   line-height: 1.5;
   margin-bottom: 1.2rem;
@@ -817,7 +817,7 @@ body.state-attack .hexagon-barrier {
   border: none;
   padding: 0.65rem 1.25rem;
   border-radius: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -825,7 +825,7 @@ body.state-attack .hexagon-barrier {
 }
 
 .copy-btn:hover {
-  background: #2563eb;
+  background: #3472f8;
 }
 
 /* ==========================================================================
@@ -843,8 +843,8 @@ body.state-attack .hexagon-barrier {
 .fuzzer-chamber {
   position: relative;
   height: 110px;
-  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: radial-gradient(circle at center, rgba(233, 237, 246, 0.95), rgba(15, 23, 41, 0.06));
+  border: 1px solid rgba(204, 51, 52, 0.3);
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -870,20 +870,20 @@ body.state-attack .hexagon-barrier {
   font-weight: 700;
   box-shadow: 0 0 14px currentColor;
 }
-.emitter-red { background: rgba(239, 68, 68, 0.2); border: 2px solid #ef4444; color: #ef4444; }
-.emitter-green { background: rgba(16, 185, 129, 0.2); border: 2px solid #10b981; color: #10b981; }
+.emitter-red { background: rgba(204, 51, 52, 0.2); border: 2px solid #cc3334; color: #cc3334; }
+.emitter-green { background: rgba(0, 131, 89, 0.2); border: 2px solid #008359; color: #008359; }
 .fuzzer-barrier {
   width: 6px;
   height: 85%;
-  background: linear-gradient(180deg, #38bdf8, #818cf8, #38bdf8);
-  box-shadow: 0 0 18px #38bdf8;
+  background: linear-gradient(180deg, #006fa8, #4468cb, #006fa8);
+  box-shadow: 0 0 18px #006fa866;
   border-radius: 3px;
   position: relative;
   animation: barrierPulse 2s infinite ease-in-out;
 }
 @keyframes barrierPulse {
-  0%, 100% { opacity: 0.8; box-shadow: 0 0 12px #38bdf8; }
-  50% { opacity: 1; box-shadow: 0 0 24px #38bdf8, 0 0 40px rgba(56, 189, 248, 0.5); }
+  0%, 100% { opacity: 0.8; box-shadow: 0 0 12px #006fa866; }
+  50% { opacity: 1; box-shadow: 0 0 24px #006fa866, 0 0 40px rgba(0, 111, 168, 0.2); }
 }
 .fuzzer-particle-stream {
   position: absolute;
@@ -899,13 +899,13 @@ body.state-attack .hexagon-barrier {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #f87171;
-  box-shadow: 0 0 10px #ef4444;
+  background: #ba373e;
+  box-shadow: 0 0 10px #cc333466;
   animation: fuzzerFly 1.6s infinite linear;
 }
-.fuzzer-burst-p:nth-child(2) { animation-delay: 0.4s; background: #fbbf24; box-shadow: 0 0 10px #f59e0b; }
-.fuzzer-burst-p:nth-child(3) { animation-delay: 0.8s; background: #c084fc; box-shadow: 0 0 10px #a855f7; }
-.fuzzer-burst-p:nth-child(4) { animation-delay: 1.2s; background: #38bdf8; box-shadow: 0 0 10px #38bdf8; }
+.fuzzer-burst-p:nth-child(2) { animation-delay: 0.4s; background: #825600; box-shadow: 0 0 10px #8f5a0066; }
+.fuzzer-burst-p:nth-child(3) { animation-delay: 0.8s; background: #3b61d0; box-shadow: 0 0 10px #436bdd66; }
+.fuzzer-burst-p:nth-child(4) { animation-delay: 1.2s; background: #006fa8; box-shadow: 0 0 10px #006fa866; }
 @keyframes fuzzerFly {
   0% { left: 0%; opacity: 0; transform: scale(0.6); }
   20% { opacity: 1; }
@@ -917,12 +917,12 @@ body.state-attack .hexagon-barrier {
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.72rem;
 }
 .fuzzer-stat-badge {
   flex: 1;
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(233, 237, 246, 0.7);
   border: 1px solid var(--border-subtle);
   border-radius: 6px;
   padding: 6px 8px;
@@ -931,7 +931,7 @@ body.state-attack .hexagon-barrier {
 .fuzzer-stat-badge strong {
   display: block;
   font-size: 0.95rem;
-  color: #38bdf8;
+  color: #006fa8;
   margin-top: 2px;
 }
 .fuzzer-interactive-row {
@@ -942,9 +942,9 @@ body.state-attack .hexagon-barrier {
   flex-wrap: wrap;
 }
 .fuzzer-cat-btn {
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  color: #94a3b8;
+  background: rgba(226, 231, 239, 0.7);
+  border: 1px solid rgba(70, 83, 102, 0.2);
+  color: #465366;
   font-size: 0.74rem;
   font-weight: 600;
   padding: 6px 12px;
@@ -953,9 +953,9 @@ body.state-attack .hexagon-barrier {
   transition: all 0.2s ease;
 }
 .fuzzer-cat-btn.active, .fuzzer-cat-btn:hover {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: #ef4444;
-  color: #f87171;
+  background: rgba(204, 51, 52, 0.2);
+  border-color: #cc3334;
+  color: #ba373e;
 }
 
 /* Card 8: SLSA Level 3 Merkle Tree */
@@ -983,17 +983,17 @@ body.state-attack .hexagon-barrier {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(233, 237, 246, 0.75);
+  border: 1px solid rgba(0, 131, 89, 0.3);
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.72rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
 }
 .merkle-tamper-state-btn {
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid #ef4444;
-  color: #f87171;
+  background: rgba(204, 51, 52, 0.15);
+  border: 1px solid #cc3334;
+  color: #ba373e;
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 0.7rem;
@@ -1002,8 +1002,8 @@ body.state-attack .hexagon-barrier {
   transition: all 0.2s ease;
 }
 .merkle-tamper-state-btn:hover {
-  background: #ef4444;
-  color: #fff;
+  background: #cc3334;
+  color: #0f0f0f;
 }
 
 /* Card 9: Scientific Ablation Study Comparator */
@@ -1023,7 +1023,7 @@ body.state-attack .hexagon-barrier {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(233, 237, 246, 0.65);
   border: 1px solid var(--border-subtle);
   border-radius: 6px;
   padding: 6px 10px;
@@ -1035,23 +1035,23 @@ body.state-attack .hexagon-barrier {
 .ablation-name {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: #121314;
 }
 .ablation-meta {
   font-size: 0.68rem;
-  color: #94a3b8;
+  color: #465366;
 }
 .switch-slider {
   position: relative;
   width: 36px;
   height: 20px;
-  background: #334155;
+  background: #a0b1c9;
   border-radius: 20px;
   cursor: pointer;
   transition: background 0.25s ease;
 }
 .switch-slider.active {
-  background: #10b981;
+  background: #008359;
 }
 .switch-thumb {
   position: absolute;
@@ -1060,7 +1060,7 @@ body.state-attack .hexagon-barrier {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #fff;
+  background: #0f0f0f;
   transition: transform 0.25s ease;
 }
 .switch-slider.active .switch-thumb {
@@ -1075,12 +1075,12 @@ body.state-attack .hexagon-barrier {
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
 }
 .ablation-bar-track {
   width: 100%;
   height: 12px;
-  background: rgba(2, 6, 23, 0.8);
+  background: rgba(15, 23, 41, 0.06);
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
@@ -1088,8 +1088,8 @@ body.state-attack .hexagon-barrier {
 .ablation-bar-fill {
   height: 100%;
   width: 98.2%;
-  background: linear-gradient(90deg, #10b981, #06b6d4);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(90deg, #008359, #0273ae);
+  box-shadow: 0 0 12px rgba(0, 131, 89, 0.2);
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
 }
 
@@ -1104,8 +1104,8 @@ body.state-attack .hexagon-barrier {
 .multisig-highway-track {
   position: relative;
   height: 120px;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: rgba(233, 237, 246, 0.85);
+  border: 1px solid rgba(67, 107, 221, 0.3);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -1119,7 +1119,7 @@ body.state-attack .hexagon-barrier {
   align-items: center;
   gap: 4px;
   font-size: 0.7rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   z-index: 2;
 }
 .agent-circle-icon {
@@ -1131,8 +1131,8 @@ body.state-attack .hexagon-barrier {
   justify-content: center;
   box-shadow: 0 0 12px currentColor;
 }
-.agent-adk { border: 2px solid #06b6d4; color: #06b6d4; background: rgba(6, 182, 212, 0.15); }
-.agent-crew { border: 2px solid #a855f7; color: #a855f7; background: rgba(168, 85, 247, 0.15); }
+.agent-adk { border: 2px solid #0273ae; color: #0273ae; background: rgba(2, 115, 174, 0.15); }
+.agent-crew { border: 2px solid #436bdd; color: #436bdd; background: rgba(67, 107, 221, 0.15); }
 .multisig-hsm-core {
   display: flex;
   flex-direction: column;
@@ -1144,13 +1144,13 @@ body.state-attack .hexagon-barrier {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
-  border: 2px solid #f59e0b;
-  color: #fbbf24;
+  background: linear-gradient(135deg, rgba(143, 90, 0, 0.2), rgba(168, 90, 0, 0.3));
+  border: 2px solid #8f5a00;
+  color: #825600;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 16px rgba(143, 90, 0, 0.16);
   transition: all 0.3s ease;
 }
 .multisig-beam-left, .multisig-beam-right {
@@ -1162,15 +1162,15 @@ body.state-attack .hexagon-barrier {
 .multisig-beam-left {
   left: 65px;
   right: 50%;
-  background: linear-gradient(90deg, #06b6d4, #f59e0b);
-  box-shadow: 0 0 8px #06b6d4;
+  background: linear-gradient(90deg, #0273ae, #8f5a00);
+  box-shadow: 0 0 8px #0273ae66;
   animation: beamPulseLeft 1.2s infinite alternate;
 }
 .multisig-beam-right {
   left: 50%;
   right: 65px;
-  background: linear-gradient(90deg, #f59e0b, #a855f7);
-  box-shadow: 0 0 8px #a855f7;
+  background: linear-gradient(90deg, #8f5a00, #436bdd);
+  box-shadow: 0 0 8px #436bdd66;
   animation: beamPulseRight 1.2s infinite alternate;
 }
 @keyframes beamPulseLeft {
@@ -1188,9 +1188,9 @@ body.state-attack .hexagon-barrier {
 }
 .multisig-toggle-btn {
   flex: 1;
-  background: rgba(30, 41, 59, 0.7);
+  background: rgba(226, 231, 239, 0.7);
   border: 1px solid var(--border-subtle);
-  color: #cbd5e1;
+  color: #252d36;
   font-size: 0.78rem;
   padding: 8px 14px;
   border-radius: 6px;
@@ -1199,13 +1199,13 @@ body.state-attack .hexagon-barrier {
   font-weight: 600;
 }
 .multisig-toggle-btn.active {
-  background: rgba(16, 185, 129, 0.2);
-  border-color: #10b981;
-  color: #34d399;
+  background: rgba(0, 131, 89, 0.2);
+  border-color: #008359;
+  color: #007a54;
 }
 .multisig-toggle-btn.rogue.active {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: #ef4444;
-  color: #f87171;
+  background: rgba(204, 51, 52, 0.2);
+  border-color: #cc3334;
+  color: #ba373e;
 }
 

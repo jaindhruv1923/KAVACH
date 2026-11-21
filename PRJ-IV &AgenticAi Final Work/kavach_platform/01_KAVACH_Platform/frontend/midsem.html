@@ -15,8 +15,13 @@ window.location.replace("index.html#earlier-midsem");
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z' fill='%2338BDF8'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3.1.0">
+
+<!-- KAVACH suite: shared navigation + design tokens (shared_ui/) -->
+<link rel="stylesheet" href="/suite/kavach-suite.css">
+<link rel="stylesheet" href="platform_theme.css?v=5.0.0">
+<script src="/suite/kavach-suite.js" data-page="midsem" data-placement="header" defer></script>
 </head>
 <body>
 <!-- Interactive Particle Mesh Web: Disabled per user preference -->
@@ -39,10 +44,10 @@ window.location.replace("index.html#earlier-midsem");
   </nav>
 
   <div class="nav-actions">
-    <button type="button" class="btn-serious magnetic-btn" onclick="window.openImplementationModal('journey')" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #065F46 0%, #047857 100%); color:#6EE7B7; font-weight:700; border:1px solid #059669; box-shadow:0 0 16px rgba(5,150,105,0.35); cursor:pointer;" title="End-to-End System Implementation, Step-by-Step Execution Journey & Complete Architecture Flowchart">
+    <button type="button" class="btn-serious magnetic-btn" onclick="window.openImplementationModal('journey')" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #065F46 0%, #047857 100%); color:#6EE7B7; font-weight:700; border:1px solid #059669; box-shadow:0 0 16px rgba(5, 150, 105, 0.14); cursor:pointer;" title="End-to-End System Implementation, Step-by-Step Execution Journey & Complete Architecture Flowchart">
        Implementation Flow
     </button>
-    <button type="button" class="btn-serious magnetic-btn" onclick="window.openProfessorReviewModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#fff; font-weight:700; border:1px solid #10B981; box-shadow:0 0 16px rgba(16,185,129,0.35); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
+    <button type="button" class="btn-serious magnetic-btn" onclick="window.openProfessorReviewModal()" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#ffffff; font-weight:700; border:1px solid #3CB685; box-shadow:0 0 16px rgba(60, 182, 133, 0.14); cursor:pointer;" title="Professor Pranshu Tiwari Project Review Standardization (11/11 Verified)">
       Professor Review (11/11)
     </button>
     <a href="index.html#workspace" class="btn-serious magnetic-btn" style="text-decoration:none;">
@@ -56,7 +61,7 @@ window.location.replace("index.html#earlier-midsem");
 <!-- Stage 2 Navigation Banner -->
     <div class="stage-nav-banner" style="background:#FFFFFF;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:var(--shadow-sm);">
       <div>
-        <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin-bottom:4px;">STAGE 2 OF 3</span>
+        <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;margin-bottom:4px;">STAGE 2 OF 3</span>
         <h3 style="margin:4px 0 2px;font-size:1.15rem;font-weight:700;"> What Was Done By Far — Comprehensive Baseline Foundation</h3>
         <p style="margin:0;font-size:0.84rem;color:var(--text-dim);">All verified implementations across Phases 1–5, 13 cyber defense engines, and 20/20 terminal verifications.</p>
       </div>
@@ -74,7 +79,7 @@ window.location.replace("index.html#earlier-midsem");
       </div>
 
       <div class="hero-creator-badge parallax-layer">
-        <span class="badge" style="color:var(--accent);border-color:rgba(37,99,235,0.25);background:rgba(37,99,235,0.06);">
+        <span class="badge" style="color:var(--accent);border-color:rgba(39, 100, 232, 0.25);background:rgba(39, 100, 232, 0.06);">
           PROJECT LEAD
         </span>
         <span>Engineered by <strong>Dhruv Jain</strong> &middot; B.Tech Final Year at <strong>BML Munjal University</strong></span>
@@ -99,7 +104,7 @@ window.location.replace("index.html#earlier-midsem");
  Let's jump to serious stuff <span class="arrow-shift">&rarr;</span> </button>
         <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('architecture-flowchart')">
  Inspect Architecture Flowchart <span class="arrow-shift-down">&darr;</span> </button>
-        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('terminal-results-section')" style="border-color:rgba(16,185,129,0.35);color:var(--safe);background:rgba(16,185,129,0.05);">
+        <button type="button" class="btn-secondary-lg magnetic-btn" onclick="navigateToSection('terminal-results-section')" style="border-color:rgba(60, 182, 133, 0.35);color:var(--safe);background:rgba(60, 182, 133, 0.05);">
  Terminal Verification Suite (20/20 Checks) <span class="arrow-shift-down">&darr;</span> </button>
       </div>
 
@@ -243,7 +248,7 @@ window.location.replace("index.html#earlier-midsem");
               <span style="color:#60A5FA;">kavach@agentops-node-01:</span>
               <span style="color:#94A3B8;">~/workspace/PRJ-IV Work $</span>
               <span class="term-badge-pulse">
-                <span class="flow-pulse-dot" style="width:6px;height:6px;background:#34D399;"></span>
+                <span class="flow-pulse-dot" style="width:6px;height:6px;background:#58CF9E;"></span>
                 LIVE KERNEL READY
               </span>
             </div>
@@ -323,7 +328,7 @@ window.location.replace("index.html#earlier-midsem");
 
         <!-- Terminal Screen Logs Output -->
         <div id="cli-terminal-screen" class="terminal-screen-wrapper">
-<div style="padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:8px; display:flex; justify-content:space-between; color:#64748B; font-size:0.7rem;">
+<div style="padding-bottom:8px; border-bottom:1px solid rgba(255, 255, 255, 0.06); margin-bottom:8px; display:flex; justify-content:space-between; color:#64748B; font-size:0.7rem;">
         <span>$ python verify_all.py --rubrics all &bull; 20/20 CHECKS OPERATIONAL</span>
         <span>DURATION: 452.8 ms</span>
       </div>
@@ -723,7 +728,7 @@ window.location.replace("index.html#earlier-midsem");
       <div class="research-eyebrow">
         <span class="badge" style="background:#EFF6FF;color:var(--accent);border-color:#BFDBFE;font-size:0.72rem;padding:3px 9px;">ENTERPRISE DEPLOYMENT ARCHITECTURE</span>
         <span class="badge" style="background:#ECFDF5;color:var(--safe);border-color:#A7F3D0;font-size:0.72rem;padding:3px 9px;">PRODUCTION-GRADE GUARDRAILS</span>
-        <span class="badge" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE;font-size:0.72rem;padding:3px 9px;">ZERO-TRUST SUPPLY CHAIN &amp; SOC2 READY</span>
+        <span class="badge" style="background:#F0F5FF;color:#3D65D6;border-color:#CCDCFF;font-size:0.72rem;padding:3px 9px;">ZERO-TRUST SUPPLY CHAIN &amp; SOC2 READY</span>
       </div>
 
       <h1 class="research-title">
@@ -763,12 +768,12 @@ window.location.replace("index.html#earlier-midsem");
         <span class="research-stat-detail">Eliminates hallucinated/typosquatted supply chain dependencies across npm &amp; PyPI.</span>
       </div>
       <div class="research-stat-card">
-        <span class="research-stat-value" style="color:#7C3AED;">94%</span>
+        <span class="research-stat-value" style="color:#3D65D6;">94%</span>
         <span class="research-stat-label">Downstream Breakage Prevention</span>
         <span class="research-stat-detail">Graph-based Change-Impact analysis maps blast radiuses before PR merge.</span>
       </div>
       <div class="research-stat-card">
-        <span class="research-stat-value" style="color:#D97706;">SOC 2</span>
+        <span class="research-stat-value" style="color:#D6791C;">SOC 2</span>
         <span class="research-stat-label">Audit-Ready Merkle Ledger</span>
         <span class="research-stat-detail">Cryptographic proof of every AI prompt, policy decision, and code modification.</span>
       </div>
@@ -1190,7 +1195,7 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
             <tr>
               <td><strong>Compliance Audit Trail</strong></td>
               <td>Transient chat history; unverified and easily altered</td>
-              <td><span class="badge" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE;">Merkle Ledger</span> Cryptographic, tamper-proof audit trail mapped to MITRE ATT&amp;CK</td>
+              <td><span class="badge" style="background:#F0F5FF;color:#3D65D6;border-color:#CCDCFF;">Merkle Ledger</span> Cryptographic, tamper-proof audit trail mapped to MITRE ATT&amp;CK</td>
             </tr>
           </tbody>
         </table>
@@ -1227,8 +1232,8 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
   </div>
 
   <!-- Stage 1 to Stage 2 Evolution Transition Callout -->
-  <div class="product-cta-banner reveal-on-scroll" style="margin-top: 48px; text-align: center; background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(16,185,129,0.06)); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 40px 24px;">
-    <span class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin-bottom:12px;font-size:0.78rem;">TRANSITION TO STAGE 2</span>
+  <div class="product-cta-banner reveal-on-scroll" style="margin-top: 48px; text-align: center; background: linear-gradient(135deg, rgba(39, 100, 232, 0.06), rgba(60, 182, 133, 0.06)); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 40px 24px;">
+    <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;margin-bottom:12px;font-size:0.78rem;">TRANSITION TO STAGE 2</span>
     <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 12px;">Ready to Explore What We Improvised Next?</h2>
     <p style="max-width: 680px; margin: 0 auto 24px; color: var(--text-secondary); font-size: 0.95rem;">
       See how our team addressed 10 real-world production limitations discovered during prototype testing — adding Live CVE Feeds, 4-Tier RBAC, XAI Token Saliency Heatmaps, SQLite WAL Persistence, and Air-Gapped RAG Context Scrubbers.
@@ -1446,14 +1451,14 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
 
 <script src="codebase_ide.js?v=1.0.0"></script>
 <!-- PROFESSOR PRANSHU TIWARI PROJECT REVIEW STANDARDIZATION MODAL (11/11) -->
-<div id="professor-review-modal" class="course-modal-backdrop" style="display:none !important; position:fixed !important; top:0 !important; left:0 !important; width:100vw !important; height:100vh !important; background:rgba(4,8,16,0.92) !important; backdrop-filter:blur(10px) !important; z-index:2147483647 !important; align-items:center !important; justify-content:center !important; padding:16px !important; box-sizing:border-box !important;">
-  <div class="course-modal-window" style="max-width: 1050px; width: 95%; max-height: 92vh; overflow-y: auto; background: #090d16; border: 1px solid rgba(16,185,129,0.35); box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 40px rgba(16,185,129,0.15); border-radius: 12px; color: #f1f5f9; font-family: var(--font-sans, system-ui, sans-serif);">
+<div id="professor-review-modal" class="course-modal-backdrop" style="display:none !important; position:fixed !important; top:0 !important; left:0 !important; width:100vw !important; height:100vh !important; background:rgba(4, 8, 16, 0.92) !important; backdrop-filter:blur(10px) !important; z-index:2147483647 !important; align-items:center !important; justify-content:center !important; padding:16px !important; box-sizing:border-box !important;">
+  <div class="course-modal-window" style="max-width: 1050px; width: 95%; max-height: 92vh; overflow-y: auto; background: #090d16; border: 1px solid rgba(60, 182, 133, 0.35); box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(60, 182, 133, 0.06); border-radius: 12px; color: #f2f5f9; font-family: var(--font-sans, system-ui, sans-serif);">
     <!-- Header -->
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 18px 24px; background: rgba(15,23,42,0.8);">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 18px 24px; background: rgba(15, 23, 42, 0.8);">
       <div>
         <div style="display:flex; align-items:center; gap:10px;">
-          <h2 style="font-size: 1.25rem; font-weight:700; color: #34d399; margin:0; letter-spacing:-0.02em;">Professor Pranshu Tiwari &middot; Project Review Standardization Suite</h2>
-          <span style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid rgba(16,185,129,0.3); font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:12px;">11 / 11 REQUIREMENTS VERIFIED</span>
+          <h2 style="font-size: 1.25rem; font-weight:700; color: #58cf9e; margin:0; letter-spacing:-0.02em;">Professor Pranshu Tiwari &middot; Project Review Standardization Suite</h2>
+          <span style="background:rgba(60, 182, 133, 0.15); color:#3cb685; border:1px solid rgba(60, 182, 133, 0.3); font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:12px;">11 / 11 REQUIREMENTS VERIFIED</span>
         </div>
         <p style="margin:4px 0 0 0; font-size:0.78rem; color:#94a3b8;">
           CSE3101 Agentic AI &middot; Hover Blackboard, MCP Tools, Pydantic Outputs, A2A Interop, Google ADK &amp; CrewAI, Guardrails, Provenance &amp; E2E Metrics
@@ -1463,7 +1468,7 @@ kavach policy --profile=FINTECH_HIGH_SECURITY --enforce=STRICT_RBI_DPDP</code></
     </div>
 
     <!-- Tab Bar -->
-    <div style="display:flex; gap:6px; padding:12px 24px; background:rgba(15,23,42,0.95); border-bottom:1px solid rgba(255,255,255,0.06); overflow-x:auto;">
+    <div style="display:flex; gap:6px; padding:12px 24px; background:rgba(15, 23, 42, 0.95); border-bottom:1px solid rgba(255, 255, 255, 0.06); overflow-x:auto;">
       <button type="button" class="prof-tab-btn active" id="prof-btn-blackboard" onclick="window.switchProfTab('blackboard')">1. Hover Blackboard</button>
       <button type="button" class="prof-tab-btn" id="prof-btn-mcp" onclick="window.switchProfTab('mcp')">2. MCP Tools (4)</button>
       <button type="button" class="prof-tab-btn" id="prof-btn-interop" onclick="window.switchProfTab('interop')">3, 6, 7. A2A ADK &harr; CrewAI</button>

@@ -90,13 +90,13 @@ Run `run_all_services.bat` or open your browser:
 - **Cockpit URL:** `http://localhost:8003/` (or `http://localhost:8001/cockpit`)
 
 ### Step 2: Demonstrate OWASP LLM01 Hostile Ingress Interception
-1. Click the demo pill: **"🚨 Hostile Injection Defense"**
-2. Click **"🚀 Launch Swarm"**
+1. Click the demo pill: **"Hostile Injection Defense"**
+2. Click **"Launch Swarm"**
 3. **What happens:** Within 0.3 seconds, the **Sentinel Agent** halts the execution pipeline, emits a `SECURITY_ALERT_HALT` event, posts a security alert on the blackboard, and displays a red containment message without passing hostile code to the LLM.
 
 ### Step 3: Demonstrate Banking DPDP Audit & Multi-Agent Swarm
-1. Click the demo pill: **"🏦 Banking DPDP Audit"**
-2. Click **"🚀 Launch Swarm"**
+1. Click the demo pill: **"Banking DPDP Audit"**
+2. Click **"Launch Swarm"**
 3. **What happens:**
    - **Sentinel Agent:** Masks raw Aadhaar and PAN numbers into `[[KAVACH_DPDP_...]]` tokens.
    - **Lead Orchestrator:** Formulates a 3-step DAG plan and broadcasts `DELEGATE_TASK` messages.

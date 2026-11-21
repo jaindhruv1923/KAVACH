@@ -59,7 +59,7 @@ Render is the simplest and most reliable platform for hosting full-stack Python/
 
 ---
 
-## ️ How to Connect Your Custom Domain (`kavach.co` / `kavach.dev`)
+##  How to Connect Your Custom Domain (`kavach.co` / `kavach.dev`)
 
 ### Step 1: Buy Your Domain Name
 You can purchase `kavach.co`, `kavach.dev`, `kavach.io`, or `kavach-security.org` from any registrar:
@@ -86,7 +86,7 @@ If you use Cloudflare for DNS (Free):
 Cloudflare will automatically provide:
 -  **Zero-SSL / Global HTTPS**
 -  **Global CDN Edge Caching**
-- ️ **DDoS & Web Application Firewall (WAF)**
+-  **DDoS & Web Application Firewall (WAF)**
 
 ---
 
@@ -121,7 +121,7 @@ Run `certbot --nginx -d kavach.co -d www.kavach.co` to get a free SSL certificat
 
 ---
 
-## ️ Checklist Before Launching Publicly
+##  Checklist Before Launching Publicly
 
 - [ ] Set `GEMINI_API_KEY` in your hosting dashboard environment variables.
 - [ ] Confirm `/health` returns status `200` (`https://kavach.co/health`).

@@ -5,8 +5,8 @@ with open("01_KAVACH_Platform/README.md", "r", encoding="utf-8") as f:
     r1 = f.read()
 
 r1 = r1.replace(
-    "[← Back to Master Repository README](../../README.md) &nbsp;|&nbsp; [📂 Official Assets Overview (`../`)](../README.md) &nbsp;|&nbsp; [📦 Archived Legacy Files (`../../unimportant`)](../../unimportant/README.md)",
-    "[← Back to Master Repository README](../README.md) &nbsp;|&nbsp; [🏦 Banking & Results Cockpit](../02_Banking_and_Results_Dashboard/README.md) &nbsp;|&nbsp; [📚 Master Documentation Hub](../03_Documentation/README.md) &nbsp;|&nbsp; [📈 System Metrics (SSOT)](../docs/METRICS.md)"
+    "[← Back to Master Repository README](../../README.md) &nbsp;|&nbsp; [Official Assets Overview (`../`)](../README.md) &nbsp;|&nbsp; [Archived Legacy Files (`../../unimportant`)](../../unimportant/README.md)",
+    "[← Back to Master Repository README](../README.md) &nbsp;|&nbsp; [Banking & Results Cockpit](../02_Banking_and_Results_Dashboard/README.md) &nbsp;|&nbsp; [Master Documentation Hub](../03_Documentation/README.md) &nbsp;|&nbsp; [System Metrics (SSOT)](../docs/METRICS.md)"
 )
 r1 = r1.replace("278 test results", "300 deterministic verification tests (641 total repository tests, see docs/METRICS.md)")
 r1 = r1.replace("278 tests", "300 deterministic tests (641 total repository tests)")
@@ -28,8 +28,8 @@ fr = fr.replace(
     "achieving a **100.0% Interception Rate** across 19 vectors in the authored adversarial benchmark (see [`docs/METRICS.md`](../docs/METRICS.md))."
 )
 fr = fr.replace(
-    "**Status**: ✅ FULLY OPERATIONAL & READY FOR DEMONSTRATION (278 / 278 TESTS PASSING)",
-    "**Status**: ✅ FULLY OPERATIONAL & VERIFIED (300 / 300 DETERMINISTIC TESTS PASSING; 641 TOTAL REPO TESTS PASSING)"
+    "**Status**: FULLY OPERATIONAL & READY FOR DEMONSTRATION (278 / 278 TESTS PASSING)",
+    "**Status**: FULLY OPERATIONAL & VERIFIED (300 / 300 DETERMINISTIC TESTS PASSING; 641 TOTAL REPO TESTS PASSING)"
 )
 fr = fr.replace("**Total Tests**: 278  \n**Passed**: 278  \n**Pass Rate**: 100%  \n**Failed**: 0",
                "**Deterministic Master Tests**: 300  \n**Total Repository Tests**: 641  \n**Passed**: 641  \n**Pass Rate**: 100%  \n**Failed**: 0  \n**Source of Truth**: [`docs/METRICS.md`](../docs/METRICS.md)")

@@ -108,17 +108,17 @@ See [docs/model-selection-playbook.md](docs/model-selection-playbook.md) for mod
 ## Language & Tone
 
 ### Imperative Voice
-- ✅ "Create the file"
-- ❌ "You should create the file"
-- ❌ "We will create the file"
+- "Create the file"
+- "You should create the file"
+- "We will create the file"
 
 ### No Filler
-- ✅ "Run `npm test`"
-- ❌ "Now let's go ahead and run `npm test`"
+- "Run `npm test`"
+- "Now let's go ahead and run `npm test`"
 
 ### No Sycophancy
-- ✅ "Phase complete."
-- ❌ "Great job! Phase complete!"
+- "Phase complete."
+- "Great job! Phase complete!"
 
 ### Brevity with Substance
 Every sentence should convey information. Remove words that don't add meaning.
@@ -158,17 +158,17 @@ Everything important goes in STATE.md so the next session can continue.
 
 ### Enterprise Patterns (Banned)
 
-❌ Stakeholder communication
-❌ Team coordination
-❌ Sprint ceremonies
-❌ Multiple approval levels
-❌ Separate environments requiring explicit promotion
+Stakeholder communication
+Team coordination
+Sprint ceremonies
+Multiple approval levels
+Separate environments requiring explicit promotion
 
 ### Temporal Language (Banned in Implementation Docs)
 
-❌ "First, we'll..."
-❌ "Next, we should..."
-❌ "Finally, we'll..."
+"First, we'll..."
+"Next, we should..."
+"Finally, we'll..."
 
 ### Generic XML (Banned)
 
@@ -254,7 +254,7 @@ type(scope): description
 
 When user input needed:
 ```
-⚠️ DECISION REQUIRED
+DECISION REQUIRED
 
 Option A: {description}
 Option B: {description}

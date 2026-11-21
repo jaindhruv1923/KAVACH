@@ -47,7 +47,8 @@ async function capture() {
 
   // Snapshot 1: Default Improvised v3.0 mode
   const s1 = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\view1_default.png', Buffer.from(s1.data, 'base64'));
+  fs.mkdirSync(require('path').join(__dirname, 'screenshots'), { recursive: true });
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'view1_default.png'), Buffer.from(s1.data, 'base64'));
 
   // Switch to Academic Weapon
   await send('Runtime.evaluate', {
@@ -57,7 +58,7 @@ async function capture() {
 
   // Snapshot 2: Academic Weapon Cockpit with 10 Frontier buttons
   const s2 = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\view2_academic.png', Buffer.from(s2.data, 'base64'));
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'view2_academic.png'), Buffer.from(s2.data, 'base64'));
 
   console.log('Successfully captured view1_default.png and view2_academic.png');
   ws.close();

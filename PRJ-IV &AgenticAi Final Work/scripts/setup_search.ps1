@@ -18,43 +18,43 @@ Write-Host ""
 try {
     $rgVersion = & rg --version 2>$null
     if ($rgVersion) {
-        Write-Host "✅ ripgrep (rg) is installed: $($rgVersion[0])" -ForegroundColor Green
+        Write-Host "ripgrep (rg) is installed: $($rgVersion[0])" -ForegroundColor Green
         $rgInstalled = $true
     }
 }
 catch {
-    Write-Host "❌ ripgrep (rg) is not installed" -ForegroundColor Yellow
+    Write-Host "ripgrep (rg) is not installed" -ForegroundColor Yellow
 }
 
 # Check for fd
 try {
     $fdVersion = & fd --version 2>$null
     if ($fdVersion) {
-        Write-Host "✅ fd is installed: $fdVersion" -ForegroundColor Green
+        Write-Host "fd is installed: $fdVersion" -ForegroundColor Green
         $fdInstalled = $true
     }
 }
 catch {
-    Write-Host "❌ fd is not installed" -ForegroundColor Yellow
+    Write-Host "fd is not installed" -ForegroundColor Yellow
 }
 
 Write-Host ""
 
 if ($rgInstalled -and $fdInstalled) {
     Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Green
-    Write-Host " ✅ All search tools are ready!" -ForegroundColor Green
+    Write-Host " All search tools are ready!" -ForegroundColor Green
     Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Green
     Write-Host ""
     Write-Host "You can use .\scripts\search_repo.ps1 for optimized searching."
 }
 else {
-    Write-Host "⚠️  Some tools are missing (optional)" -ForegroundColor Yellow
+    Write-Host "Some tools are missing (optional)" -ForegroundColor Yellow
     Write-Host ""
     Write-Host "GSD will work fine with built-in Select-String, but ripgrep and fd"
     Write-Host "provide faster searching in large codebases."
     Write-Host ""
     Write-Host "───────────────────────────────────────────────────────" -ForegroundColor Gray
-    Write-Host "📦 Installation Options" -ForegroundColor White
+    Write-Host "Installation Options" -ForegroundColor White
     Write-Host "───────────────────────────────────────────────────────" -ForegroundColor Gray
     Write-Host ""
     

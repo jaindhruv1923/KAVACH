@@ -10,7 +10,7 @@ Write-Host "━━━━━━━━━━━━━━━━━━━━━━�
 Write-Host ""
 
 if (-not (Test-Path ".agents/agents")) {
-    Write-Host "❌ Missing .agents/agents/ directory" -ForegroundColor Red
+    Write-Host "Missing .agents/agents/ directory" -ForegroundColor Red
     exit 1
 }
 
@@ -25,7 +25,7 @@ foreach ($agent in $agents) {
 
     # Check for frontmatter
     if ($content -notmatch "^---") {
-        Write-Host "❌ ${agentName}: Missing frontmatter" -ForegroundColor Red
+        Write-Host "${agentName}: Missing frontmatter" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
@@ -33,7 +33,7 @@ foreach ($agent in $agents) {
     # Check required fields
     foreach ($field in @("name", "description", "subagent")) {
         if ($content -notmatch "(?m)^${field}:") {
-            Write-Host "❌ ${agentName}: Missing $field in frontmatter" -ForegroundColor Red
+            Write-Host "${agentName}: Missing $field in frontmatter" -ForegroundColor Red
             $ErrorCount++
             $hasErrors = $true
         }
@@ -43,7 +43,7 @@ foreach ($agent in $agents) {
     if ($content -match "(?m)^name:\s*(.+?)\s*$") {
         $declaredName = $Matches[1]
         if ($declaredName -ne $agentName) {
-            Write-Host "❌ ${agentName}: name '$declaredName' does not match filename" -ForegroundColor Red
+            Write-Host "${agentName}: name '$declaredName' does not match filename" -ForegroundColor Red
             $ErrorCount++
             $hasErrors = $true
         }
@@ -51,7 +51,7 @@ foreach ($agent in $agents) {
 
     # subagent must be true
     if ($content -notmatch "(?m)^subagent:\s*true") {
-        Write-Host "❌ ${agentName}: subagent must be true" -ForegroundColor Red
+        Write-Host "${agentName}: subagent must be true" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
@@ -74,13 +74,13 @@ foreach ($agent in $agents) {
     }
 
     if ($declaredTools.Count -eq 0) {
-        Write-Host "❌ ${agentName}: No tools declared (tools: defaults to empty, it does not inherit)" -ForegroundColor Red
+        Write-Host "${agentName}: No tools declared (tools: defaults to empty, it does not inherit)" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     } else {
         foreach ($tool in $declaredTools) {
             if (($knownTools -notcontains $tool) -and ($tool -notlike "browser_*")) {
-                Write-Host "❌ ${agentName}: Unknown tool '$tool' (typos make subagents hang)" -ForegroundColor Red
+                Write-Host "${agentName}: Unknown tool '$tool' (typos make subagents hang)" -ForegroundColor Red
                 $ErrorCount++
                 $hasErrors = $true
             }
@@ -92,7 +92,7 @@ foreach ($agent in $agents) {
     foreach ($ref in $skillRefs) {
         $skillPath = Join-Path ".agents" (Join-Path $ref.Groups[1].Value "SKILL.md")
         if (-not (Test-Path $skillPath)) {
-            Write-Host "❌ ${agentName}: References missing skill '$($ref.Groups[1].Value)'" -ForegroundColor Red
+            Write-Host "${agentName}: References missing skill '$($ref.Groups[1].Value)'" -ForegroundColor Red
             $ErrorCount++
             $hasErrors = $true
         }
@@ -100,11 +100,11 @@ foreach ($agent in $agents) {
 
     # Return Contract keeps orchestrator context lean
     if ($content -notmatch "Return Contract") {
-        Write-Host "⚠️  ${agentName}: Missing Return Contract section" -ForegroundColor Yellow
+        Write-Host "${agentName}: Missing Return Contract section" -ForegroundColor Yellow
     }
 
     if (-not $hasErrors) {
-        Write-Host "✅ $agentName" -ForegroundColor Green
+        Write-Host "$agentName" -ForegroundColor Green
     }
 }
 
@@ -116,9 +116,9 @@ Write-Host "Errors: $ErrorCount" -ForegroundColor $(if ($ErrorCount -gt 0) { "Re
 Write-Host ""
 
 if ($ErrorCount -eq 0) {
-    Write-Host "✅ All subagents valid!" -ForegroundColor Green
+    Write-Host "All subagents valid!" -ForegroundColor Green
     exit 0
 } else {
-    Write-Host "❌ Validation failed" -ForegroundColor Red
+    Write-Host "Validation failed" -ForegroundColor Red
     exit 1
 }

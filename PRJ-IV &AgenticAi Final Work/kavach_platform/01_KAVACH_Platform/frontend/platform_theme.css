@@ -1,0 +1,169 @@
+/* ==========================================================================
+   KAVACH PLATFORM THEME (loaded last on index / midsem / evolution / console)
+   Final layer of the design system for the main website: header, tabs,
+   embedded dashboards and directory. Colour + font tokens live in
+   /suite/kavach-suite.css; component palettes were normalised in place.
+   ========================================================================== */
+
+:root {
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  --accent: #1D4ED8;
+  --accent-secondary: #1E40AF;
+  --accent-gradient: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  --bg-base: #F6F8FB;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-dim: #5B6B82;
+  --border-subtle: #DCE3EE;
+  --border-medium: #C6D1E0;
+}
+
+/* ---------- Fixed header now has three tiers: suite bar, sections, context ---------- */
+html.kv-header-mode { scroll-padding-top: calc(var(--kv-header-h, 134px) + 12px) !important; }
+html.kv-header-mode body { padding-top: calc(var(--kv-header-h, 134px) - 40px) !important; }
+html.kv-header-mode section[id],
+html.kv-header-mode div[id].product-section { scroll-margin-top: calc(var(--kv-header-h, 134px) + 12px) !important; }
+
+html body .app-header {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid var(--kv-line) !important;
+  box-shadow: 0 1px 0 rgba(11, 31, 58, 0.04), 0 8px 24px -18px rgba(11, 31, 58, 0.25) !important;
+  overflow: visible !important;
+}
+html body .app-header .app-header-main { min-height: 54px !important; padding: 0 24px !important; gap: 20px !important; }
+html body .app-header .header-left-cluster { gap: 22px !important; min-width: 0; flex: 1 1 auto; overflow: hidden; }
+html body .app-header .brand-title { font-family: var(--kv-font-sans); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 1.02rem; color: var(--kv-navy-900); }
+html body .app-header .nav-brand svg { stroke: var(--kv-blue-600); }
+
+/* Section tabs: quiet text tabs with an underline, like a retail site's primary nav */
+html body .app-header .header-pathway-selector {
+  display: flex !important; align-items: stretch !important; gap: 2px !important;
+  background: transparent !important; border: 0 !important; padding: 0 !important; box-shadow: none !important;
+  overflow-x: auto; scrollbar-width: none; height: 54px;
+}
+html body .app-header .header-pathway-selector::-webkit-scrollbar { display: none; }
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab {
+  height: 54px !important; padding: 0 12px !important; border: 0 !important; border-radius: 0 !important;
+  background: transparent !important; box-shadow: none !important;
+  color: var(--kv-slate-700) !important; font-size: 0.86rem !important; font-weight: 500 !important;
+  letter-spacing: 0 !important; position: relative; gap: 6px !important;
+}
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab::after {
+  content: ""; position: absolute; left: 12px; right: 12px; bottom: 0; height: 2px;
+  background: transparent; transition: background-color 140ms ease;
+}
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab:hover { color: var(--kv-navy-900) !important; transform: none !important; }
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab:hover::after { background: var(--kv-line); }
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab.active { color: var(--kv-blue-700) !important; font-weight: 600 !important; }
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab.active::after { background: var(--kv-blue-600); }
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab .pathway-chip {
+  background: var(--kv-canvas) !important; color: var(--kv-slate-500) !important; border: 1px solid var(--kv-line) !important;
+  font-family: var(--kv-font-mono) !important; font-size: 0.66rem !important; font-weight: 500 !important;
+  padding: 1px 5px !important; border-radius: 4px !important;
+}
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab.active .pathway-chip { background: var(--kv-blue-50) !important; color: var(--kv-blue-700) !important; border-color: var(--kv-blue-100) !important; }
+html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab .pulse-dot-green { display: none !important; }
+.pathway-live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--kv-green-600); box-shadow: 0 0 0 3px rgba(15, 123, 95, 0.16); display: inline-block; }
+
+/* Right-hand actions */
+html body .app-header .nav-actions { gap: 8px !important; flex-shrink: 0; }
+html body .app-header .btn-header-review {
+  background: var(--kv-navy-900) !important; border: 1px solid var(--kv-navy-900) !important; color: #FFFFFF !important;
+  border-radius: 6px !important; height: 32px !important; font-weight: 600 !important; box-shadow: none !important;
+}
+html body .app-header .btn-header-review:hover { background: var(--kv-navy-800) !important; transform: none !important; }
+html body .app-header .btn-header-review .review-status-tag { background: rgba(255, 255, 255, 0.14) !important; color: #CFE0FF !important; border: 0 !important; }
+html body .app-header .header-tool-btn,
+html body .app-header .voice-header-btn,
+html body .app-header .nav-actions .btn-serious {
+  border-radius: 6px !important; height: 32px !important; box-shadow: none !important;
+}
+
+/* Context sub-navigation */
+html body .app-header .app-header-subnav { background: var(--kv-canvas) !important; border-top: 1px solid var(--kv-line) !important; min-height: 44px !important; }
+html body .app-header .nav-switch-btn {
+  background: transparent !important; border: 1px solid transparent !important; color: var(--kv-slate-700) !important;
+  border-radius: 6px !important; height: 30px !important; padding: 0 12px !important; font-weight: 500 !important;
+  font-size: 0.8rem !important; box-shadow: none !important; text-decoration: none !important;
+}
+html body .app-header .nav-switch-btn:hover:not(.active) { background: #FFFFFF !important; border-color: var(--kv-line) !important; color: var(--kv-navy-900) !important; transform: none !important; }
+html body .app-header .nav-switch-btn.active { background: var(--kv-navy-900) !important; border-color: var(--kv-navy-900) !important; color: #FFFFFF !important; box-shadow: none !important; }
+
+/* The four tools now live top-right in the suite bar; retire the floating stack */
+html.kv-has-tools #floating-code-ide-launcher,
+html.kv-has-tools #floating-impl-launcher,
+html.kv-has-tools #floating-eli5-launcher,
+html.kv-has-tools #chatbot-launcher { display: none !important; }
+#kavach-chatbot-container #chatbot-window { box-shadow: var(--kv-shadow-pop) !important; border-radius: 12px !important; }
+
+/* Bottom-left scope dock: smaller and quieter */
+.floating-pathway-dock {
+  background: rgba(255, 255, 255, 0.96) !important; border: 1px solid var(--kv-line) !important;
+  box-shadow: 0 6px 20px -10px rgba(11, 31, 58, 0.35) !important; border-radius: 10px !important;
+  padding: 6px 8px 6px 14px !important; font-size: 0.78rem !important;
+}
+
+/* ---------- Embedded dashboards + directory ---------- */
+.kv-eyebrow { margin: 0 0 6px; font-family: var(--kv-font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--kv-blue-600); }
+.kv-embed { background: var(--kv-surface); border: 1px solid var(--kv-line); border-radius: 14px; margin: 0 0 28px; overflow: hidden; }
+.kv-embed-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; padding: 28px 32px 22px; border-bottom: 1px solid var(--kv-line); }
+.kv-embed-copy { max-width: 820px; }
+.kv-embed-head h2, .kv-hub-head h2 { margin: 0; font-family: var(--kv-font-sans); font-size: 1.7rem; font-weight: 600; letter-spacing: -0.015em; color: var(--kv-navy-900); line-height: 1.2; }
+.kv-embed-lede { margin: 10px 0 0; font-size: 0.98rem; line-height: 1.6; color: var(--kv-slate-700); }
+.kv-embed-facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 16px 0 0; padding: 0; }
+.kv-embed-facts li { font-size: 0.78rem; font-weight: 500; color: var(--kv-navy-900); background: var(--kv-canvas); border: 1px solid var(--kv-line); padding: 4px 10px; border-radius: 999px; }
+.kv-embed-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.kv-embed-frame { height: min(980px, calc(100vh - var(--kv-header-h, 134px) - 40px)); min-height: 640px; background: var(--kv-canvas); }
+.kv-embed-frame iframe { width: 100%; height: 100%; border: 0; display: block; background: #FFFFFF; }
+.kv-embed-note { margin: 0; padding: 12px 32px; font-size: 0.8rem; color: var(--kv-slate-500); border-top: 1px solid var(--kv-line); background: var(--kv-canvas); }
+.kv-embed-note code { font-family: var(--kv-font-mono); font-size: 0.78rem; color: var(--kv-navy-900); }
+
+.kv-btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px;
+  border-radius: 8px; font-family: var(--kv-font-sans); font-size: 0.86rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+.kv-btn-primary { background: var(--kv-blue-600); color: #FFFFFF; }
+.kv-btn-primary:hover { background: var(--kv-blue-700); }
+.kv-btn-ghost { background: #FFFFFF; color: var(--kv-navy-900); border-color: var(--kv-line); }
+.kv-btn-ghost:hover { border-color: #AFC0D6; }
+.kv-btn-soft { background: var(--kv-blue-50); color: var(--kv-blue-700); border-color: var(--kv-blue-100); height: 34px; padding: 0 12px; font-size: 0.8rem; }
+.kv-btn-soft:hover { background: var(--kv-blue-100); }
+.kv-btn-link { background: transparent; color: var(--kv-navy-900); height: 34px; padding: 0 6px; font-size: 0.8rem; }
+.kv-btn-link:hover { color: var(--kv-blue-600); }
+
+.kv-hub { padding-bottom: 8px; }
+.kv-hub-head { padding: 12px 0 26px; max-width: 840px; }
+.kv-hub-group { margin-bottom: 28px; }
+.kv-hub-group h3 { margin: 0 0 12px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kv-slate-500); }
+.kv-hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.kv-hub-card {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
+  background: var(--kv-surface); border: 1px solid var(--kv-line); border-radius: 12px; padding: 18px 18px 14px;
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+.kv-hub-card:hover { border-color: #AFC0D6; box-shadow: 0 10px 24px -18px rgba(11, 31, 58, 0.45); transform: translateY(-1px); }
+.kv-hub-card.is-primary { border-color: var(--kv-blue-500); box-shadow: inset 3px 0 0 var(--kv-blue-500); }
+.kv-hub-card h4 { margin: 0 0 6px; font-size: 1.02rem; font-weight: 600; color: var(--kv-navy-900); }
+.kv-hub-card p { margin: 0; font-size: 0.86rem; line-height: 1.5; color: var(--kv-slate-700); }
+.kv-hub-card-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 1280px) {
+  html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab { padding: 0 9px !important; font-size: 0.82rem !important; }
+  html body .app-header :is(#pathway-btn-midsem, #pathway-btn-improvised, #pathway-btn-academic, #pathway-btn-agents, #pathway-btn-swarm, #pathway-btn-apps, #pathway-btn-dashboards).pathway-tab .pathway-chip { display: none !important; }
+}
+@media (max-width: 760px) {
+  .kv-embed-head { padding: 20px; }
+  .kv-embed-head h2, .kv-hub-head h2 { font-size: 1.35rem; }
+}
+
+/* Embedded dashboards and the directory get the full canvas: no launch banner, no scope dock */
+html[data-kv-view="agents-view"] .launchpad-card,
+html[data-kv-view="swarm-view"] .launchpad-card,
+html[data-kv-view="apps-view"] .launchpad-card,
+html[data-kv-view="dashboards-view"] .launchpad-card,
+html[data-kv-view="agents-view"] #floating-pathway-dock,
+html[data-kv-view="swarm-view"] #floating-pathway-dock,
+html[data-kv-view="apps-view"] #floating-pathway-dock,
+html[data-kv-view="dashboards-view"] #floating-pathway-dock { display: none !important; }

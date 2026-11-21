@@ -71,23 +71,9 @@ app.include_router(ide_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://jaindhruv1923.github.io",
-        "http://localhost:8000",
-        "http://localhost:8001",
-        "http://localhost:8002",
-        "http://localhost:8003",
-        "http://127.0.0.1:8000",
-        "http://127.0.0.1:8001",
-        "http://127.0.0.1:8002",
-        "http://127.0.0.1:8003",
-        "http://localhost:5500",
-        "http://127.0.0.1:5500",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
-    allow_origin_regex=r"^https://.*\.github\.io$|^https://.*\.railway\.app$|^https://.*\.up\.railway\.app$",
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_origin_regex=r".*",
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -159,64 +145,104 @@ app.mount(
 )
 
 # ============================================================
-# KAVACH UNIFIED PRODUCTION ECOSYSTEM GATEWAY
+# MOUNT MULTI-SERVICE SUITE (BHARAT BANK & RESULTS COCKPIT)
 # ============================================================
-# Dynamically resolves and mounts all 3 microservices:
-# 1. /bank -> Bharat Core Banking Comparative A/B Portal
-# 2. /swarm -> Live Multi-Agent Safety Swarm Engine
-# 3. /cockpit -> Autonomous Agent Defense Cockpit
-
-_ecosystem_roots = [
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "..")),
-    os.path.abspath(os.path.join(PROJECT_ROOT, "..", "..")),
-    "/app/PRJ-IV &AgenticAi Final Work",
-    "/app/kavach_core",
-    "/app",
-]
-_eco_root = next((d for d in _ecosystem_roots if os.path.exists(os.path.join(d, "bharat_core_banking"))), None)
-if _eco_root and _eco_root not in sys.path:
-    sys.path.insert(0, _eco_root)
-
-# Mount 1: Bharat Core Banking A/B Portal
 try:
-    import bharat_core_banking.server as bank_srv
-    app.mount("/bank", bank_srv.app)
-    print("[KAVACH Unified] Mounted Bharat Core Banking at /bank")
-except Exception as bank_err:
-    print(f"[KAVACH Unified] Bharat Banking mount error: {bank_err}")
+    _candidate_dashboard_dirs = [
+        os.path.abspath(os.path.join(PROJECT_ROOT, "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(PROJECT_ROOT, "..", "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "02_Banking_and_Results_Dashboard")),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "02_Banking_and_Results_Dashboard")),
+        "/app/02_Banking_and_Results_Dashboard",
+    ]
+    dash_dir = next((d for d in _candidate_dashboard_dirs if os.path.exists(d)), None)
+    if dash_dir:
+        bank_dir = os.path.join(dash_dir, "implementation_banks")
+        for p in [dash_dir, bank_dir]:
+            if p not in sys.path and os.path.exists(p):
+                sys.path.insert(0, p)
 
-# Mount 2: Live Multi-Agent Safety Swarm Engine
-try:
-    import live_agent_swarm.agent_engine as swarm_srv
-    app.mount("/swarm", swarm_srv.app)
-    print("[KAVACH Unified] Mounted Live Agent Swarm at /swarm")
-except Exception as swarm_err:
-    print(f"[KAVACH Unified] Swarm mount error: {swarm_err}")
+        try:
+            from implementation_banks.server import app as bank_app
+            app.mount("/bank", bank_app)
+            print("[KAVACH Unified] Mounted Bharat Core Banking Highway at /bank")
+        except Exception as bank_err:
+            print(f"[KAVACH Unified] Bank app mount skipped: {bank_err}")
+except Exception as suite_err:
+    print(f"[KAVACH Unified] Multi-service suite initialization skipped: {suite_err}")
 
-# Mount 3: Autonomous Agent Defense Cockpit
+# Mount KAVACH Real Autonomous Multi-Agent Swarm Cockpit
 try:
-    import kavach_agent_core.server as cockpit_srv
-    app.mount("/cockpit", cockpit_srv.app)
-    print("[KAVACH Unified] Mounted Autonomous Agent Cockpit at /cockpit")
+    _core_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
+    if _core_dir not in sys.path:
+        sys.path.insert(0, _core_dir)
+    from kavach_agent_core.server import app as cockpit_app
+    app.mount("/cockpit", cockpit_app)
+    print("[KAVACH Unified] Successfully mounted Real Autonomous Agent Cockpit at /cockpit")
 except Exception as cockpit_err:
     print(f"[KAVACH Unified] Cockpit mount error: {cockpit_err}")
 
 
-@app.api_route("/kavach_config.js", methods=["GET", "HEAD"], include_in_schema=False)
-def serve_kavach_config():
-    """Serve centralized production configuration dynamically."""
-    cfg_candidates = [
-        os.path.join(FRONTEND_DIR, "kavach_config.js"),
-        os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "kavach_config.js"),
-        os.path.join(_eco_root or "", "kavach_platform", "01_KAVACH_Platform", "frontend", "kavach_config.js"),
-    ]
-    cfg_file = next((f for f in cfg_candidates if os.path.exists(f)), None)
-    if cfg_file:
-        return FileResponse(cfg_file, media_type="application/javascript")
-    return JSONResponse({"status": "config_not_found"}, status_code=404)
+# ============================================================
+# UNIFIED SUITE: every KAVACH dashboard is reachable from this one server
+#   /suite/   shared navigation bar + design system (shared_ui/)
+#   /bharat/  Bharat Core Bank A/B portal      (standalone: port 8002)
+#   /swarm/   Live Agent Swarm command center  (standalone: port 8000)
+#   /motion/  Motion Graphics Studio
+#   /guide    Stakeholder walkthrough guide
+#   /reports/ Mid-semester submission reports
+# ============================================================
+import importlib.util as _importlib_util
+
+SUITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
+SHARED_UI_DIR = os.path.join(SUITE_ROOT, "shared_ui")
+MOTION_DIR = os.path.join(SUITE_ROOT, "kavach_platform", "motion_graphics")
+GUIDE_FILE = os.path.join(
+    SUITE_ROOT, "kavach_platform", "02_Banking_and_Results_Dashboard",
+    "implementation_banks", "running_from_someone_else_pov", "animated_guide.html",
+)
+REPORTS_DIR = os.path.join(SUITE_ROOT, "kavach_platform", "agentic_ai_midsem")
+
+
+def _load_sub_app(module_name: str, file_path: str):
+    """Import a FastAPI sub-application from an explicit file path (avoids 'server' name clashes)."""
+    spec = _importlib_util.spec_from_file_location(module_name, file_path)
+    module = _importlib_util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module.app
+
+
+if os.path.isdir(SHARED_UI_DIR):
+    app.mount("/suite", StaticFiles(directory=SHARED_UI_DIR), name="suite")
+
+for _mount_path, _module_name, _file in (
+    ("/bharat", "kavach_suite_bharat_core_bank", os.path.join(SUITE_ROOT, "bharat_core_banking", "server.py")),
+    ("/swarm", "kavach_suite_live_agent_swarm", os.path.join(SUITE_ROOT, "live_agent_swarm", "agent_engine.py")),
+):
+    try:
+        if os.path.exists(_file):
+            app.mount(_mount_path, _load_sub_app(_module_name, _file))
+            print(f"[KAVACH Unified] Mounted {_module_name} at {_mount_path}")
+    except Exception as _mount_err:
+        print(f"[KAVACH Unified] Could not mount {_mount_path}: {_mount_err}")
+
+if os.path.isdir(MOTION_DIR):
+    app.mount("/motion", StaticFiles(directory=MOTION_DIR, html=True), name="motion")
+
+if os.path.isdir(REPORTS_DIR):
+    app.mount("/reports", StaticFiles(directory=REPORTS_DIR, html=True), name="reports")
+
+
+@app.api_route("/guide", methods=["GET", "HEAD"], include_in_schema=False)
+@app.api_route("/guide/", methods=["GET", "HEAD"], include_in_schema=False)
+def frontend_stakeholder_guide():
+    """Serve the stakeholder (customer / DevOps / auditor / CISO) walkthrough guide."""
+    return FileResponse(GUIDE_FILE, media_type="text/html", headers={"Cache-Control": "no-cache, must-revalidate"})
 
 
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
+@app.api_route("/index.html", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_root():
     """Serve the frontend entrypoint cleanly directly at root without redirects."""
     return FileResponse(
@@ -390,6 +416,15 @@ def serve_root_portal_integrations():
     )
 
 
+@app.get("/platform_theme.css", include_in_schema=False)
+def serve_root_platform_theme():
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "platform_theme.css"),
+        media_type="text/css",
+        headers={"Cache-Control": "no-cache, must-revalidate"}
+    )
+
+
 @app.get("/academic_features.css", include_in_schema=False)
 def serve_root_academic_features_css():
     return FileResponse(
@@ -413,24 +448,6 @@ def serve_root_six_stages_defense():
     return FileResponse(
         os.path.join(FRONTEND_DIR, "six_stages_defense.js"),
         media_type="application/javascript",
-        headers={"Cache-Control": "no-cache, must-revalidate"}
-    )
-
-
-@app.get("/universal_mesh.js", include_in_schema=False)
-def serve_root_universal_mesh_js():
-    return FileResponse(
-        os.path.join(FRONTEND_DIR, "universal_mesh.js"),
-        media_type="application/javascript",
-        headers={"Cache-Control": "no-cache, must-revalidate"}
-    )
-
-
-@app.get("/universal_mesh.css", include_in_schema=False)
-def serve_root_universal_mesh_css():
-    return FileResponse(
-        os.path.join(FRONTEND_DIR, "universal_mesh.css"),
-        media_type="text/css",
         headers={"Cache-Control": "no-cache, must-revalidate"}
     )
 

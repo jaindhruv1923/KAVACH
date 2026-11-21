@@ -1,4 +1,4 @@
-# ️ KAVACH Platform Implementation
+#  KAVACH Platform Implementation
 
 **Security-Governed Agentic AI DevOps Platform**
 
@@ -51,7 +51,7 @@ Explore the technical specifications:
  <p align="center"><em>Deterministic finite state machine pipeline enforcing pre-execution guardrails, AST blast-radius analysis, dual LLM router, and immutable audit logs.</em></p>
  </td>
  <td width="50%" valign="top">
- <h4 align="center">️ Stage 1 Pre-Execution Sentinel</h4>
+ <h4 align="center"> Stage 1 Pre-Execution Sentinel</h4>
  <a href="artifacts/screenshots/ss8.png">
  <img src="artifacts/screenshots/ss8.png" width="100%" alt="Stage 1 Pre-Execution Sentinel" />
  </a>
@@ -184,7 +184,7 @@ kavach/
 └── README.md # This file
 ```
 
-## ️ Non-Negotiable Rules
+##  Non-Negotiable Rules
 
 See [docs/PROJECT_SPEC.md](docs/PROJECT_SPEC.md) → "Non-Negotiable Quality Rules." In short:
 - No fake completion, no fake evaluation numbers

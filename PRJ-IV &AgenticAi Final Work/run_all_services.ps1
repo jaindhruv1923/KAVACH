@@ -1,24 +1,35 @@
-# PRJ4 - Agentic AI Final Project Master PowerShell Launcher
-# Starts Port 8001 (Main KAVACH), Port 8003 (Live Swarm), Port 8002 (Bharat Core Bank)
+# ===========================================================================
+#  KAVACH - Agentic AI Final Project launcher (PowerShell)
+#
+#  One server (port 8001) serves the main website AND every dashboard:
+#    /  main platform   /cockpit/  Real AI Agents   /swarm/  Live Agent Swarm
+#    /bharat/  Bharat Core Bank   /bank/  Banking Highway   /console  Live Console
+#    /motion/  Motion Graphics    /guide  Stakeholder Guide /reports/ Mid-Sem Reports
+#
+#  Usage:
+#    .\run_all_services.ps1              start the unified platform (recommended)
+#    .\run_all_services.ps1 -Standalone  also start each dashboard on its own port
+# ===========================================================================
+param([switch]$Standalone)
 
-Write-Host "===============================================================================" -ForegroundColor Cyan
-Write-Host "  PRJ4 - Agentic AI Final Project: KAVACH Master PowerShell Launcher" -ForegroundColor Green
-Write-Host "===============================================================================" -ForegroundColor Cyan
+$Root = Split-Path -Parent $MyInvocation.MyCommand.Definition
+Write-Host ""
+Write-Host " KAVACH Platform Launcher" -ForegroundColor Cyan
+Write-Host " ------------------------------------------------------------"
 
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+Write-Host " [1] Unified platform        http://localhost:8001/"
+Start-Process python -ArgumentList "-m uvicorn app.main:app --app-dir `"kavach_platform\01_KAVACH_Platform\backend`" --host 127.0.0.1 --port 8001" -WorkingDirectory $Root
 
-Write-Host "[1/3] Launching KAVACH Real Autonomous Multi-Agent Swarm on Port 8003..." -ForegroundColor Yellow
-Start-Process powershell -ArgumentList "-NoProfile -Command `"`$env:PORT='8003'; python -m uvicorn kavach_agent_core.server:app --host 127.0.0.1 --port 8003`"" -WorkingDirectory $ScriptDir
+if ($Standalone) {
+    Write-Host " [2] Live Agent Swarm        http://localhost:8000/"
+    Start-Process powershell -ArgumentList "-NoProfile -Command `"`$env:PORT='8000'; python agent_engine.py`"" -WorkingDirectory "$Root\live_agent_swarm"
+    Write-Host " [3] Bharat Core Bank        http://localhost:8002/"
+    Start-Process powershell -ArgumentList "-NoProfile -Command `"`$env:PORT='8002'; python server.py`"" -WorkingDirectory "$Root\bharat_core_banking"
+    Write-Host " [4] Real AI Agents cockpit  http://localhost:8003/"
+    Start-Process python -ArgumentList "-m uvicorn kavach_agent_core.server:app --host 127.0.0.1 --port 8003" -WorkingDirectory $Root
+}
 
-Write-Host "[2/3] Launching Bharat Core Bank Portal on Port 8002..." -ForegroundColor Yellow
-Start-Process python -ArgumentList "bharat_core_banking/server.py" -WorkingDirectory $ScriptDir
-
-Write-Host "[3/3] Launching Main KAVACH Platform on Port 8001..." -ForegroundColor Yellow
-$BackendDir = "$ScriptDir\kavach_platform\01_KAVACH_Platform\backend"
-Start-Process python -ArgumentList "-m uvicorn app.main:app --app-dir `"$BackendDir`" --host 127.0.0.1 --port 8001" -WorkingDirectory $ScriptDir
-
-Write-Host "Waiting 3 seconds for service initialization..." -ForegroundColor DarkGray
-Start-Sleep -Seconds 3
-
-Write-Host "Opening Master Dashboard: http://localhost:8001/ ..." -ForegroundColor Green
+Start-Sleep -Seconds 4
 Start-Process "http://localhost:8001/"
+Write-Host ""
+Write-Host " Open http://localhost:8001/ - every dashboard is reachable from the top bar." -ForegroundColor Green

@@ -225,9 +225,9 @@
       if (btn) {
         if (ablationState[k]) {
           btn.classList.add("active");
-          btn.style.background = "#2563EB";
+          btn.style.background = "#2764E8";
           btn.style.color = "#FFFFFF";
-          btn.style.borderColor = "#1D4ED8";
+          btn.style.borderColor = "#1F50D4";
         } else {
           btn.classList.remove("active");
           btn.style.background = "#FFFFFF";
@@ -451,9 +451,9 @@ def diagnostic_ping(target_host):
     });
     if (btnEl) {
       btnEl.classList.add("active");
-      btnEl.style.background = "#2563EB";
+      btnEl.style.background = "#2764E8";
       btnEl.style.color = "#FFFFFF";
-      btnEl.style.borderColor = "#1D4ED8";
+      btnEl.style.borderColor = "#1F50D4";
     }
 
     const titleEl = document.getElementById("ast-diff-title");
@@ -962,8 +962,8 @@ def diagnostic_ping(target_host):
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px; border-bottom:1px solid var(--border-subtle); padding-bottom:14px; flex-wrap:wrap; gap:10px;">
         <div>
           <div style="display:flex; align-items:center; gap:8px;">
-            <span class="badge" style="background:#EDE9FE; color:#6D28D9; border-color:#DDD6FE; font-weight:700;">${p.num} &middot; ${p.category}</span>
-            <span class="badge" style="background:#F1F5F9; color:#475569; border-color:#CBD5E1;">${p.badge}</span>
+            <span class="badge" style="background:#E4ECFF; color:#3055C5; border-color:#CCDCFF; font-weight:700;">${p.num} &middot; ${p.category}</span>
+            <span class="badge" style="background:#F2F5F9; color:#475569; border-color:#CBD5E1;">${p.badge}</span>
           </div>
           <h3 style="font-size:1.35rem; font-weight:800; color:var(--text-primary); margin:6px 0 2px;">
             ${p.name}
@@ -976,7 +976,7 @@ def diagnostic_ping(target_host):
           <span id="academic-status-pill" class="badge" style="background:#ECFDF5; color:#047857; border-color:#A7F3D0; font-weight:700;">
             READY FOR EXECUTION
           </span>
-          <span id="academic-latency-badge" class="badge" style="background:#EFF6FF; color:#1D4ED8; border-color:#BFDBFE; font-weight:700;">
+          <span id="academic-latency-badge" class="badge" style="background:#EFF6FF; color:#1F50D4; border-color:#BFDBFE; font-weight:700;">
             LATENCY: ~0.02ms
           </span>
         </div>
@@ -987,7 +987,7 @@ def diagnostic_ping(target_host):
         <div>
           <div class="academic-subcard" id="academic-grounding-card">
             <div class="academic-subcard-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3D65D6" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               <span>Theoretical &amp; KaTeX Mathematical Grounding</span>
             </div>
             <div class="academic-math-box" id="academic-math-container">
@@ -1000,11 +1000,11 @@ def diagnostic_ping(target_host):
 
           <div class="academic-subcard" id="academic-controls-card">
             <div class="academic-subcard-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2764E8" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
               <span>Interactive Execution Parameters &amp; Payload</span>
             </div>
             ${renderPillarInputs(p)}
-            <button type="button" id="btn-exec-academic" onclick="window.executeAcademicFlow('${p.id}')" style="background:#7C3AED; color:#FFF; font-weight:700; font-size:0.84rem; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; width:100%; box-shadow:0 2px 8px rgba(124,58,237,0.25); transition:all 0.15s ease; margin-top:12px;">
+            <button type="button" id="btn-exec-academic" onclick="window.executeAcademicFlow('${p.id}')" style="background:#3D65D6; color:#FFFFFF; font-weight:700; font-size:0.84rem; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; width:100%; box-shadow:0 2px 8px rgba(61, 101, 214, 0.1); transition:all 0.15s ease; margin-top:12px;">
               Execute Live Security Flow &amp; Verify Proof &rarr;
             </button>
           </div>
@@ -1025,7 +1025,7 @@ def diagnostic_ping(target_host):
           <div class="academic-subcard" id="academic-telemetry-box" style="margin-bottom:0;">
             <div class="academic-subcard-title" style="justify-content:space-between;">
               <div style="display:flex; align-items:center; gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#52B8FF" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 <span>Microservice Telemetry &amp; Proof Log Stream</span>
               </div>
               <span style="font-size:0.68rem; color:#64748B; font-family:var(--font-mono);">ENDPOINT: ${p.endpoint}</span>
@@ -1089,7 +1089,7 @@ def diagnostic_ping(target_host):
           <input type="text" id="got-task-input" value="Decompose high-value corporate vendor payment with strict RBI escrow & AST checks." style="width:100%; font-size:0.75rem; padding:6px 10px; border:1px solid #CBD5E1; border-radius:6px; box-sizing:border-box; margin-bottom:8px;">
           <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:600;">
             <input type="checkbox" id="got-cycle-checkbox">
-            <span style="color:#DC2626;">Inject Adversarial Circular Dependency (Tests Kahn's Veto)</span>
+            <span style="color:#D23A34;">Inject Adversarial Circular Dependency (Tests Kahn's Veto)</span>
           </label>
         </div>
       `;
@@ -1139,7 +1139,7 @@ def diagnostic_ping(target_host):
           <label style="font-weight:600; display:block; margin-bottom:4px;">Simulated Burst Ingress Calls:</label>
           <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
             <span>Burst Size: <strong id="wallet-burst-val">12</strong> calls/sec</span>
-            <span style="color:#DC2626; font-weight:700;">Cap: 10 calls/sec</span>
+            <span style="color:#D23A34; font-weight:700;">Cap: 10 calls/sec</span>
           </div>
           <input type="range" id="wallet-burst-slider" min="1" max="25" step="1" value="12" oninput="document.getElementById('wallet-burst-val').textContent=this.value" style="width:100%;">
         </div>
@@ -1150,8 +1150,8 @@ def diagnostic_ping(target_host):
           <label style="font-weight:600; display:block; margin-bottom:4px;">Agent Action Justification Claim:</label>
           <input type="text" id="entailment-claim-input" value="${p.defaultInputs.claim}" style="width:100%; font-size:0.75rem; padding:6px 10px; border:1px solid #CBD5E1; border-radius:6px; box-sizing:border-box; margin-bottom:8px;">
           <div style="display:flex; gap:6px;">
-            <button type="button" onclick="document.getElementById('entailment-claim-input').value='The transfer is subject to RBI 50000 INR dual custody mandates.'" style="font-size:0.68rem; padding:3px 8px; border:1px solid #CBD5E1; border-radius:4px; background:#FFF; cursor:pointer;">Preset: Entailed Claim</button>
-            <button type="button" onclick="document.getElementById('entailment-claim-input').value='Execute transfer of 100000 INR without dual custody or maker-checker.'" style="font-size:0.68rem; padding:3px 8px; border:1px solid #FECACA; border-radius:4px; background:#FEF2F2; color:#DC2626; cursor:pointer;">Preset: Contradiction Claim</button>
+            <button type="button" onclick="document.getElementById('entailment-claim-input').value='The transfer is subject to RBI 50000 INR dual custody mandates.'" style="font-size:0.68rem; padding:3px 8px; border:1px solid #CBD5E1; border-radius:4px; background:#FFFFFF; cursor:pointer;">Preset: Entailed Claim</button>
+            <button type="button" onclick="document.getElementById('entailment-claim-input').value='Execute transfer of 100000 INR without dual custody or maker-checker.'" style="font-size:0.68rem; padding:3px 8px; border:1px solid #FECAC7; border-radius:4px; background:#FEF2F1; color:#D23A34; cursor:pointer;">Preset: Contradiction Claim</button>
           </div>
         </div>
       `;
@@ -1211,9 +1211,9 @@ def diagnostic_ping(target_host):
     }
     if (statusPill) {
       statusPill.textContent = "EXECUTING PIPELINE...";
-      statusPill.style.background = "#FEF3C7";
-      statusPill.style.color = "#D97706";
-      statusPill.style.borderColor = "#FDE68A";
+      statusPill.style.background = "#FFF0DC";
+      statusPill.style.color = "#D6791C";
+      statusPill.style.borderColor = "#FFE1B8";
     }
 
     // Step animation helper
@@ -1319,7 +1319,7 @@ def diagnostic_ping(target_host):
         <div class="academic-telemetry-line"><span class="telemetry-time">+0.012ms</span> <span class="telemetry-tag">[FORMAL-PROOF]</span> <span class="telemetry-pass">KaTeX Specification Bound: ${p.tag} verified</span></div>
         <div class="academic-telemetry-line"><span class="telemetry-time">+${dispElapsed}</span> <span class="telemetry-tag">[GATE-VERDICT]</span> <span class="${tagClass}">${verdictStr}</span></div>
         <div class="academic-telemetry-line" style="margin-top:8px; border-top:1px dashed #334155; padding-top:6px;">
-          <span style="color:#38BDF8;">// JSON RESPONSE PROOF RECEIPT:</span><br>
+          <span style="color:#52B8FF;">// JSON RESPONSE PROOF RECEIPT:</span><br>
           <pre style="margin:4px 0 0; color:#E2E8F0; font-size:0.68rem; max-height:140px; overflow-y:auto;">${escapeHtml(JSON.stringify(result, null, 2))}</pre>
         </div>
       `;
@@ -1329,9 +1329,9 @@ def diagnostic_ping(target_host):
       const isVeto = result.verdict && (result.verdict.includes("VETO") || result.verdict.includes("TRIPPED"));
       if (isVeto) {
         statusPill.textContent = "STATUTORY VETO (CONTAINED)";
-        statusPill.style.background = "#FEF2F2";
-        statusPill.style.color = "#DC2626";
-        statusPill.style.borderColor = "#FECACA";
+        statusPill.style.background = "#FEF2F1";
+        statusPill.style.color = "#D23A34";
+        statusPill.style.borderColor = "#FECAC7";
       } else {
         statusPill.textContent = "VERIFIED & MATHEMATICALLY SEALED";
         statusPill.style.background = "#ECFDF5";

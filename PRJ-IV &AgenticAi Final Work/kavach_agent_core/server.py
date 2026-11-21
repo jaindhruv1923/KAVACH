@@ -12,7 +12,7 @@ import queue
 import threading
 from typing import Dict, Any, Generator, Optional
 from fastapi import FastAPI, Request, Query, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse, FileResponse
+from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -39,6 +39,9 @@ app.add_middleware(
 llm_client = LLMClient()
 swarm_engine = KavachMultiAgentSwarm(llm_client=llm_client)
 
+def _dump_model(m):
+    return m.model_dump() if hasattr(m, "model_dump") else m.dict()
+
 
 class GoalRequest(BaseModel):
     goal: str
@@ -59,7 +62,7 @@ def get_status():
 @app.get("/api/agents")
 def get_agents():
     """Return details of all 5 specialized agents in the swarm."""
-    return {name: persona.dict() for name, persona in AGENT_ROSTER.items()}
+    return {name: _dump_model(persona) for name, persona in AGENT_ROSTER.items()}
 
 
 @app.get("/api/tools")
@@ -224,7 +227,7 @@ def get_repo_index():
 def execute_swarm(req: GoalRequest):
     """Execute swarm synchronously and return complete execution result."""
     res: SwarmExecutionResult = swarm_engine.execute_swarm(goal=req.goal)
-    return res.dict()
+    return _dump_model(res)
 
 
 # =========================================================================
@@ -266,7 +269,7 @@ def get_reflexion_status():
         "total_resolved": mem.total_corrections_resolved,
         "convergence_rate_pct": 100.0 if mem.total_corrections_attempted == 0 else round((mem.total_corrections_resolved / mem.total_corrections_attempted) * 100, 1),
         "verbal_context": mem.get_verbal_refinement_context(),
-        "episodes": [ep.dict() for ep in mem.episodes[-10:]],
+        "episodes": [_dump_model(ep) for ep in mem.episodes[-10:]],
     }
 
 
@@ -278,7 +281,7 @@ def simulate_reflexion_loop():
     """
     goal = "Self-Correction & Reflexion: Trigger code flaw and execute automated repair loop."
     res = swarm_engine.execute_swarm(goal=goal)
-    return res.dict()
+    return _dump_model(res)
 
 
 # =========================================================================
@@ -352,7 +355,7 @@ def get_saga_status(transaction_id: Optional[str] = None):
             tx = hist[0] if hist else None
         if not tx:
             raise HTTPException(status_code=404, detail=f"Transaction '{transaction_id}' not found")
-        return tx.dict()
+        return _dump_model(tx)
 
     return {
         "status": "ACTIVE",
@@ -360,7 +363,7 @@ def get_saga_status(transaction_id: Optional[str] = None):
         "total_commits": GLOBAL_SAGA_COORDINATOR.total_commits_executed,
         "total_rollbacks": GLOBAL_SAGA_COORDINATOR.total_rollbacks_executed,
         "active_transactions_count": len(GLOBAL_SAGA_COORDINATOR.active_transactions),
-        "recent_history": [t.dict() for t in GLOBAL_SAGA_COORDINATOR.transaction_history[-5:]],
+        "recent_history": [_dump_model(t) for t in GLOBAL_SAGA_COORDINATOR.transaction_history[-5:]],
         "mathematical_invariant": {
             "formula": r"\mathcal{S} = (T_1, \dots, T_n; C_n, \dots, C_1), \quad T_k = \text{Fail} \implies \prod_{i=k-1}^{1} C_i",
             "principle": "Garcia-Molina & Salem (1987) SAGA Distributed Compensation",
@@ -374,7 +377,7 @@ def execute_saga_rollback(req: SagaRollbackRequest):
     from kavach_agent_core.saga_engine import GLOBAL_SAGA_COORDINATOR
     try:
         tx = GLOBAL_SAGA_COORDINATOR.rollback(req.transaction_id, reason=req.reason or "Manual or Critic rejection")
-        return tx.dict()
+        return _dump_model(tx)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
@@ -527,7 +530,7 @@ def stream_swarm_execution(goal: str = Query(..., description="User goal or task
         def run_thread():
             try:
                 res = swarm_engine.execute_swarm(goal=goal, on_event_callback=on_event)
-                event_q.put({"type": "COMPLETE", "data": res.dict()})
+                event_q.put({"type": "COMPLETE", "data": _dump_model(res)})
             except Exception as e:
                 event_q.put({"type": "ERROR", "data": {"error": str(e)}})
             finally:
@@ -554,34 +557,6 @@ def stream_swarm_execution(goal: str = Query(..., description="User goal or task
 
 COCKPIT_HTML_PATH = os.path.join(os.path.dirname(__file__), "cockpit.html")
 
-@app.get("/health")
-def health_check():
-    return {
-        "status": "HEALTHY",
-        "service": "KAVACH Autonomous Agent Cockpit",
-        "version": "5.0.0",
-        "port": 8003,
-        "mcp_tools": 19,
-        "stages": 6
-    }
-
-@app.get("/universal_mesh.css")
-def serve_mesh_css():
-    mesh_css = os.path.join(os.path.dirname(__file__), "universal_mesh.css")
-    return FileResponse(mesh_css, media_type="text/css")
-
-@app.get("/universal_mesh.js")
-def serve_mesh_js():
-    mesh_js = os.path.join(os.path.dirname(__file__), "universal_mesh.js")
-    return FileResponse(mesh_js, media_type="application/javascript")
-
-@app.get("/kavach_config.js")
-def serve_kavach_config():
-    cfg_path = os.path.join(os.path.dirname(__file__), "kavach_config.js")
-    if os.path.exists(cfg_path):
-        return FileResponse(cfg_path, media_type="application/javascript")
-    return Response(content="window.KAVACH_CONFIG = {};", media_type="application/javascript")
-
 @app.get("/", response_class=HTMLResponse)
 @app.get("/cockpit", response_class=HTMLResponse)
 def serve_cockpit():
@@ -591,9 +566,16 @@ def serve_cockpit():
     return "<h1>KAVACH Live Agent Cockpit</h1><p>UI loading...</p>"
 
 
+
+# Shared KAVACH suite navigation bar + design tokens (served from ../shared_ui)
+from fastapi.staticfiles import StaticFiles as _SuiteStaticFiles
+_SHARED_UI_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "shared_ui"))
+if os.path.isdir(_SHARED_UI_DIR):
+    app.mount("/suite", _SuiteStaticFiles(directory=_SHARED_UI_DIR), name="suite")
+
+
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get("PORT", "8003"))
-    host = os.environ.get("HOST", "0.0.0.0")
-    print(f"Starting KAVACH Real-Time Agent Cockpit on http://{host}:{port}/")
-    uvicorn.run("kavach_agent_core.server:app", host=host, port=port, reload=False)
+    port = int(os.environ.get("PORT", "8005"))
+    print(f"Starting KAVACH Real-Time Agent Cockpit on http://localhost:{port}/")
+    uvicorn.run("kavach_agent_core.server:app", host="127.0.0.1", port=port, reload=False)

@@ -19,7 +19,7 @@ foreach ($skill in $skills) {
     
     # Check SKILL.md exists
     if (-not (Test-Path $skillFile)) {
-        Write-Host "❌ $($skill.Name): Missing SKILL.md" -ForegroundColor Red
+        Write-Host "$($skill.Name): Missing SKILL.md" -ForegroundColor Red
         $ErrorCount++
         continue
     }
@@ -28,27 +28,27 @@ foreach ($skill in $skills) {
     
     # Check for frontmatter
     if ($content -notmatch "^---") {
-        Write-Host "❌ $($skill.Name): Missing frontmatter" -ForegroundColor Red
+        Write-Host "$($skill.Name): Missing frontmatter" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
     
     # Check for name field
     if ($content -notmatch "name:") {
-        Write-Host "❌ $($skill.Name): Missing name in frontmatter" -ForegroundColor Red
+        Write-Host "$($skill.Name): Missing name in frontmatter" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
     
     # Check for description field
     if ($content -notmatch "description:") {
-        Write-Host "❌ $($skill.Name): Missing description in frontmatter" -ForegroundColor Red
+        Write-Host "$($skill.Name): Missing description in frontmatter" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
     
     if (-not $hasErrors) {
-        Write-Host "✅ $($skill.Name)" -ForegroundColor Green
+        Write-Host "$($skill.Name)" -ForegroundColor Green
     }
 }
 
@@ -60,9 +60,9 @@ Write-Host "Errors: $ErrorCount" -ForegroundColor $(if ($ErrorCount -gt 0) { "Re
 Write-Host ""
 
 if ($ErrorCount -eq 0) {
-    Write-Host "✅ All skills valid!" -ForegroundColor Green
+    Write-Host "All skills valid!" -ForegroundColor Green
     exit 0
 } else {
-    Write-Host "❌ Validation failed" -ForegroundColor Red
+    Write-Host "Validation failed" -ForegroundColor Red
     exit 1
 }

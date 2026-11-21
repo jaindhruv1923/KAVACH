@@ -548,15 +548,15 @@ function renderCourseHandoutModules() {
 
     <div style="display:flex;flex-direction:column;gap:14px;">
       ${COURSE_MODULES.map(m => `
-        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(0, 0, 0, 0.03);">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
             <div style="display:flex;align-items:center;gap:10px;">
-              <span class="badge" style="background:#2563EB;color:#FFFFFF;border:none;font-weight:700;">${m.module}</span>
+              <span class="badge" style="background:#2764E8;color:#FFFFFF;border:none;font-weight:700;">${m.module}</span>
               <strong style="font-size:0.92rem;color:#0F172A;">${m.title}</strong>
             </div>
             <div style="display:flex;gap:6px;">
-              <span style="font-size:0.72rem;background:#F1F5F9;padding:2px 8px;border-radius:4px;color:#475569;font-weight:600;">${m.sessions}</span>
-              ${m.cos.map(c => `<span style="font-size:0.72rem;background:#EFF6FF;color:#1D4ED8;padding:2px 8px;border-radius:4px;font-weight:700;border:1px solid #BFDBFE;">${c}</span>`).join('')}
+              <span style="font-size:0.72rem;background:#F2F5F9;padding:2px 8px;border-radius:4px;color:#475569;font-weight:600;">${m.sessions}</span>
+              ${m.cos.map(c => `<span style="font-size:0.72rem;background:#EFF6FF;color:#1F50D4;padding:2px 8px;border-radius:4px;font-weight:700;border:1px solid #BFDBFE;">${c}</span>`).join('')}
             </div>
           </div>
           <p style="font-size:0.82rem;color:#334155;margin:0 0 10px;line-height:1.5;">
@@ -637,7 +637,7 @@ function ensureEli5ModalExists() {
             <div style="font-size:0.86rem;font-weight:700;color:var(--text-primary);">
               CSE3101: Agentic AI Course Outcomes (CO1&ndash;CO5) Mapping
             </div>
-            <span style="font-size:0.75rem;background:#EFF6FF;color:#2563EB;padding:2px 8px;border-radius:4px;font-weight:600;border:1px solid #BFDBFE;">3 Credits (2-0-2)</span>
+            <span style="font-size:0.75rem;background:#EFF6FF;color:#2764E8;padding:2px 8px;border-radius:4px;font-weight:600;border:1px solid #BFDBFE;">3 Credits (2-0-2)</span>
           </div>
           <div class="eli5-co-grid">
             <div class="eli5-co-item">

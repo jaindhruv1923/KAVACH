@@ -30,7 +30,7 @@ foreach ($script in $scripts) {
     }
 
     if ($hasNonAscii -and -not $hasBom) {
-        Write-Host "❌ $($script.Name): non-ASCII characters without a UTF-8 BOM" -ForegroundColor Red
+        Write-Host "$($script.Name): non-ASCII characters without a UTF-8 BOM" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
@@ -42,13 +42,13 @@ foreach ($script in $scripts) {
 
     if ($parseErrors -and $parseErrors.Count -gt 0) {
         $first = $parseErrors[0]
-        Write-Host "❌ $($script.Name): parse error at line $($first.Extent.StartLineNumber) — $($first.Message)" -ForegroundColor Red
+        Write-Host "$($script.Name): parse error at line $($first.Extent.StartLineNumber) — $($first.Message)" -ForegroundColor Red
         $ErrorCount++
         $hasErrors = $true
     }
 
     if (-not $hasErrors) {
-        Write-Host "✅ $($script.Name)" -ForegroundColor Green
+        Write-Host "$($script.Name)" -ForegroundColor Green
     }
 }
 
@@ -60,9 +60,9 @@ Write-Host "Errors: $ErrorCount" -ForegroundColor $(if ($ErrorCount -gt 0) { "Re
 Write-Host ""
 
 if ($ErrorCount -eq 0) {
-    Write-Host "✅ All scripts parse cleanly!" -ForegroundColor Green
+    Write-Host "All scripts parse cleanly!" -ForegroundColor Green
     exit 0
 } else {
-    Write-Host "❌ Validation failed" -ForegroundColor Red
+    Write-Host "Validation failed" -ForegroundColor Red
     exit 1
 }

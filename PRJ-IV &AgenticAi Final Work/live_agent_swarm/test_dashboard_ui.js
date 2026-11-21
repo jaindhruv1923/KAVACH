@@ -47,7 +47,8 @@ async function testDashboard() {
 
   // Initial loaded screenshot
   const s1 = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\dashboard_initial.png', Buffer.from(s1.data, 'base64'));
+  fs.mkdirSync(require('path').join(__dirname, 'screenshots'), { recursive: true });
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'dashboard_initial.png'), Buffer.from(s1.data, 'base64'));
   console.log('Saved dashboard_initial.png');
 
   // Click Execute Swarm
@@ -60,7 +61,7 @@ async function testDashboard() {
 
   // Capture executed state
   const s2 = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\dashboard_executed.png', Buffer.from(s2.data, 'base64'));
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'dashboard_executed.png'), Buffer.from(s2.data, 'base64'));
   console.log('Saved dashboard_executed.png');
 
   // Test an attack preset (Preset 2: Jailbreak)
@@ -70,7 +71,7 @@ async function testDashboard() {
   await new Promise(r => setTimeout(r, 3200));
 
   const s3 = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\dashboard_jailbreak_blocked.png', Buffer.from(s3.data, 'base64'));
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'dashboard_jailbreak_blocked.png'), Buffer.from(s3.data, 'base64'));
   console.log('Saved dashboard_jailbreak_blocked.png');
 
   ws.close();

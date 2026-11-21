@@ -32,7 +32,7 @@
       padding: 36px 48px;
       border-radius: 16px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      max-width: 480px;
+      max-width: 520px;
     }
     h1 {
       font-size: 1.4rem;
@@ -47,13 +47,24 @@
       line-height: 1.5;
       margin: 0 0 20px 0;
     }
-    a {
-      color: #38BDF8;
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    a.btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #2563EB;
+      color: #FFFFFF;
       text-decoration: none;
       font-weight: 600;
+      border-radius: 8px;
+      transition: background 0.2s;
     }
-    a:hover {
-      text-decoration: underline;
+    a.btn:hover {
+      background: #1D4ED8;
     }
     .spinner {
       width: 28px;
@@ -73,8 +84,11 @@
   <div class="loader-card">
     <div class="spinner"></div>
     <h1>KAVACH AI SECURITY PLATFORM</h1>
-    <p>Zero-Trust Autonomous Agentic AI Defense Gateway</p>
-    <p>Redirecting to platform portal... If you are not redirected automatically, <a href="./PRJ-IV%20&AgenticAi%20Final%20Work/kavach_platform/01_KAVACH_Platform/frontend/index.html">click here</a>.</p>
+    <p>Zero-Trust Autonomous Agentic AI Defense Gateway &amp; Interactive Story Mode</p>
+    <div class="actions">
+      <a class="btn" href="./PRJ-IV%20&AgenticAi%20Final%20Work/kavach_platform/01_KAVACH_Platform/frontend/index.html">Launch KAVACH Platform</a>
+      <a style="color:#94A3B8; font-size:0.8rem; text-decoration:underline;" href="./PRJ-IV%20&AgenticAi%20Final%20Work/kavach_agent_core/cockpit.html">Open Autonomous Agent Cockpit</a>
+    </div>
   </div>
 </body>
 </html>

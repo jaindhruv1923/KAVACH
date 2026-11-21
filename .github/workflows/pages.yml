@@ -40,6 +40,15 @@ jobs:
           if [ -f "_site/cockpit/cockpit.html" ]; then
             cp _site/cockpit/cockpit.html _site/cockpit/index.html
           fi
+          mkdir -p _site/suite
+          cp -r "PRJ-IV &AgenticAi Final Work/shared_ui/"* _site/suite/
+          mkdir -p _site/shared_ui
+          cp -r "PRJ-IV &AgenticAi Final Work/shared_ui/"* _site/shared_ui/
+          mkdir -p _site/reports
+          cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/agentic_ai_midsem/"* _site/reports/
+          mkdir -p _site/motion
+          cp -r "PRJ-IV &AgenticAi Final Work/kavach_platform/motion_graphics/"* _site/motion/
+          touch _site/.nojekyll
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3

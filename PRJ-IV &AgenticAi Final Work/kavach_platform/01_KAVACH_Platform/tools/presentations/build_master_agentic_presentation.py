@@ -136,7 +136,7 @@ sol_items = [
     "Self-Healing ReAct Sandbox: Auto-runs tests, captures stderr, and self-repairs code up to N=3 cycles."
 ]
 for j, item in enumerate(sol_items):
-    add_text(s2, f"✔ {item}", 7.1, 3.0 + j * 0.72, 5.2, 0.65, size=11, color=TEXT_WHITE)
+    add_text(s2, f"{item}", 7.1, 3.0 + j * 0.72, 5.2, 0.65, size=11, color=TEXT_WHITE)
 
 # ==================== SLIDE 3: THE 9-PHASE EXECUTION OVERVIEW ====================
 s3 = create_slide(tag="KAVACH  |  ALL 9 PHASES EXECUTED & COMPLETED")
@@ -253,7 +253,7 @@ eval_points = [
     "Zero Regressions: Automated regression test runner (run_tests.py) confirms zero broken dependencies across the entire project."
 ]
 for j, item in enumerate(eval_points):
-    add_text(s7, f"✔ {item}", 0.9, 4.65 + j * 0.52, 11.5, 0.45, size=12, color=TEXT_MUTED)
+    add_text(s7, f"{item}", 0.9, 4.65 + j * 0.52, 11.5, 0.45, size=12, color=TEXT_MUTED)
 
 # ==================== SLIDE 8: WHAT WE SHIPPED YESTERDAY (SEPT 22) ====================
 s8 = create_slide(tag="SEPTEMBER 22 RELEASE  |  PRODUCT EVOLUTION")
@@ -282,7 +282,7 @@ after_items = [
     "Context-Aware Numeric Policy preventing false positives on generic IDs."
 ]
 for j, item in enumerate(after_items):
-    add_text(s8, f"✔ {item}", 7.1, 3.0 + j * 0.72, 5.2, 0.65, size=11, color=TEXT_WHITE)
+    add_text(s8, f"{item}", 7.1, 3.0 + j * 0.72, 5.2, 0.65, size=11, color=TEXT_WHITE)
 
 # ==================== SLIDE 9: YESTERDAY'S DASHBOARD & GITHUB INGESTION ====================
 s9 = create_slide(tag="SEPTEMBER 22 RELEASE  |  DASHBOARD & GITHUB")
@@ -421,7 +421,7 @@ f1_mits = [
     ("Planned Target Files", "backend/app/generation/sandbox.py (run_in_sandbox), backend/app/agent/reflector.py (SelfHealingReflector).")
 ]
 for k, (t, d) in enumerate(f1_mits):
-    add_text(s14, f"✔ {t}:\n  {d}", 7.1, 2.65 + k * 1.0, 5.2, 0.9, size=11, color=TEXT_WHITE)
+    add_text(s14, f"{t}:\n  {d}", 7.1, 2.65 + k * 1.0, 5.2, 0.9, size=11, color=TEXT_WHITE)
 
 # ==================== SLIDE 15: FEATURE 2: HIERARCHICAL CREWAI ====================
 s15 = create_slide(tag="PLANNED FEATURE 2  |  WHAT WE ARE PLANNING TO DO")
@@ -749,7 +749,7 @@ ship_pts = [
     "Deterministic Regex & Shannon Entropy Scanner for Indian Aadhaar and API credentials."
 ]
 for k, p in enumerate(ship_pts):
-    add_text(s30, f"✔ {p}", 0.9, 3.0 + k * 0.9, 5.2, 0.8, size=11, color=TEXT_WHITE)
+    add_text(s30, f"{p}", 0.9, 3.0 + k * 0.9, 5.2, 0.8, size=11, color=TEXT_WHITE)
 
 add_panel(s30, 6.8, 1.8, 5.9, 5.1, fill=CARD_BG, border_color=ACCENT_AMBER)
 add_badge(s30, "NEXT ENGINEERING ROADMAP", 7.1, 2.05, 3.0, 0.3, bg_color=RGBColor(69, 26, 3), text_color=RGBColor(253, 230, 138))
@@ -763,7 +763,7 @@ road_pts = [
     "KAVACH PR Guardian GitHub App CI webhook gateway."
 ]
 for k, p in enumerate(road_pts):
-    add_text(s30, f"➤ {p}", 7.1, 3.0 + k * 0.65, 5.2, 0.6, size=11, color=TEXT_MUTED)
+    add_text(s30, f"→ {p}", 7.1, 3.0 + k * 0.65, 5.2, 0.6, size=11, color=TEXT_MUTED)
 
 # ==================== SLIDE 31: LIVE DEMO CHEAT SHEET ====================
 s31 = create_slide(tag="DEMO SCRIPT & VIVA WALKTHROUGH")

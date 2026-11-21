@@ -72,7 +72,7 @@ python -m pytest tests_unified/test_unified_100_suite.py -q
 
 ---
 
-## ️ Key Features & Technical Specifications
+##  Key Features & Technical Specifications
 
 | Feature | Technical Implementation | Regulatory / Security Standard |
 | :--- | :--- | :--- |
@@ -86,4 +86,4 @@ python -m pytest tests_unified/test_unified_100_suite.py -q
 
 ---
 
-[← Back to Master Repository README](../README.md) &nbsp;|&nbsp; [️ KAVACH Platform (`../01_KAVACH_Platform`)](../01_KAVACH_Platform/README.md) &nbsp;|&nbsp; [ Master Documentation (`../03_Documentation`)](../03_Documentation/README.md)
+[← Back to Master Repository README](../README.md) &nbsp;|&nbsp; [ KAVACH Platform (`../01_KAVACH_Platform`)](../01_KAVACH_Platform/README.md) &nbsp;|&nbsp; [ Master Documentation (`../03_Documentation`)](../03_Documentation/README.md)

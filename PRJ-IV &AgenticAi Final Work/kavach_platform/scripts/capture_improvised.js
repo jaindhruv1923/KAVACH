@@ -52,7 +52,8 @@ async function capture() {
   await new Promise(r => setTimeout(r, 1000));
 
   const s = await send('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('C:\\Users\\jaind\\.gemini\\antigravity\\brain\\f9edf30a-d672-440d-896a-69ec3ccbc3bf\\view_improvised.png', Buffer.from(s.data, 'base64'));
+  fs.mkdirSync(require('path').join(__dirname, 'screenshots'), { recursive: true });
+  fs.writeFileSync(require('path').join(__dirname, 'screenshots', 'view_improvised.png'), Buffer.from(s.data, 'base64'));
 
   console.log('Saved view_improvised.png');
   ws.close();

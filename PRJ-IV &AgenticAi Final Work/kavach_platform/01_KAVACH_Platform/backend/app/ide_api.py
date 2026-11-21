@@ -7,9 +7,17 @@ from pydantic import BaseModel
 router = APIRouter(prefix="/api/ide", tags=["IDE Live Code Management"])
 
 # Base repository roots
-WORKSPACE_ROOT = Path(r"C:\Users\jaind\OneDrive\Desktop\uni\Ageentic&PRJ-IV").resolve()
+# Roots are derived from this file's location so the IDE works on any machine.
+# app -> backend -> 01_KAVACH_Platform -> kavach_platform -> "PRJ-IV &AgenticAi Final Work"
+PRJ4_ROOT = Path(__file__).resolve().parents[4]
+_env_root = os.environ.get("KAVACH_WORKSPACE_ROOT")
+if _env_root:
+    WORKSPACE_ROOT = Path(_env_root).resolve()
+elif (PRJ4_ROOT.parent / "viva_prep.md").exists() or (PRJ4_ROOT.parent / "agentic ai mid sem").exists():
+    WORKSPACE_ROOT = PRJ4_ROOT.parent.resolve()
+else:
+    WORKSPACE_ROOT = PRJ4_ROOT
 MIDSEM_ROOT = (WORKSPACE_ROOT / "agentic ai mid sem").resolve()
-PRJ4_ROOT = (WORKSPACE_ROOT / "PRJ-IV &AgenticAi Final Work").resolve()
 
 ALLOWED_ROOTS = [WORKSPACE_ROOT, PRJ4_ROOT, MIDSEM_ROOT]
 IGNORED_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules", ".venv", "venv", ".idea", ".vscode", "temp"}

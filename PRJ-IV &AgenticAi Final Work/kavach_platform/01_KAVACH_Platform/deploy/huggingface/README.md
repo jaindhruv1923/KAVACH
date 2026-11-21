@@ -1,6 +1,6 @@
 ---
 title: KAVACH Zero-Trust Agentic AI DevOps & Multi-Agent Governance
-emoji: 🛡️
+emoji: 
 colorFrom: green
 colorTo: emerald
 sdk: docker

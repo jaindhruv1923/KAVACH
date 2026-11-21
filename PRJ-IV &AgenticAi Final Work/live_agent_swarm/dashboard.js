@@ -209,14 +209,11 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
   let latestExecutionResult = null;
 
-  const API_ENDPOINT = (function () {
-    if (typeof window.KAVACH_CONFIG !== 'undefined' && typeof window.KAVACH_CONFIG.getApiUrl === 'function') {
-      return window.KAVACH_CONFIG.getApiUrl('swarm', '/api/orchestrate');
-    }
-    return (window.location.origin && window.location.origin.includes(":8000"))
-      ? "/api/orchestrate"
-      : "http://127.0.0.1:8000/api/orchestrate";
-  })();
+  // Served at /swarm/ by the main platform, at / on its own port 8000.
+  const SWARM_MOUNT = window.location.pathname.indexOf("/swarm") === 0 ? "/swarm" : "";
+  const API_ENDPOINT = SWARM_MOUNT
+    ? SWARM_MOUNT + "/api/orchestrate"
+    : (window.location.port === "8000" ? "/api/orchestrate" : "http://127.0.0.1:8000/api/orchestrate");
 
 
 
@@ -1174,7 +1171,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
           <div style="color:#94A3B8; font-size:0.72rem; margin-bottom:4px; font-weight:700;">// RAW INPUT BUFFER:</div>
 
-          <div style="background:#000; padding:8px 10px; border-radius:6px; color:#E2E8F0; white-space:pre-wrap; border:1px solid #1F2937;">${escapeHtml(res.raw_input)}</div>
+          <div style="background:#000000; padding:8px 10px; border-radius:6px; color:#E2E8F0; white-space:pre-wrap; border:1px solid #1F2937;">${escapeHtml(res.raw_input)}</div>
 
         </div>
 
@@ -1182,7 +1179,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
           <div style="color:#94A3B8; font-size:0.72rem; margin-bottom:4px; font-weight:700;">// SANITIZED & CERTIFIED OUTPUT:</div>
 
-          <div style="background:#000; padding:8px 10px; border-radius:6px; color:${res.verdict.includes('BLOCKED') ? '#F87171' : '#34D399'}; white-space:pre-wrap; border:1px solid ${res.verdict.includes('BLOCKED') ? '#991B1B' : '#065F46'};">${escapeHtml(res.sanitized_output)}</div>
+          <div style="background:#000000; padding:8px 10px; border-radius:6px; color:${res.verdict.includes('BLOCKED') ? '#F87171' : '#58CF9E'}; white-space:pre-wrap; border:1px solid ${res.verdict.includes('BLOCKED') ? '#991B1B' : '#065F46'};">${escapeHtml(res.sanitized_output)}</div>
 
         </div>
 
@@ -1190,13 +1187,13 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
     } else if (tabName === "thoughts") {
 
-      let html = `<div style="color:#C4B5FD; font-size:0.74rem; font-weight:700; margin-bottom:8px;">// MULTI-AGENT REASONING & CHAIN-OF-THOUGHT TRACES:</div>`;
+      let html = `<div style="color:#A5C0FF; font-size:0.74rem; font-weight:700; margin-bottom:8px;">// MULTI-AGENT REASONING & CHAIN-OF-THOUGHT TRACES:</div>`;
 
       (res.agent_steps || []).forEach(step => {
 
         html += `
 
-          <div style="margin-bottom:10px; padding:6px 10px; background:rgba(255,255,255,0.03); border-radius:6px; border-left:3px solid ${step.status === 'INTERCEPTED' ? '#EF4444' : '#8B5CF6'};">
+          <div style="margin-bottom:10px; padding:6px 10px; background:rgba(255, 255, 255, 0.03); border-radius:6px; border-left:3px solid ${step.status === 'INTERCEPTED' ? '#E84F4B' : '#4F79EC'};">
 
             <div style="font-weight:700; color:#F8FAFC;">${step.agent_name} [${step.status}] (${step.latency_ms}ms)</div>
 
@@ -1218,9 +1215,9 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
       elTabContent.innerHTML = `
 
-        <div style="color:#38BDF8; font-size:0.74rem; font-weight:700; margin-bottom:6px;">// SLSA LEVEL 3 PROVENANCE & POST-QUANTUM RECEIPT:</div>
+        <div style="color:#52B8FF; font-size:0.74rem; font-weight:700; margin-bottom:6px;">// SLSA LEVEL 3 PROVENANCE & POST-QUANTUM RECEIPT:</div>
 
-        <pre style="color:#94A3B8; font-size:0.71rem; line-height:1.4; background:#000; padding:8px; border-radius:6px; border:1px solid #1F2937;">${escapeHtml(JSON.stringify(res.slsa_provenance, null, 2))}</pre>
+        <pre style="color:#94A3B8; font-size:0.71rem; line-height:1.4; background:#000000; padding:8px; border-radius:6px; border:1px solid #1F2937;">${escapeHtml(JSON.stringify(res.slsa_provenance, null, 2))}</pre>
 
       `;
 
@@ -1400,13 +1397,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
 
 
-    const host = window.location.hostname || "127.0.0.1";
-
-    const targetUrl = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
-      ? window.KAVACH_CONFIG.getDashboardUrl('master')
-      : ((window.location.protocol === "file:")
-        ? "../kavach_platform/01_KAVACH_Platform/frontend/index.html"
-        : `http://${host}:8001/`);
+    const targetUrl = window.KavachSuite ? window.KavachSuite.url("platform") : `http://${window.location.hostname || "127.0.0.1"}:8001/`;
 
 
 
@@ -1418,7 +1409,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
         if (window.parent && typeof window.parent.activatePathwayMode === "function") {
 
-          window.parent.activatePathwayMode("improvised");
+          window.parent.activatePathwayMode("midsem");
 
           return;
 
@@ -1428,7 +1419,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
       try {
 
-        window.parent.postMessage({ type: "KAVACH_NAVIGATE", pathway: "improvised" }, "*");
+        window.parent.postMessage({ type: "KAVACH_NAVIGATE", pathway: "midsem" }, "*");
 
         return;
 
@@ -1444,7 +1435,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
       try {
 
-        window.opener.postMessage({ type: "KAVACH_NAVIGATE", pathway: "improvised" }, "*");
+        window.opener.postMessage({ type: "KAVACH_NAVIGATE", pathway: "midsem" }, "*");
 
       } catch (err) {}
 
@@ -1470,13 +1461,7 @@ Apply strict differential privacy noise perturbation before returning aggregated
 
 
 
-    const host = window.location.hostname || "127.0.0.1";
-
-    const targetUrl = (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getDashboardUrl === 'function')
-      ? window.KAVACH_CONFIG.getDashboardUrl('banking')
-      : ((window.location.protocol === "file:")
-        ? "../applications_work/index.html"
-        : `http://${host}:8002/`);
+    const targetUrl = window.KavachSuite ? window.KavachSuite.url("bharat") : `http://${window.location.hostname || "127.0.0.1"}:8002/`;
 
 
 

@@ -1140,25 +1140,25 @@ code = r'''/**
             Test Scenario:
           </span>
           <button type="button" class="scenario-chip-btn ${ctrlState.selectedScenario === 'secret_leak' ? 'active' : ''}" onclick="selectPipelineScenario('secret_leak')">
-            🛡️ Threat 1: API Secret Leak
+            Threat 1: API Secret Leak
           </button>
           <button type="button" class="scenario-chip-btn ${ctrlState.selectedScenario === 'rogue_tool' ? 'active' : ''}" onclick="selectPipelineScenario('rogue_tool')">
-            🚨 Threat 2: Rogue Tool RCE
+            Threat 2: Rogue Tool RCE
           </button>
           <button type="button" class="scenario-chip-btn ${ctrlState.selectedScenario === 'pypi_slopsquat' ? 'active' : ''}" onclick="selectPipelineScenario('pypi_slopsquat')">
-            📦 Threat 3: PyPI Slopsquat
+            Threat 3: PyPI Slopsquat
           </button>
           <button type="button" class="scenario-chip-btn ${ctrlState.selectedScenario === 'react_healing' ? 'active' : ''}" onclick="selectPipelineScenario('react_healing')">
-            🔧 Threat 4: ReAct Healing
+            Threat 4: ReAct Healing
           </button>
           <button type="button" class="scenario-chip-btn ${ctrlState.selectedScenario === 'banking_escrow' ? 'active' : ''}" onclick="selectPipelineScenario('banking_escrow')">
-            🏛️ Threat 5: Banking Escrow
+            Threat 5: Banking Escrow
           </button>
           <button type="button" class="scenario-chip-btn ${ctrlState.selectedScenario === 'merkle_tamper' ? 'active' : ''}" onclick="selectPipelineScenario('merkle_tamper')">
-            🔒 Threat 6: Merkle Tamper
+            Threat 6: Merkle Tamper
           </button>
           <button type="button" class="scenario-chip-btn ${ctrlState.selectedScenario === 'clean_pipeline' ? 'active' : ''}" onclick="selectPipelineScenario('clean_pipeline')">
-            🟢 Production: Clean Run
+            Production: Clean Run
           </button>
         </div>
 

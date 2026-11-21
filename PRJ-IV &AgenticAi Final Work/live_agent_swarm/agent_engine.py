@@ -815,21 +815,6 @@ def serve_css():
 def serve_js():
     return FileResponse(os.path.join(BASE_DIR, "dashboard.js"))
 
-@app.api_route("/universal_mesh.css", methods=["GET", "HEAD"])
-def serve_mesh_css():
-    return FileResponse(os.path.join(BASE_DIR, "universal_mesh.css"))
-
-@app.api_route("/universal_mesh.js", methods=["GET", "HEAD"])
-def serve_mesh_js():
-    return FileResponse(os.path.join(BASE_DIR, "universal_mesh.js"))
-
-@app.api_route("/kavach_config.js", methods=["GET", "HEAD"])
-def serve_config_js():
-    cfg_path = os.path.join(BASE_DIR, "kavach_config.js")
-    if os.path.exists(cfg_path):
-        return FileResponse(cfg_path, media_type="application/javascript")
-    return JSONResponse({"status": "not_found"}, status_code=404)
-
 @app.api_route("/favicon.ico", methods=["GET", "HEAD"])
 def serve_favicon():
     return JSONResponse({})
@@ -845,10 +830,17 @@ def health_check():
     }
 
 
+
+# Shared KAVACH suite navigation bar + design tokens (served from ../shared_ui)
+from fastapi.staticfiles import StaticFiles as _SuiteStaticFiles
+_SHARED_UI_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "shared_ui"))
+if os.path.isdir(_SHARED_UI_DIR):
+    app.mount("/suite", _SuiteStaticFiles(directory=_SHARED_UI_DIR), name="suite")
+
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8000))
-    host = os.environ.get("HOST", "0.0.0.0")
-    print(f"[*] Starting KAVACH Live Agent Swarm Engine on http://{host}:{port} ...")
-    uvicorn.run(app, host=host, port=port)
+    print(f"[*] Starting KAVACH Live Agent Swarm Engine on http://127.0.0.1:{port} ...")
+    uvicorn.run(app, host="127.0.0.1", port=port)
 

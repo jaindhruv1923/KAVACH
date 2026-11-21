@@ -31,10 +31,10 @@ for file in "$script_dir"/*.ps1; do
     bom=$(LC_ALL=C head -c 3 "$file" | od -An -tx1 | tr -d ' \n')
 
     if [ "$non_ascii" -gt 0 ] && [ "$bom" != "efbbbf" ]; then
-        echo "❌ $filename: non-ASCII characters without a UTF-8 BOM"
+        echo "$filename: non-ASCII characters without a UTF-8 BOM"
         ((error_count++))
     else
-        echo "✅ $filename"
+        echo "$filename"
     fi
 done
 
@@ -46,10 +46,10 @@ echo "Errors: $error_count"
 echo ""
 
 if [ $error_count -eq 0 ]; then
-    echo "✅ All scripts correctly encoded!"
+    echo "All scripts correctly encoded!"
     exit 0
 else
-    echo "❌ Validation failed"
+    echo "Validation failed"
     echo ""
     echo "Fix: prepend a UTF-8 BOM to the reported file(s)."
     exit 1

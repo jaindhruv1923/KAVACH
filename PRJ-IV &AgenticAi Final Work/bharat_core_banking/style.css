@@ -1,30 +1,30 @@
 /* ==========================================================================
    Bharat Core Bank - Autonomous AI Banking & Enterprise Security Portal
-   Theme: Sovereign Cyber-Obsidian Dark Mode (Unified KAVACH Ecosystem)
+   Theme: Enterprise Clean Light (Matching KAVACH Main Platform Design System)
    ========================================================================== */
 
 :root {
-  --bg-dark: #060913;              /* Space Obsidian */
-  --bg-card: #0c1324;              /* Deep Slate Card */
-  --bg-card-elevated: #111c35;     /* Elevated Card Layer */
-  --border-subtle: #1d2d4d;        /* Deep Border */
-  --border-strong: #2a3f6a;        /* High-Contrast Border */
+  --bg-dark: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-card-elevated: #F2F5F9;
+  --border-subtle: #E2E8F0;
+  --border-strong: #CBD5E1;
 
-  --text-main: #f8fafc;            /* Crisp White */
-  --text-muted: #cbd5e1;           /* Slate 300 */
-  --text-dim: #94a3b8;             /* Slate 400 */
+  --text-main: #0F172A;
+  --text-muted: #334155;
+  --text-dim: #64748B;
 
-  --fintech-gold: #fbbf24;
-  --fintech-gold-glow: rgba(251, 191, 36, 0.25);
-  --kavach-green: #10b981;
-  --kavach-green-glow: rgba(16, 185, 129, 0.25);
-  --breach-red: #ef4444;
-  --breach-red-glow: rgba(239, 68, 68, 0.25);
-  --quantum-cyan: #00f2fe;
-  --purple-agent: #a855f7;
+  --fintech-gold: #D6791C;
+  --fintech-gold-glow: rgba(214, 121, 28, 0.15);
+  --kavach-green: #059669;
+  --kavach-green-glow: rgba(5, 150, 105, 0.15);
+  --breach-red: #D23A34;
+  --breach-red-glow: rgba(210, 58, 52, 0.15);
+  --quantum-cyan: #0284C7;
+  --purple-agent: #3D65D6;
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', Consolas, monospace;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', Consolas, monospace;
 }
 
 * {
@@ -36,9 +36,8 @@
 body {
   background: var(--bg-dark);
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.04) 0%, transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.02) 0%, transparent 70%);
+    radial-gradient(circle at 10% 20%, rgba(214, 121, 28, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(5, 150, 105, 0.03) 0%, transparent 40%);
   color: var(--text-main);
   font-family: var(--font-sans);
   font-size: 14px;
@@ -52,13 +51,12 @@ body {
    HEADER & MASTER DEFENSE SWITCH
    ========================================================================== */
 .bank-header {
-  background: var(--bg-card);
+  background: #FFFFFF;
   border-bottom: 1px solid var(--border-subtle);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .header-inner {
@@ -82,12 +80,12 @@ body {
   width: 38px;
   height: 38px;
   border-radius: 9px;
-  background: linear-gradient(135deg, #0284c7 0%, #1e40af 100%);
+  background: linear-gradient(135deg, #1F50D4 0%, #2764E8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
-  box-shadow: 0 0 16px rgba(0, 242, 254, 0.3);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(39, 100, 232, 0.1);
   flex-shrink: 0;
 }
 
@@ -106,7 +104,7 @@ body {
 /* Master Defense Switch */
 .master-switch-container {
   display: flex;
-  background: #080d1a;
+  background: #F2F5F9;
   padding: 4px;
   border-radius: 999px;
   border: 1px solid var(--border-subtle);
@@ -131,47 +129,45 @@ body {
 }
 
 .mode-toggle-btn.active-without {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: #ef4444;
-  color: #f87171;
-  box-shadow: 0 0 14px rgba(239, 68, 68, 0.35);
+  background: #FEF2F1;
+  border-color: #FECAC7;
+  color: #D23A34;
+  box-shadow: 0 1px 4px rgba(210, 58, 52, 0.06);
 }
 
 .mode-toggle-btn.active-with {
-  background: rgba(16, 185, 129, 0.2);
-  border-color: #10b981;
-  color: #34d399;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
+  background: #ECFDF5;
+  border-color: #A7F3D0;
+  color: #059669;
+  box-shadow: 0 1px 4px rgba(5, 150, 105, 0.06);
 }
 
 .badge-dot-red {
   width: 8px;
   height: 8px;
-  background: #ef4444;
+  background: #D23A34;
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 6px #ef4444;
 }
 
 .badge-dot-green {
   width: 8px;
   height: 8px;
-  background: #10b981;
+  background: #059669;
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 6px #10b981;
 }
 
 .header-shortcut-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--bg-card-elevated);
+  background: #F8FAFC;
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 5px 11px;
   border-radius: 9999px;
   text-decoration: none;
   transition: all 0.15s ease;
@@ -179,153 +175,147 @@ body {
 }
 
 .header-shortcut-btn:hover {
-  background: rgba(0, 242, 254, 0.12);
-  border-color: rgba(0, 242, 254, 0.5);
-  color: var(--quantum-cyan);
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1F50D4;
   transform: translateY(-1px);
-  box-shadow: 0 0 10px rgba(0, 242, 254, 0.25);
 }
 
 .back-to-platform-btn {
-  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
-  color: #ffffff !important;
-  border-color: #3b82f6 !important;
-  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35) !important;
+  background: #1F50D4 !important;
+  color: #FFFFFF !important;
+  border-color: #1E40AF !important;
+  box-shadow: 0 2px 6px rgba(31, 80, 212, 0.12) !important;
 }
 
 .back-to-platform-btn:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
+  background: #1E40AF !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5) !important;
+  box-shadow: 0 4px 12px rgba(31, 80, 212, 0.16) !important;
 }
 
 /* ==========================================================================
    DYNAMIC MODE TRANSFORMATION: WITHOUT KAVACH vs WITH KAVACH
    ========================================================================== */
 
-/* --- MODE 1: WITHOUT KAVACH (Alert Crimson Obsidian Baseline) --- */
+/* --- MODE 1: WITHOUT KAVACH (Alert Crimson / Exposed FinTech Baseline) --- */
 body.mode-without-kavach {
-  background: #060913 !important;
+  background: #F7FAFF !important;
   background-image: 
-    radial-gradient(circle at 12% 15%, rgba(220, 38, 38, 0.14) 0%, transparent 50%),
-    radial-gradient(circle at 88% 85%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.04) 0%, transparent 65%) !important;
+    radial-gradient(circle at 12% 15%, rgba(210, 58, 52, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 88% 85%, rgba(240, 161, 50, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(232, 79, 75, 0.03) 0%, transparent 60%) !important;
   transition: background 0.35s ease, background-color 0.35s ease;
 }
 
 body.mode-without-kavach .bank-header {
-  border-bottom: 2px solid rgba(239, 68, 68, 0.5);
-  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2);
+  border-bottom: 2px solid #E84F4B;
+  box-shadow: 0 4px 20px rgba(232, 79, 75, 0.048);
 }
 
 body.mode-without-kavach .mode-toggle-btn.active-without {
-  background: #ef4444 !important;
-  border-color: #dc2626 !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 16px rgba(239, 68, 68, 0.6) !important;
+  background: #D23A34 !important;
+  border-color: #B91D1C !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(210, 58, 52, 0.2) !important;
 }
 
 body.mode-without-kavach .ledger-tile {
-  background: var(--bg-card);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  background: #FFFFFF;
+  border: 1.5px solid #FECAC7;
+  box-shadow: 0 2px 10px rgba(210, 58, 52, 0.024);
 }
 
 body.mode-without-kavach .ledger-tile.tile-threat {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1.5px solid #ef4444;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  background: #FEF2F1;
+  border: 2px solid #F87171;
+  box-shadow: 0 0 16px rgba(210, 58, 52, 0.072);
 }
 
 body.mode-without-kavach .panel-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(239, 68, 68, 0.35);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid #FCA5A2;
+  box-shadow: 0 4px 18px rgba(210, 58, 52, 0.032);
 }
 
 body.mode-without-kavach .panel-title-bar {
-  border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+  border-bottom: 1.5px solid #FECAC7;
 }
 
 body.mode-without-kavach .panel-title {
-  color: #f87171;
+  color: #991B1B;
 }
 
 body.mode-without-kavach .scenario-card-btn.active {
-  background: rgba(239, 68, 68, 0.12);
-  border-color: #ef4444;
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
-  border-left: 4px solid #ef4444;
+  background: #FEF2F1;
+  border-color: #F87171;
+  box-shadow: 0 2px 8px rgba(210, 58, 52, 0.072);
+  border-left: 4px solid #D23A34;
 }
 
 body.mode-without-kavach .btn-dispatch-transaction {
-  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-  border-color: #b91c1c;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.45);
+  background: linear-gradient(135deg, #D23A34 0%, #991B1B 100%);
+  border-color: #991B1B;
+  box-shadow: 0 4px 16px rgba(210, 58, 52, 0.16);
 }
 
 /* --- MODE 2: WITH KAVACH (Hardened Emerald / Quantum-Shielded SecOps) --- */
 body.mode-with-kavach {
-  background: #060913 !important;
+  background: #F0FDF4 !important;
   background-image: 
-    radial-gradient(circle at 12% 15%, rgba(16, 185, 129, 0.14) 0%, transparent 50%),
-    radial-gradient(circle at 88% 85%, rgba(0, 242, 254, 0.10) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 65%) !important;
+    radial-gradient(circle at 12% 15%, rgba(5, 150, 105, 0.1) 0%, transparent 45%),
+    radial-gradient(circle at 88% 85%, rgba(2, 132, 199, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(60, 182, 133, 0.04) 0%, transparent 60%) !important;
   transition: background 0.35s ease, background-color 0.35s ease;
 }
 
 body.mode-with-kavach .bank-header {
-  border-bottom: 2px solid rgba(16, 185, 129, 0.5);
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+  border-bottom: 2px solid #3CB685;
+  box-shadow: 0 4px 20px rgba(60, 182, 133, 0.048);
 }
 
 body.mode-with-kavach .mode-toggle-btn.active-with {
-  background: #10b981 !important;
-  border-color: #059669 !important;
-  color: #060913 !important;
-  font-weight: 800 !important;
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.6) !important;
+  background: #059669 !important;
+  border-color: #047857 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(5, 150, 105, 0.2) !important;
 }
 
 body.mode-with-kavach .ledger-tile {
-  background: var(--bg-card);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  background: #FFFFFF;
+  border: 1.5px solid #A7F3D0;
+  box-shadow: 0 2px 10px rgba(5, 150, 105, 0.024);
 }
 
 body.mode-with-kavach .ledger-tile.tile-shield {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1.5px solid #10b981;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  background: #ECFDF5;
+  border: 2px solid #58CF9E;
+  box-shadow: 0 0 16px rgba(5, 150, 105, 0.088);
 }
 
 body.mode-with-kavach .panel-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid #6EE7B7;
+  box-shadow: 0 4px 18px rgba(5, 150, 105, 0.032);
 }
 
 body.mode-with-kavach .panel-title-bar {
-  border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+  border-bottom: 1.5px solid #A7F3D0;
 }
 
 body.mode-with-kavach .panel-title {
-  color: #34d399;
+  color: #065F46;
 }
 
 body.mode-with-kavach .scenario-card-btn.active {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: #10b981;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
-  border-left: 4px solid #10b981;
+  background: #ECFDF5;
+  border-color: #58CF9E;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.072);
+  border-left: 4px solid #059669;
 }
 
 body.mode-with-kavach .btn-dispatch-transaction {
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  background: linear-gradient(135deg, #059669 0%, #065F46 100%);
   border-color: #047857;
-  color: #060913;
-  font-weight: 800;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.16);
 }
 
 /* ==========================================================================
@@ -335,17 +325,16 @@ body.mode-with-kavach .btn-dispatch-transaction {
   border-bottom: 1px solid var(--border-subtle);
   padding: 10px 28px;
   transition: all 0.3s ease;
-  background: #080d1a;
 }
 
 .mode-status-banner.banner-without-kavach {
-  background: linear-gradient(90deg, rgba(239, 68, 68, 0.15) 0%, #080d1a 50%, rgba(239, 68, 68, 0.15) 100%);
-  border-bottom: 2px solid rgba(239, 68, 68, 0.4);
+  background: linear-gradient(90deg, #FEF2F1 0%, #F4F8FD 50%, #FEF2F1 100%);
+  border-bottom: 2px solid #FCA5A2;
 }
 
 .mode-status-banner.banner-with-kavach {
-  background: linear-gradient(90deg, rgba(16, 185, 129, 0.15) 0%, #080d1a 50%, rgba(16, 185, 129, 0.15) 100%);
-  border-bottom: 2px solid rgba(16, 185, 129, 0.4);
+  background: linear-gradient(90deg, #ECFDF5 0%, #F0FDF4 50%, #ECFDF5 100%);
+  border-bottom: 2px solid #8BEEAE;
 }
 
 .banner-inner {
@@ -376,17 +365,17 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .banner-icon-badge.badge-threat {
-  background: rgba(239, 68, 68, 0.2);
-  color: #f87171;
-  border: 1px solid #ef4444;
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  background: #FEE2E0;
+  color: #D23A34;
+  border: 1px solid #FECAC7;
+  box-shadow: 0 0 10px rgba(210, 58, 52, 0.1);
 }
 
 .banner-icon-badge.badge-safe {
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  border: 1px solid #10b981;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  background: #DBF7E8;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.1);
 }
 
 .banner-title {
@@ -397,22 +386,22 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .mode-status-banner.banner-without-kavach .banner-title {
-  color: #f87171;
+  color: #B91D1C;
 }
 
 .mode-status-banner.banner-with-kavach .banner-title {
-  color: #34d399;
+  color: #047857;
 }
 
 .banner-desc {
   font-size: 0.73rem;
-  color: var(--text-dim);
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
 .banner-switch-btn {
-  background: var(--bg-card-elevated);
-  border: 1.5px solid var(--border-subtle);
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-strong);
   color: var(--text-main);
   font-family: var(--font-sans);
   font-size: 0.76rem;
@@ -422,38 +411,40 @@ body.mode-with-kavach .btn-dispatch-transaction {
   cursor: pointer;
   transition: all 0.16s ease;
   white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .mode-status-banner.banner-without-kavach .banner-switch-btn {
-  border-color: rgba(16, 185, 129, 0.5);
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.12);
+  border-color: #8BEEAE;
+  color: #047857;
+  background: #F0FDF4;
 }
 
 .mode-status-banner.banner-without-kavach .banner-switch-btn:hover {
-  background: #10b981;
-  color: #060913;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+  background: #059669;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.12);
 }
 
 .mode-status-banner.banner-with-kavach .banner-switch-btn {
-  border-color: rgba(239, 68, 68, 0.5);
-  color: #f87171;
-  background: rgba(239, 68, 68, 0.12);
+  border-color: #FCA5A2;
+  color: #B91D1C;
+  background: #FEF2F1;
 }
 
 .mode-status-banner.banner-with-kavach .banner-switch-btn:hover {
-  background: #ef4444;
-  color: #ffffff;
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+  background: #D23A34;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(210, 58, 52, 0.12);
+}
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================
    3-PHASE PROGRESSION NARRATIVE BAR
    ========================================================================= */
 .progression-bar-section {
-  background: #080d1a;
+  background: #F8FAFC;
   border-bottom: 1px solid var(--border-subtle);
   padding: 9px 28px;
 }
@@ -473,8 +464,8 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .phase-step-pill {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
   border-radius: 9px;
   padding: 10px 16px;
   display: flex;
@@ -482,58 +473,42 @@ body.mode-with-kavach .btn-dispatch-transaction {
   gap: 12px;
   cursor: pointer;
   transition: all 0.18s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.016);
 }
 
 .phase-step-pill:hover {
-  border-color: var(--border-strong);
+  border-color: #94A3B8;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.032);
 }
 
 .phase-step-pill.active {
-  background: rgba(37, 99, 235, 0.15);
-  border-color: #3b82f6;
-  box-shadow: 0 0 14px rgba(37, 99, 235, 0.3);
+  background: #EFF6FF;
+  border-color: #3B82F6;
+  box-shadow: 0 4px 14px rgba(39, 100, 232, 0.064);
 }
 
 .phase-step-pill.active .step-num-badge {
-  background: #2563eb;
-  color: #ffffff;
+  background: #2764E8;
+  color: #FFFFFF;
 }
 
 .phase-step-pill.active .step-text-title {
-  color: #38bdf8;
-}
-
-.phase-step-pill.active-kavach {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: #10b981;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);
-}
-
-.phase-step-pill.active-kavach .step-num-badge {
-  background: #10b981;
-  color: #060913;
-}
-
-.phase-step-pill.active-kavach .step-text-title {
-  color: #34d399;
+  color: #1F50D4;
 }
 
 .step-num-badge {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--bg-card-elevated);
-  color: var(--text-dim);
+  background: #E2E8F0;
+  color: #334155;
   font-size: 0.82rem;
   font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 1px solid var(--border-subtle);
 }
 
 .step-text-title {
@@ -567,11 +542,11 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .ledger-tile {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
   border-radius: 11px;
   padding: 14px 18px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
   transition: all 0.2s ease;
 }
 
@@ -592,9 +567,9 @@ body.mode-with-kavach .btn-dispatch-transaction {
   margin-bottom: 3px;
 }
 
-.tile-value.success { color: #34d399; }
-.tile-value.danger { color: #f87171; }
-.tile-value.gold { color: #fbbf24; }
+.tile-value.success { color: #059669; }
+.tile-value.danger { color: #D23A34; }
+.tile-value.gold { color: #D6791C; }
 
 .tile-sub {
   font-size: 0.72rem;
@@ -623,11 +598,11 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .panel-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.024);
   display: flex;
   flex-direction: column;
   transition: all 0.2s ease;
@@ -639,7 +614,7 @@ body.mode-with-kavach .btn-dispatch-transaction {
   justify-content: space-between;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1.5px solid var(--border-subtle);
 }
 
 .panel-title {
@@ -660,29 +635,28 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .scenario-card-btn {
-  background: #080d1a;
-  border: 1px solid var(--border-subtle);
-  border-left: 3px solid var(--border-subtle);
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-left: 3px solid #CBD5E1;
   border-radius: 9px;
   padding: 10px 14px;
   text-align: left;
   cursor: pointer;
   transition: all 0.16s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .scenario-card-btn:hover {
-  background: var(--bg-card-elevated);
-  border-color: var(--border-strong);
+  background: #F8FAFC;
+  border-color: #94A3B8;
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.024);
 }
 
 .scenario-card-btn.active {
-  background: rgba(37, 99, 235, 0.15);
-  border-color: #3b82f6;
-  border-left: 3px solid #38bdf8;
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.25);
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  box-shadow: 0 2px 6px rgba(39, 100, 232, 0.048);
 }
 
 .scenario-header-row {
@@ -695,15 +669,15 @@ body.mode-with-kavach .btn-dispatch-transaction {
 .scenario-badge {
   font-size: 0.64rem;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 1px 6px;
   border-radius: 4px;
   text-transform: uppercase;
 }
 
-.badge-pii { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
-.badge-attack { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
-.badge-code { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
-.badge-loop { background: rgba(0, 242, 254, 0.2); color: #38bdf8; border: 1px solid rgba(0, 242, 254, 0.4); }
+.badge-pii { background: #FFF0DC; color: #8C4600; border: 1px solid #FFE1B8; }
+.badge-attack { background: #FEF2F1; color: #D23A34; border: 1px solid #FECAC7; }
+.badge-code { background: #E5EDFF; color: #3156C6; border: 1px solid #D0DFFF; }
+.badge-loop { background: #E1F2FE; color: #0369A1; border: 1px solid #C1E4FF; }
 
 .scenario-desc-text {
   font-size: 0.73rem;
@@ -714,8 +688,8 @@ body.mode-with-kavach .btn-dispatch-transaction {
 .input-editor-area {
   width: 100%;
   height: 140px;
-  background: #060913;
-  border: 1px solid var(--border-subtle);
+  background: #F8FAFC;
+  border: 1px solid var(--border-strong);
   border-radius: 8px;
   padding: 11px;
   color: var(--text-main);
@@ -729,16 +703,16 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .input-editor-area:focus {
-  border-color: var(--quantum-cyan);
-  box-shadow: 0 0 14px rgba(0, 242, 254, 0.25);
-  background: #080d1a;
+  border-color: #2764E8;
+  box-shadow: 0 0 0 3px rgba(39, 100, 232, 0.048);
+  background: #FFFFFF;
 }
 
 /* Dispatch Button */
 .btn-dispatch-transaction {
-  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-  color: #ffffff;
-  border: 1px solid #b91c1c;
+  background: linear-gradient(135deg, #D23A34 0%, #B91D1C 100%);
+  color: #FFFFFF;
+  border: 1px solid #B91D1C;
   font-size: 0.86rem;
   font-family: var(--font-sans);
   font-weight: 700;
@@ -749,27 +723,25 @@ body.mode-with-kavach .btn-dispatch-transaction {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 2px 8px rgba(210, 58, 52, 0.112);
   transition: all 0.16s ease;
 }
 
 .btn-dispatch-transaction:hover {
-  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
-  box-shadow: 0 0 24px rgba(239, 68, 68, 0.6);
+  background: linear-gradient(135deg, #B91D1C 0%, #991B1B 100%);
+  box-shadow: 0 4px 14px rgba(210, 58, 52, 0.152);
   transform: translateY(-1px);
 }
 
 .btn-dispatch-transaction.kavach-mode {
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
   border-color: #047857;
-  color: #060913;
-  font-weight: 800;
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.112);
 }
 
 .btn-dispatch-transaction.kavach-mode:hover {
-  background: linear-gradient(135deg, #059669 0%, #065f46 100%);
-  box-shadow: 0 0 24px rgba(16, 185, 129, 0.6);
+  background: linear-gradient(135deg, #047857 0%, #065F46 100%);
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.152);
 }
 
 /* ==========================================================================
@@ -781,33 +753,32 @@ body.mode-with-kavach .btn-dispatch-transaction {
   margin-bottom: 14px;
   border: 1px solid var(--border-subtle);
   transition: all 0.2s ease;
-  background: #080d1a;
 }
 
 .impact-banner.banner-breach {
-  background: rgba(239, 68, 68, 0.12);
-  border-color: rgba(239, 68, 68, 0.4);
+  background: #FEF2F1;
+  border-color: #FECAC7;
 }
 
 .impact-banner.banner-breach .banner-title {
-  color: #f87171;
+  color: #D23A34;
 }
 
 .impact-banner.banner-breach .banner-sub {
-  color: #fca5a5;
+  color: #991B1B;
 }
 
 .impact-banner.banner-shield {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.4);
+  background: #ECFDF5;
+  border-color: #A7F3D0;
 }
 
 .impact-banner.banner-shield .banner-title {
-  color: #34d399;
+  color: #059669;
 }
 
 .impact-banner.banner-shield .banner-sub {
-  color: #86efac;
+  color: #065F46;
 }
 
 .banner-title {
@@ -826,7 +797,7 @@ body.mode-with-kavach .btn-dispatch-transaction {
 .tabs-header-strip {
   display: flex;
   gap: 4px;
-  background: #080d1a;
+  background: #F2F5F9;
   padding: 3px;
   border-radius: 7px;
   margin-bottom: 12px;
@@ -848,14 +819,13 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .tab-nav-btn.active {
-  background: var(--bg-card-elevated);
-  color: var(--quantum-cyan);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 242, 254, 0.3);
+  background: #FFFFFF;
+  color: var(--text-main);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .tab-content-display {
-  background: #060913;
+  background: #F8FAFC;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 12px;
@@ -865,13 +835,13 @@ body.mode-with-kavach .btn-dispatch-transaction {
   font-family: var(--font-mono);
   font-size: 0.77rem;
   line-height: 1.45;
-  color: #cbd5e1;
+  color: #1E293B;
   margin-bottom: 14px;
 }
 
 /* Explanation Cards */
 .explanation-card {
-  background: #080d1a;
+  background: #F8FAFC;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 11px 14px;
@@ -905,16 +875,16 @@ body.mode-with-kavach .btn-dispatch-transaction {
 }
 
 .console-card {
-  background: #060913;
-  border: 1px solid var(--border-subtle);
+  background: #0B0F19;
+  border: 1px solid #1E293B;
   border-radius: 11px;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .console-header {
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-subtle);
+  background: #111827;
+  border-bottom: 1px solid #1F2937;
   padding: 8px 14px;
   display: flex;
   align-items: center;
@@ -928,17 +898,14 @@ body.mode-with-kavach .btn-dispatch-transaction {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.5;
-  color: #cbd5e1;
+  color: #CBD5E1;
 }
 
 .log-line {
   margin-bottom: 3px;
 }
 
-.log-ts { color: #64748b; margin-right: 6px; }
-.log-alert { color: #f87171; font-weight: 700; }
-.log-kavach { color: #38bdf8; font-weight: 700; }
-.log-safe { color: #34d399; }
+.log-ts { color: #64748B; margin-right: 6px; }
 
 /* Bank Footer */
 .bank-footer {
@@ -947,5 +914,13 @@ body.mode-with-kavach .btn-dispatch-transaction {
   text-align: center;
   font-size: 0.73rem;
   color: var(--text-dim);
-  background: var(--bg-card);
+  background: #FFFFFF;
+}
+
+/* Small screens: keep the header, mode switch and shortcuts inside the viewport */
+@media (max-width: 640px) {
+  .master-switch-container { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .mode-toggle-btn { white-space: normal; font-size: 0.72rem; padding: 8px 10px; justify-content: center; text-align: center; }
+  div:has(> .header-shortcut-btn) { flex-wrap: wrap; gap: 6px; }
+  body { overflow-x: hidden; }
 }

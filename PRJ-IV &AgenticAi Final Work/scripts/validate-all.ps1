@@ -17,7 +17,7 @@ function Invoke-Validator {
     # missing or unparseable child script leaves $LASTEXITCODE untouched and the
     # suite reports success while nothing was actually validated.
     if (-not (Test-Path $path)) {
-        Write-Host "❌ $Label could not run: $Script not found" -ForegroundColor Red
+        Write-Host "$Label could not run: $Script not found" -ForegroundColor Red
         Write-Host ""
         return $false
     }
@@ -26,7 +26,7 @@ function Invoke-Validator {
     try {
         & $path
     } catch {
-        Write-Host "❌ $Label could not run: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "$Label could not run: $($_.Exception.Message)" -ForegroundColor Red
         Write-Host ""
         return $false
     }
@@ -54,9 +54,9 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 if ($TotalErrors -eq 0) {
-    Write-Host "✅ All validators passed!" -ForegroundColor Green
+    Write-Host "All validators passed!" -ForegroundColor Green
     exit 0
 } else {
-    Write-Host "❌ $TotalErrors validator(s) failed" -ForegroundColor Red
+    Write-Host "$TotalErrors validator(s) failed" -ForegroundColor Red
     exit 1
 }

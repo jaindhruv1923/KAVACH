@@ -17,9 +17,6 @@
   'use strict';
 
   function getBaseUrl() {
-    if (window.KAVACH_CONFIG && typeof window.KAVACH_CONFIG.getApiUrl === 'function') {
-      return window.KAVACH_CONFIG.getApiUrl('cockpit', '').replace(/\/$/, '');
-    }
     return window.location.port === '8001' ? '/cockpit' : 'http://127.0.0.1:8003';
   }
 
@@ -30,9 +27,9 @@
     
     if (badge) {
       badge.textContent = status || 'VERIFIED SAFE';
-      badge.style.background = status === 'QUARANTINE' ? 'rgba(239,68,68,0.2)' : 'rgba(16,185,129,0.2)';
-      badge.style.color = status === 'QUARANTINE' ? '#ef4444' : '#10b981';
-      badge.style.borderColor = status === 'QUARANTINE' ? 'rgba(239,68,68,0.4)' : 'rgba(16,185,129,0.4)';
+      badge.style.background = status === 'QUARANTINE' ? 'rgba(232, 79, 75, 0.2)' : 'rgba(60, 182, 133, 0.2)';
+      badge.style.color = status === 'QUARANTINE' ? '#e84f4b' : '#3cb685';
+      badge.style.borderColor = status === 'QUARANTINE' ? 'rgba(232, 79, 75, 0.4)' : 'rgba(60, 182, 133, 0.4)';
     }
     if (invEl) {
       invEl.innerHTML = invariant || 'Formal Invariant Guaranteed';
@@ -49,7 +46,7 @@
     if (term) {
       const timestamp = new Date().toISOString().split('T')[1].slice(0, 8);
       const formatted = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
-      term.innerHTML = `<span style="color:#38bdf8;">[${timestamp}]</span> <strong style="color:#00f2fe;">${title}</strong>\n` +
+      term.innerHTML = `<span style="color:#52b8ff;">[${timestamp}]</span> <strong style="color:#afdcff;">${title}</strong>\n` +
                        `<span style="color:#94a3b8;">${formatted}</span>`;
       term.scrollTop = 0;
     }

@@ -8,7 +8,7 @@ with open(midsem_path, "r", encoding="utf-8") as f:
 # Add button to nav-actions
 target_nav = '<button type="button" class="btn-serious magnetic-btn" onclick="window.openProfessorReviewModal()"'
 nav_btn = """<button type="button" class="btn-serious magnetic-btn" onclick="window.openImplementationModal('journey')" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg, #065F46 0%, #047857 100%); color:#6EE7B7; font-weight:700; border:1px solid #059669; box-shadow:0 0 16px rgba(5,150,105,0.35); cursor:pointer;" title="End-to-End System Implementation, Step-by-Step Execution Journey & Complete Architecture Flowchart">
-      ⚡ Implementation Flow
+      Implementation Flow
     </button>
     """
 if target_nav in content and "openImplementationModal" not in content:

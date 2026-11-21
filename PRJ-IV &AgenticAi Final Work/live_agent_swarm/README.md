@@ -1,4 +1,4 @@
-# 🛡️ KAVACH Live Agentic AI Command Center & Execution Orchestrator
+# KAVACH Live Agentic AI Command Center & Execution Orchestrator
 ### *Autonomous Multi-Agent Safety Swarm & Real-Time Reasoning Cockpit*
 **Course / Evaluation**: CSE3101 Agentic AI (BML Munjal University)  
 **Evaluators**: Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari  
@@ -6,12 +6,12 @@
 
 ---
 
-## 🌟 Executive Overview
+## Executive Overview
 The **KAVACH Live Agentic AI Command Center** provides a dedicated, real-time visual orchestration dashboard where examiners, professors, and security engineers can observe **6 specialized autonomous AI agents** actively analyzing, sanitizing, reasoning, and verifying real-world inputs, banking transactions, code blocks, and adversarial attacks step-by-step.
 
 ---
 
-## 🧬 Architecture: 6 Autonomous Specialized Agents
+## Architecture: 6 Autonomous Specialized Agents
 
 ```
                         [ User / Banking Input Payload ]
@@ -58,7 +58,7 @@ The **KAVACH Live Agentic AI Command Center** provides a dedicated, real-time vi
 
 ---
 
-## 🚀 How to Launch the Dashboard
+## How to Launch the Dashboard
 
 ### Option A: 1-Click Launch (Zero Configuration)
 Simply open `index.html` in your browser (or right-click `index.html` -> **"Open with Live Server"** in VS Code / Antigravity IDE).
@@ -76,7 +76,7 @@ To run with the real Python backend AST parser and REST API:
 
 ---
 
-## 🎯 5 One-Click Presets for Faculty Demonstration
+## 5 One-Click Presets for Faculty Demonstration
 
 | Preset | Scenario Description | Expected Agentic Behavior |
 |--------|----------------------|---------------------------|
@@ -88,14 +88,14 @@ To run with the real Python backend AST parser and REST API:
 
 ---
 
-## 📋 Key Features & Examiner Viva Points
+## Key Features & Examiner Viva Points
 
 1. **Step-by-Step Interactive Debugger**:
-   Clicking **"⏯️ Step-by-Step"** steps through each of the 6 agents individually, allowing evaluators to inspect how the payload is transformed at each stage.
+   Clicking **"Step-by-Step"** steps through each of the 6 agents individually, allowing evaluators to inspect how the payload is transformed at each stage.
 2. **Chain-of-Thought (CoT) Traces**:
    Click the **"Agent CoT"** tab in the right panel to inspect the internal reasoning log of every agent.
 3. **Cryptographic SLSA Level 3 Provenance**:
-   Click **"SLSA JSON"** or **"📥 Audit JSON"** to view and download a verifiable SLSA Level 3 execution statement compliant with in-toto v1.0.
+   Click **"SLSA JSON"** or **"Audit JSON"** to view and download a verifiable SLSA Level 3 execution statement compliant with in-toto v1.0.
 4. **Live Streaming Terminal**:
-   Monospace interactive terminal displays timestamped, color-coded agent logs in real time. Click **"📋 Copy Logs"** to copy the full telemetry trace.
+   Monospace interactive terminal displays timestamped, color-coded agent logs in real time. Click **"Copy Logs"** to copy the full telemetry trace.
 

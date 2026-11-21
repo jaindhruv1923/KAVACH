@@ -6,29 +6,26 @@
     <title>KAVACH — Autonomous Multi-Agent AI Defense Platform (CSE3101)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- KaTeX Academic Mathematical Typesetting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
-    <script src="kavach_config.js?v=5.1.0"></script>
-    <link rel="stylesheet" href="universal_mesh.css?v=5.0.0">
-    <script src="universal_mesh.js?v=5.0.0"></script>
     <style>
         :root {
-            --bg-base: #060913;
-            --bg-surface: #0c1324;
-            --bg-elevated: #111c35;
-            --border-dim: #1d2d4d;
-            --border-glow: #00f2fe;
-            --accent-cyan: #00f2fe;
-            --accent-blue: #38bdf8;
-            --accent-green: #10b981;
-            --accent-purple: #a855f7;
-            --accent-amber: #f59e0b;
-            --accent-red: #ef4444;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-base: #eff3fb;
+            --bg-surface: #ebeff7;
+            --bg-elevated: #e7ebf3;
+            --border-dim: #e1e5ed;
+            --border-glow: #006296;
+            --accent-cyan: #006296;
+            --accent-blue: #006fa8;
+            --accent-green: #008359;
+            --accent-purple: #436bdd;
+            --accent-amber: #8f5a00;
+            --accent-red: #cc3334;
+            --text-main: #121314;
+            --text-muted: #465366;
         }
 
         * {
@@ -40,7 +37,7 @@
         body {
             background-color: var(--bg-base);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -65,7 +62,7 @@
 
         /* Header */
         header {
-            background: linear-gradient(180deg, rgba(12,19,36,0.95) 0%, rgba(6,9,19,0.85) 100%);
+            background: linear-gradient(180deg, rgba(235, 239, 247, 0.95) 0%, rgba(15, 23, 41, 0.06) 100%);
             border-bottom: 1px solid var(--border-dim);
             padding: 10px 20px;
             display: flex;
@@ -97,8 +94,8 @@
             justify-content: center;
             font-weight: 800;
             font-size: 19px;
-            color: #060913;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            color: #eff3fb;
+            box-shadow: 0 0 20px rgba(0, 98, 150, 0.16);
             flex-shrink: 0;
         }
 
@@ -106,7 +103,7 @@
             font-size: 16px;
             font-weight: 700;
             letter-spacing: -0.02em;
-            background: linear-gradient(90deg, #fff, #cbd5e1);
+            background: linear-gradient(90deg, #0f0f0f, #252d36);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
@@ -126,7 +123,7 @@
         }
 
         .badge {
-            background: rgba(17, 28, 53, 0.7);
+            background: rgba(231, 235, 243, 0.7);
             border: 1px solid var(--border-dim);
             padding: 5px 10px;
             border-radius: 20px;
@@ -157,7 +154,7 @@
             overflow-x: auto;
             white-space: nowrap;
             scrollbar-width: thin;
-            scrollbar-color: rgba(0, 242, 254, 0.25) transparent;
+            scrollbar-color: rgba(0, 98, 150, 0.25) transparent;
             -webkit-overflow-scrolling: touch;
             align-items: center;
             flex: 1 1 auto;
@@ -169,7 +166,7 @@
         }
 
         .tab-bar::-webkit-scrollbar-thumb {
-            background: rgba(0, 242, 254, 0.3);
+            background: rgba(0, 98, 150, 0.3);
             border-radius: 3px;
         }
 
@@ -192,8 +189,8 @@
         }
 
         .tab-btn:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
+            color: #0f0f0f;
+            background: rgba(15, 15, 15, 0.05);
         }
 
         .tab-btn.active {
@@ -212,8 +209,8 @@
 
         .tab-btn-port {
             border: 1px solid var(--border-dim);
-            background: rgba(255, 255, 255, 0.03);
-            font-family: 'Fira Code', monospace;
+            background: rgba(15, 15, 15, 0.03);
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 10.5px;
         }
         .tab-btn-port:hover {
@@ -248,7 +245,7 @@
 
         /* Common Hero Box */
         .verdict-hero {
-            background: linear-gradient(135deg, rgba(17,28,53,0.9) 0%, rgba(12,19,36,0.95) 100%);
+            background: linear-gradient(135deg, rgba(231, 235, 243, 0.9) 0%, rgba(235, 239, 247, 0.95) 100%);
             border: 1px solid var(--border-dim);
             border-radius: 16px;
             padding: 24px 28px;
@@ -293,7 +290,7 @@
         .verdict-title {
             font-size: 20px;
             font-weight: 800;
-            color: #fff;
+            color: #0f0f0f;
             letter-spacing: -0.01em;
         }
 
@@ -314,8 +311,8 @@
         }
 
         .crisis-card {
-            background: rgba(12, 19, 36, 0.85);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(235, 239, 247, 0.85);
+            border: 1px solid rgba(204, 51, 52, 0.3);
             border-radius: 14px;
             padding: 18px;
             display: flex;
@@ -328,7 +325,7 @@
         .crisis-card:hover {
             transform: translateY(-3px);
             border-color: var(--accent-red);
-            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.2);
+            box-shadow: 0 8px 24px rgba(204, 51, 52, 0.08);
         }
 
         .crisis-header {
@@ -343,9 +340,9 @@
             text-transform: uppercase;
             padding: 3px 8px;
             border-radius: 4px;
-            background: rgba(239, 68, 68, 0.2);
+            background: rgba(204, 51, 52, 0.2);
             color: var(--accent-red);
-            border: 1px solid rgba(239, 68, 68, 0.4);
+            border: 1px solid rgba(204, 51, 52, 0.4);
             display: inline-flex;
             align-items: center;
             gap: 5px;
@@ -354,7 +351,7 @@
         .crisis-title {
             font-size: 14px;
             font-weight: 700;
-            color: #fff;
+            color: #0f0f0f;
             line-height: 1.3;
         }
 
@@ -365,11 +362,11 @@
         }
 
         .crisis-impact {
-            background: rgba(6, 9, 19, 0.7);
+            background: rgba(15, 23, 41, 0.06);
             border-radius: 8px;
             padding: 8px 10px;
             font-size: 11px;
-            color: #fca5a5;
+            color: #954848;
             border-left: 3px solid var(--accent-red);
             margin-top: auto;
         }
@@ -395,7 +392,7 @@
         .matrix-table th {
             text-align: left;
             padding: 12px 16px;
-            background: rgba(17, 28, 53, 0.6);
+            background: rgba(231, 235, 243, 0.6);
             color: var(--text-muted);
             font-weight: 600;
             border-bottom: 1px solid var(--border-dim);
@@ -403,7 +400,7 @@
 
         .matrix-table td {
             padding: 14px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(15, 15, 15, 0.04);
             vertical-align: top;
             line-height: 1.5;
         }
@@ -414,7 +411,7 @@
         }
 
         .matrix-fail {
-            color: #fca5a5;
+            color: #954848;
         }
 
         /* Pipeline Card & Animated Flow */
@@ -457,7 +454,7 @@
         .pipeline-stage:hover, .pipeline-stage.active {
             border-color: var(--accent-cyan);
             transform: translateY(-4px);
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+            box-shadow: 0 0 25px rgba(0, 98, 150, 0.14);
         }
 
         .pipeline-stage-top {
@@ -471,15 +468,15 @@
             font-weight: 800;
             padding: 3px 8px;
             border-radius: 4px;
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(0, 98, 150, 0.15);
             color: var(--accent-cyan);
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            border: 1px solid rgba(0, 98, 150, 0.3);
         }
 
         .stage-title {
             font-size: 13px;
             font-weight: 700;
-            color: #fff;
+            color: #0f0f0f;
         }
 
         .stage-desc {
@@ -489,22 +486,24 @@
         }
 
         .stage-metric {
-            font-family: 'Fira Code', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 10px;
             color: var(--accent-green);
             padding-top: 6px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(15, 15, 15, 0.06);
         }
 
         .pipeline-connector {
             flex: 1;
-            min-width: 45px;
-            height: 48px;
+            min-width: 52px;
+            max-width: 80px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            padding: 0 4px;
         }
 
         .jumping-arrow-svg {
@@ -513,28 +512,38 @@
             overflow: visible;
         }
 
-        .flow-line {
-            stroke: rgba(0, 242, 254, 0.3);
-            stroke-width: 2;
+        /* Solid visible guide rail */
+        .flow-rail-bg {
+            stroke: #cbd5e1;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+        }
+
+        /* High-contrast animated pulse track */
+        .flow-track {
+            stroke-width: 2.4;
             stroke-dasharray: 6 4;
-            animation: dashMove 1.5s linear infinite;
+            animation: dashTrack 1.1s linear infinite;
         }
 
-        .flow-particle {
-            fill: var(--accent-cyan);
-            filter: drop-shadow(0 0 6px var(--accent-cyan));
-            animation: travelPulse 2s ease-in-out infinite;
+        /* Crisp destination arrowhead */
+        .flow-arrowhead {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.16));
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @keyframes dashMove {
+        .pipeline-connector:hover .flow-arrowhead {
+            transform: scale(1.18);
+        }
+
+        /* Leaping Arrow Packet */
+        .jumping-arrow-packet {
+            transform-origin: center;
+        }
+
+        @keyframes dashTrack {
             from { stroke-dashoffset: 20; }
             to { stroke-dashoffset: 0; }
-        }
-
-        @keyframes travelPulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.4); opacity: 1; filter: drop-shadow(0 0 10px var(--accent-cyan)); }
-            100% { transform: scale(0.8); opacity: 0.5; }
         }
 
         /* ============================================================
@@ -558,14 +567,14 @@
         }
 
         .agent-card:hover {
-            border-color: rgba(0, 242, 254, 0.4);
+            border-color: rgba(0, 98, 150, 0.4);
             transform: translateY(-2px);
         }
 
         .agent-card.active {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 24px rgba(0, 242, 254, 0.3);
-            background: linear-gradient(180deg, rgba(12,19,36,1) 0%, rgba(17,28,53,1) 100%);
+            box-shadow: 0 0 24px rgba(0, 98, 150, 0.12);
+            background: linear-gradient(180deg, rgb(235, 239, 247) 0%, rgb(231, 235, 243) 100%);
         }
 
         .agent-card.active::before {
@@ -594,7 +603,7 @@
         .agent-title {
             font-size: 13px;
             font-weight: 700;
-            color: #fff;
+            color: #0f0f0f;
         }
 
         .agent-role {
@@ -611,7 +620,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(15, 23, 41, 0.135);
         }
 
         .ps-studio {
@@ -660,13 +669,13 @@
         .ps-card:hover {
             border-color: var(--accent-cyan);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 242, 254, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 98, 150, 0.06);
         }
 
         .ps-card.active {
             border-color: var(--accent-cyan);
-            background: linear-gradient(180deg, rgba(0, 242, 254, 0.09) 0%, rgba(17, 28, 53, 0.95) 100%);
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+            background: linear-gradient(180deg, rgba(0, 98, 150, 0.09) 0%, rgba(231, 235, 243, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 98, 150, 0.1);
         }
 
         .ps-card-top {
@@ -684,15 +693,15 @@
             display: inline-block;
         }
 
-        .badge-ps1 { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.4); }
-        .badge-ps2 { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.4); }
-        .badge-ps3 { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.4); }
-        .badge-ps4 { background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.4); }
+        .badge-ps1 { background: rgba(0, 131, 89, 0.2); color: var(--accent-green); border: 1px solid rgba(0, 131, 89, 0.4); }
+        .badge-ps2 { background: rgba(204, 51, 52, 0.2); color: var(--accent-red); border: 1px solid rgba(204, 51, 52, 0.4); }
+        .badge-ps3 { background: rgba(143, 90, 0, 0.2); color: var(--accent-amber); border: 1px solid rgba(143, 90, 0, 0.4); }
+        .badge-ps4 { background: rgba(0, 111, 168, 0.2); color: var(--accent-blue); border: 1px solid rgba(0, 111, 168, 0.4); }
 
         .ps-card-title {
             font-size: 13px;
             font-weight: 700;
-            color: #fff;
+            color: #0f0f0f;
             line-height: 1.3;
         }
 
@@ -705,18 +714,18 @@
         .ps-card-meta {
             margin-top: auto;
             padding-top: 8px;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid rgba(15, 15, 15, 0.06);
             display: flex;
             align-items: center;
             justify-content: space-between;
             font-size: 10px;
             color: var(--text-muted);
-            font-family: 'Fira Code', monospace;
+            font-family: 'IBM Plex Mono', monospace;
         }
 
         .active-ps-banner {
-            background: linear-gradient(90deg, rgba(0, 242, 254, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            background: linear-gradient(90deg, rgba(0, 98, 150, 0.1) 0%, rgba(67, 107, 221, 0.05) 100%);
+            border: 1px solid rgba(0, 98, 150, 0.3);
             border-radius: 10px;
             padding: 12px 16px;
             display: flex;
@@ -733,7 +742,7 @@
 
         .active-ps-title {
             font-weight: 700;
-            color: #fff;
+            color: #0f0f0f;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -763,7 +772,7 @@
         }
 
         .quick-pill {
-            background: rgba(17, 28, 53, 0.6);
+            background: rgba(231, 235, 243, 0.6);
             border: 1px solid var(--border-dim);
             border-radius: 20px;
             padding: 6px 14px;
@@ -778,7 +787,7 @@
 
         .quick-pill:hover {
             border-color: var(--accent-cyan);
-            color: #fff;
+            color: #0f0f0f;
             background: var(--bg-elevated);
         }
 
@@ -790,12 +799,12 @@
 
         .goal-textarea {
             flex: 1;
-            background: #040710;
+            background: #f0f4fc;
             border: 1px solid var(--border-dim);
             border-radius: 12px;
             padding: 14px 18px;
-            color: #fff;
-            font-family: 'Fira Code', monospace;
+            color: #0f0f0f;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 13px;
             resize: none;
             outline: none;
@@ -805,13 +814,13 @@
 
         .goal-textarea:focus {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 16px rgba(0, 242, 254, 0.25);
+            box-shadow: 0 0 16px rgba(0, 98, 150, 0.1);
         }
 
         .btn-launch {
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, #00b4d8 100%);
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, #0073af 100%);
             border: none;
-            color: #060913;
+            color: #eff3fb;
             font-weight: 700;
             font-size: 14px;
             padding: 14px 28px;
@@ -821,14 +830,14 @@
             align-items: center;
             gap: 8px;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.35);
+            box-shadow: 0 4px 20px rgba(0, 98, 150, 0.14);
             white-space: nowrap;
             height: 52px;
         }
 
         .btn-launch:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5);
+            box-shadow: 0 8px 30px rgba(0, 98, 150, 0.2);
         }
 
         .btn-launch:disabled {
@@ -850,13 +859,13 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(15, 23, 41, 0.135);
             height: 600px;
         }
 
         .panel-header {
             padding: 14px 20px;
-            background: rgba(17, 28, 53, 0.6);
+            background: rgba(231, 235, 243, 0.6);
             border-bottom: 1px solid var(--border-dim);
             display: flex;
             align-items: center;
@@ -866,7 +875,7 @@
         .panel-title {
             font-size: 13px;
             font-weight: 700;
-            color: #fff;
+            color: #0f0f0f;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -876,8 +885,8 @@
             flex: 1;
             padding: 16px;
             overflow-y: auto;
-            background: #040710;
-            font-family: 'Fira Code', monospace;
+            background: #f0f4fc;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 12px;
             line-height: 1.6;
             display: flex;
@@ -886,7 +895,7 @@
         }
 
         .stream-entry {
-            background: rgba(12, 19, 36, 0.7);
+            background: rgba(235, 239, 247, 0.7);
             border: 1px solid var(--border-dim);
             border-radius: 8px;
             padding: 12px;
@@ -904,16 +913,16 @@
         }
 
         .entry-agent-tag {
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(0, 98, 150, 0.15);
             color: var(--accent-cyan);
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            border: 1px solid rgba(0, 98, 150, 0.3);
             padding: 2px 8px;
             border-radius: 4px;
             font-weight: 600;
         }
 
         .entry-thought {
-            color: #cbd5e1;
+            color: #252d36;
             font-style: normal;
         }
 
@@ -923,10 +932,10 @@
         }
 
         .entry-obs {
-            background: #020408;
+            background: #f1f7fe;
             border-radius: 6px;
             padding: 8px 10px;
-            color: #94a3b8;
+            color: #465366;
             border-left: 2px solid var(--accent-green);
             white-space: pre-wrap;
             word-break: break-all;
@@ -937,8 +946,8 @@
             flex: 1;
             padding: 16px;
             overflow-y: auto;
-            background: #040710;
-            font-family: 'Fira Code', monospace;
+            background: #f0f4fc;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 12px;
             display: flex;
             flex-direction: column;
@@ -946,7 +955,7 @@
         }
 
         .a2a-card {
-            background: rgba(12, 19, 36, 0.7);
+            background: rgba(235, 239, 247, 0.7);
             border: 1px solid var(--border-dim);
             border-radius: 8px;
             padding: 12px;
@@ -965,10 +974,10 @@
         }
 
         .a2a-content {
-            background: #020408;
+            background: #f1f7fe;
             border-radius: 6px;
             padding: 8px 10px;
-            color: #cbd5e1;
+            color: #252d36;
             font-size: 11px;
             white-space: pre-wrap;
             word-break: break-all;
@@ -1019,7 +1028,7 @@
         }
 
         .diff-col {
-            background: #040710;
+            background: #f0f4fc;
             border: 1px solid var(--border-dim);
             border-radius: 8px;
             padding: 12px;
@@ -1037,7 +1046,7 @@
         }
 
         .diff-text {
-            font-family: 'Fira Code', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 12px;
             line-height: 1.5;
             word-break: break-all;
@@ -1047,13 +1056,13 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 12px;
-            font-family: 'Fira Code', monospace;
+            font-family: 'IBM Plex Mono', monospace;
         }
 
         .data-table th {
             text-align: left;
             padding: 10px 14px;
-            background: rgba(17, 28, 53, 0.6);
+            background: rgba(231, 235, 243, 0.6);
             color: var(--text-muted);
             font-weight: 600;
             border-bottom: 1px solid var(--border-dim);
@@ -1061,7 +1070,7 @@
 
         .data-table td {
             padding: 12px 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(15, 15, 15, 0.04);
             vertical-align: middle;
         }
 
@@ -1095,12 +1104,12 @@
 
         .math-card:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 8px 24px rgba(0, 242, 254, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 98, 150, 0.04);
         }
 
         .math-formula-box {
-            background: #040710;
-            border: 1px solid rgba(0, 242, 254, 0.2);
+            background: #f0f4fc;
+            border: 1px solid rgba(0, 98, 150, 0.2);
             border-radius: 10px;
             padding: 14px;
             text-align: center;
@@ -1164,7 +1173,7 @@
         }
 
         .bench-kpi-card:hover {
-            border-color: rgba(0, 242, 254, 0.4);
+            border-color: rgba(0, 98, 150, 0.4);
             transform: translateY(-2px);
         }
 
@@ -1196,8 +1205,8 @@
         .bench-kpi-val {
             font-size: 30px;
             font-weight: 800;
-            font-family: 'Fira Code', monospace;
-            color: #fff;
+            font-family: 'IBM Plex Mono', monospace;
+            color: #0f0f0f;
             letter-spacing: -0.02em;
         }
 
@@ -1227,7 +1236,7 @@
         .bench-domain-title {
             font-size: 13px;
             font-weight: 700;
-            color: #fff;
+            color: #0f0f0f;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1241,7 +1250,7 @@
         }
 
         .filter-pill {
-            background: #040710;
+            background: #f0f4fc;
             border: 1px solid var(--border-dim);
             color: var(--text-muted);
             padding: 6px 14px;
@@ -1256,10 +1265,10 @@
         }
 
         .filter-pill:hover, .filter-pill.active {
-            background: rgba(0, 242, 254, 0.12);
+            background: rgba(0, 98, 150, 0.12);
             color: var(--accent-cyan);
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 10px rgba(0, 98, 150, 0.08);
         }
 
         .bench-table-container {
@@ -1276,22 +1285,22 @@
         }
 
         .bench-row:hover {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(15, 15, 15, 0.03);
         }
 
         .bench-drawer {
-            background: #030611;
+            background: #f0f4fd;
             padding: 14px 20px;
             border-bottom: 1px solid var(--border-dim);
-            font-family: 'Fira Code', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 11px;
             display: none;
         }
 
         .bench-badge-pass {
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(0, 131, 89, 0.15);
             color: var(--accent-green);
-            border: 1px solid rgba(16, 185, 129, 0.35);
+            border: 1px solid rgba(0, 131, 89, 0.35);
             padding: 3px 8px;
             border-radius: 4px;
             font-weight: 700;
@@ -1302,9 +1311,9 @@
         }
 
         .bench-badge-fail {
-            background: rgba(239, 68, 68, 0.15);
+            background: rgba(204, 51, 52, 0.15);
             color: var(--accent-red);
-            border: 1px solid rgba(239, 68, 68, 0.35);
+            border: 1px solid rgba(204, 51, 52, 0.35);
             padding: 3px 8px;
             border-radius: 4px;
             font-weight: 700;
@@ -1318,7 +1327,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(4, 7, 16, 0.88);
+            background: rgba(15, 23, 41, 0.06);
             backdrop-filter: blur(16px);
             z-index: 9999;
             display: none;
@@ -1329,7 +1338,7 @@
         }
 
         .modal-card {
-            background: linear-gradient(145deg, #0d1527 0%, #060a14 100%);
+            background: linear-gradient(145deg, #eaeef6 0%, #eef3fb 100%);
             border: 2px solid var(--accent-cyan);
             border-radius: 20px;
             max-width: 900px;
@@ -1340,7 +1349,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            box-shadow: 0 0 60px rgba(0, 242, 254, 0.35);
+            box-shadow: 0 0 60px rgba(0, 98, 150, 0.14);
             animation: modalScale 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             position: relative;
         }
@@ -1359,7 +1368,7 @@
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+            border-bottom: 1px solid rgba(0, 98, 150, 0.2);
             padding-bottom: 16px;
         }
 
@@ -1370,9 +1379,9 @@
             letter-spacing: 0.08em;
             padding: 4px 12px;
             border-radius: 6px;
-            background: rgba(16, 185, 129, 0.2);
+            background: rgba(0, 131, 89, 0.2);
             color: var(--accent-green);
-            border: 1px solid rgba(16, 185, 129, 0.4);
+            border: 1px solid rgba(0, 131, 89, 0.4);
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -1382,7 +1391,7 @@
         .modal-title {
             font-size: 24px;
             font-weight: 800;
-            color: #fff;
+            color: #0f0f0f;
             letter-spacing: -0.02em;
         }
 
@@ -1400,7 +1409,7 @@
         }
 
         .modal-card-box {
-            background: rgba(17, 28, 53, 0.5);
+            background: rgba(231, 235, 243, 0.5);
             border: 1px solid var(--border-dim);
             border-radius: 12px;
             padding: 16px;
@@ -1432,13 +1441,13 @@
             justify-content: flex-end;
             gap: 12px;
             padding-top: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(15, 15, 15, 0.06);
         }
 
         .btn-modal-primary {
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, #00b4d8 100%);
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, #0073af 100%);
             border: none;
-            color: #060913;
+            color: #eff3fb;
             font-weight: 700;
             font-size: 13px;
             padding: 10px 20px;
@@ -1453,7 +1462,7 @@
         .btn-modal-secondary {
             background: var(--bg-elevated);
             border: 1px solid var(--border-dim);
-            color: #fff;
+            color: #0f0f0f;
             font-weight: 600;
             font-size: 13px;
             padding: 10px 18px;
@@ -1473,9 +1482,50 @@
             padding: 4px;
             line-height: 1;
         }
-        .btn-modal-close:hover { color: #fff; }
+        .btn-modal-close:hover { color: #0f0f0f; }
 
     </style>
+
+<!-- KAVACH suite: dynamic loader for local server & GitHub Pages -->
+<script>
+  (function() {
+    var loc = window.location;
+    var isGh = loc.hostname.indexOf('github.io') !== -1;
+    var ghRepo = (isGh && loc.pathname.split('/')[1]) ? '/' + loc.pathname.split('/')[1] : '';
+    var suiteBase = isGh ? (ghRepo + '/suite/') : '/suite/';
+
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = suiteBase + 'kavach-suite.css?v=2.5';
+    document.head.appendChild(css);
+
+    var jsSuite = document.createElement('script');
+    jsSuite.src = suiteBase + 'kavach-suite.js?v=2.5';
+    jsSuite.setAttribute('data-page', 'cockpit');
+    jsSuite.setAttribute('data-placement', 'top');
+    jsSuite.defer = true;
+    document.head.appendChild(jsSuite);
+
+    var jsStory = document.createElement('script');
+    jsStory.src = suiteBase + 'kavach-story-mode.js?v=2.5';
+    jsStory.defer = true;
+    document.head.appendChild(jsStory);
+  })();
+</script>
+
+<style id="kv-mobile-fixes">
+/* Small screens: wrap the header instead of pushing the page sideways */
+@media (max-width: 760px) {
+  header, .top-header, .cockpit-header { flex-wrap: wrap !important; gap: 10px !important; height: auto !important; }
+  .brand-cluster { min-width: 0 !important; flex: 1 1 100% !important; }
+  .brand-text, .brand-text h1, .brand-text p { min-width: 0 !important; white-space: normal !important; overflow-wrap: anywhere; }
+  .brand-text h1 { font-size: 1.05rem !important; }
+  .system-badges { flex-wrap: wrap !important; flex: 1 1 100% !important; min-width: 0 !important; }
+  .crisis-grid { grid-template-columns: 1fr !important; }
+  .comparison-matrix { overflow-x: auto !important; }
+  .matrix-table { min-width: 640px; }
+}
+</style>
 </head>
 <body>
 
@@ -1490,6 +1540,10 @@
         </div>
 
         <div class="tab-bar">
+            <button class="tab-btn" id="tabStoryCampaignBtn" onclick="openKavachStoryMode()">
+                <svg class="k-icon" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h4m-2-2v4m10-2h.01m-3 0h.01"></path></svg>
+                Story Campaign
+            </button>
             <button class="tab-btn active" id="tabStory" onclick="switchMainView('story')">
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                 Story &amp; Pipeline
@@ -1518,19 +1572,6 @@
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 Benchmark &amp; Evals
             </button>
-            <div class="tab-divider"></div>
-            <a id="cockpitNavMaster" href="http://localhost:8001/" target="_blank" class="tab-btn tab-btn-port" title="KAVACH Master Platform (Port 8001)">
-                <svg class="k-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
-                <span id="cockpitLabelMaster">Master :8001</span>
-            </a>
-            <a id="cockpitNavBank" href="http://localhost:8002/" target="_blank" class="tab-btn tab-btn-port" title="Bharat Core Banking (Port 8002)">
-                <svg class="k-icon" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line><polygon points="12 2 2 7 22 7 12 2"></polygon></svg>
-                <span id="cockpitLabelBank">Bank :8002</span>
-            </a>
-            <a id="cockpitNavSwarm" href="http://localhost:8000/" target="_blank" class="tab-btn tab-btn-port" title="Live Agent Swarm Engine (Port 8000)">
-                <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                <span id="cockpitLabelSwarm">Swarm :8000</span>
-            </a>
         </div>
 
         <div class="system-badges">
@@ -1558,7 +1599,7 @@
             <section class="verdict-hero">
                 <div class="verdict-hero-top">
                     <div>
-                        <span class="verdict-tag" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid rgba(0,242,254,0.4);">
+                        <span class="verdict-tag" style="background:rgba(0, 98, 150, 0.15); color:var(--accent-cyan); border:1px solid rgba(0, 98, 150, 0.4);">
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                             The Real-World Capstone Scenario &bull; Bharat Core Bank
                         </span>
@@ -1585,7 +1626,7 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
                         The 4 Production Roadblocks That Require Autonomous Agentic Defense
                     </div>
-                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'Fira Code', monospace;">Zero-Tolerance Security Invariants</span>
+                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace;">Zero-Tolerance Security Invariants</span>
                 </div>
 
                 <div class="crisis-grid">
@@ -1646,7 +1687,7 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                         Why Existing Solutions Fail &amp; Hence Why We Built KAVACH
                     </div>
-                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'Fira Code', monospace;">Academic &amp; Industrial Comparison</span>
+                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace;">Academic &amp; Industrial Comparison</span>
                 </div>
 
                 <table class="matrix-table">
@@ -1694,7 +1735,7 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                         Interactive Defense Pipeline &bull; Step-by-Step Flow with Jumping Light Pulses
                     </div>
-                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'Fira Code', monospace;">Click Any Stage to Inspect Invariant</span>
+                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace;">Click Any Stage to Inspect Invariant</span>
                 </div>
 
                 <div class="pipeline-flow">
@@ -1708,10 +1749,22 @@
                         <div class="stage-metric">1,420 Chunks Indexed</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Stage 2">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 5 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="12" r="4" />
+                            <defs>
+                                <filter id="glow-p1" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#059669" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#059669" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#059669" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-p1)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#059669" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -1725,10 +1778,22 @@
                         <div class="stage-metric">0% Plaintext Egress</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Stage 3">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 35 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="28" r="4" />
+                            <defs>
+                                <filter id="glow-p2" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#4f46e5" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#4f46e5" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#4f46e5" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#4f46e5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-p2)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#4f46e5" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -1742,10 +1807,22 @@
                         <div class="stage-metric">A2A Blackboard Sync</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Stage 4">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 5 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="12" r="4" />
+                            <defs>
+                                <filter id="glow-p3" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#d97706" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#d97706" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#d97706" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#d97706" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-p3)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#d97706" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -1759,10 +1836,22 @@
                         <div class="stage-metric">D5 Group Check \(\equiv 0\)</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Stage 5">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 35 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="28" r="4" />
+                            <defs>
+                                <filter id="glow-p4" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#0284c7" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#0284c7" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#0284c7" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-p4)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -1777,9 +1866,9 @@
                     </div>
                 </div>
 
-                <div id="pipelineDetailBox" style="background:#040710; border:1px solid var(--border-dim); border-radius:10px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
+                <div id="pipelineDetailBox" style="background:#f0f4fc; border:1px solid var(--border-dim); border-radius:10px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
-                        <strong style="color:#fff;" id="pdetailTitle">Stage 1: Repository Ingestion &amp; Chunking (Bharat Core Bank)</strong>
+                        <strong style="color:#0f0f0f;" id="pdetailTitle">Stage 1: Repository Ingestion &amp; Chunking (Bharat Core Bank)</strong>
                         <div style="font-size:12px; color:var(--text-muted); margin-top:4px;" id="pdetailDesc">
                             The repository is parsed using AST visitors and decomposed into 1,420 overlapping vector chunks. When users query the system, the RAG index grounds all prompt generation.
                         </div>
@@ -1857,7 +1946,7 @@
                             <svg class="k-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                             Select Problem Statement (CSE3101 Agentic AI Curriculum)
                         </div>
-                        <span style="font-size: 11px; color: var(--text-muted); font-family: 'Fira Code', monospace;">Choose a formal challenge or type freeform below</span>
+                        <span style="font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace;">Choose a formal challenge or type freeform below</span>
                     </div>
 
                     <div class="ps-grid">
@@ -1922,15 +2011,15 @@
                             <span class="ps-card-badge badge-ps1" id="bannerBadge">PS-1</span>
                             <span id="bannerHeading">Statutory DPDP Act 2023 Identity Vault &amp; Verhoeff D5 Integrity</span>
                         </span>
-                        <span style="font-size: 11px; color: var(--text-muted); font-family: 'Fira Code', monospace;" id="bannerAgents">DAG: Sentinel &rarr; SecurityAuditor &rarr; VerifierCritic</span>
+                        <span style="font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace;" id="bannerAgents">DAG: Sentinel &rarr; SecurityAuditor &rarr; VerifierCritic</span>
                     </div>
                     <div class="active-ps-row2">
                         <span class="active-ps-pill">
-                            <strong style="color:#fff;">Threat / Mandate:</strong>
+                            <strong style="color:#0f0f0f;">Threat / Mandate:</strong>
                             <span id="bannerThreat">Section 8 Indian DPDP Act 2023 (₹250 Crore penalty for identity leaks in logs)</span>
                         </span>
                         <span class="active-ps-pill">
-                            <strong style="color:#fff;">Certified Invariant:</strong>
+                            <strong style="color:#0f0f0f;">Certified Invariant:</strong>
                             <span style="color:var(--accent-green);" id="bannerInvariant">Zero Plaintext Identity Egress &amp; Dihedral D5 Verhoeff Checksum</span>
                         </span>
                     </div>
@@ -1939,7 +2028,7 @@
                 <!-- Quick Scenario Presets -->
                 <div class="quick-demos">
                     <span style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Quick Scenarios:</span>
-                    <button class="quick-pill" style="border-color: rgba(0, 242, 254, 0.4); color: #fff;" onclick="loadScenario('typo-invalid')">
+                    <button class="quick-pill" style="border-color: rgba(0, 98, 150, 0.4); color: #0f0f0f;" onclick="loadScenario('typo-invalid')">
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M10 2v7.31L4.69 18.5A2 2 0 0 0 6.4 22h11.2a2 2 0 0 0 1.71-3.5L14 9.31V2"></path></svg>
                         Test Typo &amp; Invalid D5 (132132132132)
                     </button>
@@ -1959,23 +2048,23 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                         Pytest Test Verification Suite
                     </button>
-                    <button class="quick-pill" style="border-color: rgba(168, 85, 247, 0.5); color: #d8b4fe;" onclick="loadScenario('reflexion-repair')">
+                    <button class="quick-pill" style="border-color: rgba(67, 107, 221, 0.5); color: #445e9e;" onclick="loadScenario('reflexion-repair')">
                         <svg class="k-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                         Reflexion Self-Correction &amp; Auto-Repair
                     </button>
-                    <button class="quick-pill" style="border-color: rgba(56, 189, 248, 0.5); color: #7dd3fc;" onclick="loadScenario('ast-taint-slopsquat')">
+                    <button class="quick-pill" style="border-color: rgba(0, 111, 168, 0.5); color: #1f6795;" onclick="loadScenario('ast-taint-slopsquat')">
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                         AST Taint Reachability &amp; Slopsquat Audit
                     </button>
-                    <button class="quick-pill" style="border-color: rgba(16, 185, 129, 0.5); color: #6ee7b7;" onclick="loadScenario('saga-rollback')">
+                    <button class="quick-pill" style="border-color: rgba(0, 131, 89, 0.5); color: #007151;" onclick="loadScenario('saga-rollback')">
                         <svg class="k-icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
                         SAGA Distributed Rollback &amp; Escrow
                     </button>
-                    <button class="quick-pill" style="border-color: rgba(0, 242, 254, 0.5); color: #67e8f9;" onclick="loadScenario('dp-laplace')">
+                    <button class="quick-pill" style="border-color: rgba(0, 98, 150, 0.5); color: #006397;" onclick="loadScenario('dp-laplace')">
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         Differential Privacy &amp; Laplace Noise
                     </button>
-                    <button class="quick-pill" style="border-color: rgba(245, 158, 11, 0.5); color: #fcd34d;" onclick="loadScenario('stackelberg-game')">
+                    <button class="quick-pill" style="border-color: rgba(143, 90, 0, 0.5); color: #7c5200;" onclick="loadScenario('stackelberg-game')">
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                         Stackelberg Game &amp; Rate Limiter
                     </button>
@@ -1992,17 +2081,17 @@
             </section>
 
             <!-- Adaptive Self-Correction & Reflexion Live Stepper (Stage 2) -->
-            <section class="console-section" id="reflexionPanel" style="border: 1px solid rgba(168, 85, 247, 0.35); background: linear-gradient(180deg, rgba(168, 85, 247, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+            <section class="console-section" id="reflexionPanel" style="border: 1px solid rgba(67, 107, 221, 0.35); background: linear-gradient(180deg, rgba(67, 107, 221, 0.05) 0%, rgba(236, 240, 248, 0.8) 100%);">
                 <div class="ps-studio-header">
                     <div class="ps-studio-title" style="color: var(--accent-purple);">
                         <svg class="k-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                         Adaptive Self-Correction &amp; Reflexion Engine (Shinn et al. NeurIPS 2023)
                     </div>
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="ps-card-badge" id="reflexionBadge" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border: 1px solid rgba(168, 85, 247, 0.4);">
+                        <span class="ps-card-badge" id="reflexionBadge" style="background: rgba(67, 107, 221, 0.2); color: var(--accent-purple); border: 1px solid rgba(67, 107, 221, 0.4);">
                             Verbal RL Buffer: Active
                         </span>
-                        <button class="quick-pill" onclick="simulateReflexionLive()" style="background: rgba(168, 85, 247, 0.2); color: #fff; border-color: var(--accent-purple);">
+                        <button class="quick-pill" onclick="simulateReflexionLive()" style="background: rgba(67, 107, 221, 0.2); color: #0f0f0f; border-color: var(--accent-purple);">
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                             Simulate Auto-Repair Loop
                         </button>
@@ -2011,52 +2100,52 @@
 
                 <!-- 4-Stage Convergence Stepper -->
                 <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
-                    <div class="crisis-card" id="refCard1" style="border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="crisis-card" id="refCard1" style="border-color: rgba(204, 51, 52, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-red);">
-                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">1. Trial Failure</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="refLoss0">\(\mathcal{L}_0 = 1.0\)</span>
+                            <span class="stage-num-badge" style="background: rgba(204, 51, 52, 0.2); color: var(--accent-red); border-color: rgba(204, 51, 52, 0.4);">1. Trial Failure</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="refLoss0">\(\mathcal{L}_0 = 1.0\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Flawed Action Injected</strong>
+                            <strong style="color:#0f0f0f;">Flawed Action Injected</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc1">
                                 DevOpsCoder proposed code with forbidden <code>eval()</code> or broken pytest assertion.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="refCard2" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div class="crisis-card" id="refCard2" style="border-color: rgba(143, 90, 0, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-amber);">
-                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.4);">2. Invariant Critique</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;">A2A Rejection</span>
+                            <span class="stage-num-badge" style="background: rgba(143, 90, 0, 0.2); color: var(--accent-amber); border-color: rgba(143, 90, 0, 0.4);">2. Invariant Critique</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;">A2A Rejection</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">VerifierCritic Intercept</strong>
+                            <strong style="color:#0f0f0f;">VerifierCritic Intercept</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc2">
                                 Invariant checker trapped AST violation or non-zero return code. Emitted critique to bus.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="refCard3" style="border-color: rgba(168, 85, 247, 0.3);">
+                    <div class="crisis-card" id="refCard3" style="border-color: rgba(67, 107, 221, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-purple);">
-                            <span class="stage-num-badge" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.4);">3. Reflexion</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;">Verbal Memory</span>
+                            <span class="stage-num-badge" style="background: rgba(67, 107, 221, 0.2); color: var(--accent-purple); border-color: rgba(67, 107, 221, 0.4);">3. Reflexion</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;">Verbal Memory</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Counterfactual Diagnosis</strong>
+                            <strong style="color:#0f0f0f;">Counterfactual Diagnosis</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc3">
                                 Reflexion Engine diagnosed root cause and synthesized counterfactual repair heuristic.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="refCard4" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div class="crisis-card" id="refCard4" style="border-color: rgba(0, 131, 89, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-green);">
-                            <span class="stage-num-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);">4. Convergence</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="refLoss1">\(\mathcal{L}_1 = 0.0\)</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 131, 89, 0.2); color: var(--accent-green); border-color: rgba(0, 131, 89, 0.4);">4. Convergence</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="refLoss1">\(\mathcal{L}_1 = 0.0\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Certified Zero Regression</strong>
+                            <strong style="color:#0f0f0f;">Certified Zero Regression</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="refDesc4">
                                 Applied atomic repair. All pytest unit assertions and AST bounds pass with 100% success.
                             </p>
@@ -2065,23 +2154,23 @@
                 </div>
 
                 <!-- KaTeX Mathematical Invariant Bound Box -->
-                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(168, 85, 247, 0.25);">
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #f0f4fd; border-color: rgba(67, 107, 221, 0.25);">
                     $$M_{t+1} = M_t \cup \{ \text{Diagnose}(a_t, o_t) \}, \quad a_{t+1} \sim \pi(a \mid s_t, M_{t+1}) \implies \mathcal{L}(a_{t+1}) < \mathcal{L}(a_t) \quad (\text{Bounded Budget } K \le 3)$$
                 </div>
             </section>
 
             <!-- AST Semantic Vulnerability & Supply-Chain Slopsquatting Graph Traversal (Stage 3) -->
-            <section class="console-section" id="astTaintPanel" style="border: 1px solid rgba(56, 189, 248, 0.35); background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+            <section class="console-section" id="astTaintPanel" style="border: 1px solid rgba(0, 111, 168, 0.35); background: linear-gradient(180deg, rgba(0, 111, 168, 0.05) 0%, rgba(236, 240, 248, 0.8) 100%);">
                 <div class="ps-studio-header">
                     <div class="ps-studio-title" style="color: var(--accent-cyan);">
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                         AST Taint Reachability Graph &amp; Supply-Chain Slopsquatting Traversal (Stage 3)
                     </div>
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="ps-card-badge" id="astLatticeBadge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.35);">
+                        <span class="ps-card-badge" id="astLatticeBadge" style="background: rgba(0, 111, 168, 0.15); color: var(--accent-cyan); border: 1px solid rgba(0, 111, 168, 0.35);">
                             Lattice: \(\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E})\)
                         </span>
-                        <button class="quick-pill" onclick="runAstAuditLive()" style="background: rgba(56, 189, 248, 0.2); color: #fff; border-color: var(--accent-cyan);">
+                        <button class="quick-pill" onclick="runAstAuditLive()" style="background: rgba(0, 111, 168, 0.2); color: #0f0f0f; border-color: var(--accent-cyan);">
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                             Run Live AST &amp; Slopsquat Audit
                         </button>
@@ -2090,52 +2179,52 @@
 
                 <!-- 4-Quadrant AST Analysis Grid -->
                 <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
-                    <div class="crisis-card" id="astCardSources" style="border-color: rgba(56, 189, 248, 0.3);">
+                    <div class="crisis-card" id="astCardSources" style="border-color: rgba(0, 111, 168, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-blue);">
-                            <span class="stage-num-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">1. Taint Sources</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountSources">\(v \in \mathcal{V}_{\text{src}}\)</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 111, 168, 0.2); color: var(--accent-blue); border-color: rgba(0, 111, 168, 0.4);">1. Taint Sources</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="astCountSources">\(v \in \mathcal{V}_{\text{src}}\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Ingress Data Inflow</strong>
+                            <strong style="color:#0f0f0f;">Ingress Data Inflow</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescSources">
                                 Tracks parameters like <code>user_input</code>, <code>query</code>, and direct <code>input()</code> calls as tainted root vertices.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="astCardPropagation" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div class="crisis-card" id="astCardPropagation" style="border-color: rgba(143, 90, 0, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-amber);">
-                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.4);">2. Inter-Procedural DAG</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountEdges">\(\mathcal{E}_{\text{taint}}\)</span>
+                            <span class="stage-num-badge" style="background: rgba(143, 90, 0, 0.2); color: var(--accent-amber); border-color: rgba(143, 90, 0, 0.4);">2. Inter-Procedural DAG</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="astCountEdges">\(\mathcal{E}_{\text{taint}}\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Lattice Propagation</strong>
+                            <strong style="color:#0f0f0f;">Lattice Propagation</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescPropagation">
                                 Traverses variable assignments and argument passing in AST NodeVisitor to maintain taint reachability invariants.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="astCardSinks" style="border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="crisis-card" id="astCardSinks" style="border-color: rgba(204, 51, 52, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-red);">
-                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">3. Dangerous Sinks</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountSinks">Trapped</span>
+                            <span class="stage-num-badge" style="background: rgba(204, 51, 52, 0.2); color: var(--accent-red); border-color: rgba(204, 51, 52, 0.4);">3. Dangerous Sinks</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="astCountSinks">Trapped</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Forbidden Invocations</strong>
+                            <strong style="color:#0f0f0f;">Forbidden Invocations</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescSinks">
                                 Halts code execution at <code>eval()</code>, <code>exec()</code>, <code>os.system()</code>, <code>subprocess(shell=True)</code>, and <code>pickle.loads()</code>.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="astCardSlopsquat" style="border-color: rgba(168, 85, 247, 0.3);">
+                    <div class="crisis-card" id="astCardSlopsquat" style="border-color: rgba(67, 107, 221, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-purple);">
-                            <span class="stage-num-badge" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.4);">4. Slopsquatting Check</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="astCountSlopsquat">CWE-1395</span>
+                            <span class="stage-num-badge" style="background: rgba(67, 107, 221, 0.2); color: var(--accent-purple); border-color: rgba(67, 107, 221, 0.4);">4. Slopsquatting Check</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="astCountSlopsquat">CWE-1395</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Damerau-Levenshtein Metric</strong>
+                            <strong style="color:#0f0f0f;">Damerau-Levenshtein Metric</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="astDescSlopsquat">
                                 Audits dependency packages against verified PyPI registry. Distance \(1 \le d_{DL} \le 2\) flags hallucinated/rogue supply-chain packages.
                             </p>
@@ -2144,35 +2233,35 @@
                 </div>
 
                 <!-- Interactive AST Live Output Box -->
-                <div id="astLiveResultsContainer" style="display:none; margin-top:12px; background:#030611; border:1px solid rgba(56, 189, 248, 0.25); border-radius:8px; padding:12px;">
+                <div id="astLiveResultsContainer" style="display:none; margin-top:12px; background:#f0f4fd; border:1px solid rgba(0, 111, 168, 0.25); border-radius:8px; padding:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                         <span style="font-size:12px; font-weight:700; color:var(--accent-cyan); display:flex; align-items:center; gap:6px;">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
                             AST &amp; Supply Chain Audit Execution Report
                         </span>
-                        <span id="astReportBadge" style="font-size:11px; font-family:'Fira Code', monospace; padding:2px 8px; border-radius:4px;"></span>
+                        <span id="astReportBadge" style="font-size:11px; font-family:'IBM Plex Mono', monospace; padding:2px 8px; border-radius:4px;"></span>
                     </div>
-                    <div id="astReportDetails" style="font-size:12px; color:#cbd5e1; font-family:'Fira Code', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.4); padding:8px; border-radius:4px;"></div>
+                    <div id="astReportDetails" style="font-size:12px; color:#252d36; font-family:'IBM Plex Mono', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(15, 23, 41, 0.04); padding:8px; border-radius:4px;"></div>
                 </div>
 
                 <!-- KaTeX Mathematical Invariant Bound Box -->
-                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(56, 189, 248, 0.25);">
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #f0f4fd; border-color: rgba(0, 111, 168, 0.25);">
                     $$\mathcal{G}_{\text{AST}} = (\mathcal{V}, \mathcal{E}), \quad \forall v \in \text{Sinks}(\text{eval}, \text{exec}, \text{os.system}, \text{subprocess}, \text{pickle}): \text{Taint}(v) \implies \text{Quarantine}, \quad d_{DL}(a, b) \le 2 \implies \text{CWE-1395}$$
                 </div>
             </section>
 
             <!-- Autonomous SAGA Distributed Transaction Rollback & Escrow Protocol (Stage 4) -->
-            <section class="console-section" id="sagaPanel" style="border: 1px solid rgba(16, 185, 129, 0.35); background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+            <section class="console-section" id="sagaPanel" style="border: 1px solid rgba(0, 131, 89, 0.35); background: linear-gradient(180deg, rgba(0, 131, 89, 0.05) 0%, rgba(236, 240, 248, 0.8) 100%);">
                 <div class="ps-studio-header">
                     <div class="ps-studio-title" style="color: var(--accent-green);">
                         <svg class="k-icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
                         Autonomous SAGA Distributed Transaction Rollback &amp; Escrow Protocol (Garcia-Molina &amp; Salem 1987)
                     </div>
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="ps-card-badge" id="sagaBadge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.35);">
+                        <span class="ps-card-badge" id="sagaBadge" style="background: rgba(0, 131, 89, 0.15); color: var(--accent-green); border: 1px solid rgba(0, 131, 89, 0.35);">
                             Escrow: \(\mathcal{S} = (T_1 \dots T_n; C_n \dots C_1)\)
                         </span>
-                        <button class="quick-pill" onclick="simulateSagaLive()" style="background: rgba(16, 185, 129, 0.2); color: #fff; border-color: var(--accent-green);">
+                        <button class="quick-pill" onclick="simulateSagaLive()" style="background: rgba(0, 131, 89, 0.2); color: #0f0f0f; border-color: var(--accent-green);">
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                             Simulate SAGA Rollback Live
                         </button>
@@ -2181,52 +2270,52 @@
 
                 <!-- 4-Quadrant SAGA Transaction Grid -->
                 <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
-                    <div class="crisis-card" id="sagaCardForward" style="border-color: rgba(56, 189, 248, 0.3);">
+                    <div class="crisis-card" id="sagaCardForward" style="border-color: rgba(0, 111, 168, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-blue);">
-                            <span class="stage-num-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">1. Forward Edits</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaForwardStatus">\(T_1 \dots T_n\)</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 111, 168, 0.2); color: var(--accent-blue); border-color: rgba(0, 111, 168, 0.4);">1. Forward Edits</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="sagaForwardStatus">\(T_1 \dots T_n\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Speculative Code Edits</strong>
+                            <strong style="color:#0f0f0f;">Speculative Code Edits</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaForwardDesc">
                                 DevOpsCoder stages file modifications inside an atomic SAGA transaction envelope with SHA-256 pre-state hashes.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="sagaCardRejection" style="border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="crisis-card" id="sagaCardRejection" style="border-color: rgba(204, 51, 52, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-red);">
-                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">2. Invariant Breach</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaRejectionStatus">\(T_k = \text{Fail}\)</span>
+                            <span class="stage-num-badge" style="background: rgba(204, 51, 52, 0.2); color: var(--accent-red); border-color: rgba(204, 51, 52, 0.4);">2. Invariant Breach</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="sagaRejectionStatus">\(T_k = \text{Fail}\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Critic Interception</strong>
+                            <strong style="color:#0f0f0f;">Critic Interception</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaRejectionDesc">
                                 VerifierCritic detects an AST taint sink or unit test assertion failure, rejecting permanent commit.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="sagaCardCompensation" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div class="crisis-card" id="sagaCardCompensation" style="border-color: rgba(143, 90, 0, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-amber);">
-                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.4);">3. Compensation</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaCompStatus">\(\prod_{i=k-1}^{1} C_i\)</span>
+                            <span class="stage-num-badge" style="background: rgba(143, 90, 0, 0.2); color: var(--accent-amber); border-color: rgba(143, 90, 0, 0.4);">3. Compensation</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="sagaCompStatus">\(\prod_{i=k-1}^{1} C_i\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Reverse Rollback</strong>
+                            <strong style="color:#0f0f0f;">Reverse Rollback</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaCompDesc">
                                 SAGA coordinator executes compensating actions in strict reverse order to roll back speculative file mutations.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="sagaCardStateClean" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div class="crisis-card" id="sagaCardStateClean" style="border-color: rgba(0, 131, 89, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-green);">
-                            <span class="stage-num-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);">4. Clean State</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="sagaStateStatus">100% Restored</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 131, 89, 0.2); color: var(--accent-green); border-color: rgba(0, 131, 89, 0.4);">4. Clean State</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="sagaStateStatus">100% Restored</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Bit-for-Bit Integrity</strong>
+                            <strong style="color:#0f0f0f;">Bit-for-Bit Integrity</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="sagaStateDesc">
                                 Post-rollback SHA-256 hash matches pre-transaction hash exactly. Zero corrupted or dangling dirty files remain.
                             </p>
@@ -2235,35 +2324,35 @@
                 </div>
 
                 <!-- Interactive SAGA Live Output Box -->
-                <div id="sagaLiveResultsContainer" style="display:none; margin-top:12px; background:#030611; border:1px solid rgba(16, 185, 129, 0.25); border-radius:8px; padding:12px;">
+                <div id="sagaLiveResultsContainer" style="display:none; margin-top:12px; background:#f0f4fd; border:1px solid rgba(0, 131, 89, 0.25); border-radius:8px; padding:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                         <span style="font-size:12px; font-weight:700; color:var(--accent-green); display:flex; align-items:center; gap:6px;">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
                             SAGA Distributed Compensation &amp; Escrow Ledger
                         </span>
-                        <span id="sagaReportBadge" style="font-size:11px; font-family:'Fira Code', monospace; padding:2px 8px; border-radius:4px;"></span>
+                        <span id="sagaReportBadge" style="font-size:11px; font-family:'IBM Plex Mono', monospace; padding:2px 8px; border-radius:4px;"></span>
                     </div>
-                    <div id="sagaReportDetails" style="font-size:12px; color:#cbd5e1; font-family:'Fira Code', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.4); padding:8px; border-radius:4px;"></div>
+                    <div id="sagaReportDetails" style="font-size:12px; color:#252d36; font-family:'IBM Plex Mono', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(15, 23, 41, 0.04); padding:8px; border-radius:4px;"></div>
                 </div>
 
                 <!-- KaTeX Mathematical Invariant Bound Box -->
-                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(16, 185, 129, 0.25);">
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #f0f4fd; border-color: rgba(0, 131, 89, 0.25);">
                     $$\mathcal{S} = (T_1, \dots, T_n; C_n, \dots, C_1), \quad T_k = \text{Fail} \implies \prod_{i=k-1}^{1} C_i \implies \text{Hash}(f_{\text{restored}}) \equiv \text{Hash}(f_{\text{initial}})$$
                 </div>
             </section>
 
             <!-- Differential Privacy & Laplace Mechanism Interactive Visualizer (Stage 5) -->
-            <section class="console-section" id="dpPanel" style="border: 1px solid rgba(0, 242, 254, 0.35); background: linear-gradient(180deg, rgba(0, 242, 254, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+            <section class="console-section" id="dpPanel" style="border: 1px solid rgba(0, 98, 150, 0.35); background: linear-gradient(180deg, rgba(0, 98, 150, 0.05) 0%, rgba(236, 240, 248, 0.8) 100%);">
                 <div class="ps-studio-header">
                     <div class="ps-studio-title" style="color: var(--accent-cyan);">
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         Differential Privacy &amp; Laplace Noise Mechanism (Dwork et al. 2006 &bull; DPDP Act 2023)
                     </div>
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="ps-card-badge" id="dpBudgetBadge" style="background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); border: 1px solid rgba(0, 242, 254, 0.35);">
+                        <span class="ps-card-badge" id="dpBudgetBadge" style="background: rgba(0, 98, 150, 0.15); color: var(--accent-cyan); border: 1px solid rgba(0, 98, 150, 0.35);">
                             Budget: \(\epsilon_{\text{rem}} = 5.0\)
                         </span>
-                        <button class="quick-pill" onclick="simulateDpLive()" style="background: rgba(0, 242, 254, 0.2); color: #fff; border-color: var(--accent-cyan);">
+                        <button class="quick-pill" onclick="simulateDpLive()" style="background: rgba(0, 98, 150, 0.2); color: #0f0f0f; border-color: var(--accent-cyan);">
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                             Simulate Reconstruction Resistance
                         </button>
@@ -2271,10 +2360,10 @@
                 </div>
 
                 <!-- Interactive DP Query Controls Strip -->
-                <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center; background:#040710; border:1px solid var(--border-dim); padding:10px 14px; border-radius:8px; margin-top:10px;">
+                <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center; background:#f0f4fc; border:1px solid var(--border-dim); padding:10px 14px; border-radius:8px; margin-top:10px;">
                     <div style="display:flex; align-items:center; gap:8px;">
                         <label style="font-size:11px; color:var(--text-muted); font-weight:700;">AGGREGATE:</label>
-                        <select id="dpQueryType" style="background:#091024; color:#fff; border:1px solid var(--border-dim); border-radius:4px; padding:4px 8px; font-size:11px; font-family:'Fira Code', monospace;">
+                        <select id="dpQueryType" style="background:#ecf0f8; color:#0f0f0f; border:1px solid var(--border-dim); border-radius:4px; padding:4px 8px; font-size:11px; font-family:'IBM Plex Mono', monospace;">
                             <option value="COUNT">COUNT (Record Volume)</option>
                             <option value="SUM">SUM (Total Balance)</option>
                             <option value="AVG">AVG (Mean Balance)</option>
@@ -2284,12 +2373,12 @@
                     <div style="display:flex; align-items:center; gap:8px;">
                         <label style="font-size:11px; color:var(--text-muted); font-weight:700;">PRIVACY PARAMETER (\(\epsilon\)):</label>
                         <input type="range" id="dpEpsilonSlider" min="0.1" max="2.0" step="0.1" value="0.5" oninput="document.getElementById('dpEpsVal').innerText = this.value" style="width:100px; accent-color:var(--accent-cyan);">
-                        <span id="dpEpsVal" style="font-size:12px; color:var(--accent-cyan); font-family:'Fira Code', monospace; font-weight:700;">0.5</span>
+                        <span id="dpEpsVal" style="font-size:12px; color:var(--accent-cyan); font-family:'IBM Plex Mono', monospace; font-weight:700;">0.5</span>
                     </div>
 
                     <div style="display:flex; align-items:center; gap:8px;">
                         <label style="font-size:11px; color:var(--text-muted); font-weight:700;">CLIPPING BOUND (\(B\)):</label>
-                        <input type="number" id="dpClippingBound" value="100000" style="width:90px; background:#091024; color:#fff; border:1px solid var(--border-dim); border-radius:4px; padding:3px 6px; font-size:11px; font-family:'Fira Code', monospace;">
+                        <input type="number" id="dpClippingBound" value="100000" style="width:90px; background:#ecf0f8; color:#0f0f0f; border:1px solid var(--border-dim); border-radius:4px; padding:3px 6px; font-size:11px; font-family:'IBM Plex Mono', monospace;">
                     </div>
 
                     <button class="btn-modal-primary" onclick="runDpQueryLive()" style="padding:6px 14px; font-size:11px; margin-left:auto;">
@@ -2300,52 +2389,52 @@
 
                 <!-- 4-Quadrant DP Grid -->
                 <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 10px;">
-                    <div class="crisis-card" id="dpCardSensitivity" style="border-color: rgba(56, 189, 248, 0.3);">
+                    <div class="crisis-card" id="dpCardSensitivity" style="border-color: rgba(0, 111, 168, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-blue);">
-                            <span class="stage-num-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">1. Sensitivity</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="dpSensitivityStatus">\(\Delta f = 1.0\)</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 111, 168, 0.2); color: var(--accent-blue); border-color: rgba(0, 111, 168, 0.4);">1. Sensitivity</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="dpSensitivityStatus">\(\Delta f = 1.0\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">\(L_1\) Global Sensitivity</strong>
+                            <strong style="color:#0f0f0f;">\(L_1\) Global Sensitivity</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="dpSensitivityDesc">
                                 Bounded contribution of any single individual citizen's banking record to the aggregate query.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="dpCardNoise" style="border-color: rgba(0, 242, 254, 0.3);">
+                    <div class="crisis-card" id="dpCardNoise" style="border-color: rgba(0, 98, 150, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-cyan);">
-                            <span class="stage-num-badge" style="background: rgba(0, 242, 254, 0.2); color: var(--accent-cyan); border-color: rgba(0, 242, 254, 0.4);">2. Laplace Noise</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="dpNoiseStatus">\(b = \frac{\Delta f}{\epsilon}\)</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 98, 150, 0.2); color: var(--accent-cyan); border-color: rgba(0, 98, 150, 0.4);">2. Laplace Noise</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="dpNoiseStatus">\(b = \frac{\Delta f}{\epsilon}\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Calibrated Randomization</strong>
+                            <strong style="color:#0f0f0f;">Calibrated Randomization</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="dpNoiseDesc">
                                 Samples \(Y \sim \text{Lap}(0, b)\) to guarantee mathematical indistinguishability between neighboring datasets.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="dpCardBudget" style="border-color: rgba(168, 85, 247, 0.3);">
+                    <div class="crisis-card" id="dpCardBudget" style="border-color: rgba(67, 107, 221, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-purple);">
-                            <span class="stage-num-badge" style="background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); border-color: rgba(168, 85, 247, 0.4);">3. Budget Loss</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="dpBudgetStatus">\(\sum \epsilon_i \le 5.0\)</span>
+                            <span class="stage-num-badge" style="background: rgba(67, 107, 221, 0.2); color: var(--accent-purple); border-color: rgba(67, 107, 221, 0.4);">3. Budget Loss</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="dpBudgetStatus">\(\sum \epsilon_i \le 5.0\)</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Sequential Composition</strong>
+                            <strong style="color:#0f0f0f;">Sequential Composition</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="dpBudgetDesc">
                                 Tracks cumulative privacy loss across queries. Automatically halts when budget is depleted.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="dpCardCompliance" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div class="crisis-card" id="dpCardCompliance" style="border-color: rgba(0, 131, 89, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-green);">
-                            <span class="stage-num-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);">4. DPDP Statutory</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;">Sec. 8 Certified</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 131, 89, 0.2); color: var(--accent-green); border-color: rgba(0, 131, 89, 0.4);">4. DPDP Statutory</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;">Sec. 8 Certified</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;">Re-Identification Immunity</strong>
+                            <strong style="color:#0f0f0f;">Re-Identification Immunity</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);">
                                 Statutorily certified against membership inference and reconstruction attacks under Indian DPDP Act 2023.
                             </p>
@@ -2354,32 +2443,32 @@
                 </div>
 
                 <!-- Interactive DP Live Output Box -->
-                <div id="dpLiveResultsContainer" style="display:none; margin-top:12px; background:#030611; border:1px solid rgba(0, 242, 254, 0.25); border-radius:8px; padding:12px;">
+                <div id="dpLiveResultsContainer" style="display:none; margin-top:12px; background:#f0f4fd; border:1px solid rgba(0, 98, 150, 0.25); border-radius:8px; padding:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                         <span style="font-size:12px; font-weight:700; color:var(--accent-cyan); display:flex; align-items:center; gap:6px;">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                             Differential Privacy Query Execution Report &amp; Noise Verification
                         </span>
-                        <span id="dpReportBadge" style="font-size:11px; font-family:'Fira Code', monospace; padding:2px 8px; border-radius:4px;"></span>
+                        <span id="dpReportBadge" style="font-size:11px; font-family:'IBM Plex Mono', monospace; padding:2px 8px; border-radius:4px;"></span>
                     </div>
-                    <div id="dpReportDetails" style="font-size:12px; color:#cbd5e1; font-family:'Fira Code', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.4); padding:8px; border-radius:4px;"></div>
+                    <div id="dpReportDetails" style="font-size:12px; color:#252d36; font-family:'IBM Plex Mono', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(15, 23, 41, 0.04); padding:8px; border-radius:4px;"></div>
                 </div>
 
                 <!-- KaTeX Mathematical Invariant Bound Box -->
-                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(0, 242, 254, 0.25);">
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #f0f4fd; border-color: rgba(0, 98, 150, 0.25);">
                     $$\Pr[\mathcal{M}(x) \in \mathcal{S}] \le e^\epsilon \Pr[\mathcal{M}(y) \in \mathcal{S}] + \delta, \quad Y \sim \text{Lap}\left(0, \frac{\Delta f}{\epsilon}\right), \quad \Delta f = \max_{x, y: \|x-y\|_1 \le 1} \|f(x) - f(y)\|_1, \quad \sum_{i=1}^{k} \epsilon_i \le \epsilon_{\text{total}}$$
                 </div>
             </section>
 
             <!-- Stackelberg Security Game & Ingress Velocity Control (Stage 6) -->
-            <section class="console-section" id="stackelbergPanel" style="border: 1px solid rgba(245, 158, 11, 0.4); background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, rgba(10, 16, 32, 0.8) 100%);">
+            <section class="console-section" id="stackelbergPanel" style="border: 1px solid rgba(143, 90, 0, 0.4); background: linear-gradient(180deg, rgba(143, 90, 0, 0.05) 0%, rgba(236, 240, 248, 0.8) 100%);">
                 <div class="ps-studio-header">
-                    <div class="ps-studio-title" style="color: #f59e0b;">
+                    <div class="ps-studio-title" style="color: #8f5a00;">
                         <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                         Stage 6: Stackelberg Adversarial Security Game &amp; Dynamic Ingress Velocity Control
                     </div>
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="ps-card-badge" id="gameBadge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.4);">
+                        <span class="ps-card-badge" id="gameBadge" style="background: rgba(143, 90, 0, 0.2); color: #8f5a00; border: 1px solid rgba(143, 90, 0, 0.4);">
                             Minimax SSE Active &bull; CSE3101 Unit 5
                         </span>
                     </div>
@@ -2390,16 +2479,16 @@
                 </div>
 
                 <!-- Interactive Control Strip -->
-                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-dim); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(15, 23, 41, 0.03); border: 1px solid var(--border-dim); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;">
                     <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <label style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Threat Level \(\theta\):</label>
                             <input type="range" id="gameThreatSlider" min="0.0" max="1.0" step="0.05" value="0.2" style="width: 110px;" oninput="updateGameThreatDisplay(this.value)">
-                            <span id="gameThreatVal" style="font-family: 'Fira Code', monospace; font-size: 12px; color: #f59e0b; font-weight: 700;">0.20</span>
+                            <span id="gameThreatVal" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8f5a00; font-weight: 700;">0.20</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <label style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Burst Cost:</label>
-                            <select id="gameCostSelect" style="background: #030611; color: #cbd5e1; border: 1px solid var(--border-dim); border-radius: 4px; padding: 3px 8px; font-size: 11px; font-family: 'Fira Code', monospace;">
+                            <select id="gameCostSelect" style="background: #f0f4fd; color: #252d36; border: 1px solid var(--border-dim); border-radius: 4px; padding: 3px 8px; font-size: 11px; font-family: 'IBM Plex Mono', monospace;">
                                 <option value="1.0">1.0 Token (Normal)</option>
                                 <option value="3.0">3.0 Tokens (Heavy)</option>
                                 <option value="6.0">6.0 Tokens (Burst Flood)</option>
@@ -2408,11 +2497,11 @@
                     </div>
 
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <button class="quick-pill" style="border-color: rgba(245, 158, 11, 0.5); color: #fcd34d; font-size: 11px; padding: 4px 10px;" onclick="consumeIngressLive()">
+                        <button class="quick-pill" style="border-color: rgba(143, 90, 0, 0.5); color: #7c5200; font-size: 11px; padding: 4px 10px;" onclick="consumeIngressLive()">
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                             Consume Ingress Tokens
                         </button>
-                        <button class="quick-pill" style="border-color: rgba(0, 242, 254, 0.5); color: #67e8f9; font-size: 11px; padding: 4px 10px;" onclick="simulateStackelbergGameLive()">
+                        <button class="quick-pill" style="border-color: rgba(0, 98, 150, 0.5); color: #006397; font-size: 11px; padding: 4px 10px;" onclick="simulateStackelbergGameLive()">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                             Simulate Game Equilibrium
                         </button>
@@ -2421,40 +2510,40 @@
 
                 <!-- 4-Quadrant Visual Telemetry Cards -->
                 <div class="crisis-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 10px;">
-                    <div class="crisis-card" id="cardGameStrategy" style="border-color: rgba(245, 158, 11, 0.3);">
-                        <div class="crisis-header" style="color: #f59e0b;">
-                            <span class="stage-num-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border-color: rgba(245, 158, 11, 0.4);">1. Defense Strategy \(s^*\)</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameStrategyProb">PII: 30% | AST: 26%</span>
+                    <div class="crisis-card" id="cardGameStrategy" style="border-color: rgba(143, 90, 0, 0.3);">
+                        <div class="crisis-header" style="color: #8f5a00;">
+                            <span class="stage-num-badge" style="background: rgba(143, 90, 0, 0.2); color: #8f5a00; border-color: rgba(143, 90, 0, 0.4);">1. Defense Strategy \(s^*\)</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="gameStrategyProb">PII: 30% | AST: 26%</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;" id="gameStrategyTitle">Stackelberg Mixed Allocation</strong>
+                            <strong style="color:#0f0f0f;" id="gameStrategyTitle">Stackelberg Mixed Allocation</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameStrategyDesc">
                                 Optimal minimax coverage probabilities across Sentinel, DPDP Vault, AST, and Rate Limiter.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="cardGameAttacker" style="border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="crisis-card" id="cardGameAttacker" style="border-color: rgba(204, 51, 52, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-red);">
-                            <span class="stage-num-badge" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.4);">2. Attacker Best Response</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameBestResp">a*(s*) Bounded</span>
+                            <span class="stage-num-badge" style="background: rgba(204, 51, 52, 0.2); color: var(--accent-red); border-color: rgba(204, 51, 52, 0.4);">2. Attacker Best Response</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="gameBestResp">a*(s*) Bounded</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;" id="gameAttackerTitle">Worst-Case Utility Minimization</strong>
+                            <strong style="color:#0f0f0f;" id="gameAttackerTitle">Worst-Case Utility Minimization</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameAttackerDesc">
                                 Attacker expected payout is bounded and reduced strictly below naive uniform defense levels.
                             </p>
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="cardGameBucket" style="border-color: rgba(0, 242, 254, 0.3);">
+                    <div class="crisis-card" id="cardGameBucket" style="border-color: rgba(0, 98, 150, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-cyan);">
-                            <span class="stage-num-badge" style="background: rgba(0, 242, 254, 0.2); color: var(--accent-cyan); border-color: rgba(0, 242, 254, 0.4);">3. Token Bucket \(T(t)\)</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameBucketTokens">20.0 / 20.0 tok</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 98, 150, 0.2); color: var(--accent-cyan); border-color: rgba(0, 98, 150, 0.4);">3. Token Bucket \(T(t)\)</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="gameBucketTokens">20.0 / 20.0 tok</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;" id="gameBucketTitle">Velocity Ingress Gauge</strong>
-                            <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 6px; width: 100%; margin: 6px 0; overflow: hidden;">
+                            <strong style="color:#0f0f0f;" id="gameBucketTitle">Velocity Ingress Gauge</strong>
+                            <div style="background: rgba(15, 15, 15, 0.1); border-radius: 4px; height: 6px; width: 100%; margin: 6px 0; overflow: hidden;">
                                 <div id="gameBucketBar" style="background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)); height: 100%; width: 100%; transition: width 0.3s ease;"></div>
                             </div>
                             <p style="margin: 2px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameBucketDesc">
@@ -2463,13 +2552,13 @@
                         </div>
                     </div>
 
-                    <div class="crisis-card" id="cardGameRate" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div class="crisis-card" id="cardGameRate" style="border-color: rgba(0, 131, 89, 0.3);">
                         <div class="crisis-header" style="color: var(--accent-green);">
-                            <span class="stage-num-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);">4. Modulated Rate \(\rho_{\text{eff}}\)</span>
-                            <span style="font-size: 11px; font-family: 'Fira Code', monospace;" id="gameEffectiveRate">4.25 tok/s</span>
+                            <span class="stage-num-badge" style="background: rgba(0, 131, 89, 0.2); color: var(--accent-green); border-color: rgba(0, 131, 89, 0.4);">4. Modulated Rate \(\rho_{\text{eff}}\)</span>
+                            <span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace;" id="gameEffectiveRate">4.25 tok/s</span>
                         </div>
                         <div class="crisis-body">
-                            <strong style="color:#fff;" id="gameRateTitle">Adaptive Throttling</strong>
+                            <strong style="color:#0f0f0f;" id="gameRateTitle">Adaptive Throttling</strong>
                             <p style="margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted);" id="gameRateDesc">
                                 Under elevated threat \(\theta\), ingress automatically constricts replenishment to starve DoS bots.
                             </p>
@@ -2478,19 +2567,19 @@
                 </div>
 
                 <!-- Interactive Game Live Output Box -->
-                <div id="gameLiveResultsContainer" style="display:none; margin-top:12px; background:#030611; border:1px solid rgba(245, 158, 11, 0.3); border-radius:8px; padding:12px;">
+                <div id="gameLiveResultsContainer" style="display:none; margin-top:12px; background:#f0f4fd; border:1px solid rgba(143, 90, 0, 0.3); border-radius:8px; padding:12px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                        <span style="font-size:12px; font-weight:700; color:#f59e0b; display:flex; align-items:center; gap:6px;">
+                        <span style="font-size:12px; font-weight:700; color:#8f5a00; display:flex; align-items:center; gap:6px;">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                             Stackelberg Game &amp; Token Bucket Velocity Telemetry
                         </span>
-                        <span id="gameReportBadge" style="font-size:11px; font-family:'Fira Code', monospace; padding:2px 8px; border-radius:4px;"></span>
+                        <span id="gameReportBadge" style="font-size:11px; font-family:'IBM Plex Mono', monospace; padding:2px 8px; border-radius:4px;"></span>
                     </div>
-                    <div id="gameReportDetails" style="font-size:12px; color:#cbd5e1; font-family:'Fira Code', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.4); padding:8px; border-radius:4px;"></div>
+                    <div id="gameReportDetails" style="font-size:12px; color:#252d36; font-family:'IBM Plex Mono', monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; background:rgba(15, 23, 41, 0.04); padding:8px; border-radius:4px;"></div>
                 </div>
 
                 <!-- KaTeX Mathematical Invariant Bound Box -->
-                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #030611; border-color: rgba(245, 158, 11, 0.3);">
+                <div class="math-formula-box" style="margin-top: 10px; padding: 10px; font-size: 12px; background: #f0f4fd; border-color: rgba(143, 90, 0, 0.3);">
                     $$s^* = \arg\max_{s \in \Delta(S)} U_D(s, a^*(s)), \quad a^*(s) = \arg\max_{a \in A} U_A(s, a), \quad T(t) = \min(C, T(t - \Delta t) + \rho_{\text{eff}} \cdot \Delta t), \quad \rho_{\text{eff}} = \rho_0 \cdot \max(0.1, 1 - \lambda \theta)$$
                 </div>
             </section>
@@ -2504,7 +2593,7 @@
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                             Live Agent Reasoning &amp; MCP Tool Stream
                         </span>
-                        <span id="stepCounter" style="font-size: 12px; color: var(--text-muted); font-family: 'Fira Code', monospace;">Steps: 0</span>
+                        <span id="stepCounter" style="font-size: 12px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace;">Steps: 0</span>
                     </div>
                     <div class="stream-terminal" id="streamTerminal">
                         <div style="color: var(--text-muted); text-align: center; padding: 50px 0;">
@@ -2520,7 +2609,7 @@
                             <svg class="k-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path></svg>
                             Agent-to-Agent (A2A) Message Protocol &amp; Artifacts
                         </span>
-                        <span id="durationBadge" style="font-size: 12px; color: var(--accent-green); font-family: 'Fira Code', monospace;">0.0s</span>
+                        <span id="durationBadge" style="font-size: 12px; color: var(--accent-green); font-family: 'IBM Plex Mono', monospace;">0.0s</span>
                     </div>
                     <div class="a2a-log-container" id="a2aContainer">
                         <div style="color: var(--text-muted); text-align: center; padding: 50px 0;">
@@ -2534,7 +2623,7 @@
             <section id="liveResultDeck" style="display: none;" class="verdict-hero">
                 <div class="verdict-hero-top">
                     <div>
-                        <span class="verdict-tag" id="liveVerdictTag" style="background:rgba(16,185,129,0.2); color:var(--accent-green); border:1px solid rgba(16,185,129,0.4);">
+                        <span class="verdict-tag" id="liveVerdictTag" style="background:rgba(0, 131, 89, 0.2); color:var(--accent-green); border:1px solid rgba(0, 131, 89, 0.4);">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                             AUDIT PASSED
                         </span>
@@ -2543,22 +2632,22 @@
                         </h2>
                     </div>
                     <div style="display:flex; gap:10px; align-items:center;">
-                        <button class="quick-pill" onclick="openExecutiveModal()" style="background:rgba(0,242,254,0.15); border-color:var(--accent-cyan); color:#fff; font-weight:600;">
+                        <button class="quick-pill" onclick="openExecutiveModal()" style="background:rgba(0, 98, 150, 0.15); border-color:var(--accent-cyan); color:#0f0f0f; font-weight:600;">
                             <svg class="k-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
                             View Grand Verdict Modal
                         </button>
-                        <button class="quick-pill" onclick="copyVivaDossier()" style="background:var(--bg-elevated); color:#fff; font-weight:600;">
+                        <button class="quick-pill" onclick="copyVivaDossier()" style="background:var(--bg-elevated); color:#0f0f0f; font-weight:600;">
                             <svg class="k-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             Copy Viva Dossier
                         </button>
-                        <button class="quick-pill" onclick="switchMainView('dossier')" style="background:var(--bg-elevated); color:#fff; font-weight:600;">
+                        <button class="quick-pill" onclick="switchMainView('dossier')" style="background:var(--bg-elevated); color:#0f0f0f; font-weight:600;">
                             Open Full Executive Dossier &rarr;
                         </button>
                     </div>
                 </div>
 
                 <div class="dossier-grid">
-                    <div class="dossier-card" style="background:#080d1a;">
+                    <div class="dossier-card" style="background:#edf1fa;">
                         <div class="dossier-card-title">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             Ingress Data Protection &amp; Tokenization Diff
@@ -2566,7 +2655,7 @@
                         <div class="diff-container">
                             <div class="diff-col">
                                 <span class="diff-label">Raw User Input (Untrusted)</span>
-                                <div class="diff-text" id="liveDiffRaw" style="color:#ef4444;">-</div>
+                                <div class="diff-text" id="liveDiffRaw" style="color:#cc3334;">-</div>
                             </div>
                             <div class="diff-col">
                                 <span class="diff-label">Protected Egress (DPDP Vault)</span>
@@ -2575,12 +2664,12 @@
                         </div>
                     </div>
 
-                    <div class="dossier-card" style="background:#080d1a;">
+                    <div class="dossier-card" style="background:#edf1fa;">
                         <div class="dossier-card-title">
                             <svg class="k-icon" viewBox="0 0 24 24"><line x1="4" y1="19" x2="20" y2="19"></line><line x1="4" y1="5" x2="20" y2="5"></line><line x1="12" y1="5" x2="12" y2="19"></line></svg>
                             Mathematical Invariant Proof &amp; Invariant Bound
                         </div>
-                        <div id="liveMathConcept" style="font-size:12px; font-weight:600; color:#fff;">-</div>
+                        <div id="liveMathConcept" style="font-size:12px; font-weight:600; color:#0f0f0f;">-</div>
                         <div class="math-formula-box" id="liveMathFormula"></div>
                         <div id="liveMathExplanation" style="font-size:11px; color:var(--text-muted); line-height:1.5;">-</div>
                     </div>
@@ -2595,7 +2684,7 @@
             <div class="verdict-hero" id="dossierHero">
                 <div class="verdict-hero-top">
                     <div>
-                        <span class="verdict-tag" id="dossierVerdictTag" style="background:rgba(16,185,129,0.2); color:var(--accent-green); border:1px solid rgba(16,185,129,0.4);">
+                        <span class="verdict-tag" id="dossierVerdictTag" style="background:rgba(0, 131, 89, 0.2); color:var(--accent-green); border:1px solid rgba(0, 131, 89, 0.4);">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                             VERDICT READY
                         </span>
@@ -2604,21 +2693,21 @@
                         </h2>
                     </div>
                     <div style="display:flex; gap:10px;">
-                        <button class="quick-pill" onclick="copyVivaDossier()" style="background:rgba(0,242,254,0.15); border-color:var(--accent-cyan); color:#fff; font-weight:600;">
+                        <button class="quick-pill" onclick="copyVivaDossier()" style="background:rgba(0, 98, 150, 0.15); border-color:var(--accent-cyan); color:#0f0f0f; font-weight:600;">
                             <svg class="k-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             Copy Markdown Report
                         </button>
-                        <button class="quick-pill" onclick="downloadVivaDossier()" style="background:var(--bg-elevated); color:#fff; font-weight:600;">
+                        <button class="quick-pill" onclick="downloadVivaDossier()" style="background:var(--bg-elevated); color:#0f0f0f; font-weight:600;">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                             Download .md File
                         </button>
                     </div>
                 </div>
 
-                <div style="display:flex; gap:20px; font-size:12px; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.06); padding-top:12px; flex-wrap:wrap;">
-                    <div><strong>Target Asset:</strong> <span id="dossierTarget" style="color:var(--accent-blue); font-family:'Fira Code', monospace;">Bharat Core Banking Platform (Port 8002)</span></div>
-                    <div><strong>Statutory Mandate:</strong> <span id="dossierThreat" style="color:#fff;">Section 8 Indian DPDP Act 2023</span></div>
-                    <div><strong>Active LLM:</strong> <span id="dossierProvider" style="color:var(--accent-green); font-family:'Fira Code', monospace;">KAVACH Autonomous Reasoner</span></div>
+                <div style="display:flex; gap:20px; font-size:12px; color:var(--text-muted); border-top:1px solid rgba(15, 15, 15, 0.06); padding-top:12px; flex-wrap:wrap;">
+                    <div><strong>Target Asset:</strong> <span id="dossierTarget" style="color:var(--accent-blue); font-family:'IBM Plex Mono', monospace;">Bharat Core Banking Platform (Port 8002)</span></div>
+                    <div><strong>Statutory Mandate:</strong> <span id="dossierThreat" style="color:#0f0f0f;">Section 8 Indian DPDP Act 2023</span></div>
+                    <div><strong>Active LLM:</strong> <span id="dossierProvider" style="color:var(--accent-green); font-family:'IBM Plex Mono', monospace;">KAVACH Autonomous Reasoner</span></div>
                 </div>
             </div>
 
@@ -2631,7 +2720,7 @@
                     <div class="diff-container">
                         <div class="diff-col">
                             <span class="diff-label">Untrusted Ingress</span>
-                            <div class="diff-text" id="dossierDiffRaw" style="color:#ef4444;">-</div>
+                            <div class="diff-text" id="dossierDiffRaw" style="color:#cc3334;">-</div>
                         </div>
                         <div class="diff-col">
                             <span class="diff-label">DPDP Vault Egress</span>
@@ -2645,7 +2734,7 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><line x1="4" y1="19" x2="20" y2="19"></line><line x1="4" y1="5" x2="20" y2="5"></line><line x1="12" y1="5" x2="12" y2="19"></line></svg>
                         Mathematical Invariant Proof
                     </div>
-                    <div id="dossierMathConcept" style="font-size:13px; font-weight:700; color:#fff;">-</div>
+                    <div id="dossierMathConcept" style="font-size:13px; font-weight:700; color:#0f0f0f;">-</div>
                     <div class="math-formula-box" id="dossierMathFormula"></div>
                     <div id="dossierMathExplanation" style="font-size:12px; color:var(--text-muted); line-height:1.6;">-</div>
                 </div>
@@ -2726,7 +2815,7 @@
             <div class="verdict-hero">
                 <div class="verdict-hero-top">
                     <div>
-                        <span class="verdict-tag" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid rgba(0,242,254,0.4);">
+                        <span class="verdict-tag" style="background:rgba(0, 98, 150, 0.15); color:var(--accent-cyan); border:1px solid rgba(0, 98, 150, 0.4);">
                             <svg class="k-icon" viewBox="0 0 24 24"><line x1="4" y1="19" x2="20" y2="19"></line><line x1="4" y1="5" x2="20" y2="5"></line><line x1="12" y1="5" x2="12" y2="19"></line></svg>
                             THEORETICAL FOUNDATION &bull; RUSSELL &amp; NORVIG PEAS STANDARD
                         </span>
@@ -2734,27 +2823,27 @@
                             10 Academic Mathematical Pillars &amp; KaTeX Invariant Guarantees
                         </h2>
                     </div>
-                    <span style="font-size:12px; color:var(--text-muted); font-family:'Fira Code', monospace;">BML Munjal University &bull; CSE3101 Agentic AI Capstone</span>
+                    <span style="font-size:12px; color:var(--text-muted); font-family:'IBM Plex Mono', monospace;">BML Munjal University &bull; CSE3101 Agentic AI Capstone</span>
                 </div>
                 <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">
                     Unlike heuristic prompt wrappers, KAVACH grounds every guardrail in formal mathematical invariants: dihedral permutation groups, Shannon entropy bounds, differential privacy noise, AST acyclic graph reachability, and Stackelberg equilibria.
                 </p>
 
                 <!-- Key Invariant Summary Strip -->
-                <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; border-top:1px solid rgba(255,255,255,0.06); padding-top:14px; margin-top:4px;">
-                    <div style="background:#040710; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
+                <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; border-top:1px solid rgba(15, 15, 15, 0.06); padding-top:14px; margin-top:4px;">
+                    <div style="background:#f0f4fc; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
                         <span style="font-size:10px; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Dihedral Group D5</span>
                         <div style="color:var(--accent-cyan); font-weight:700; font-size:13px; margin-top:2px;">100% Permutation Bound</div>
                     </div>
-                    <div style="background:#040710; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
+                    <div style="background:#f0f4fc; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
                         <span style="font-size:10px; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Shannon Entropy</span>
                         <div style="color:var(--accent-amber); font-weight:700; font-size:13px; margin-top:2px;">H(X) &ge; 3.80 Quarantine</div>
                     </div>
-                    <div style="background:#040710; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
+                    <div style="background:#f0f4fc; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
                         <span style="font-size:10px; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Differential Privacy</span>
                         <div style="color:var(--accent-green); font-weight:700; font-size:13px; margin-top:2px;">&epsilon; = 0.5 Laplace Noise</div>
                     </div>
-                    <div style="background:#040710; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
+                    <div style="background:#f0f4fc; padding:10px 14px; border-radius:8px; border:1px solid var(--border-dim);">
                         <span style="font-size:10px; color:var(--text-muted); text-transform:uppercase; font-weight:700;">AST Taint Graph</span>
                         <div style="color:var(--accent-blue); font-weight:700; font-size:13px; margin-top:2px;">Reach(S, Sink) = &empty;</div>
                     </div>
@@ -2774,7 +2863,7 @@
             <div class="verdict-hero">
                 <div class="verdict-hero-top">
                     <div>
-                        <span class="verdict-tag" style="background:rgba(56,189,248,0.15); color:var(--accent-blue); border:1px solid rgba(56,189,248,0.4);">
+                        <span class="verdict-tag" style="background:rgba(0, 111, 168, 0.15); color:var(--accent-blue); border:1px solid rgba(0, 111, 168, 0.4);">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                             WORKSPACE REPOSITORY DEFENSE
                         </span>
@@ -2782,17 +2871,17 @@
                             Repository Indexer &amp; Live Code Reviewer Sandbox
                         </h2>
                     </div>
-                    <button class="quick-pill" onclick="loadRepoIndex()" style="background:var(--bg-elevated); color:#fff;">
+                    <button class="quick-pill" onclick="loadRepoIndex()" style="background:var(--bg-elevated); color:#0f0f0f;">
                         <svg class="k-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                         Refresh Index
                     </button>
                 </div>
 
-                <div style="display:flex; gap:24px; font-size:13px; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.06); padding-top:12px; flex-wrap:wrap;">
-                    <div><strong>Indexed Source Files:</strong> <span id="repoFilesCount" style="color:#fff; font-family:'Fira Code', monospace;">389</span></div>
-                    <div><strong>Total Lines of Code:</strong> <span id="repoLocCount" style="color:var(--accent-cyan); font-family:'Fira Code', monospace;">155,900</span></div>
-                    <div><strong>Workspace Hygiene Score:</strong> <span id="repoHygieneScore" style="color:var(--accent-green); font-family:'Fira Code', monospace;">94.8%</span></div>
-                    <div><strong>Primary Stack:</strong> <span style="color:#fff;">Python 3.15 &bull; FastAPI &bull; AST &bull; Pytest</span></div>
+                <div style="display:flex; gap:24px; font-size:13px; color:var(--text-muted); border-top:1px solid rgba(15, 15, 15, 0.06); padding-top:12px; flex-wrap:wrap;">
+                    <div><strong>Indexed Source Files:</strong> <span id="repoFilesCount" style="color:#0f0f0f; font-family:'IBM Plex Mono', monospace;">389</span></div>
+                    <div><strong>Total Lines of Code:</strong> <span id="repoLocCount" style="color:var(--accent-cyan); font-family:'IBM Plex Mono', monospace;">155,900</span></div>
+                    <div><strong>Workspace Hygiene Score:</strong> <span id="repoHygieneScore" style="color:var(--accent-green); font-family:'IBM Plex Mono', monospace;">94.8%</span></div>
+                    <div><strong>Primary Stack:</strong> <span style="color:#0f0f0f;">Python 3.15 &bull; FastAPI &bull; AST &bull; Pytest</span></div>
                 </div>
             </div>
 
@@ -2823,9 +2912,9 @@
                         Live Code Reviewer Sandbox
                     </div>
                     <div style="font-size:12px; color:var(--text-muted);">
-                        Selected File: <strong id="sandboxSelectedFile" style="color:#fff; font-family:'Fira Code', monospace;">tools.py</strong>
+                        Selected File: <strong id="sandboxSelectedFile" style="color:#0f0f0f; font-family:'IBM Plex Mono', monospace;">tools.py</strong>
                     </div>
-                    <div id="sandboxCodeViewer" style="background:#040710; border:1px solid var(--border-dim); border-radius:8px; padding:12px; font-family:'Fira Code', monospace; font-size:11px; height:340px; overflow-y:auto; color:#cbd5e1; white-space:pre-wrap;">
+                    <div id="sandboxCodeViewer" style="background:#f0f4fc; border:1px solid var(--border-dim); border-radius:8px; padding:12px; font-family:'IBM Plex Mono', monospace; font-size:11px; height:340px; overflow-y:auto; color:#252d36; white-space:pre-wrap;">
 # Select a file from the left table or click 'Audit with Swarm' to inspect AST invariants.
                     </div>
                     <div style="display:flex; justify-content:flex-end; gap:10px;">
@@ -2845,7 +2934,7 @@
             <div class="verdict-hero">
                 <div class="verdict-hero-top">
                     <div>
-                        <span class="verdict-tag" style="background:rgba(168,85,247,0.15); color:var(--accent-purple); border:1px solid rgba(168,85,247,0.4);">
+                        <span class="verdict-tag" style="background:rgba(67, 107, 221, 0.15); color:var(--accent-purple); border:1px solid rgba(67, 107, 221, 0.4);">
                             <svg class="k-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                             CSE3101: AGENTIC AI &bull; BML MUNJAL UNIVERSITY
                         </span>
@@ -2853,7 +2942,7 @@
                             Academic Coursework &amp; Agentic AI Curriculum Alignment
                         </h2>
                     </div>
-                    <span style="font-size:12px; color:var(--text-muted); font-family:'Fira Code', monospace;">Instructors: Dr. Soharab Hossain Shaikh &bull; Mr. Pranshu Tiwari</span>
+                    <span style="font-size:12px; color:var(--text-muted); font-family:'IBM Plex Mono', monospace;">Instructors: Dr. Soharab Hossain Shaikh &bull; Mr. Pranshu Tiwari</span>
                 </div>
                 <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">
                     KAVACH implements the entire curriculum of Agentic AI: from foundational Russell &amp; Norvig PEAS modeling and Yao et al. ReAct loops to Model Context Protocol (MCP) tool integration, multi-agent swarm blackboards, AST static program synthesis, and statutory algebraic invariants.
@@ -2867,7 +2956,7 @@
                         <svg class="k-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                         Curriculum Pipeline &bull; How KAVACH Implements Every Agentic AI Course Topic
                     </div>
-                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'Fira Code', monospace;">Click Any Stage to Inspect Academic Mapping</span>
+                    <span style="font-size: 11px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace;">Click Any Stage to Inspect Academic Mapping</span>
                 </div>
 
                 <div class="pipeline-flow">
@@ -2882,10 +2971,22 @@
                         <div class="stage-metric">Unit 1 &bull; Rational Agents</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Topic 2">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 5 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="12" r="4" />
+                            <defs>
+                                <filter id="glow-c1" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#4f46e5" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#4f46e5" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#4f46e5" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#4f46e5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-c1)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#4f46e5" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -2900,10 +3001,22 @@
                         <div class="stage-metric">Unit 2 &bull; Decision Making</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Topic 3">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 35 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="28" r="4" />
+                            <defs>
+                                <filter id="glow-c2" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#059669" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#059669" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#059669" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-c2)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#059669" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -2918,10 +3031,22 @@
                         <div class="stage-metric">Unit 3 &bull; Tool Calling</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Topic 4">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 5 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="12" r="4" />
+                            <defs>
+                                <filter id="glow-c3" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#d97706" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#d97706" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#d97706" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#d97706" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-c3)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#d97706" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -2936,10 +3061,22 @@
                         <div class="stage-metric">Unit 4 &bull; Distributed MAS</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Topic 5">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 35 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="28" r="4" />
+                            <defs>
+                                <filter id="glow-c4" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#dc2626" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#dc2626" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#dc2626" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#dc2626" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-c4)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#dc2626" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -2954,10 +3091,22 @@
                         <div class="stage-metric">Unit 5 &bull; Safety &amp; Invariants</div>
                     </div>
 
-                    <div class="pipeline-connector">
+                    <div class="pipeline-connector" title="Data Flow &rarr; Topic 6">
                         <svg class="jumping-arrow-svg" viewBox="0 0 100 40">
-                            <path class="flow-line" d="M 0 20 Q 50 5 100 20" fill="none" />
-                            <circle class="flow-particle" cx="50" cy="12" r="4" />
+                            <defs>
+                                <filter id="glow-c5" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#0284c7" flood-opacity="0.9"/>
+                                </filter>
+                            </defs>
+                            <path class="flow-rail-bg" d="M 6 21 Q 48 6 82 20" fill="none" />
+                            <path class="flow-track" d="M 6 21 Q 48 6 82 20" fill="none" stroke="#0284c7" stroke-opacity="0.85" />
+                            <polygon class="flow-arrowhead" points="78,11 96,20 78,29" fill="#0284c7" />
+                            <g class="jumping-arrow-packet">
+                                <path d="M -14 -6 L -6 0 L -14 6" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                                <path d="M -5 -7 L 4 0 L -5 7" fill="none" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-c5)"/>
+                                <circle cx="3" cy="0" r="2.8" fill="#ffffff" stroke="#0284c7" stroke-width="1.8" />
+                                <animateMotion path="M 6 21 Q 48 6 82 20" dur="1.25s" repeatCount="indefinite" rotate="auto" />
+                            </g>
                         </svg>
                     </div>
 
@@ -2973,8 +3122,8 @@
                     </div>
                 </div>
 
-                <div id="courseworkDetailBox" style="background:#040710; border:1px solid var(--border-dim); border-radius:10px; padding:14px 18px;">
-                    <strong style="color:#fff;" id="cdetailTitle">Topic 1: Russell &amp; Norvig PEAS Framework &bull; AI Agent Foundations</strong>
+                <div id="courseworkDetailBox" style="background:#f0f4fc; border:1px solid var(--border-dim); border-radius:10px; padding:14px 18px;">
+                    <strong style="color:#0f0f0f;" id="cdetailTitle">Topic 1: Russell &amp; Norvig PEAS Framework &bull; AI Agent Foundations</strong>
                     <div style="font-size:12px; color:var(--text-muted); margin-top:4px;" id="cdetailDesc">
                         Russell &amp; Norvig define an agent as anything that perceives its environment through sensors and acts upon it through actuators. KAVACH implements a goal-based utility agent with formal invariant constraints governing every action.
                     </div>
@@ -3018,15 +3167,15 @@
                     </div>
                     <div style="font-size:12px; line-height:1.6; color:var(--text-muted); display:flex; flex-direction:column; gap:12px;">
                         <div>
-                            <strong style="color:#fff;">Q1: Why use Dihedral Group \(D_5\) over Luhn mod 10 for Indian IDs?</strong><br>
+                            <strong style="color:#0f0f0f;">Q1: Why use Dihedral Group \(D_5\) over Luhn mod 10 for Indian IDs?</strong><br>
                             Luhn mod 10 fails to catch adjacent transposition errors where digits differ by 5. Verhoeff uses permutations over the non-abelian dihedral group \(D_5\) (order 10) to achieve 100% single-digit and transposition detection.
                         </div>
                         <div>
-                            <strong style="color:#fff;">Q2: What prevents the Orchestrator from running unintended pytest suites?</strong><br>
+                            <strong style="color:#0f0f0f;">Q2: What prevents the Orchestrator from running unintended pytest suites?</strong><br>
                             The ADK DAG decomposition isolates specialist tools. Pytest tools are gated exclusively to DevOpsCoder and VerifierCritic tasks when explicit test goals or code repairs are identified.
                         </div>
                         <div>
-                            <strong style="color:#fff;">Q3: How does the Sentinel guardrail intercept OWASP LLM01 injection?</strong><br>
+                            <strong style="color:#0f0f0f;">Q3: How does the Sentinel guardrail intercept OWASP LLM01 injection?</strong><br>
                             Sentinel inspects incoming prompts via semantic intent vectors and regex filters, enforcing an immediate swarm halt before malicious instructions reach the lead orchestrator.
                         </div>
                     </div>
@@ -3106,7 +3255,7 @@
             <section class="verdict-hero">
                 <div class="verdict-hero-top">
                     <div>
-                        <span class="verdict-tag" style="background:rgba(0,242,254,0.15); color:var(--accent-cyan); border:1px solid rgba(0,242,254,0.4);">
+                        <span class="verdict-tag" style="background:rgba(0, 98, 150, 0.15); color:var(--accent-cyan); border:1px solid rgba(0, 98, 150, 0.4);">
                             <svg class="k-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                             CSE3101 Capstone &bull; Quantitative Agent Evaluation (Page 4 Course Handout)
                         </span>
@@ -3175,9 +3324,9 @@
                     <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">
                         Validates Aadhaar 12-digit UIDAI formats, Dihedral Group \(D_5\) Verhoeff check digits, PAN masking, and Indian KYC logs.
                     </div>
-                    <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'Fira Code', monospace; color:var(--text-muted); border-top:1px solid var(--border-dim); padding-top:8px;">
+                    <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'IBM Plex Mono', monospace; color:var(--text-muted); border-top:1px solid var(--border-dim); padding-top:8px;">
                         <span>Pass Rate: <strong style="color:var(--accent-green);" id="dpdpPassRate">100%</strong></span>
-                        <span>Mean Latency: <strong style="color:#fff;" id="dpdpLatency">0.05 ms</strong></span>
+                        <span>Mean Latency: <strong style="color:#0f0f0f;" id="dpdpLatency">0.05 ms</strong></span>
                     </div>
                 </div>
 
@@ -3189,9 +3338,9 @@
                     <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">
                         Zero-trust ingress gatekeeping against prompt overrides, DAN jailbreaks, cloud credential leakage, and base64 payloads.
                     </div>
-                    <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'Fira Code', monospace; color:var(--text-muted); border-top:1px solid var(--border-dim); padding-top:8px;">
+                    <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'IBM Plex Mono', monospace; color:var(--text-muted); border-top:1px solid var(--border-dim); padding-top:8px;">
                         <span>Pass Rate: <strong style="color:var(--accent-green);" id="owaspPassRate">100%</strong></span>
-                        <span>Mean Latency: <strong style="color:#fff;" id="owaspLatency">0.02 ms</strong></span>
+                        <span>Mean Latency: <strong style="color:#0f0f0f;" id="owaspLatency">0.02 ms</strong></span>
                     </div>
                 </div>
 
@@ -3203,9 +3352,9 @@
                     <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">
                         AST NodeVisitors catch forbidden sinks (<code>eval</code>, <code>os.system</code>, <code>subprocess</code>) and Shannon entropy \(H(X) \ge 3.8\) flags credentials.
                     </div>
-                    <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'Fira Code', monospace; color:var(--text-muted); border-top:1px solid var(--border-dim); padding-top:8px;">
+                    <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'IBM Plex Mono', monospace; color:var(--text-muted); border-top:1px solid var(--border-dim); padding-top:8px;">
                         <span>Pass Rate: <strong style="color:var(--accent-green);" id="astPassRate">100%</strong></span>
-                        <span>Mean Latency: <strong style="color:#fff;" id="astLatency">0.16 ms</strong></span>
+                        <span>Mean Latency: <strong style="color:#0f0f0f;" id="astLatency">0.16 ms</strong></span>
                     </div>
                 </div>
             </div>
@@ -3402,6 +3551,28 @@
     </div>
 
     <!-- Script Logic -->
+    <script>
+    /* Served at /cockpit/ by the main platform and at / on port 8003: route this page's
+       relative API calls (/api/...) to whichever mount the page was loaded from. */
+    (function () {
+        var base = window.location.pathname.indexOf('/cockpit') === 0 ? '/cockpit' : '';
+        if (!base) return;
+        var nativeFetch = window.fetch;
+        window.fetch = function (input, init) {
+            if (typeof input === 'string' && input.indexOf('/api/') === 0) input = base + input;
+            return nativeFetch.call(this, input, init);
+        };
+        var NativeES = window.EventSource;
+        if (NativeES) {
+            var Patched = function (u, cfg) {
+                if (typeof u === 'string' && u.indexOf('/api/') === 0) u = base + u;
+                return new NativeES(u, cfg);
+            };
+            Patched.prototype = NativeES.prototype;
+            window.EventSource = Patched;
+        }
+    })();
+    </script>
     <script>
         let latestDossierMarkdown = "";
         let latestExecutionResult = null;
@@ -3675,7 +3846,7 @@
             const badge = document.getElementById('sagaReportBadge');
             container.style.display = 'block';
             details.innerText = "Initiating SAGA distributed transaction envelope, staging speculative file mutations, and preparing reverse compensating sequence...";
-            badge.style.background = 'rgba(16, 185, 129, 0.2)';
+            badge.style.background = 'rgba(0, 131, 89, 0.2)';
             badge.style.color = 'var(--accent-green)';
             badge.innerText = 'TRANSACTION IN PROGRESS';
 
@@ -3683,7 +3854,7 @@
                 const res = await fetch('/api/saga/simulate', { method: 'POST' });
                 const data = await res.json();
                 if (data.success) {
-                    badge.style.background = data.is_clean_restored ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+                    badge.style.background = data.is_clean_restored ? 'rgba(0, 131, 89, 0.2)' : 'rgba(204, 51, 52, 0.2)';
                     badge.style.color = data.is_clean_restored ? 'var(--accent-green)' : 'var(--accent-red)';
                     badge.innerText = data.is_clean_restored ? 'SAGA REVERSE ROLLBACK SUCCESSFUL' : 'ROLLBACK FAILED';
 
@@ -3728,7 +3899,7 @@
 
             container.style.display = 'block';
             details.innerText = `Evaluating ${queryType} aggregate over Bharat Core Bank records with Laplace noise (ε=${epsilon}, B=${clipping})...`;
-            badge.style.background = 'rgba(0, 242, 254, 0.2)';
+            badge.style.background = 'rgba(0, 98, 150, 0.2)';
             badge.style.color = 'var(--accent-cyan)';
             badge.innerText = 'CALIBRATING NOISE';
 
@@ -3740,7 +3911,7 @@
                 });
                 const data = await res.json();
                 if (data.success) {
-                    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+                    badge.style.background = 'rgba(0, 131, 89, 0.2)';
                     badge.style.color = 'var(--accent-green)';
                     badge.innerText = `DP ${queryType} CERTIFIED`;
 
@@ -3763,7 +3934,7 @@
                     report += `• Legal Mandate: Section 8 Indian DPDP Act 2023 Statutory Anonymization Certified`;
                     details.innerText = report;
                 } else {
-                    badge.style.background = 'rgba(239, 68, 68, 0.2)';
+                    badge.style.background = 'rgba(204, 51, 52, 0.2)';
                     badge.style.color = 'var(--accent-red)';
                     badge.innerText = 'PRIVACY BUDGET EXHAUSTED';
                     details.innerText = data.detail || data.error || 'Query blocked by Differential Privacy Gatekeeper';
@@ -3779,7 +3950,7 @@
             const badge = document.getElementById('dpReportBadge');
             container.style.display = 'block';
             details.innerText = "Simulating reconstruction and membership inference resistance over 3 consecutive trials...";
-            badge.style.background = 'rgba(0, 242, 254, 0.2)';
+            badge.style.background = 'rgba(0, 98, 150, 0.2)';
             badge.style.color = 'var(--accent-cyan)';
             badge.innerText = 'ATTACK SIMULATION';
 
@@ -3787,7 +3958,7 @@
                 const res = await fetch('/api/dp/simulate', { method: 'POST' });
                 const data = await res.json();
                 if (data.success) {
-                    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+                    badge.style.background = 'rgba(0, 131, 89, 0.2)';
                     badge.style.color = 'var(--accent-green)';
                     badge.innerText = 'RECONSTRUCTION RESISTANT';
 
@@ -3819,8 +3990,8 @@
 
             container.style.display = 'block';
             details.innerText = `Testing ingress velocity gate with cost=${cost} tokens and threat level theta=${theta}...`;
-            badge.style.background = 'rgba(245, 158, 11, 0.2)';
-            badge.style.color = '#f59e0b';
+            badge.style.background = 'rgba(143, 90, 0, 0.2)';
+            badge.style.color = '#8f5a00';
             badge.innerText = 'CHECKING VELOCITY';
 
             try {
@@ -3832,7 +4003,7 @@
                 const data = await res.json();
                 if (res.ok && data.success) {
                     const tel = data.telemetry;
-                    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+                    badge.style.background = 'rgba(0, 131, 89, 0.2)';
                     badge.style.color = 'var(--accent-green)';
                     badge.innerText = 'ADMITTED (VELOCITY OK)';
 
@@ -3850,7 +4021,7 @@
                     report += `• Differential Invariant: T(t) = min(C, T(t - Delta t) + rho_eff * Delta t) satisfied = true`;
                     details.innerText = report;
                 } else {
-                    badge.style.background = 'rgba(239, 68, 68, 0.2)';
+                    badge.style.background = 'rgba(204, 51, 52, 0.2)';
                     badge.style.color = 'var(--accent-red)';
                     badge.innerText = '429 THROTTLED (VELOCITY EXCEEDED)';
                     details.innerText = `=== VELOCITY EXCEEDED / INGRESS THROTTLED ===\n• Status: 429 TOO MANY REQUESTS\n• Reason: Hostile burst velocity exceeded token capacity.\n• Detail: ${data.detail || 'Velocity quota depleted'}\n• Starvation Defense: Bot request quenched before hitting core services.`;
@@ -3867,15 +4038,15 @@
 
             container.style.display = 'block';
             details.innerText = "Solving Leader-Follower Stackelberg Game and simulating comparative utility against naive uniform defense...";
-            badge.style.background = 'rgba(245, 158, 11, 0.2)';
-            badge.style.color = '#f59e0b';
+            badge.style.background = 'rgba(143, 90, 0, 0.2)';
+            badge.style.color = '#8f5a00';
             badge.innerText = 'SOLVING SSE EQUILIBRIUM';
 
             try {
                 const res = await fetch('/api/game/simulate', { method: 'POST' });
                 const data = await res.json();
                 if (data.success) {
-                    badge.style.background = 'rgba(16, 185, 129, 0.2)';
+                    badge.style.background = 'rgba(0, 131, 89, 0.2)';
                     badge.style.color = 'var(--accent-green)';
                     badge.innerText = 'SSE EQUILIBRIUM VERIFIED';
 
@@ -3915,7 +4086,7 @@
             const badge = document.getElementById('astReportBadge');
             container.style.display = 'block';
             details.innerText = "Analyzing Python Abstract Syntax Tree, building Taint Reachability DAG G_AST = (V,E), and computing Damerau-Levenshtein metrics...";
-            badge.style.background = 'rgba(56, 189, 248, 0.2)';
+            badge.style.background = 'rgba(0, 111, 168, 0.2)';
             badge.style.color = 'var(--accent-cyan)';
             badge.innerText = 'AUDIT IN PROGRESS';
 
@@ -3928,7 +4099,7 @@
                 });
                 const data = await res.json();
                 if (data.success) {
-                    badge.style.background = data.is_safe ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+                    badge.style.background = data.is_safe ? 'rgba(0, 131, 89, 0.2)' : 'rgba(204, 51, 52, 0.2)';
                     badge.style.color = data.is_safe ? 'var(--accent-green)' : 'var(--accent-red)';
                     badge.innerText = data.is_safe ? 'AST INVARIANTS CERTIFIED' : `TRAPPED ${data.total_vulnerabilities_count} VIOLATIONS`;
 
@@ -3969,34 +4140,6 @@
 
         // Set default on load
         window.addEventListener('DOMContentLoaded', () => {
-            // Dynamically resolve ecosystem navigation links via KAVACH_CONFIG
-            if (window.KAVACH_CONFIG) {
-                const navMaster = document.getElementById('cockpitNavMaster');
-                if (navMaster) {
-                    navMaster.href = window.KAVACH_CONFIG.getDashboardUrl('master');
-                    if (window.KAVACH_CONFIG.isProduction()) {
-                        const lbl = document.getElementById('cockpitLabelMaster');
-                        if (lbl) lbl.textContent = 'Master Portal';
-                    }
-                }
-                const navBank = document.getElementById('cockpitNavBank');
-                if (navBank) {
-                    navBank.href = window.KAVACH_CONFIG.getDashboardUrl('banking');
-                    if (window.KAVACH_CONFIG.isProduction()) {
-                        const lbl = document.getElementById('cockpitLabelBank');
-                        if (lbl) lbl.textContent = 'Bharat Bank';
-                    }
-                }
-                const navSwarm = document.getElementById('cockpitNavSwarm');
-                if (navSwarm) {
-                    navSwarm.href = window.KAVACH_CONFIG.getDashboardUrl('swarm');
-                    if (window.KAVACH_CONFIG.isProduction()) {
-                        const lbl = document.getElementById('cockpitLabelSwarm');
-                        if (lbl) lbl.textContent = 'Agent Swarm';
-                    }
-                }
-            }
-
             selectProblemStatement('PS-1');
 
             const inputEl = document.getElementById('goalInput');
@@ -4118,9 +4261,9 @@
                 const b = document.getElementById('reflexionBadge');
                 if (b) {
                     b.innerText = `Reflexion Active: Cycle #${det.cycle_number || 1} (Loss -> 0.0)`;
-                    b.style.background = 'rgba(16, 185, 129, 0.2)';
+                    b.style.background = 'rgba(0, 131, 89, 0.2)';
                     b.style.color = 'var(--accent-green)';
-                    b.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+                    b.style.borderColor = 'rgba(0, 131, 89, 0.4)';
                 }
                 const d1 = document.getElementById('refDesc1');
                 const d3 = document.getElementById('refDesc3');
@@ -4131,7 +4274,7 @@
 
                 ['refCard1', 'refCard2', 'refCard3', 'refCard4'].forEach(id => {
                     const c = document.getElementById(id);
-                    if (c) c.style.boxShadow = '0 0 14px rgba(168, 85, 247, 0.45)';
+                    if (c) c.style.boxShadow = '0 0 14px rgba(67, 107, 221, 0.18)';
                 });
             }
 
@@ -4190,9 +4333,9 @@
 
             const tag = document.getElementById('liveVerdictTag');
             tag.innerText = isBlocked ? "INTERCEPTED & BLOCKED" : (res.verdict || "AUDIT COMPLIANT");
-            tag.style.background = isBlocked ? "rgba(239,68,68,0.2)" : "rgba(16,185,129,0.2)";
+            tag.style.background = isBlocked ? "rgba(204, 51, 52, 0.2)" : "rgba(0, 131, 89, 0.2)";
             tag.style.color = isBlocked ? "var(--accent-red)" : "var(--accent-green)";
-            tag.style.borderColor = isBlocked ? "rgba(239,68,68,0.4)" : "rgba(16,185,129,0.4)";
+            tag.style.borderColor = isBlocked ? "rgba(204, 51, 52, 0.4)" : "rgba(0, 131, 89, 0.4)";
 
             document.getElementById('liveVerdictTitle').innerText = dossier.verdict_title || res.final_report;
 
@@ -4358,12 +4501,12 @@
                         card.innerHTML = `
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                                 <span class="ps-card-badge badge-ps1">Pillar ${pNum}</span>
-                                <span style="font-size:11px; color:var(--accent-blue); font-family:'Fira Code', monospace; font-weight:600;">${pDomain}</span>
+                                <span style="font-size:11px; color:var(--accent-blue); font-family:'IBM Plex Mono', monospace; font-weight:600;">${pDomain}</span>
                             </div>
-                            <h3 style="font-size:15px; font-weight:700; color:#fff; line-height:1.3;">${p.title}</h3>
+                            <h3 style="font-size:15px; font-weight:700; color:#0f0f0f; line-height:1.3;">${p.title}</h3>
                             <div class="math-formula-box" id="formula-p-${pNum}"></div>
                             <p style="font-size:12px; color:var(--text-muted); line-height:1.6;">${pExpl}</p>
-                            <div style="font-size:11px; color:var(--accent-green); border-top:1px solid rgba(255,255,255,0.06); padding-top:10px; display:flex; align-items:center; gap:6px;">
+                            <div style="font-size:11px; color:var(--accent-green); border-top:1px solid rgba(15, 15, 15, 0.06); padding-top:10px; display:flex; align-items:center; gap:6px;">
                                 <strong>KAVACH Certified Invariant:</strong> <span>${pInv}</span>
                             </div>
                         `;
@@ -4405,7 +4548,7 @@
                     (data.files || []).forEach(f => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                            <td><span style="color:#fff; font-weight:500;">${f.rel_path || f.filename}</span></td>
+                            <td><span style="color:#0f0f0f; font-weight:500;">${f.rel_path || f.filename}</span></td>
                             <td>${f.loc}</td>
                             <td><span style="color:var(--accent-green); font-weight:600;">PASSED</span></td>
                             <td>
@@ -4623,15 +4766,15 @@
 
                 return `
                     <tr class="bench-row" onclick="toggleBenchmarkDrawer('${r.id}')">
-                        <td style="font-family:'Fira Code', monospace; font-weight:700; color:var(--accent-cyan);">${r.id}</td>
+                        <td style="font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--accent-cyan);">${r.id}</td>
                         <td style="font-weight:600; color:${domainColor}; font-size:11px;">${domainLabel}</td>
-                        <td style="color:#fff; font-weight:500;">
+                        <td style="color:#0f0f0f; font-weight:500;">
                             <div>${safeHtmlEscape(r.title)}</div>
-                            <div style="font-size:11px; color:var(--text-muted); font-family:'Fira Code', monospace; margin-top:2px;">${safeHtmlEscape(r.payload_preview)}</div>
+                            <div style="font-size:11px; color:var(--text-muted); font-family:'IBM Plex Mono', monospace; margin-top:2px;">${safeHtmlEscape(r.payload_preview)}</div>
                         </td>
                         <td style="font-size:11px; color:var(--text-muted);">${safeHtmlEscape(r.expected_invariant)}</td>
-                        <td style="font-family:'Fira Code', monospace; font-size:11px; color:#cbd5e1;"><code>${safeHtmlEscape(r.actual_action)}</code></td>
-                        <td style="font-family:'Fira Code', monospace; font-size:11px; color:var(--text-muted);">${r.latency_ms} ms</td>
+                        <td style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#252d36;"><code>${safeHtmlEscape(r.actual_action)}</code></td>
+                        <td style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-muted);">${r.latency_ms} ms</td>
                         <td style="text-align:center;">${badge}</td>
                     </tr>
                     <tr id="${drawerId}" class="bench-drawer">
@@ -4641,7 +4784,7 @@
                                 <div><strong>Expected Action:</strong> <code>${safeHtmlEscape(r.expected_action)}</code> &bull; <strong>Actual Action:</strong> <code>${safeHtmlEscape(r.actual_action)}</code></div>
                                 <div><strong>Evaluated Invariant:</strong> ${safeHtmlEscape(r.expected_invariant)}</div>
                                 <div><strong>Decision Latency:</strong> ${r.latency_ms} ms &bull; <strong>Ground Truth Threat:</strong> ${r.ground_truth_threat}</div>
-                                <div style="margin-top:4px;"><strong>Inspection Details:</strong> <pre style="margin:4px 0; background:#020408; padding:8px; border-radius:6px; overflow-x:auto;">${safeHtmlEscape(JSON.stringify(r.details, null, 2))}</pre></div>
+                                <div style="margin-top:4px;"><strong>Inspection Details:</strong> <pre style="margin:4px 0; background:#f1f7fe; padding:8px; border-radius:6px; overflow-x:auto;">${safeHtmlEscape(JSON.stringify(r.details, null, 2))}</pre></div>
                             </div>
                         </td>
                     </tr>

@@ -3075,7 +3075,7 @@
       btns.forEach(btn => {
         const orig = btn.textContent;
         btn.textContent = "Copied to Clipboard!";
-        btn.style.color = "#34D399";
+        btn.style.color = "#58CF9E";
         btn.style.borderColor = "#059669";
         setTimeout(() => {
           btn.textContent = orig;
@@ -3106,7 +3106,7 @@
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="terminal-meta-badge">SYS_CLK: MONOTONIC_RAW</span>
-            <span class="terminal-meta-badge" style="color:#A7F3D0;background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.25);">${escapeHtml(statusMeta || "RING BUFFER: 64KB")}</span>
+            <span class="terminal-meta-badge" style="color:#A7F3D0;background:rgba(60, 182, 133, 0.12);border-color:rgba(60, 182, 133, 0.25);">${escapeHtml(statusMeta || "RING BUFFER: 64KB")}</span>
             <button type="button" class="term-copy-btn" onclick="copyTelemetryTrace('${containerId}')" title="Copy Telemetry Stream to Clipboard">Copy Trace</button>
           </div>
         </div>
@@ -3141,12 +3141,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: linear-gradient(135deg, #064E3B 0%, #065F46 100%);
+        background: linear-gradient(135deg, #084E3A 0%, #065F46 100%);
         border: 1px solid #059669;
         border-radius: 12px;
         padding: 14px 18px;
         cursor: pointer;
-        box-shadow: 0 4px 14px rgba(5, 150, 105, 0.22);
+        box-shadow: 0 4px 14px rgba(5, 150, 105, 0.088);
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         text-align: left;
         user-select: none;
@@ -3155,8 +3155,8 @@
       }
       .implementation-trigger-button:hover {
         background: linear-gradient(135deg, #047857 0%, #065F46 100%);
-        border-color: #34D399;
-        box-shadow: 0 8px 24px rgba(5, 150, 105, 0.35);
+        border-color: #58CF9E;
+        box-shadow: 0 8px 24px rgba(5, 150, 105, 0.14);
         transform: translateY(-2px);
       }
       .impl-btn-content {
@@ -3219,8 +3219,8 @@
         gap: 6px;
         padding: 8px 14px;
         border-radius: 8px;
-        background: #10B981;
-        color: #064E3B;
+        background: #3CB685;
+        color: #084E3A;
         font-size: 0.76rem;
         font-weight: 700;
         letter-spacing: 0.2px;
@@ -3239,7 +3239,7 @@
         background: linear-gradient(135deg, #059669 0%, #047857 100%);
         color: #FFFFFF;
         border: none;
-        box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+        box-shadow: 0 4px 14px rgba(5, 150, 105, 0.14);
         font-family: var(--font-sans, system-ui, sans-serif);
         font-size: 0.84rem;
         font-weight: 600;
@@ -3253,7 +3253,7 @@
       .floating-impl-btn:hover {
         background: linear-gradient(135deg, #047857 0%, #065F46 100%);
         transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45);
+        box-shadow: 0 6px 18px rgba(5, 150, 105, 0.18);
       }
 
       /* Implementation Modal Window */
@@ -3322,7 +3322,7 @@
         font-size: 0.68rem;
         font-weight: 700;
         color: #047857;
-        background: #D1FAE5;
+        background: #DBF7E8;
         border: 1px solid #A7F3D0;
         padding: 3px 8px;
         border-radius: 9999px;
@@ -3362,7 +3362,7 @@
       .mode-toggle-group {
         display: flex;
         gap: 6px;
-        background: #F1F5F9;
+        background: #F2F5F9;
         padding: 4px;
         border-radius: 8px;
       }
@@ -3386,7 +3386,7 @@
       .mode-toggle-btn.active {
         background: #FFFFFF;
         color: #065F46;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       /* Stepper Bar (Stage Mode) */
@@ -3422,16 +3422,16 @@
       }
       .impl-step-pill.active {
         background: #ECFDF5;
-        border-color: #10B981;
+        border-color: #3CB685;
         color: #065F46;
         font-weight: 700;
-        box-shadow: 0 1px 3px rgba(16, 185, 129, 0.15);
+        box-shadow: 0 1px 3px rgba(60, 182, 133, 0.06);
       }
       .impl-step-circle {
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: #F1F5F9;
+        background: #F2F5F9;
         color: #64748B;
         display: flex;
         align-items: center;
@@ -3441,7 +3441,7 @@
         flex-shrink: 0;
       }
       .impl-step-pill.active .impl-step-circle {
-        background: #10B981;
+        background: #3CB685;
         color: #FFFFFF;
       }
 
@@ -3459,7 +3459,7 @@
         border: 1px solid #E2E8F0;
         border-radius: 14px;
         padding: 20px 24px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       }
 
       /* Clean Balanced Scenario Selector Bar (No Emojis, 7 Symmetric Columns) */
@@ -3539,14 +3539,14 @@
         max-width: 100%;
       }
       .scenario-chip-btn:hover {
-        background: #F1F5F9;
+        background: #F2F5F9;
         border-color: #94A3B8;
         transform: translateY(-1px);
       }
       .scenario-chip-btn.active {
-        background: #064E3B;
+        background: #084E3A;
         border-color: #059669;
-        box-shadow: 0 2px 8px rgba(6, 78, 59, 0.25);
+        box-shadow: 0 2px 8px rgba(8, 78, 58, 0.1);
         transform: translateY(-1px);
       }
       .scenario-chip-btn.active .vec-id {
@@ -3571,7 +3571,7 @@
         margin: 16px 0 20px !important;
         flex-wrap: wrap;
         gap: 10px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
       }
       .playback-btn-group {
         display: flex;
@@ -3591,7 +3591,7 @@
         align-items: center;
         gap: 6px;
         transition: all 0.18s ease;
-        box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+        box-shadow: 0 2px 6px rgba(5, 150, 105, 0.1);
       }
       .btn-play-flow:hover {
         background: linear-gradient(135deg, #047857 0%, #065F46 100%);
@@ -3612,14 +3612,14 @@
         transition: all 0.15s ease;
       }
       .btn-step-flow:hover {
-        background: #F1F5F9;
+        background: #F2F5F9;
         border-color: #94A3B8;
       }
       .progress-indicator-pill {
         font-size: 0.74rem;
         font-weight: 700;
         color: #047857;
-        background: #D1FAE5;
+        background: #DBF7E8;
         border: 1px solid #A7F3D0;
         padding: 4px 10px;
         border-radius: 9999px;
@@ -3656,12 +3656,12 @@
       .flow-node-card:hover {
         transform: translateY(-3px);
         border-color: #94A3B8;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
       }
       .flow-node-card.active-beat {
-        border-color: #10B981;
+        border-color: #3CB685;
         background: #ECFDF5;
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+        box-shadow: 0 0 20px rgba(60, 182, 133, 0.14);
         transform: translateY(-4px) scale(1.02);
       }
       .flow-node-card.past-beat {
@@ -3686,8 +3686,8 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #10B981;
-        box-shadow: 0 0 8px #10B981;
+        background: #3CB685;
+        box-shadow: 0 0 8px #3CB68566;
         animation: pulseRing 1.2s infinite;
       }
       @keyframes pulseRing {
@@ -3707,14 +3707,14 @@
         font-weight: 700;
         padding: 3px 6px;
         border-radius: 4px;
-        background: #F1F5F9;
+        background: #F2F5F9;
         color: #475569;
         display: inline-block;
         border: 1px solid #E2E8F0;
         margin-bottom: 8px;
       }
       .flow-node-card.active-beat .node-card-badge {
-        background: #D1FAE5;
+        background: #DBF7E8;
         color: #065F46;
         border-color: #A7F3D0;
       }
@@ -3725,7 +3725,7 @@
         display: flex;
         align-items: center;
         gap: 4px;
-        border-top: 1px solid #F1F5F9;
+        border-top: 1px solid #F2F5F9;
         padding-top: 8px;
         margin-top: auto;
       }
@@ -3741,7 +3741,7 @@
         padding: 20px 24px;
         color: #F8FAFC;
         margin-bottom: 20px;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
       }
       .teacher-board-header {
         display: flex;
@@ -3756,7 +3756,7 @@
       .teacher-header-title {
         font-size: 0.96rem;
         font-weight: 800;
-        color: #38BDF8;
+        color: #52B8FF;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -3777,12 +3777,12 @@
         background: #1E293B;
         border-radius: 8px;
         padding: 14px 16px;
-        border-left: 4px solid #38BDF8;
+        border-left: 4px solid #52B8FF;
       }
-      .teacher-step-card.action-card { border-left-color: #38BDF8; }
-      .teacher-step-card.exec-card { border-left-color: #FBBF24; }
-      .teacher-step-card.result-card { border-left-color: #34D399; }
-      .teacher-step-card.rationale-card { border-left-color: #A855F7; }
+      .teacher-step-card.action-card { border-left-color: #52B8FF; }
+      .teacher-step-card.exec-card { border-left-color: #FFBB53; }
+      .teacher-step-card.result-card { border-left-color: #58CF9E; }
+      .teacher-step-card.rationale-card { border-left-color: #5480F4; }
       .teacher-card-heading {
         font-size: 0.68rem;
         font-weight: 800;
@@ -3791,10 +3791,10 @@
         color: #94A3B8;
         margin-bottom: 8px;
       }
-      .teacher-step-card.action-card .teacher-card-heading { color: #38BDF8; }
-      .teacher-step-card.exec-card .teacher-card-heading { color: #FBBF24; }
-      .teacher-step-card.result-card .teacher-card-heading { color: #34D399; }
-      .teacher-step-card.rationale-card .teacher-card-heading { color: #C084FC; }
+      .teacher-step-card.action-card .teacher-card-heading { color: #52B8FF; }
+      .teacher-step-card.exec-card .teacher-card-heading { color: #FFBB53; }
+      .teacher-step-card.result-card .teacher-card-heading { color: #58CF9E; }
+      .teacher-step-card.rationale-card .teacher-card-heading { color: #7AA1FF; }
       .teacher-card-body {
         font-size: 0.78rem;
         line-height: 1.55;
@@ -3832,9 +3832,9 @@
         border-radius: 50%;
         display: inline-block;
       }
-      .term-dot-red { background: #EF4444; box-shadow: 0 0 5px rgba(239, 68, 68, 0.6); }
-      .term-dot-yellow { background: #F59E0B; box-shadow: 0 0 5px rgba(245, 158, 11, 0.6); }
-      .term-dot-green { background: #10B981; box-shadow: 0 0 5px rgba(16, 185, 129, 0.6); }
+      .term-dot-red { background: #E84F4B; box-shadow: 0 0 5px rgba(232, 79, 75, 0.24); }
+      .term-dot-yellow { background: #F0A132; box-shadow: 0 0 5px rgba(240, 161, 50, 0.24); }
+      .term-dot-green { background: #3CB685; box-shadow: 0 0 5px rgba(60, 182, 133, 0.24); }
       
       .terminal-title-text {
         font-size: 0.68rem;
@@ -3846,9 +3846,9 @@
       .terminal-meta-badge {
         font-size: 0.60rem;
         font-weight: 700;
-        color: #38BDF8;
-        background: rgba(56, 189, 248, 0.12);
-        border: 1px solid rgba(56, 189, 248, 0.25);
+        color: #52B8FF;
+        background: rgba(82, 184, 255, 0.12);
+        border: 1px solid rgba(82, 184, 255, 0.25);
         padding: 2px 7px;
         border-radius: 4px;
         text-transform: uppercase;
@@ -3884,13 +3884,13 @@
         flex-wrap: wrap;
       }
       .term-time {
-        color: #38BDF8;
+        color: #52B8FF;
         font-weight: 700;
         flex-shrink: 0;
         font-variant-numeric: tabular-nums;
       }
       .term-tag {
-        color: #C084FC;
+        color: #7AA1FF;
         font-weight: 800;
         flex-shrink: 0;
       }
@@ -3903,11 +3903,11 @@
         flex-shrink: 0;
         letter-spacing: 0.4px;
       }
-      .term-level-info { background: rgba(16, 185, 129, 0.18); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.35); }
-      .term-level-debug { background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); }
-      .term-level-warn { background: rgba(251, 191, 36, 0.18); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.35); }
+      .term-level-info { background: rgba(60, 182, 133, 0.18); color: #58CF9E; border: 1px solid rgba(60, 182, 133, 0.35); }
+      .term-level-debug { background: rgba(82, 184, 255, 0.15); color: #52B8FF; border: 1px solid rgba(82, 184, 255, 0.3); }
+      .term-level-warn { background: rgba(255, 187, 83, 0.18); color: #FFBB53; border: 1px solid rgba(255, 187, 83, 0.35); }
       .term-level-veto, .term-level-alert, .term-level-crit, .term-level-error { background: rgba(248, 113, 113, 0.22); color: #F87171; border: 1px solid rgba(248, 113, 113, 0.45); }
-      .term-level-pass, .term-level-seal { background: rgba(52, 211, 153, 0.22); color: #6EE7B7; border: 1px solid rgba(52, 211, 153, 0.45); }
+      .term-level-pass, .term-level-seal { background: rgba(88, 207, 158, 0.22); color: #6EE7B7; border: 1px solid rgba(88, 207, 158, 0.45); }
       
       .term-msg {
         color: #E2E8F0;
@@ -3927,7 +3927,7 @@
         display: inline-block;
         width: 7px;
         height: 13px;
-        background: #10B981;
+        background: #3CB685;
         animation: termBlink 0.9s infinite;
         vertical-align: middle;
       }
@@ -3942,14 +3942,14 @@
         border: 1px solid #E2E8F0;
         border-radius: 14px;
         padding: 22px 26px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       }
       .step-header-row {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         margin-bottom: 16px;
-        border-bottom: 1px solid #F1F5F9;
+        border-bottom: 1px solid #F2F5F9;
         padding-bottom: 12px;
       }
       .step-tag-pill {
@@ -3989,12 +3989,12 @@
         transition: all 0.15s ease;
       }
       .preset-chip:hover {
-        background: #F1F5F9;
+        background: #F2F5F9;
         border-color: #94A3B8;
         color: #0F172A;
       }
       .preset-chip.active {
-        background: #064E3B;
+        background: #084E3A;
         color: #FFFFFF;
         border-color: #059669;
       }
@@ -4024,12 +4024,12 @@
         align-items: center;
         gap: 8px;
         transition: all 0.2s ease;
-        box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+        box-shadow: 0 2px 6px rgba(5, 150, 105, 0.1);
       }
       .btn-run-stage:hover {
         background: linear-gradient(135deg, #047857 0%, #065F46 100%);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.14);
       }
       .micro-flowchart-box {
         background: #F8FAFC;
@@ -4062,14 +4062,14 @@
         padding: 8px 12px;
         font-size: 0.76rem;
         color: #1E293B;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
       }
-      .micro-flow-node.active-success { border-color: #34D399; background: #ECFDF5; color: #065F46; }
-      .micro-flow-node.active-danger { border-color: #F87171; background: #FEF2F2; color: #991B1B; }
-      .micro-flow-node.active-warn { border-color: #FCD34D; background: #FFFBEB; color: #92400E; }
+      .micro-flow-node.active-success { border-color: #58CF9E; background: #ECFDF5; color: #065F46; }
+      .micro-flow-node.active-danger { border-color: #F87171; background: #FEF2F1; color: #991B1B; }
+      .micro-flow-node.active-warn { border-color: #FFCE89; background: #FFFAF3; color: #8C4600; }
       .micro-flow-node strong { display: block; font-size: 0.7rem; color: #059669; margin-bottom: 2px; }
-      .micro-flow-node.active-danger strong { color: #DC2626; }
-      .micro-flow-node.active-warn strong { color: #B45309; }
+      .micro-flow-node.active-danger strong { color: #D23A34; }
+      .micro-flow-node.active-warn strong { color: #AE5900; }
       .micro-flow-arrow { color: #94A3B8; font-weight: 700; font-size: 1rem; }
       .verdict-box {
         display: flex;
@@ -4080,11 +4080,11 @@
         margin: 14px 0;
         font-size: 0.82rem;
       }
-      .verdict-box.quarantined { background: #FEF2F2; border: 1px solid #F87171; color: #991B1B; }
-      .verdict-box.approved { background: #ECFDF5; border: 1px solid #34D399; color: #065F46; }
-      .verdict-box.escrow { background: #FFFBEB; border: 1px solid #FCD34D; color: #92400E; }
+      .verdict-box.quarantined { background: #FEF2F1; border: 1px solid #F87171; color: #991B1B; }
+      .verdict-box.approved { background: #ECFDF5; border: 1px solid #58CF9E; color: #065F46; }
+      .verdict-box.escrow { background: #FFFAF3; border: 1px solid #FFCE89; color: #8C4600; }
       .reason-box {
-        background: #F1F5F9;
+        background: #F2F5F9;
         border-left: 4px solid #059669;
         border-radius: 4px 8px 8px 4px;
         padding: 12px 16px;
@@ -4115,7 +4115,7 @@
         align-items: center;
         gap: 8px;
         transition: all 0.2s ease;
-        box-shadow: 0 2px 6px rgba(5, 150, 105, 0.2);
+        box-shadow: 0 2px 6px rgba(5, 150, 105, 0.08);
       }
       .btn-nav-primary:hover { background: #047857; transform: translateY(-1px); }
       .btn-nav-secondary {
@@ -4132,7 +4132,7 @@
         gap: 6px;
         transition: all 0.15s ease;
       }
-      .btn-nav-secondary:hover { background: #F1F5F9; color: #0F172A; }
+      .btn-nav-secondary:hover { background: #F2F5F9; color: #0F172A; }
     `;
     document.head.appendChild(style);
   }
@@ -4155,7 +4155,7 @@
             <div class="impl-header-title-row">
               <h2 class="impl-header-title">KAVACH Interactive System Pipeline &amp; Execution Journey</h2>
               <span class="impl-badge-pill">CSE3101 AGENTIC AI &middot; LIVE FLOWCHART</span>
-              <span id="kavach-live-rpc-badge" class="impl-badge-pill" style="background:#059669;color:#fff;margin-left:6px;font-weight:700;">● LIVE MICROSERVICE CLUSTER (PORT 8000)</span>
+              <span id="kavach-live-rpc-badge" class="impl-badge-pill" style="background:#059669;color:#ffffff;margin-left:6px;font-weight:700;">● LIVE MICROSERVICE CLUSTER (PORT 8000)</span>
             </div>
             <p class="impl-header-subtitle">
               Interactive Educational Walkthrough: Visual Flowchart &rarr; Causal Transitions &rarr; Live Simulators &rarr; Academic Proof
@@ -4367,7 +4367,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
               <span>Teacher Commentary &bull; STAGE 0${curBeat}: ${beatData.title}</span>
             </h3>
-            <span style="font-size:0.72rem;color:#38BDF8;font-weight:700;background:rgba(56,189,248,0.15);padding:3px 10px;border-radius:9999px;border:1px solid rgba(56,189,248,0.3);">
+            <span style="font-size:0.72rem;color:#52B8FF;font-weight:700;background:rgba(82, 184, 255, 0.15);padding:3px 10px;border-radius:9999px;border:1px solid rgba(82, 184, 255, 0.3);">
               ${beatData.badge}
             </span>
           </div>
@@ -4718,7 +4718,7 @@
               Information Entropy: <strong>${ctrlState.entropy}</strong> bits/char | Token Vault: <strong>Active</strong>
             </div>
           </div>
-          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,0.7);">
+          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255, 255, 255, 0.7);">
             ${ctrlState.verdict1}
           </span>
         </div>
@@ -4834,7 +4834,7 @@
               Active Sub-Agent: <strong>${ctrlState.fsmActiveAgent}</strong> &bull; Lifecycle Hooks: <strong>8 Registered</strong>
             </div>
           </div>
-          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,0.7);">FSM SYNCED</span>
+          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255, 255, 255, 0.7);">FSM SYNCED</span>
         </div>
 
         <div class="reason-box">
@@ -4963,7 +4963,7 @@
               Target Package: <strong>${ctrlState.extractedPackages[0] || 'N/A'}</strong> &bull; Registry: <strong>${ctrlState.pypiStatus}</strong>
             </div>
           </div>
-          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,0.7);">
+          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255, 255, 255, 0.7);">
             ${isQuarantined ? 'HALTED' : 'VERIFIED'}
           </span>
         </div>
@@ -5094,7 +5094,7 @@
               Watchdog Execution Time: <strong>0.32s</strong> &bull; Reflection Budget: <strong>${ctrlState.reactIteration}/3 Tries</strong>
             </div>
           </div>
-          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,0.7);">
+          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255, 255, 255, 0.7);">
             ${isCircuitBreaker ? 'BOUNDED' : 'PASSED'}
           </span>
         </div>
@@ -5213,7 +5213,7 @@
             Execute Core Banking Transaction
           </button>
           ${isEscrowActive ? `
-            <button type="button" class="btn-run-stage" style="background:linear-gradient(135deg, #D97706 0%, #B45309 100%);" onclick="approveStep5Escrow()">
+            <button type="button" class="btn-run-stage" style="background:linear-gradient(135deg, #D6791C 0%, #AE5900 100%);" onclick="approveStep5Escrow()">
               Maker-Checker: Sign as Bank Supervisor
             </button>
           ` : ''}
@@ -5256,7 +5256,7 @@
               Requested: <strong>&#x20b9;${ctrlState.transferAmount.toLocaleString("en-IN")}</strong> &bull; Compliance: <strong>RBI Master Directions Section 10A</strong>
             </div>
           </div>
-          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,0.7);">
+          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255, 255, 255, 0.7);">
             ${ctrlState.makerCheckerSigned ? 'SETTLED' : (isEscrowActive ? 'ESCROW' : 'APPROVED')}
           </span>
         </div>
@@ -5320,15 +5320,15 @@
 
         <div class="step-presets-row">
           <button type="button" class="preset-chip ${ctrlState.selectedPreset6 === 'genuine' ? 'active' : ''}" onclick="loadStep6Preset('genuine')">Genuine Attestation (Immutable)</button>
-          <button type="button" class="preset-chip ${ctrlState.selectedPreset6 === 'prompt_tamper' ? 'active' : ''}" style="${ctrlState.selectedPreset6 === 'prompt_tamper' ? 'background:#DC2626;border-color:#EF4444;' : ''}" onclick="loadStep6Preset('prompt_tamper')">Tamper Leaf 0: Mutate Prompt by 1-Bit</button>
-          <button type="button" class="preset-chip ${ctrlState.selectedPreset6 === 'escrow_tamper' ? 'active' : ''}" style="${ctrlState.selectedPreset6 === 'escrow_tamper' ? 'background:#DC2626;border-color:#EF4444;' : ''}" onclick="loadStep6Preset('escrow_tamper')">Tamper Leaf 3: Mutate Escrow Receipt Amount</button>
+          <button type="button" class="preset-chip ${ctrlState.selectedPreset6 === 'prompt_tamper' ? 'active' : ''}" style="${ctrlState.selectedPreset6 === 'prompt_tamper' ? 'background:#D23A34;border-color:#E84F4B;' : ''}" onclick="loadStep6Preset('prompt_tamper')">Tamper Leaf 0: Mutate Prompt by 1-Bit</button>
+          <button type="button" class="preset-chip ${ctrlState.selectedPreset6 === 'escrow_tamper' ? 'active' : ''}" style="${ctrlState.selectedPreset6 === 'escrow_tamper' ? 'background:#D23A34;border-color:#E84F4B;' : ''}" onclick="loadStep6Preset('escrow_tamper')">Tamper Leaf 3: Mutate Escrow Receipt Amount</button>
         </div>
 
         <div style="margin-bottom:12px;">
           <label style="font-size:0.74rem;font-weight:700;color:#64748B;display:block;margin-bottom:4px;">
             ${isTampered ? 'Diverged Merkle Root Hash (Tamper Triggered):' : 'Immutable NIST SHA3-512 Merkle Root Seal:'}
           </label>
-          <div class="step-editor-box" style="margin:0;font-weight:700;word-break:break-all;color:${isTampered ? '#DC2626' : '#059669'};background:${isTampered ? '#FEF2F2' : '#F0FDF4'};">
+          <div class="step-editor-box" style="margin:0;font-weight:700;word-break:break-all;color:${isTampered ? '#D23A34' : '#059669'};background:${isTampered ? '#FEF2F1' : '#F0FDF4'};">
             ${ctrlState.merkleRoot}
           </div>
         </div>
@@ -5374,7 +5374,7 @@
               Ledger State: <strong>${isTampered ? 'TAMPER DIVERGENCE DETECTED' : 'AUTHENTICATED IMMUTABLE'}</strong> &bull; Non-Repudiation: <strong>GUARANTEED</strong>
             </div>
           </div>
-          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,0.7);">
+          <span style="font-size:0.72rem;font-weight:700;padding:4px 8px;border-radius:6px;background:rgba(255, 255, 255, 0.7);">
             ${isTampered ? 'CORRUPT' : 'SEALED'}
           </span>
         </div>

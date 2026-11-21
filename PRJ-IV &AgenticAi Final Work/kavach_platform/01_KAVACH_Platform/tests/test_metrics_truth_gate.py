@@ -14,9 +14,11 @@ CURRENT_DIR = Path(__file__).resolve().parent
 PLATFORM_DIR = CURRENT_DIR.parent
 REPO_ROOT = PLATFORM_DIR.parent
 
-METRICS_JSON_PATH = REPO_ROOT / "docs" / "METRICS.json"
-METRICS_MD_PATH = REPO_ROOT / "docs" / "METRICS.md"
-README_MD_PATH = REPO_ROOT / "README.md"
+# docs/ lives next to the platform (01_KAVACH_Platform/docs); fall back to the repo root layout.
+_DOCS_DIR = PLATFORM_DIR / "docs" if (PLATFORM_DIR / "docs" / "METRICS.json").exists() else REPO_ROOT / "docs"
+METRICS_JSON_PATH = _DOCS_DIR / "METRICS.json"
+METRICS_MD_PATH = _DOCS_DIR / "METRICS.md"
+README_MD_PATH = REPO_ROOT / "README.md"  # kavach_platform/README.md carries the badges
 
 
 def test_metrics_json_and_md_exist():
