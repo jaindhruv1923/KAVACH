@@ -8653,19 +8653,6 @@ button:active:not(:disabled),
   box-shadow: var(--shadow-sm);
 }
 
-.pathway-tab-story {
-  border: 1px solid #D8B4FE !important;
-  background: #FAF5FF !important;
-  color: #7E22CE !important;
-  font-weight: 700 !important;
-}
-.pathway-tab-story:hover {
-  background: #F3E8FF !important;
-  border-color: #A855F7 !important;
-  color: #6B21A8 !important;
-  transform: translateY(-1px);
-}
-
 .pathway-tab.active,
 .pathway-tab#pathway-btn-midsem.active,
 .pathway-tab#pathway-btn-improvised.active {
