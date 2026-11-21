@@ -88,12 +88,10 @@
       }
       var s = document.createElement('script');
       s.id = 'kavach-story-script';
-      var fallbackPath = window.location.pathname.includes('/cockpit') || window.location.pathname.includes('/kavach_agent_core') ? '../suite/kavach-story-mode.js?v=2.4' : 'suite/kavach-story-mode.js?v=2.4';
-      s.src = PLATFORM_ORIGIN + '/suite/kavach-story-mode.js?v=2.4';
-      s.onerror = function() {
-        this.onerror = null;
-        this.src = fallbackPath;
-      };
+      var isGh = window.location.hostname.indexOf('github.io') !== -1;
+      var ghRepo = (isGh && window.location.pathname.split('/')[1]) ? '/' + window.location.pathname.split('/')[1] : '';
+      var suiteBase = isGh ? (ghRepo + '/suite/') : '/suite/';
+      s.src = suiteBase + 'kavach-story-mode.js?v=2.7';
       s.onload = function () {
         if (typeof window.openKavachStoryMode === 'function') window.openKavachStoryMode(ch);
       };
@@ -103,6 +101,7 @@
 
   /* Tools shown at the top-right when the current page provides them */
   var TOOLS = [
+    { id: 'story', label: 'Story Mode',         short: 'Story', icon: 'game',  fn: 'openKavachStoryMode' },
     { id: 'ide',   label: 'Inbuilt IDE',         short: 'IDE',   icon: 'code',  fn: 'openCodebaseIdeModal' },
     { id: 'flow',  label: 'Implementation Flow', short: 'Flow',  icon: 'flow',  fn: 'openImplementationModal', arg: 'journey' },
     { id: 'math',  label: 'Math Guide',          short: 'Math',  icon: 'sigma', fn: 'openEli5AcademicModal' },
@@ -159,7 +158,7 @@
     var html = [];
     TOOLS.forEach(function (t) {
       if (t.onlyOn && t.onlyOn.indexOf(PAGE) === -1) return;
-      if (typeof window[t.fn] !== 'function') return;
+      if (t.id !== 'story' && typeof window[t.fn] !== 'function') return;
       if (html.length) html.push('<span class="kv-sep" aria-hidden="true"></span>');
       html.push('<button type="button" class="kv-tool" data-kv-tool="' + t.id + '" title="' + esc(t.label) + '">' +
         ICONS[t.icon] + '<span class="kv-tool-label">' + esc(t.label) + '</span><span class="kv-tool-label-short">' + esc(t.short) + '</span></button>');
@@ -168,9 +167,16 @@
     box.querySelectorAll('[data-kv-tool]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var t = TOOLS.filter(function (x) { return x.id === btn.getAttribute('data-kv-tool'); })[0];
+        if (!t) return;
+        closeMega(bar);
+        if (t.id === 'story') {
+          if (typeof window.openKavachStoryMode === 'function') {
+            window.openKavachStoryMode(0);
+          }
+          return;
+        }
         var fn = t && window[t.fn];
         if (typeof fn === 'function') {
-          closeMega(bar);
           t.arg ? fn(t.arg) : fn();
         }
       });
