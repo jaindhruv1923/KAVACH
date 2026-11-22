@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: kavach-platform
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --app-dir "PRJ-IV &AgenticAi Final Work/kavach_platform/01_KAVACH_Platform/backend" --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PORT
+        value: "10000"
+    plan: free
+    region: oregon
