@@ -2010,36 +2010,52 @@
       }
       .ide-tab-bar {
         height: 38px;
+        min-height: 38px;
         background: #161B22;
         border-bottom: 1px solid #30363D;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 14px;
+        padding: 0 10px;
+        gap: 8px;
+        overflow: hidden;
+        box-sizing: border-box;
       }
       .ide-tab-active {
         display: flex;
         align-items: center;
         gap: 8px;
         background: #0D1117;
-        padding: 6px 14px;
+        padding: 5px 12px;
+        height: 28px;
         border-top: 2px solid #58A6FF;
         border-right: 1px solid #30363D;
         border-left: 1px solid #30363D;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         color: #F2F6FB;
         font-weight: 600;
         margin-bottom: -1px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+        max-width: calc(100% - 165px);
+        flex-shrink: 1;
+      }
+      #ide-tab-filename {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .ide-tab-stats {
-        font-size: 0.72rem;
-        color: #8B949E;
-        font-family:'IBM Plex Mono', monospace;
+        display: none !important;
       }
       .ide-tab-actions {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
+        flex-shrink: 0;
+        white-space: nowrap;
       }
       .ide-editor-btn {
         background: #21262D;
@@ -2608,10 +2624,11 @@
           <div class="ide-editor-pane">
             <div class="ide-tab-bar">
               <div class="ide-tab-active">
-                <span style="color:#58A6FF;font-weight:800;font-size:0.75rem;">PY</span>
+                <span id="ide-tab-ext" style="color:#58A6FF;font-weight:800;font-size:0.75rem;">PY</span>
                 <span id="ide-tab-filename">flows.py</span>
-                <span class="file-badge-pill" id="ide-tab-badge">CO1, CO2</span>
-                <span class="ide-tab-stats" id="ide-tab-stats">6.1 KB · 156 lines</span>
+                <span class="file-badge-pill" id="ide-tab-badge" style="display:none;"></span>
+                <span id="ide-tab-dirty" style="display:none;color:#F0883E;font-size:12px;margin-left:2px;">●</span>
+                <span class="ide-tab-stats" id="ide-tab-stats" style="display:none;"></span>
               </div>
               <div class="ide-tab-actions">
                 <button type="button" class="ide-editor-btn" id="ide-wrap-btn" onclick="window.toggleIdeWrap()">Wrap</button>
@@ -2888,10 +2905,16 @@
 
     const tabName = document.getElementById('ide-tab-filename');
     if (tabName) tabName.textContent = file.filename;
+    const tabExt = document.getElementById('ide-tab-ext');
+    const ext = file.filename.split('.').pop().toUpperCase();
+    if (tabExt) {
+      tabExt.textContent = ext;
+      tabExt.style.color = (ext === 'PY') ? '#58A6FF' : (ext === 'YML' || ext === 'YAML') ? '#F1E05A' : (ext === 'JSON') ? '#CBCB41' : (ext === 'MD') ? '#38BDF8' : '#8B949E';
+    }
     const tabBadge = document.getElementById('ide-tab-badge');
-    if (tabBadge) tabBadge.textContent = file.badge;
+    if (tabBadge) tabBadge.style.display = 'none';
     const tabStats = document.getElementById('ide-tab-stats');
-    if (tabStats) tabStats.textContent = `${(file.size_bytes / 1024).toFixed(1)} KB · ${file.total_lines} lines`;
+    if (tabStats) tabStats.textContent = '';
 
     const lineNumBox = document.getElementById('ide-line-numbers');
     const codeBox = document.getElementById('ide-code-content');
@@ -3362,13 +3385,19 @@
     activeRealFilePath = relPath;
     
     const tabName = document.getElementById('ide-tab-filename');
+    const tabExt = document.getElementById('ide-tab-ext');
     const tabBadge = document.getElementById('ide-tab-badge');
     const tabStats = document.getElementById('ide-tab-stats');
     const filename = relPath.split('/').pop().split('\\').pop();
+    const ext = filename.split('.').pop().toUpperCase();
     
     if (tabName) tabName.textContent = filename;
-    if (tabBadge) tabBadge.textContent = filename.endsWith('.py') ? 'PYTHON' : filename.split('.').pop().toUpperCase();
-    if (tabStats) tabStats.textContent = 'Loading from disk...';
+    if (tabExt) {
+      tabExt.textContent = ext;
+      tabExt.style.color = (ext === 'PY') ? '#58A6FF' : (ext === 'YML' || ext === 'YAML') ? '#F1E05A' : (ext === 'JSON') ? '#CBCB41' : (ext === 'MD') ? '#38BDF8' : '#8B949E';
+    }
+    if (tabBadge) tabBadge.style.display = 'none';
+    if (tabStats) tabStats.textContent = '';
 
     // Highlight active in tree
     document.querySelectorAll('.ide-tree-file').forEach(el => {
@@ -3389,7 +3418,7 @@
       isIdeDirty = false;
 
       if (tabStats) {
-        tabStats.textContent = `${(data.size_bytes / 1024).toFixed(1)} KB · ${data.total_lines} lines · Disk Verified`;
+        tabStats.textContent = '';
       }
 
       // Render line numbers
@@ -3502,10 +3531,10 @@
       }
       lineNumBox.innerHTML = linesHtml;
     }
+    const dirtyDot = document.getElementById('ide-tab-dirty');
+    if (dirtyDot) dirtyDot.style.display = 'inline';
     const tabStats = document.getElementById('ide-tab-stats');
-    if (tabStats) {
-      tabStats.innerHTML = `${(val.length / 1024).toFixed(1)} KB · ${lines} lines <span class="ide-dirty-badge">● MODIFIED (Unsaved)</span>`;
-    }
+    if (tabStats) tabStats.textContent = '';
   };
 
   window.handleCodeTextareaKeyDown = function (e) {
@@ -3548,10 +3577,10 @@
         }, 2000);
       }
 
+      const dirtyDot = document.getElementById('ide-tab-dirty');
+      if (dirtyDot) dirtyDot.style.display = 'none';
       const tabStats = document.getElementById('ide-tab-stats');
-      if (tabStats) {
-        tabStats.textContent = `${(data.size_bytes / 1024).toFixed(1)} KB · ${data.total_lines} lines · Saved to Disk`;
-      }
+      if (tabStats) tabStats.textContent = '';
 
       // Show toast
       showFileSwitchToast({
