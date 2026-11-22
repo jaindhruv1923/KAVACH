@@ -45,7 +45,6 @@
     { key: 'bank',      group: 'Banking',      label: 'Banking Highway',        path: '/bank/',     desc: 'Governed payment console, HITL desk, SAGA and Merkle audit.' },
     { key: 'guide',     group: 'Presentation', label: 'Stakeholder Guide',      path: '/guide',     desc: 'The system explained for customer, DevOps, auditor and CISO.' },
     { key: 'motion',    group: 'Presentation', label: 'Motion Studio',          path: '/motion/',   desc: 'Animated diagrams used in the presentation.' },
-    { key: 'game',      group: 'Presentation', label: 'Cosmic Video Game',      path: '/game.html', desc: 'Interactive retro cyber game: The Cosmic Invariant Odyssey.' },
     { key: 'report',    group: 'Presentation', label: 'Mid-Sem Report',         path: '/reports/KAVACH_MidSem_Comprehensive_Submission_Report.html', desc: 'Comprehensive mid-semester submission report.' },
     { key: 'matrix',    group: 'Presentation', label: 'Coverage Matrix',        path: '/reports/KAVACH_Midsem_1_Slide_Coverage_Matrix.html', desc: 'One-slide rubric coverage matrix.' }
   ];

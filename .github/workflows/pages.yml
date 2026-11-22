@@ -85,12 +85,6 @@ jobs:
           mkdir -p _site/shared_ui
           cp -r "PRJ-IV &AgenticAi Final Work/shared_ui/"* _site/shared_ui/
 
-          # 11. Interactive Defense Game Simulator: accessible at /game/ and /game.html
-          mkdir -p _site/game
-          if [ -f "_site/game.html" ]; then
-            cp _site/game.html _site/game/index.html
-          fi
-
           # 11. Disable Jekyll and create 404 smart router
           touch _site/.nojekyll
 
@@ -116,8 +110,7 @@ jobs:
                   'evolution': repo + '/evolution/',
                   'guide': repo + '/guide/',
                   'motion': repo + '/motion/',
-                  'reports': repo + '/reports/',
-                  'game': repo + '/game/'
+                  'reports': repo + '/reports/'
                 };
                 var dest = map[seg] || (repo + '/');
                 window.location.replace(dest + window.location.search + window.location.hash);
