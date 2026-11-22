@@ -1506,10 +1506,7 @@
     jsSuite.defer = true;
     document.head.appendChild(jsSuite);
 
-    var jsStory = document.createElement('script');
-    jsStory.src = suiteBase + 'kavach-story-mode.js?v=2.7';
-    jsStory.defer = true;
-    document.head.appendChild(jsStory);
+
   })();
 </script>
 
@@ -1540,10 +1537,7 @@
         </div>
 
         <div class="tab-bar">
-            <button class="tab-btn" id="tabStoryCampaignBtn" onclick="openKavachStoryMode()">
-                <svg class="k-icon" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h4m-2-2v4m10-2h.01m-3 0h.01"></path></svg>
-                Story Campaign
-            </button>
+
             <button class="tab-btn active" id="tabStory" onclick="switchMainView('story')">
                 <svg class="k-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                 Story &amp; Pipeline

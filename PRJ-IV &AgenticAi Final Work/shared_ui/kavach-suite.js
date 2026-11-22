@@ -66,7 +66,6 @@
   }
 
   var ICONS = {
-    game: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4m10-2h.01m-3 0h.01"/></svg>',
     shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
     grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
     chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
@@ -77,31 +76,8 @@
     scale: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 21h14M3 7h18M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></svg>'
   };
 
-  /* Story Mode Lazy-Loader Fallback */
-  if (typeof window.openKavachStoryMode !== 'function') {
-    window.openKavachStoryMode = function (ch) {
-      if (document.getElementById('kavach-story-script')) {
-        setTimeout(function () {
-          if (typeof window.openKavachStoryMode === 'function') window.openKavachStoryMode(ch);
-        }, 50);
-        return;
-      }
-      var s = document.createElement('script');
-      s.id = 'kavach-story-script';
-      var isGh = window.location.hostname.indexOf('github.io') !== -1;
-      var ghRepo = (isGh && window.location.pathname.split('/')[1]) ? '/' + window.location.pathname.split('/')[1] : '';
-      var suiteBase = isGh ? (ghRepo + '/suite/') : '/suite/';
-      s.src = suiteBase + 'kavach-story-mode.js?v=2.7';
-      s.onload = function () {
-        if (typeof window.openKavachStoryMode === 'function') window.openKavachStoryMode(ch);
-      };
-      document.body.appendChild(s);
-    };
-  }
-
   /* Tools shown at the top-right when the current page provides them */
   var TOOLS = [
-    { id: 'story', label: 'Story Mode',         short: 'Story', icon: 'game',  fn: 'openKavachStoryMode' },
     { id: 'ide',   label: 'Inbuilt IDE',         short: 'IDE',   icon: 'code',  fn: 'openCodebaseIdeModal' },
     { id: 'flow',  label: 'Implementation Flow', short: 'Flow',  icon: 'flow',  fn: 'openImplementationModal', arg: 'journey' },
     { id: 'math',  label: 'Math Guide',          short: 'Math',  icon: 'sigma', fn: 'openEli5AcademicModal' },
@@ -158,7 +134,7 @@
     var html = [];
     TOOLS.forEach(function (t) {
       if (t.onlyOn && t.onlyOn.indexOf(PAGE) === -1) return;
-      if (t.id !== 'story' && typeof window[t.fn] !== 'function') return;
+      if (typeof window[t.fn] !== 'function') return;
       if (html.length) html.push('<span class="kv-sep" aria-hidden="true"></span>');
       html.push('<button type="button" class="kv-tool" data-kv-tool="' + t.id + '" title="' + esc(t.label) + '">' +
         ICONS[t.icon] + '<span class="kv-tool-label">' + esc(t.label) + '</span><span class="kv-tool-label-short">' + esc(t.short) + '</span></button>');
@@ -169,12 +145,6 @@
         var t = TOOLS.filter(function (x) { return x.id === btn.getAttribute('data-kv-tool'); })[0];
         if (!t) return;
         closeMega(bar);
-        if (t.id === 'story') {
-          if (typeof window.openKavachStoryMode === 'function') {
-            window.openKavachStoryMode(0);
-          }
-          return;
-        }
         var fn = t && window[t.fn];
         if (typeof fn === 'function') {
           t.arg ? fn(t.arg) : fn();
