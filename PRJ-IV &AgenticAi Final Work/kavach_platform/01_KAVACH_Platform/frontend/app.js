@@ -2655,13 +2655,12 @@ const EMBEDDED_PATHWAYS = {
   agents: ['agents-view', 'renderRealAgentsView', 'real-ai-agents'],
   swarm: ['swarm-view', 'renderLiveSwarmView', 'live-swarm'],
   apps: ['apps-view', 'renderApplicationsWorkView', 'applications-work'],
-  dashboards: ['dashboards-view', 'renderDashboardsHub', 'dashboards'],
-  api: ['api-hub-view', 'renderApiHubView', 'api-hub']
+  dashboards: ['dashboards-view', 'renderDashboardsHub', 'dashboards']
 };
 
 /* Exactly one header pathway tab is active at a time */
 function syncPathwayTabs(mode) {
-  ['midsem', 'improvised', 'academic', 'agents', 'swarm', 'apps', 'dashboards', 'api'].forEach(function (m) {
+  ['midsem', 'improvised', 'academic', 'agents', 'swarm', 'apps', 'dashboards'].forEach(function (m) {
     const btn = document.getElementById('pathway-btn-' + m);
     if (btn) {
       btn.classList.toggle('active', m === mode);

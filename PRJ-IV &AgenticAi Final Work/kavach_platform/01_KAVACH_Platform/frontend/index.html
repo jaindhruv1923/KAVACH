@@ -160,17 +160,9 @@ window.activatePathwayMode = function(mode, targetId) {
     return;
   } else if (mode === 'apps') {
     switchToViewGlobal('apps-view', null, 'applications-work');
-    if (pill) pill.innerHTML = "<strong>Active Scope: Bharat Core Bank Financial Vault.</strong> Live side-by-side verification of banking workflows, dynamic money transfers, and RBI Dual-Custody Escrow.";
+    if (pill) pill.innerHTML = "<strong>Active Scope: Bharat Core Bank A/B comparison portal.</strong> Live side-by-side verification of banking workflows with and without KAVACH governance.";
     if (typeof window.renderApplicationsWorkView === 'function') {
       setTimeout(() => window.renderApplicationsWorkView(), 10);
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    return;
-  } else if (mode === 'api') {
-    switchToViewGlobal('api-hub-view', null, 'api-hub');
-    if (pill) pill.innerHTML = "<strong>Active Scope: Developer API &amp; Interactive SecOps Playground.</strong> Live REST endpoint simulation, cURL / Python SDK code generator, and NIST FIPS 204 cryptographic attestation.";
-    if (typeof window.renderApiHubView === 'function') {
-      setTimeout(() => window.renderApiHubView(), 10);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return;
@@ -233,15 +225,6 @@ window.renderDynamicNavbar = function(mode) {
       <button type="button" class="nav-switch-btn" onclick="window.setBankMode('without')"> Without KAVACH</button>
       <button type="button" class="nav-switch-btn" onclick="window.setBankMode('with')">With KAVACH</button>
       <button type="button" class="nav-switch-btn" onclick="window.dispatchBankTransaction()"> Dispatch Tx</button>
-    `;
-  } else if (mode === 'api') {
-    container.innerHTML = `
-      <button type="button" class="nav-switch-btn active" onclick="activatePathwayMode('api')">API Console</button>
-      <button type="button" class="nav-switch-btn" onclick="window.setApiCodeTab('python')">Python SDK</button>
-      <button type="button" class="nav-switch-btn" onclick="window.setApiCodeTab('curl')">cURL CLI</button>
-      <button type="button" class="nav-switch-btn" onclick="window.setApiCodeTab('node')">Node.js</button>
-      <button type="button" class="nav-switch-btn" onclick="window.setApiCodeTab('openai')">OpenAI Drop-In</button>
-      <button type="button" class="nav-switch-btn" onclick="window.downloadAuditDossier()">Export Audit JSON</button>
     `;
   } else {
     container.innerHTML = `
@@ -444,29 +427,26 @@ window.openApplicationsWork = function(e) {
       </div>
 
       <div class="header-pathway-selector" role="tablist" aria-label="Platform sections">
-        <button type="button" id="pathway-btn-midsem" class="pathway-tab active" role="tab" onclick="activatePathwayMode('midsem')" title="Zero-Trust AI Security Gateway &amp; Perimeter Defense">
-          Security Gateway <span class="pathway-chip">Live</span>
+        <button type="button" id="pathway-btn-midsem" class="pathway-tab active" role="tab" onclick="activatePathwayMode('midsem')" title="Mid-semester foundation: scope and architecture">
+          Foundation <span class="pathway-chip">v1.0</span>
         </button>
-        <button type="button" id="pathway-btn-improvised" class="pathway-tab" role="tab" onclick="activatePathwayMode('improvised')" title="Cyber War-Room Arena, Forensic Incident DVR Replay &amp; Multi-Model Consensus">
-          War Room &amp; DVR <span class="pathway-chip">v3.0</span>
+        <button type="button" id="pathway-btn-improvised" class="pathway-tab" role="tab" onclick="activatePathwayMode('improvised')" title="Innovations added after the mid-semester review">
+          Improvised <span class="pathway-chip">v3.0</span>
         </button>
-        <button type="button" id="pathway-btn-academic" class="pathway-tab" role="tab" onclick="activatePathwayMode('academic')" title="Ten Autonomous Defense Engines &amp; Mathematical Grounding (KaTeX)">
-          Defense Mesh
+        <button type="button" id="pathway-btn-academic" class="pathway-tab" role="tab" onclick="activatePathwayMode('academic')" title="Ten research frontiers with live flow processors">
+          Research Frontiers
         </button>
-        <button type="button" id="pathway-btn-agents" class="pathway-tab pathway-tab-agents" role="tab" onclick="activatePathwayMode('agents')" title="Real Autonomous Multi-Agent ReAct Cockpit">
-          <span class="pathway-live-dot" aria-hidden="true"></span> Agent Cockpit
+        <button type="button" id="pathway-btn-agents" class="pathway-tab pathway-tab-agents" role="tab" onclick="activatePathwayMode('agents')" title="Real autonomous multi-agent cockpit">
+          <span class="pathway-live-dot" aria-hidden="true"></span> Real AI Agents
         </button>
-        <button type="button" id="pathway-btn-swarm" class="pathway-tab" role="tab" onclick="activatePathwayMode('swarm')" title="Live Autonomous Six-Sentinel Swarm Defense">
+        <button type="button" id="pathway-btn-swarm" class="pathway-tab" role="tab" onclick="activatePathwayMode('swarm')" title="Live six-sentinel agent swarm">
           Agent Swarm
         </button>
-        <button type="button" id="pathway-btn-apps" class="pathway-tab" role="tab" onclick="activatePathwayMode('apps')" title="Bharat Core Bank Dual-Custody Escrow &amp; Dynamic Money Transfer Highway">
-          Banking Vault
+        <button type="button" id="pathway-btn-apps" class="pathway-tab" role="tab" onclick="activatePathwayMode('apps')" title="Bharat Core Bank A/B comparison portal">
+          Banking Apps
         </button>
-        <button type="button" id="pathway-btn-api" class="pathway-tab" role="tab" onclick="activatePathwayMode('api')" title="Interactive Developer API Hub, Code Generator &amp; Playground">
-          Developer API
-        </button>
-        <button type="button" id="pathway-btn-dashboards" class="pathway-tab" role="tab" onclick="activatePathwayMode('dashboards')" title="Unified Directory of Every KAVACH Enterprise Module">
-          All Modules
+        <button type="button" id="pathway-btn-dashboards" class="pathway-tab" role="tab" onclick="activatePathwayMode('dashboards')" title="Directory of every KAVACH dashboard">
+          All Dashboards
         </button>
       </div>
     </div>
@@ -565,45 +545,18 @@ window.openApplicationsWork = function(e) {
   <!-- ============================================================ -->
   <div id="product-view">
 
-    <!-- KAVACH ENTERPRISE PRODUCT HERO BANNER -->
-    <div class="enterprise-hero-card" style="background:linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,41,59,0.92)); border:1px solid rgba(59,130,246,0.3); border-radius:12px; padding:24px 28px; margin-bottom:24px; box-shadow:0 12px 32px rgba(0,0,0,0.4); position:relative; overflow:hidden;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <div style="max-width:680px;">
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-            <span style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); color:#34D399; font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:999px; letter-spacing:0.04em;">PRODUCTION DEPLOYED</span>
-            <span style="color:#94A3B8; font-size:0.75rem; font-family:var(--font-mono, monospace);">NIST FIPS 204 ML-DSA-65 • DPDP 2023 • RBI CSF</span>
-          </div>
-          <h1 style="font-size:1.6rem; font-weight:800; color:#F8FAFC; margin:0 0 8px 0; letter-spacing:-0.02em;">KAVACH — Zero-Trust Security Gateway for Autonomous Agentic AI</h1>
-          <p style="font-size:0.86rem; color:#94A3B8; margin:0; line-height:1.5;">Inline cognitive security proxy preventing prompt injections (OWASP LLM01), exfiltrating citizen PII (DPDP 2023), and enforcing statutory dual-custody escrow on autonomous financial agents.</p>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button type="button" class="magnetic-btn" onclick="activatePathwayMode('apps')" style="background:#2563EB; color:#FFF; font-weight:700; font-size:0.82rem; padding:10px 18px; border-radius:8px; border:none; cursor:pointer; display:flex; align-items:center; gap:6px; box-shadow:0 4px 14px rgba(37,99,235,0.35);">
-            <span>Launch Banking Vault</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <button type="button" class="magnetic-btn" onclick="activatePathwayMode('api')" style="background:rgba(255,255,255,0.06); color:#E2E8F0; font-weight:600; font-size:0.82rem; padding:10px 18px; border-radius:8px; border:1px solid rgba(255,255,255,0.14); cursor:pointer; display:flex; align-items:center; gap:6px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            <span>Developer API</span>
-          </button>
-          <button type="button" class="magnetic-btn" onclick="window.switchToProfessorReview()" style="background:rgba(255,255,255,0.06); color:#E2E8F0; font-weight:600; font-size:0.82rem; padding:10px 18px; border-radius:8px; border:1px solid rgba(255,255,255,0.14); cursor:pointer; display:flex; align-items:center; gap:6px;">
-            <span>Compliance Matrix</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- Project Scope & Chronology Navigator -->
     <div class="project-scope-banner" id="project-scope-banner">
       <div class="scope-banner-header">
         <div class="scope-banner-title">
-          <span class="badge" style="background:rgba(37,99,235,0.12);color:#38BDF8;border:1px solid rgba(56,189,248,0.3);font-size:0.75rem;font-weight:700;">ENTERPRISE DEFENSE MATRIX</span>
-          <strong>Multi-Layer Zero-Trust Security for Autonomous AI Agents</strong>
+          <span class="badge" style="background:#EFF6FF;color:#1F50D4;border-color:#BFDBFE;font-size:0.75rem;">PROJECT CHRONOLOGY &amp; SCOPE NAVIGATOR</span>
+          <strong>Foundations vs Newly Improvised Innovations</strong>
         </div>
         <div class="scope-toggle-buttons">
-          <button type="button" class="scope-toggle-btn active" id="scope-btn-all" onclick="filterFeatureScope('all')">Full Security Suite</button>
-          <button type="button" class="scope-toggle-btn" id="scope-btn-earlier" onclick="filterFeatureScope('earlier')">Core Gateway v1.0</button>
-          <button type="button" class="scope-toggle-btn" id="scope-btn-new" onclick="filterFeatureScope('new')">Enterprise SecOps v3.0</button>
-          <button type="button" class="scope-toggle-btn" id="scope-btn-matrix" onclick="switchToComparison()">Threat Defense Matrix</button>
+          <button type="button" class="scope-toggle-btn active" id="scope-btn-all" onclick="filterFeatureScope('all')">Show Entire Platform</button>
+          <button type="button" class="scope-toggle-btn" id="scope-btn-earlier" onclick="filterFeatureScope('earlier')">What We Did Earlier (Mid-Sem Foundation)</button>
+          <button type="button" class="scope-toggle-btn" id="scope-btn-new" onclick="filterFeatureScope('new')">What We Added New (Improvised v3.0)</button>
+          <button type="button" class="scope-toggle-btn" id="scope-btn-matrix" onclick="switchToComparison()">Head-to-Head Comparison Matrix</button>
         </div>
       </div>
       <div class="scope-context-pill" id="scope-context-pill">
@@ -3140,9 +3093,6 @@ window.openApplicationsWork = function(e) {
   <!-- 5. APPLICATIONS WORK VIEW (#apps-view) - PORT 8002           -->
   <!-- ============================================================ -->
   <div id="apps-view" style="display:none; padding-top:16px;"></div>
-
-  <!-- DEVELOPER API HUB VIEW (#api-hub-view) -->
-  <div id="api-hub-view" style="display:none; padding-top:16px;"></div>
 
   <!-- REAL AI AGENTS VIEW (#agents-view): embedded autonomous agent cockpit -->
   <div id="agents-view" style="display:none; padding-top:16px;"></div>
