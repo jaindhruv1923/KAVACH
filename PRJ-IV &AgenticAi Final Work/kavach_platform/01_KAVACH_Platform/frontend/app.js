@@ -524,7 +524,7 @@ async function loadCommandCenter() {
 }
 
 githubBtn.addEventListener("click", async () => {
-  const repositoryUrl = githubUrl.value.trim();
+  const repositoryUrl = githubUrl.value.trim() || "https://github.com/jaindhruv1923/KAVACH";
   if (!repositoryUrl) {
     githubStatus.textContent = "Enter a public GitHub URL first.";
     githubStatus.className = "status-line status-blocked";
