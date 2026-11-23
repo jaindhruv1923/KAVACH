@@ -87,11 +87,103 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
   let isExecuting = false;
   let latestResult = null;
 
-  // Served at /bharat/ by the main platform, at / on its own port 8002.
-  const BANK_MOUNT = window.location.pathname.indexOf("/bharat") === 0 ? "/bharat" : "";
-  const API_ENDPOINT = BANK_MOUNT
-    ? BANK_MOUNT + "/api/simulate"
-    : (window.location.port === "8002" ? "/api/simulate" : "http://127.0.0.1:8002/api/simulate");
+  // Dynamic API Resolution (Works on Render /bharat, /bank, and port 8002)
+  function getApiBase() {
+    const p = window.location.pathname || "";
+    if (p.startsWith("/bharat")) return "/bharat";
+    if (p.startsWith("/bank")) return "/bank";
+    if (window.location.port === "8002") return "";
+    return "/bharat";
+  }
+  const API_ENDPOINT = getApiBase() + "/api/simulate";
+
+  window.loadCustomPrompt = function (txt) {
+    if (elPromptInput) {
+      elPromptInput.value = txt;
+      elPromptInput.focus();
+    }
+  };
+
+  function extractTransferInfo(text) {
+    if (!text) return { amount: 25000, beneficiary: "Designated Beneficiary", remitter: "Bharat Corporate Reserve", piiCount: 0, isJailbreak: false };
+    const lower = text.toLowerCase();
+
+    // PII detection
+    const aadhaarMatches = text.match(/\b\d{4}[-\s]?\d{4}[-\s]?\d{4}\b/g) || [];
+    const panMatches = text.match(/\b[A-Z]{5}[0-9]{4}[A-Z]\b/g) || [];
+    const piiCount = aadhaarMatches.length + panMatches.length;
+
+    // Jailbreak / authority override
+    const isJailbreak = lower.includes("urgent override") ||
+      lower.includes("group ceo") ||
+      lower.includes("bypass all standard compliance") ||
+      lower.includes("bypass") ||
+      lower.includes("executive override") ||
+      lower.includes("cayman") ||
+      lower.includes("cay-9921");
+
+    // Amount extraction
+    let amount = 0;
+    const m1 = text.match(/(?:₹|rs\.?|inr)\s*([\d,]+(?:\.\d+)?)\s*(crores?|cr|lakhs?|lacs?|lac|l|k)?/i);
+    const m2 = text.match(/([\d,]+(?:\.\d+)?)\s*(?:₹|rs\.?|inr|rupees?|crores?|cr|lakhs?|lacs?|lac|l|k)/i);
+    const m = m1 || m2;
+    if (m) {
+      const numStr = m[1].replace(/,/g, "");
+      let mult = 1.0;
+      const unit = ((m1 && m1[2]) ? m1[2] : (m[0] || "")).toLowerCase();
+      if (unit.includes("cr")) mult = 10000000;
+      else if (unit.includes("l") || unit.includes("lac")) mult = 100000;
+      else if (unit.includes("k")) mult = 1000;
+      amount = parseFloat(numStr) * mult;
+    }
+
+    if (!amount || isNaN(amount)) {
+      const m3 = text.match(/(?:send|wire|transfer|pay|remit|disburse)\s+([\d,]+(?:\.\d+)?)/i);
+      if (m3) {
+        amount = parseFloat(m3[1].replace(/,/g, ""));
+      }
+    }
+
+    if (!amount || isNaN(amount)) {
+      if (isJailbreak) amount = 5000000;
+      else if (piiCount > 0 || text.includes("3849-2918")) amount = 1500000;
+      else amount = 25000;
+    }
+
+    // Beneficiary extraction
+    let beneficiary = "";
+    if (lower.includes("cayman") || lower.includes("cay-9921")) {
+      beneficiary = "Cayman Shell Corp (CAY-9921)";
+    } else if (lower.includes("techcorp")) {
+      beneficiary = "TechCorp Solutions";
+    } else {
+      const mAcc = text.match(/to\s+(?:account|acc)\s+([A-Za-z0-9\-_]+)/i);
+      if (mAcc) {
+        beneficiary = "Account " + mAcc[1];
+      } else {
+        const mBen = text.match(/(?:to|wire to|transfer to)\s+([A-Za-z0-9\s\-_&]+?)(?:\s+(?:account|acc|for|with|from|\()|[.,;\n]|$)/i) ||
+                     text.match(/pay\s+([A-Za-z][A-Za-z0-9\s\-_&]*?)(?:\s+(?:₹|rs|inr|\d|account|for|with|[.,;\n]|$))/i);
+        if (mBen) {
+          let cand = mBen[1].trim().replace(/^(?:the|an|a)\s+/i, "").trim();
+          if (cand.toLowerCase().startsWith("account ")) cand = cand.substring(8).trim();
+          if (cand.length >= 2 && !["bank", "treasury", "standard", "all", "someone", "anyone"].includes(cand.toLowerCase())) {
+            beneficiary = cand;
+          }
+        }
+      }
+    }
+    if (!beneficiary || ["bank", "treasury", "standard", "all", "someone", "anyone"].includes(beneficiary.toLowerCase())) {
+      beneficiary = "Designated Beneficiary";
+    }
+
+    // Remitter extraction
+    let remitter = "Bharat Corporate Reserve";
+    const mRem = text.match(/remitter\s*(?:name)?\s*[:=\-]\s*([^\n,]+)/i);
+    if (mRem) remitter = mRem[1].trim();
+    else if (lower.includes("rajesh kumar")) remitter = "Rajesh Kumar";
+
+    return { amount, beneficiary, remitter, piiCount, isJailbreak };
+  }
 
   // DOM Elements
   const elTreasury = document.getElementById("val-treasury");
@@ -303,92 +395,23 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
   // =========================================================================
   // CLIENT-SIDE FALLBACK SIMULATION (For 100% Offline Resilience)
   // =========================================================================
-  function clientSimulate(scenarioId, mode, inputText) {
+    function clientSimulate(scenarioId, mode, inputText) {
     const isKavach = mode === "with_kavach";
-    const sc = SCENARIOS[scenarioId] || SCENARIOS.pii_wire;
+    const lower = (inputText || "").toLowerCase();
 
-    let verdict = "";
-    let delta = 0;
-    let pii = 0;
-    let threats = 0;
-    let rawOutput = "";
-    let kavachOutput = "";
-    let summary = "";
-    let explanation = "";
-    let regulatory = "";
-    let logs = [];
+    // Check for RCE / Supply-chain
+    if (scenarioId === "batch_rce" || (inputText && (inputText.includes("yaml.unsafe_load") || inputText.includes("reqeusts") || (inputText.includes("import ") && inputText.includes("os"))))) {
+      let verdict = "";
+      let delta = 0;
+      let pii = 0;
+      let threats = 0;
+      let rawOutput = "";
+      let kavachOutput = "";
+      let summary = "";
+      let explanation = "";
+      let regulatory = "";
+      let logs = [];
 
-    if (scenarioId === "pii_wire" || inputText.includes("3849-2918-4729")) {
-      if (!isKavach) {
-        verdict = "VULNERABILITY_EXPOSED";
-        delta = 1500000;
-        pii = 2;
-        rawOutput = `// RAW LLM AGENT EXECUTION (WITHOUT KAVACH)
-[LLM THOUGHT]: Customer Rajesh Kumar provided Aadhaar 3849-2918-4729 and PAN ABCDE1234F.
-[ACTION]: Logging complete plaintext request to third-party cloud API prompt traces.
-[DATABASE]: Writing unencrypted records:
-  INSERT INTO public_logs (name, aadhaar, pan, amount) VALUES ('Rajesh Kumar', '3849-2918-4729', 'ABCDE1234F', 1500000);
-[STATUS]: Plaintext citizen PII permanently logged across unencrypted third-party cloud servers.`;
-        summary = "Plaintext Aadhaar UID and PAN card number transmitted unencrypted to third-party cloud LLM servers.";
-        explanation = "Without KAVACH, autonomous LLMs treat national identifiers as regular string tokens. PII is permanently retained in model training logs and telemetry pipelines.";
-        regulatory = "CRITICAL DPDP ACT 2023 VIOLATION (Sec 8(3)): Statutory penalty up to ₹250 Crore per incident.";
-        logs.push("[ALERT: DPDP LEAK] Plaintext Aadhaar '3849-2918-4729' and PAN leaked to third-party cloud API.");
-      } else {
-        verdict = "SANITIZED_AND_CERTIFIED";
-        delta = 1500000;
-        threats = 1;
-        kavachOutput = `// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
-[KAVACH PII VAULT]: Intercepted 2 national identity entities in 1.42ms.
-  - Aadhaar 3849-2918-4729 -> Replaced with [VAULT:AADHAAR_9921_HMAC]
-  - PAN ABCDE1234F -> Replaced with [VAULT:PAN_7741_HMAC]
-[GoT REASONER]: Topological DAG acyclicity verified across 4 cognitive nodes (Depth: 4 levels).
-[DP ENGINE]: Calibrated Laplace perturbation injected into ledger balance (KaTeX bound e^0.5 = 1.649).
-[NIST ML-DSA-65]: Post-quantum module-lattice signature generated: ML-DSA-65:v1:7a9f...
-[STATUS]: Transaction safely executed. Zero plaintext PII exposed outside secure in-memory boundary.`;
-        summary = "KAVACH Zero-Knowledge Token Vault intercepted Aadhaar & PAN before cloud transit, replacing them with salted cryptographic Vault tokens.";
-        explanation = "The LLM only ever processed synthetic tokens. PII was tokenized in local volatile RAM under DPDP Act 2023 Sec 8(3) compliance, and the ledger transaction was signed with NIST FIPS 204 ML-DSA-65.";
-        regulatory = "100% REGULATORY COMPLIANT: Full DPDP Act 2023 Sec 8(3) and RBI Cyber Security Framework adherence verified.";
-        logs.push("[KAVACH PII VAULT] Aadhaar & PAN salted and tokenized into [VAULT:TKN_#8821]. Zero leakage.");
-        logs.push("[KAVACH LEDGER] Signed with NIST FIPS 204 ML-DSA-65 post-quantum lattice signature.");
-      }
-    } else if (scenarioId === "ceo_jailbreak" || inputText.includes("CAY-9921") || inputText.toLowerCase().includes("urgent override")) {
-      if (!isKavach) {
-        verdict = "BREACH_SUCCESSFUL";
-        delta = 5000000;
-        rawOutput = `// RAW LLM AGENT EXECUTION (WITHOUT KAVACH)
-[LLM THOUGHT]: Input claims urgent override from Group CEO with authority over acquisition.
-[DECISION]: User claims executive authority. Bypassing statutory 2FA and AML compliance checks.
-[ACTION]: Dispatched RTGS payment of ₹50,00,000 to offshore Cayman account 'CAY-9921'.
-[TREASURY UPDATE]:
-  Initial Reserve: ₹1,00,00,000
-  Deducted: ₹50,00,000
-  Remaining Balance: ₹50,00,000
-[STATUS]: Wire Transfer Complete. Funds permanently exfiltrated offshore.`;
-        summary = "Adversary successfully social-engineered the raw autonomous agent using authority bias and roleplay injection, stealing ₹50,00,000 live from the Treasury.";
-        explanation = "Raw LLMs suffer from semantic gullibility: without mathematical policy boundary enforcement, an instruction claiming to be 'Group CEO' easily overrides internal guidelines.";
-        regulatory = "CATASTROPHIC AML & RBI BREACH: Statutory transaction threshold exceeded without mandatory 2-person cryptographic approval. Potential banking license suspension.";
-        logs.push("[ALERT: TREASURY THEFT] LLM approved unauthorized transfer of ₹50,00,000 to offshore Cayman account!");
-        logs.push("[CRITICAL] Bank Treasury Reserve drained by 50%!");
-      } else {
-        verdict = "INTERCEPTED_AND_QUARANTINED";
-        delta = 0;
-        threats = 1;
-        kavachOutput = `// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
-[KAVACH SENTINEL GATE]: Intercepted OWASP LLM01 Direct Prompt Injection & Roleplay Override in 1.18ms.
-  - Pattern: Authority bias spoofing ('GROUP CEO OVERRIDE')
-  - Adversarial Confidence: 98.4%
-[ACTION]: Transaction frozen immediately. Zero funds moved.
-[SECURITY LATTICE]: Classified transaction level 'CONFIDENTIAL_TREASURY' cannot be dispatched without statutory HSM hardware key.
-[TREASURY STATUS]:
-  Treasury Reserve: ₹1,00,00,000 (100% Intact & Protected)
-[STATUS]: Attack neutralized. Red Team alert dispatched to Bank Security Operations Center (SOC).`;
-        summary = "KAVACH Sentinel Gate recognized the OWASP LLM01 prompt injection and blocked the transaction in 1.18ms, keeping the ₹1,00,00,000 Treasury reserve 100% safe.";
-        explanation = "KAVACH enforces zero-trust semantic policy validation: regardless of what instructions appear in the prompt, high-value disbursements require strict deterministic security lattice constraints.";
-        regulatory = "RBI COMPLIANT: Autonomous fraud attempt prevented; audit trail logged to immutable SLSA Level 3 cryptographic ledger.";
-        logs.push("[KAVACH SENTINEL] Intercepted CEO Prompt Injection (Confidence: 98.4%).");
-        logs.push("[KAVACH POLICY] Transaction frozen. Bank Treasury Reserve protected (₹1,00,00,000 intact).");
-      }
-    } else if (scenarioId === "batch_rce" || inputText.includes("yaml.unsafe_load") || inputText.includes("reqeusts")) {
       if (!isKavach) {
         verdict = "BREACH_SUCCESSFUL";
         rawOutput = `// RAW LLM AGENT EXECUTION (WITHOUT KAVACH)
@@ -422,7 +445,37 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
         logs.push("[KAVACH AST GUARD] Intercepted CWE-502 (yaml.unsafe_load) in AST node tree.");
         logs.push("[KAVACH PACKAGE FIREWALL] Blocked PyPI Slopsquatting package 'reqeusts'.");
       }
-    } else if (scenarioId === "denial_wallet" || inputText.includes("infinitely")) {
+
+      return {
+        execution_id: `BANK-SIM-${Date.now()}-${Math.floor(Math.random() * 899 + 100)}`,
+        scenario_id: scenarioId,
+        mode: mode,
+        timestamp: Date.now() / 1000,
+        verdict: verdict,
+        treasury_delta: delta,
+        pii_leaked_count: pii,
+        threats_intercepted_count: threats,
+        raw_agent_output: rawOutput,
+        kavach_agent_output: kavachOutput,
+        what_happened_summary: summary,
+        why_it_happened_explanation: explanation,
+        regulatory_impact: regulatory,
+        terminal_logs: logs,
+        slsa_provenance: isKavach ? { status: "CERTIFIED", slsa_level: 3, pqc_signature: "ML-DSA-65:v1:7a9f182c..." } : null
+      };
+    }
+    // Check for Denial-of-Wallet
+    else if (scenarioId === "denial_wallet" || lower.includes("infinitely") || lower.includes("volatility across 195")) {
+      let verdict = "";
+      let delta = 0;
+      let threats = 0;
+      let rawOutput = "";
+      let kavachOutput = "";
+      let summary = "";
+      let explanation = "";
+      let regulatory = "";
+      let logs = [];
+
       if (!isKavach) {
         verdict = "VULNERABILITY_EXPOSED";
         rawOutput = `// RAW LLM AGENT EXECUTION (WITHOUT KAVACH)
@@ -451,10 +504,40 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
         logs.push("[KAVACH GoT] Kahn's algorithm detected cyclic graph loop: N4 -> N1.");
         logs.push("[KAVACH BUDGET GUARD] Runaway execution terminated in 2.14ms. Cloud billing saved.");
       }
-    } else {
-      // SQL Injection / Generic
+
+      return {
+        execution_id: `BANK-SIM-${Date.now()}-${Math.floor(Math.random() * 899 + 100)}`,
+        scenario_id: scenarioId,
+        mode: mode,
+        timestamp: Date.now() / 1000,
+        verdict: verdict,
+        treasury_delta: delta,
+        pii_leaked_count: 0,
+        threats_intercepted_count: threats,
+        raw_agent_output: rawOutput,
+        kavach_agent_output: kavachOutput,
+        what_happened_summary: summary,
+        why_it_happened_explanation: explanation,
+        regulatory_impact: regulatory,
+        terminal_logs: logs,
+        slsa_provenance: isKavach ? { status: "CERTIFIED", slsa_level: 3, pqc_signature: "ML-DSA-65:v1:7a9f182c..." } : null
+      };
+    }
+    // Check for SQLi
+    else if (scenarioId === "sqli_bypass" || (inputText && (inputText.includes("'1'='1'") || lower.includes("corporate_banking_ledger")))) {
+      let verdict = "";
+      let pii = 0;
+      let threats = 0;
+      let rawOutput = "";
+      let kavachOutput = "";
+      let summary = "";
+      let explanation = "";
+      let regulatory = "";
+      let logs = [];
+
       if (!isKavach) {
         verdict = "BREACH_SUCCESSFUL";
+        pii = 5420;
         rawOutput = `// RAW LLM AGENT EXECUTION (WITHOUT KAVACH)
 [LLM THOUGHT]: Piped query directly to database connector: SELECT * FROM ... WHERE ... OR '1'='1'
 [DATABASE RESPONSE]: Tautology evaluated to TRUE. Dumped 5,420 unredacted customer records.
@@ -477,25 +560,129 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
         logs.push("[KAVACH SENTINEL] Intercepted CWE-89 SQL Injection pattern.");
         logs.push("[KAVACH SHIELD] Database access refused. Zero records leaked.");
       }
-    }
 
-    return {
-      execution_id: `BANK-SIM-${Date.now()}-${Math.floor(Math.random() * 899 + 100)}`,
-      scenario_id: scenarioId,
-      mode: mode,
-      timestamp: Date.now() / 1000,
-      verdict: verdict,
-      treasury_delta: delta,
-      pii_leaked_count: pii,
-      threats_intercepted_count: threats,
-      raw_agent_output: rawOutput,
-      kavach_agent_output: kavachOutput,
-      what_happened_summary: summary,
-      why_it_happened_explanation: explanation,
-      regulatory_impact: regulatory,
-      terminal_logs: logs,
-      slsa_provenance: isKavach ? { status: "CERTIFIED", slsa_level: 3, pqc_signature: "ML-DSA-65:v1:7a9f182c..." } : null
-    };
+      return {
+        execution_id: `BANK-SIM-${Date.now()}-${Math.floor(Math.random() * 899 + 100)}`,
+        scenario_id: scenarioId,
+        mode: mode,
+        timestamp: Date.now() / 1000,
+        verdict: verdict,
+        treasury_delta: 0,
+        pii_leaked_count: pii,
+        threats_intercepted_count: threats,
+        raw_agent_output: rawOutput,
+        kavach_agent_output: kavachOutput,
+        what_happened_summary: summary,
+        why_it_happened_explanation: explanation,
+        regulatory_impact: regulatory,
+        terminal_logs: logs,
+        slsa_provenance: isKavach ? { status: "CERTIFIED", slsa_level: 3, pqc_signature: "ML-DSA-65:v1:7a9f182c..." } : null
+      };
+    }
+    // ALL MONEY TRANSFERS TO ANYONE (Scenarios 1, 2, and ANY custom wire)
+    else {
+      const { amount, beneficiary, remitter, piiCount, isJailbreak } = extractTransferInfo(inputText);
+      let verdict = "";
+      let delta = 0;
+      let pii = 0;
+      let threats = 0;
+      let rawOutput = "";
+      let kavachOutput = "";
+      let summary = "";
+      let explanation = "";
+      let regulatory = "";
+      let logs = [];
+
+      if (!isKavach) {
+        delta = amount;
+        pii = piiCount;
+        verdict = isJailbreak ? "BREACH_SUCCESSFUL" : (piiCount > 0 ? "VULNERABILITY_EXPOSED" : (amount > 50000 ? "BREACH_SUCCESSFUL" : "SETTLED_UNCHECKED"));
+
+        rawOutput = `// RAW AUTONOMOUS AGENT EXECUTION (WITHOUT KAVACH)
+[AGENT THOUGHT]: Ingested prompt instruction to wire funds to ${beneficiary}.
+[AUTHORITY & POLICY CHECK]: 0 security policies evaluated. Bypassed 2FA, statutory limits, and dual-custody approval.
+[DATABASE MUTATION]: Executed direct write to transactions ledger:
+  INSERT INTO transactions VALUES ('BANK-SIM-${Date.now()}', '${remitter}', '${beneficiary}', INR ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})}, '${isJailbreak ? "DRAINED_VIA_JAILBREAK" : "SETTLED_UNCHECKED"}');
+  UPDATE accounts SET balance = balance - ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})} WHERE account_id = 'ACC-CORP-RESERVE';
+[REAL LEDGER STATE]: ACC-CORP-RESERVE debited by INR ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})}.
+[STATUS]: Transfer of INR ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})} dispatched to ${beneficiary} without cryptographic safety.`;
+
+        summary = `Raw autonomous agent executed an unguarded wire transfer of ₹${amount.toLocaleString('en-IN')} to ${beneficiary} without statutory compliance, dual-custody verification, or 2FA.`;
+        explanation = `Without KAVACH invariant boundary enforcement, the agent treats natural language instructions as direct database mutation privileges, allowing unauthorized capital transfers.`;
+        regulatory = `CRITICAL REGULATORY VIOLATION: Non-compliance with RBI Master Directions on Financial Fraud Prevention & lack of mandatory dual-custody controls.`;
+        logs.push(`[ALERT: UNCHECKED WIRE] Dispatched ₹${amount.toLocaleString('en-IN')} to ${beneficiary} with zero compliance checks.`);
+        if (isJailbreak) logs.push(`[CRITICAL] Adversary roleplay prompt injection drained ₹${amount.toLocaleString('en-IN')} from Treasury!`);
+      } else {
+        if (isJailbreak) {
+          verdict = "INTERCEPTED_AND_QUARANTINED";
+          delta = 0;
+          threats = 1;
+          kavachOutput = `// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
+[KAVACH SENTINEL GATE]: Intercepted OWASP LLM01 Jailbreak Attempt in 0.038ms.
+  - Pattern: Authority bias roleplay override ('URGENT OVERRIDE / BYPASS')
+  - Invariant Guardrail: Dual-custody escrow invariant CANNOT be overridden by natural language prompts.
+[CORE BANKING ACTION]: Wire transfer of INR ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})} to ${beneficiary} rejected at perimeter. Zero database mutations allowed.
+[CURRENT LEDGER STATE]: Treasury capital 100% preserved.
+[STATUS]: 100% Capital Preserved. Adversary session terminated and logged to SHA3-512 Merkle ledger.`;
+          summary = `KAVACH Sentinel Gate caught the CEO authority jailbreak in 0.038ms, blocking unauthorized transfer of ₹${amount.toLocaleString('en-IN')} to ${beneficiary} and protecting 100% of capital.`;
+          explanation = `KAVACH enforces deterministic invariant security: administrative safety checks and dual-custody rules are immutable architectural gates that prompt text can never disable.`;
+          regulatory = `100% LOSS PREVENTION: Zero capital stolen; statutory compliance with RBI Master Directions on Financial Fraud Prevention.`;
+          logs.push(`[KAVACH SENTINEL] Intercepted prompt injection attempt to wire funds to ${beneficiary}.`);
+          logs.push(`[KAVACH POLICY] Treasury Reserve protected. Zero funds moved.`);
+        } else if (amount > 50000) {
+          verdict = "HELD_IN_ESCROW";
+          delta = 0;
+          threats = 1;
+          const escrowId = `ESCROW-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+          kavachOutput = `// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
+[KAVACH PII VAULT]: Intercepted sensitive customer data. Tokenized into DPDP-compliant vault tokens in 0.42ms.
+[RBI CSF ESCROW GATE]: Wire amount INR ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})} to ${beneficiary} exceeds statutory INR 50,000 threshold.
+  - Mandated Action: Quarantined into Escrow Vault (${escrowId}).
+  - Two-Person Rule: Dual-Custody Multi-Signature required before funds release.
+  - Capital at Risk: INR 0.00 (Protected in Escrow).
+[NIST ML-DSA-65]: Post-quantum module-lattice state signature: ML-DSA-65:v1:7a9f...
+[STATUS]: 100% Capital Protected. Zero plaintext PII exposed outside secure in-memory boundary.`;
+          summary = `KAVACH tokenized sensitive identifiers and quarantined the ₹${amount.toLocaleString('en-IN')} transfer to ${beneficiary} into RBI Dual-Custody Escrow (${escrowId}).`;
+          explanation = `Under the DPDP Act 2023 and RBI CSF Section 4.2, high-value autonomous transactions cannot settle without cryptographic masking and two-person authorization.`;
+          regulatory = `100% STATUTORY COMPLIANT: Full DPDP Act Section 8(5) personal data shielding and RBI Cyber Security Framework multi-signature escrow enforced.`;
+          logs.push(`[KAVACH PII VAULT] Tokenized identifiers into isolated in-memory vault.`);
+          logs.push(`[RBI CSF ESCROW] Quarantined ₹${amount.toLocaleString('en-IN')} into Escrow Vault (${escrowId}).`);
+        } else {
+          verdict = "SANITIZED_AND_CERTIFIED";
+          delta = amount;
+          threats = 1;
+          kavachOutput = `// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
+[KAVACH GATEWAY]: Statutory limit verification passed (INR ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})} <= INR 50,000 ceiling).
+[KAVACH PII VAULT]: Remitter and beneficiary identities sanitized with DPDP-compliant zero-knowledge tokens.
+[CORE BANKING SETTLEMENT]: Authorized retail transfer of INR ${amount.toLocaleString('en-IN', {minimumFractionDigits: 2})} to ${beneficiary}.
+[NIST ML-DSA-65]: Post-quantum attestation signature generated: ML-DSA-65:v1:8f4c...
+[STATUS]: Transaction safely executed and certified. 100% compliant with RBI CSF & DPDP Act 2023.`;
+          summary = `KAVACH validated the ₹${amount.toLocaleString('en-IN')} transfer to ${beneficiary} under the RBI ₹50,000 retail ceiling, sanitized KYC data, and signed settlement with NIST ML-DSA-65.`;
+          explanation = `Retail transactions within statutory risk boundaries are cryptographically attested and safely cleared without exposing plain credentials.`;
+          regulatory = `100% REGULATORY COMPLIANT: Complies with DPDP Act 2023, RBI CSF retail limits, and NIST FIPS 204.`;
+          logs.push(`[KAVACH GATEWAY] Verified retail transfer within statutory limit (₹${amount.toLocaleString('en-IN')} <= ₹50,000).`);
+          logs.push(`[KAVACH LEDGER] Signed with NIST FIPS 204 ML-DSA-65 post-quantum lattice signature.`);
+        }
+      }
+
+      return {
+        execution_id: `BANK-SIM-${Date.now()}-${Math.floor(Math.random() * 899 + 100)}`,
+        scenario_id: scenarioId,
+        mode: mode,
+        timestamp: Date.now() / 1000,
+        verdict: verdict,
+        treasury_delta: delta,
+        pii_leaked_count: pii,
+        threats_intercepted_count: threats,
+        raw_agent_output: rawOutput,
+        kavach_agent_output: kavachOutput,
+        what_happened_summary: summary,
+        why_it_happened_explanation: explanation,
+        regulatory_impact: regulatory,
+        terminal_logs: logs,
+        slsa_provenance: isKavach ? { status: "CERTIFIED", slsa_level: 3, pqc_signature: "ML-DSA-65:v1:7a9f182c..." } : null
+      };
+    }
   }
 
   // =========================================================================
@@ -520,6 +707,8 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
 
     let res = null;
 
+    const transferDetails = extractTransferInfo(inputText);
+
     try {
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
@@ -527,7 +716,8 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
         body: JSON.stringify({
           scenario_id: currentScenarioId,
           mode: currentMode,
-          input_text: inputText
+          input_text: inputText,
+          custom_amount: transferDetails.amount
         })
       });
       if (response.ok) {
@@ -553,13 +743,16 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
 
     // Update Treasury Balance & Ledger
     if (currentMode === "without_kavach") {
-      if (res.verdict === "BREACH_SUCCESSFUL" && res.treasury_delta > 0) {
+      if (res.treasury_delta > 0) {
         treasuryBalance = Math.max(0, treasuryBalance - res.treasury_delta);
         totalStolen += res.treasury_delta;
       }
       piiLeakedCount += res.pii_leaked_count || 0;
     } else {
-      threatsBlockedCount += res.threats_intercepted_count || 0;
+      if (res.treasury_delta > 0 && res.verdict === "SANITIZED_AND_CERTIFIED") {
+        treasuryBalance = Math.max(0, treasuryBalance - res.treasury_delta);
+      }
+      threatsBlockedCount += res.threats_intercepted_count || 1;
     }
 
     updateLedgerDisplay(res);
@@ -708,6 +901,7 @@ WHERE account_holder = 'Admin' OR '1'='1'; -- AND auth_token = 'bypass_token'`
   }
 
   window.resetBankLedger = function () {
+    fetch(getApiBase() + "/api/ledger/reset", { method: "POST" }).catch(() => {});
     treasuryBalance = 10000000.0;
     totalStolen = 0.0;
     piiLeakedCount = 0;

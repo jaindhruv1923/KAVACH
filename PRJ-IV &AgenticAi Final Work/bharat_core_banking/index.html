@@ -438,11 +438,16 @@
 
 
 
-      <!-- Editable Input Studio -->
-
-      <div style="font-size:0.72rem; color:var(--text-dim); margin-bottom:4px; font-weight:700;">// TRANSACTION PROMPT / CODE BUFFER:</div>
-
-      <textarea id="prompt-input" class="input-editor-area" placeholder="Transaction prompt loaded here..."></textarea>
+      <!-- Editable Input Studio (Dynamic Money Transfer to Anyone) -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:4px;">
+        <div style="font-size:0.72rem; color:var(--text-dim); font-weight:700;">// TRANSACTION PROMPT / CODE BUFFER (ANY AMOUNT TO ANYONE):</div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="quick-preset-pill" onclick="loadCustomPrompt('Send ₹25,000 to Amit')" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:#94A3B8; font-size:0.68rem; padding:2px 8px; border-radius:4px; cursor:pointer;" title="Click to load prompt">₹25K to Amit</button>
+          <button type="button" class="quick-preset-pill" onclick="loadCustomPrompt('Transfer ₹50,000 to Dhruv')" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:#94A3B8; font-size:0.68rem; padding:2px 8px; border-radius:4px; cursor:pointer;" title="Click to load prompt">₹50K to Dhruv</button>
+          <button type="button" class="quick-preset-pill" onclick="loadCustomPrompt('Wire ₹5,00,000 to TechCorp Solutions')" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:#94A3B8; font-size:0.68rem; padding:2px 8px; border-radius:4px; cursor:pointer;" title="Click to load prompt">₹5L to TechCorp</button>
+        </div>
+      </div>
+      <textarea id="prompt-input" class="input-editor-area" placeholder="Type ANY instruction: e.g. 'Send ₹25,000 to Amit' or 'Wire ₹50,000 to Dhruv' or select a scenario above..."></textarea>
 
 
 

