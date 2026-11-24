@@ -694,7 +694,7 @@
       <button id="play">Pause</button>
       <button id="next">Next</button>
       <button id="tocb">Chapters</button>
-      <button id="mute">Voice: on</button>
+      <button id="mute">Studio Voice: ON</button>
       <button id="spd">Speed 1x</button>
     </div>
   </footer>
@@ -1005,13 +1005,31 @@ function nxt() {
   }
 }
 
+let currentAudio = null;
+let useStudioAudio = true;
+
+function stopAudio() {
+  if (currentAudio) {
+    try {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    } catch(e) {}
+    currentAudio = null;
+  }
+  try { speechSynthesis.cancel(); } catch(e) {}
+}
+
 function speak() {
   const my = ++tok;
   clearTimeout(tm);
-  try { speechSynthesis.cancel(); } catch(e) {}
+  stopAudio();
   if (!playing) return;
-  const txt = S[i].n, words = txt.split(/\s+/).length, fb = (words * 0.42 + 2.5) * 1000 / rate;
+
+  const txt = S[i].n;
+  const words = txt.split(/\s+/).length;
+  const fb = (words * 0.42 + 2.5) * 1000 / rate;
   let done = false;
+
   const fin = () => {
     if (done || my !== tok) return;
     done = true;
@@ -1021,21 +1039,56 @@ function speak() {
     }
     tm = setTimeout(() => {
       if (my === tok && playing) nxt();
-    }, 700);
+    }, 800);
   };
-  if (voice && "speechSynthesis" in window) {
-    const u = new SpeechSynthesisUtterance(txt);
-    u.rate = rate;
-    u.lang = "en-IN";
-    const vs = speechSynthesis.getVoices();
-    const v = vs.find(x => /en[-_]IN/i.test(x.lang)) || vs.find(x => /^en/i.test(x.lang));
-    if (v) u.voice = v;
-    u.onend = fin;
-    u.onerror = fin;
-    speechSynthesis.speak(u);
-    setTimeout(fin, fb * 2.2 + 4000);
-  } else {
+
+  if (!voice) {
     setTimeout(fin, fb);
+    return;
+  }
+
+  if (useStudioAudio) {
+    const audioPath = `/audio/slide_${i}.mp3`;
+    const audio = new Audio(audioPath);
+    currentAudio = audio;
+    audio.playbackRate = rate;
+
+    audio.onended = () => {
+      if (my === tok) fin();
+    };
+
+    audio.onerror = () => {
+      // Fallback to browser neural TTS if audio asset is unreachable
+      playBrowserTTS(txt, fin);
+    };
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        playBrowserTTS(txt, fin);
+      });
+    }
+  } else {
+    playBrowserTTS(txt, fin);
+  }
+}
+
+function playBrowserTTS(txt, onDone) {
+  if ("speechSynthesis" in window) {
+    const u = new SpeechSynthesisUtterance(txt);
+    u.rate = rate * 0.95;
+    u.pitch = 0.98;
+    const vs = speechSynthesis.getVoices();
+    const naturalVoice = vs.find(x => /natural|online|neural|premium|studio/i.test(x.name) && /^en/i.test(x.lang))
+      || vs.find(x => /google us english|google uk english/i.test(x.name))
+      || vs.find(x => /en[-_]IN/i.test(x.lang))
+      || vs.find(x => /^en/i.test(x.lang));
+    if (naturalVoice) u.voice = naturalVoice;
+    u.onend = onDone;
+    u.onerror = onDone;
+    speechSynthesis.speak(u);
+  } else {
+    onDone();
   }
 }
 
@@ -1057,7 +1110,7 @@ $("play").onclick = () => {
   if (playing) speak();
   else {
     tok++;
-    try { speechSynthesis.cancel(); } catch(e) {}
+    stopAudio();
   }
 };
 
@@ -1065,7 +1118,7 @@ $("next").onclick = () => show(i + 1);
 $("prev").onclick = () => show(i - 1);
 $("mute").onclick = () => {
   voice = !voice;
-  $("mute").textContent = "Voice: " + (voice ? "on" : "off");
+  $("mute").textContent = "Studio Voice: " + (voice ? "ON" : "OFF"); if(!voice) stopAudio();
   speak();
 };
 $("spd").onclick = () => {

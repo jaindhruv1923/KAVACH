@@ -146,6 +146,10 @@ app.mount(
     name="static",
 )
 
+AUDIO_DIR = os.path.join(FRONTEND_DIR, "audio")
+if os.path.isdir(AUDIO_DIR):
+    app.mount("/audio", StaticFiles(directory=AUDIO_DIR), name="audio")
+
 # ============================================================
 # MOUNT MULTI-SERVICE SUITE (BHARAT BANK & RESULTS COCKPIT)
 # ============================================================
