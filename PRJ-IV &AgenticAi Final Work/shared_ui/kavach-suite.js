@@ -74,11 +74,23 @@
     flow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M6 9v3a3 3 0 0 0 3 3h6"/></svg>',
     sigma: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4H6l6 8-6 8h12"/></svg>',
     chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
-    scale: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 21h14M3 7h18M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></svg>'
+    scale: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 21h14M3 7h18M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></svg>',
+    slides: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'
   };
 
-  /* Tools shown at the top-right when the current page provides them */
+  /* Direct function for Concept Walkthrough navigation */
+  window.openConceptWalkthrough = function () {
+    var target = url('walkthrough');
+    if (PAGE === 'walkthrough') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.location.href = target;
+    }
+  };
+
+  /* Tools shown at the top-right of the navy blue suite taskbar */
   var TOOLS = [
+    { id: 'walkthrough', label: 'Concept Walkthrough', short: 'Walkthrough', icon: 'slides', fn: 'openConceptWalkthrough' },
     { id: 'ide',   label: 'Inbuilt IDE',         short: 'IDE',   icon: 'code',  fn: 'openCodebaseIdeModal' },
     { id: 'flow',  label: 'Implementation Flow', short: 'Flow',  icon: 'flow',  fn: 'openImplementationModal', arg: 'journey' },
     { id: 'math',  label: 'Math Guide',          short: 'Math',  icon: 'sigma', fn: 'openEli5AcademicModal' },
@@ -137,15 +149,28 @@
       if (t.onlyOn && t.onlyOn.indexOf(PAGE) === -1) return;
       if (typeof window[t.fn] !== 'function') return;
       if (html.length) html.push('<span class="kv-sep" aria-hidden="true"></span>');
-      html.push('<button type="button" class="kv-tool" data-kv-tool="' + t.id + '" title="' + esc(t.label) + '">' +
-        ICONS[t.icon] + '<span class="kv-tool-label">' + esc(t.label) + '</span><span class="kv-tool-label-short">' + esc(t.short) + '</span></button>');
+      var isCur = (t.id === 'walkthrough' && PAGE === 'walkthrough') ? ' is-current' : '';
+      if (t.id === 'walkthrough') {
+        html.push('<a class="kv-tool' + isCur + '" href="' + esc(url('walkthrough')) + '" data-kv-tool="' + t.id + '" title="' + esc(t.label) + '">' +
+          ICONS[t.icon] + '<span class="kv-tool-label">' + esc(t.label) + '</span><span class="kv-tool-label-short">' + esc(t.short) + '</span></a>');
+      } else {
+        html.push('<button type="button" class="kv-tool" data-kv-tool="' + t.id + '" title="' + esc(t.label) + '">' +
+          ICONS[t.icon] + '<span class="kv-tool-label">' + esc(t.label) + '</span><span class="kv-tool-label-short">' + esc(t.short) + '</span></button>');
+      }
     });
     box.innerHTML = html.join('');
     box.querySelectorAll('[data-kv-tool]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function (e) {
         var t = TOOLS.filter(function (x) { return x.id === btn.getAttribute('data-kv-tool'); })[0];
         if (!t) return;
         closeMega(bar);
+        if (t.id === 'walkthrough') {
+          if (PAGE === 'walkthrough') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+          return;
+        }
         var fn = t && window[t.fn];
         if (typeof fn === 'function') {
           t.arg ? fn(t.arg) : fn();
