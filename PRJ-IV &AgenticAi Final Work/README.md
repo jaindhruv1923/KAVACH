@@ -6,10 +6,9 @@
 
 | Student Architect & Lead | Enrollment No. | Academic Role & Domain Ownership |
 | :--- | :---: | :--- |
-| **Dhruv Jain** | **230532** | Project Architect, Multi-Agent Swarm Orchestrator, Core Banking Infrastructure Lead, Post-Quantum Attestation |
-| **Dev Garg** | **230487** | Pre-Execution Guardrails, Verhoeff Checksum, Shannon Entropy, Slopsquatting Firewall Lead |
-| **Ansh Rohilla** | **230794** | Agentic Code RAG, Qdrant Vector Engine, Static AST Blast-Radius Graph Analyzer |
-| **Ansh Adhikari** | **230822** | Bounded ReAct Sandbox, Telemetry Cockpits, SHA3-512 Merkle Audit Ledger Lead |
+| **Dhruv Jain** | **230532** | Project Architect & Lead Developer: Multi-Agent Swarm, 3-Perimeter Defense Gateway, Core Banking Highway, SAGA Rollback Engine, SHA3-512 Merkle Audit Ledger, Production Deployment (76% Ownership) |
+| **Hemant** | **Contributor** | Benchmark Prompts Collation, OWASP Test Dataset Assembly, Automated Script Testing Support (12% Ownership) |
+| **Rajat Yadav** | **Contributor** | AI Security Literature Survey, UI Styling Polish, Presentation & Documentation Support (12% Ownership) |
 
 **Faculty Evaluators & Course Instructors:** Dr. Soharab Hossain Shaikh & Mr. Pranshu Tiwari  
 **Faculty Capstone Coordinator:** Prof. Anusha Chhabra  
