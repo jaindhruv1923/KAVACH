@@ -1030,6 +1030,26 @@ function nxt() {
 
 let currentAudio = null;
 let useStudioAudio = true;
+let indianVoice = null;
+
+function pickIndianVoice() {
+  if (!("speechSynthesis" in window)) return null;
+  const vs = speechSynthesis.getVoices();
+  if (!vs || !vs.length) return null;
+  return vs.find(x => /en[-_]IN/i.test(x.lang) && /natural|online|neural|premium|studio/i.test(x.name))
+    || vs.find(x => /prabhat|neerja|ravi|heera/i.test(x.name))
+    || vs.find(x => /india|hindi/i.test(x.name))
+    || vs.find(x => /en[-_]IN/i.test(x.lang))
+    || vs.find(x => /natural|online|neural|premium|studio/i.test(x.name) && /^en/i.test(x.lang))
+    || vs.find(x => /^en/i.test(x.lang));
+}
+
+if ("speechSynthesis" in window) {
+  indianVoice = pickIndianVoice();
+  speechSynthesis.onvoiceschanged = () => {
+    indianVoice = pickIndianVoice();
+  };
+}
 
 function stopAudio() {
   if (currentAudio) {
@@ -1071,26 +1091,38 @@ function speak() {
   }
 
   if (useStudioAudio) {
-    const audioPath = `/audio/slide_${i}.mp3`;
-    const audio = new Audio(audioPath);
-    currentAudio = audio;
-    audio.playbackRate = rate;
-
-    audio.onended = () => {
-      if (my === tok) fin();
-    };
-
-    audio.onerror = () => {
-      // Fallback to browser neural TTS if audio asset is unreachable
-      playBrowserTTS(txt, fin);
-    };
-
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
+    const candidates = [
+      `/audio/slide_${i}.mp3?v=in_3`,
+      `./audio/slide_${i}.mp3?v=in_3`,
+      `audio/slide_${i}.mp3?v=in_3`,
+      `./01_KAVACH_Platform/frontend/audio/slide_${i}.mp3?v=in_3`,
+      `../audio/slide_${i}.mp3?v=in_3`
+    ];
+    let candIdx = 0;
+    const tryNextAudio = () => {
+      if (my !== tok) return;
+      if (candIdx >= candidates.length) {
         playBrowserTTS(txt, fin);
-      });
-    }
+        return;
+      }
+      const p = candidates[candIdx++];
+      const audio = new Audio(p);
+      currentAudio = audio;
+      audio.playbackRate = rate;
+      audio.onended = () => {
+        if (my === tok) fin();
+      };
+      audio.onerror = () => {
+        tryNextAudio();
+      };
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          tryNextAudio();
+        });
+      }
+    };
+    tryNextAudio();
   } else {
     playBrowserTTS(txt, fin);
   }
@@ -1101,13 +1133,9 @@ function playBrowserTTS(txt, onDone) {
     const u = new SpeechSynthesisUtterance(txt);
     u.rate = rate * 0.95;
     u.pitch = 0.98;
-    const vs = speechSynthesis.getVoices();
-    const naturalVoice = vs.find(x => /en[-_]IN/i.test(x.lang) && /natural|online|neural|premium|studio/i.test(x.name))
-      || vs.find(x => /india|hindi|prabhat|neerja|ravi|heera/i.test(x.name))
-      || vs.find(x => /en[-_]IN/i.test(x.lang))
-      || vs.find(x => /natural|online|neural|premium|studio/i.test(x.name) && /^en/i.test(x.lang))
-      || vs.find(x => /^en/i.test(x.lang));
-    if (naturalVoice) u.voice = naturalVoice;
+    u.lang = "en-IN";
+    const v = indianVoice || pickIndianVoice();
+    if (v) u.voice = v;
     u.onend = onDone;
     u.onerror = onDone;
     speechSynthesis.speak(u);
