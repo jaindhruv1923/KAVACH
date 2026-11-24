@@ -1102,9 +1102,10 @@ function playBrowserTTS(txt, onDone) {
     u.rate = rate * 0.95;
     u.pitch = 0.98;
     const vs = speechSynthesis.getVoices();
-    const naturalVoice = vs.find(x => /natural|online|neural|premium|studio/i.test(x.name) && /^en/i.test(x.lang))
-      || vs.find(x => /google us english|google uk english/i.test(x.name))
+    const naturalVoice = vs.find(x => /en[-_]IN/i.test(x.lang) && /natural|online|neural|premium|studio/i.test(x.name))
+      || vs.find(x => /india|hindi|prabhat|neerja|ravi|heera/i.test(x.name))
       || vs.find(x => /en[-_]IN/i.test(x.lang))
+      || vs.find(x => /natural|online|neural|premium|studio/i.test(x.name) && /^en/i.test(x.lang))
       || vs.find(x => /^en/i.test(x.lang));
     if (naturalVoice) u.voice = naturalVoice;
     u.onend = onDone;
