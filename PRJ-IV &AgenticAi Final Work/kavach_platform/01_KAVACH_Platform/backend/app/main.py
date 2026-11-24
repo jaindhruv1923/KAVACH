@@ -243,6 +243,17 @@ def frontend_stakeholder_guide():
     return FileResponse(GUIDE_FILE, media_type="text/html", headers={"Cache-Control": "no-cache, must-revalidate"})
 
 
+WALKTHROUGH_FILE = os.path.join(FRONTEND_DIR, "concept_walkthrough.html")
+
+
+@app.api_route("/walkthrough", methods=["GET", "HEAD"], include_in_schema=False)
+@app.api_route("/walkthrough/", methods=["GET", "HEAD"], include_in_schema=False)
+@app.api_route("/concept_walkthrough.html", methods=["GET", "HEAD"], include_in_schema=False)
+def frontend_concept_walkthrough():
+    """Serve the interactive concept walkthrough presentation for professors and viva examiners."""
+    return FileResponse(WALKTHROUGH_FILE, media_type="text/html", headers={"Cache-Control": "no-cache, must-revalidate"})
+
+
 @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
 @app.api_route("/index.html", methods=["GET", "HEAD"], include_in_schema=False)
 def frontend_root():
